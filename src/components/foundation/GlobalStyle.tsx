@@ -1,12 +1,12 @@
 import * as styled from 'styled-components';
-import { FONT_FAMILY, MIN_DEVICE_WIDTH } from './constants';
+import { FONT_FAMILY } from '@/components/foundation/constants';
 
 const GlobalStyle = styled.createGlobalStyle`
   // ==========================================================================
   // Main root
   // ==========================================================================
 
-  *:where(:not(iframe, canvas, img, svg, video):not(svg *)) {
+  *:where(:not(iframe, canvas, img, svg, video):not(svg *, symbol *)) {
     all: unset;
     display: revert;
   }
@@ -27,11 +27,11 @@ const GlobalStyle = styled.createGlobalStyle`
   // 1. Remove the grey highlight on links in iOS
   // 2. Improving font rendering in macOS
   // 3. Prevent adjustments of font size after orientation changes in iOS
-  :where(:root) {
+  :root {
     font-family: ${FONT_FAMILY.SANS_SERIF};
     line-height: 1;
     overflow-wrap: break-word;
-    text-rendering: optimizeSpeed;
+    text-rendering: optimizespeed;
     -webkit-tap-highlight-color: transparent; // 1
     -webkit-font-smoothing: antialiased; // 2
     -moz-osx-font-smoothing: grayscale; // 2
@@ -39,22 +39,16 @@ const GlobalStyle = styled.createGlobalStyle`
   }
 
   // ==========================================================================
-  // Sectioning root
-  // ==========================================================================
-
-  :where(body) {
-    min-width: ${MIN_DEVICE_WIDTH};
-  }
-
-  // ==========================================================================
   // Text content
   // ==========================================================================
 
-  :where(ol, ul) {
-    list-style-type: none;
+  ol,
+  ul,
+  menu {
+    list-style: none;
   }
 
-  :where(pre) {
+  pre {
     font-family: ${FONT_FAMILY.MONOSPACE};
   }
 
@@ -62,11 +56,17 @@ const GlobalStyle = styled.createGlobalStyle`
   // Inline text semantics
   // ==========================================================================
 
-  :where(code, kbd, samp) {
+  a {
+    cursor: revert;
+  }
+
+  code,
+  kbd,
+  samp {
     font-family: ${FONT_FAMILY.MONOSPACE};
   }
 
-  :where(q) {
+  q {
     &::before,
     &::after {
       content: unset;
@@ -77,7 +77,9 @@ const GlobalStyle = styled.createGlobalStyle`
   // Image and multimedia
   // ==========================================================================
 
-  :where(audio, img, video) {
+  audio,
+  img,
+  video {
     vertical-align: middle;
   }
 
@@ -85,7 +87,7 @@ const GlobalStyle = styled.createGlobalStyle`
   // Embedded content
   // ==========================================================================
 
-  :where(iframe) {
+  iframe {
     vertical-align: middle;
   }
 
@@ -94,10 +96,10 @@ const GlobalStyle = styled.createGlobalStyle`
   // ==========================================================================
 
   // 1. Change the fill color to match the text color in all browsers
-  :where(svg) {
+  svg {
     vertical-align: middle;
     &:not([fill]) {
-      fill: currentColor; // 1
+      fill: currentcolor; // 1
     }
   }
 
@@ -105,7 +107,7 @@ const GlobalStyle = styled.createGlobalStyle`
   // Table content
   // ==========================================================================
 
-  :where(table) {
+  table {
     table-layout: fixed;
     border-collapse: collapse;
   }
@@ -114,24 +116,40 @@ const GlobalStyle = styled.createGlobalStyle`
   // Forms
   // ==========================================================================
 
-  :where(button, [type='button'], [type='submit'], [type='reset']) {
+  button,
+  [type='button'],
+  [type='submit'],
+  [type='reset'] {
     &:not(:disabled) {
       cursor: pointer;
     }
   }
 
-  :where(input, textarea) {
-    &::placeholder {
-      color: unset;
-    }
-  }
-
-  :where(textarea) {
+  textarea {
     white-space: revert;
   }
 
-  :where(label[for]) {
+  label[for] {
     cursor: pointer;
+  }
+
+  ::placeholder {
+    color: unset;
+  }
+
+  :where([hidden]) {
+    display: none;
+  }
+
+  :where([contenteditable]) {
+    -moz-user-modify: read-write;
+    -webkit-user-modify: read-write;
+    overflow-wrap: break-word;
+    -webkit-line-break: after-white-space;
+  }
+
+  :where([draggable='true']) {
+    -webkit-user-drag: element;
   }
 `;
 

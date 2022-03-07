@@ -1,6 +1,5 @@
 import Head from 'next/head';
-import Header from './header';
-import Footer from './footer';
+import { Header, Footer } from '@/components/layouts';
 import appSettings from 'appSettings';
 
 export type LayoutProps = {

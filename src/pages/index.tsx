@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import Head from '@/components/layouts/head';
+import { Head } from '@/components/layouts/';
 
 const Index: NextPage = () => {
   return (

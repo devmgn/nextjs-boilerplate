@@ -1,7 +1,4 @@
-import Head from './head';
-import Header from './header';
-import Footer from './footer';
-import Layout from './layout';
-
-export default Layout;
-export { Head, Header, Footer };
+export { default as Head } from '@/components/layouts/Head';
+export { default as Header } from '@/components/layouts/Header';
+export { default as Footer } from '@/components/layouts/Footer';
+export { default as Layout } from '@/components/layouts/Layout';

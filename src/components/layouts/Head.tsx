@@ -4,6 +4,7 @@ import appSettings from 'appSettings';
 type HeadProps = {
   title?: string;
   description?: string;
+  children?: React.ReactNode;
 };
 
 const Head: React.FC<HeadProps> = (props) => {

@@ -1,8 +1,8 @@
 import type { AppProps } from 'next/app';
 import { ThemeProvider } from 'styled-components';
 import { createTheme } from 'styled-breakpoints';
-import Layout from '@/components/layouts';
-import GlobalStyle from '@/components/foundation/globalStyle';
+import { Layout } from '@/components/layouts';
+import GlobalStyle from '@/components/foundation/GlobalStyle';
 
 const theme = createTheme({
   xs: '0px',
