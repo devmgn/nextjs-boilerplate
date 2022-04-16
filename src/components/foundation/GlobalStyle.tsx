@@ -1,7 +1,7 @@
-import * as styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import { FONT_FAMILY } from '@/components/foundation/constants';
 
-const GlobalStyle = styled.createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   // ==========================================================================
   // Main root
   // ==========================================================================

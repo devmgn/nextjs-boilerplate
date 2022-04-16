@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Head スナップショットテスト propsがない場合 1`] = `
+<head>
+  <title>
+    site name
+  </title>
+  <meta
+    content="keywords"
+    name="keywords"
+  />
+  <style
+    data-styled="active"
+    data-styled-version="5.3.5"
+  />
+</head>
+`;
+
+exports[`Head スナップショットテスト propsが全てある場合 1`] = `
+<head>
+  <title>
+    title | site name
+  </title>
+  <meta
+    content="description"
+    name="description"
+  />
+  <meta
+    content="keywords"
+    name="keywords"
+  />
+  <style
+    data-styled="active"
+    data-styled-version="5.3.5"
+  />
+</head>
+`;
+
+exports[`Head スナップショットテスト propsにchildrenがない場合 1`] = `
+<head>
+  <title>
+    title | site name
+  </title>
+  <meta
+    content="description"
+    name="description"
+  />
+  <style
+    data-styled="active"
+    data-styled-version="5.3.5"
+  />
+</head>
+`;
+
+exports[`Head スナップショットテスト propsにdescriptionがない場合 1`] = `
+<head>
+  <title>
+    title | site name
+  </title>
+  <meta
+    content="keywords"
+    name="keywords"
+  />
+  <style
+    data-styled="active"
+    data-styled-version="5.3.5"
+  />
+</head>
+`;
+
+exports[`Head スナップショットテスト propsにtitleがない場合 1`] = `
+<head>
+  <title>
+    site name
+  </title>
+  <meta
+    content="description"
+    name="description"
+  />
+  <meta
+    content="keywords"
+    name="keywords"
+  />
+  <style
+    data-styled="active"
+    data-styled-version="5.3.5"
+  />
+</head>
+`;
