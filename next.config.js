@@ -8,18 +8,17 @@ const bundleAnalyzer = require('@next/bundle-analyzer');
  */
 const nextConfig = {
   // basePath: '/',
-  // reactStrictMode: true,
-  // trailingSlash: true,
-  // poweredByHeader: false,
-  // generateEtags: false,
-  // esmExternals: false,
-  // compiler: {
-  //   styledComponents: true,
-  //   reactRemoveProperties: true,
-  // },
+  reactStrictMode: true,
+  trailingSlash: true,
+  poweredByHeader: false,
+  generateEtags: false,
+  // experimental: { esmExternals: false },
+  compiler: {
+    styledComponents: true,
+    reactRemoveProperties: true,
+  },
   webpack: (config) => {
-    Object.assign(config.externals, appSettings);
-    return config;
+    return { ...config, externals: appSettings };
   },
 };
 

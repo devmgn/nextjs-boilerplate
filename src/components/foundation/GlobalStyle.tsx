@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
   // Main root
   // ==========================================================================
 
-  *:where(:not(iframe, canvas, img, svg, video):not(svg *, symbol *)) {
+  *:where(:not(html, iframe, canvas, img, svg, video, svg *, symbol *)) {
     all: unset;
     display: revert;
   }
@@ -27,11 +27,11 @@ const GlobalStyle = createGlobalStyle`
   // 1. Remove the grey highlight on links in iOS
   // 2. Improving font rendering in macOS
   // 3. Prevent adjustments of font size after orientation changes in iOS
-  :root {
-    font-family: ${FONT_FAMILY.SANS_SERIF};
+  :where(:root) {
+    font-family: ${FONT_FAMILY.SERIF};
     line-height: 1;
     overflow-wrap: break-word;
-    text-rendering: optimizespeed;
+    text-rendering: optimizeSpeed;
     -webkit-tap-highlight-color: transparent; // 1
     -webkit-font-smoothing: antialiased; // 2
     -moz-osx-font-smoothing: grayscale; // 2
@@ -42,13 +42,11 @@ const GlobalStyle = createGlobalStyle`
   // Text content
   // ==========================================================================
 
-  ol,
-  ul,
-  menu {
-    list-style: none;
+  :where(ol, ul, menu) {
+    list-style-type: none;
   }
 
-  pre {
+  :where(pre) {
     font-family: ${FONT_FAMILY.MONOSPACE};
   }
 
@@ -56,17 +54,15 @@ const GlobalStyle = createGlobalStyle`
   // Inline text semantics
   // ==========================================================================
 
-  a {
+  :where(a) {
     cursor: revert;
   }
 
-  code,
-  kbd,
-  samp {
+  :where(code, kbd, samp) {
     font-family: ${FONT_FAMILY.MONOSPACE};
   }
 
-  q {
+  :where(q) {
     &::before,
     &::after {
       content: unset;
@@ -77,9 +73,7 @@ const GlobalStyle = createGlobalStyle`
   // Image and multimedia
   // ==========================================================================
 
-  audio,
-  img,
-  video {
+  :where(audio, img, video) {
     vertical-align: middle;
   }
 
@@ -87,7 +81,7 @@ const GlobalStyle = createGlobalStyle`
   // Embedded content
   // ==========================================================================
 
-  iframe {
+  :where(iframe) {
     vertical-align: middle;
   }
 
@@ -96,10 +90,10 @@ const GlobalStyle = createGlobalStyle`
   // ==========================================================================
 
   // 1. Change the fill color to match the text color in all browsers
-  svg {
+  :where(svg) {
     vertical-align: middle;
     &:not([fill]) {
-      fill: currentcolor; // 1
+      fill: currentColor; // 1
     }
   }
 
@@ -107,7 +101,7 @@ const GlobalStyle = createGlobalStyle`
   // Table content
   // ==========================================================================
 
-  table {
+  :where(table) {
     table-layout: fixed;
     border-collapse: collapse;
   }
@@ -116,26 +110,28 @@ const GlobalStyle = createGlobalStyle`
   // Forms
   // ==========================================================================
 
-  button,
-  [type='button'],
-  [type='submit'],
-  [type='reset'] {
+  :where(button, [type="button"], [type="submit"], [type="reset"]) {
     &:not(:disabled) {
       cursor: pointer;
     }
   }
 
-  textarea {
+  :where(textarea) {
     white-space: revert;
+    resize: vertical;
   }
 
-  label[for] {
+  :where(label[for]) {
     cursor: pointer;
   }
 
   ::placeholder {
     color: unset;
   }
+
+  // ==========================================================================
+  // Others
+  // ==========================================================================
 
   :where([hidden]) {
     display: none;
@@ -148,8 +144,16 @@ const GlobalStyle = createGlobalStyle`
     -webkit-line-break: after-white-space;
   }
 
-  :where([draggable='true']) {
+  :where([draggable="true"]) {
     -webkit-user-drag: element;
+  }
+
+  :where([tabindex]:not([tabindex*="-"])) {
+    cursor: pointer;
+  }
+
+  :where(a[href], area, button, input, label[for], select, summary, textarea, [tabindex]:not([tabindex*="-"])) {
+    touch-action: manipulation;
   }
 `;
 
