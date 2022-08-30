@@ -1,4 +1,3 @@
-const appSettings = require('./appSettings.json');
 const withPlugins = require('next-compose-plugins');
 const withExportImages = require('next-export-optimize-images');
 const bundleAnalyzer = require('@next/bundle-analyzer');
@@ -12,13 +11,10 @@ const nextConfig = {
   trailingSlash: true,
   poweredByHeader: false,
   generateEtags: false,
-  // experimental: { esmExternals: false },
+  experimental: { esmExternals: false },
   compiler: {
     styledComponents: true,
     reactRemoveProperties: true,
-  },
-  webpack: (config) => {
-    return { ...config, externals: appSettings };
   },
 };
 
