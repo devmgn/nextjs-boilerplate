@@ -1,10 +1,10 @@
-import type { AppProps } from 'next/app';
-import { ThemeProvider } from 'styled-components';
-import { createTheme } from 'styled-breakpoints';
 import { Provider } from 'react-redux';
-import { Layout } from '@/components/layouts';
+import { createTheme } from 'styled-breakpoints';
+import { ThemeProvider } from 'styled-components';
 import GlobalStyle from '@/components/foundation/GlobalStyle';
+import { Layout } from '@/components/layouts';
 import { store } from '@/states/store';
+import type { AppProps } from 'next/app';
 
 const theme = createTheme({
   xs: '0px',

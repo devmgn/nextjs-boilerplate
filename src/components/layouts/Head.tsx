@@ -1,3 +1,4 @@
+import React from 'react';
 import { default as NextHead } from 'next/head';
 import appSettings from 'appSettings';
 

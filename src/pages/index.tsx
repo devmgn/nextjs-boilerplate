@@ -1,8 +1,8 @@
-import type { NextPage } from 'next';
 import { useCallback } from 'react';
-import { Head } from '@/components/layouts/';
 import { useSelector, useDispatch } from 'react-redux';
+import { Head } from '@/components/layouts/';
 import { addUser, getUsers } from '@/states/ducks';
+import type { NextPage } from 'next';
 
 const Index: NextPage = () => {
   const users = useSelector(getUsers);

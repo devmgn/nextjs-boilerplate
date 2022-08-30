@@ -28,7 +28,7 @@ const GlobalStyle = createGlobalStyle`
   // 2. Improving font rendering in macOS
   // 3. Prevent adjustments of font size after orientation changes in iOS
   :where(:root) {
-    font-family: ${FONT_FAMILY.SERIF};
+    font-family: ${FONT_FAMILY.SANS_SERIF};
     line-height: 1;
     overflow-wrap: break-word;
     text-rendering: optimizeSpeed;

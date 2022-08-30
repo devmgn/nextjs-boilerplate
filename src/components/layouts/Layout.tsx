@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import { Header, Footer } from '@/components/layouts';
 import appSettings from 'appSettings';
+import { Header, Footer } from '@/components/layouts';
 
 export type LayoutProps = {
   children: React.ReactNode;
