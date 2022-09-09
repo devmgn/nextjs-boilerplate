@@ -3,19 +3,22 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Head } from '@/components/layouts/';
 import Dialog from '@/components/ui/Dialog';
 import useModal from '@/hooks/useModal';
-import { addUser, getUsers } from '@/states/ducks';
+import { addUser, selectUserByUid, usersSelector, selectLoginUsers } from '@/states/users';
 import type { NextPage } from 'next';
 
 const Index: NextPage = () => {
-  const users = useSelector(getUsers);
+  const users = useSelector(usersSelector);
+  const loginUsers = useSelector(selectLoginUsers);
+  const uidUser = useSelector(selectUserByUid(1));
+
   const dispatch = useDispatch();
   const { Container: Modal, ...modal } = useModal();
 
   const onClick = useCallback(() => {
-    console.log(users);
-    dispatch(addUser({ id: 1, name: 'hoge', uid: 123 }));
+    console.log(users, loginUsers, uidUser);
+    dispatch(addUser({ id: 1, name: 'hoge', uid: Math.floor(Math.random() * 5), isLogin: true }));
     modal.setIsActive(true);
-  }, [dispatch, modal, users]);
+  }, [dispatch, loginUsers, modal, uidUser, users]);
 
   return (
     <>

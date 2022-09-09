@@ -1,4 +1,5 @@
-import { configureStore } from '@reduxjs/toolkit';
-import reducer from './ducks/reducers';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { userReducer as users } from '@/states/users';
 
-export const store = configureStore({ reducer });
+const reducer = combineReducers({ users });
+export const store = configureStore({ reducer, devTools: process.env.NODE_ENV !== 'production' });
