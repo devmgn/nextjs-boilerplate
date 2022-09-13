@@ -6,7 +6,7 @@ export const usersSelector = (state: StoreState) => state.users;
 
 export const selectLoginUsers = createSelector(usersSelector, (users) => users.filter((user) => user.isLogin));
 
-export const selectUserByUid = memoize((uid: number) =>
+export const selectUserByUid = memoize((uid: string) =>
   createSelector(usersSelector, (users) => {
     return users.find((user) => user.uid === uid);
   })

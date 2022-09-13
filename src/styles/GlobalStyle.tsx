@@ -1,12 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
-import { FONT_FAMILY } from '@/components/foundation/constants';
+import { FONT_FAMILY } from '@/styles';
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   // ==========================================================================
   // Main root
   // ==========================================================================
 
-  *:where(:not(html, iframe, canvas, img, svg, video, svg *, symbol *)) {
+  *:where(:not(html, iframe, canvas, img, svg, video, audio, svg *, symbol *)) {
     all: unset;
     display: revert;
   }
@@ -116,6 +116,10 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  :where(input, textarea) {
+    -webkit-user-select: auto;
+  }
+
   :where(textarea) {
     white-space: revert;
     resize: vertical;
@@ -133,6 +137,10 @@ const GlobalStyle = createGlobalStyle`
   // Others
   // ==========================================================================
 
+  :where(:focus-visible) {
+    outline: revert;
+  }
+
   :where([hidden]) {
     display: none;
   }
@@ -142,6 +150,7 @@ const GlobalStyle = createGlobalStyle`
     -webkit-user-modify: read-write;
     overflow-wrap: break-word;
     -webkit-line-break: after-white-space;
+    -webkit-user-select: auto;
   }
 
   :where([draggable="true"]) {
@@ -156,5 +165,3 @@ const GlobalStyle = createGlobalStyle`
     touch-action: manipulation;
   }
 `;
-
-export default GlobalStyle;

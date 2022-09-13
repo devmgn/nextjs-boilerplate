@@ -1,24 +1,27 @@
 import React, { useCallback } from 'react';
+import { uniqueId } from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
 import { Head } from '@/components/layouts/';
 import Dialog from '@/components/ui/Dialog';
-import useModal from '@/hooks/useModal';
+import Modal from '@/components/ui/Modal';
+import useModalState from '@/hooks/useModalState';
 import { addUser, selectUserByUid, usersSelector, selectLoginUsers } from '@/states/users';
 import type { NextPage } from 'next';
 
 const Index: NextPage = () => {
   const users = useSelector(usersSelector);
   const loginUsers = useSelector(selectLoginUsers);
-  const uidUser = useSelector(selectUserByUid(1));
+  const uidUser = useSelector(selectUserByUid('5'));
+  const { activate, ...modalState } = useModalState();
 
   const dispatch = useDispatch();
-  const { Container: Modal, ...modal } = useModal();
 
   const onClick = useCallback(() => {
     console.log(users, loginUsers, uidUser);
-    dispatch(addUser({ id: 1, name: 'hoge', uid: Math.floor(Math.random() * 5), isLogin: true }));
-    modal.setIsActive(true);
-  }, [dispatch, loginUsers, modal, uidUser, users]);
+    dispatch(addUser({ id: 1, name: 'hoge', uid: uniqueId(), isLogin: true }));
+
+    activate();
+  }, [activate, dispatch, loginUsers, uidUser, users]);
 
   return (
     <>
@@ -29,8 +32,15 @@ const Index: NextPage = () => {
         quidem repellat tempore voluptatem sint! Impedit consequuntur culpa suscipit est itaque, placeat laborum
         possimus temporibus.
       </p>
-      <Modal>
-        <Dialog>Dialog</Dialog>
+
+      <Modal {...modalState}>
+        <Dialog>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Non expedita deleniti optio quas iste, ab
+            voluptatum exercitationem dolor recusandae, atque illum delectus aspernatur dolores eveniet architecto
+            officia! Omnis, autem mollitia.
+          </p>
+        </Dialog>
       </Modal>
     </>
   );
