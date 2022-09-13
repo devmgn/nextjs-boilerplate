@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Head } from '@/components/layouts/';
 import Dialog from '@/components/ui/Dialog';
 import Modal from '@/components/ui/Modal';
+import Posts from '@/components/ui/Posts';
 import useModalState from '@/hooks/useModalState';
 import { addUser, selectUserByUid, usersSelector, selectLoginUsers } from '@/states/users';
 import type { NextPage } from 'next';
@@ -19,7 +20,6 @@ const Index: NextPage = () => {
   const onClick = useCallback(() => {
     console.log(users, loginUsers, uidUser);
     dispatch(addUser({ id: 1, name: 'hoge', uid: uniqueId(), isLogin: true }));
-
     activate();
   }, [activate, dispatch, loginUsers, uidUser, users]);
 
@@ -27,6 +27,7 @@ const Index: NextPage = () => {
     <>
       <Head />
       <button onClick={onClick}>ボタン</button>
+      <Posts />
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam excepturi suscipit magni nostrum facilis officiis
         quidem repellat tempore voluptatem sint! Impedit consequuntur culpa suscipit est itaque, placeat laborum

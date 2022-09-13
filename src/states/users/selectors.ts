@@ -1,8 +1,8 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { memoize } from 'lodash';
-import { StoreState } from '@/states';
+import { RootState } from '@/states';
 
-export const usersSelector = (state: StoreState) => state.users;
+export const usersSelector = (state: RootState) => state.users;
 
 export const selectLoginUsers = createSelector(usersSelector, (users) => users.filter((user) => user.isLogin));
 

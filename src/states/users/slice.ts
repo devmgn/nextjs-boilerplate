@@ -3,7 +3,7 @@ import { User } from '@/states/users';
 
 const initialState: User[] = [];
 
-export const userSlice = createSlice({
+export const usersSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
@@ -13,6 +13,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const userActions = userSlice.actions;
-export const { addUser } = userSlice.actions;
-export const userReducer = userSlice.reducer;
+export const usersActions = usersSlice.actions;
+export const { addUser } = usersSlice.actions;
+export const usersReducer = usersSlice.reducer;

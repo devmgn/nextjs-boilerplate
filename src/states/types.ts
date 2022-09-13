@@ -1,5 +1,4 @@
-import { User } from '@/states/users';
+import { store } from '@/states';
 
-export type StoreState = {
-  users: User[];
-};
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
