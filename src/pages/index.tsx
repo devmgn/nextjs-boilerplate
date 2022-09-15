@@ -3,9 +3,8 @@ import { uniqueId } from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
 import { Head } from '@/components/layouts/';
 import Dialog from '@/components/ui/Dialog';
-import Modal from '@/components/ui/Modal';
+import Modal, { useModalState } from '@/components/ui/Modal';
 import Posts from '@/components/ui/Posts';
-import useModalState from '@/hooks/useModalState';
 import { addUser, selectUserByUid, usersSelector, selectLoginUsers } from '@/states/users';
 import type { NextPage } from 'next';
 

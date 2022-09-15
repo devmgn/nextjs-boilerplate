@@ -1,23 +1,19 @@
-import { useCallback, useEffect, useState } from 'react';
-import { disablePageScroll, enablePageScroll } from 'scroll-lock';
+import React, { useCallback, useEffect, useState } from 'react';
 import { StyledModal } from '@/components/ui/Modal';
-import { MODAL_TRANSITION_DURATION_IN_MS } from '@/constants';
 
 const useModalState = () => {
   const [isActive, setIsActive] = useState(false);
 
   const activate = useCallback(() => {
     setIsActive(true);
-    disablePageScroll();
   }, []);
 
   const deactivate = useCallback(() => {
     setIsActive(false);
-    window.setTimeout(enablePageScroll, MODAL_TRANSITION_DURATION_IN_MS);
   }, []);
 
-  const onClick = useCallback(
-    (event: React.MouseEvent) => {
+  const onDeactivate = useCallback<(event: React.MouseEvent) => void>(
+    (event) => {
       const deActivatableElements = [
         document.querySelector(StyledModal),
         ...document.querySelectorAll('[data-modal-deactivate]'),
@@ -43,6 +39,7 @@ const useModalState = () => {
     return () => document.removeEventListener('keydown', onEscKeyDown);
   }, [deactivate, isActive]);
 
-  return { isActive, activate, onClick };
+  return { isActive, activate, deactivate, onDeactivate };
 };
+
 export default useModalState;

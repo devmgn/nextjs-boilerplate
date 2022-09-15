@@ -2,6 +2,8 @@ import { createGlobalStyle } from 'styled-components';
 import { FONT_FAMILY } from '@/styles';
 
 export const GlobalStyle = createGlobalStyle`
+  /* stylelint-disable */
+
   // ==========================================================================
   // Main root
   // ==========================================================================
@@ -32,10 +34,10 @@ export const GlobalStyle = createGlobalStyle`
     line-height: 1;
     overflow-wrap: break-word;
     text-rendering: optimizeSpeed;
-    -webkit-tap-highlight-color: transparent; // 1
-    -webkit-font-smoothing: antialiased; // 2
-    -moz-osx-font-smoothing: grayscale; // 2
-    -webkit-text-size-adjust: 100%; // 3
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
   }
 
   // ==========================================================================
@@ -93,7 +95,7 @@ export const GlobalStyle = createGlobalStyle`
   :where(svg) {
     vertical-align: middle;
     &:not([fill]) {
-      fill: currentColor; // 1
+      fill: currentColor;
     }
   }
 

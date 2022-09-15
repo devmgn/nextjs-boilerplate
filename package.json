@@ -10,7 +10,8 @@
     "start": "next start",
     "lint:next": "next lint --dir src",
     "lint:markup": "markuplint **/*.tsx",
-    "lint": "yarn lint:next && yarn lint:markup",
+    "lint:style": "stylelint **/*.{ts,tsx} -f verbose --fix --cache",
+    "lint": "yarn lint:next && yarn lint:markup && yarn lint:style",
     "test": "yarn jest",
     "test:coverage": "yarn jest --collect-coverage",
     "analyze": "ANALYZE=true next build"
@@ -19,13 +20,12 @@
     "*.[jt]s?(x)": "yarn lint"
   },
   "dependencies": {
-    "framer-motion": "7.3.2",
+    "framer-motion": "7.3.5",
     "next": "12.3.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-focus-lock": "2.9.1",
     "scroll-lock": "2.1.5",
-    "styled-breakpoints": "11.1.1",
     "styled-components": "5.3.5"
   },
   "devDependencies": {
@@ -33,14 +33,15 @@
     "@markuplint/react-spec": "2.1.1",
     "@next/bundle-analyzer": "12.3.0",
     "@reduxjs/toolkit": "1.8.5",
+    "@stylelint/postcss-css-in-js": "0.38.0",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",
     "@testing-library/react-hooks": "8.0.1",
     "@testing-library/user-event": "14.4.3",
-    "@types/jest": "29.0.1",
+    "@types/jest": "29.0.3",
     "@types/lodash": "4.14.185",
-    "@types/node": "18.7.17",
-    "@types/react": "18.0.19",
+    "@types/node": "18.7.18",
+    "@types/react": "18.0.20",
     "@types/react-dom": "18.0.6",
     "@types/scroll-lock": "2.1.0",
     "@types/styled-components": "5.1.26",
@@ -60,12 +61,15 @@
     "markuplint": "2.10.1",
     "next-compose-plugins": "2.2.1",
     "next-export-optimize-images": "1.7.0",
+    "postcss-syntax": "0.36.2",
     "react-redux": "8.0.2",
-    "stylelint": "14.11.0",
+    "stylelint": "14.12.0",
     "stylelint-config-prettier": "9.0.3",
+    "stylelint-config-recess-order": "3.0.0",
     "stylelint-config-recommended": "9.0.0",
     "stylelint-config-styled-components": "0.1.1",
-    "stylelint-processor-styled-components": "1.10.0",
+    "stylelint-no-unsupported-browser-features": "5.0.4",
+    "stylelint-prettier": "2.0.0",
     "typescript": "4.8.3"
   }
 }

@@ -1,6 +1,6 @@
-import { Post } from '@/states/posts';
+import { PostType } from '@/states/posts';
 
-type PostProps = Omit<Post, 'id' | 'userId'>;
+type PostProps = Omit<PostType, 'userId' | 'id'>;
 
 const Post: React.FC<PostProps> = ({ title, body }) => {
   return (
