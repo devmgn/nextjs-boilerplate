@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['next', 'next/core-web-vitals', 'prettier'],
+  extends: ['next', 'next/core-web-vitals', 'prettier', 'plugin:storybook/recommended'],
   plugins: ['@typescript-eslint', 'import'],
   rules: {
     '@next/next/no-img-element': 'off',
@@ -39,8 +39,14 @@ module.exports = {
     ],
     '@typescript-eslint/naming-convention': [
       'warn',
-      { selector: 'typeAlias', format: ['PascalCase'] },
-      { selector: 'interface', format: ['PascalCase'] },
+      {
+        selector: 'typeAlias',
+        format: ['PascalCase'],
+      },
+      {
+        selector: 'interface',
+        format: ['PascalCase'],
+      },
     ],
     '@typescript-eslint/no-inferrable-types': 'warn',
   },

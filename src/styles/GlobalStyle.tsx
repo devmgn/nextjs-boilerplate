@@ -1,13 +1,12 @@
-import { createGlobalStyle } from 'styled-components';
-import { FONT_FAMILY } from '@/styles';
+import { createGlobalStyle, css } from 'styled-components';
+import { FONT_FAMILY } from './constants';
 
-export const GlobalStyle = createGlobalStyle`
-  /* stylelint-disable */
+const resetStyle = css`
+  /* stylelint-disable plugin/no-unsupported-browser-features */
 
-  // ==========================================================================
-  // Main root
-  // ==========================================================================
-
+  /**
+  Main root
+   */
   *:where(:not(html, iframe, canvas, img, svg, video, audio, svg *, symbol *)) {
     all: unset;
     display: revert;
@@ -26,9 +25,6 @@ export const GlobalStyle = createGlobalStyle`
     vertical-align: inherit;
   }
 
-  // 1. Remove the grey highlight on links in iOS
-  // 2. Improving font rendering in macOS
-  // 3. Prevent adjustments of font size after orientation changes in iOS
   :where(:root) {
     font-family: ${FONT_FAMILY.SANS_SERIF};
     line-height: 1;
@@ -37,13 +33,12 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-tap-highlight-color: transparent;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
-  // ==========================================================================
-  // Text content
-  // ==========================================================================
-
+  /**
+  Text content
+   */
   :where(ol, ul, menu) {
     list-style-type: none;
   }
@@ -52,10 +47,9 @@ export const GlobalStyle = createGlobalStyle`
     font-family: ${FONT_FAMILY.MONOSPACE};
   }
 
-  // ==========================================================================
-  // Inline text semantics
-  // ==========================================================================
-
+  /**
+  Inline text semantics
+   */
   :where(a) {
     cursor: revert;
   }
@@ -71,27 +65,23 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-  // ==========================================================================
-  // Image and multimedia
-  // ==========================================================================
-
+  /**
+  Image and multimedia
+   */
   :where(audio, img, video) {
     vertical-align: middle;
   }
 
-  // ==========================================================================
-  // Embedded content
-  // ==========================================================================
-
+  /**
+  Embedded content
+   */
   :where(iframe) {
     vertical-align: middle;
   }
 
-  // ==========================================================================
-  // SVG and MathML
-  // ==========================================================================
-
-  // 1. Change the fill color to match the text color in all browsers
+  /**
+  SVG and MathML
+   */
   :where(svg) {
     vertical-align: middle;
     &:not([fill]) {
@@ -99,27 +89,25 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-  // ==========================================================================
-  // Table content
-  // ==========================================================================
-
+  /**
+  Table content
+   */
   :where(table) {
     table-layout: fixed;
     border-collapse: collapse;
   }
 
-  // ==========================================================================
-  // Forms
-  // ==========================================================================
-
-  :where(button, [type="button"], [type="submit"], [type="reset"]) {
+  /**
+  Forms
+   */
+  :where(button, [type='button'], [type='submit'], [type='reset']) {
     &:not(:disabled) {
       cursor: pointer;
     }
   }
 
   :where(input, textarea) {
-    -webkit-user-select: auto;
+    user-select: auto;
   }
 
   :where(textarea) {
@@ -135,10 +123,9 @@ export const GlobalStyle = createGlobalStyle`
     color: unset;
   }
 
-  // ==========================================================================
-  // Others
-  // ==========================================================================
-
+  /**
+  Others
+   */
   :where(:focus-visible) {
     outline: revert;
   }
@@ -152,18 +139,20 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-user-modify: read-write;
     overflow-wrap: break-word;
     -webkit-line-break: after-white-space;
-    -webkit-user-select: auto;
+    user-select: auto;
   }
 
-  :where([draggable="true"]) {
+  :where([draggable='true']) {
     -webkit-user-drag: element;
   }
 
-  :where([tabindex]:not([tabindex*="-"])) {
+  :where([tabindex]:not([tabindex*='-'])) {
     cursor: pointer;
   }
 
-  :where(a[href], area, button, input, label[for], select, summary, textarea, [tabindex]:not([tabindex*="-"])) {
+  :where(a[href], area, button, input, label[for], select, summary, textarea, [tabindex]:not([tabindex*='-'])) {
     touch-action: manipulation;
   }
 `;
+
+export const GlobalStyle = createGlobalStyle`${resetStyle}`;

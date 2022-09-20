@@ -10,5 +10,8 @@
   },
   "specs": [
     "@markuplint/react-spec"
+  ],
+  "excludeFiles": [
+    "./node_modules/**/*"
   ]
 }

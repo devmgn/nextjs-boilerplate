@@ -30,5 +30,4 @@ module.exports = {
       },
     ],
   },
-  ignorePath: 'src/styles/GlobalStyle.tsx',
 };
