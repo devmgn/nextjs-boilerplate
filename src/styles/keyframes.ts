@@ -5,7 +5,7 @@ export const fadeIn = keyframes`
     visibility: hidden;
     opacity: 0;
   }
-  `;
+`;
 
 export const fadeOut = keyframes`
   to {
