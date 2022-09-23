@@ -1,3 +1,5 @@
+storybook-static
+
 # Created by https://www.toptal.com/developers/gitignore/api/node,macos,windows,intellij+all,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,macos,windows,intellij+all,visualstudiocode
 
@@ -282,6 +284,10 @@ dist
 .ionide
 
 # Support for Project snippet scope
+.vscode/*.code-snippets
+
+# Ignore code-workspaces
+*.code-workspace
 
 ### Windows ###
 # Windows thumbnail cache files
