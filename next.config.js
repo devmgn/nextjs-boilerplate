@@ -1,12 +1,11 @@
+const withBundleAnalyzer = require('@next/bundle-analyzer');
 const withPlugins = require('next-compose-plugins');
 const withExportImages = require('next-export-optimize-images');
-const bundleAnalyzer = require('@next/bundle-analyzer');
 
 /**
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
-  // basePath: '/',
   reactStrictMode: true,
   trailingSlash: true,
   poweredByHeader: false,
@@ -18,8 +17,7 @@ const nextConfig = {
   },
 };
 
-const bundleAnalyzerConfig = bundleAnalyzer({
-  enabled: process.env.ANALYZE === 'true',
-});
-
-module.exports = withPlugins([withExportImages, bundleAnalyzerConfig], nextConfig);
+module.exports = withPlugins(
+  [withExportImages, withBundleAnalyzer({ enabled: process.env.ANALYZE === 'true' })],
+  nextConfig
+);
