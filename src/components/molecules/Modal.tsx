@@ -6,7 +6,7 @@ import { disablePageScroll, enablePageScroll } from 'scroll-lock';
 import styled from 'styled-components';
 import { sidecar } from 'use-sidecar';
 import { MODAL_TRANSITION_DURATION } from '@/constants';
-import Portal from './Portal';
+import Portal from '@/layouts/Portal';
 
 const FocusLockSidecar = sidecar(() => import(/* webpackPrefetch: true */ 'react-focus-lock/sidecar'));
 
