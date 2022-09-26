@@ -1,12 +1,13 @@
 import { NextPage } from 'next';
-import { Head } from '@/components/layouts/';
+import DefaultLayout from '@/layouts/DefaultLayout';
+import Seo from '@/layouts/Seo';
 
 export const Custom404: NextPage = () => {
   return (
-    <>
-      <Head title="404 Error Page Not Found" />
+    <DefaultLayout>
+      <Seo title="404 Error Page Not Found" />
       <h1>404 | Page Not Found</h1>
-    </>
+    </DefaultLayout>
   );
 };
 

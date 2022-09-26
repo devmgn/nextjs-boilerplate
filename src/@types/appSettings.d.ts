@@ -1,8 +1,10 @@
 declare module 'appSettings' {
   type AppSettings = {
-    siteName: string;
-    titleSeparator: string;
-    defaultDescription: string;
+    meta: {
+      appName: string;
+      titleSeparator: string;
+      defaultDescription: string;
+    };
   };
 
   const appSettings: AppSettings;

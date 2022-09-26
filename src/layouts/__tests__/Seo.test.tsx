@@ -1,14 +1,7 @@
 import { render } from '@testing-library/react';
-import { Head } from '@/components/layouts';
+import Seo from '../Seo';
 
-jest.mock('next/head', () => {
-  return {
-    __esModule: true,
-    default: ({ children }: { children: React.ReactElement[] }) => <>{children}</>,
-  };
-});
-
-describe('Head', () => {
+describe('Seo', () => {
   describe('スナップショットテスト', () => {
     test('propsが全てある場合', () => {
       const props = {
@@ -17,21 +10,16 @@ describe('Head', () => {
       };
 
       render(
-        <Head {...props}>
+        <Seo {...props}>
           <meta name="keywords" content="keywords" />
-        </Head>,
+        </Seo>,
         { container: document.head }
       );
       expect(document.head).toMatchSnapshot();
     });
 
-    test('propsがない場合', () => {
-      render(
-        <Head>
-          <meta name="keywords" content="keywords" />
-        </Head>,
-        { container: document.head }
-      );
+    test('propsが全てない場合', () => {
+      render(<Seo />, { container: document.head });
       expect(document.head).toMatchSnapshot();
     });
 
@@ -40,9 +28,9 @@ describe('Head', () => {
         description: 'description',
       };
       render(
-        <Head {...props}>
+        <Seo {...props}>
           <meta name="keywords" content="keywords" />
-        </Head>,
+        </Seo>,
         { container: document.head }
       );
       expect(document.head).toMatchSnapshot();
@@ -53,9 +41,9 @@ describe('Head', () => {
         title: 'title',
       };
       render(
-        <Head {...props}>
+        <Seo {...props}>
           <meta name="keywords" content="keywords" />
-        </Head>,
+        </Seo>,
         { container: document.head }
       );
       expect(document.head).toMatchSnapshot();
@@ -67,7 +55,7 @@ describe('Head', () => {
         description: 'description',
       };
 
-      render(<Head {...props} />, { container: document.head });
+      render(<Seo {...props} />, { container: document.head });
       expect(document.head).toMatchSnapshot();
     });
   });

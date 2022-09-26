@@ -1,12 +1,14 @@
 import { createContext, useCallback } from 'react';
 import { AnimatePresence, m } from 'framer-motion';
 import { rgba } from 'polished';
-import ReactFocusLock from 'react-focus-lock';
+import FocusLockUI from 'react-focus-lock/UI';
 import { disablePageScroll, enablePageScroll } from 'scroll-lock';
 import styled from 'styled-components';
-import Portal from '@/components/ui/Portal';
+import { sidecar } from 'use-sidecar';
 import { MODAL_TRANSITION_DURATION } from '@/constants';
-export { default as useModalState } from '@/hooks/useModalState';
+import Portal from './Portal';
+
+const FocusLockSidecar = sidecar(() => import(/* webpackPrefetch: true */ 'react-focus-lock/sidecar'));
 
 export const StyledModal = styled(m.div)`
   position: fixed;
@@ -23,6 +25,7 @@ type ModalContext = {
 };
 
 export const modalContext = createContext<ModalContext>({ isActive: false, deactivate: () => {} });
+export { default as useModalState } from '@/hooks/useModalState';
 
 type ModalProps = {
   isActive: boolean;
@@ -43,26 +46,29 @@ const Modal: React.FC<ModalProps> = ({ isActive, deactivate, onDeactivate, child
   }, []);
 
   return (
-    <Portal>
-      <modalContext.Provider value={{ isActive, deactivate }}>
+    <modalContext.Provider value={{ isActive, deactivate }}>
+      <Portal>
         <AnimatePresence mode="wait" onExitComplete={onExitComplete}>
           {isActive && (
-            <ReactFocusLock returnFocus>
-              <StyledModal
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: MODAL_TRANSITION_DURATION }}
-                onClick={onDeactivate}
-                onAnimationStart={onAnimationStart}
-              >
-                {children}
-              </StyledModal>
-            </ReactFocusLock>
+            <div>
+              <FocusLockUI returnFocus sideCar={FocusLockSidecar}>
+                <StyledModal
+                  key="modal"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: MODAL_TRANSITION_DURATION }}
+                  onClick={onDeactivate}
+                  onAnimationStart={onAnimationStart}
+                >
+                  {children}
+                </StyledModal>
+              </FocusLockUI>
+            </div>
           )}
         </AnimatePresence>
-      </modalContext.Provider>
-    </Portal>
+      </Portal>
+    </modalContext.Provider>
   );
 };
 

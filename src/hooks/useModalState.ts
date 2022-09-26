@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { StyledModal } from '@/components/ui/Modal';
+import { StyledModal } from '@/components/molecules/Modal';
 
 export type UseModalState = {
   isActive: boolean;

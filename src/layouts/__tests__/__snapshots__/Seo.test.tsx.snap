@@ -1,34 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Head スナップショットテスト propsがない場合 1`] = `
+exports[`Seo スナップショットテスト propsが全てある場合 1`] = `
+<head>
+  <title>
+    title | site name
+  </title>
+  <meta
+    content="description"
+    name="description"
+  />
+  <meta
+    content="keywords"
+    name="keywords"
+  />
+  <style
+    data-styled="active"
+    data-styled-version="5.3.5"
+  />
+</head>
+`;
+
+exports[`Seo スナップショットテスト propsが全てない場合 1`] = `
 <head>
   <title>
     site name
   </title>
   <meta
-    content="keywords"
-    name="keywords"
-  />
-  <style
-    data-styled="active"
-    data-styled-version="5.3.5"
-  />
-</head>
-`;
-
-exports[`Head スナップショットテスト propsが全てある場合 1`] = `
-<head>
-  <title>
-    title | site name
-  </title>
-  <meta
-    content="description"
+    content="default description"
     name="description"
   />
-  <meta
-    content="keywords"
-    name="keywords"
-  />
   <style
     data-styled="active"
     data-styled-version="5.3.5"
@@ -36,7 +36,7 @@ exports[`Head スナップショットテスト propsが全てある場合 1`] =
 </head>
 `;
 
-exports[`Head スナップショットテスト propsにchildrenがない場合 1`] = `
+exports[`Seo スナップショットテスト propsにchildrenがない場合 1`] = `
 <head>
   <title>
     title | site name
@@ -52,11 +52,15 @@ exports[`Head スナップショットテスト propsにchildrenがない場合 
 </head>
 `;
 
-exports[`Head スナップショットテスト propsにdescriptionがない場合 1`] = `
+exports[`Seo スナップショットテスト propsにdescriptionがない場合 1`] = `
 <head>
   <title>
     title | site name
   </title>
+  <meta
+    content="default description"
+    name="description"
+  />
   <meta
     content="keywords"
     name="keywords"
@@ -68,7 +72,7 @@ exports[`Head スナップショットテスト propsにdescriptionがない場�
 </head>
 `;
 
-exports[`Head スナップショットテスト propsにtitleがない場合 1`] = `
+exports[`Seo スナップショットテスト propsにtitleがない場合 1`] = `
 <head>
   <title>
     site name

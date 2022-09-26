@@ -1,12 +1,13 @@
 import { NextPage } from 'next';
-import { Head } from '@/components/layouts/';
+import DefaultLayout from '@/layouts/DefaultLayout';
+import Seo from '@/layouts/Seo';
 
 export const Custom500: NextPage = () => {
   return (
-    <>
-      <Head title="505 Error Page Not Found" />
+    <DefaultLayout>
+      <Seo title="505 Error Page Not Found" />
       <h1>500 | Page Not Found</h1>
-    </>
+    </DefaultLayout>
   );
 };
 

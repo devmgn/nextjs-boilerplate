@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react';
-import Dialog from '../Dialog';
+import Footer from '../Footer';
 
-describe('Dialog', () => {
+describe('Footer', () => {
   test('スナップショットテスト', () => {
-    const { asFragment } = render(<Dialog>children</Dialog>);
+    const { asFragment } = render(<Footer />);
     expect(asFragment()).toMatchSnapshot();
   });
 });

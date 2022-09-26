@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react';
-import { Layout } from '@/components/layouts';
+import DefaultLayout from '../DefaultLayout';
 
-describe('Layout', () => {
+describe('DefaultLayout', () => {
   test('スナップショットテスト', () => {
-    const { asFragment } = render(<Layout>children</Layout>);
+    const { asFragment } = render(<DefaultLayout>children</DefaultLayout>);
     expect(asFragment()).toMatchSnapshot();
   });
 });

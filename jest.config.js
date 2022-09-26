@@ -10,7 +10,7 @@ module.exports = createJestConfig({
   ...defaults,
   coverageReporters: ['html', 'text'],
   globalSetup: '<rootDir>/jest.globalSetup.js',
-  setupFilesAfterEnv: ['<rootDir>/src/jest.setup.ts'],
+  setupFilesAfterEnv: ['<rootDir>/src/jest.setup.tsx'],
   moduleNameMapper: { '^@/(.*)$': '<rootDir>/src/$1' },
   testEnvironment: 'jest-environment-jsdom',
 });
