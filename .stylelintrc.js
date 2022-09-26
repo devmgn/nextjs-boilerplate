@@ -9,13 +9,14 @@ module.exports = {
   customSyntax: '@stylelint/postcss-css-in-js',
   rules: {
     'prettier/prettier': true,
+    'function-name-case': null,
+    'function-no-unknown': null,
     'value-keyword-case': [
       'lower',
       {
         camelCaseSvgKeywords: true,
       },
     ],
-    'function-name-case': 'lower',
     'selector-type-case': 'lower',
     'length-zero-no-unit': true,
     'function-url-quotes': 'never',

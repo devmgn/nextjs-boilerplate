@@ -1,5 +1,6 @@
 import { createContext, useCallback } from 'react';
 import { AnimatePresence, m } from 'framer-motion';
+import { rgba } from 'polished';
 import ReactFocusLock from 'react-focus-lock';
 import { disablePageScroll, enablePageScroll } from 'scroll-lock';
 import styled from 'styled-components';
@@ -13,7 +14,7 @@ export const StyledModal = styled(m.div)`
   display: grid;
   place-items: center;
   padding: 16px;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: ${rgba('#000', 0.6)};
 `;
 
 type ModalContext = {
