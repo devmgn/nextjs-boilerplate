@@ -1,8 +1,8 @@
 import { act, fireEvent, renderHook, RenderHookResult } from '@testing-library/react';
-import useModalState, { UseModalState } from '../useModalState';
+import useModalState from '../useModalState';
 
 describe('useModalState', () => {
-  let hookResult: RenderHookResult<UseModalState, unknown>['result'];
+  let hookResult: RenderHookResult<ReturnType<typeof useModalState>, unknown>['result'];
 
   beforeEach(() => {
     hookResult = renderHook(() => useModalState()).result;

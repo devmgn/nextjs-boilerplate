@@ -8,6 +8,8 @@ import { sidecar } from 'use-sidecar';
 import { MODAL_TRANSITION_DURATION } from '@/constants';
 import Portal from '@/layouts/Portal';
 
+export { default as useModalState } from '@/hooks/useModalState';
+
 const FocusLockSidecar = sidecar(() => import(/* webpackPrefetch: true */ 'react-focus-lock/sidecar'));
 
 export const StyledModal = styled(m.div)`
@@ -25,7 +27,6 @@ type ModalContext = {
 };
 
 export const modalContext = createContext<ModalContext>({ isActive: false, deactivate: () => {} });
-export { default as useModalState } from '@/hooks/useModalState';
 
 type ModalProps = {
   isActive: boolean;

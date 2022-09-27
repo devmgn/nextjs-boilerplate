@@ -1,7 +1,8 @@
 module.exports = {
   extends: ['next', 'next/core-web-vitals', 'prettier', 'plugin:storybook/recommended'],
-  plugins: ['@typescript-eslint', 'import'],
+  plugins: ['@typescript-eslint', 'import', 'unused-imports'],
   rules: {
+    'prefer-template': 'warn',
     '@next/next/no-img-element': 'off',
     'import/order': [
       'error',
@@ -26,7 +27,7 @@ module.exports = {
         },
       },
     ],
-    'prefer-template': 'warn',
+    'import/no-duplicates': 'error',
     'react/jsx-boolean-value': 'warn',
     'react/jsx-curly-brace-presence': 'warn',
     'react/jsx-pascal-case': 'warn',
@@ -49,6 +50,7 @@ module.exports = {
       },
     ],
     '@typescript-eslint/no-inferrable-types': 'warn',
+    'unused-imports/no-unused-imports': 'error',
   },
   parser: '@typescript-eslint/parser',
   settings: {

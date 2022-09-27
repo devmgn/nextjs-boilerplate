@@ -1,14 +1,7 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { StyledModal } from '@/components/molecules/Modal';
 
-export type UseModalState = {
-  isActive: boolean;
-  activate: () => void;
-  deactivate: () => void;
-  onDeactivate: (event: React.MouseEvent) => void;
-};
-
-const useModalState = (): UseModalState => {
+const useModalState = () => {
   const [isActive, setIsActive] = useState(false);
 
   const activate = useCallback(() => {
