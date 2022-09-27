@@ -1,12 +1,12 @@
 import { faker } from '@faker-js/faker/locale/ja';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import Dialog from '../Dialog';
+import Text from '../Text';
 
 export default {
-  title: 'molecules/Dialog',
-  component: Dialog,
-} as ComponentMeta<typeof Dialog>;
-const Template: ComponentStory<typeof Dialog> = (args) => <Dialog {...args} />;
+  title: 'atoms/Text',
+  component: Text,
+} as ComponentMeta<typeof Text>;
+const Template: ComponentStory<typeof Text> = (args) => <Text {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

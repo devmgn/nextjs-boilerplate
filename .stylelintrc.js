@@ -11,12 +11,7 @@ module.exports = {
     'prettier/prettier': true,
     'function-name-case': null,
     'function-no-unknown': null,
-    'value-keyword-case': [
-      'lower',
-      {
-        camelCaseSvgKeywords: true,
-      },
-    ],
+    'value-keyword-case': null,
     'selector-type-case': 'lower',
     'length-zero-no-unit': true,
     'function-url-quotes': 'never',
@@ -31,4 +26,11 @@ module.exports = {
       },
     ],
   },
+  ignoreFiles: [
+    'src/jest.setup.tsx',
+    'src/@types/*',
+    'src/api/*',
+    'src/states/**/*',
+    'src/**/*.{test,stories}.{ts,tsx}',
+  ],
 };

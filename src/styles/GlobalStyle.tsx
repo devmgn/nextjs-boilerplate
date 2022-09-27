@@ -155,4 +155,6 @@ const resetStyle = css`
   }
 `;
 
-export const GlobalStyle = createGlobalStyle`${resetStyle}`;
+const GlobalStyle = createGlobalStyle`${resetStyle}`;
+
+export default GlobalStyle;

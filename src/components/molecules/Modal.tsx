@@ -5,8 +5,8 @@ import FocusLockUI from 'react-focus-lock/UI';
 import { disablePageScroll, enablePageScroll } from 'scroll-lock';
 import styled from 'styled-components';
 import { sidecar } from 'use-sidecar';
+import Portal from '@/components/layouts/Portal';
 import { MODAL_TRANSITION_DURATION } from '@/constants';
-import Portal from '@/layouts/Portal';
 
 export { default as useModalState } from '@/hooks/useModalState';
 

@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
-import DefaultLayout from '@/layouts/DefaultLayout';
-import Seo from '@/layouts/Seo';
+import DefaultLayout from '@/components/layouts/DefaultLayout';
+import Seo from '@/components/layouts/Seo';
 
 export const Custom404: NextPage = () => {
   return (

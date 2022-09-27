@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { store } from '@/states/store';
 import { BREAKPOINTS } from '@/styles/constants';
-import { GlobalStyle } from '@/styles/GlobalStyle';
+import GlobalStyle from '@/styles/GlobalStyle';
 import type { AppProps } from 'next/app';
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {

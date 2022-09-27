@@ -12,7 +12,7 @@
     "@markuplint/react-spec"
   ],
   "excludeFiles": [
-    "./node_modules/**/*",
-    "./src/jest.setup.tsx"
+    "src/jest.setup.tsx",
+    "src/**/*.{test,stories}.{ts,tsx}"
   ]
 }
