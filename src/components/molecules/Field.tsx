@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import type { InferStyledComponentProps } from '@/types/InferStyledComponentProps';
+import type { InferStyledComponentProps } from '@/@types/InferStyledComponentProps';
 import Input from '../atoms/Input';
 import Label from '../atoms/Label';
 import Text from '../atoms/Text';
