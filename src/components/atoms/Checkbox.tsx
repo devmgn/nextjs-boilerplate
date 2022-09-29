@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import type { InferStyledComponentProps } from '@/@types/InferStyledComponentProps';
+import type { InferStyledComponentProps } from '@/types/InferStyledComponentProps';
 
 const Check = styled.label`
   position: relative;
