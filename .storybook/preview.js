@@ -48,6 +48,9 @@ export const parameters = {
       },
     ],
   },
+  darkMode: {
+    current: 'dark',
+  },
 };
 
 /**

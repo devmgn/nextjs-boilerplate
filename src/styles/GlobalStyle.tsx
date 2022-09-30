@@ -112,7 +112,7 @@ const resetStyle = css`
 
   :where(textarea) {
     white-space: revert;
-    resize: vertical;
+    resize: none;
   }
 
   :where(label[for]) {
