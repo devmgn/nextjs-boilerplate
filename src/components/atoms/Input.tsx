@@ -1,11 +1,7 @@
 import styled from 'styled-components';
+import { FormState } from './types';
 
-export type InputProps = {
-  isError?: boolean;
-  isWarning?: boolean;
-};
-
-const Input = styled.input<InputProps>`
+const Input = styled.input<FormState>`
   display: block;
   width: 100%;
   padding: 8px 16px;
@@ -30,4 +26,5 @@ const Input = styled.input<InputProps>`
     appearance: none;
   }
 `;
+
 export default Input;

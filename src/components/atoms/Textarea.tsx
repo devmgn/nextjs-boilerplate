@@ -1,11 +1,7 @@
 import styled, { css } from 'styled-components';
+import { FormState } from './types';
 
-export type TextareaProps = {
-  isError?: boolean;
-  isWarning?: boolean;
-};
-
-const Textarea = styled.textarea<TextareaProps>`
+const Textarea = styled.textarea<FormState>`
   display: block;
   width: 100%;
   height: ${({ rows }) => (rows ? rows * 32 + 18 : 50)}px;
@@ -33,4 +29,5 @@ const Textarea = styled.textarea<TextareaProps>`
       border-color: orange;
     `}
 `;
+
 export default Textarea;

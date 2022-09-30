@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import type { InferStyledComponentProps } from '@/@types/InferStyledComponentProps';
 
-const Check = styled.label`
+const StyledCheckbox = styled.label`
   position: relative;
   display: block;
   cursor: pointer;
@@ -37,10 +37,10 @@ type CheckboxProps = InferStyledComponentProps<typeof Box> & {
 
 const Checkbox: React.FC<CheckboxProps> = ({ children, ...checkboxProps }) => {
   return (
-    <Check id={checkboxProps.id}>
+    <StyledCheckbox htmlFor={checkboxProps.id}>
       <Box type="checkbox" {...checkboxProps} />
       {children && <Label>{children}</Label>}
-    </Check>
+    </StyledCheckbox>
   );
 };
 

@@ -6,6 +6,7 @@ export default {
   title: 'molecules/Dialog',
   component: Dialog,
 } as ComponentMeta<typeof Dialog>;
+
 const Template: ComponentStory<typeof Dialog> = (args) => <Dialog {...args} />;
 
 export const Default = Template.bind({});

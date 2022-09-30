@@ -5,6 +5,7 @@ export default {
   title: 'atoms/Textarea',
   component: Textarea,
 } as ComponentMeta<typeof Textarea>;
+
 const Template: ComponentStory<typeof Textarea> = (args) => <Textarea {...args} />;
 
 export const Default = Template.bind({});

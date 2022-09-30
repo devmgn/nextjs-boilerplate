@@ -1,11 +1,10 @@
+import { cloneElement } from 'react';
 import styled from 'styled-components';
-import type { InferStyledComponentProps } from '@/@types/InferStyledComponentProps';
-import Input from '../atoms/Input';
 import Label from '../atoms/Label';
 import Text from '../atoms/Text';
 
 const StyledField = styled.div`
-  > ${Input} + ${Text} {
+  > ${Text}:first-of-type {
     margin-top: 10px;
   }
 `;
@@ -14,22 +13,17 @@ export type FieldProps = {
   label?: string;
   errorMessage?: string;
   warningMessage?: string;
-  inputProps: InferStyledComponentProps<typeof Input>;
+  children: React.ReactElement;
 };
 
-const Field: React.FC<FieldProps> = ({ label, inputProps, errorMessage, warningMessage }) => {
+const Field: React.FC<FieldProps> = ({ label, errorMessage, warningMessage, children }) => {
   return (
     <StyledField>
-      {label ? (
-        <>
-          <Label htmlFor={inputProps.disabled ? undefined : inputProps.id}>{label}</Label>
-          <Input {...inputProps} isError={Boolean(errorMessage)} isWarning={Boolean(warningMessage)} />
-        </>
-      ) : (
-        <label>
-          <Input {...inputProps} isError={Boolean(errorMessage)} isWarning={Boolean(warningMessage)} />
-        </label>
-      )}
+      <Label htmlFor={children.props.id}>{label}</Label>
+      {cloneElement(children, {
+        isError: Boolean(errorMessage),
+        isWarning: Boolean(warningMessage),
+      })}
       {errorMessage && <Text>{errorMessage}</Text>}
       {warningMessage && <Text>{warningMessage}</Text>}
     </StyledField>
