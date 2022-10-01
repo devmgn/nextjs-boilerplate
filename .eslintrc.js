@@ -28,6 +28,14 @@ module.exports = {
       },
     ],
     'import/no-duplicates': 'error',
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: ['**/jest.setup.{ts,tsx}', '**/*.{test,stories}.{ts,tsx}'],
+        optionalDependencies: false,
+        peerDependencies: false,
+      },
+    ],
     'react/jsx-boolean-value': 'warn',
     'react/jsx-curly-brace-presence': 'warn',
     'react/jsx-pascal-case': 'warn',
