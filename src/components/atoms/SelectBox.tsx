@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { InferStyledComponentProps } from '@/@types/InferStyledComponentProps';
-import { FormState } from './types';
+import type { InferStyledComponentProps } from '@/@types/InferStyledComponentProps';
+import type { FormState } from './types';
 
 const StyledSelectBox = styled.select<FormState>`
   display: block;

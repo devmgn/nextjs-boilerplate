@@ -1,3 +1,4 @@
+import { faker } from '@faker-js/faker/locale/ja';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Input from '../Input';
 
@@ -23,4 +24,5 @@ Default.args = {
   readOnly: false,
   isError: false,
   isWarning: false,
+  id: faker.datatype.string(),
 };

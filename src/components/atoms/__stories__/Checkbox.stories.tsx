@@ -11,6 +11,6 @@ const Template: ComponentStory<typeof Checkbox> = (args) => <Checkbox {...args} 
 
 export const Default = Template.bind({});
 Default.args = {
-  children: faker.name.jobArea(),
-  id: 'hoge',
+  children: faker.name.fullName(),
+  id: faker.datatype.string(),
 };

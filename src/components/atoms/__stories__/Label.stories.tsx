@@ -11,5 +11,5 @@ const Template: ComponentStory<typeof Label> = (args) => <Label {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  children: faker.name.jobArea(),
+  children: faker.lorem.word(),
 };

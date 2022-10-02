@@ -1,8 +1,8 @@
-import { faker } from '@faker-js/faker';
+import { faker } from '@faker-js/faker/locale/ja';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import Input from '@/components/atoms/Input';
-import SelectBox from '@/components/atoms/SelectBox';
-import Textarea from '@/components/atoms/Textarea';
+import { Default as Input } from '@/components/atoms/__stories__/Input.stories';
+import { Default as SelectBox } from '@/components/atoms/__stories__/SelectBox.stories';
+import { Default as Textarea } from '@/components/atoms/__stories__/Textarea.stories';
 import Field from '../Field';
 
 export default {
@@ -12,26 +12,26 @@ export default {
 
 const Template: ComponentStory<typeof Field> = (args) => <Field {...args} />;
 
-export const InputComponent = Template.bind({});
-InputComponent.args = {
-  label: 'ラベル',
+const defaultArgs = {
+  label: faker.lorem.word(),
   errorMessage: '',
   warningMessage: '',
-  children: <Input id={faker.datatype.uuid()} />,
+};
+
+export const InputComponent = Template.bind({});
+InputComponent.args = {
+  ...defaultArgs,
+  children: <Input {...Input.args} />,
 };
 
 export const TextareaComponent = Template.bind({});
 TextareaComponent.args = {
-  label: 'ラベル',
-  errorMessage: '',
-  warningMessage: '',
-  children: <Textarea id={faker.datatype.uuid()} rows={2} />,
+  ...defaultArgs,
+  children: <Textarea {...Textarea.args} />,
 };
 
 export const SelectBoxComponent = Template.bind({});
 SelectBoxComponent.args = {
-  label: 'ラベル',
-  errorMessage: '',
-  warningMessage: '',
-  children: <SelectBox id={faker.datatype.uuid()} options={[]} />,
+  ...defaultArgs,
+  children: <SelectBox {...SelectBox.args} options={SelectBox.args?.options ?? []} />,
 };

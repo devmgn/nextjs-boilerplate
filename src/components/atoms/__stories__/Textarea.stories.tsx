@@ -1,3 +1,4 @@
+import { faker } from '@faker-js/faker/locale/ja';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Textarea from '../Textarea';
 
@@ -15,5 +16,6 @@ Default.args = {
   readOnly: false,
   isError: false,
   isWarning: false,
-  rows: 1,
+  rows: faker.random.numeric(),
+  id: faker.datatype.string(),
 };

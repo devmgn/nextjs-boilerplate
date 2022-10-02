@@ -1,9 +1,11 @@
+import { hideVisually } from 'polished';
 import styled from 'styled-components';
 import type { InferStyledComponentProps } from '@/@types/InferStyledComponentProps';
 
 const StyledCheckbox = styled.label`
   position: relative;
   display: block;
+  width: fit-content;
   cursor: pointer;
 `;
 
@@ -23,11 +25,14 @@ const Label = styled.span`
 `;
 
 const Box = styled.input`
-  opacity: 1;
+  ${hideVisually()}
   &:checked + ${Label} {
     &::before {
       background-color: #000;
     }
+  }
+  &:focus-visible + ${Label} {
+    outline: -webkit-focus-ring-color auto;
   }
 `;
 
@@ -35,10 +40,10 @@ type CheckboxProps = InferStyledComponentProps<typeof Box> & {
   children?: string;
 };
 
-const Checkbox: React.FC<CheckboxProps> = ({ children, ...checkboxProps }) => {
+const Checkbox: React.FC<CheckboxProps> = ({ children, ...props }) => {
   return (
-    <StyledCheckbox htmlFor={checkboxProps.id}>
-      <Box type="checkbox" {...checkboxProps} />
+    <StyledCheckbox htmlFor={props.id}>
+      <Box type="checkbox" {...props} />
       {children && <Label>{children}</Label>}
     </StyledCheckbox>
   );

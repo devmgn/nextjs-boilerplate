@@ -15,6 +15,7 @@ Default.args = {
   isError: false,
   isWarning: false,
   defaultValue: '',
+  id: faker.datatype.string(),
   options: [
     {
       label: '初期値',
