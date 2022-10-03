@@ -2,16 +2,16 @@ import { hideVisually } from 'polished';
 import styled from 'styled-components';
 import type { InferStyledComponentProps } from '@/@types/InferStyledComponentProps';
 
-const StyledCheckbox = styled.label`
+const Check = styled.label`
   position: relative;
   display: block;
   width: fit-content;
-  cursor: pointer;
 `;
 
 const Label = styled.span`
   padding-left: 16px;
   font-size: 16px;
+  line-height: 24px;
   &::before {
     position: absolute;
     top: 50%;
@@ -42,10 +42,10 @@ type CheckboxProps = InferStyledComponentProps<typeof Box> & {
 
 const Checkbox: React.FC<CheckboxProps> = ({ children, ...props }) => {
   return (
-    <StyledCheckbox htmlFor={props.id}>
+    <Check htmlFor={props.id}>
       <Box type="checkbox" {...props} />
       {children && <Label>{children}</Label>}
-    </StyledCheckbox>
+    </Check>
   );
 };
 

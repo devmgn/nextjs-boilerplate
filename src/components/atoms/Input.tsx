@@ -9,8 +9,10 @@ const Input = styled.input<FormState>`
   line-height: 32px;
   background-color: #fff;
   border: 1px solid;
-  border-color: ${({ isError, isWarning }) => {
-    if (isError) {
+  border-color: ${({ isSuccess, isError, isWarning }) => {
+    if (isSuccess) {
+      return 'green';
+    } else if (isError) {
       return 'red';
     } else if (isWarning) {
       return 'orange';

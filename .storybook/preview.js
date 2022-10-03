@@ -1,6 +1,7 @@
 import React from 'react';
 import GlobalStyle from '../src/styles/GlobalStyle';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
+import { LazyMotion, domAnimation } from 'framer-motion';
 
 /**
  * @type {import('@storybook/csf').Parameters}
@@ -61,8 +62,10 @@ export const parameters = {
 export const decorators = [
   (Story) => (
     <div id="__next">
-      <GlobalStyle />
-      <Story />
+      <LazyMotion features={domAnimation}>
+        <GlobalStyle />
+        <Story />
+      </LazyMotion>
     </div>
   ),
 ];

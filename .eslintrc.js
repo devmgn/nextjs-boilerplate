@@ -31,7 +31,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: ['**/jest.setup.{ts,tsx}', '**/*.{test,stories}.{ts,tsx}'],
+        devDependencies: ['next.config.js', '**/jest.setup.{ts,tsx}', '**/*.{test,stories}.{ts,tsx}'],
         optionalDependencies: false,
         peerDependencies: false,
       },

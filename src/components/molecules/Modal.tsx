@@ -40,8 +40,8 @@ const Modal: React.FC<ModalProps> = ({ isActive, deactivate, onDeactivate, child
     enablePageScroll();
   }, []);
 
-  const onAnimationStart = useCallback<(definition: any) => void>((definition) => {
-    if ('opacity' in definition && definition.opacity === 1) {
+  const onAnimationStart = useCallback<(definition: 'active' | 'inactive') => void>((definition) => {
+    if (definition === 'active') {
       disablePageScroll();
     }
   }, []);
@@ -55,9 +55,13 @@ const Modal: React.FC<ModalProps> = ({ isActive, deactivate, onDeactivate, child
               <FocusLockUI returnFocus sideCar={FocusLockSidecar}>
                 <StyledModal
                   key="modal"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
+                  initial="inactive"
+                  animate="active"
+                  exit="inactive"
+                  variants={{
+                    active: { opacity: 1 },
+                    inactive: { opacity: 0 },
+                  }}
                   transition={{ duration: MODAL_TRANSITION_DURATION }}
                   onClick={onDeactivate}
                   onAnimationStart={onAnimationStart}

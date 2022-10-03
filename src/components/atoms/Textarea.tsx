@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { FormState } from './types';
 
 const Textarea = styled.textarea<FormState>`
@@ -9,7 +9,17 @@ const Textarea = styled.textarea<FormState>`
   font-size: 18px;
   line-height: 32px;
   background-color: #fff;
-  border: 1px solid #ddd;
+  border: 1px solid;
+  border-color: ${({ isSuccess, isError, isWarning }) => {
+    if (isSuccess) {
+      return 'green';
+    } else if (isError) {
+      return 'red';
+    } else if (isWarning) {
+      return 'orange';
+    }
+    return '#ddd';
+  }};
   border-radius: 4px;
   &::placeholder {
     color: #ababab;
@@ -18,16 +28,6 @@ const Textarea = styled.textarea<FormState>`
   &[type='number']::-webkit-inner-spin-button {
     appearance: none;
   }
-  ${({ isError }) =>
-    isError &&
-    css`
-      border-color: red !important;
-    `}
-  ${({ isWarning }) =>
-    isWarning &&
-    css`
-      border-color: orange;
-    `}
 `;
 
 export default Textarea;

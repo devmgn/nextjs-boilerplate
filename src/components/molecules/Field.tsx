@@ -1,10 +1,10 @@
 import { cloneElement } from 'react';
 import styled from 'styled-components';
 import Label from '../atoms/Label';
-import Text from '../atoms/Text';
+import Paragraph from '../atoms/Paragraph';
 
 const StyledField = styled.div`
-  > ${Text}:first-of-type {
+  > ${Paragraph}:first-of-type {
     margin-top: 10px;
   }
 `;
@@ -24,8 +24,8 @@ const Field: React.FC<FieldProps> = ({ label, errorMessage, warningMessage, chil
         isError: Boolean(errorMessage),
         isWarning: Boolean(warningMessage),
       })}
-      {errorMessage && <Text>{errorMessage}</Text>}
-      {warningMessage && <Text>{warningMessage}</Text>}
+      {errorMessage && <Paragraph>{errorMessage}</Paragraph>}
+      {warningMessage && <Paragraph>{warningMessage}</Paragraph>}
     </StyledField>
   );
 };

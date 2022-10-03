@@ -1,13 +1,13 @@
 import { faker } from '@faker-js/faker/locale/ja';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import Text from '../Text';
+import Accordion from '../Accordion';
 
 export default {
-  title: 'atoms/Text',
-  component: Text,
-} as ComponentMeta<typeof Text>;
+  title: 'molecules/Accordion',
+  component: Accordion,
+} as ComponentMeta<typeof Accordion>;
 
-const Template: ComponentStory<typeof Text> = (args) => <Text {...args} />;
+const Template: ComponentStory<typeof Accordion> = (args) => <Accordion {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
