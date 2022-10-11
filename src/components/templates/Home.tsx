@@ -6,6 +6,7 @@ import Paragraph from '../atoms/Paragraph';
 import Accordion from '../molecules/Accordion';
 import Dialog from '../molecules/Dialog';
 import Modal, { useModalState } from '../molecules/Modal';
+import Posts from '../molecules/Posts';
 
 const Home = () => {
   const users = useSelector(usersSelector);
@@ -24,6 +25,7 @@ const Home = () => {
   return (
     <>
       <button onClick={onClick}>ボタン</button>
+      <Posts />
 
       <Paragraph>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam excepturi suscipit magni nostrum facilis officiis

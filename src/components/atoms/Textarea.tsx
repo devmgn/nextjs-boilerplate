@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { FormState } from './types';
+import { FieldState } from './types';
 
-const Textarea = styled.textarea<FormState>`
+const Textarea = styled.textarea<FieldState>`
   display: block;
   width: 100%;
   height: ${({ rows }) => (rows ? rows * 32 + 18 : 50)}px;

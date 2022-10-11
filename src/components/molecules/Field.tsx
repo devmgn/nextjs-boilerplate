@@ -1,7 +1,8 @@
 import { cloneElement } from 'react';
 import styled from 'styled-components';
-import Label from '../atoms/Label';
+import FieldLabel from '../atoms/FieldLabel';
 import Paragraph from '../atoms/Paragraph';
+import { FieldState } from '../atoms/types';
 
 const StyledField = styled.div`
   > ${Paragraph}:first-of-type {
@@ -10,7 +11,7 @@ const StyledField = styled.div`
 `;
 
 export type FieldProps = {
-  label?: string;
+  label: string;
   errorMessage?: string;
   warningMessage?: string;
   children: React.ReactElement;
@@ -19,8 +20,8 @@ export type FieldProps = {
 const Field: React.FC<FieldProps> = ({ label, errorMessage, warningMessage, children }) => {
   return (
     <StyledField>
-      <Label htmlFor={children.props.id}>{label}</Label>
-      {cloneElement(children, {
+      <FieldLabel htmlFor={children.props.id}>{label}</FieldLabel>
+      {cloneElement<FieldState>(children, {
         isError: Boolean(errorMessage),
         isWarning: Boolean(warningMessage),
       })}

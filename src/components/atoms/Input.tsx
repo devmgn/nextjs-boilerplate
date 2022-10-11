@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { FormState } from './types';
+import { FieldState } from './types';
 
-const Input = styled.input<FormState>`
+const Input = styled.input<FieldState>`
   display: block;
   width: 100%;
   padding: 8px 16px;

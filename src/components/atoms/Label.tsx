@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
-const Label = styled.label`
-  display: block;
-  width: fit-content;
+const Field = styled.span`
+  display: inline-block;
+  padding: 0 6px;
   font-size: 12px;
-  line-height: 24px;
-  color: #4c4d4d;
+  line-height: 22px;
+  color: #ff3939;
+  border: 1px solid currentColor;
+  border-radius: 4px;
 `;
 
-export default Label;
+export default Field;

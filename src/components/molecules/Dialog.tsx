@@ -2,14 +2,10 @@ import styled from 'styled-components';
 
 const StyledDialog = styled.div`
   width: min(300px, 100%);
-  max-height: calc(100vh - 32px);
-  padding: 16px;
+  max-height: fill-available;
   overflow: auto;
   background-color: #fff;
   -webkit-overflow-scrolling: touch;
-  @supports (-webkit-touch-callout: none) {
-    max-height: calc(100dvh - 32px);
-  }
 `;
 
 type DialogProps = {

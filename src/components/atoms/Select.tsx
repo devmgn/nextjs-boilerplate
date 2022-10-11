@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { InferStyledComponentProps } from '@/@types/InferStyledComponentProps';
-import type { FormState } from './types';
+import type { FieldState } from './types';
 
-const StyledSelect = styled.select<FormState>`
+const StyledSelect = styled.select<FieldState>`
   display: block;
   width: 100%;
   height: 50px;
