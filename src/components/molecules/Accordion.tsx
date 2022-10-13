@@ -10,7 +10,7 @@ const ToggleButton = styled.button`
   width: 100%;
 `;
 
-const Body = styled(m.div)`
+const Content = styled(m.div)`
   overflow: hidden;
 `;
 
@@ -32,7 +32,7 @@ const Accordion: React.FC<AccordionProps> = ({ children }) => {
       </ToggleButton>
       <AnimatePresence initial={false}>
         {isActive && (
-          <Body
+          <Content
             key="accordion"
             initial="inactive"
             animate="active"
@@ -44,7 +44,7 @@ const Accordion: React.FC<AccordionProps> = ({ children }) => {
             transition={{ duration: 0.3 }}
           >
             {children}
-          </Body>
+          </Content>
         )}
       </AnimatePresence>
     </StyledAccordion>

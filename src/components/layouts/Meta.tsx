@@ -11,7 +11,7 @@ const {
   meta: { appName, defaultDescription, titleSeparator },
 } = appSettings;
 
-const Seo: React.FC<HeadProps> = ({ title, description, children }) => {
+const Meta: React.FC<HeadProps> = ({ title, description, children }) => {
   return (
     <Head>
       <title>{title ? `${title}${titleSeparator}${appName}` : appName}</title>
@@ -21,4 +21,4 @@ const Seo: React.FC<HeadProps> = ({ title, description, children }) => {
   );
 };
 
-export default Seo;
+export default Meta;

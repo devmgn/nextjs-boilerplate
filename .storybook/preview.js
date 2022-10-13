@@ -3,9 +3,6 @@ import GlobalStyle from '../src/styles/GlobalStyle';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { LazyMotion, domAnimation } from 'framer-motion';
 
-/**
- * @type {import('@storybook/csf').Parameters}
- */
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
@@ -54,11 +51,6 @@ export const parameters = {
   },
 };
 
-/**
- * @typedef {import("@storybook/react").ReactFramework} ReactFramework
- * @typedef {import("@storybook/csf").Args} Args
- * @type {import('@storybook/csf').DecoratorFunction<ReactFramework, Args>[]}
- */
 export const decorators = [
   (Story) => (
     <div id="__next">

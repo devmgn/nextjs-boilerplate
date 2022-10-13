@@ -1,0 +1,106 @@
+import { Meta, Title, IconGallery, IconItem } from '@storybook/addon-docs';
+
+import * as Icon from '../Icon.tsx';
+
+<Meta title="atoms/Icon" />
+
+# 使い方
+
+- `src/atoms/icons`ディレクトリにアイコン用`svg`ファイルを配置し`Icon.tsx`で svg を import しコンポーネントを作成する
+- ※ `@svgr/webpack`でインライン化している
+
+# 一覧
+
+<IconGallery>
+  <IconItem name="InformationIcon">
+    <Icon.InformationIcon />
+  </IconItem>
+  <IconItem name="ChevronIcon - right (default)">
+    <Icon.ChevronIcon />
+  </IconItem>
+  <IconItem name="ChevronIcon - left">
+    <Icon.ChevronIcon rotate="180deg" />
+  </IconItem>
+  <IconItem name="ChevronIcon - top">
+    <Icon.ChevronIcon rotate="270deg" />
+  </IconItem>
+  <IconItem name="ChevronIcon - bottom">
+    <Icon.ChevronIcon rotate="90deg" />
+  </IconItem>
+  <IconItem name="ArrowIcon - right (default)">
+    <Icon.ArrowIcon />
+  </IconItem>
+  <IconItem name="ArrowIcon - left">
+    <Icon.ArrowIcon rotate="180deg" />
+  </IconItem>
+  <IconItem name="ArrowIcon - top">
+    <Icon.ArrowIcon rotate="270deg" />
+  </IconItem>
+  <IconItem name="ArrowIcon - bottom">
+    <Icon.ArrowIcon rotate="90deg" />
+  </IconItem>
+</IconGallery>
+
+# サイズ
+
+size prop にサイズ（`number | string`）を入力する（デフォルトは `24px`）
+
+```
+<InformationIcon size="32" />
+```
+
+<IconGallery>
+  <IconItem name='size="16"'>
+    <Icon.InformationIcon size="16" />
+  </IconItem>
+  <IconItem name='size="24" or 未設定'>
+    <Icon.InformationIcon />
+  </IconItem>
+  <IconItem name='size="40"'>
+    <Icon.InformationIcon size="40" />
+  </IconItem>
+</IconGallery>
+
+# カラー
+
+color prop にカラーコード(`string`)を入力する（デフォルトは `currentColor`）
+例
+
+```
+<InformationIcon color="#1EA7FD" />
+```
+
+<IconGallery>
+  <IconItem name="未設定">
+    <Icon.InformationIcon />
+  </IconItem>
+  <IconItem name='color="red"'>
+    <Icon.InformationIcon color="red" />
+  </IconItem>
+  <IconItem name='color="#1EA7FD"'>
+    <Icon.InformationIcon color="#1EA7FD" />
+  </IconItem>
+</IconGallery>
+
+# 回転
+
+rotate prop に CSS の`transform: rotate(n)`に相当する値(`string`)を入力する（デフォルトは`undefined`）
+
+```
+<ChevronIcon rotate="180deg" />
+```
+
+<IconGallery>
+  <IconItem name="未設定">
+    <Icon.ChevronIcon />
+  </IconItem>
+  <IconItem name='rotate="180deg"'>
+    <Icon.ChevronIcon rotate="180deg" />
+  </IconItem>
+  <IconItem name='rotate="270deg"'>
+    <Icon.ChevronIcon rotate="270deg" />
+  </IconItem>
+  <IconItem name='rotate="90deg"'>
+    <Icon.ChevronIcon rotate="90deg" />
+  </IconItem>
+</IconGallery>

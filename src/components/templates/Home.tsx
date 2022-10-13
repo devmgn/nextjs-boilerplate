@@ -3,9 +3,9 @@ import { uniqueId } from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser, selectLoginUsers, selectUserByUid, usersSelector } from '@/states/users';
 import Paragraph from '../atoms/Paragraph';
+import Modal, { useModalState } from '../layouts/Modal';
 import Accordion from '../molecules/Accordion';
 import Dialog from '../molecules/Dialog';
-import Modal, { useModalState } from '../molecules/Modal';
 import Posts from '../molecules/Posts';
 
 const Home = () => {

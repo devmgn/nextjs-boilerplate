@@ -1,12 +1,13 @@
 import DefaultLayout from '@/components/layouts/DefaultLayout';
-import Seo from '@/components/layouts/Seo';
+import Meta from '@/components/layouts/Meta';
 import Home from '@/components/templates/Home';
 import type { NextPage } from 'next';
 
 const Index: NextPage = () => {
   return (
     <DefaultLayout>
-      <Seo />
+      <Meta title="Home" />
+
       <Home />
     </DefaultLayout>
   );

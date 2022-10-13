@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react';
-import Text from '../Text';
+import Paragraph from '../Paragraph';
 
-describe('Text', () => {
+describe('Paragraph', () => {
   test('スナップショットテスト', () => {
-    const { asFragment } = render(<Text>children</Text>);
+    const { asFragment } = render(<Paragraph>children</Paragraph>);
     expect(asFragment()).toMatchSnapshot();
   });
 });

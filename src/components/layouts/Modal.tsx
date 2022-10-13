@@ -1,23 +1,26 @@
 import { createContext, useCallback } from 'react';
 import { AnimatePresence, m } from 'framer-motion';
 import { rgba } from 'polished';
-import FocusLockUI from 'react-focus-lock/UI';
+import ReactFocusLock from 'react-focus-lock';
 import { disablePageScroll, enablePageScroll } from 'scroll-lock';
 import styled from 'styled-components';
-import { sidecar } from 'use-sidecar';
 import Portal from '@/components/layouts/Portal';
-import { MODAL_TRANSITION_DURATION } from '@/constants';
+import { TRANSITION } from '@/constants';
 
 export { default as useModalState } from '@/hooks/useModalState';
 
-const FocusLockSidecar = sidecar(() => import(/* webpackPrefetch: true */ 'react-focus-lock/sidecar'));
-
-export const StyledModal = styled(m.div)`
+const StyledModal = styled.div`
   position: fixed;
   inset: 0;
   display: grid;
   place-items: center;
   padding: 16px;
+`;
+
+const Backdrop = styled(m.div)`
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   background-color: ${rgba('#000', 0.6)};
 `;
 
@@ -51,24 +54,26 @@ const Modal: React.FC<ModalProps> = ({ isActive, deactivate, handleDeactivate, c
       <Portal>
         <AnimatePresence mode="wait" onExitComplete={onExitComplete}>
           {isActive && (
-            <div>
-              <FocusLockUI returnFocus sideCar={FocusLockSidecar}>
-                <StyledModal
-                  key="modal"
-                  initial="inactive"
-                  animate="active"
-                  exit="inactive"
-                  variants={{
-                    active: { opacity: 1 },
-                    inactive: { opacity: 0 },
-                  }}
-                  transition={{ duration: MODAL_TRANSITION_DURATION }}
-                  onClick={handleDeactivate}
-                  onAnimationStart={onAnimationStart}
-                >
+            <div tabIndex={-1}>
+              <ReactFocusLock returnFocus>
+                <StyledModal onClick={handleDeactivate}>
+                  <Backdrop
+                    key="modal-backdrop"
+                    initial="inactive"
+                    animate="active"
+                    exit="inactive"
+                    variants={{
+                      active: { opacity: 1 },
+                      inactive: { opacity: 0 },
+                    }}
+                    transition={TRANSITION}
+                    onAnimationStart={onAnimationStart}
+                    role="presentation"
+                    data-modal-deactivate
+                  />
                   {children}
                 </StyledModal>
-              </FocusLockUI>
+              </ReactFocusLock>
             </div>
           )}
         </AnimatePresence>

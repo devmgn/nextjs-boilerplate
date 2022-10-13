@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
-import Seo from '../Seo';
+import Meta from '../Meta';
 
-describe('Seo', () => {
+describe('Meta', () => {
   describe('スナップショットテスト', () => {
     test('propsが全てある場合', () => {
       const props = {
@@ -10,16 +10,16 @@ describe('Seo', () => {
       };
 
       render(
-        <Seo {...props}>
+        <Meta {...props}>
           <meta name="keywords" content="keywords" />
-        </Seo>,
+        </Meta>,
         { container: document.head }
       );
       expect(document.head).toMatchSnapshot();
     });
 
     test('propsが全てない場合', () => {
-      render(<Seo />, { container: document.head });
+      render(<Meta />, { container: document.head });
       expect(document.head).toMatchSnapshot();
     });
 
@@ -28,9 +28,9 @@ describe('Seo', () => {
         description: 'description',
       };
       render(
-        <Seo {...props}>
+        <Meta {...props}>
           <meta name="keywords" content="keywords" />
-        </Seo>,
+        </Meta>,
         { container: document.head }
       );
       expect(document.head).toMatchSnapshot();
@@ -41,9 +41,9 @@ describe('Seo', () => {
         title: 'title',
       };
       render(
-        <Seo {...props}>
+        <Meta {...props}>
           <meta name="keywords" content="keywords" />
-        </Seo>,
+        </Meta>,
         { container: document.head }
       );
       expect(document.head).toMatchSnapshot();
@@ -55,7 +55,7 @@ describe('Seo', () => {
         description: 'description',
       };
 
-      render(<Seo {...props} />, { container: document.head });
+      render(<Meta {...props} />, { container: document.head });
       expect(document.head).toMatchSnapshot();
     });
   });

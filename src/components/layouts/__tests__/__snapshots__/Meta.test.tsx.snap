@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Seo スナップショットテスト propsが全てある場合 1`] = `
+exports[`Meta スナップショットテスト propsが全てある場合 1`] = `
 <head>
   <title>
     title | site name
@@ -15,12 +15,12 @@ exports[`Seo スナップショットテスト propsが全てある場合 1`] = 
   />
   <style
     data-styled="active"
-    data-styled-version="5.3.5"
+    data-styled-version="5.3.6"
   />
 </head>
 `;
 
-exports[`Seo スナップショットテスト propsが全てない場合 1`] = `
+exports[`Meta スナップショットテスト propsが全てない場合 1`] = `
 <head>
   <title>
     site name
@@ -31,12 +31,12 @@ exports[`Seo スナップショットテスト propsが全てない場合 1`] = 
   />
   <style
     data-styled="active"
-    data-styled-version="5.3.5"
+    data-styled-version="5.3.6"
   />
 </head>
 `;
 
-exports[`Seo スナップショットテスト propsにchildrenがない場合 1`] = `
+exports[`Meta スナップショットテスト propsにchildrenがない場合 1`] = `
 <head>
   <title>
     title | site name
@@ -47,12 +47,12 @@ exports[`Seo スナップショットテスト propsにchildrenがない場合 1
   />
   <style
     data-styled="active"
-    data-styled-version="5.3.5"
+    data-styled-version="5.3.6"
   />
 </head>
 `;
 
-exports[`Seo スナップショットテスト propsにdescriptionがない場合 1`] = `
+exports[`Meta スナップショットテスト propsにdescriptionがない場合 1`] = `
 <head>
   <title>
     title | site name
@@ -67,12 +67,12 @@ exports[`Seo スナップショットテスト propsにdescriptionがない場�
   />
   <style
     data-styled="active"
-    data-styled-version="5.3.5"
+    data-styled-version="5.3.6"
   />
 </head>
 `;
 
-exports[`Seo スナップショットテスト propsにtitleがない場合 1`] = `
+exports[`Meta スナップショットテスト propsにtitleがない場合 1`] = `
 <head>
   <title>
     site name
@@ -87,7 +87,7 @@ exports[`Seo スナップショットテスト propsにtitleがない場合 1`] 
   />
   <style
     data-styled="active"
-    data-styled-version="5.3.5"
+    data-styled-version="5.3.6"
   />
 </head>
 `;

@@ -1,36 +1,21 @@
-import { useCallback, useEffect, useState } from 'react';
-import { StyledModal } from '@/components/molecules/Modal';
+import { useState, useCallback, useEffect } from 'react';
 
-type UseModalOptions = {
-  onActivate?: () => void;
-  onDeactivate?: () => void;
-};
-
-const useModalState = ({ onActivate, onDeactivate }: UseModalOptions = {}) => {
+const useModalState = () => {
   const [isActive, setIsActive] = useState(false);
 
   const activate = useCallback(() => {
     setIsActive(true);
-    if (onActivate) {
-      onActivate();
-    }
-  }, [onActivate]);
+  }, []);
 
   const deactivate = useCallback(() => {
     setIsActive(false);
-    if (onDeactivate) {
-      onDeactivate();
-    }
-  }, [onDeactivate]);
+  }, []);
 
   const handleDeactivate = useCallback<(event: React.MouseEvent) => void>(
     (event) => {
-      const deactivateTriggerElements = [
-        document.querySelector(StyledModal),
-        ...document.querySelectorAll('[data-modal-deactivate]'),
-      ];
+      const deactivateTriggerElements = Array.from(document.querySelectorAll('[data-modal-deactivate]'));
 
-      if (event.target instanceof HTMLElement && deactivateTriggerElements.includes(event.target)) {
+      if (event.target instanceof Element && deactivateTriggerElements.includes(event.target)) {
         deactivate();
       }
     },
