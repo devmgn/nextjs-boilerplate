@@ -3,9 +3,11 @@ import useModalState from '../useModalState';
 
 describe('useModalState', () => {
   let hookResult: RenderHookResult<ReturnType<typeof useModalState>, unknown>['result'];
+  const onActivate = jest.fn();
+  const onDeactivate = jest.fn();
 
   beforeEach(() => {
-    hookResult = renderHook(() => useModalState()).result;
+    hookResult = renderHook(() => useModalState({ onActivate, onDeactivate })).result;
   });
 
   test('isActiveの初期値はfalseであること', () => {
@@ -22,6 +24,18 @@ describe('useModalState', () => {
     expect(hookResult.current.isActive).toBe(true);
     act(() => hookResult.current.deactivate());
     expect(hookResult.current.isActive).toBe(false);
+  });
+
+  describe('オプション引数', () => {
+    test('activateしたとき、onActivateコールバックが実行されること', () => {
+      act(() => hookResult.current.activate());
+      expect(onActivate).toHaveBeenCalled();
+    });
+
+    test('deActivateしたとき、onDeactivateコールバックが実行されること', () => {
+      act(() => hookResult.current.deactivate());
+      expect(onDeactivate).toHaveBeenCalled();
+    });
   });
 
   describe('escapeキーをタイプした時', () => {

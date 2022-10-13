@@ -31,11 +31,11 @@ export const modalContext = createContext<ModalContext>({ isActive: false, deact
 type ModalProps = {
   isActive: boolean;
   deactivate: () => void;
-  onDeactivate: (event: React.MouseEvent<HTMLElement>) => void;
+  handleDeactivate: (event: React.MouseEvent<HTMLElement>) => void;
   children: React.ReactNode;
 };
 
-const Modal: React.FC<ModalProps> = ({ isActive, deactivate, onDeactivate, children }) => {
+const Modal: React.FC<ModalProps> = ({ isActive, deactivate, handleDeactivate, children }) => {
   const onExitComplete = useCallback(() => {
     enablePageScroll();
   }, []);
@@ -63,7 +63,7 @@ const Modal: React.FC<ModalProps> = ({ isActive, deactivate, onDeactivate, child
                     inactive: { opacity: 0 },
                   }}
                   transition={{ duration: MODAL_TRANSITION_DURATION }}
-                  onClick={onDeactivate}
+                  onClick={handleDeactivate}
                   onAnimationStart={onAnimationStart}
                 >
                   {children}
