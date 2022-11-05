@@ -4,17 +4,17 @@ import Chevron from '@/components/atoms/icons/chevron.svg';
 import Information from '@/components/atoms/icons/information.svg';
 
 type IconProps = {
-  size?: number | string;
-  color?: string;
-  rotate?: string;
+  $size?: number | string;
+  $color?: string;
+  $rotate?: string;
 };
 
-const Icon = styled.span<IconProps>`
+export const Icon = styled.span<IconProps>`
   > svg {
-    width: ${({ size }) => size && `${size}px`};
-    height: ${({ size }) => size && `${size}px`};
-    fill: ${({ color }) => color};
-    transform: ${({ rotate }) => rotate && `rotate(${rotate})`};
+    width: ${({ $size }) => $size && `${$size}px`};
+    height: ${({ $size }) => $size && `${$size}px`};
+    fill: ${({ $color }) => $color};
+    transform: ${({ $rotate }) => $rotate && `rotate(${$rotate})`};
   }
 `;
 

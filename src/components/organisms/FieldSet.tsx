@@ -8,7 +8,7 @@ type FieldSetProps = {
 const FieldSet: React.FC<FieldSetProps> = ({ title, children }) => {
   return (
     <fieldset>
-      <Heading type="sectionTitle" as="legend">
+      <Heading $type="sectionTitle" as="legend">
         {title}
       </Heading>
       {children}

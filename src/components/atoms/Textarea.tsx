@@ -10,12 +10,14 @@ const Textarea = styled.textarea<FieldState>`
   line-height: 32px;
   background-color: #fff;
   border: 1px solid;
-  border-color: ${({ isSuccess, isError, isWarning }) => {
-    if (isSuccess) {
+  border-color: ${({ $isSuccess, $isError, $isWarning }) => {
+    if ($isSuccess) {
       return 'green';
-    } else if (isError) {
+    }
+    if ($isError) {
       return 'red';
-    } else if (isWarning) {
+    }
+    if ($isWarning) {
       return 'orange';
     }
     return '#ddd';

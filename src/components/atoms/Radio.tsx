@@ -1,6 +1,5 @@
 import { hideVisually } from 'polished';
 import styled from 'styled-components';
-import type { InferStyledComponentProps } from '@/@types/InferStyledComponentProps';
 
 const StyledRadio = styled.label`
   position: relative;
@@ -37,7 +36,7 @@ const Button = styled.input`
   }
 `;
 
-type RadioProps = InferStyledComponentProps<typeof StyledRadio> & {
+type RadioProps = React.ComponentProps<typeof Button> & {
   children?: string;
 };
 

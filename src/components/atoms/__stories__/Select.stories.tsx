@@ -20,9 +20,9 @@ const Template: ComponentStory<typeof Select> = (args) => <Select {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   disabled: false,
-  isSuccess: false,
-  isError: false,
-  isWarning: false,
+  $isSuccess: false,
+  $isError: false,
+  $isWarning: false,
   defaultValue: '',
   id: faker.datatype.string(),
   options: [

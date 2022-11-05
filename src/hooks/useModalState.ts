@@ -13,7 +13,9 @@ const useModalState = () => {
 
   const handleDeactivate = useCallback<(event: React.MouseEvent) => void>(
     (event) => {
-      const deactivateTriggerElements = Array.from(document.querySelectorAll('[data-modal-deactivate]'));
+      const deactivateTriggerElements = Array.from(
+        document.querySelectorAll('[data-modal-deactivate]')
+      );
 
       if (event.target instanceof Element && deactivateTriggerElements.includes(event.target)) {
         deactivate();

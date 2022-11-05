@@ -1,4 +1,4 @@
-import { createContext, useCallback } from 'react';
+import { createContext, useCallback, useMemo } from 'react';
 import { AnimatePresence, m } from 'framer-motion';
 import { rgba } from 'polished';
 import ReactFocusLock from 'react-focus-lock';
@@ -43,14 +43,19 @@ const Modal: React.FC<ModalProps> = ({ isActive, deactivate, handleDeactivate, c
     enablePageScroll();
   }, []);
 
-  const onAnimationStart = useCallback<(definition: 'active' | 'inactive') => void>((definition) => {
-    if (definition === 'active') {
-      disablePageScroll();
-    }
-  }, []);
+  const onAnimationStart = useCallback<(definition: 'active' | 'inactive') => void>(
+    (definition) => {
+      if (definition === 'active') {
+        disablePageScroll();
+      }
+    },
+    []
+  );
+
+  const contextValue = useMemo(() => ({ isActive, deactivate }), [deactivate, isActive]);
 
   return (
-    <modalContext.Provider value={{ isActive, deactivate }}>
+    <modalContext.Provider value={contextValue}>
       <Portal>
         <AnimatePresence mode="wait" onExitComplete={onExitComplete}>
           {isActive && (

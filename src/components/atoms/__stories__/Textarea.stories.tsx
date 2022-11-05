@@ -21,9 +21,9 @@ Default.args = {
   placeholder: faker.lorem.word(),
   disabled: false,
   readOnly: false,
-  isSuccess: false,
-  isError: false,
-  isWarning: false,
-  rows: faker.random.numeric(),
+  $isSuccess: false,
+  $isError: false,
+  $isWarning: false,
+  rows: Number(faker.random.numeric()),
   id: faker.datatype.string(),
 };

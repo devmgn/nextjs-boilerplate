@@ -11,8 +11,10 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
     <Provider store={store}>
       <LazyMotion features={domAnimation}>
         <ThemeProvider theme={BREAKPOINTS}>
-          <GlobalStyle />
-          <Component {...pageProps} />
+          <>
+            <GlobalStyle />
+            <Component {...pageProps} />
+          </>
         </ThemeProvider>
       </LazyMotion>
     </Provider>

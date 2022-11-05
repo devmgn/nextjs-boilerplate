@@ -3,11 +3,47 @@ module.exports = {
   plugins: ['@typescript-eslint', 'import', 'unused-imports'],
   rules: {
     'prefer-template': 'warn',
+    'unused-imports/no-unused-imports': 'error',
+    'no-else-return': ['error', { allowElseIf: false }],
     '@next/next/no-img-element': 'off',
+    'react/jsx-no-constructed-context-values': 'error',
+    'react/jsx-boolean-value': 'warn',
+    'react/jsx-curly-brace-presence': 'warn',
+    'react/jsx-pascal-case': 'warn',
+    'react/no-array-index-key': 'error',
+    'react/self-closing-comp': [
+      'warn',
+      {
+        component: true,
+        html: true,
+      },
+    ],
+    '@typescript-eslint/naming-convention': [
+      'warn',
+      {
+        selector: 'typeAlias',
+        format: ['PascalCase'],
+      },
+      {
+        selector: 'interface',
+        format: ['PascalCase'],
+      },
+    ],
+    '@typescript-eslint/no-inferrable-types': 'warn',
     'import/order': [
       'error',
       {
-        groups: ['builtin', 'external', 'internal', 'unknown', 'parent', 'sibling', 'index', 'object', 'type'],
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          'unknown',
+          'parent',
+          'sibling',
+          'index',
+          'object',
+          'type',
+        ],
         pathGroups: [
           {
             pattern: 'react',
@@ -31,34 +67,15 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: ['next.config.js', '**/jest.setup.{ts,tsx}', '**/*.{test,stories}.{ts,tsx}'],
+        devDependencies: [
+          'next.config.js',
+          '**/jest.setup.{ts,tsx}',
+          '**/*.{test,stories}.{ts,tsx}',
+        ],
         optionalDependencies: false,
         peerDependencies: false,
       },
     ],
-    'react/jsx-boolean-value': 'warn',
-    'react/jsx-curly-brace-presence': 'warn',
-    'react/jsx-pascal-case': 'warn',
-    'react/self-closing-comp': [
-      'warn',
-      {
-        component: true,
-        html: true,
-      },
-    ],
-    '@typescript-eslint/naming-convention': [
-      'warn',
-      {
-        selector: 'typeAlias',
-        format: ['PascalCase'],
-      },
-      {
-        selector: 'interface',
-        format: ['PascalCase'],
-      },
-    ],
-    '@typescript-eslint/no-inferrable-types': 'warn',
-    'unused-imports/no-unused-imports': 'error',
   },
   parser: '@typescript-eslint/parser',
   settings: {

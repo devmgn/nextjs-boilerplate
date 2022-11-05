@@ -28,18 +28,18 @@ const Home = () => {
       <Posts />
 
       <Paragraph>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam excepturi suscipit magni nostrum facilis officiis
-        quidem repellat tempore voluptatem sint! Impedit consequuntur culpa suscipit est itaque, placeat laborum
-        possimus temporibus.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam excepturi suscipit magni
+        nostrum facilis officiis quidem repellat tempore voluptatem sint! Impedit consequuntur culpa
+        suscipit est itaque, placeat laborum possimus temporibus.
       </Paragraph>
       <Accordion>hoge</Accordion>
 
       <Modal {...modalState}>
         <Dialog>
           <Paragraph>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Non expedita deleniti optio quas iste, ab
-            voluptatum exercitationem dolor recusandae, atque illum delectus aspernatur dolores eveniet architecto
-            officia! Omnis, autem mollitia.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Non expedita deleniti optio
+            quas iste, ab voluptatum exercitationem dolor recusandae, atque illum delectus
+            aspernatur dolores eveniet architecto officia! Omnis, autem mollitia.
           </Paragraph>
         </Dialog>
       </Modal>

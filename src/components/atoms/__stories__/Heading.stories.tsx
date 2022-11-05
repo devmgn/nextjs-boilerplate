@@ -12,7 +12,7 @@ export default {
         type: 'radio',
       },
     },
-    type: {
+    $type: {
       options: ['pageTitle', 'sectionTitle'],
       control: {
         type: 'radio',
@@ -26,6 +26,6 @@ const Template: ComponentStory<typeof Heading> = (args) => <Heading {...args} />
 export const Default = Template.bind({});
 Default.args = {
   as: 'h1',
-  type: 'pageTitle',
+  $type: 'pageTitle',
   children: faker.lorem.paragraph(),
 };

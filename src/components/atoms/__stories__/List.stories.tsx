@@ -21,5 +21,7 @@ const Template: ComponentStory<typeof List> = (args) => <List {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   as: 'ul',
-  items: [...faker.datatype.array(Number(faker.random.numeric())).map((_v) => faker.lorem.paragraph())],
+  items: [
+    ...faker.datatype.array(Number(faker.random.numeric())).map((_v) => faker.lorem.paragraph()),
+  ],
 };

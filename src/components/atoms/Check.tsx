@@ -1,6 +1,5 @@
 import { hideVisually } from 'polished';
 import styled from 'styled-components';
-import type { InferStyledComponentProps } from '@/@types/InferStyledComponentProps';
 
 const Check = styled.label`
   position: relative;
@@ -36,7 +35,7 @@ const Box = styled.input`
   }
 `;
 
-type CheckboxProps = InferStyledComponentProps<typeof Box> & {
+type CheckboxProps = React.ComponentProps<typeof Box> & {
   children?: string;
 };
 

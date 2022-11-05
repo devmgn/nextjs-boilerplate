@@ -30,9 +30,9 @@ Default.args = {
   placeholder: faker.lorem.word(),
   disabled: false,
   readOnly: false,
-  isSuccess: false,
-  isError: false,
-  isWarning: false,
+  $isSuccess: false,
+  $isError: false,
+  $isWarning: false,
   type: 'text',
   id: faker.datatype.string(),
 };

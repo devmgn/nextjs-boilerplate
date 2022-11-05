@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { InferStyledComponentProps } from '@/@types/InferStyledComponentProps';
 
 const StyledDefinitionList = styled.dl`
   /** empty */
@@ -19,7 +18,7 @@ const Description = styled.dd`
   flex-grow: 1;
 `;
 
-type DefinitionListProps = InferStyledComponentProps<typeof StyledDefinitionList> & {
+type DefinitionListProps = React.ComponentProps<typeof StyledDefinitionList> & {
   items: {
     term: string;
     description: string;
@@ -30,6 +29,7 @@ const DefinitionList: React.FC<DefinitionListProps> = ({ items, ...props }) => {
   return (
     <StyledDefinitionList {...props}>
       {items.map((item, index) => (
+        // eslint-disable-next-line react/no-array-index-key
         <Item key={index}>
           <Term>{item.term}</Term>
           <Description>{item.description}</Description>

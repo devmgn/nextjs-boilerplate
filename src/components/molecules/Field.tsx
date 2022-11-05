@@ -22,8 +22,8 @@ const Field: React.FC<FieldProps> = ({ label, errorMessage, warningMessage, chil
     <StyledField>
       <FieldLabel htmlFor={children.props.id}>{label}</FieldLabel>
       {cloneElement<FieldState>(children, {
-        isError: Boolean(errorMessage),
-        isWarning: Boolean(warningMessage),
+        $isError: Boolean(errorMessage),
+        $isWarning: Boolean(warningMessage),
       })}
       {errorMessage && <Paragraph>{errorMessage}</Paragraph>}
       {warningMessage && <Paragraph>{warningMessage}</Paragraph>}
