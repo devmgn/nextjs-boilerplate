@@ -1,10 +1,8 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { postsApi } from '@/states/posts';
-import { usersReducer as users } from '@/states/users';
+import { userReducer as user } from './user/slice';
 
-const reducer = combineReducers({ users, [postsApi.reducerPath]: postsApi.reducer });
+const reducer = combineReducers({ user });
 export const store = configureStore({
   reducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(postsApi.middleware),
   devTools: process.env.NODE_ENV !== 'production',
 });

@@ -1,8 +1,8 @@
 import { LazyMotion, domAnimation } from 'framer-motion';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
+import { BREAKPOINTS } from '@/constants';
 import { store } from '@/states/store';
-import { BREAKPOINTS } from '@/styles/constants';
 import GlobalStyle from '@/styles/GlobalStyle';
 import type { AppProps } from 'next/app';
 

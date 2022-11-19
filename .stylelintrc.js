@@ -29,6 +29,6 @@ module.exports = {
   ignoreFiles: [
     'src/jest.setup.{ts,tsx}',
     'src/**/*.{test,stories,types}.{ts,tsx}',
-    'src/**/{@types,types,states,api}/**/*',
+    'src/**/{types,states,api}/**/*',
   ],
 };

@@ -1,11 +1,11 @@
 import { act, fireEvent, renderHook, RenderHookResult } from '@testing-library/react';
-import useModalState from '../useModalState';
+import useModal from '../useModal';
 
-describe('useModalState', () => {
-  let hookResult: RenderHookResult<ReturnType<typeof useModalState>, unknown>['result'];
+describe('useModal', () => {
+  let hookResult: RenderHookResult<ReturnType<typeof useModal>, unknown>['result'];
 
   beforeEach(() => {
-    hookResult = renderHook(() => useModalState()).result;
+    hookResult = renderHook(() => useModal()).result;
   });
 
   test('isActiveの初期値はfalseであること', () => {

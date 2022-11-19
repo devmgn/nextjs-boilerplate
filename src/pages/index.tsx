@@ -7,7 +7,6 @@ const Index: NextPage = () => {
   return (
     <DefaultLayout>
       <Meta title="Home" />
-
       <Home />
     </DefaultLayout>
   );
