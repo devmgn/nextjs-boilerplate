@@ -1,35 +1,45 @@
 module.exports = {
-  extends: ['next', 'next/core-web-vitals', 'prettier', 'plugin:storybook/recommended'],
-  plugins: ['@typescript-eslint', 'import', 'unused-imports'],
+  env: {
+    'jest/globals': true,
+  },
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    project: './tsconfig.json',
+  },
+  extends: [
+    'next',
+    'next/core-web-vitals',
+    'airbnb',
+    'airbnb/hooks',
+    'airbnb-typescript',
+    'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'prettier',
+  ],
   rules: {
-    'prefer-template': 'warn',
-    'unused-imports/no-unused-imports': 'error',
-    'no-else-return': ['error', { allowElseIf: false }],
+    'arrow-body-style': 'off',
+    'no-console': ['warn', { allow: ['error', 'warn'] }],
+    'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
+    'react/jsx-props-no-spreading': 'off',
+    'react/prop-types': 'off',
     '@next/next/no-img-element': 'off',
-    'react/jsx-no-constructed-context-values': 'error',
-    'react/jsx-boolean-value': 'warn',
-    'react/jsx-curly-brace-presence': 'warn',
-    'react/jsx-pascal-case': 'warn',
-    'react/no-array-index-key': 'error',
-    'react/self-closing-comp': [
-      'warn',
-      {
-        component: true,
-        html: true,
-      },
-    ],
     '@typescript-eslint/naming-convention': [
       'warn',
       {
         selector: 'typeAlias',
-        format: ['PascalCase'],
+        format: ['StrictPascalCase'],
       },
       {
         selector: 'interface',
-        format: ['PascalCase'],
+        format: ['StrictPascalCase'],
+      },
+      {
+        selector: 'class',
+        format: ['StrictPascalCase'],
       },
     ],
-    '@typescript-eslint/no-inferrable-types': 'warn',
     'import/order': [
       'error',
       {
@@ -63,26 +73,27 @@ module.exports = {
         },
       },
     ],
-    'import/no-duplicates': 'error',
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: [
-          'next.config.js',
-          '**/jest.setup.{ts,tsx}',
-          '**/*.{test,stories}.{ts,tsx}',
-        ],
+        devDependencies: ['**/jest.setup.{ts,tsx}', '**/*.{test,spec,stories}.{ts,tsx}'],
         optionalDependencies: false,
         peerDependencies: false,
       },
     ],
   },
-  parser: '@typescript-eslint/parser',
-  settings: {
-    'import/resolver': {
-      typescript: {
-        project: './tsconfig.json',
+  overrides: [
+    {
+      extends: ['plugin:storybook/recommended'],
+      files: ['**/*.stories.*'],
+      rules: {
+        'import/no-anonymous-default-export': 'off',
       },
     },
-  },
+    {
+      extends: ['plugin:jest/recommended'],
+      files: ['**/*.{test,spec}.*'],
+    },
+  ],
+  ignorePatterns: ['.eslintrc.js'],
 };

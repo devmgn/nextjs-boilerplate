@@ -13,7 +13,9 @@ const Template: StoryFn<typeof Modal> = (args) => {
 
   return (
     <>
-      <button onClick={() => modal.activate()}>モーダルを開く</button>
+      <button onClick={() => modal.activate()} type="button">
+        モーダルを開く
+      </button>
       <Modal {...args} {...modal} />
     </>
   );

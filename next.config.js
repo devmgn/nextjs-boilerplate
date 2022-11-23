@@ -19,35 +19,7 @@ const nextConfig = {
     config.module.rules.push({
       test: /\.svg$/i,
       issuer: /\.[jt]sx?$/,
-      use: [
-        {
-          loader: '@svgr/webpack',
-          options: {
-            typescript: true,
-            svgoConfig: {
-              plugins: [
-                {
-                  name: 'preset-default',
-                  params: {
-                    overrides: {
-                      removeViewBox: false,
-                      removeUnknownsAndDefaults: {
-                        keepDataAttrs: false,
-                      },
-                    },
-                  },
-                },
-                {
-                  name: 'removeAttrs',
-                  params: {
-                    attrs: 'fill',
-                  },
-                },
-              ],
-            },
-          },
-        },
-      ],
+      use: ['@svgr/webpack'],
     });
 
     return config;

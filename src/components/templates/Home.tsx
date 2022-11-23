@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import useModal from '@/hooks/useModal';
 import { getLoginStatus, getUserName } from '@/states/user/selectors';
@@ -20,6 +19,7 @@ const Home = () => {
           dispatch(setUserName(event.currentTarget.value));
           dispatch(login());
         }}
+        type="button"
       >
         ログイン
       </button>

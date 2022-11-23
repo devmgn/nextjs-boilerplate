@@ -5,7 +5,7 @@ import ReactFocusLock from 'react-focus-lock';
 import { disablePageScroll, enablePageScroll } from 'scroll-lock';
 import styled from 'styled-components';
 import { TRANSITION } from '@/constants/framerMotion';
-import { modalContext } from '@/contexts/modalContext';
+import modalContext from '@/contexts/modalContext';
 import useModal from '@/hooks/useModal';
 import Portal from './Portal';
 

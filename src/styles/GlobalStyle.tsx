@@ -1,6 +1,8 @@
 import { createGlobalStyle, css } from 'styled-components';
 import { FONT_FAMILY } from '@/constants/styles';
 
+// prettier-ignore
+
 const resetStyle = css`
   /* stylelint-disable plugin/no-unsupported-browser-features */
 

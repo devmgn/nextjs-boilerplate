@@ -14,22 +14,6 @@ export const parameters = {
   viewport: {
     defaultViewport: 'desktop',
     viewports: {
-      desktop: {
-        name: 'Desktop',
-        styles: {
-          width: '1280px',
-          height: '840px',
-        },
-        type: 'desktop',
-      },
-      mobile: {
-        name: 'Mobile',
-        styles: {
-          width: '375px',
-          height: '667px',
-        },
-        type: 'mobile',
-      },
       ...INITIAL_VIEWPORTS,
     },
   },
@@ -45,9 +29,6 @@ export const parameters = {
         value: '#999',
       },
     ],
-  },
-  darkMode: {
-    current: 'dark',
   },
 };
 

@@ -5,7 +5,11 @@ type ModalContext = {
   deactivate: () => void;
 };
 
-export const modalContext = createContext<ModalContext>({
+const modalContext = createContext<ModalContext>({
   isActive: false,
-  deactivate: () => {},
+  deactivate: () => {
+    // /** empty */
+  },
 });
+
+export default modalContext;

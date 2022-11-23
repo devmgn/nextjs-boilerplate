@@ -1,6 +1,6 @@
-import DefaultLayout from '@/components/layouts/DefaultLayout';
-import Meta from '@/components/layouts/Meta';
+import DefaultLayout from '@/components/templates/DefaultLayout';
 import Home from '@/components/templates/Home';
+import Meta from '@/components/templates/Meta';
 import type { NextPage } from 'next';
 
 const Index: NextPage = () => {

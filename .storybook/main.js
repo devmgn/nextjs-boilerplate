@@ -1,5 +1,5 @@
 const path = require('path');
-
+const { getConfigFileParsingDiagnostics } = require('typescript');
 module.exports = {
   stories: ['../src/**/*.stories.@(ts|tsx|mdx)'],
   addons: [
@@ -7,12 +7,15 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     '@storybook/addon-a11y',
-    'storybook-dark-mode',
     'storybook-addon-next',
   ],
-  framework: '@storybook/react',
-  core: {
-    builder: '@storybook/builder-webpack5',
+  framework: {
+    name: '@storybook/react-webpack5',
+    options: {},
+  },
+  core: {},
+  docsPage: {
+    docs: 'automatic',
   },
   webpackFinal: async (config) => {
     // import aliasの設定
@@ -20,48 +23,16 @@ module.exports = {
       ...config.resolve.alias,
       '@': path.resolve(__dirname, '../src'),
     };
+    config.resolve.extensions = ['.js', '.ts', '.tsx'];
 
     // svgr有効化の設定
-    const fileLoaderRule = config.module.rules.find((rule) => rule.test && rule.test?.test('.svg'));
-    fileLoaderRule.exclude = /\.svg$/;
-
-    config.module.rules = [
-      ...config.module.rules,
-      {
-        test: /\.svg$/i,
-        issuer: /\.[jt]sx?$/,
-        use: [
-          {
-            loader: '@svgr/webpack',
-            options: {
-              typescript: true,
-              svgoConfig: {
-                plugins: [
-                  {
-                    name: 'preset-default',
-                    params: {
-                      overrides: {
-                        removeViewBox: false,
-                        removeUnknownsAndDefaults: {
-                          keepDataAttrs: false,
-                        },
-                      },
-                    },
-                  },
-                  {
-                    name: 'removeAttrs',
-                    params: {
-                      attrs: 'fill',
-                    },
-                  },
-                ],
-              },
-            },
-          },
-        ],
-      },
-    ];
-
+    // const fileLoaderRule = config.module.rules.find((rule) => rule.test && rule.test?.test('.svg'));
+    // fileLoaderRule.exclude = /\.svg$/;
+    // config.module.rules.push({
+    //   test: /\.svg$/i,
+    //   issuer: /\.[jt]sx?$/,
+    //   use: ['@svgr/webpack'],
+    // });
     return config;
   },
 };

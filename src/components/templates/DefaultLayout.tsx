@@ -6,12 +6,12 @@ export type DefaultLayoutProps = {
   children: React.ReactNode;
 };
 
-const DefaultLayout: React.FC<DefaultLayoutProps> = (props) => {
+const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
   return (
     <>
       <DefaultHead />
       <Header />
-      <main>{props.children}</main>
+      <main>{children}</main>
       <Footer />
     </>
   );
