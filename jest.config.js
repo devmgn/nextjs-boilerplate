@@ -14,4 +14,7 @@ module.exports = createJestConfig({
   setupFilesAfterEnv: ['<rootDir>/src/jest.setup.tsx'],
   moduleNameMapper: { '^@/(.*)$': '<rootDir>/src/$1' },
   testEnvironment: 'jest-environment-jsdom',
+  snapshotSerializers: [
+    '@emotion/jest/serializer' /* if needed other snapshotSerializers should go here */,
+  ],
 });

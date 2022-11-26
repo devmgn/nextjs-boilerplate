@@ -28,7 +28,6 @@ const Home = () => {
       <button onClick={() => activate()} type="button">
         モーダルを開く
       </button>
-
       <Modal {...modal}>
         <Paragraph>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Non expedita deleniti optio quas

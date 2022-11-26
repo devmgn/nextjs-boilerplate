@@ -12,15 +12,15 @@ describe('useModal', () => {
     expect(hookResult.current.isActive).toBe(false);
   });
 
-  test('activateしたとき、isActiveはtrueであること', async () => {
-    await act(() => hookResult.current.activate());
+  test('activateしたとき、isActiveはtrueであること', () => {
+    act(() => hookResult.current.activate());
     expect(hookResult.current.isActive).toBe(true);
   });
 
-  test('activate後にdeactivateしたとき、isActiveはfalseであること', async () => {
-    await act(() => hookResult.current.activate());
+  test('activate後にdeactivateしたとき、isActiveはfalseであること', () => {
+    act(() => hookResult.current.activate());
     expect(hookResult.current.isActive).toBe(true);
-    await act(() => hookResult.current.deactivate());
+    act(() => hookResult.current.deactivate());
     expect(hookResult.current.isActive).toBe(false);
   });
 
@@ -33,8 +33,8 @@ describe('useModal', () => {
       expect(hookResult.current.isActive).toBe(false);
     });
 
-    test('isActiveがtrueの場合、isActiveはfalseとなること', async () => {
-      await act(() => hookResult.current.activate());
+    test('isActiveがtrueの場合、isActiveはfalseとなること', () => {
+      act(() => hookResult.current.activate());
       expect(hookResult.current.isActive).toBe(true);
 
       fireEvent.keyDown(document, { key: 'Escape' });
@@ -51,8 +51,8 @@ describe('useModal', () => {
       expect(hookResult.current.isActive).toBe(false);
     });
 
-    test('isActiveがtrueの場合、isActiveはtrueのままであること', async () => {
-      await act(() => hookResult.current.activate());
+    test('isActiveがtrueの場合、isActiveはtrueのままであること', () => {
+      act(() => hookResult.current.activate());
       expect(hookResult.current.isActive).toBe(true);
 
       fireEvent.keyDown(document, { key: 'Enter' });

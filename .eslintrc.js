@@ -95,5 +95,5 @@ module.exports = {
       files: ['**/*.{test,spec}.*'],
     },
   ],
-  ignorePatterns: ['.eslintrc.js'],
+  ignorePatterns: ['.eslintrc.js', 'next.config.js', 'jest.globalSetup.js', 'jest.config.js'],
 };

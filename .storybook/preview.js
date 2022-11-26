@@ -12,23 +12,12 @@ export const parameters = {
     },
   },
   viewport: {
-    defaultViewport: 'desktop',
     viewports: {
       ...INITIAL_VIEWPORTS,
     },
   },
   backgrounds: {
-    default: 'white',
-    values: [
-      {
-        name: 'white',
-        value: '#fff',
-      },
-      {
-        name: 'dark',
-        value: '#999',
-      },
-    ],
+    default: 'light',
   },
 };
 
