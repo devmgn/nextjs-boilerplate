@@ -1,4 +1,4 @@
-import { createGlobalStyle, css } from 'styled-components';
+import { Global, css } from '@emotion/react';
 import { FONT_FAMILY } from '@/constants/styles';
 
 // prettier-ignore
@@ -157,6 +157,6 @@ const resetStyle = css`
   }
 `;
 
-const GlobalStyle = createGlobalStyle`${resetStyle}`;
+const GlobalStyle = () => <Global styles={resetStyle} />;
 
 export default GlobalStyle;

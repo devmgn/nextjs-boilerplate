@@ -12,7 +12,7 @@ const nextConfig = {
   generateEtags: false,
   experimental: { esmExternals: false },
   compiler: {
-    styledComponents: true,
+    emotion: true,
     reactRemoveProperties: true,
   },
   webpack(config) {

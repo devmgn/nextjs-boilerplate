@@ -1,10 +1,9 @@
 import { useCallback, useMemo } from 'react';
+import styled from '@emotion/styled';
 import { AnimatePresence, m } from 'framer-motion';
-import { rgba } from 'polished';
 import ReactFocusLock from 'react-focus-lock';
 import { disablePageScroll, enablePageScroll } from 'scroll-lock';
-import styled from 'styled-components';
-import { TRANSITION } from '@/constants/framerMotion';
+import { TRANSITION, VARIANTS } from '@/constants';
 import modalContext from '@/contexts/modalContext';
 import useModal from '@/hooks/useModal';
 import Portal from './Portal';
@@ -21,7 +20,7 @@ const Backdrop = styled(m.div)`
   position: absolute;
   inset: 0;
   z-index: -1;
-  background-color: ${rgba('#000', 0.6)};
+  background-color: rgba(0, 0, 0, 0.6);
 `;
 
 type ModalProps = {
@@ -33,14 +32,11 @@ const Modal: React.FC<ModalProps> = ({ isActive, deactivate, handleDeactivate, c
     enablePageScroll();
   }, []);
 
-  const onAnimationStart = useCallback<(definition: 'active' | 'inactive') => void>(
-    (definition) => {
-      if (definition === 'active') {
-        disablePageScroll();
-      }
-    },
-    []
-  );
+  const onAnimationStart = useCallback((definition: keyof typeof VARIANTS) => {
+    if (definition === 'active') {
+      disablePageScroll();
+    }
+  }, []);
 
   const contextValue = useMemo(() => ({ isActive, deactivate }), [deactivate, isActive]);
 
@@ -49,27 +45,22 @@ const Modal: React.FC<ModalProps> = ({ isActive, deactivate, handleDeactivate, c
       <Portal>
         <AnimatePresence mode="wait" onExitComplete={onExitComplete}>
           {isActive && (
-            <div tabIndex={-1}>
-              <ReactFocusLock returnFocus>
-                <StyledModal onClick={handleDeactivate}>
-                  <Backdrop
-                    key="modal-backdrop"
-                    initial="inactive"
-                    animate="active"
-                    exit="inactive"
-                    variants={{
-                      active: { opacity: 1 },
-                      inactive: { opacity: 0 },
-                    }}
-                    transition={TRANSITION}
-                    onAnimationStart={onAnimationStart}
-                    role="presentation"
-                    data-modal-deactivate
-                  />
-                  {children}
-                </StyledModal>
-              </ReactFocusLock>
-            </div>
+            <ReactFocusLock returnFocus>
+              <StyledModal onClick={handleDeactivate}>
+                <Backdrop
+                  key="modal-backdrop"
+                  initial="inactive"
+                  animate="active"
+                  exit="inactive"
+                  variants={VARIANTS}
+                  transition={TRANSITION}
+                  onAnimationStart={onAnimationStart}
+                  role="presentation"
+                  data-modal-deactivate
+                />
+                {children}
+              </StyledModal>
+            </ReactFocusLock>
           )}
         </AnimatePresence>
       </Portal>

@@ -1,9 +1,8 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 const Paragraph = styled.p`
   font-size: 16px;
   line-height: 24px;
-  color: #4c4d4d;
 `;
 
 export default Paragraph;
