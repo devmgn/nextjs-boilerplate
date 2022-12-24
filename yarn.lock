@@ -6190,10 +6190,10 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
-framer-motion@7.10.2:
-  version "7.10.2"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-7.10.2.tgz#e89d17ba98737355b09334c579e2317e0d4c171f"
-  integrity sha512-2OAII9hjpMNz2Nbl2w09uKo7A0bD6xRtGnCZbPzuGGueucWgmSBLjAwzPhXwzCQWMpL3LU8jmXHjxAwIyjslxg==
+framer-motion@8.0.2:
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-8.0.2.tgz#212cc4cabfbb90f4eabe5a9e5553ef1b1dc6a598"
+  integrity sha512-xuIiQchVh/cLqUzzu5/8ok4o0nkwYPyIRtkDl8wDvrQUNRhSfRaZu1MMdzN0TjpBtG66oP03PSLO7Qtu1YqPrA==
   dependencies:
     "@motionone/dom" "^10.15.3"
     hey-listen "^1.0.8"
@@ -6215,6 +6215,15 @@ fs-extra@^10.0.0, fs-extra@^10.1.0:
   version "10.1.0"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-10.1.0.tgz#02873cfbc4084dde127eaa5f9905eef2325d1abf"
   integrity sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==
+  dependencies:
+    graceful-fs "^4.2.0"
+    jsonfile "^6.0.1"
+    universalify "^2.0.0"
+
+fs-extra@^11.1.0:
+  version "11.1.0"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-11.1.0.tgz#5784b102104433bb0e090f48bfc4a30742c357ed"
+  integrity sha512-0rcTq621PD5jM/e0a3EJoGC/1TC5ZBCERW82LQuwfGnCa1V8w7dpYH1yNu+SLb6E5dkeCBzKEyLGlFrnr+dUyw==
   dependencies:
     graceful-fs "^4.2.0"
     jsonfile "^6.0.1"
@@ -8556,15 +8565,15 @@ next-compose-plugins@2.2.1:
   resolved "https://registry.yarnpkg.com/next-compose-plugins/-/next-compose-plugins-2.2.1.tgz#020fc53f275a7e719d62521bef4300fbb6fde5ab"
   integrity sha512-OjJ+fV15FXO2uQXQagLD4C0abYErBjyjE0I0FHpOEIB8upw0hg1ldFP6cqHTJBH1cZqy96OeR3u1dJ+Ez2D4Bg==
 
-next-export-optimize-images@1.9.2:
-  version "1.9.2"
-  resolved "https://registry.yarnpkg.com/next-export-optimize-images/-/next-export-optimize-images-1.9.2.tgz#597e284b8c0eb6f77ed0094fa9e7261c40eb2be0"
-  integrity sha512-zK0WL7Ft1IbQ8t68/zv8DQxcPZTdFhezi/0ljz2Mm8T/0GCdzJ6cf/AUibrz54bG971hUlpzXYGuXfTATuSVYA==
+next-export-optimize-images@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/next-export-optimize-images/-/next-export-optimize-images-2.0.0.tgz#8685832bfada38b2bbd61e6fe60c8a40ca2ee4d8"
+  integrity sha512-2TkHwXmj4B+AIpx44VG7L86NO+g87xxEbA99PTC4EzlhASB0i8Juzo4i+f6mmZmzJYd1oFsftU3lK/I/BnF9BA==
   dependencies:
     ansi-colors "^4.1.3"
     app-root-path "^3.1.0"
     cli-progress "^3.11.2"
-    fs-extra "^10.1.0"
+    fs-extra "^11.1.0"
     got "^11.8.6"
     lodash.uniqwith "^4.5.0"
     sharp "^0.31.2"
