@@ -7,8 +7,6 @@ module.exports = {
     project: './tsconfig.json',
   },
   extends: [
-    'next',
-    'next/core-web-vitals',
     'airbnb',
     'airbnb/hooks',
     'airbnb-typescript',
@@ -16,6 +14,8 @@ module.exports = {
     'plugin:react/jsx-runtime',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    'next',
+    'next/core-web-vitals',
     'prettier',
   ],
   rules: {
@@ -85,15 +85,18 @@ module.exports = {
   overrides: [
     {
       extends: ['plugin:storybook/recommended'],
-      files: ['**/*.stories.*'],
-      rules: {
-        'import/no-anonymous-default-export': 'off',
-      },
+      files: ['**/__stories__/**/*.[jt]s?(x)', '**/?(*.)+(stories).[tj]s?(x)'],
     },
     {
       extends: ['plugin:jest/recommended'],
-      files: ['**/*.{test,spec}.*'],
+      files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[tj]s?(x)'],
     },
   ],
-  ignorePatterns: ['.eslintrc.js', 'next.config.js', 'jest.globalSetup.js', 'jest.config.js'],
+  ignorePatterns: [
+    '.eslintrc.js',
+    'next.config.js',
+    'jest.globalSetup.js',
+    'jest.config.js',
+    '__mocks__/*',
+  ],
 };

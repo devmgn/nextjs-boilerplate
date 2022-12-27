@@ -11,6 +11,7 @@ module.exports = {
     'prettier/prettier': true,
     'function-name-case': null,
     'function-no-unknown': null,
+    'annotation-no-unknown': null,
     'value-keyword-case': null,
     'selector-type-case': 'lower',
     'length-zero-no-unit': true,

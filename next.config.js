@@ -14,6 +14,15 @@ const nextConfig = {
     emotion: true,
     reactRemoveProperties: true,
   },
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/i,
+      resourceQuery: /inline/,
+      issuer: /\.[jt]sx?$/,
+      use: ['@svgr/webpack'],
+    });
+    return config;
+  },
 };
 
 module.exports = withPlugins(

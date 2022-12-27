@@ -1,0 +1,20 @@
+import { Meta, Title, IconGallery, IconItem } from '@storybook/addon-docs';
+
+import * as Icon from '../Icon.tsx';
+
+<Meta title="atoms/Icon" />
+
+# List
+
+<IconGallery>
+  {Object.values(Icon).map((IconComponent, index) => {
+    if (IconComponent.displayName === 'Icon') {
+      return null;
+    }
+    return (
+      <IconItem name={IconComponent.displayName} key={index}>
+        <IconComponent />
+      </IconItem>
+    );
+  })}
+</IconGallery>
