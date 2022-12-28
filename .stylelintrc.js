@@ -3,7 +3,6 @@ module.exports = {
     'stylelint-config-styled-components',
     'stylelint-config-recommended',
     'stylelint-config-recess-order',
-    'stylelint-config-prettier',
   ],
   plugins: ['stylelint-no-unsupported-browser-features', 'stylelint-prettier'],
   customSyntax: '@stylelint/postcss-css-in-js',
