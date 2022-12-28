@@ -1,7 +1,7 @@
 import React from 'react';
-import GlobalStyle from '../src/styles/GlobalStyle';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { LazyMotion, domAnimation } from 'framer-motion';
+import GlobalStyle from '../src/components//templates/GlobalStyle';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -18,6 +18,9 @@ export const parameters = {
   },
   backgrounds: {
     default: 'light',
+  },
+  docs: {
+    source: { type: 'code' },
   },
 };
 

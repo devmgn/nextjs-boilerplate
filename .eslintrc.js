@@ -86,17 +86,14 @@ module.exports = {
     {
       extends: ['plugin:storybook/recommended'],
       files: ['**/__stories__/**/*.[jt]s?(x)', '**/?(*.)+(stories).[tj]s?(x)'],
+      rules: {
+        'react-hooks/rules-of-hooks': 'off',
+      },
     },
     {
       extends: ['plugin:jest/recommended'],
       files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[tj]s?(x)'],
     },
   ],
-  ignorePatterns: [
-    '.eslintrc.js',
-    'next.config.js',
-    'jest.globalSetup.js',
-    'jest.config.js',
-    '__mocks__/*',
-  ],
+  ignorePatterns: ['.*rc.js', '*.config.js', '__mocks__/*', 'jest.globalSetup.js'],
 };

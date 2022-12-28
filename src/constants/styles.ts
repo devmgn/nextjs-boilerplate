@@ -7,8 +7,6 @@ export const FONT_FAMILY = {
 } as const;
 
 export const RESET_CSS = css`
-  /* stylelint-disable plugin/no-unsupported-browser-features */
-
   /**
   Main root
    */
