@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { APP_NAME, META } from '@/constants';
+import { APP_NAME, META } from '@/constants/appSettings';
 
 type HeadProps = {
   title?: string;

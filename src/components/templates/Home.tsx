@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import useModal from '@/hooks/useModal';
 import { getLoginStatus, getUserName } from '@/states/user/selectors';
 import { login, setUserName } from '@/states/user/slice';
-import Paragraph from '../atoms/Paragraph';
 import Modal from './Modal';
+import Paragraph from '../atoms/Paragraph';
 
 const Home = () => {
   const { activate, ...modal } = useModal();

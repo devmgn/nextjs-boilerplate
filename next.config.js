@@ -1,12 +1,12 @@
 const withPlugins = require('next-compose-plugins');
 const withBundleAnalyzer = require('@next/bundle-analyzer');
-const withExportImages = require('next-export-optimize-images');
 
 /**
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
   reactStrictMode: true,
+  swcMinify: true,
   trailingSlash: true,
   poweredByHeader: false,
   generateEtags: false,
@@ -25,6 +25,6 @@ const nextConfig = {
 };
 
 module.exports = withPlugins(
-  [withExportImages, withBundleAnalyzer({ enabled: process.env.ANALYZE === 'true' })],
+  [withBundleAnalyzer({ enabled: process.env.ANALYZE === 'true' })],
   nextConfig
 );

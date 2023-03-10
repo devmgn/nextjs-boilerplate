@@ -10,4 +10,4 @@ export const TRANSITION: Transition = {
 export const VARIANTS = {
   active: { opacity: 1 },
   inactive: { opacity: 0 },
-};
+} as const;

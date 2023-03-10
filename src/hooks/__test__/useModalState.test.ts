@@ -1,5 +1,6 @@
-import { act, fireEvent, renderHook, RenderHookResult } from '@testing-library/react';
+import { act, fireEvent, renderHook } from '@testing-library/react';
 import useModal from '../useModal';
+import type { RenderHookResult } from '@testing-library/react';
 
 describe('useModal', () => {
   let hookResult: RenderHookResult<ReturnType<typeof useModal>, unknown>['result'];

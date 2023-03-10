@@ -3,9 +3,9 @@ import styled from '@emotion/styled';
 import { AnimatePresence, m } from 'framer-motion';
 import ReactFocusLock from 'react-focus-lock';
 import { disablePageScroll, enablePageScroll } from 'scroll-lock';
-import { TRANSITION, VARIANTS } from '@/constants';
+import { TRANSITION, VARIANTS } from '@/constants/framerMotion';
 import modalContext from '@/contexts/modalContext';
-import useModal from '@/hooks/useModal';
+import type useModal from '@/hooks/useModal';
 import Portal from './Portal';
 
 const StyledModal = styled.div`

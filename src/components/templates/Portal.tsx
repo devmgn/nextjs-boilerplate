@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { ROOT_CONTAINER_ID } from '@/constants';
+import { ROOT_CONTAINER_ID } from '@/constants/appSettings';
 
 type PortalProps = {
   children: React.ReactNode;

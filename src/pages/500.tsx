@@ -1,4 +1,4 @@
-import { NextPage } from 'next';
+import type { NextPage } from 'next';
 import DefaultLayout from '@/components/templates/DefaultLayout';
 import Meta from '@/components/templates/Meta';
 

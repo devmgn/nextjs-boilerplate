@@ -40,6 +40,7 @@ module.exports = {
         format: ['StrictPascalCase'],
       },
     ],
+    '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
     'import/order': [
       'error',
       {
@@ -48,15 +49,24 @@ module.exports = {
           'external',
           'internal',
           'unknown',
-          'parent',
-          'sibling',
+          ['parent', 'sibling'],
           'index',
           'object',
           'type',
         ],
         pathGroups: [
           {
-            pattern: 'react',
+            pattern: '{react,react-dom,react-dom/**}',
+            group: 'builtin',
+            position: 'before',
+          },
+          {
+            pattern: '{next,next/**}',
+            group: 'builtin',
+            position: 'before',
+          },
+          {
+            pattern: '{react-redux,react-redux/**,@reduxjs/**}',
             group: 'builtin',
             position: 'before',
           },
@@ -66,7 +76,7 @@ module.exports = {
             position: 'before',
           },
         ],
-        pathGroupsExcludedImportTypes: ['builtin'],
+        pathGroupsExcludedImportTypes: ['builtin', 'object'],
         alphabetize: {
           order: 'asc',
           caseInsensitive: true,
