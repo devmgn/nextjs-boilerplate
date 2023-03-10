@@ -21,14 +21,14 @@ const App: React.FC<IAppProps> = ({
   pageProps,
 }) => (
   <Provider store={store}>
-    <LazyMotion features={domAnimation}>
-      <CacheProvider value={emotionCache}>
-        <ThemeProvider theme={theme}>
+    <CacheProvider value={emotionCache}>
+      <ThemeProvider theme={theme}>
+        <LazyMotion features={domAnimation}>
           <GlobalStyle />
           <Component {...pageProps} />
-        </ThemeProvider>
-      </CacheProvider>
-    </LazyMotion>
+        </LazyMotion>
+      </ThemeProvider>
+    </CacheProvider>
   </Provider>
 );
 

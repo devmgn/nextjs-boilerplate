@@ -1,7 +1,9 @@
 import React from 'react';
-import { LazyMotion, domAnimation } from 'framer-motion';
+import { ThemeProvider } from '@mui/material';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
+import { LazyMotion, domAnimation } from 'framer-motion';
 import GlobalStyle from '../src/styles/GlobalStyle';
+import theme from '../src/styles/theme';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -27,10 +29,12 @@ export const parameters = {
 export const decorators = [
   (Story) => (
     <div id="__next">
-      <LazyMotion features={domAnimation}>
-        <GlobalStyle />
-        <Story />
-      </LazyMotion>
+      <ThemeProvider theme={theme}>
+        <LazyMotion features={domAnimation}>
+          <GlobalStyle />
+          <Story />
+        </LazyMotion>
+      </ThemeProvider>
     </div>
   ),
 ];
