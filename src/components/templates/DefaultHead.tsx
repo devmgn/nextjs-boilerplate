@@ -9,6 +9,7 @@ const DefaultHead = () => {
       <title>{APP_NAME}</title>
       <meta name="description" content={META.DEFAULT_DESCRIPTION} />
       <link rel="icon" href="/images/favicon.ico" />
+      <meta name="emotion-insertion-point" content="" />
     </Head>
   );
 };

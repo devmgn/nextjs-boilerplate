@@ -28,16 +28,21 @@ module.exports = {
     '@typescript-eslint/naming-convention': [
       'warn',
       {
-        selector: 'typeAlias',
+        selector: ['typeAlias', 'class'],
         format: ['StrictPascalCase'],
       },
       {
         selector: 'interface',
         format: ['StrictPascalCase'],
+        prefix: ['I'],
       },
       {
-        selector: 'class',
-        format: ['StrictPascalCase'],
+        selector: 'variable',
+        format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
+      },
+      {
+        selector: 'function',
+        format: ['camelCase', 'PascalCase'],
       },
     ],
     '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
