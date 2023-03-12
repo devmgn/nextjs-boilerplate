@@ -1,8 +1,7 @@
 import type { User } from '@/types/user';
 
 const initialState: User = {
-  userName: '',
-  isLogin: false,
+  name: '',
 };
 
 export default initialState;
