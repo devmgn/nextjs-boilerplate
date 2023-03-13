@@ -61,27 +61,12 @@ module.exports = {
         ],
         pathGroups: [
           {
-            pattern: '{react,react-dom,react-dom/**}',
-            group: 'builtin',
-            position: 'before',
-          },
-          {
-            pattern: '{next,next/**}',
-            group: 'builtin',
-            position: 'before',
-          },
-          {
-            pattern: '{react-redux,react-redux/**,@reduxjs/**}',
-            group: 'builtin',
-            position: 'before',
-          },
-          {
             pattern: '@/**',
             group: 'parent',
             position: 'before',
           },
         ],
-        pathGroupsExcludedImportTypes: ['builtin', 'object'],
+        pathGroupsExcludedImportTypes: ['type'],
         alphabetize: {
           order: 'asc',
           caseInsensitive: true,

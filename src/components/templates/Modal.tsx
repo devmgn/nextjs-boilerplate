@@ -1,12 +1,12 @@
-import { useCallback, useMemo } from 'react';
 import styled from '@emotion/styled';
 import { AnimatePresence, m } from 'framer-motion';
+import { useCallback, useMemo } from 'react';
 import ReactFocusLock from 'react-focus-lock';
 import { disablePageScroll, enablePageScroll } from 'scroll-lock';
 import { TRANSITION, VARIANTS } from '@/constants/framerMotion';
 import modalContext from '@/contexts/modalContext';
-import type useModal from '@/hooks/useModal';
 import Portal from './Portal';
+import type useModal from '@/hooks/useModal';
 
 const StyledModal = styled.div`
   position: fixed;
