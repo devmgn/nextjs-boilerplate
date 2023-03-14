@@ -61,6 +61,26 @@ module.exports = {
         ],
         pathGroups: [
           {
+            pattern: 'react',
+            group: 'builtin',
+            position: 'before',
+          },
+          {
+            pattern: '{react-dom,react-dom/**}',
+            group: 'builtin',
+            position: 'before',
+          },
+          {
+            pattern: '{react-redux,@reduxjs,@reduxjs/**}',
+            group: 'builtin',
+            position: 'before',
+          },
+          {
+            pattern: 'next/**',
+            group: 'builtin',
+            position: 'before',
+          },
+          {
             pattern: '@/**',
             group: 'parent',
             position: 'before',

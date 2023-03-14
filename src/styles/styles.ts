@@ -71,6 +71,11 @@ export const RESET_CSS = css`
   /**
   Image and multimedia
    */
+  :where(img) {
+    max-inline-size: 100%;
+    max-block-size: 100%;
+  }
+
   :where(audio, img, video) {
     vertical-align: middle;
   }
@@ -110,12 +115,12 @@ export const RESET_CSS = css`
   }
 
   :where(input, textarea) {
-    user-select: auto;
+    -webkit-user-select: auto;
   }
 
   :where(textarea) {
     white-space: revert;
-    resize: none;
+    resize: vertical;
   }
 
   :where(label[for]) {
@@ -137,20 +142,21 @@ export const RESET_CSS = css`
     display: none;
   }
 
-  :where([contenteditable]) {
+  :where([contenteditable]:not([contenteditable='false'])) {
     -moz-user-modify: read-write;
     -webkit-user-modify: read-write;
     overflow-wrap: break-word;
     -webkit-line-break: after-white-space;
-    user-select: auto;
+    -webkit-user-select: auto;
   }
 
   :where([draggable='true']) {
     -webkit-user-drag: element;
   }
 
-  :where([tabindex]:not([tabindex*='-'])) {
-    cursor: pointer;
+  /* stylelint-disable-next-line */
+  :where(dialog:modal) {
+    all: revert;
   }
 
   :where(

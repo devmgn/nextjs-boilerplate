@@ -1,11 +1,7 @@
 module.exports = {
-  extends: [
-    'stylelint-config-styled-components',
-    'stylelint-config-recommended',
-    'stylelint-config-recess-order',
-  ],
+  extends: ['stylelint-config-recommended', 'stylelint-config-recess-order'],
   plugins: ['stylelint-no-unsupported-browser-features', 'stylelint-prettier'],
-  customSyntax: '@stylelint/postcss-css-in-js',
+  customSyntax: 'postcss-styled-syntax',
   rules: {
     'prettier/prettier': true,
     'function-name-case': null,

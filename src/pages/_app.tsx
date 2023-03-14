@@ -1,7 +1,7 @@
+import { Provider } from 'react-redux';
 import { CacheProvider } from '@emotion/react';
 import { ThemeProvider } from '@mui/material/styles';
 import { LazyMotion, domAnimation } from 'framer-motion';
-import { Provider } from 'react-redux';
 import wrapper from '@/states/store';
 import createEmotionCache from '@/styles/createEmotionCache';
 import GlobalStyle from '@/styles/GlobalStyle';
