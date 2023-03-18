@@ -19,12 +19,12 @@ module.exports = {
   rules: {
     'arrow-body-style': 'off',
     'no-console': ['warn', { allow: ['error', 'warn'] }],
-    "no-restricted-syntax": [
-      "error",
+    'no-restricted-syntax': [
+      'error',
       {
-        "selector": "TSEnumDeclaration",
-        "message": "Don't declare enums"
-      }
+        selector: 'TSEnumDeclaration',
+        message: "Don't declare enums",
+      },
     ],
     'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
     'react/jsx-props-no-spreading': 'off',
@@ -96,14 +96,6 @@ module.exports = {
           order: 'asc',
           caseInsensitive: true,
         },
-      },
-    ],
-    'import/no-extraneous-dependencies': [
-      'error',
-      {
-        devDependencies: ['**/jest.setup.{ts,tsx}', '**/*.{test,spec,stories}.{ts,tsx}'],
-        optionalDependencies: false,
-        peerDependencies: false,
       },
     ],
   },
