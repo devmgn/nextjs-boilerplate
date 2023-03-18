@@ -2,25 +2,30 @@ module.exports = {
   env: {
     'jest/globals': true,
   },
-  parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json',
   },
   extends: [
     'airbnb',
-    'airbnb/hooks',
     'airbnb-typescript',
-    'plugin:react/recommended',
-    'plugin:react/jsx-runtime',
+    'airbnb/hooks',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
-    'next',
+    'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
     'next/core-web-vitals',
     'prettier',
   ],
   rules: {
     'arrow-body-style': 'off',
     'no-console': ['warn', { allow: ['error', 'warn'] }],
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "TSEnumDeclaration",
+        "message": "Don't declare enums"
+      }
+    ],
     'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
     'react/jsx-props-no-spreading': 'off',
     'react/prop-types': 'off',
@@ -29,11 +34,11 @@ module.exports = {
       'warn',
       {
         selector: ['typeAlias', 'class'],
-        format: ['StrictPascalCase'],
+        format: ['PascalCase'],
       },
       {
         selector: 'interface',
-        format: ['StrictPascalCase'],
+        format: ['PascalCase'],
         prefix: ['I'],
       },
       {
@@ -105,15 +110,15 @@ module.exports = {
   overrides: [
     {
       extends: ['plugin:storybook/recommended'],
-      files: ['**/__stories__/**/*.[jt]s?(x)', '**/?(*.)+(stories).[tj]s?(x)'],
+      files: ['**/?(*.)+(stories).[tj]s?(x)'],
       rules: {
         'react-hooks/rules-of-hooks': 'off',
+        'import/no-extraneous-dependencies': 'off',
       },
     },
     {
       extends: ['plugin:jest/recommended'],
-      files: ['**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[tj]s?(x)'],
+      files: ['**/?(*.)+(spec|test).[tj]s?(x)', 'jest.setup.js?(x)'],
     },
   ],
-  ignorePatterns: ['.*rc.js', '*.config.js', '__mocks__/*', 'jest.globalSetup.js'],
 };

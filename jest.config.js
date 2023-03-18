@@ -2,8 +2,6 @@
 const { defaults } = require('jest-config');
 const nextJest = require('next/jest');
 
-console.log(defaults);
-
 // @ts-ignore
 const createJestConfig = nextJest({
   dir: './',
@@ -11,9 +9,9 @@ const createJestConfig = nextJest({
 
 module.exports = createJestConfig({
   ...defaults,
-  coverageReporters: ['html', 'text'],
+  coverageReporters: ['html'],
   globalSetup: '<rootDir>/jest.globalSetup.js',
-  setupFilesAfterEnv: ['<rootDir>/src/jest.setup.tsx'],
+  setupFilesAfterEnv: ['<rootDir>/src/jest.setup.ts'],
   moduleNameMapper: {
     '^.+\\.(svg)$': '<rootDir>/__mocks__/SvgMock.jsx',
     '^@/(.*)$': '<rootDir>/src/$1',
@@ -22,5 +20,4 @@ module.exports = createJestConfig({
   snapshotSerializers: [
     '@emotion/jest/serializer' /* if needed other snapshotSerializers should go here */,
   ],
-  verbose: true,
 });

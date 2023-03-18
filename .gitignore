@@ -1,6 +1,5 @@
-storybook-static
-# Created by https://www.toptal.com/developers/gitignore/api/node,macos,windows,intellij+all,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=node,macos,windows,intellij+all,visualstudiocode
+# Created by https://www.toptal.com/developers/gitignore/api/node,macos,windows,intellij+all,visualstudiocode,nextjs,storybookjs
+# Edit at https://www.toptal.com/developers/gitignore?templates=node,macos,windows,intellij+all,visualstudiocode,nextjs,storybookjs
 
 ### Intellij+all ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
@@ -123,15 +122,46 @@ Temporary Items
 # iCloud generated files
 *.icloud
 
+### NextJS ###
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# local env files
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
 ### Node ###
 # Logs
 logs
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 lerna-debug.log*
-.pnpm-debug.log*
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
@@ -172,7 +202,6 @@ jspm_packages/
 web_modules/
 
 # TypeScript cache
-*.tsbuildinfo
 
 # Optional npm cache directory
 .npm
@@ -263,6 +292,12 @@ dist
 # SvelteKit build / generate output
 .svelte-kit
 
+### StorybookJs ###
+# gitignore template for the Storybook, UI guide for front apps
+# website: https://storybook.js.org/
+
+storybook-static/
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
@@ -308,4 +343,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/node,macos,windows,intellij+all,visualstudiocode
+# End of https://www.toptal.com/developers/gitignore/api/node,macos,windows,intellij+all,visualstudiocode,nextjs,storybookjs
