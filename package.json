@@ -11,7 +11,7 @@
     "lint:next": "next lint -d src --fix",
     "lint:style": "stylelint 'src/**/*.tsx' -f verbose --fix --cache",
     "prettier": "prettier src --write --cache",
-    "lint": "yarn tsc && yarn lint:next && yarn lint:style",
+    "lint": "yarn prettier && yarn tsc && yarn lint:next && yarn lint:style",
     "test": "jest --passWithNoTests --verbose",
     "test:watch": "jest --watch",
     "test:coverage": "jest --collect-coverage",
