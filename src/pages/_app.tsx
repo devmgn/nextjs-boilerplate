@@ -1,38 +1,29 @@
-import { Provider } from 'react-redux';
-import { CacheProvider } from '@emotion/react';
-import { ThemeProvider } from '@mui/material/styles';
+import { CacheProvider, ThemeProvider } from '@emotion/react';
+import { CssBaseline } from '@mui/material';
 import { LazyMotion, domAnimation } from 'framer-motion';
-import wrapper from '@/states/store';
 import createEmotionCache from '@/styles/createEmotionCache';
-import GlobalStyle from '@/styles/GlobalStyle';
 import theme from '@/styles/theme';
 import type { EmotionCache } from '@emotion/react';
-import type { AppProps } from 'next/app';
+import type { AppProps as NextAppProps } from 'next/app';
 
 const clientSideEmotionCache = createEmotionCache();
 
-export interface IAppProps extends AppProps {
-  emotionCache?: EmotionCache;
-}
+export type AppProps = NextAppProps & { emotionCache?: EmotionCache };
 
-const App: React.FC<IAppProps> = ({
+const App: React.FC<AppProps> = ({
   Component,
   emotionCache = clientSideEmotionCache,
   pageProps,
 }) => {
-  const store = wrapper.useStore();
-
   return (
-    <Provider store={store}>
-      <CacheProvider value={emotionCache}>
-        <ThemeProvider theme={theme}>
-          <LazyMotion features={domAnimation}>
-            <GlobalStyle />
-            <Component {...pageProps} />
-          </LazyMotion>
-        </ThemeProvider>
-      </CacheProvider>
-    </Provider>
+    <CacheProvider value={emotionCache}>
+      <ThemeProvider theme={theme}>
+        <LazyMotion features={domAnimation}>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </LazyMotion>
+      </ThemeProvider>
+    </CacheProvider>
   );
 };
 

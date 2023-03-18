@@ -1,5 +1,9 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from '@mui/material';
 
-const theme = createTheme({});
+const theme = createTheme({
+  typography: {
+    fontFamily: ['system-ui, -apple-system, sans-serif'].join(','),
+  },
+});
 
 export default theme;

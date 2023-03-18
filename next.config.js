@@ -9,10 +9,12 @@ const nextConfig = {
   swcMinify: true,
   trailingSlash: true,
   poweredByHeader: false,
-  generateEtags: false,
   compiler: {
     emotion: true,
     reactRemoveProperties: true,
+  },
+  experimental: {
+    scrollRestoration: true,
   },
   webpack(config) {
     config.module.rules.push({
