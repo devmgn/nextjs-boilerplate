@@ -1,26 +1,8 @@
-import styled from '@emotion/styled';
-import ExampleSvg from '@/assets/example.svg';
+import { SvgIcon } from '@mui/material';
+import ExampleSvg from '@/assets/example.svg?inline';
+import type { SvgIconProps } from '@mui/material';
 
-type StyledIconProps = {
-  size?: number | undefined;
-};
-
-export const Icon = styled.i<StyledIconProps>`
-  width: ${({ size }) => (size !== undefined ? `${size}px` : '24px')};
-  height: ${({ size }) => (size !== undefined ? `${size}px` : '24px')};
-
-  > svg {
-    width: inherit;
-    height: inherit;
-  }
-`;
-
-type IconProps = React.ComponentProps<typeof Icon>;
-
-export const ExampleIcon: React.FC<IconProps> = (props) => {
-  return (
-    <Icon {...props}>
-      <ExampleSvg />
-    </Icon>
-  );
-};
+// eslint-disable-next-line import/prefer-default-export
+export const ExampleIcon: React.FC<SvgIconProps> = (props) => (
+  <SvgIcon component={ExampleSvg} inheritViewBox {...props} />
+);

@@ -1,8 +1,6 @@
 import React from 'react';
-import { ThemeProvider } from '@mui/material';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
-import { LazyMotion, domAnimation } from 'framer-motion';
-import GlobalStyle from '../src/styles/GlobalStyle';
 import theme from '../src/styles/theme';
 
 export const parameters = {
@@ -30,10 +28,8 @@ export const decorators = [
   (Story) => (
     <div id="__next">
       <ThemeProvider theme={theme}>
-        <LazyMotion features={domAnimation}>
-          <GlobalStyle />
-          <Story />
-        </LazyMotion>
+        <CssBaseline />
+        <Story />
       </ThemeProvider>
     </div>
   ),

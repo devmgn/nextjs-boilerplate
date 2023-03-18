@@ -11,9 +11,7 @@ module.exports = {
         name: 'preset-default',
         params: {
           overrides: {
-            removeUnknownsAndDefaults: {
-              keepDataAttrs: false,
-            },
+            removeViewBox: false,
           },
         },
       },

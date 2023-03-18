@@ -7,9 +7,6 @@ import * as Icon from '../Icon.tsx';
 
 <IconGallery>
   {Object.values(Icon).map((IconComponent, index) => {
-    if (IconComponent.displayName === 'Icon') {
-      return null;
-    }
     return (
       <IconItem name={IconComponent.displayName} key={index}>
         <IconComponent />

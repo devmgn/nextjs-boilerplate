@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 const { defaults } = require('jest-config');
 const nextJest = require('next/jest');
 
@@ -13,7 +12,7 @@ module.exports = createJestConfig({
   globalSetup: '<rootDir>/jest.globalSetup.js',
   setupFilesAfterEnv: ['<rootDir>/src/jest.setup.ts'],
   moduleNameMapper: {
-    '^.+\\.(svg)$': '<rootDir>/__mocks__/SvgMock.jsx',
+    '^.+\\.(svg\\?inline)$': '<rootDir>/__mocks__/SvgMock.jsx',
     '^@/(.*)$': '<rootDir>/src/$1',
   },
   testEnvironment: 'jest-environment-jsdom',
