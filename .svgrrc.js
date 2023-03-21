@@ -15,6 +15,12 @@ module.exports = {
           },
         },
       },
+      {
+        name: 'removeAttrs',
+        params: {
+          attrs: '(fill)',
+        },
+      },
     ],
   },
 };

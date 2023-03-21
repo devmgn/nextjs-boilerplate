@@ -1,6 +1,5 @@
 import { CacheProvider, ThemeProvider } from '@emotion/react';
 import { CssBaseline } from '@mui/material';
-import { LazyMotion, domAnimation } from 'framer-motion';
 import createEmotionCache from '@/styles/createEmotionCache';
 import theme from '@/styles/theme';
 import type { EmotionCache } from '@emotion/react';
@@ -18,10 +17,8 @@ const App: React.FC<AppProps> = ({
   return (
     <CacheProvider value={emotionCache}>
       <ThemeProvider theme={theme}>
-        <LazyMotion features={domAnimation}>
-          <CssBaseline />
-          <Component {...pageProps} />
-        </LazyMotion>
+        <CssBaseline />
+        <Component {...pageProps} />
       </ThemeProvider>
     </CacheProvider>
   );
