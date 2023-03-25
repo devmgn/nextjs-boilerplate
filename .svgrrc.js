@@ -6,21 +6,6 @@
 module.exports = {
   // @see https://github.com/svg/svgo#configuration
   svgoConfig: {
-    plugins: [
-      {
-        name: 'preset-default',
-        params: {
-          overrides: {
-            removeViewBox: false,
-          },
-        },
-      },
-      {
-        name: 'removeAttrs',
-        params: {
-          attrs: '(fill)',
-        },
-      },
-    ],
+    plugins: [{ name: 'preset-default' }],
   },
 };
