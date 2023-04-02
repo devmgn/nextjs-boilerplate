@@ -33,13 +33,8 @@ module.exports = {
     '@typescript-eslint/naming-convention': [
       'warn',
       {
-        selector: ['typeAlias', 'class'],
+        selector: ['interface', 'typeAlias', 'class'],
         format: ['PascalCase'],
-      },
-      {
-        selector: 'interface',
-        format: ['PascalCase'],
-        prefix: ['I'],
       },
       {
         selector: 'variable',
