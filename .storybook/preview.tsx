@@ -4,6 +4,7 @@ import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import GlobalStyle from '../src/styles/GlobalStyle';
 import theme from '../src/styles/theme';
 import type { Preview } from '@storybook/react';
+import locale from 'axe-core/locales/ja.json';
 
 const preview: Preview = {
   parameters: {
@@ -22,6 +23,9 @@ const preview: Preview = {
     },
     docs: {
       source: { language: 'tsx' },
+    },
+    a11y: {
+      config: { locale },
     },
   },
   decorators: [
