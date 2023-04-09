@@ -1,30 +1,44 @@
-const path = require('path');
+import { StorybookConfig } from '@storybook/nextjs';
+import path from 'path';
 
-module.exports = {
+const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     '@storybook/addon-a11y',
-    '@storybook/addon-mdx-gfm',
   ],
   framework: {
     name: '@storybook/nextjs',
     options: {},
   },
   docs: {
-    autodocs: false,
+    autodocs: true,
   },
   staticDirs: ['../public'],
   webpackFinal: async (config) => {
+    if (!config.resolve || !config.module?.rules) {
+      return config;
+    }
+
     config.resolve.alias = {
       ...config.resolve.alias,
       '@': path.resolve(__dirname, '../src'),
     };
 
     // @svgr/webpackの有効化
-    const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));
+    const fileLoaderRule = config.module.rules.find((rule) => {
+      if (rule === '...' || !(rule.test instanceof RegExp)) {
+        return false;
+      }
+      return rule.test.test('.svg');
+    });
+
+    if (typeof fileLoaderRule !== 'object') {
+      return config;
+    }
+
     config.module.rules = [
       ...config.module.rules,
       {
@@ -34,7 +48,6 @@ module.exports = {
       },
       {
         test: /\.svg$/i,
-        issuer: /\.[jt]sx?$/,
         resourceQuery: /inline/,
         use: ['@svgr/webpack'],
       },
@@ -44,3 +57,5 @@ module.exports = {
     return config;
   },
 };
+
+export default config;

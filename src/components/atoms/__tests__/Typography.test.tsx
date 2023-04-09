@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react';
-import { ExampleIcon } from '../Icon';
+import Typography from '../Typography';
 
-describe('Icon', () => {
+describe('Typography', () => {
   test('スナップショットテスト', () => {
-    const { asFragment } = render(<ExampleIcon />);
+    const { asFragment } = render(<Typography />);
     expect(asFragment()).toMatchSnapshot();
   });
 });

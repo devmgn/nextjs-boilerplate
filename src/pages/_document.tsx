@@ -5,7 +5,7 @@ import type { AppProps } from './_app';
 import type { AppType } from 'next/app';
 import type { DocumentContext, DocumentProps as NextDocumentProps } from 'next/document';
 
-type DocumentProps = NextDocumentProps & { emotionStyleTags: JSX.Element[] };
+type DocumentProps = { emotionStyleTags: JSX.Element[] } & NextDocumentProps;
 
 const Document = ({ emotionStyleTags }: DocumentProps) => {
   return (

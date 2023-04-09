@@ -1,14 +1,9 @@
-import { Typography } from '@mui/material';
+import { Help } from '@/assets/icons';
+import SvgIcon from '../atoms/SvgIcon';
 import type { NextPage } from 'next';
 
 const Home: NextPage = () => {
-  return (
-    <Typography>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime doloribus placeat quidem
-      ratione reprehenderit ducimus at nemo ipsam error voluptatum unde, tempore ullam dignissimos
-      optio perspiciatis numquam neque sint cumque?
-    </Typography>
-  );
+  return <SvgIcon as={Help} fontSize={100} />;
 };
 
 export default Home;
