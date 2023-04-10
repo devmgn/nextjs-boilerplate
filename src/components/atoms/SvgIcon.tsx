@@ -1,8 +1,8 @@
-import isPropValid from '@emotion/is-prop-valid';
 import styled from '@emotion/styled';
+import createShouldForwardProp from '@/helpers/createShouldForwardProp';
 
 const SvgIcon = styled('svg', {
-  shouldForwardProp: (prop) => isPropValid(prop) && !['fontSize', 'color', 'rotate'].includes(prop),
+  shouldForwardProp: createShouldForwardProp(['fontSize', 'rotate', 'color']),
 })`
   display: inline-block;
   flex-shrink: 0;
