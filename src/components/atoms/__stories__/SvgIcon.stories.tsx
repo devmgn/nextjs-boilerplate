@@ -10,7 +10,7 @@ const meta: Meta<typeof SvgIcon> = {
       control: {
         type: 'range',
         min: 10,
-        max: 64,
+        max: 256,
         step: 1,
       },
     },
@@ -21,7 +21,7 @@ const meta: Meta<typeof SvgIcon> = {
       control: {
         type: 'range',
         min: 0,
-        max: 359,
+        max: 360,
         step: 1,
       },
     },
@@ -29,6 +29,9 @@ const meta: Meta<typeof SvgIcon> = {
   args: {
     as: Help,
   },
+  render: ({ fontSize, rotate, ...args }) => (
+    <SvgIcon fontSize={`${fontSize ?? 24}px`} rotate={`${rotate ?? 0}deg`} {...args} />
+  ),
 };
 
 export default meta;
