@@ -2,15 +2,10 @@ module.exports = {
   env: {
     'jest/globals': true,
   },
-  parserOptions: {
-    project: './tsconfig.json',
-  },
   extends: [
     'airbnb',
     'airbnb-typescript',
     'airbnb/hooks',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
     'next/core-web-vitals',
@@ -30,22 +25,6 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react/prop-types': 'off',
     '@next/next/no-img-element': 'off',
-    '@typescript-eslint/naming-convention': [
-      'warn',
-      {
-        selector: ['interface', 'typeAlias', 'class'],
-        format: ['PascalCase'],
-      },
-      {
-        selector: 'variable',
-        format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
-      },
-      {
-        selector: 'function',
-        format: ['camelCase', 'PascalCase'],
-      },
-    ],
-    '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
     'import/order': [
       'error',
       {
@@ -96,16 +75,44 @@ module.exports = {
   },
   overrides: [
     {
-      extends: ['plugin:storybook/recommended'],
-      files: ['**/?(*.)+(stories).[tj]s?(x)'],
+      files: ['**/*.ts?(x)'],
+      extends: [
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+      ],
+      parserOptions: {
+        project: './tsconfig.json',
+      },
       rules: {
-        'react-hooks/rules-of-hooks': 'off',
+        '@typescript-eslint/naming-convention': [
+          'warn',
+          {
+            selector: ['interface', 'typeAlias', 'class'],
+            format: ['PascalCase'],
+          },
+          {
+            selector: 'variable',
+            format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
+          },
+          {
+            selector: 'function',
+            format: ['camelCase', 'PascalCase'],
+          },
+        ],
+        '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
+      },
+    },
+    {
+      files: ['**/?(*.)+(stories).[tj]s?(x)'],
+      extends: ['plugin:storybook/recommended'],
+      rules: {
         'import/no-extraneous-dependencies': 'off',
       },
     },
     {
-      extends: ['plugin:jest/recommended'],
       files: ['**/?(*.)+(spec|test).[tj]s?(x)', 'jest.setup.js?(x)'],
+
+      extends: ['plugin:jest/recommended'],
     },
   ],
 };
