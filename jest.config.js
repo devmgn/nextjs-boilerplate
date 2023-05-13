@@ -6,7 +6,7 @@ const createJestConfig = nextJest({
   dir: './',
 });
 
-module.exports = createJestConfig({
+const jestConfig = {
   ...defaults,
   coverageReporters: ['html'],
   globalSetup: '<rootDir>/jest.globalSetup.js',
@@ -19,4 +19,13 @@ module.exports = createJestConfig({
   snapshotSerializers: [
     '@emotion/jest/serializer' /* if needed other snapshotSerializers should go here */,
   ],
-});
+};
+
+module.exports = async () => {
+  return {
+    ...(await createJestConfig(jestConfig)()),
+    transformIgnorePatterns: jestConfig.transformIgnorePatterns.filter(
+      (pattern) => pattern !== '/node_modules/'
+    ),
+  };
+};
