@@ -9,7 +9,7 @@ type SvgIconProps = {
 };
 
 const SvgIcon = styled('svg', {
-  shouldForwardProp: createShouldForwardProp(['fontSize', 'rotate', 'color']),
+  shouldForwardProp: createShouldForwardProp('fontSize', 'rotate', 'color'),
 })<SvgIconProps>`
   display: inline-block;
   flex-shrink: 0;
