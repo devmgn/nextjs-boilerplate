@@ -3,7 +3,7 @@
 exports[`PageHead スナップショットテスト propsが全てある場合 1`] = `
 <head>
   <title>
-    title | site name
+    title | app name [TEST]
   </title>
   <meta
     content="description"
@@ -15,10 +15,10 @@ exports[`PageHead スナップショットテスト propsが全てある場合 1
 exports[`PageHead スナップショットテスト propsが全てない場合 1`] = `
 <head>
   <title>
-    site name
+    app name [TEST]
   </title>
   <meta
-    content="default description"
+    content="default description [TEST]"
     name="description"
   />
 </head>
@@ -27,7 +27,7 @@ exports[`PageHead スナップショットテスト propsが全てない場合 1
 exports[`PageHead スナップショットテスト propsにchildrenがない場合 1`] = `
 <head>
   <title>
-    title | site name
+    title | app name [TEST]
   </title>
   <meta
     content="description"
@@ -39,10 +39,10 @@ exports[`PageHead スナップショットテスト propsにchildrenがない場
 exports[`PageHead スナップショットテスト propsにdescriptionがない場合 1`] = `
 <head>
   <title>
-    title | site name
+    title | app name [TEST]
   </title>
   <meta
-    content="default description"
+    content="default description [TEST]"
     name="description"
   />
 </head>
@@ -51,7 +51,7 @@ exports[`PageHead スナップショットテスト propsにdescriptionがない
 exports[`PageHead スナップショットテスト propsにtitleがない場合 1`] = `
 <head>
   <title>
-    site name
+    app name [TEST]
   </title>
   <meta
     content="description"

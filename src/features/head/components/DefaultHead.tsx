@@ -1,4 +1,4 @@
-import { APP_NAME, META } from '@/config/appSettings';
+import { APP_NAME, DEFAULT_DESCRIPTION } from '../config';
 
 const DefaultHead: React.FC = () => {
   return (
@@ -6,7 +6,7 @@ const DefaultHead: React.FC = () => {
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
       <title>{APP_NAME}</title>
-      <meta name="description" content={META.DEFAULT_DESCRIPTION} />
+      <meta name="description" content={DEFAULT_DESCRIPTION} />
       <link rel="icon" href="/images/favicon.ico" />
     </>
   );

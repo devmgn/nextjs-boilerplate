@@ -20,12 +20,6 @@
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build"
   },
-  "lint-staged": {
-    "*.[jt]s?(x)": [
-      "yarn lint",
-      "yarn test"
-    ]
-  },
   "dependencies": {
     "@emotion/cache": "11.11.0",
     "@emotion/is-prop-valid": "1.2.1",
