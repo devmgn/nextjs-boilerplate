@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageHead スナップショットテスト propsが全てある場合 1`] = `
+<head>
+  <title>
+    title | site name
+  </title>
+  <meta
+    content="description"
+    name="description"
+  />
+</head>
+`;
+
+exports[`PageHead スナップショットテスト propsが全てない場合 1`] = `
+<head>
+  <title>
+    site name
+  </title>
+  <meta
+    content="default description"
+    name="description"
+  />
+</head>
+`;
+
+exports[`PageHead スナップショットテスト propsにchildrenがない場合 1`] = `
+<head>
+  <title>
+    title | site name
+  </title>
+  <meta
+    content="description"
+    name="description"
+  />
+</head>
+`;
+
+exports[`PageHead スナップショットテスト propsにdescriptionがない場合 1`] = `
+<head>
+  <title>
+    title | site name
+  </title>
+  <meta
+    content="default description"
+    name="description"
+  />
+</head>
+`;
+
+exports[`PageHead スナップショットテスト propsにtitleがない場合 1`] = `
+<head>
+  <title>
+    site name
+  </title>
+  <meta
+    content="description"
+    name="description"
+  />
+</head>
+`;

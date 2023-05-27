@@ -1,10 +1,9 @@
 import React from 'react';
 import { ThemeProvider } from '@emotion/react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
-import GlobalStyle from '../src/styles/GlobalStyle';
-import theme from '../src/styles/theme';
-import type { Preview } from '@storybook/react';
 import locale from 'axe-core/locales/ja.json';
+import { theme, GlobalStyles } from '../src/lib/styles';
+import type { Preview } from '@storybook/react';
 
 const preview: Preview = {
   parameters: {
@@ -32,7 +31,7 @@ const preview: Preview = {
     (Story) => (
       <div id="__next">
         <ThemeProvider theme={theme}>
-          <GlobalStyle />
+          <GlobalStyles />
           <Story />
         </ThemeProvider>
       </div>
