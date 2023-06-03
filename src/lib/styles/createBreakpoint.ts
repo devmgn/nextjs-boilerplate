@@ -1,48 +1,29 @@
 import isKeyOf from '@/utils/isKeyOf';
-import type { Breakpoint } from '@/types/theme';
-import type { Theme } from '@emotion/react';
+import type { Breakpoint, MediaQueryKey, Theme } from '@emotion/react';
 
-type CreateBreakpointParams = {
-  theme: Theme;
-  breakpoints: [Breakpoint] | [Breakpoint, Breakpoint];
-};
-
-const createBreakpoint = ({ theme, breakpoints: [start, end] }: CreateBreakpointParams) => {
+const createBreakpoint = (
+  key: MediaQueryKey,
+  theme: Theme,
+  breakpoint: Breakpoint,
+  endBreakpoint?: Breakpoint
+) => {
   const { values } = theme.breakpoints;
-  const isStartNumber = typeof start === 'number';
-  const isEndNumber = typeof end === 'number';
-  const isStartKey = isKeyOf(values, start) && Object.keys(values).includes(start);
-  const isStartOrEndKey = isStartKey && isKeyOf(values, end) && Object.keys(values).includes(end);
+  const width = isKeyOf(values, breakpoint) ? values[breakpoint] : breakpoint;
+  const endWidth = isKeyOf(values, endBreakpoint) ? values[endBreakpoint] : endBreakpoint;
 
-  if (isStartKey) {
-    return {
-      up: `@media (min-width: ${values[start]}px)`,
-      down: `@media (max-width: ${values[start] - 1}px)`,
-      between: '',
-    };
+  if (key === 'up') {
+    return `@media (min-width: ${width}px)`;
   }
-
-  if (isStartNumber && isEndNumber) {
-    return {
-      up: `@media (min-width: ${start}px)`,
-      down: `@media (max-width: ${start - 1}px)`,
-      between: `@media (min-width: ${start}px) and (max-width: ${end - 1}px)`,
-    };
+  if (key === 'down') {
+    return `@media (max-width: ${Math.max(width - 1, 0)}px)`;
   }
-
-  if (isStartOrEndKey) {
-    return {
-      up: `@media (min-width: ${values[start]}px)`,
-      down: `@media (max-width: ${values[start] - 1}px)`,
-      between: `@media (min-width: ${values[start]}px) and (max-width: ${values[end] - 1}px)`,
-    };
+  if (key === 'not' && endWidth !== undefined) {
+    return `@media not all and (min-width: ${width}px) and (max-width: ${endWidth - 1}px)`;
   }
-
-  return {
-    up: '',
-    down: '',
-    between: '',
-  };
+  if (key === 'between' && endWidth !== undefined) {
+    return `@media (min-width: ${width}px) and (max-width: ${endWidth - 1}px)`;
+  }
+  throw new Error(`createBreakpoint: invalid key or breakpoint provided`);
 };
 
 export default createBreakpoint;
