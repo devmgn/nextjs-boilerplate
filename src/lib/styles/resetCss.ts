@@ -1,11 +1,11 @@
 import { css } from '@emotion/react';
-import { FONT_FAMILY } from './config';
+import { FONT_FAMILY } from '@/config';
 
 const resetCss = css`
   /**
   Main root
    */
-  *:where(:not(html, iframe, canvas, img, svg, video, audio, svg *, symbol *)) {
+  *:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
     all: unset;
     display: revert;
   }
@@ -149,7 +149,6 @@ const resetCss = css`
     -webkit-user-drag: element;
   }
 
-  /* stylelint-disable-next-line */
   :where(dialog:modal) {
     all: revert;
   }

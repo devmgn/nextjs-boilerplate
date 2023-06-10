@@ -1,16 +1,15 @@
-import type { TupleToUnion } from 'type-fest';
-
-const BREAKPOINT_KEYS = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
+import type { BREAKPOINTS } from '@/config';
+import type { createMediaQuery } from '@/lib/styles';
 
 declare module '@emotion/react' {
-  export type BreakpointKey = TupleToUnion<typeof BREAKPOINT_KEYS>;
+  export type BreakpointKey = keyof typeof BREAKPOINTS;
   export type Breakpoint = BreakpointKey | number;
   export type BreakpointValues = Record<BreakpointKey, number>;
   export type MediaQueries = {
-    up: (breakpoint: Breakpoint) => string;
-    down: (breakpoint: Breakpoint) => string;
-    not: (start: Breakpoint, end: Breakpoint) => string;
-    between: (start: Breakpoint, end: Breakpoint) => string;
+    up: (breakpoint: Breakpoint) => ReturnType<typeof createMediaQuery>;
+    down: (breakpoint: Breakpoint) => ReturnType<typeof createMediaQuery>;
+    not: (start: Breakpoint, end: Breakpoint) => ReturnType<typeof createMediaQuery>;
+    between: (start: Breakpoint, end: Breakpoint) => ReturnType<typeof createMediaQuery>;
   };
   export type MediaQueryKey = keyof MediaQueries;
 

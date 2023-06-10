@@ -1,2 +1,3 @@
-// eslint-disable-next-line import/prefer-default-export
+export * from './styles';
+
 export const ROOT_CONTAINER_ID = '__next' as const;

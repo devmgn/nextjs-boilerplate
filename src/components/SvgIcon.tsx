@@ -1,16 +1,9 @@
 import styled from '@emotion/styled';
 import createShouldForwardProp from '@/utils/createShouldForwardProp';
-import type { CSSProperties } from 'react';
-
-type SvgIconProps = {
-  fontSize?: CSSProperties['fontSize'];
-  rotate?: CSSProperties['rotate'];
-  color?: CSSProperties['color'];
-};
 
 const SvgIcon = styled('svg', {
   shouldForwardProp: createShouldForwardProp('fontSize', 'rotate', 'color'),
-})<SvgIconProps>`
+})`
   display: inline-block;
   flex-shrink: 0;
   width: 1em;

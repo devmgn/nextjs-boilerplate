@@ -28,6 +28,8 @@ const meta: Meta<typeof SvgIcon> = {
   },
   args: {
     as: Help,
+    fontSize: 24,
+    rotate: 0,
   },
   render: ({ fontSize, rotate, ...args }) => (
     <SvgIcon fontSize={`${fontSize ?? 24}px`} rotate={`${rotate ?? 0}deg`} {...args} />

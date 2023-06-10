@@ -1,14 +1,14 @@
-import { DEFAULT_BREAKPOINTS } from '../config';
-import createBreakpoint from '../createBreakpoint';
+import { BREAKPOINTS } from '@/config';
+import createMediaQuery from '../createMediaQuery';
 import type { Theme } from '@emotion/react';
 
 const theme = {
   breakpoints: {
-    values: DEFAULT_BREAKPOINTS,
+    values: BREAKPOINTS,
   },
 } as Theme;
 
-type Params = Parameters<typeof createBreakpoint>;
+type Params = Parameters<typeof createMediaQuery>;
 
 const testPatterns: [Params[0], Params[2], Params[3], string][] = [
   ['up', 'xs', undefined, '@media (min-width: 0px)'],
@@ -49,18 +49,18 @@ const errorTestPatterns: [Params[0], Params[2], Params[3]][] = [
   ['invallidKey', 'xs', 'sm'],
 ];
 
-describe('createBreakpoint', () => {
+describe('createMediaQuery', () => {
   test.each(testPatterns)(
     'keyが%s、breakpointが%s、endBreakpointが%sのとき、%sを返すこと',
     (key, breakpoint, endBreakpoint, expected) => {
-      expect(createBreakpoint(key, theme, breakpoint, endBreakpoint)).toBe(expected);
+      expect(createMediaQuery(key, theme, breakpoint, endBreakpoint)).toBe(expected);
     }
   );
 
   test.each(errorTestPatterns)(
     'keyが%s、breakpointが%s、endBreakpointが%sのとき、エラーをスローすること',
     (key, breakpoint, endBreakpoint) => {
-      expect(() => createBreakpoint(key, theme, breakpoint, endBreakpoint)).toThrow(Error);
+      expect(() => createMediaQuery(key, theme, breakpoint, endBreakpoint)).toThrow(Error);
     }
   );
 });

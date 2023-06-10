@@ -1,7 +1,7 @@
 import isKeyOf from '@/utils/isKeyOf';
 import type { Breakpoint, MediaQueryKey, Theme } from '@emotion/react';
 
-const createBreakpoint = (
+const createMediaQuery = (
   key: MediaQueryKey,
   theme: Theme,
   breakpoint: Breakpoint,
@@ -26,4 +26,4 @@ const createBreakpoint = (
   throw new Error(`createBreakpoint: invalid key or breakpoint provided`);
 };
 
-export default createBreakpoint;
+export default createMediaQuery;
