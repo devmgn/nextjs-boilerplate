@@ -5,14 +5,10 @@ const withBundleAnalyzer = require('@next/bundle-analyzer');
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  trailingSlash: true,
   poweredByHeader: false,
   compiler: {
-    emotion: true,
+    styledComponents: true,
     reactRemoveProperties: true,
-  },
-  experimental: {
-    scrollRestoration: true,
   },
   webpack(config) {
     const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));

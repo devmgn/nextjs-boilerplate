@@ -1,4 +1,6 @@
-import styled from '@emotion/styled';
+'use client';
+
+import styled from 'styled-components';
 import createShouldForwardProp from '@/utils/createShouldForwardProp';
 import type { TupleToUnion } from 'type-fest';
 
@@ -8,7 +10,7 @@ type TypographyProps = {
   variant?: TupleToUnion<typeof VARIANTS>;
 };
 
-const Typography = styled('p', {
+const Typography = styled.p.withConfig({
   shouldForwardProp: createShouldForwardProp('variant'),
 })<TypographyProps>`
   font-size: ${({ variant }) => {

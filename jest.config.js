@@ -16,9 +16,6 @@ const jestConfig = {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
   testEnvironment: 'jest-environment-jsdom',
-  snapshotSerializers: [
-    '@emotion/jest/serializer' /* if needed other snapshotSerializers should go here */,
-  ],
 };
 
 module.exports = async () => {

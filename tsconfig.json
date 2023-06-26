@@ -17,7 +17,12 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "noErrorTruncation": true
+    "noErrorTruncation": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": ["src/@types/svg.d.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
