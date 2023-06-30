@@ -1,14 +1,16 @@
-import { Help } from '@/assets/icons';
-import SvgIcon from '@/components/SvgIcon';
+import Container from '@/components/Container';
 import Typography from '@/components/Typography';
 import type { NextPage } from 'next';
 
 const Index: NextPage = () => {
   return (
-    <Typography>
-      <SvgIcon as={Help} />
-      hoge
-    </Typography>
+    <Container>
+      <Typography>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe fugiat quasi ipsam
+        consequatur aliquid culpa aperiam accusantium sunt, magni ipsum quisquam laboriosam
+        accusamus iste debitis pariatur quae cupiditate quo quibusdam!
+      </Typography>
+    </Container>
   );
 };
 

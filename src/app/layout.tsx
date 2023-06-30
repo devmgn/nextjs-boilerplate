@@ -1,5 +1,8 @@
-import { APP_NAME, DEFAULT_DESCRIPTION } from '@/config';
-import { GlobalStyle, StyledComponentsRegistry, ThemeProvider } from '@/features/styledComponents';
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+import { APP_NAME, DEFAULT_DESCRIPTION } from '@/config/env';
+import RootProvider from '@/providers/RootProvider';
+import type { WithChildrenProps } from '@/types';
 
 import type { Metadata } from 'next';
 
@@ -10,16 +13,15 @@ export const metadata: Metadata = {
   viewport: 'width=device-width,initial-scale=1.0,minimum-scale=1.0',
 };
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+const RootLayout: React.FC<WithChildrenProps> = ({ children }) => {
   return (
     <html lang="ja">
       <body>
-        <StyledComponentsRegistry>
-          <ThemeProvider>
-            <GlobalStyle />
-            {children}
-          </ThemeProvider>
-        </StyledComponentsRegistry>
+        <RootProvider>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </RootProvider>
       </body>
     </html>
   );
