@@ -1,7 +1,8 @@
 import React from 'react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import locale from 'axe-core/locales/ja.json';
-import { ThemeProvider, GlobalStyle } from '../src/features/styledComponents';
+import { ThemeProvider } from 'styled-components';
+import { theme, GlobalStyle } from '../src/features/styledComponents';
 import type { Preview } from '@storybook/react';
 
 const preview: Preview = {
@@ -29,7 +30,7 @@ const preview: Preview = {
   decorators: [
     (Story) => (
       <div id="__next">
-        <ThemeProvider>
+        <ThemeProvider theme={theme}>
           <GlobalStyle />
           <Story />
         </ThemeProvider>

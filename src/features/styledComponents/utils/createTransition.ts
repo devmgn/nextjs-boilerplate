@@ -38,7 +38,7 @@ const createTransition = (
     formatDuration(delay),
   ].filter(Boolean);
 
-  return [properties.join(','), ...values].join(' ');
+  return properties.map((property) => `${property} ${values.join(' ')}`).join(',');
 };
 
 export default createTransition;

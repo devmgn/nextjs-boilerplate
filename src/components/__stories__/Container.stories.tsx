@@ -4,7 +4,7 @@ import Typography from '../Typography';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Container> = {
-  title: 'atoms/Container',
+  title: 'components/Container',
   component: Container,
   parameters: {
     layout: 'fullscreen',

@@ -3,7 +3,7 @@ import SvgIcon from '../SvgIcon';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof SvgIcon> = {
-  title: 'atoms/SvgIcon',
+  title: 'components/SvgIcon',
   component: SvgIcon,
   argTypes: {
     fontSize: {
@@ -30,8 +30,8 @@ const meta: Meta<typeof SvgIcon> = {
     fontSize: 24,
     rotate: 0,
   },
-  render: ({ fontSize, rotate, ...args }) => (
-    <SvgIcon as={Help} fontSize={`${fontSize ?? 24}px`} rotate={`${rotate ?? 0}deg`} {...args} />
+  render: ({ fontSize, rotate }) => (
+    <SvgIcon as={Help} fontSize={`${fontSize ?? 24}px`} rotate={`${rotate ?? 0}deg`} />
   ),
 };
 
