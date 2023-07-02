@@ -1,4 +1,4 @@
-import { BREAKPOINTS, TRANSITION_TIMING_FUNCTIONS, TRANSITION_DURATIONS } from '../config';
+import { BREAKPOINTS, TRANSITION_TIMING_FUNCTIONS, TRANSITION_DURATIONS, Z_INDEX } from '../config';
 import createMediaQuery from '../utils/createMediaQuery';
 import createTransition from '../utils/createTransition';
 import type { DefaultTheme, Breakpoint } from 'styled-components';
@@ -16,6 +16,7 @@ const theme: DefaultTheme = {
     duration: TRANSITION_DURATIONS,
     create: createTransition,
   },
+  zIndex: Z_INDEX,
 };
 
 export default theme;

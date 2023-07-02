@@ -25,4 +25,8 @@ const Typography = styled.p.withConfig({
   line-height: 1.5;
 `;
 
+Typography.defaultProps = {
+  className: 'Typography',
+};
+
 export default Typography;

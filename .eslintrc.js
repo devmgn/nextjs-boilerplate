@@ -107,6 +107,7 @@ module.exports = {
       extends: ['plugin:storybook/recommended'],
       rules: {
         'import/no-extraneous-dependencies': 'off',
+        'react-hooks/rules-of-hooks': 'off',
       },
     },
     {

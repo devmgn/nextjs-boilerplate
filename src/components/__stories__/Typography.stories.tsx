@@ -3,7 +3,7 @@ import Typography from '../Typography';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Typography> = {
-  title: 'atoms/Typography',
+  title: 'components/Typography',
   component: Typography,
   argTypes: {
     variant: {

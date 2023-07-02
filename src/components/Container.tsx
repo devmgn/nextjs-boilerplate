@@ -24,10 +24,14 @@ const Container = styled.div.withConfig({
       ? `min(100%, ${width + DEFAULT_GUTTER * 2}px)`
       : `min(100%, ${width + gutter * 2}px)`;
   }};
-  margin-right: auto;
-  margin-left: auto;
   padding-right: ${({ gutter }) => (gutter === undefined ? `${DEFAULT_GUTTER}px` : `${gutter}px}`)};
   padding-left: ${({ gutter }) => (gutter === undefined ? `${DEFAULT_GUTTER}px` : `${gutter}px}`)};
+  margin-right: auto;
+  margin-left: auto;
 `;
+
+Container.defaultProps = {
+  className: 'Container',
+};
 
 export default Container;

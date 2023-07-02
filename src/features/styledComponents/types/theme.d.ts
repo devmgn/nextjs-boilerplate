@@ -1,4 +1,9 @@
-import type { BREAKPOINTS, TRANSITION_DURATIONS, TRANSITION_TIMING_FUNCTIONS } from '../config';
+import type {
+  BREAKPOINTS,
+  TRANSITION_DURATIONS,
+  TRANSITION_TIMING_FUNCTIONS,
+  Z_INDEX,
+} from '../config';
 import type { createMediaQuery, createTransition } from '../utils';
 
 declare module 'styled-components' {
@@ -22,10 +27,13 @@ declare module 'styled-components' {
     ) => ReturnType<typeof createTransition>;
   };
 
+  export type ZIndex = typeof Z_INDEX;
+
   export interface DefaultTheme {
     breakpoints: {
       values: BreakpointValues;
     } & MediaQueries;
     transitions: Transitions;
+    zIndex: ZIndex;
   }
 }
