@@ -11,7 +11,7 @@ type Options = {
 
 const createTransition = (
   properties: DelimiterCase<keyof CSSProperties, '-'>[],
-  options?: Options
+  options?: Options,
 ): React.CSSProperties['transition'] => {
   const {
     duration = TRANSITION_DURATIONS.standard,

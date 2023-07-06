@@ -120,7 +120,7 @@ const Modal: React.FC<ModalProps> = ({
         }
       });
     },
-    [closeTriggerAttribute, close, modalNodeCallback]
+    [closeTriggerAttribute, close, modalNodeCallback],
   );
 
   const closeOnEscKeydown = useCallback(
@@ -135,7 +135,7 @@ const Modal: React.FC<ModalProps> = ({
         }
       });
     },
-    [close, disableCloseOnEscKeydown, modalNodeCallback]
+    [close, disableCloseOnEscKeydown, modalNodeCallback],
   );
 
   const lockScroll = useCallback(() => {

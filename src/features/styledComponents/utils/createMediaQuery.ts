@@ -5,7 +5,7 @@ const createMediaQuery = (
   key: MediaQueryKey,
   theme: DefaultTheme,
   breakpoint: Breakpoint,
-  endBreakpoint?: Breakpoint
+  endBreakpoint?: Breakpoint,
 ) => {
   const { values } = theme.breakpoints;
   const width = isKeyOf(values, breakpoint) ? values[breakpoint] : breakpoint;

@@ -23,7 +23,7 @@ declare module 'styled-components' {
     duration: typeof TRANSITION_DURATIONS;
     create: (
       properties: Parameters<typeof createTransition>[0],
-      options?: Parameters<typeof createTransition>[1]
+      options?: Parameters<typeof createTransition>[1],
     ) => ReturnType<typeof createTransition>;
   };
 

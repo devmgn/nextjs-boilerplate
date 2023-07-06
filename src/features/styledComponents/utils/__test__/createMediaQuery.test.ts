@@ -54,13 +54,13 @@ describe('createMediaQuery', () => {
     'keyが%s、breakpointが%s、endBreakpointが%sのとき、%sを返すこと',
     (key, breakpoint, endBreakpoint, expected) => {
       expect(createMediaQuery(key, theme, breakpoint, endBreakpoint)).toBe(expected);
-    }
+    },
   );
 
   test.each(errorTestPatterns)(
     'keyが%s、breakpointが%s、endBreakpointが%sのとき、エラーをスローすること',
     (key, breakpoint, endBreakpoint) => {
       expect(() => createMediaQuery(key, theme, breakpoint, endBreakpoint)).toThrow(Error);
-    }
+    },
   );
 });

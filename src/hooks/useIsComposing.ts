@@ -21,11 +21,11 @@ const useIsComposing = (ref: React.RefObject<HTMLElement>): boolean => {
     const compositionEventNames = ['compositionstart', 'compositionupdate', 'compositionend'];
 
     compositionEventNames.forEach((eventName) =>
-      element.addEventListener(eventName, handleComposition)
+      element.addEventListener(eventName, handleComposition),
     );
     return () => {
       compositionEventNames.forEach((eventName) =>
-        element.removeEventListener(eventName, handleComposition)
+        element.removeEventListener(eventName, handleComposition),
       );
     };
   }, [handleComposition, ref]);

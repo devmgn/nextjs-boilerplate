@@ -3,14 +3,14 @@ import createTransition from '../createTransition';
 const testPatterns: [
   properties: Parameters<typeof createTransition>[0],
   options: Parameters<typeof createTransition>[1],
-  transition: ReturnType<typeof createTransition>
+  transition: ReturnType<typeof createTransition>,
 ][] = [
   // optionsがundefinedのとき
   [['color'], undefined, 'color 300ms ease-in-out'],
   [
     ['background-color', 'font-size', 'display'],
     undefined,
-    'background-color,font-size,display 300ms ease-in-out',
+    'background-color 300ms ease-in-out,font-size 300ms ease-in-out,display 300ms ease-in-out',
   ],
   // optionsがdurationのみのとき
   [['color'], { duration: 1000 }, 'color 1000ms ease-in-out'],
@@ -35,7 +35,7 @@ const testPatterns: [
   [
     ['color', 'font-size'],
     { duration: 1000, easing: 'ease', delay: 1000 },
-    'color,font-size 1000ms ease 1000ms',
+    'color 1000ms ease 1000ms,font-size 1000ms ease 1000ms',
   ],
 ];
 
@@ -44,6 +44,6 @@ describe('createTransition', () => {
     'propertiesが%s、optionsが%jのとき、%sとなること',
     (properties, options, expected) => {
       expect(createTransition(properties, options)).toBe(expected);
-    }
+    },
   );
 });

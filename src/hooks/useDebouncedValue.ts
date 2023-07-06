@@ -12,7 +12,7 @@ import useIsComposing from './useIsComposing';
 const useDebouncedValue = <T>(
   value: T,
   delay: number,
-  ref: Parameters<typeof useIsComposing>[0]
+  ref: Parameters<typeof useIsComposing>[0],
 ): T => {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
   const isComposing = useIsComposing(ref);

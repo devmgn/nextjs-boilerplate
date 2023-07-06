@@ -22,7 +22,7 @@ describe('createShouldForwardProp', () => {
     test('propがcolor、forwardPropが同じ値のとき、falseとなること', () => {
       expect(createShouldForwardProp('customAttribute')('customAttribute')).toBe(false);
       expect(
-        createShouldForwardProp('customAttribute', 'customAttribute2')('customAttribute')
+        createShouldForwardProp('customAttribute', 'customAttribute2')('customAttribute'),
       ).toBe(false);
     });
   });

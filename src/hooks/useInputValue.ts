@@ -9,7 +9,7 @@ const useInputValue = (initialValue?: string) => {
     }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
       setValue(currentTarget.value);
     },
-    []
+    [],
   );
 
   return {
