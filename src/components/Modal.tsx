@@ -51,26 +51,17 @@ const StyledModal = styled.div.withConfig({
 const ModalRoot = styled.div`
   position: fixed;
   inset: 0;
-  padding: 24px;
-  pointer-events: none;
-  outline: none;
-`;
-
-ModalRoot.defaultProps = {
-  className: 'ModalRoot',
-};
-
-const ModalContainer = styled.div`
   display: grid;
   place-items: center;
-  height: 100%;
+  padding: 24px;
+  pointer-events: none;
   > * {
     pointer-events: auto;
   }
 `;
 
-ModalContainer.defaultProps = {
-  className: 'ModalContainer',
+ModalRoot.defaultProps = {
+  className: 'ModalRoot',
 };
 
 type ModalProps = {
@@ -148,7 +139,7 @@ const Modal: React.FC<ModalProps> = ({
   }, [modalNodeCallback]);
 
   const clearLockedScroll = useCallback(() => {
-    modalNodeCallback((node) => enableBodyScroll(node));
+    modalNodeCallback(enableBodyScroll);
   }, [modalNodeCallback]);
 
   useEffect(() => {
@@ -178,12 +169,10 @@ const Modal: React.FC<ModalProps> = ({
       >
         <StyledModal ref={modalRef} transitionDuration={timeout}>
           <Backdrop onClick={close} />
-          <FocusLock {...focusLockProps} as={ModalRoot} lockProps={{ tabIndex: 0 }}>
-            <ModalContainer className="ModalContainer">
-              <ModalProvider isOpen={isOpen} close={close}>
-                {children}
-              </ModalProvider>
-            </ModalContainer>
+          <FocusLock returnFocus {...focusLockProps} as={ModalRoot} lockProps={{ tabIndex: 0 }}>
+            <ModalProvider isOpen={isOpen} close={close}>
+              {children}
+            </ModalProvider>
           </FocusLock>
         </StyledModal>
       </CSSTransition>
