@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useMemo, useCallback, useEffect } from 'react';
+import { useRef, useMemo, useCallback } from 'react';
 import {
   disableBodyScroll,
   enableBodyScroll,
@@ -55,6 +55,7 @@ const ModalRoot = styled.div`
   place-items: center;
   padding: 24px;
   pointer-events: none;
+  outline: none;
   > * {
     pointer-events: auto;
   }
@@ -91,65 +92,51 @@ const Modal: React.FC<ModalProps> = ({
       : theme.transitions.duration.enteringScreen;
   }, [theme.transitions.duration.enteringScreen, transitionDuration]);
 
-  const modalNodeCallback = useCallback((callback: (node: HTMLDivElement) => void) => {
+  const closeOnClick = useCallback(
+    ({ target }: React.MouseEvent<HTMLDivElement>) => {
+      const shouldClose =
+        target instanceof HTMLElement
+          ? Boolean(target.closest(closeTriggerAttribute)) &&
+            modalRef.current?.contains(document.activeElement)
+          : false;
+
+      if (shouldClose) {
+        close();
+      }
+    },
+    [close, closeTriggerAttribute],
+  );
+
+  const closeOnEscKeydown = useCallback(
+    ({ key }: React.KeyboardEvent<HTMLDivElement>) => {
+      const shouldClose = key === 'Escape' && modalRef.current?.contains(document.activeElement);
+      if (disableCloseOnEscKeydown || !shouldClose) {
+        return;
+      }
+      close();
+    },
+    [close, disableCloseOnEscKeydown],
+  );
+
+  const modalRefCallback = useCallback((callback: (element: HTMLDivElement) => void) => {
     if (!modalRef.current) {
       return;
     }
     callback(modalRef.current);
   }, []);
 
-  const closeOnClick = useCallback(
-    ({ target }: MouseEvent) => {
-      modalNodeCallback((node) => {
-        const shouldClose =
-          target instanceof HTMLElement
-            ? Boolean(target.closest(closeTriggerAttribute)) &&
-              node.contains(document.activeElement)
-            : false;
-        if (shouldClose) {
-          close();
-        }
-      });
-    },
-    [closeTriggerAttribute, close, modalNodeCallback],
-  );
-
-  const closeOnEscKeydown = useCallback(
-    ({ key }: KeyboardEvent) => {
-      if (disableCloseOnEscKeydown) {
-        return;
-      }
-      modalNodeCallback((node) => {
-        const shouldClose = key === 'Escape' && node.contains(document.activeElement);
-        if (shouldClose) {
-          close();
-        }
-      });
-    },
-    [close, disableCloseOnEscKeydown, modalNodeCallback],
-  );
-
   const lockScroll = useCallback(() => {
-    modalNodeCallback((node) => {
-      disableBodyScroll(node, {
+    modalRefCallback((element) => {
+      disableBodyScroll(element, {
         reserveScrollBarGap: true,
-        allowTouchMove: (target) => (target instanceof Node ? node.contains(target) : false),
+        allowTouchMove: (target) => (target instanceof Node ? element.contains(target) : false),
       });
     });
-  }, [modalNodeCallback]);
+  }, [modalRefCallback]);
 
   const clearLockedScroll = useCallback(() => {
-    modalNodeCallback(enableBodyScroll);
-  }, [modalNodeCallback]);
-
-  useEffect(() => {
-    document.addEventListener('click', closeOnClick);
-    document.addEventListener('keydown', closeOnEscKeydown);
-    return () => {
-      document.removeEventListener('click', closeOnClick);
-      document.removeEventListener('keydown', closeOnEscKeydown);
-    };
-  }, [closeOnClick, closeOnEscKeydown]);
+    modalRefCallback(enableBodyScroll);
+  }, [modalRefCallback]);
 
   useUnmount(() => {
     clearAllBodyScrollLocks();
@@ -162,12 +149,17 @@ const Modal: React.FC<ModalProps> = ({
         in={isOpen}
         unmountOnExit
         timeout={{ exit: timeout }}
-        nodeRef={modalRef}
         classNames={CSS_TRANSITION_CLASSNAMES}
         onEnter={lockScroll}
         onExited={clearLockedScroll}
+        nodeRef={modalRef}
       >
-        <StyledModal ref={modalRef} transitionDuration={timeout}>
+        <StyledModal
+          ref={modalRef}
+          transitionDuration={timeout}
+          onClick={closeOnClick}
+          onKeyDown={closeOnEscKeydown}
+        >
           <Backdrop onClick={close} />
           <FocusLock returnFocus {...focusLockProps} as={ModalRoot} lockProps={{ tabIndex: 0 }}>
             <ModalProvider isOpen={isOpen} close={close}>
