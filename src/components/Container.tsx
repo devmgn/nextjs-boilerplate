@@ -19,7 +19,7 @@ const Container = styled.div.withConfig({
     if (fullWidth) {
       return '100%';
     }
-    const width = maxWidth || DEFAULT_MAX_WIDTH;
+    const width = maxWidth ?? DEFAULT_MAX_WIDTH;
     return gutter === undefined
       ? `min(100%, ${width + DEFAULT_GUTTER * 2}px)`
       : `min(100%, ${width + gutter * 2}px)`;

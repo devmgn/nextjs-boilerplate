@@ -45,7 +45,7 @@ const errorTestPatterns: [Params[0], Params[2], Params[3]][] = [
   ['between', 'xs', undefined],
   ['between', 0, undefined],
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
+  // @ts-expect-error
   ['invallidKey', 'xs', 'sm'],
 ];
 

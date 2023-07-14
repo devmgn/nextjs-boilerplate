@@ -1,5 +1,3 @@
 declare namespace NodeJS {
-  interface ProcessEnv {
-    readonly [key: string]: string;
-  }
+  type ProcessEnv = Readonly<Record<string, string>>;
 }
