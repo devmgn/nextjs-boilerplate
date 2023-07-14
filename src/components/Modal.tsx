@@ -87,9 +87,7 @@ const Modal: React.FC<ModalProps> = ({
   const modalRef = useRef<HTMLDivElement>(null);
 
   const timeout = useMemo(() => {
-    return transitionDuration !== undefined
-      ? transitionDuration
-      : theme.transitions.duration.enteringScreen;
+    return transitionDuration ?? theme.transitions.duration.enteringScreen;
   }, [theme.transitions.duration.enteringScreen, transitionDuration]);
 
   const closeOnClick = useCallback(

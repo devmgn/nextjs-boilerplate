@@ -10,11 +10,11 @@ const SvgIcon = styled.svg.withConfig({
   flex-shrink: 0;
   width: 1em;
   height: 1em;
-  font-size: ${({ fontSize }) => fontSize || '24px'};
-  color: ${({ color }) => color || 'inherit'};
+  font-size: ${({ fontSize }) => fontSize ?? '24px'};
+  color: ${({ color }) => color ?? 'inherit'};
   user-select: none;
   fill: currentColor;
-  rotate: ${({ rotate }) => rotate || undefined};
+  rotate: ${({ rotate }) => rotate ?? undefined};
 `;
 
 SvgIcon.defaultProps = {

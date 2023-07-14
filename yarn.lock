@@ -3579,6 +3579,17 @@
     "@typescript-eslint/typescript-estree" "5.60.1"
     debug "^4.3.4"
 
+"@typescript-eslint/parser@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-6.0.0.tgz#46b2600fd1f67e62fc00a28093a75f41bf7effc4"
+  integrity sha512-TNaufYSPrr1U8n+3xN+Yp9g31vQDJqhXzzPSHfQDLcaO4tU+mCfODPxCwf4H530zo7aUBE3QIdxCXamEnG04Tg==
+  dependencies:
+    "@typescript-eslint/scope-manager" "6.0.0"
+    "@typescript-eslint/types" "6.0.0"
+    "@typescript-eslint/typescript-estree" "6.0.0"
+    "@typescript-eslint/visitor-keys" "6.0.0"
+    debug "^4.3.4"
+
 "@typescript-eslint/scope-manager@5.60.1":
   version "5.60.1"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/scope-manager/-/scope-manager-5.60.1.tgz#35abdb47f500c68c08f2f2b4f22c7c79472854bb"

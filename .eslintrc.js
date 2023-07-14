@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   env: {
     'jest/globals': true,
   },
@@ -77,13 +78,14 @@ module.exports = {
     {
       files: ['**/*.ts?(x)'],
       extends: [
-        'plugin:@typescript-eslint/recommended',
-        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+        'plugin:@typescript-eslint/strict',
+        'plugin:@typescript-eslint/stylistic-type-checked',
       ],
       parserOptions: {
-        project: './tsconfig.json',
+        project: true,
       },
       rules: {
+        '@typescript-eslint/consistent-type-definitions': 'off',
         '@typescript-eslint/naming-convention': [
           'warn',
           {
@@ -112,7 +114,6 @@ module.exports = {
     },
     {
       files: ['**/?(*.)+(spec|test).[tj]s?(x)', 'jest.setup.js?(x)'],
-
       extends: ['plugin:jest/recommended'],
     },
   ],
