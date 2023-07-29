@@ -4,6 +4,7 @@ module.exports = {
     'jest/globals': true,
   },
   extends: [
+    'airbnb',
     'airbnb-typescript',
     'airbnb/hooks',
     'plugin:react/recommended',
@@ -109,6 +110,7 @@ module.exports = {
       rules: {
         'import/no-extraneous-dependencies': 'off',
         'react-hooks/rules-of-hooks': 'off',
+        'react/jsx-pascal-case': ['error', { allowNamespace: true }],
       },
     },
     {
