@@ -7,13 +7,23 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "eslint.enable": true,
-  "eslint.packageManager": "yarn",
   "eslint.workingDirectories": [
     {
       "mode": "auto"
     }
   ],
+  "files.exclude": {
+    ".next": true,
+    ".stylelintcache": true,
+    "next-env.d.ts": true,
+    "tsconfig.tsbuildinfo": true
+  },
   "prettier.enable": true,
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true,
+    ".next": true
+  },
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.tsdk": "node_modules/typescript/lib"
 }
