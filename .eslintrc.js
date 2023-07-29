@@ -4,7 +4,6 @@ module.exports = {
     'jest/globals': true,
   },
   extends: [
-    'airbnb',
     'airbnb-typescript',
     'airbnb/hooks',
     'plugin:react/recommended',

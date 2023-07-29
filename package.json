@@ -4,8 +4,8 @@
   "engines": {
     "node": "18.17.0"
   },
+  "packageManager": "yarn@3.6.1",
   "scripts": {
-    "clean": "rm -rf node_modules yarn.lock yarn-error.log tsconfig.tsbuildinfo .stylelintcache coverage .next .swc out storybook-static",
     "prepare": "husky install",
     "dev": "next dev",
     "build": "next build",
@@ -72,7 +72,6 @@
     "postcss-styled-syntax": "0.4.0",
     "prettier": "3.0.0",
     "storybook": "7.1.1",
-    "strip-ansi": "6.0.1",
     "stylelint": "15.10.2",
     "stylelint-config-recess-order": "4.3.0",
     "stylelint-config-recommended": "13.0.0",
