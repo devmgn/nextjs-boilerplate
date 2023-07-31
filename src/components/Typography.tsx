@@ -10,9 +10,13 @@ type TypographyProps = {
   variant?: TupleToUnion<typeof VARIANTS>;
 };
 
-const Typography = styled.p.withConfig({
-  shouldForwardProp: createShouldForwardProp('variant'),
-})<TypographyProps>`
+const Typography = styled.p
+  .withConfig({
+    shouldForwardProp: createShouldForwardProp('variant'),
+  })
+  .attrs({
+    className: 'Typography',
+  })<TypographyProps>`
   font-size: ${({ variant }) => {
     if (variant === 'title') {
       return '24px';
@@ -24,9 +28,5 @@ const Typography = styled.p.withConfig({
   }};
   line-height: 1.5;
 `;
-
-Typography.defaultProps = {
-  className: 'Typography',
-};
 
 export default Typography;

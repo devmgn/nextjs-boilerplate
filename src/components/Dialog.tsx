@@ -2,7 +2,7 @@
 
 import styled from 'styled-components';
 
-const Dialog = styled.div`
+const Dialog = styled.div.attrs({ className: 'Dialog' })`
   width: min(100%, 400px);
   max-height: 100%;
   padding: 24px;

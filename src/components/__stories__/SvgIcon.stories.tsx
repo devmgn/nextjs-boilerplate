@@ -1,6 +1,9 @@
-import { Help } from '@/assets/icons';
+import { faker } from '@faker-js/faker';
+import * as icons from '@/assets/icons';
 import SvgIcon from '../SvgIcon';
 import type { Meta, StoryObj } from '@storybook/react';
+
+const Icons = Object.values(icons);
 
 const meta: Meta<typeof SvgIcon> = {
   title: 'components/SvgIcon',
@@ -14,7 +17,9 @@ const meta: Meta<typeof SvgIcon> = {
     fontSize: 24,
     rotate: 0,
     color: 'black',
-    as: Help,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    as: Object.values(Icons)[faker.number.int({ min: 0, max: Icons.length - 1 })],
   },
 };
 

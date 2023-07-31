@@ -1,12 +1,15 @@
-'use client';
-
 import styled from 'styled-components';
 import createShouldForwardProp from '@/utils/createShouldForwardProp';
-import type { AnyComponent } from 'styled-components/dist/types';
 
-const StyledSvgIcon = styled.svg.withConfig({
-  shouldForwardProp: createShouldForwardProp('fontSize', 'color', 'rotate'),
-})`
+const SvgIcon = styled.svg
+  .withConfig({
+    shouldForwardProp: createShouldForwardProp('fontSize', 'color', 'rotate'),
+  })
+  .attrs({
+    className: 'SvgIcon',
+    focusable: false,
+    'aria-hidden': true,
+  })`
   display: inline-block;
   flex-shrink: 0;
   width: 1em;
@@ -17,13 +20,5 @@ const StyledSvgIcon = styled.svg.withConfig({
   fill: currentColor;
   rotate: ${({ rotate }) => (rotate ? `${rotate}deg` : undefined)};
 `;
-
-type SvgIconProps = {
-  as: AnyComponent;
-} & Omit<React.ComponentPropsWithoutRef<typeof StyledSvgIcon>, 'as'>;
-
-const SvgIcon: React.FC<SvgIconProps> = (props) => {
-  return <StyledSvgIcon className="SvgIcon" focusable="false" aria-hidden="true" {...props} />;
-};
 
 export default SvgIcon;

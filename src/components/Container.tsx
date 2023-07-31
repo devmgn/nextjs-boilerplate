@@ -1,6 +1,6 @@
 'use client';
 
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import createShouldForwardProp from '@/utils/createShouldForwardProp';
 
 type ContainerProps = {
@@ -12,26 +12,18 @@ type ContainerProps = {
 const DEFAULT_MAX_WIDTH = 960 as const;
 const DEFAULT_GUTTER = 16 as const;
 
-const Container = styled.div.withConfig({
-  shouldForwardProp: createShouldForwardProp('fullWidth', 'maxWidth', 'gutter'),
-})<ContainerProps>`
-  width: ${({ fullWidth, maxWidth, gutter }) => {
-    if (fullWidth) {
-      return '100%';
-    }
-    const width = maxWidth ?? DEFAULT_MAX_WIDTH;
-    return gutter === undefined
-      ? `min(100%, ${width + DEFAULT_GUTTER * 2}px)`
-      : `min(100%, ${width + gutter * 2}px)`;
-  }};
-  padding-right: ${({ gutter }) => (gutter === undefined ? `${DEFAULT_GUTTER}px` : `${gutter}px}`)};
-  padding-left: ${({ gutter }) => (gutter === undefined ? `${DEFAULT_GUTTER}px` : `${gutter}px}`)};
-  margin-right: auto;
-  margin-left: auto;
-`;
-
-Container.defaultProps = {
-  className: 'Container',
-};
+const Container = styled.div
+  .withConfig({
+    shouldForwardProp: createShouldForwardProp('fullWidth', 'maxWidth', 'gutter'),
+  })
+  .attrs({
+    className: 'Container',
+  })<ContainerProps>(
+  ({ fullWidth = false, maxWidth = DEFAULT_MAX_WIDTH, gutter = DEFAULT_GUTTER }) => css`
+    width: ${() => (fullWidth ? '100%' : `min(100%, ${maxWidth + gutter * 2}px)`)};
+    margin-inline: auto;
+    padding-inline: ${() => `${gutter}px`};
+  `,
+);
 
 export default Container;
