@@ -21,8 +21,8 @@ const Container = styled.div
   })<ContainerProps>(
   ({ fullWidth = false, maxWidth = DEFAULT_MAX_WIDTH, gutter = DEFAULT_GUTTER }) => css`
     width: ${() => (fullWidth ? '100%' : `min(100%, ${maxWidth + gutter * 2}px)`)};
-    margin-inline: auto;
     padding-inline: ${() => `${gutter}px`};
+    margin-inline: auto;
   `,
 );
 

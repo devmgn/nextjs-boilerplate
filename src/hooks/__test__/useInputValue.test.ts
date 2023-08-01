@@ -14,7 +14,7 @@ describe('useInputValue', () => {
     });
 
     test('空文字がvalueに設定されること', () => {
-      expect(result.current.value).toBe('');
+      expect(result.current[0]).toBe('');
     });
   });
 
@@ -25,19 +25,19 @@ describe('useInputValue', () => {
     });
 
     test('初期値がvalueに正しく設定されること', () => {
-      expect(result.current.value).toBe(initialValue);
+      expect(result.current[0]).toBe(initialValue);
     });
 
     test('onChangeが実行された場合、その値がvalueに設定されること', () => {
-      expect(result.current.value).toBe(initialValue);
+      expect(result.current[0]).toBe(initialValue);
 
       act(() => {
-        result.current.onChange({ currentTarget: { value: updatedValue } } as React.ChangeEvent<
+        result.current[1]({ target: { value: updatedValue } } as React.ChangeEvent<
           HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
         >);
       });
 
-      expect(result.current.value).toBe(updatedValue);
+      expect(result.current[0]).toBe(updatedValue);
     });
   });
 });
