@@ -1,9 +1,8 @@
 import { faker } from '@faker-js/faker/locale/ja';
+import Dialog from '@/components/Dialog';
+import Typography from '@/components/Typography';
 import useDisclosure from '@/hooks/useDisclosure';
-import useModalContext from '@/hooks/useModalContext';
-import Dialog from '../Dialog';
-import Modal from '../Modal';
-import Typography from '../Typography';
+import Modal from '..';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Modal> = {
@@ -18,7 +17,7 @@ const paragraph = faker.lorem.paragraph(10);
 const image = faker.image.urlLoremFlickr();
 
 const DummyDialog = () => {
-  const { close } = useModalContext();
+  const { close } = useDisclosure();
 
   return (
     <Dialog>
@@ -26,16 +25,13 @@ const DummyDialog = () => {
         ❌
       </button>
       <Typography>{paragraph}</Typography>
-      <button type="button" data-close-modal>
-        ❌
-      </button>
     </Dialog>
   );
 };
 
 const DummyChildDialog = () => {
   const { open, ...rest } = useDisclosure();
-  const { close } = useModalContext();
+  const { close } = useDisclosure();
 
   return (
     <>

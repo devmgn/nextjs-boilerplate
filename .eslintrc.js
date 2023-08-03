@@ -108,6 +108,7 @@ module.exports = {
       files: ['**/?(*.)+(stories).[tj]s?(x)'],
       extends: ['plugin:storybook/recommended'],
       rules: {
+        'no-console': 'off',
         'import/no-extraneous-dependencies': 'off',
         'react-hooks/rules-of-hooks': 'off',
         'react/jsx-pascal-case': ['error', { allowNamespace: true }],
