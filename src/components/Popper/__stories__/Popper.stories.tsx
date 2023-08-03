@@ -1,10 +1,10 @@
 import { faker } from '@faker-js/faker/locale/ja';
 import { useToggle } from 'react-use';
 import { Close } from '@/assets/icons';
-import IconButton from '../IconButton';
-import Popper from '../Popper';
-import SvgIcon from '../SvgIcon';
-import Typography from '../Typography';
+import IconButton from '@/components/IconButton';
+import SvgIcon from '@/components/SvgIcon';
+import Typography from '@/components/Typography';
+import Popper from '..';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof Popper> = {

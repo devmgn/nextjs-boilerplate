@@ -3,41 +3,24 @@
 import { cloneElement, forwardRef, isValidElement, useState } from 'react';
 import { mergeRefs } from 'react-merge-refs';
 import { usePopper } from 'react-popper';
-import { CSSTransition } from 'react-transition-group';
 import styled, { useTheme } from 'styled-components';
+import PopperRoot from './PopperRoot';
 import type { WithChildrenProps } from '@/types';
 import type React from 'react';
+import type { CSSTransitionProps } from 'react-transition-group/CSSTransition';
 import type { OverrideProperties } from 'type-fest';
-
-const PopperRoot = styled(CSSTransition).attrs({ className: 'PopperRoot' })<{ timeout: number }>`
-  visibility: hidden;
-  opacity: 0;
-  transition: ${({ theme, timeout }) =>
-    theme.transitions.create(['opacity', 'visibility'], { duration: timeout })};
-  &.enter,
-  &.enterDone {
-    visibility: visible;
-    opacity: 1;
-  }
-`;
 
 const StyledPopper = styled.div.attrs({ className: 'Popper' })``;
 
 type PopperProps = {
   popperContent: React.ReactNode;
-  cssTransitionProps?: OverrideProperties<
-    React.ComponentPropsWithoutRef<typeof CSSTransition>,
-    { timeout?: number }
-  >;
+  cssTransitionProps?: OverrideProperties<CSSTransitionProps, { timeout?: number }>;
   popperOptions?: Parameters<typeof usePopper>[2];
-  components?: {
-    popper?: React.ElementType;
-    arrow?: React.ElementType;
-  };
+  popperComponent?: React.ElementType;
 } & WithChildrenProps;
 
 const Popper: React.FC<PopperProps> = forwardRef(
-  ({ popperContent, cssTransitionProps, popperOptions, components, children }, ref) => {
+  ({ popperContent, cssTransitionProps, popperOptions, popperComponent, children }, ref) => {
     const theme = useTheme();
     const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(null);
     const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
@@ -60,7 +43,7 @@ const Popper: React.FC<PopperProps> = forwardRef(
           {...cssTransitionProps}
         >
           <StyledPopper
-            as={components?.popper}
+            as={popperComponent}
             ref={setPopperElement}
             style={styles.popper}
             {...attributes.popper}
@@ -74,7 +57,7 @@ const Popper: React.FC<PopperProps> = forwardRef(
 );
 
 Popper.defaultProps = {
-  components: undefined,
+  popperComponent: undefined,
   cssTransitionProps: undefined,
   popperOptions: undefined,
 };
