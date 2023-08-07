@@ -1,13 +1,13 @@
 'use client';
 
-import { ThemeProvider } from 'styled-components';
-import { StyledComponentsRegistry, GlobalStyle, theme } from '@/features/styledComponents';
+import { StyledComponentsRegistry, GlobalStyle } from '@/features/styledComponents';
+import ThemeProvider from './ThemeProvider';
 import type { WithChildrenProps } from '@/types';
 
 const RootProvider: React.FC<WithChildrenProps> = ({ children }) => {
   return (
     <StyledComponentsRegistry>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider>
         <GlobalStyle />
         {children}
       </ThemeProvider>

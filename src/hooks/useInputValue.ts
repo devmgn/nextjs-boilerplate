@@ -2,11 +2,11 @@ import { useCallback, useState } from 'react';
 
 type UseInputValue = [
   string,
-  (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void,
+  React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
 ];
 
-const useInputValue = (initialValue?: string): UseInputValue => {
-  const [value, setValue] = useState<UseInputValue[0]>(initialValue ?? '');
+const useInputValue = (initialValue: string): UseInputValue => {
+  const [value, setValue] = useState<UseInputValue[0]>(initialValue);
 
   const onChange = useCallback<UseInputValue[1]>(({ target }) => {
     setValue(target.value);
