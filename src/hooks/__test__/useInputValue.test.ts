@@ -7,9 +7,9 @@ const updatedValue = 'updated value';
 describe('useInputValue', () => {
   let result: { current: ReturnType<typeof useInputValue> };
 
-  describe('初期値が未設定のとき', () => {
+  describe('初期値が空のとき', () => {
     beforeEach(() => {
-      const renderedHook = renderHook(() => useInputValue());
+      const renderedHook = renderHook(() => useInputValue(''));
       result = renderedHook.result;
     });
 
