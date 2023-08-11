@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
+import { useEvent } from '@react-aria/utils';
 
 /**
  * IMEの入力中かどうかを返すカスタムフック
@@ -13,22 +14,9 @@ const useIsComposing = (ref: React.RefObject<HTMLElement>): boolean => {
     setIsComposing(event.type !== 'compositionend');
   }, []);
 
-  useEffect(() => {
-    const { current: element } = ref;
-    if (!element) {
-      return undefined;
-    }
-    const compositionEventNames = ['compositionstart', 'compositionupdate', 'compositionend'];
-
-    compositionEventNames.forEach((eventName) =>
-      element.addEventListener(eventName, handleComposition),
-    );
-    return () => {
-      compositionEventNames.forEach((eventName) =>
-        element.removeEventListener(eventName, handleComposition),
-      );
-    };
-  }, [handleComposition, ref]);
+  useEvent(ref, 'compositionstart', handleComposition);
+  useEvent(ref, 'compositionupdate', handleComposition);
+  useEvent(ref, 'compositionend', handleComposition);
 
   return isComposing;
 };

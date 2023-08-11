@@ -8,7 +8,7 @@ describe('useDebouncedValue', () => {
   const initialProps = {
     value: 'initial value',
     delay: 1000,
-    ref: { current: null },
+    ref: { current: document.createElement('input') },
   };
 
   const updatePros = {
