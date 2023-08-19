@@ -29,12 +29,10 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <div id="__next">
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <Story />
-        </ThemeProvider>
-      </div>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Story />
+      </ThemeProvider>
     ),
   ],
 };
