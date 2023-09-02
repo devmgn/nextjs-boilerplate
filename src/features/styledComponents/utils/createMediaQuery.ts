@@ -1,5 +1,5 @@
 import isKeyOf from '@/utils/isKeyOf';
-import type { MediaQueryKey, DefaultTheme, Breakpoint } from 'styled-components';
+import type { Breakpoint, DefaultTheme, MediaQueryKey } from 'styled-components';
 
 const createMediaQuery = (
   key: MediaQueryKey,

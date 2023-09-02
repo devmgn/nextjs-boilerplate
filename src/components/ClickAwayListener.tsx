@@ -1,6 +1,6 @@
 'use client';
 
-import { isValidElement, cloneElement, useRef } from 'react';
+import { cloneElement, isValidElement, useRef } from 'react';
 import { useClickAway } from 'react-use';
 import type { WithChildrenProps } from '@/types';
 
@@ -13,7 +13,7 @@ const ClickAwayListener: React.FC<ClickAwayListenerProps> = ({ onClickAway, even
   const ref = useRef(null);
   useClickAway(ref, onClickAway, events);
 
-  if (!(children && isValidElement(children))) {
+  if (!isValidElement(children)) {
     return null;
   }
 

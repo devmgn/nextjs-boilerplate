@@ -34,7 +34,8 @@ module.exports = {
           'external',
           'internal',
           'unknown',
-          ['parent', 'sibling'],
+          'parent',
+          'sibling',
           'index',
           'object',
           'type',
@@ -51,11 +52,6 @@ module.exports = {
             position: 'before',
           },
           {
-            pattern: '{react-redux,@reduxjs,@reduxjs/**}',
-            group: 'builtin',
-            position: 'before',
-          },
-          {
             pattern: 'next/**',
             group: 'builtin',
             position: 'before',
@@ -66,13 +62,16 @@ module.exports = {
             position: 'before',
           },
         ],
-        pathGroupsExcludedImportTypes: ['type'],
+        'newlines-between': 'never',
+        warnOnUnassignedImports: true,
+        pathGroupsExcludedImportTypes: ['builtin', 'object', 'type'],
         alphabetize: {
           order: 'asc',
           caseInsensitive: true,
         },
       },
     ],
+    'sort-imports': ['error', { ignoreDeclarationSort: true }],
   },
   overrides: [
     {

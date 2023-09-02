@@ -1,19 +1,19 @@
 'use client';
 
-import { useRef, useMemo, useCallback } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 import {
+  clearAllBodyScrollLocks,
   disableBodyScroll,
   enableBodyScroll,
-  clearAllBodyScrollLocks,
 } from 'body-scroll-lock-upgrade';
 import FocusLock from 'react-focus-lock';
 import { CSSTransition } from 'react-transition-group';
 import { useUnmount } from 'react-use';
 import { useTheme } from 'styled-components';
-import ModalContainer from './ModalContainer';
-import ModalRoot from './ModalRoot';
 import Backdrop from '../Backdrop';
 import Portal from '../Portal';
+import ModalContainer from './ModalContainer';
+import ModalRoot from './ModalRoot';
 import type { WithChildrenProps } from '@/types';
 import type { ReactFocusLockProps } from 'react-focus-lock/interfaces';
 

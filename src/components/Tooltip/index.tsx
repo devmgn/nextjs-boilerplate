@@ -1,10 +1,10 @@
 import { cloneElement, isValidElement } from 'react';
 import { mergeProps } from '@react-aria/utils';
 import { useToggle } from 'react-use';
-import TooltipArrow from './TooltipArrow';
-import TooltipRoot from './TooltipRoot';
 import ClickAwayListener from '../ClickAwayListener';
 import Popper from '../Popper';
+import TooltipArrow from './TooltipArrow';
+import TooltipRoot from './TooltipRoot';
 import type { WithChildrenProps } from '@/types';
 import type React from 'react';
 
@@ -22,7 +22,7 @@ const Tooltip: React.FC<TooltipProps> = ({ tooltipContent, children }) => {
     toggle(false);
   };
 
-  if (!(children && isValidElement(children))) {
+  if (!isValidElement(children)) {
     return null;
   }
 
