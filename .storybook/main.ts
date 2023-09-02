@@ -29,16 +29,17 @@ const config: StorybookConfig = {
 
     // @svgr/webpackの有効化
     const fileLoaderRule = config.module.rules.find((rule) => {
-      if (rule === '...' || !(rule.test instanceof RegExp)) {
+      if (rule === null || typeof rule !== 'object' || !(rule.test instanceof RegExp)) {
         return false;
       }
       return rule.test.test('.svg');
     });
 
-    if (typeof fileLoaderRule !== 'object') {
+    if (fileLoaderRule === null || typeof fileLoaderRule !== 'object') {
       return config;
     }
 
+    fileLoaderRule.exclude = /\.svg$/i;
     config.module.rules = [
       ...config.module.rules,
       {
@@ -52,7 +53,6 @@ const config: StorybookConfig = {
         use: ['@svgr/webpack'],
       },
     ];
-    fileLoaderRule.exclude = /\.svg$/i;
 
     return config;
   },

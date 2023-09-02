@@ -3,8 +3,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
   poweredByHeader: false,
   compiler: {
     styledComponents: true,
@@ -33,5 +31,5 @@ const nextConfig = {
 
 module.exports = withPlugins(
   [withBundleAnalyzer({ enabled: process.env.ANALYZE === 'true' })],
-  nextConfig
+  nextConfig,
 );
