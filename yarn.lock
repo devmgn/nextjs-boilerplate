@@ -3137,29 +3137,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-aria/ssr@npm:^3.7.1":
-  version: 3.7.1
-  resolution: "@react-aria/ssr@npm:3.7.1"
+"@react-aria/ssr@npm:^3.8.0":
+  version: 3.8.0
+  resolution: "@react-aria/ssr@npm:3.8.0"
   dependencies:
     "@swc/helpers": ^0.5.0
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-  checksum: 2d388f9ced2e8822f1393f04418a8c783fa8b6577edca477fd517f2a43202038aba0117a92a1bc3fdc3a1360cf52bc0585290dc6861761b90130f37096f56791
+  checksum: bdcd16da76d9af75dab0c44907963d9367562bc3261c6871a8ee15754e92f929dcd886e5553e08d6193ddb174d78382c10fb7b9b8c7b0cf470bc18c2ed34b106
   languageName: node
   linkType: hard
 
-"@react-aria/utils@npm:3.19.0":
-  version: 3.19.0
-  resolution: "@react-aria/utils@npm:3.19.0"
+"@react-aria/utils@npm:3.20.0":
+  version: 3.20.0
+  resolution: "@react-aria/utils@npm:3.20.0"
   dependencies:
-    "@react-aria/ssr": ^3.7.1
+    "@react-aria/ssr": ^3.8.0
     "@react-stately/utils": ^3.7.0
-    "@react-types/shared": ^3.19.0
+    "@react-types/shared": ^3.20.0
     "@swc/helpers": ^0.5.0
     clsx: ^1.1.1
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-  checksum: 90dbf8b859f2a2687de3de894971a2c28278b15e452480eb47707756e8c7743f7d102627b64d0a2e523f9d6112b348f48dca55207494467ddc08173bb516f9c0
+  checksum: d1bcbca427a43f95ac9d6e0e4d458b5e6fff0ff850ffc8c8fa1074da490a42d637602d9344d90cf1028eff3fdc3d86dd3fc9f3b61f9b556943a3df0d858e68c1
   languageName: node
   linkType: hard
 
@@ -3174,12 +3174,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-types/shared@npm:^3.19.0":
-  version: 3.19.0
-  resolution: "@react-types/shared@npm:3.19.0"
+"@react-types/shared@npm:^3.20.0":
+  version: 3.20.0
+  resolution: "@react-types/shared@npm:3.20.0"
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
-  checksum: e1cdabe05980be44b20d68e424f5891753f359c96bf151a17befa5a6e965dac315fd595657ed7c6572042078b5ca735735204175b020a8bdbb7dc11379a3be46
+  checksum: 322aee262aa9155286cbb04dacc470ad819f4f081f4ede7a5bfe0af05b57917e4710be124d46b04d60937584386960437c65e0aa0627685046e5b37afc05802a
   languageName: node
   linkType: hard
 
@@ -12486,7 +12486,7 @@ __metadata:
     "@faker-js/faker": 8.0.2
     "@next/bundle-analyzer": 13.4.19
     "@popperjs/core": 2.11.8
-    "@react-aria/utils": 3.19.0
+    "@react-aria/utils": 3.20.0
     "@storybook/addon-a11y": 7.4.0
     "@storybook/addon-essentials": 7.4.0
     "@storybook/addon-interactions": 7.4.0
