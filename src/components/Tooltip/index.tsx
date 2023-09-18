@@ -1,5 +1,4 @@
 import { cloneElement, isValidElement } from 'react';
-import { mergeProps } from '@react-aria/utils';
 import { useToggle } from 'react-use';
 import ClickAwayListener from '../ClickAwayListener';
 import Popper from '../Popper';
@@ -43,7 +42,13 @@ const Tooltip: React.FC<TooltipProps> = ({ tooltipContent, children }) => {
           ],
         }}
       >
-        {cloneElement(children, mergeProps(children.props, { onClick: toggle }))}
+        {cloneElement(children, {
+          ...children.props,
+          onClick: () => {
+            children.props.onClick?.();
+            toggle();
+          },
+        })}
       </Popper>
     </ClickAwayListener>
   );

@@ -20,7 +20,7 @@ describe('useDebouncedValue', () => {
 
   beforeEach(() => {
     jest.clearAllTimers();
-    hookResult = renderHook(({ value, delay, ref }) => useDebouncedValue(value, delay, ref), {
+    hookResult = renderHook(({ value, delay }) => useDebouncedValue(value, delay), {
       initialProps,
     });
   });

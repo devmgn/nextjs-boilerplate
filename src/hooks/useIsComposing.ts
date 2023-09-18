@@ -1,22 +1,25 @@
-import { useCallback, useState } from 'react';
-import { useEvent } from '@react-aria/utils';
+import { useCallback } from 'react';
+import { useBoolean, useEvent } from 'react-use';
 
 /**
- * IMEの入力中かどうかを返すカスタムフック
- *
- * @param {React.RefObject<HTMLElement>} ref - 監視する要素
- * @returns {boolean}
+ * テキストの編集中にユーザーがテキストの作成中かどうかを判定するカスタムフック
  */
-const useIsComposing = (ref: React.RefObject<HTMLElement>): boolean => {
-  const [isComposing, setIsComposing] = useState(false);
+const useIsComposing = (
+  target?: Parameters<typeof useEvent>[2],
+  options?: Parameters<typeof useEvent>[3],
+): boolean => {
+  const [isComposing, setIsComposing] = useBoolean(false);
 
-  const handleComposition = useCallback((event: Event) => {
-    setIsComposing(event.type !== 'compositionend');
-  }, []);
+  const handleComposition = useCallback(
+    (event: Event) => {
+      setIsComposing(event.type !== 'compositionend');
+    },
+    [setIsComposing],
+  );
 
-  useEvent(ref, 'compositionstart', handleComposition);
-  useEvent(ref, 'compositionupdate', handleComposition);
-  useEvent(ref, 'compositionend', handleComposition);
+  useEvent('compositionstart', handleComposition, target, options);
+  useEvent('compositionupdate', handleComposition, target, options);
+  useEvent('compositionend', handleComposition, target, options);
 
   return isComposing;
 };

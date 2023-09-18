@@ -4,7 +4,7 @@ import { useTheme } from 'styled-components';
 import type { DefaultTheme } from 'styled-components';
 
 const useMediaQuery = (
-  queryInput: (theme: DefaultTheme) => string | string,
+  queryInput: (theme: DefaultTheme) => string,
   defaultState?: Parameters<typeof useMedia>[1],
 ) => {
   const theme = useTheme();

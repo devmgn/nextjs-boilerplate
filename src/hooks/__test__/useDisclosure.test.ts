@@ -11,7 +11,7 @@ describe('useDisclosure', () => {
     });
 
     test('isOpenの初期値はfalseであること', () => {
-      expect(result.current.isOpen).toBe(false);
+      expect(result.current[0]).toBe(false);
     });
   });
 
@@ -22,31 +22,45 @@ describe('useDisclosure', () => {
     });
 
     test('isOpenの初期値はtrueであること', () => {
-      expect(result.current.isOpen).toBe(true);
+      expect(result.current[0]).toBe(true);
     });
   });
 
   describe('callbackの振る舞い', () => {
+    const onOpen = jest.fn();
+    const onClose = jest.fn();
     beforeEach(() => {
-      const renderedHook = renderHook(() => useDisclosure());
+      const renderedHook = renderHook(() => useDisclosure(true, { onOpen, onClose }));
       result = renderedHook.result;
+      jest.clearAllMocks();
     });
 
     test('openを実行するとisOpenがtrueになること', () => {
-      act(() => result.current.open());
-      expect(result.current.isOpen).toBe(true);
+      act(() => result.current[1].open());
+      expect(result.current[0]).toBe(true);
+      expect(onOpen).toHaveBeenCalled();
+      expect(onClose).not.toHaveBeenCalled();
     });
 
     test('closeを実行するとisOpenがfalseになること', () => {
-      act(() => result.current.close());
-      expect(result.current.isOpen).toBe(false);
+      act(() => result.current[1].close());
+      expect(result.current[0]).toBe(false);
+      expect(onOpen).not.toHaveBeenCalled();
+      expect(onClose).toHaveBeenCalled();
     });
 
     test('toggleを実行すると、true/falseが切り替わること', () => {
-      act(() => result.current.toggle());
-      expect(result.current.isOpen).toBe(true);
-      act(() => result.current.toggle());
-      expect(result.current.isOpen).toBe(false);
+      act(() => result.current[1].toggle());
+      expect(result.current[0]).toBe(false);
+      expect(onOpen).not.toHaveBeenCalled();
+      expect(onClose).toHaveBeenCalled();
+      onOpen.mockClear();
+      onClose.mockClear();
+
+      act(() => result.current[1].toggle());
+      expect(result.current[0]).toBe(true);
+      expect(onOpen).toHaveBeenCalled();
+      expect(onClose).not.toHaveBeenCalled();
     });
   });
 });
