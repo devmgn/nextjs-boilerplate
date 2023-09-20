@@ -11,12 +11,16 @@ const ModalRoot = styled.div.withConfig({
     .Backdrop {
       opacity: 0;
       transition: ${({ theme, transitionDuration }) =>
-        theme.transitions.create(['opacity'], { duration: transitionDuration })};
+        theme.transitions.create(['opacity'], {
+          duration: transitionDuration,
+        })};
     }
     .ModalContainer {
       opacity: 0;
       transition: ${({ theme, transitionDuration }) =>
-        theme.transitions.create(['opacity', 'translate'], { duration: transitionDuration })};
+        theme.transitions.create(['opacity', 'translate'], {
+          duration: transitionDuration,
+        })};
       translate: 0 24px;
     }
   }

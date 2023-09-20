@@ -43,7 +43,8 @@ const Modal: React.FC<ModalProps> = ({
 
   const closeOnEscKeydown = useCallback(
     ({ key }: React.KeyboardEvent<HTMLDivElement>) => {
-      const shouldClose = key === 'Escape' && modalRef.current?.contains(document.activeElement);
+      const shouldClose =
+        key === 'Escape' && modalRef.current?.contains(document.activeElement);
       if (!disableCloseOnEscKeydown && shouldClose) {
         close();
       }
@@ -51,18 +52,22 @@ const Modal: React.FC<ModalProps> = ({
     [close, disableCloseOnEscKeydown],
   );
 
-  const modalRefCallback = useCallback((callback: (element: HTMLDivElement) => void) => {
-    if (!modalRef.current) {
-      return;
-    }
-    callback(modalRef.current);
-  }, []);
+  const modalRefCallback = useCallback(
+    (callback: (element: HTMLDivElement) => void) => {
+      if (!modalRef.current) {
+        return;
+      }
+      callback(modalRef.current);
+    },
+    [],
+  );
 
   const lockScroll = useCallback(() => {
     modalRefCallback((element) => {
       disableBodyScroll(element, {
         reserveScrollBarGap: true,
-        allowTouchMove: (target) => (target instanceof Node ? element.contains(target) : false),
+        allowTouchMove: (target) =>
+          target instanceof Node ? element.contains(target) : false,
       });
     });
   }, [modalRefCallback]);
@@ -85,7 +90,11 @@ const Modal: React.FC<ModalProps> = ({
         onEnter={lockScroll}
         onExited={clearLockedScroll}
       >
-        <ModalRoot ref={modalRef} transitionDuration={timeout} onKeyDown={closeOnEscKeydown}>
+        <ModalRoot
+          ref={modalRef}
+          transitionDuration={timeout}
+          onKeyDown={closeOnEscKeydown}
+        >
           <Backdrop onClick={close} />
           <FocusLock
             returnFocus

@@ -1,21 +1,16 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useDebounce } from 'react-use';
-import isComposingHook from './useIsComposing';
+import { useCallback, useState } from 'react';
+import { useDebounce, useUnmount } from 'react-use';
+import useIsComposing from './useIsComposing';
 
 /**
  * デバウンスされた値を返すカスタムフック
- * @param {T} value - 入力値
- * @param {number} delay - バウンスの遅延時間(ms)
- * @param {Parameters<typeof useIsComposing>[0]} ref - compositionを検知したいときはrefを指定
- * @returns {T}
  */
 const useDebouncedValue = <T>(
   value: T,
-  delay: number,
-  ref?: Parameters<typeof isComposingHook>[0],
+  delay: Parameters<typeof useDebounce>[1] = 300,
 ): T => {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
-  const isComposing = ref ? isComposingHook(ref) : false;
+  const isComposing = useIsComposing();
 
   const update = useCallback(() => {
     if (!isComposing) {
@@ -23,14 +18,9 @@ const useDebouncedValue = <T>(
     }
   }, [isComposing, value]);
 
-  const [isReady, cancel] = useDebounce(update, delay, [update]);
+  const [, cancel] = useDebounce(update, delay, [value]);
 
-  useEffect(() => {
-    if (isReady()) {
-      setDebouncedValue(value);
-    }
-    return cancel;
-  }, [cancel, isReady, value]);
+  useUnmount(cancel);
 
   return debouncedValue;
 };

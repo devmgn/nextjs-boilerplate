@@ -17,7 +17,10 @@ const Arrow = styled.span({});
 
 type PopperProps = {
   popperContent: React.ReactNode;
-  cssTransitionProps?: OverrideProperties<CSSTransitionProps, { timeout?: number }>;
+  cssTransitionProps?: OverrideProperties<
+    CSSTransitionProps,
+    { timeout?: number }
+  >;
   popperOptions?: Parameters<typeof usePopper>[2];
   popperComponent?: React.ElementType;
   arrowComponent?: React.ElementType;
@@ -26,13 +29,25 @@ type PopperProps = {
 
 const Popper: React.FC<PopperProps> = forwardRef(
   (
-    { popperContent, cssTransitionProps, popperOptions, popperComponent, arrowComponent, children },
+    {
+      popperContent,
+      cssTransitionProps,
+      popperOptions,
+      popperComponent,
+      arrowComponent,
+      children,
+    },
     ref,
   ) => {
     const theme = useTheme();
-    const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(null);
-    const [popperElement, setPopperElement] = useState<HTMLElement | null>(null);
-    const [arrowElement, setArrowElement] = useState<HTMLSpanElement | null>(null);
+    const [referenceElement, setReferenceElement] =
+      useState<HTMLElement | null>(null);
+    const [popperElement, setPopperElement] = useState<HTMLElement | null>(
+      null,
+    );
+    const [arrowElement, setArrowElement] = useState<HTMLSpanElement | null>(
+      null,
+    );
     const { styles, attributes } = usePopper(referenceElement, popperElement, {
       ...popperOptions,
       modifiers: [
@@ -47,7 +62,10 @@ const Popper: React.FC<PopperProps> = forwardRef(
 
     return (
       <>
-        {cloneElement(children, { ...children.props, ref: mergeRefs([ref, setReferenceElement]) })}
+        {cloneElement(children, {
+          ...children.props,
+          ref: mergeRefs([ref, setReferenceElement]),
+        })}
         <Portal>
           <PopperRoot
             timeout={

@@ -4,9 +4,17 @@ import type { CSSProperties } from 'react';
 import type { DelimiterCase } from 'type-fest';
 
 type Options = {
-  duration?: keyof typeof TRANSITION_DURATIONS | CSSProperties['transitionDuration'] | number;
-  easing?: keyof typeof TRANSITION_TIMING_FUNCTIONS | CSSProperties['transitionTimingFunction'];
-  delay?: keyof typeof TRANSITION_DURATIONS | CSSProperties['transitionDelay'] | number;
+  duration?:
+    | keyof typeof TRANSITION_DURATIONS
+    | CSSProperties['transitionDuration']
+    | number;
+  easing?:
+    | keyof typeof TRANSITION_TIMING_FUNCTIONS
+    | CSSProperties['transitionTimingFunction'];
+  delay?:
+    | keyof typeof TRANSITION_DURATIONS
+    | CSSProperties['transitionDelay']
+    | number;
 };
 
 const createTransition = (
@@ -19,7 +27,9 @@ const createTransition = (
     delay = 0,
   } = options ?? {};
 
-  const formatDuration = (targetDuration: Options['duration'] | Options['delay']) => {
+  const formatDuration = (
+    targetDuration: Options['duration'] | Options['delay'],
+  ) => {
     if (!targetDuration) {
       return '';
     }
@@ -34,11 +44,15 @@ const createTransition = (
 
   const values = [
     formatDuration(duration),
-    isKeyOf(TRANSITION_TIMING_FUNCTIONS, easing) ? TRANSITION_TIMING_FUNCTIONS[easing] : easing,
+    isKeyOf(TRANSITION_TIMING_FUNCTIONS, easing)
+      ? TRANSITION_TIMING_FUNCTIONS[easing]
+      : easing,
     formatDuration(delay),
   ].filter(Boolean);
 
-  return properties.map((property) => `${property} ${values.join(' ')}`).join(',');
+  return properties
+    .map((property) => `${property} ${values.join(' ')}`)
+    .join(',');
 };
 
 export default createTransition;

@@ -22,7 +22,7 @@ module.exports = async () => {
   return {
     ...(await createJestConfig(jestConfig)()),
     transformIgnorePatterns: jestConfig.transformIgnorePatterns.filter(
-      (pattern) => pattern !== '/node_modules/'
+      (pattern) => pattern !== '/node_modules/',
     ),
   };
 };

@@ -9,7 +9,9 @@ const nextConfig = {
     reactRemoveProperties: true,
   },
   webpack(config) {
-    const fileLoaderRule = config.module.rules.find((rule) => rule.test?.test?.('.svg'));
+    const fileLoaderRule = config.module.rules.find((rule) =>
+      rule.test?.test?.('.svg'),
+    );
     config.module.rules = [
       ...config.module.rules,
       {

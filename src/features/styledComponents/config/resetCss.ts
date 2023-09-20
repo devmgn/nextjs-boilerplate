@@ -7,7 +7,9 @@ const resetCss = css`
   /**
   Main root
    */
-  *:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+  *:where(
+      :not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)
+    ) {
     all: unset;
     display: revert;
   }

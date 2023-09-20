@@ -9,12 +9,10 @@ const testPatterns: [string, boolean][] = [
 ];
 
 describe('useIsComposing', () => {
-  let ref: React.RefObject<HTMLElement>;
   let hookResult: RenderHookResult<boolean, unknown>;
 
   beforeEach(() => {
-    ref = { current: document.createElement('input') };
-    hookResult = renderHook(() => useIsComposing(ref));
+    hookResult = renderHook(() => useIsComposing());
   });
 
   test('デフォルトはfalseが返却されること', () => {
@@ -28,7 +26,7 @@ describe('useIsComposing', () => {
 
       act(() => {
         const event = new Event(eventName);
-        ref.current?.dispatchEvent(event);
+        window?.dispatchEvent(event);
       });
 
       expect(result.current).toBe(expected);

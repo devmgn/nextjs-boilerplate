@@ -18,13 +18,23 @@ module.exports = {
     'no-restricted-syntax': [
       'error',
       {
-        selector: 'TSEnumDeclaration',
-        message: "Don't declare enums",
+        selector: 'TSEnumDeclaration:not([const=true])',
+        message: "Don't declare non-const enums",
       },
     ],
-    'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
+    'react/function-component-definition': [
+      'error',
+      { namedComponents: 'arrow-function' },
+    ],
     'react/jsx-props-no-spreading': 'off',
     'react/prop-types': 'off',
+    'react-hooks/exhaustive-deps': [
+      'warn',
+      {
+        additionalHooks:
+          '^use(Async|AsyncFn|AsyncRetry|UpdateEffect|IsomorphicLayoutEffect|DeepCompareEffect|ShallowCompareEffect)$',
+      },
+    ],
     '@next/next/no-img-element': 'off',
     'import/order': [
       'error',
@@ -80,6 +90,7 @@ module.exports = {
         'plugin:@typescript-eslint/strict',
         'plugin:@typescript-eslint/stylistic-type-checked',
       ],
+      parser: '@typescript-eslint/parser',
       parserOptions: {
         project: true,
       },
@@ -100,7 +111,10 @@ module.exports = {
             format: ['camelCase', 'PascalCase'],
           },
         ],
-        '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
+        '@typescript-eslint/consistent-type-imports': [
+          'error',
+          { prefer: 'type-imports' },
+        ],
       },
     },
     {

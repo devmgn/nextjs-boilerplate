@@ -17,7 +17,7 @@ const paragraph = faker.lorem.paragraph(10);
 const image = faker.image.urlLoremFlickr();
 
 const DummyDialog = () => {
-  const { close } = useDisclosure();
+  const [, { close }] = useDisclosure();
 
   return (
     <Dialog>
@@ -30,8 +30,8 @@ const DummyDialog = () => {
 };
 
 const DummyChildDialog = () => {
-  const { open, ...rest } = useDisclosure();
-  const { close } = useDisclosure();
+  const [isOpen, { open, ...rest }] = useDisclosure();
+  const [, { close }] = useDisclosure();
 
   return (
     <>
@@ -47,7 +47,7 @@ const DummyChildDialog = () => {
           ❌
         </button>
       </Dialog>
-      <Modal {...rest}>
+      <Modal isOpen={isOpen} {...rest}>
         <DummyDialog />
       </Modal>
     </>
@@ -56,7 +56,7 @@ const DummyChildDialog = () => {
 
 export const Default: Story = {
   render: (args) => {
-    const { open, ...rest } = useDisclosure();
+    const [, { open, ...rest }] = useDisclosure();
     return (
       <div style={{ height: '200vh' }}>
         <button type="button" onClick={open}>
@@ -72,7 +72,7 @@ export const Default: Story = {
 
 export const WithChildModal: Story = {
   render: (args) => {
-    const { open, ...rest } = useDisclosure();
+    const [, { open, ...rest }] = useDisclosure();
     return (
       <div style={{ height: '200vh' }}>
         <button type="button" onClick={open}>

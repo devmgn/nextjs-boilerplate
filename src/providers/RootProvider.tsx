@@ -1,6 +1,9 @@
 'use client';
 
-import { GlobalStyle, StyledComponentsRegistry } from '@/features/styledComponents';
+import {
+  GlobalStyle,
+  StyledComponentsRegistry,
+} from '@/features/styledComponents';
 import ThemeProvider from './ThemeProvider';
 import type { WithChildrenProps } from '@/types';
 

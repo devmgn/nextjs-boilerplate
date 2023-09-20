@@ -9,7 +9,11 @@ type ClickAwayListenerProps = {
   events?: Parameters<typeof useClickAway>[2];
 } & WithChildrenProps;
 
-const ClickAwayListener: React.FC<ClickAwayListenerProps> = ({ onClickAway, events, children }) => {
+const ClickAwayListener: React.FC<ClickAwayListenerProps> = ({
+  onClickAway,
+  events,
+  children,
+}) => {
   const ref = useRef(null);
   useClickAway(ref, onClickAway, events);
 

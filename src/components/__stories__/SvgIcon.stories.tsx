@@ -19,7 +19,9 @@ const meta: Meta<typeof SvgIcon> = {
     color: 'black',
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
-    as: Object.values(Icons)[faker.number.int({ min: 0, max: Icons.length - 1 })],
+    as: Object.values(Icons)[
+      faker.number.int({ min: 0, max: Icons.length - 1 })
+    ],
   },
 };
 

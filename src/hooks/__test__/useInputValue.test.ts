@@ -32,7 +32,9 @@ describe('useInputValue', () => {
       expect(result.current[0]).toBe(initialValue);
 
       act(() => {
-        result.current[1]({ target: { value: updatedValue } } as React.ChangeEvent<
+        result.current[1]({
+          target: { value: updatedValue },
+        } as React.ChangeEvent<
           HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
         >);
       });

@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import Typography from '@/components/Typography';
 import useDebouncedValue from '../useDebouncedValue';
 import useInputValue from '../useInputValue';
@@ -8,9 +7,8 @@ const meta: Meta<typeof useDebouncedValue> = {
   title: 'hooks/useDebouncedValue',
   render: () => {
     const [delay, setDelay] = useInputValue('100');
-    const ref = useRef(null);
     const [value, setValue] = useInputValue('');
-    const debouncedValue = useDebouncedValue(value, Number(delay), ref);
+    const debouncedValue = useDebouncedValue(value, Number(delay));
 
     return (
       <>
@@ -31,7 +29,6 @@ const meta: Meta<typeof useDebouncedValue> = {
         <Typography>debouncedValue: {debouncedValue.toString()}</Typography>
         <input
           type="text"
-          ref={ref}
           value={value}
           onChange={setValue}
           style={{
