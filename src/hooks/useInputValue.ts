@@ -2,7 +2,9 @@ import { useCallback, useState } from 'react';
 
 type UseInputValue = [
   string,
-  React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
+  React.ChangeEventHandler<
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+  >,
 ];
 
 const useInputValue = (initialValue = ''): UseInputValue => {

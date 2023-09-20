@@ -14,13 +14,22 @@ const DEFAULT_GUTTER = 16 as const;
 
 const Container = styled.div
   .withConfig({
-    shouldForwardProp: createShouldForwardProp('fullWidth', 'maxWidth', 'gutter'),
+    shouldForwardProp: createShouldForwardProp(
+      'fullWidth',
+      'maxWidth',
+      'gutter',
+    ),
   })
   .attrs({
     className: 'Container',
   })<ContainerProps>(
-  ({ fullWidth = false, maxWidth = DEFAULT_MAX_WIDTH, gutter = DEFAULT_GUTTER }) => css`
-    width: ${() => (fullWidth ? '100%' : `min(100%, ${maxWidth + gutter * 2}px)`)};
+  ({
+    fullWidth = false,
+    maxWidth = DEFAULT_MAX_WIDTH,
+    gutter = DEFAULT_GUTTER,
+  }) => css`
+    width: ${() =>
+      fullWidth ? '100%' : `min(100%, ${maxWidth + gutter * 2}px)`};
     padding-inline: ${() => `${gutter}px`};
     margin-inline: auto;
   `,

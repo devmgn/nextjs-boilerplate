@@ -25,12 +25,37 @@ const testPatterns: [Params[0], Params[2], Params[3], string][] = [
   ['down', 'xl', undefined, '@media (max-width: 1535px)'],
   ['down', 0, undefined, '@media (max-width: 0px)'],
   ['down', 600, undefined, '@media (max-width: 599px)'],
-  ['not', 'xs', 'sm', '@media not all and (min-width: 0px) and (max-width: 599px)'],
-  ['not', 'sm', 'md', '@media not all and (min-width: 600px) and (max-width: 899px)'],
-  ['not', 'md', 'lg', '@media not all and (min-width: 900px) and (max-width: 1199px)'],
-  ['not', 'lg', 'xl', '@media not all and (min-width: 1200px) and (max-width: 1535px)'],
+  [
+    'not',
+    'xs',
+    'sm',
+    '@media not all and (min-width: 0px) and (max-width: 599px)',
+  ],
+  [
+    'not',
+    'sm',
+    'md',
+    '@media not all and (min-width: 600px) and (max-width: 899px)',
+  ],
+  [
+    'not',
+    'md',
+    'lg',
+    '@media not all and (min-width: 900px) and (max-width: 1199px)',
+  ],
+  [
+    'not',
+    'lg',
+    'xl',
+    '@media not all and (min-width: 1200px) and (max-width: 1535px)',
+  ],
   ['not', 0, 600, '@media not all and (min-width: 0px) and (max-width: 599px)'],
-  ['not', 600, 900, '@media not all and (min-width: 600px) and (max-width: 899px)'],
+  [
+    'not',
+    600,
+    900,
+    '@media not all and (min-width: 600px) and (max-width: 899px)',
+  ],
   ['between', 'xs', 'sm', '@media (min-width: 0px) and (max-width: 599px)'],
   ['between', 'sm', 'md', '@media (min-width: 600px) and (max-width: 899px)'],
   ['between', 'md', 'lg', '@media (min-width: 900px) and (max-width: 1199px)'],
@@ -53,14 +78,18 @@ describe('createMediaQuery', () => {
   test.each(testPatterns)(
     'keyが%s、breakpointが%s、endBreakpointが%sのとき、%sを返すこと',
     (key, breakpoint, endBreakpoint, expected) => {
-      expect(createMediaQuery(key, theme, breakpoint, endBreakpoint)).toBe(expected);
+      expect(createMediaQuery(key, theme, breakpoint, endBreakpoint)).toBe(
+        expected,
+      );
     },
   );
 
   test.each(errorTestPatterns)(
     'keyが%s、breakpointが%s、endBreakpointが%sのとき、エラーをスローすること',
     (key, breakpoint, endBreakpoint) => {
-      expect(() => createMediaQuery(key, theme, breakpoint, endBreakpoint)).toThrow(Error);
+      expect(() =>
+        createMediaQuery(key, theme, breakpoint, endBreakpoint),
+      ).toThrow(Error);
     },
   );
 });

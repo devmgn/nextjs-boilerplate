@@ -4,7 +4,9 @@ import { theme as defaultTheme } from '@/features/styledComponents';
 import type { WithChildrenProps } from '@/types';
 import type { DefaultTheme } from 'styled-components';
 
-const ThemeContext = createContext<React.Dispatch<React.SetStateAction<DefaultTheme>>>(() => {});
+const ThemeContext = createContext<
+  React.Dispatch<React.SetStateAction<DefaultTheme>>
+>(() => {});
 
 export const useThemeContext = () => useContext(ThemeContext);
 

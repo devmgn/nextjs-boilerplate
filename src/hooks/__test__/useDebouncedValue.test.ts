@@ -20,9 +20,12 @@ describe('useDebouncedValue', () => {
 
   beforeEach(() => {
     jest.clearAllTimers();
-    hookResult = renderHook(({ value, delay }) => useDebouncedValue(value, delay), {
-      initialProps,
-    });
+    hookResult = renderHook(
+      ({ value, delay }) => useDebouncedValue(value, delay),
+      {
+        initialProps,
+      },
+    );
   });
 
   test('delayに設定された時間未経過のとき、更新された値が返却されないこと', () => {

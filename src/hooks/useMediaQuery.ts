@@ -10,7 +10,8 @@ const useMediaQuery = (
   const theme = useTheme();
 
   const query = useMemo(() => {
-    const value = typeof queryInput === 'string' ? queryInput : queryInput(theme);
+    const value =
+      typeof queryInput === 'string' ? queryInput : queryInput(theme);
     return value.replace('@media ', '');
   }, [queryInput, theme]);
 

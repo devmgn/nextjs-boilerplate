@@ -14,8 +14,14 @@ type PortalProps = Merge<
   WithChildrenProps
 >;
 
-const Portal: React.FC<PortalProps> = ({ disablePortal, container: _container, children }) => {
-  const [container, setContainer] = useState<PortalProps['container'] | null>(null);
+const Portal: React.FC<PortalProps> = ({
+  disablePortal,
+  container: _container,
+  children,
+}) => {
+  const [container, setContainer] = useState<PortalProps['container'] | null>(
+    null,
+  );
 
   useLifecycles(
     () => setContainer(_container ?? document.body),

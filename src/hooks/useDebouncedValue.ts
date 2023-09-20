@@ -5,7 +5,10 @@ import useIsComposing from './useIsComposing';
 /**
  * デバウンスされた値を返すカスタムフック
  */
-const useDebouncedValue = <T>(value: T, delay: Parameters<typeof useDebounce>[1] = 300): T => {
+const useDebouncedValue = <T>(
+  value: T,
+  delay: Parameters<typeof useDebounce>[1] = 300,
+): T => {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
   const isComposing = useIsComposing();
 

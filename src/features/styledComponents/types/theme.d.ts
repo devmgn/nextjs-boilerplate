@@ -13,8 +13,14 @@ declare module 'styled-components' {
   export type MediaQueries = {
     up: (breakpoint: Breakpoint) => ReturnType<typeof createMediaQuery>;
     down: (breakpoint: Breakpoint) => ReturnType<typeof createMediaQuery>;
-    not: (start: Breakpoint, end: Breakpoint) => ReturnType<typeof createMediaQuery>;
-    between: (start: Breakpoint, end: Breakpoint) => ReturnType<typeof createMediaQuery>;
+    not: (
+      start: Breakpoint,
+      end: Breakpoint,
+    ) => ReturnType<typeof createMediaQuery>;
+    between: (
+      start: Breakpoint,
+      end: Breakpoint,
+    ) => ReturnType<typeof createMediaQuery>;
   };
   export type MediaQueryKey = keyof MediaQueries;
 

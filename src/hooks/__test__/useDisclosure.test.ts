@@ -30,7 +30,9 @@ describe('useDisclosure', () => {
     const onOpen = jest.fn();
     const onClose = jest.fn();
     beforeEach(() => {
-      const renderedHook = renderHook(() => useDisclosure(true, { onOpen, onClose }));
+      const renderedHook = renderHook(() =>
+        useDisclosure(true, { onOpen, onClose }),
+      );
       result = renderedHook.result;
       jest.clearAllMocks();
     });

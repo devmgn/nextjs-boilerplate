@@ -18,13 +18,25 @@ const meta: Meta<typeof useDisclosure> = {
       <>
         <Typography>isOpen: {isOpen.toString()}</Typography>
         <div style={{ display: 'flex', gap: 8, marginTop: 16 }}>
-          <button style={{ border: '1px solid grey', padding: 8 }} type="button" onClick={open}>
+          <button
+            style={{ border: '1px solid grey', padding: 8 }}
+            type="button"
+            onClick={open}
+          >
             open
           </button>
-          <button style={{ border: '1px solid grey', padding: 8 }} type="button" onClick={close}>
+          <button
+            style={{ border: '1px solid grey', padding: 8 }}
+            type="button"
+            onClick={close}
+          >
             close
           </button>
-          <button style={{ border: '1px solid grey', padding: 8 }} type="button" onClick={toggle}>
+          <button
+            style={{ border: '1px solid grey', padding: 8 }}
+            type="button"
+            onClick={toggle}
+          >
             toggle
           </button>
         </div>
