@@ -14,17 +14,16 @@ import Backdrop from '../Backdrop';
 import Portal from '../Portal';
 import ModalContainer from './ModalContainer';
 import ModalRoot from './ModalRoot';
-import type { WithChildrenProps } from '@/types';
 import type { ReactFocusLockProps } from 'react-focus-lock/interfaces';
 
-export type ModalProps = {
+export type ModalProps = React.PropsWithChildren<{
   isOpen: boolean;
   close: () => void;
   transitionDuration?: number;
   closeTriggerAttribute?: string;
   disableCloseOnEscKeydown?: boolean;
   focusLockProps?: Omit<ReactFocusLockProps, 'as' | 'lockProps'>;
-} & WithChildrenProps;
+}>;
 
 const Modal: React.FC<ModalProps> = ({
   isOpen,

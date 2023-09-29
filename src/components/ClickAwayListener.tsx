@@ -2,12 +2,11 @@
 
 import { cloneElement, isValidElement, useRef } from 'react';
 import { useClickAway } from 'react-use';
-import type { WithChildrenProps } from '@/types';
 
-type ClickAwayListenerProps = {
+type ClickAwayListenerProps = React.PropsWithChildren<{
   onClickAway: Parameters<typeof useClickAway>[1];
   events?: Parameters<typeof useClickAway>[2];
-} & WithChildrenProps;
+}>;
 
 const ClickAwayListener: React.FC<ClickAwayListenerProps> = ({
   onClickAway,

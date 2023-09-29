@@ -5,9 +5,8 @@ import {
   StyledComponentsRegistry,
 } from '@/features/styledComponents';
 import ThemeProvider from './ThemeProvider';
-import type { WithChildrenProps } from '@/types';
 
-const RootProvider: React.FC<WithChildrenProps> = ({ children }) => {
+const RootProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
     <StyledComponentsRegistry>
       <ThemeProvider>

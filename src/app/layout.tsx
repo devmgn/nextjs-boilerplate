@@ -2,7 +2,6 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { APP_NAME, DEFAULT_DESCRIPTION } from '@/config/env';
 import RootProvider from '@/providers/RootProvider';
-import type { WithChildrenProps } from '@/types';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {

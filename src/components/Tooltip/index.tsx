@@ -4,12 +4,11 @@ import ClickAwayListener from '../ClickAwayListener';
 import Popper from '../Popper';
 import TooltipArrow from './TooltipArrow';
 import TooltipRoot from './TooltipRoot';
-import type { WithChildrenProps } from '@/types';
 import type React from 'react';
 
-type TooltipProps = {
+type TooltipProps = React.PropsWithChildren<{
   tooltipContent: React.ReactNode;
-} & WithChildrenProps;
+}>;
 
 const Tooltip: React.FC<TooltipProps> = ({ tooltipContent, children }) => {
   const [open, toggle] = useToggle(false);

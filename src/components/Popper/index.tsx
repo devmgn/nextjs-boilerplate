@@ -6,8 +6,6 @@ import { usePopper } from 'react-popper';
 import styled, { useTheme } from 'styled-components';
 import Portal from '../Portal';
 import PopperRoot from './PopperRoot';
-import type { WithChildrenProps } from '@/types';
-import type React from 'react';
 import type { CSSTransitionProps } from 'react-transition-group/CSSTransition';
 import type { OverrideProperties } from 'type-fest';
 
@@ -15,7 +13,7 @@ const StyledPopper = styled.div({});
 
 const Arrow = styled.span({});
 
-type PopperProps = {
+type PopperProps = React.PropsWithChildren<{
   popperContent: React.ReactNode;
   cssTransitionProps?: OverrideProperties<
     CSSTransitionProps,
@@ -25,7 +23,7 @@ type PopperProps = {
   popperComponent?: React.ElementType;
   arrowComponent?: React.ElementType;
   arrowOptions?: Parameters<typeof usePopper>[2];
-} & WithChildrenProps;
+}>;
 
 const Popper: React.FC<PopperProps> = forwardRef(
   (
