@@ -18,7 +18,7 @@ const useDebouncedValue = <T>(
     }
   }, [isComposing, value]);
 
-  const [, cancel] = useDebounce(update, delay, [value]);
+  const [, cancel] = useDebounce(update, delay, [update]);
 
   useUnmount(cancel);
 

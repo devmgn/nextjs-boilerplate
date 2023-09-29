@@ -9,6 +9,8 @@ module.exports = {
     'airbnb/hooks',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
+    'plugin:@typescript-eslint/strict',
+    'plugin:@typescript-eslint/stylistic-type-checked',
     'next/core-web-vitals',
     'prettier',
   ],
@@ -22,20 +24,8 @@ module.exports = {
         message: "Don't declare non-const enums",
       },
     ],
-    'react/function-component-definition': [
-      'error',
-      { namedComponents: 'arrow-function' },
-    ],
-    'react/jsx-props-no-spreading': 'off',
-    'react/prop-types': 'off',
-    'react-hooks/exhaustive-deps': [
-      'warn',
-      {
-        additionalHooks:
-          '^use(Async|AsyncFn|AsyncRetry|UpdateEffect|IsomorphicLayoutEffect|DeepCompareEffect|ShallowCompareEffect)$',
-      },
-    ],
-    '@next/next/no-img-element': 'off',
+    'lines-between-class-members': 'off',
+    'sort-imports': ['error', { ignoreDeclarationSort: true }],
     'import/order': [
       'error',
       {
@@ -81,40 +71,52 @@ module.exports = {
         },
       },
     ],
-    'sort-imports': ['error', { ignoreDeclarationSort: true }],
+    'react/function-component-definition': [
+      'error',
+      { namedComponents: 'arrow-function' },
+    ],
+    'react/jsx-props-no-spreading': 'off',
+    'react/prop-types': 'off',
+    'react-hooks/exhaustive-deps': [
+      'warn',
+      {
+        additionalHooks:
+          '^use(Async|AsyncFn|AsyncRetry|UpdateEffect|IsomorphicLayoutEffect|DeepCompareEffect|ShallowCompareEffect)$',
+      },
+    ],
+    '@next/next/no-img-element': 'off',
+    '@typescript-eslint/consistent-type-definitions': 'off',
+    '@typescript-eslint/naming-convention': [
+      'warn',
+      {
+        selector: ['interface', 'typeAlias', 'class'],
+        format: ['PascalCase'],
+      },
+      {
+        selector: 'variable',
+        format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
+      },
+      {
+        selector: 'function',
+        format: ['camelCase', 'PascalCase'],
+      },
+    ],
+    '@typescript-eslint/lines-between-class-members': [
+      'error',
+      'always',
+      { exceptAfterSingleLine: true },
+    ],
+    '@typescript-eslint/consistent-type-imports': [
+      'error',
+      { prefer: 'type-imports' },
+    ],
   },
   overrides: [
     {
       files: ['**/*.ts?(x)'],
-      extends: [
-        'plugin:@typescript-eslint/strict',
-        'plugin:@typescript-eslint/stylistic-type-checked',
-      ],
       parser: '@typescript-eslint/parser',
       parserOptions: {
         project: true,
-      },
-      rules: {
-        '@typescript-eslint/consistent-type-definitions': 'off',
-        '@typescript-eslint/naming-convention': [
-          'warn',
-          {
-            selector: ['interface', 'typeAlias', 'class'],
-            format: ['PascalCase'],
-          },
-          {
-            selector: 'variable',
-            format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
-          },
-          {
-            selector: 'function',
-            format: ['camelCase', 'PascalCase'],
-          },
-        ],
-        '@typescript-eslint/consistent-type-imports': [
-          'error',
-          { prefer: 'type-imports' },
-        ],
       },
     },
     {
