@@ -1,11 +1,12 @@
 const withPlugins = require('next-compose-plugins');
 const withBundleAnalyzer = require('@next/bundle-analyzer');
+const withVanillaExtract =
+  require('@vanilla-extract/next-plugin').createVanillaExtractPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   poweredByHeader: false,
   compiler: {
-    styledComponents: true,
     reactRemoveProperties: true,
   },
   webpack(config) {
@@ -32,6 +33,9 @@ const nextConfig = {
 };
 
 module.exports = withPlugins(
-  [withBundleAnalyzer({ enabled: process.env.ANALYZE === 'true' })],
+  [
+    withBundleAnalyzer({ enabled: process.env.ANALYZE === 'true' }),
+    withVanillaExtract(),
+  ],
   nextConfig,
 );

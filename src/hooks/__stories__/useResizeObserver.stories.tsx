@@ -1,4 +1,4 @@
-import Typography from '@/components/Typography';
+import { Text } from '@radix-ui/themes';
 import useResizeObserver from '../useResizeObserver';
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -13,7 +13,7 @@ const meta: Meta<typeof useResizeObserver> = {
           ref={ref}
           style={{ border: '1px solid grey', resize: 'both' }}
         />
-        <Typography>rect: {JSON.stringify(rect)}</Typography>
+        <Text>rect: {JSON.stringify(rect)}</Text>
       </>
     );
   },
