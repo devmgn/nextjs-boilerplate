@@ -3,6 +3,9 @@ import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import locale from 'axe-core/locales/ja.json';
 import RootProvider from '../src/providers/RootProvider';
 import type { Preview } from '@storybook/react';
+// @ts-ignore
+import css from '@radix-ui/themes/styles.css';
+css;
 
 const preview: Preview = {
   parameters: {
