@@ -1,4 +1,4 @@
-import Typography from '@/components/Typography';
+import { Text } from '@radix-ui/themes';
 import useDisclosure from '../useDisclosure';
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -16,7 +16,7 @@ const meta: Meta<typeof useDisclosure> = {
 
     return (
       <>
-        <Typography>isOpen: {isOpen.toString()}</Typography>
+        <Text>isOpen: {isOpen.toString()}</Text>
         <div style={{ display: 'flex', gap: 8, marginTop: 16 }}>
           <button
             style={{ border: '1px solid grey', padding: 8 }}

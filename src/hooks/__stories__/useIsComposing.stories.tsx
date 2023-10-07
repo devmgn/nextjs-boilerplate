@@ -1,4 +1,4 @@
-import Typography from '@/components/Typography';
+import { Text } from '@radix-ui/themes';
 import useIsComposing from '../useIsComposing';
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -9,7 +9,7 @@ const meta: Meta<typeof useIsComposing> = {
 
     return (
       <>
-        <Typography>isComposing: {isComposing.toString()}</Typography>
+        <Text>isComposing: {isComposing.toString()}</Text>
         <input
           type="text"
           style={{

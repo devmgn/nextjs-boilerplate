@@ -1,4 +1,4 @@
-import Typography from '@/components/Typography';
+import { Text } from '@radix-ui/themes';
 import useDebouncedValue from '../useDebouncedValue';
 import useInputValue from '../useInputValue';
 import type { Meta, StoryObj } from '@storybook/react';
@@ -12,7 +12,7 @@ const meta: Meta<typeof useDebouncedValue> = {
 
     return (
       <>
-        <Typography>
+        <Text>
           delay:
           <input
             type="number"
@@ -25,8 +25,8 @@ const meta: Meta<typeof useDebouncedValue> = {
               marginLeft: 8,
             }}
           />
-        </Typography>
-        <Typography>debouncedValue: {debouncedValue.toString()}</Typography>
+        </Text>
+        <Text>debouncedValue: {debouncedValue.toString()}</Text>
         <input
           type="text"
           value={value}
