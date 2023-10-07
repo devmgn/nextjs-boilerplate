@@ -11,7 +11,7 @@ const meta: Meta<typeof useIsComposing> = {
       <>
         <Flex gap="2" direction="column">
           <Flex align="center" gap="2">
-            <Text>isOpen</Text>
+            <Text>isComposing</Text>
             <TextField.Input
               type="text"
               value={isComposing.toString()}
