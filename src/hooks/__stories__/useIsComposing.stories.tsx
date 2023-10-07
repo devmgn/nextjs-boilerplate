@@ -1,4 +1,4 @@
-import { Text } from '@radix-ui/themes';
+import { Flex, Text, TextField } from '@radix-ui/themes';
 import useIsComposing from '../useIsComposing';
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -9,17 +9,17 @@ const meta: Meta<typeof useIsComposing> = {
 
     return (
       <>
-        <Text>isComposing: {isComposing.toString()}</Text>
-        <input
-          type="text"
-          style={{
-            width: '100%',
-            padding: 8,
-            border: '1px solid #ddd',
-            background: '#fff',
-            marginTop: 16,
-          }}
-        />
+        <Flex gap="2" direction="column">
+          <Flex align="center" gap="2">
+            <Text>isOpen</Text>
+            <TextField.Input
+              type="text"
+              value={isComposing.toString()}
+              readOnly
+            />
+          </Flex>
+        </Flex>
+        <TextField.Input type="text" mt="4" />
       </>
     );
   },
