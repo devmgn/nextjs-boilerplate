@@ -6,16 +6,15 @@
   },
   "packageManager": "yarn@3.6.4",
   "scripts": {
-    "clean": "rm -rf node_modules yarn.lock yarn-error.log tsconfig.tsbuildinfo .stylelintcache coverage .next .swc out storybook-static .yarn/cache .yarn/install-state.gz",
+    "clean": "rm -rf node_modules yarn.lock yarn-error.log tsconfig.tsbuildinfo coverage .next .swc out storybook-static .yarn/cache .yarn/install-state.gz",
     "prepare": "husky install",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint:next": "next lint -d src --fix",
-    "lint:style": "stylelint 'src/**/*.tsx' -f verbose --fix --cache",
     "prettier": "prettier src --write --cache",
     "check-types": "tsc --noEmit",
-    "lint": "yarn prettier && yarn check-types && yarn lint:next && yarn lint:style",
+    "lint": "yarn prettier && yarn check-types && yarn lint:next",
     "test": "jest --passWithNoTests --verbose",
     "test:watch": "jest --watch",
     "test:coverage": "jest --collect-coverage",
@@ -76,9 +75,6 @@
     "next-compose-plugins": "2.2.1",
     "prettier": "3.0.3",
     "storybook": "7.4.6",
-    "stylelint": "15.10.3",
-    "stylelint-config-recess-order": "4.3.0",
-    "stylelint-config-recommended": "13.0.0",
     "typescript": "5.2.2"
   },
   "resolutions": {
