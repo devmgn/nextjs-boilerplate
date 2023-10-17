@@ -16,6 +16,7 @@ module.exports = {
   ],
   rules: {
     'arrow-body-style': 'off',
+    'import/prefer-default-export': 'off',
     'no-console': ['warn', { allow: ['error', 'warn'] }],
     'no-restricted-syntax': [
       'error',
@@ -42,7 +43,7 @@ module.exports = {
         ],
         pathGroups: [
           {
-            pattern: 'react',
+            pattern: '{react,react/**}',
             group: 'builtin',
             position: 'before',
           },
@@ -52,7 +53,7 @@ module.exports = {
             position: 'before',
           },
           {
-            pattern: 'next/**',
+            pattern: '{next,next/**}',
             group: 'builtin',
             position: 'before',
           },

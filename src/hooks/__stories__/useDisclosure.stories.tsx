@@ -1,4 +1,4 @@
-import Typography from '@/components/Typography';
+import { Button, Flex, Text, TextField } from '@radix-ui/themes';
 import useDisclosure from '../useDisclosure';
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -16,30 +16,17 @@ const meta: Meta<typeof useDisclosure> = {
 
     return (
       <>
-        <Typography>isOpen: {isOpen.toString()}</Typography>
-        <div style={{ display: 'flex', gap: 8, marginTop: 16 }}>
-          <button
-            style={{ border: '1px solid grey', padding: 8 }}
-            type="button"
-            onClick={open}
-          >
-            open
-          </button>
-          <button
-            style={{ border: '1px solid grey', padding: 8 }}
-            type="button"
-            onClick={close}
-          >
-            close
-          </button>
-          <button
-            style={{ border: '1px solid grey', padding: 8 }}
-            type="button"
-            onClick={toggle}
-          >
-            toggle
-          </button>
-        </div>
+        <Flex gap="2" direction="column">
+          <Flex align="center" gap="2">
+            <Text>isOpen</Text>
+            <TextField.Input type="text" value={isOpen.toString()} readOnly />
+          </Flex>
+        </Flex>
+        <Flex gap="2" mt="6">
+          <Button onClick={open}>OPEN</Button>
+          <Button onClick={close}>CLOSE</Button>
+          <Button onClick={toggle}>TOGGLE</Button>
+        </Flex>
       </>
     );
   },

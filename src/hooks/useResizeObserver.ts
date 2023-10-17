@@ -2,17 +2,6 @@ import { useCallback, useMemo, useRef, useState } from 'react';
 import { debounce } from 'lodash-es';
 import { useLifecycles } from 'react-use';
 
-const initialState: Omit<DOMRectReadOnly, 'toJSON'> = {
-  x: 0,
-  y: 0,
-  width: 0,
-  height: 0,
-  top: 0,
-  left: 0,
-  bottom: 0,
-  right: 0,
-};
-
 const useResizeObserver = <T extends HTMLElement>(
   delay?: Parameters<typeof debounce>[1],
   options?: {
@@ -21,7 +10,7 @@ const useResizeObserver = <T extends HTMLElement>(
   },
 ) => {
   const ref = useRef<T>(null);
-  const [rect, setRect] = useState<typeof initialState>(initialState);
+  const [rect, setRect] = useState<DOMRect>(new DOMRect(0, 0, 0, 0));
   const { debounceOptions, observerOptions } = options ?? {};
 
   const update = useCallback(
