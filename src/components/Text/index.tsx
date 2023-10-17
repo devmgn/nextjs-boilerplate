@@ -1,14 +1,29 @@
-import { Text as RuiText } from '@radix-ui/themes';
+import { Text as RaText } from '@radix-ui/themes';
 import clsx from 'clsx';
+import { colorVariant } from '@/config/css/theme.css';
 import { text } from './Text.css';
-import type { TextProps } from '@radix-ui/themes/dist/cjs/components/text';
+import type { Theme } from '@/types';
+import type { TextProps as RaTextProps } from '@radix-ui/themes/dist/cjs/components/text';
+import type { OverrideProperties } from 'type-fest';
+
+type TextProps = OverrideProperties<
+  RaTextProps,
+  {
+    color?: Theme['color'];
+  }
+>;
 
 export const Text: React.FC<TextProps> = ({
   className,
+  color = 'text',
   weight = 'regular',
   ...props
 }) => {
   return (
-    <RuiText {...props} weight={weight} className={clsx(text, className)} />
+    <RaText
+      {...props}
+      weight={weight}
+      className={clsx(text, className, colorVariant[color])}
+    />
   );
 };
