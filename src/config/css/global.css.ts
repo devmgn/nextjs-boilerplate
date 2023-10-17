@@ -1,5 +1,5 @@
 import { globalStyle } from '@vanilla-extract/css';
-import { FONT_FAMILY } from './config';
+import { theme } from './theme.css';
 
 /**
  * Main root
@@ -18,7 +18,7 @@ globalStyle('*,::before,::after', {
 });
 
 globalStyle(':where(:root)', {
-  fontFamily: FONT_FAMILY.SANS_SERIF,
+  fontFamily: theme.fontFamily.sansSerif,
   lineHeight: 1,
   overflowWrap: 'break-word',
   textRendering: 'optimizeSpeed',
@@ -36,7 +36,7 @@ globalStyle(':where(ol, ul, menu)', {
 });
 
 globalStyle(':where(pre)', {
-  fontFamily: FONT_FAMILY.MONOSPACE,
+  fontFamily: theme.fontFamily.monospace,
 });
 
 /**
@@ -47,7 +47,7 @@ globalStyle(':where(a)', {
 });
 
 globalStyle(':where(code, kbd, samp)', {
-  fontFamily: FONT_FAMILY.MONOSPACE,
+  fontFamily: theme.fontFamily.monospace,
 });
 
 globalStyle(':where(q)::before, :where(q)::after', {

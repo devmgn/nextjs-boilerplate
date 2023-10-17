@@ -5,6 +5,4 @@ export const svgIcon = style({
   flexShrink: 0,
   width: '1em',
   height: '1em',
-  color: 'inherit',
-  fontSize: 20,
 });

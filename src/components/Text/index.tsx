@@ -1,6 +1,6 @@
 import { Text as RaText } from '@radix-ui/themes';
 import clsx from 'clsx';
-import { colorVariant } from '@/config/css/theme.css';
+import { colorVariant } from '@/config';
 import { text } from './Text.css';
 import type { Theme } from '@/types';
 import type { TextProps as RaTextProps } from '@radix-ui/themes/dist/cjs/components/text';
