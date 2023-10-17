@@ -1,7 +1,7 @@
 import { Box } from '@radix-ui/themes';
 import clsx from 'clsx';
-import { colorVariant, iconSizeVariant } from '@/config';
-import { svgIcon } from './SvgIcon.css';
+import { colorVariant } from '@/config';
+import { sizeVariant, svgIcon, themeClass } from './SvgIcon.css';
 import type { Theme } from '@/types';
 import type { BoxProps } from '@radix-ui/themes/dist/cjs/components/box';
 import type { Merge } from 'type-fest';
@@ -11,7 +11,7 @@ type SvgIconProps = Merge<
     children: React.ReactElement;
     label: string;
     color?: Theme['color'];
-    size?: Theme['iconSize'];
+    size?: keyof typeof sizeVariant;
   },
   Omit<BoxProps, 'children' | 'asChild' | 'color'>
 >;
@@ -35,9 +35,10 @@ export const SvgIcon: React.FC<SvgIconProps> = ({
       focusable={false}
       className={clsx(
         className,
-        colorVariant[color],
-        iconSizeVariant[size],
         svgIcon,
+        colorVariant[color],
+        sizeVariant[size],
+        themeClass,
       )}
       asChild
     >

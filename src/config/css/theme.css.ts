@@ -1,6 +1,5 @@
 import { createGlobalTheme, styleVariants } from '@vanilla-extract/css';
-
-const toPx = (number: number) => `${number}px`;
+import { numberToCssUnit } from '@/utils/numberToCssUnit';
 
 export const theme = createGlobalTheme(':root', {
   color: {
@@ -15,18 +14,11 @@ export const theme = createGlobalTheme(':root', {
     monospace: 'monospace, monospace',
   },
   breakpoint: {
-    xs: toPx(375),
-    sm: toPx(600),
-    md: toPx(900),
-    lg: toPx(1200),
-    xl: toPx(1536),
-  },
-  iconSize: {
-    xs: toPx(12),
-    sm: toPx(14),
-    md: toPx(16),
-    lg: toPx(20),
-    xl: toPx(24),
+    xs: numberToCssUnit(375),
+    sm: numberToCssUnit(600),
+    md: numberToCssUnit(900),
+    lg: numberToCssUnit(1200),
+    xl: numberToCssUnit(1536),
   },
 });
 
@@ -35,12 +27,4 @@ export const colorVariant = styleVariants({
   secondary: { color: theme.color.secondary },
   text: { color: theme.color.text },
   contrastText: { color: theme.color.contrastText },
-});
-
-export const iconSizeVariant = styleVariants({
-  xs: { fontSize: theme.iconSize.xs },
-  sm: { fontSize: theme.iconSize.sm },
-  md: { fontSize: theme.iconSize.md },
-  lg: { fontSize: theme.iconSize.lg },
-  xl: { fontSize: theme.iconSize.xl },
 });

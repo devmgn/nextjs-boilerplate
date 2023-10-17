@@ -1,4 +1,4 @@
-const isKeyOf = <T extends object>(
+export const isKeyOf = <T extends object>(
   unionObject: T,
   key: unknown,
 ): key is keyof T => {
@@ -8,5 +8,3 @@ const isKeyOf = <T extends object>(
 
   return Object.keys(unionObject).includes(key.toString());
 };
-
-export default isKeyOf;

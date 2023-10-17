@@ -1,4 +1,4 @@
-import isKeyOf from '../isKeyOf';
+import { isKeyOf } from '..';
 
 const ENUM_OBJECT = {
   NAME: 'John Smith',
