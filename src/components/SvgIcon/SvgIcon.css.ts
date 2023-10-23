@@ -1,5 +1,5 @@
-import { createTheme, style, styleVariants } from '@vanilla-extract/css';
-import { numberToCssUnit } from '@/utils/numberToCssUnit';
+import { createTheme, style } from '@vanilla-extract/css';
+import { createStyleVariants, numberToCssUnit } from '@/utils';
 
 export const svgIcon = style({
   display: 'inline-flex',
@@ -16,10 +16,4 @@ export const [themeClass, vars] = createTheme({
   xl: numberToCssUnit(32),
 });
 
-export const sizeVariant = styleVariants({
-  xs: { fontSize: vars.xs },
-  sm: { fontSize: vars.sm },
-  md: { fontSize: vars.md },
-  lg: { fontSize: vars.lg },
-  xl: { fontSize: vars.xl },
-});
+export const sizeVariant = createStyleVariants(vars, 'fontSize');
