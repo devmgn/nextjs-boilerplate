@@ -1,3 +1,6 @@
+/**
+ * ネストの深いオブジェクトを"."で連結したキーでフラットにするユーティリティ型
+ */
 export type FlattenObjectWithDottedKeys<T> = T extends Record<
   string | number,
   unknown
