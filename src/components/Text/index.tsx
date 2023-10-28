@@ -1,29 +1,36 @@
+'use client';
+
 import { Text as RaText } from '@radix-ui/themes';
 import clsx from 'clsx';
 import { colorVariant } from '@/config';
 import { text } from './Text.css';
-import type { Theme } from '@/types';
 import type { TextProps as RaTextProps } from '@radix-ui/themes/dist/cjs/components/text';
-import type { OverrideProperties } from 'type-fest';
+import type { Merge } from 'type-fest';
 
-type TextProps = OverrideProperties<
-  RaTextProps,
+type TextProps = Merge<
+  Omit<RaTextProps, 'color'>,
   {
-    color?: Theme['color'];
+    color?: keyof typeof colorVariant;
   }
 >;
 
 export const Text: React.FC<TextProps> = ({
   className,
-  color = 'text',
+  as = 'p',
   weight = 'regular',
+  color = 'text',
   ...props
 }) => {
   return (
-    <RaText
-      {...props}
-      weight={weight}
-      className={clsx(text, className, colorVariant[color])}
-    />
+    <>
+      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+      {/* @ts-expect-error */}
+      <RaText
+        {...props}
+        as={as}
+        weight={weight}
+        className={clsx(className, text, colorVariant[color])}
+      />
+    </>
   );
 };

@@ -18,7 +18,7 @@ globalStyle('*,::before,::after', {
 });
 
 globalStyle(':where(:root)', {
-  fontFamily: theme.fontFamily.sansSerif,
+  fontFamily: theme.font.family.sansSerif,
   lineHeight: 1,
   overflowWrap: 'break-word',
   textRendering: 'optimizeSpeed',
@@ -36,7 +36,7 @@ globalStyle(':where(ol, ul, menu)', {
 });
 
 globalStyle(':where(pre)', {
-  fontFamily: theme.fontFamily.monospace,
+  fontFamily: theme.font.family.monospace,
 });
 
 /**
@@ -47,7 +47,7 @@ globalStyle(':where(a)', {
 });
 
 globalStyle(':where(code, kbd, samp)', {
-  fontFamily: theme.fontFamily.monospace,
+  fontFamily: theme.font.family.monospace,
 });
 
 globalStyle(':where(q)::before, :where(q)::after', {

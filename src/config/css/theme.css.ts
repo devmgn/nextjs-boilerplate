@@ -1,5 +1,5 @@
-import { createGlobalTheme, styleVariants } from '@vanilla-extract/css';
-import { numberToCssUnit } from '@/utils/numberToCssUnit';
+import { createGlobalTheme } from '@vanilla-extract/css';
+import { createStyleVariants, numberToCssUnit } from '@/utils';
 
 export const theme = createGlobalTheme(':root', {
   color: {
@@ -8,10 +8,12 @@ export const theme = createGlobalTheme(':root', {
     text: '#111',
     contrastText: '#eee',
   },
-  fontFamily: {
-    sansSerif: 'system-ui, -apple-system, sans-serif',
-    serif: 'serif',
-    monospace: 'monospace, monospace',
+  font: {
+    family: {
+      sansSerif: 'system-ui, -apple-system, sans-serif',
+      serif: 'serif',
+      monospace: 'monospace, monospace',
+    },
   },
   breakpoint: {
     xs: numberToCssUnit(375),
@@ -22,9 +24,8 @@ export const theme = createGlobalTheme(':root', {
   },
 });
 
-export const colorVariant = styleVariants({
-  primary: { color: theme.color.primary },
-  secondary: { color: theme.color.secondary },
-  text: { color: theme.color.text },
-  contrastText: { color: theme.color.contrastText },
-});
+export const colorVariant = createStyleVariants(theme.color, 'color');
+export const fontFamilyVariant = createStyleVariants(
+  theme.font.family,
+  'fontFamily',
+);
