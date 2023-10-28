@@ -22,11 +22,15 @@ export const Text: React.FC<TextProps> = ({
   ...props
 }) => {
   return (
-    <RaText
-      {...props}
-      as={as}
-      weight={weight}
-      className={clsx(className, text, colorVariant[color])}
-    />
+    <>
+      {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+      {/* @ts-expect-error */}
+      <RaText
+        {...props}
+        as={as}
+        weight={weight}
+        className={clsx(className, text, colorVariant[color])}
+      />
+    </>
   );
 };
