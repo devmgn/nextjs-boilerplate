@@ -8,10 +8,12 @@ const meta: Meta<typeof SvgIcon> = {
   args: {
     children: <Note />,
     label: 'svgIcon',
+    variants: {},
   },
 };
 
 export default meta;
+
 type Story = StoryObj<typeof SvgIcon>;
 
 export const Default: Story = {};

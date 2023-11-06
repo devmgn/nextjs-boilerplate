@@ -1,4 +1,3 @@
-import { Table, TextArea, TextField } from '@radix-ui/themes';
 import useResizeObserver from '../useResizeObserver';
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -9,28 +8,25 @@ const meta: Meta<typeof useResizeObserver> = {
 
     return (
       <>
-        <Table.Root>
-          <Table.Header>
-            <Table.Row>
+        <table>
+          <thead>
+            <tr>
               {Object.keys(rect.toJSON()).map((key) => (
-                <Table.ColumnHeaderCell key={key}>
-                  rect.{key}
-                </Table.ColumnHeaderCell>
+                <th key={key}>rect.{key}</th>
               ))}
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
+            </tr>
+          </thead>
+          <tbody>
             {Object.entries<number>(rect.toJSON()).map(([key, value]) => (
-              <Table.ColumnHeaderCell key={key}>
-                <TextField.Input type="text" value={value} readOnly />
-              </Table.ColumnHeaderCell>
+              <td key={key}>
+                <input type="text" value={value} readOnly />
+              </td>
             ))}
-          </Table.Body>
-        </Table.Root>
-        <TextArea
+          </tbody>
+        </table>
+        <textarea
           ref={ref}
           readOnly
-          mt="3"
           style={{ minHeight: 'auto', resize: 'both' }}
         />
       </>

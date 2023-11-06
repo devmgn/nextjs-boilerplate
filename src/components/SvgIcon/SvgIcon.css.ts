@@ -1,19 +1,27 @@
-import { createTheme, style } from '@vanilla-extract/css';
-import { createStyleVariants, numberToCssUnit } from '@/utils';
+import { recipe } from '@vanilla-extract/recipes';
+import { colorVariant } from '@/config';
+import { numberToCssUnit } from '@/utils';
+import type { RecipeVariants } from '@vanilla-extract/recipes';
 
-export const svgIcon = style({
-  display: 'inline-flex',
-  flexShrink: 0,
-  width: '1em',
-  height: '1em',
+export const svgIcon = recipe({
+  base: {
+    width: '1em',
+    height: '1em',
+  },
+  variants: {
+    size: {
+      xs: { fontSize: numberToCssUnit(12) },
+      sm: { fontSize: numberToCssUnit(16) },
+      md: { fontSize: numberToCssUnit(20) },
+      lg: { fontSize: numberToCssUnit(24) },
+      xl: { fontSize: numberToCssUnit(32) },
+    },
+    color: colorVariant,
+  },
+  defaultVariants: {
+    size: 'md',
+    color: 'text',
+  },
 });
 
-export const [themeClass, vars] = createTheme({
-  xs: numberToCssUnit(12),
-  sm: numberToCssUnit(14),
-  md: numberToCssUnit(16),
-  lg: numberToCssUnit(24),
-  xl: numberToCssUnit(32),
-});
-
-export const sizeVariant = createStyleVariants(vars, 'fontSize');
+export type SvgIconVariants = RecipeVariants<typeof svgIcon>;

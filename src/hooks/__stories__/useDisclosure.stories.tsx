@@ -1,4 +1,3 @@
-import { Button, Flex, Text, TextField } from '@radix-ui/themes';
 import useDisclosure from '../useDisclosure';
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -16,17 +15,23 @@ const meta: Meta<typeof useDisclosure> = {
 
     return (
       <>
-        <Flex gap="2" direction="column">
-          <Flex align="center" gap="2">
-            <Text>isOpen</Text>
-            <TextField.Input type="text" value={isOpen.toString()} readOnly />
-          </Flex>
-        </Flex>
-        <Flex gap="2" mt="6">
-          <Button onClick={open}>OPEN</Button>
-          <Button onClick={close}>CLOSE</Button>
-          <Button onClick={toggle}>TOGGLE</Button>
-        </Flex>
+        <div>
+          <div>
+            <p>isOpen</p>
+            <input type="text" value={isOpen.toString()} readOnly />
+          </div>
+        </div>
+        <div>
+          <button onClick={open} type="button">
+            OPEN
+          </button>
+          <button onClick={close} type="button">
+            CLOSE
+          </button>
+          <button onClick={toggle} type="button">
+            TOGGLE
+          </button>
+        </div>
       </>
     );
   },

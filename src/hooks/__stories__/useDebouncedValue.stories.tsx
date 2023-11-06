@@ -1,4 +1,3 @@
-import { Flex, Heading, Text, TextField } from '@radix-ui/themes';
 import useDebouncedValue from '../useDebouncedValue';
 import useInputValue from '../useInputValue';
 import type { Meta, StoryObj } from '@storybook/react';
@@ -12,20 +11,20 @@ const meta: Meta<typeof useDebouncedValue> = {
 
     return (
       <>
-        <Flex gap="2" direction="column">
-          <Flex align="center" gap="2">
-            <Text>debouncedValue:</Text>
-            <TextField.Input type="text" value={debouncedValue} readOnly />
-          </Flex>
-          <TextField.Input type="text" value={value} onChange={setValue} />
-        </Flex>
-        <Flex gap="2" direction="column" mt="6">
-          <Heading size="3">Option</Heading>
-          <Flex align="center" gap="2">
-            <Text>delay:</Text>
-            <TextField.Input type="number" value={delay} onChange={setDelay} />
-          </Flex>
-        </Flex>
+        <div>
+          <div>
+            <p>debouncedValue:</p>
+            <input type="text" value={debouncedValue} readOnly />
+          </div>
+          <input type="text" value={value} onChange={setValue} />
+        </div>
+        <div>
+          <h2>Option</h2>
+          <div>
+            <p>delay:</p>
+            <input type="number" value={delay} onChange={setDelay} />
+          </div>
+        </div>
       </>
     );
   },

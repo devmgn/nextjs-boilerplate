@@ -1,10 +1,10 @@
-import { Box } from '@radix-ui/themes';
-import type { BoxProps } from '@radix-ui/themes/dist/cjs/components/box';
+import { Slot } from '@radix-ui/react-slot';
+import type { SlotProps } from '@radix-ui/react-slot';
 
-export const Footer: React.FC<BoxProps> = (props) => {
+export const Footer: React.FC<SlotProps> = (props) => {
   return (
-    <Box {...props} asChild>
+    <Slot {...props}>
       <footer>header</footer>
-    </Box>
+    </Slot>
   );
 };

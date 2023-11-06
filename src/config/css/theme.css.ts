@@ -14,6 +14,14 @@ export const theme = createGlobalTheme(':root', {
       serif: 'serif',
       monospace: 'monospace, monospace',
     },
+    lineHeight: {
+      initial: '1',
+      normal: '1.5',
+    },
+    weight: {
+      bold: '700',
+      normal: '400',
+    },
   },
   breakpoint: {
     xs: numberToCssUnit(375),

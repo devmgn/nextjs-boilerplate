@@ -1,12 +1,12 @@
-import { Box } from '@radix-ui/themes';
+import { Slot } from '@radix-ui/react-slot';
 import clsx from 'clsx';
 import { header } from './Header.css';
-import type { BoxProps } from '@radix-ui/themes/dist/cjs/components/box';
+import type { SlotProps } from '@radix-ui/react-slot';
 
-export const Header: React.FC<BoxProps> = ({ className, ...props }) => {
+export const Header: React.FC<SlotProps> = ({ className, ...props }) => {
   return (
-    <Box {...props} className={clsx(header, className)} asChild>
+    <Slot {...props} className={clsx(header, className)}>
       <header>header</header>
-    </Box>
+    </Slot>
   );
 };

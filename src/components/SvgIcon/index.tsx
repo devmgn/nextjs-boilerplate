@@ -1,30 +1,27 @@
-import { Box } from '@radix-ui/themes';
+import { Slot } from '@radix-ui/react-slot';
 import clsx from 'clsx';
-import { colorVariant } from '@/config';
-import { sizeVariant, svgIcon, themeClass } from './SvgIcon.css';
-import type { BoxProps } from '@radix-ui/themes/dist/cjs/components/box';
+import { svgIcon } from './SvgIcon.css';
+import type { SvgIconVariants } from './SvgIcon.css';
+import type { SlotProps } from '@radix-ui/react-slot';
 import type { Merge } from 'type-fest';
 
 type SvgIconProps = Merge<
   {
-    children: React.ReactElement;
     label: string;
-    color?: keyof typeof colorVariant;
-    size?: keyof typeof sizeVariant;
+    variants: SvgIconVariants;
   },
-  Omit<BoxProps, 'children' | 'asChild' | 'color'>
+  Omit<SlotProps, 'color'>
 >;
 
 export const SvgIcon: React.FC<SvgIconProps> = ({
   label,
   className,
-  color = 'primary',
-  size = 'md',
+  variants,
   children,
   ...props
 }) => {
   return (
-    <Box
+    <Slot
       {...props}
       aria-hidden="true"
       aria-label={label}
@@ -32,16 +29,9 @@ export const SvgIcon: React.FC<SvgIconProps> = ({
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error
       focusable={false}
-      className={clsx(
-        className,
-        svgIcon,
-        colorVariant[color],
-        sizeVariant[size],
-        themeClass,
-      )}
-      asChild
+      className={clsx(className, svgIcon(variants))}
     >
       {children}
-    </Box>
+    </Slot>
   );
 };
