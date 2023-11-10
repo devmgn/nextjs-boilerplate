@@ -5797,7 +5797,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vanilla-extract/css@npm:1.13.0, @vanilla-extract/css@npm:^1.10.0":
+"@vanilla-extract/css@npm:1.14.0":
+  version: 1.14.0
+  resolution: "@vanilla-extract/css@npm:1.14.0"
+  dependencies:
+    "@emotion/hash": "npm:^0.9.0"
+    "@vanilla-extract/private": "npm:^1.0.3"
+    chalk: "npm:^4.1.1"
+    css-what: "npm:^6.1.0"
+    cssesc: "npm:^3.0.0"
+    csstype: "npm:^3.0.7"
+    deep-object-diff: "npm:^1.1.9"
+    deepmerge: "npm:^4.2.2"
+    media-query-parser: "npm:^2.0.2"
+    modern-ahocorasick: "npm:^1.0.0"
+    outdent: "npm:^0.8.0"
+  checksum: 8e5d6419af7249c873db4acf9751044245a004133073fe6c85ae800f6b88794ac4e323612c2dc6fa67ea797bdebf57432f153311e86ab3707110f18d5b038557
+  languageName: node
+  linkType: hard
+
+"@vanilla-extract/css@npm:^1.10.0":
   version: 1.13.0
   resolution: "@vanilla-extract/css@npm:1.13.0"
   dependencies:
@@ -5837,14 +5856,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vanilla-extract/next-plugin@npm:2.3.1":
-  version: 2.3.1
-  resolution: "@vanilla-extract/next-plugin@npm:2.3.1"
+"@vanilla-extract/next-plugin@npm:2.3.2":
+  version: 2.3.2
+  resolution: "@vanilla-extract/next-plugin@npm:2.3.2"
   dependencies:
     "@vanilla-extract/webpack-plugin": "npm:^2.3.1"
   peerDependencies:
     next: ">=12.1.7"
-  checksum: 0cdb48125d8553a1e9531ee76244013f58d20ba5568afcff2010cc3f45e3075e30f3965248b4a0caae4baa54eeb575120a356f04538c07596e954c920045eb21
+  checksum: ecd25bce8ad489e8acc8dabaa2f1460446595459f7f8ce257aa256f0b50e57d8e4474fed85f67651baa4379a1c133e882613e8cdc493c5811e1a4afc6b26aac9
   languageName: node
   linkType: hard
 
@@ -12771,6 +12790,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"modern-ahocorasick@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "modern-ahocorasick@npm:1.0.0"
+  checksum: 94518a02ec68b9634d637e473702f292022b76694722a01011de8475ef64ba7bbe5357ba972eb2428da6a086e0aae7e268171af53dccac1965d7285cf9d3abcf
+  languageName: node
+  linkType: hard
+
 "mri@npm:^1.2.0":
   version: 1.2.0
   resolution: "mri@npm:1.2.0"
@@ -12942,8 +12968,8 @@ __metadata:
     "@types/react-dom": "npm:18.2.15"
     "@typescript-eslint/eslint-plugin": "npm:6.10.0"
     "@typescript-eslint/parser": "npm:6.10.0"
-    "@vanilla-extract/css": "npm:1.13.0"
-    "@vanilla-extract/next-plugin": "npm:2.3.1"
+    "@vanilla-extract/css": "npm:1.14.0"
+    "@vanilla-extract/next-plugin": "npm:2.3.2"
     "@vanilla-extract/webpack-plugin": "npm:2.3.1"
     clsx: "npm:2.0.0"
     eslint: "npm:8.53.0"
