@@ -4,7 +4,7 @@
   "engines": {
     "node": "20.9.0"
   },
-  "packageManager": "yarn@4.0.1",
+  "packageManager": "yarn@4.0.2",
   "scripts": {
     "clean": "rm -rf node_modules yarn.lock yarn-error.log tsconfig.tsbuildinfo coverage .next .swc out storybook-static .yarn/cache .yarn/install-state.gz",
     "prepare": "husky install",
