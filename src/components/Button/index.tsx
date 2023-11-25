@@ -22,7 +22,7 @@ export const Button: React.FC<ButtonProps> = ({
     <Comp
       type={asChild ? undefined : 'button'}
       disabled={asChild ? undefined : disabled}
-      className={clsx(className, button(variants), disabled && 'disabled')}
+      className={clsx(button(variants), disabled && 'disabled', className)}
       {...props}
     />
   );

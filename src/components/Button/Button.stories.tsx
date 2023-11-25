@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker/locale/ja';
+import { sprinkles } from '@/config';
 import { Button } from '.';
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -20,7 +21,7 @@ type Story = StoryObj<typeof Button>;
 export const Default: Story = {};
 export const AsChild: Story = {
   render: (args) => (
-    <Button {...args} asChild>
+    <Button {...args} asChild className={sprinkles({ mx: 'auto' })}>
       <a href="_">{args.children}</a>
     </Button>
   ),
