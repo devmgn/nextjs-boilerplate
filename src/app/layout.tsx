@@ -1,4 +1,3 @@
-import { Box } from '@radix-ui/themes';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { APP_NAME, DEFAULT_DESCRIPTION } from '@/config/env';
@@ -23,9 +22,7 @@ const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
       <body>
         <RootProvider>
           <Header />
-          <Box asChild>
-            <main>{children}</main>
-          </Box>
+          <main>{children}</main>
           <Footer />
         </RootProvider>
       </body>
