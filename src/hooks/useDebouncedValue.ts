@@ -1,11 +1,11 @@
 import { useCallback, useState } from 'react';
 import { useDebounce, useUnmount } from 'react-use';
-import useIsComposing from './useIsComposing';
+import { useIsComposing } from './useIsComposing';
 
 /**
  * デバウンスされた値を返すカスタムフック
  */
-const useDebouncedValue = <T>(
+export const useDebouncedValue = <T>(
   value: T,
   delay: Parameters<typeof useDebounce>[1] = 300,
 ): T => {
@@ -24,5 +24,3 @@ const useDebouncedValue = <T>(
 
   return debouncedValue;
 };
-
-export default useDebouncedValue;

@@ -1,12 +1,10 @@
-import { Box } from '@radix-ui/themes';
-import clsx from 'clsx';
-import { header } from './Header.css';
-import type { BoxProps } from '@radix-ui/themes/dist/cjs/components/box';
+import { Box } from '@yamada-ui/react';
+import type { HTMLUIProps } from '@yamada-ui/react';
 
-export const Header: React.FC<BoxProps> = ({ className, ...props }) => {
+export const Header: React.FC<HTMLUIProps<'header'>> = (props) => {
   return (
-    <Box {...props} className={clsx(header, className)} asChild>
-      <header>header</header>
+    <Box {...props} as="header">
+      header
     </Box>
   );
 };

@@ -1,26 +1,25 @@
-import { Flex, Text, TextField } from '@radix-ui/themes';
-import useIsComposing from '../useIsComposing';
+import { Flex, Input, Stack, Tag, Text } from '@yamada-ui/react';
+import { useIsComposing } from '../useIsComposing';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof useIsComposing> = {
   title: 'hooks/useIsComposing',
+  parameters: {
+    layout: 'centered',
+  },
   render: () => {
     const isComposing = useIsComposing();
 
     return (
-      <>
-        <Flex gap="2" direction="column">
-          <Flex align="center" gap="2">
-            <Text>isComposing</Text>
-            <TextField.Input
-              type="text"
-              value={isComposing.toString()}
-              readOnly
-            />
-          </Flex>
+      <Stack gap="4">
+        <Input />
+        <Flex alignItems="center" gap="2">
+          <Text>isComposing</Text>
+          <Tag colorScheme={isComposing ? 'red' : 'primary'}>
+            {isComposing.toString()}
+          </Tag>
         </Flex>
-        <TextField.Input type="text" mt="4" />
-      </>
+      </Stack>
     );
   },
 };

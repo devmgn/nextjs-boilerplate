@@ -1,7 +1,5 @@
 const withPlugins = require('next-compose-plugins');
 const withBundleAnalyzer = require('@next/bundle-analyzer');
-const withVanillaExtract =
-  require('@vanilla-extract/next-plugin').createVanillaExtractPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -33,9 +31,6 @@ const nextConfig = {
 };
 
 module.exports = withPlugins(
-  [
-    withBundleAnalyzer({ enabled: process.env.ANALYZE === 'true' }),
-    withVanillaExtract(),
-  ],
+  [withBundleAnalyzer({ enabled: process.env.ANALYZE === 'true' })],
   nextConfig,
 );

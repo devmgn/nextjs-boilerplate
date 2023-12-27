@@ -1,8 +1,6 @@
-import { Box } from '@radix-ui/themes';
-import { Footer } from '@/components/Footer';
-import { Header } from '@/components/Header';
+import { Footer, Header } from '@/components';
 import { APP_NAME, DEFAULT_DESCRIPTION } from '@/config/env';
-import RootProvider from '@/providers/RootProvider';
+import { RootProvider } from '@/providers';
 import type { Metadata, Viewport } from 'next';
 
 export const metadata: Metadata = {
@@ -23,9 +21,7 @@ const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
       <body>
         <RootProvider>
           <Header />
-          <Box asChild>
-            <main>{children}</main>
-          </Box>
+          <main>{children}</main>
           <Footer />
         </RootProvider>
       </body>

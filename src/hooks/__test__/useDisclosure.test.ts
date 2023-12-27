@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
-import useDisclosure from '../useDisclosure';
+import { useDisclosure } from '../useDisclosure';
 
 describe('useDisclosure', () => {
   let result: { current: ReturnType<typeof useDisclosure> };

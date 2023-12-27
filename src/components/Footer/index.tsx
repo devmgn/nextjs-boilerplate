@@ -1,10 +1,10 @@
-import { Box } from '@radix-ui/themes';
-import type { BoxProps } from '@radix-ui/themes/dist/cjs/components/box';
+import { Box } from '@yamada-ui/react';
+import type { HTMLUIProps } from '@yamada-ui/react';
 
-export const Footer: React.FC<BoxProps> = (props) => {
+export const Footer: React.FC<HTMLUIProps<'footer'>> = (props) => {
   return (
-    <Box {...props} asChild>
-      <footer>header</footer>
+    <Box {...props} as="footer">
+      footer
     </Box>
   );
 };

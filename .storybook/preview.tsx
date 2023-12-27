@@ -1,7 +1,7 @@
 import React from 'react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import locale from 'axe-core/locales/ja.json';
-import RootProvider from '../src/providers/RootProvider';
+import { RootProvider } from '../src/providers';
 import type { Preview } from '@storybook/react';
 
 const preview: Preview = {

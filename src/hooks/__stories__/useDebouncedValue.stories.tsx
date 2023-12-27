@@ -1,32 +1,42 @@
-import { Flex, Heading, Text, TextField } from '@radix-ui/themes';
-import useDebouncedValue from '../useDebouncedValue';
-import useInputValue from '../useInputValue';
+import { useState } from 'react';
+import { Grid, Input, NumberInput, Stack, Text } from '@yamada-ui/react';
+import { useDebouncedValue } from '../useDebouncedValue';
+import { useInputValue } from '../useInputValue';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof useDebouncedValue> = {
   title: 'hooks/useDebouncedValue',
+  parameters: {
+    layout: 'centered',
+  },
   render: () => {
-    const [delay, setDelay] = useInputValue('100');
+    const [delay, setDelay] = useState('100');
     const [value, setValue] = useInputValue('');
     const debouncedValue = useDebouncedValue(value, Number(delay));
 
     return (
-      <>
-        <Flex gap="2" direction="column">
-          <Flex align="center" gap="2">
-            <Text>debouncedValue:</Text>
-            <TextField.Input type="text" value={debouncedValue} readOnly />
-          </Flex>
-          <TextField.Input type="text" value={value} onChange={setValue} />
-        </Flex>
-        <Flex gap="2" direction="column" mt="6">
-          <Heading size="3">Option</Heading>
-          <Flex align="center" gap="2">
-            <Text>delay:</Text>
-            <TextField.Input type="number" value={delay} onChange={setDelay} />
-          </Flex>
-        </Flex>
-      </>
+      <Stack gap="4">
+        <Input
+          type="text"
+          value={value}
+          onChange={setValue}
+          placeholder="input value"
+        />
+        <Grid alignItems="center" gap="2" gridTemplateColumns="auto auto">
+          <Text>debouncedValue:</Text>
+          <Input
+            value={debouncedValue}
+            placeholder="debounced value"
+            readOnly
+          />
+          <Text>delay:</Text>
+          <NumberInput
+            value={delay}
+            onChange={setDelay}
+            placeholder="delay time"
+          />
+        </Grid>
+      </Stack>
     );
   },
 };

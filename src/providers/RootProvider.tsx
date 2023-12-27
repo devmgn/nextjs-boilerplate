@@ -1,10 +1,7 @@
-import { Theme } from '@radix-ui/themes';
-import '@radix-ui/themes/styles.css';
-import '@/config/css/global.css';
-import '@/config/css/theme.config.css';
+import { UIProvider } from '@yamada-ui/react';
 
-const RootProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
-  return <Theme>{children}</Theme>;
+export const RootProvider: React.FC<React.PropsWithChildren> = ({
+  children,
+}) => {
+  return <UIProvider>{children}</UIProvider>;
 };
-
-export default RootProvider;
