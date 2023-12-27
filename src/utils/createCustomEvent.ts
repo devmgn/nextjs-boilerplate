@@ -22,9 +22,9 @@
  */
 const createCustomEvent = <T extends keyof GlobalEventHandlersEventMap>(
   type: T,
-  eventInitDict: CustomEventInit<
+  eventInitDict?: CustomEventInit<
     GlobalEventHandlersEventMap[T] extends CustomEvent<infer U> ? U : never
   >,
-) => new CustomEvent(type, eventInitDict);
+): CustomEvent => new CustomEvent(type, eventInitDict);
 
 export default createCustomEvent;
