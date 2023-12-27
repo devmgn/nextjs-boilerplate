@@ -7,7 +7,7 @@ type UseInputValue = [
   >,
 ];
 
-const useInputValue = (initialValue = ''): UseInputValue => {
+export const useInputValue = (initialValue = ''): UseInputValue => {
   const [value, setValue] = useState<UseInputValue[0]>(initialValue);
 
   const updateValue = useCallback<UseInputValue[1]>(({ target }) => {
@@ -16,5 +16,3 @@ const useInputValue = (initialValue = ''): UseInputValue => {
 
   return [value, updateValue];
 };
-
-export default useInputValue;

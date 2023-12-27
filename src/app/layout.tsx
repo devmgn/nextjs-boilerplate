@@ -1,7 +1,6 @@
-import { Footer } from '@/components/Footer';
-import { Header } from '@/components/Header';
+import { Footer, Header } from '@/components';
 import { APP_NAME, DEFAULT_DESCRIPTION } from '@/config/env';
-import RootProvider from '@/providers/RootProvider';
+import { RootProvider } from '@/providers';
 import type { Metadata, Viewport } from 'next';
 
 export const metadata: Metadata = {

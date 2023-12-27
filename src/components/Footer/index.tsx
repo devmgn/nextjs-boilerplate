@@ -1,10 +1,7 @@
-import { Slot } from '@radix-ui/react-slot';
-import type { SlotProps } from '@radix-ui/react-slot';
-
-export const Footer: React.FC<SlotProps> = (props) => {
+export const Footer: React.FC = () => {
   return (
-    <Slot {...props}>
+    <div>
       <footer>header</footer>
-    </Slot>
+    </div>
   );
 };

@@ -1,5 +1,5 @@
-import useDebouncedValue from '../useDebouncedValue';
-import useInputValue from '../useInputValue';
+import { useDebouncedValue } from '../useDebouncedValue';
+import { useInputValue } from '../useInputValue';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof useDebouncedValue> = {

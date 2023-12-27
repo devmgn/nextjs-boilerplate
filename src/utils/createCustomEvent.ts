@@ -20,11 +20,9 @@
  * });
  * document.dispatchEvent(event);
  */
-const createCustomEvent = <T extends keyof GlobalEventHandlersEventMap>(
+export const createCustomEvent = <T extends keyof GlobalEventHandlersEventMap>(
   type: T,
   eventInitDict?: CustomEventInit<
     GlobalEventHandlersEventMap[T] extends CustomEvent<infer U> ? U : never
   >,
 ): CustomEvent => new CustomEvent(type, eventInitDict);
-
-export default createCustomEvent;

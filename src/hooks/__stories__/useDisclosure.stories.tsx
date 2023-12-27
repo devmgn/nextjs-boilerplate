@@ -1,4 +1,4 @@
-import useDisclosure from '../useDisclosure';
+import { useDisclosure } from '../useDisclosure';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof useDisclosure> = {

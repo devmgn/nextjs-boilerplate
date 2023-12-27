@@ -1,7 +1,7 @@
-import '@/config/css/global.css';
+import { UIProvider } from '@yamada-ui/react';
 
-const RootProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
-  return children;
+export const RootProvider: React.FC<React.PropsWithChildren> = ({
+  children,
+}) => {
+  return <UIProvider>{children}</UIProvider>;
 };
-
-export default RootProvider;

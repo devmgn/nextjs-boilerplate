@@ -1,4 +1,4 @@
-import useIsComposing from '../useIsComposing';
+import { useIsComposing } from '../useIsComposing';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof useIsComposing> = {

@@ -4,7 +4,7 @@ import { useBoolean, useEvent } from 'react-use';
 /**
  * テキストの編集中にユーザーがテキストの作成中かどうかを判定するカスタムフック
  */
-const useIsComposing = (
+export const useIsComposing = (
   target?: Parameters<typeof useEvent>[2],
   options?: Parameters<typeof useEvent>[3],
 ): boolean => {
@@ -23,5 +23,3 @@ const useIsComposing = (
 
   return isComposing;
 };
-
-export default useIsComposing;

@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-const useDisclosure = (
+export const useDisclosure = (
   initialState = false,
   callbacks?: { onOpen?: () => void; onClose?: () => void },
 ) => {
@@ -27,5 +27,3 @@ const useDisclosure = (
 
   return [isOpen, { open, close, toggle }] as const;
 };
-
-export default useDisclosure;
