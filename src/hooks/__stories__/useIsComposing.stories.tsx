@@ -1,21 +1,25 @@
+import { Flex, Input, Stack, Tag, Text } from '@yamada-ui/react';
 import { useIsComposing } from '../useIsComposing';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof useIsComposing> = {
   title: 'hooks/useIsComposing',
+  parameters: {
+    layout: 'centered',
+  },
   render: () => {
     const isComposing = useIsComposing();
 
     return (
-      <>
-        <div>
-          <div>
-            <p>isComposing</p>
-            <input type="text" value={isComposing.toString()} readOnly />
-          </div>
-        </div>
-        <input type="text" />
-      </>
+      <Stack gap="4">
+        <Input />
+        <Flex alignItems="center" gap="2">
+          <Text>isComposing</Text>
+          <Tag colorScheme={isComposing ? 'red' : 'primary'}>
+            {isComposing.toString()}
+          </Tag>
+        </Flex>
+      </Stack>
     );
   },
 };

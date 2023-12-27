@@ -1,5 +1,4 @@
 import { StorybookConfig } from '@storybook/nextjs';
-import { VanillaExtractPlugin } from '@vanilla-extract/webpack-plugin';
 import path from 'path';
 
 const config: StorybookConfig = {
@@ -14,8 +13,11 @@ const config: StorybookConfig = {
     name: '@storybook/nextjs',
     options: {},
   },
+  core: {
+    disableTelemetry: true,
+  },
   docs: {
-    autodocs: true,
+    autodocs: false,
   },
   staticDirs: ['../public'],
   webpackFinal: async (config) => {
@@ -58,8 +60,6 @@ const config: StorybookConfig = {
         use: ['@svgr/webpack'],
       },
     ];
-
-    config.plugins = [...(config.plugins ?? []), new VanillaExtractPlugin()];
 
     return config;
   },
