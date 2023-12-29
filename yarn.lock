@@ -4820,7 +4820,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/user-event@npm:14.5.1, @testing-library/user-event@npm:^14.4.0":
+"@testing-library/user-event@npm:14.5.2":
+  version: 14.5.2
+  resolution: "@testing-library/user-event@npm:14.5.2"
+  peerDependencies:
+    "@testing-library/dom": ">=7.21.4"
+  checksum: 68a0c2aa28a3c8e6eb05cafee29705438d7d8a9427423ce5064d44f19c29e89b5636de46dd2f28620fb10abba75c67130185bbc3aa23ac1163a227a5f36641e1
+  languageName: node
+  linkType: hard
+
+"@testing-library/user-event@npm:^14.4.0":
   version: 14.5.1
   resolution: "@testing-library/user-event@npm:14.5.1"
   peerDependencies:
@@ -13779,7 +13788,7 @@ __metadata:
     "@svgr/webpack": "npm:8.1.0"
     "@testing-library/jest-dom": "npm:6.1.6"
     "@testing-library/react": "npm:14.1.2"
-    "@testing-library/user-event": "npm:14.5.1"
+    "@testing-library/user-event": "npm:14.5.2"
     "@types/jest": "npm:29.5.11"
     "@types/lodash-es": "npm:4.17.12"
     "@types/react": "npm:18.2.46"
