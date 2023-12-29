@@ -1,7 +1,8 @@
+import { Mock } from '@/components';
 import type { NextPage } from 'next';
 
 const Index: NextPage = () => {
-  return null;
+  return <Mock />;
 };
 
 export default Index;
