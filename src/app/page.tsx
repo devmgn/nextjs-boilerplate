@@ -1,8 +1,8 @@
-import { Mock } from '@/components';
+import { Sandbox } from '@/components';
 import type { NextPage } from 'next';
 
 const Index: NextPage = () => {
-  return <Mock />;
+  return <Sandbox />;
 };
 
 export default Index;
