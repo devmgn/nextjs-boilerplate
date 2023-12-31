@@ -5750,9 +5750,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@yamada-ui/autocomplete@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/autocomplete@npm:1.0.5"
+"@yamada-ui/autocomplete@npm:1.0.6":
+  version: 1.0.6
+  resolution: "@yamada-ui/autocomplete@npm:1.0.6"
   dependencies:
     "@yamada-ui/core": "npm:1.1.2"
     "@yamada-ui/form-control": "npm:1.0.4"
@@ -5760,7 +5760,6 @@ __metadata:
     "@yamada-ui/motion": "npm:1.0.3"
     "@yamada-ui/popover": "npm:1.0.3"
     "@yamada-ui/portal": "npm:1.0.1"
-    "@yamada-ui/select": "npm:1.0.5"
     "@yamada-ui/use-clickable": "npm:1.0.1"
     "@yamada-ui/use-controllable-state": "npm:1.0.1"
     "@yamada-ui/use-descendant": "npm:1.0.1"
@@ -5768,7 +5767,7 @@ __metadata:
     "@yamada-ui/utils": "npm:1.0.1"
   peerDependencies:
     react: ">=18"
-  checksum: 480d3f256f0958b109a214bd4688b1529e917b0c1c89220feb6fd8e40e161b13c229f37c075b5ef4b2a24789f2fc8b52743d8ec92d8a944c1497101eac8b5d9a
+  checksum: d9321434c1f079e7bae79c36edb3b8749d8a56cc8b56ca6e60739914f954b942efa0a739b777beef3792a53b7143ac3bb1ea5bca53a1e9b71265d5a6063450b2
   languageName: node
   linkType: hard
 
@@ -6106,9 +6105,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@yamada-ui/modal@npm:1.0.4":
-  version: 1.0.4
-  resolution: "@yamada-ui/modal@npm:1.0.4"
+"@yamada-ui/modal@npm:1.0.5":
+  version: 1.0.5
+  resolution: "@yamada-ui/modal@npm:1.0.5"
   dependencies:
     "@yamada-ui/button": "npm:1.0.4"
     "@yamada-ui/close-button": "npm:1.0.3"
@@ -6122,7 +6121,7 @@ __metadata:
     react-remove-scroll: "npm:^2.5.4"
   peerDependencies:
     react: ">=18"
-  checksum: fba557077c40d5278cb0404a87e9544c4b0f41f328f54100822a78c2a6a4583d17bcac56520cd0dc9c6bcd87b53384a72cffd386463165479c6e5bdbde817912
+  checksum: 59737a9027ae2c2b9f209da8c81b20bf8d819d02e5bfa0468ce9f82bece892ce7dd00bcf0dd3be5c789fda9af6907a2179bcdeda8fd29175428894be529ba000
   languageName: node
   linkType: hard
 
@@ -6328,13 +6327,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@yamada-ui/react@npm:1.1.0":
-  version: 1.1.0
-  resolution: "@yamada-ui/react@npm:1.1.0"
+"@yamada-ui/react@npm:1.1.1":
+  version: 1.1.1
+  resolution: "@yamada-ui/react@npm:1.1.1"
   dependencies:
     "@yamada-ui/accordion": "npm:1.0.3"
     "@yamada-ui/alert": "npm:1.0.3"
-    "@yamada-ui/autocomplete": "npm:1.0.5"
+    "@yamada-ui/autocomplete": "npm:1.0.6"
     "@yamada-ui/avatar": "npm:1.1.2"
     "@yamada-ui/badge": "npm:1.0.3"
     "@yamada-ui/breadcrumb": "npm:1.0.3"
@@ -6359,7 +6358,7 @@ __metadata:
     "@yamada-ui/list": "npm:1.0.3"
     "@yamada-ui/loading": "npm:1.0.3"
     "@yamada-ui/menu": "npm:1.0.3"
-    "@yamada-ui/modal": "npm:1.0.4"
+    "@yamada-ui/modal": "npm:1.0.5"
     "@yamada-ui/motion": "npm:1.0.3"
     "@yamada-ui/native-select": "npm:1.0.5"
     "@yamada-ui/native-table": "npm:1.0.4"
@@ -6427,7 +6426,7 @@ __metadata:
     framer-motion: ">=9.0.0"
     react: ">=18"
     react-dom: ">=18"
-  checksum: 500bf40621dd102f010e7b79fcd91c548c80b473ccce2359bf18ebe3ef24cb338a753c5b5b9f227bb113fd38acc2c2075e84357690b33bb17d6a6df08acf0839
+  checksum: eecda89ca366eba63d57a89da5adefd8e556feb53a4e5aa796ede9977af3fc95fb290af1eadc58346aed2e22bd457e55348e44cd8494bd34ab25965f1d020ad2
   languageName: node
   linkType: hard
 
@@ -13830,7 +13829,7 @@ __metadata:
     "@types/react-dom": "npm:18.2.18"
     "@typescript-eslint/eslint-plugin": "npm:6.16.0"
     "@typescript-eslint/parser": "npm:6.16.0"
-    "@yamada-ui/react": "npm:1.1.0"
+    "@yamada-ui/react": "npm:1.1.1"
     eslint: "npm:8.56.0"
     eslint-config-airbnb: "npm:19.0.4"
     eslint-config-airbnb-typescript: "npm:17.1.0"
