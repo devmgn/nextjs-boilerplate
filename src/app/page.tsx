@@ -1,8 +1,8 @@
-import { FetchSandbox } from '@/_sandbox/FetchSandbox';
+import { TanstackQuerySandbox } from '@/_sandbox/TanstackQuerySandbox';
 import type { NextPage } from 'next';
 
 const Index: NextPage = () => {
-  return <FetchSandbox />;
+  return <TanstackQuerySandbox />;
 };
 
 export default Index;

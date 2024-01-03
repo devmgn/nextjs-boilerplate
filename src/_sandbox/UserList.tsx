@@ -1,21 +1,17 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { DiscList, ListItem } from '@yamada-ui/react';
 import axios from 'axios';
+import { shuffle } from 'lodash-es';
 
-export const Fetcher: React.FC<{ queryKey: number }> = ({ queryKey }) => {
+export const UserList: React.FC<{ queryKey: number }> = ({ queryKey }) => {
   const { data } = useSuspenseQuery({
     queryKey: [queryKey],
     queryFn: async () => {
-      // sleep
-      await new Promise((resolve) => {
-        setTimeout(resolve, 1000);
-      });
-
       return axios
         .get<{ id: number; name: string }[]>(
           'https://jsonplaceholder.typicode.com/users',
         )
-        .then((res) => res.data);
+        .then((res) => shuffle(res.data));
     },
   });
 

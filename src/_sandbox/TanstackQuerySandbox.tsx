@@ -3,24 +3,27 @@
 import { Suspense, useState, useTransition } from 'react';
 import { Button, Flex, Loading } from '@yamada-ui/react';
 import { uniqueId } from 'lodash-es';
-import { Fetcher } from './Fetcher';
+import { UserList } from './UserList';
 
-export const FetchSandbox = () => {
+export const TanstackQuerySandbox = () => {
   const [queryKey, setQueryKey] = useState<number>(0);
   const [isPending, startTransition] = useTransition();
-
-  const updateQueryKey = () => {
-    startTransition(() => setQueryKey(Number(uniqueId())));
-  };
 
   return (
     <>
       <Flex gap="2" alignItems="center">
-        <Button onClick={updateQueryKey}>Update Key</Button>
+        <Button onClick={() => setQueryKey(Number(uniqueId()))}>
+          Update Key
+        </Button>
+        <Button
+          onClick={() => startTransition(() => setQueryKey(Number(uniqueId())))}
+        >
+          Update Key with Transition API
+        </Button>
         {isPending && <Loading size="2xl" />}
       </Flex>
       <Suspense fallback="loading...">
-        <Fetcher queryKey={queryKey} />
+        <UserList queryKey={queryKey} />
       </Suspense>
     </>
   );
