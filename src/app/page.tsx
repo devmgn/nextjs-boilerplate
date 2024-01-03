@@ -1,8 +1,8 @@
-import { Sandbox } from '@/components';
+import { FetchSandbox } from '@/_sandbox/FetchSandbox';
 import type { NextPage } from 'next';
 
 const Index: NextPage = () => {
-  return <Sandbox />;
+  return <FetchSandbox />;
 };
 
 export default Index;

@@ -1,16 +1,11 @@
 'use client';
 
 import { Suspense, useState, useTransition } from 'react';
-import dynamic from 'next/dynamic';
 import { Button, Flex, Loading } from '@yamada-ui/react';
 import { uniqueId } from 'lodash-es';
+import { Fetcher } from './Fetcher';
 
-const FetchMock = dynamic(
-  () => import('./FetchMock').then((m) => m.FetchMock),
-  { ssr: false },
-);
-
-export const Sandbox = () => {
+export const FetchSandbox = () => {
   const [queryKey, setQueryKey] = useState<number>(0);
   const [isPending, startTransition] = useTransition();
 
@@ -24,10 +19,9 @@ export const Sandbox = () => {
         <Button onClick={updateQueryKey}>Update Key</Button>
         {isPending && <Loading size="2xl" />}
       </Flex>
-      <FetchMock queryKey={queryKey} />
-      <Suspense fallback="loading..." />
+      <Suspense fallback="loading...">
+        <Fetcher queryKey={queryKey} />
+      </Suspense>
     </>
   );
 };
-
-Sandbox.displayName = 'Sandbox';
