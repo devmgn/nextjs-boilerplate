@@ -10,3 +10,5 @@ export const UIProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
     </YamadaUIProvider>
   );
 };
+
+UIProvider.displayName = 'UIProvider';
