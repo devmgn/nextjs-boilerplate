@@ -2,7 +2,7 @@
   "name": "nextjs-boilerplate",
   "private": true,
   "engines": {
-    "node": "20.10.0"
+    "node": "20.11.0"
   },
   "packageManager": "yarn@4.0.2",
   "scripts": {
@@ -24,11 +24,11 @@
     "storybook:build": "storybook build"
   },
   "dependencies": {
-    "@tanstack/react-query": "5.15.0",
-    "@tanstack/react-query-devtools": "5.15.0",
-    "@yamada-ui/react": "1.1.4",
+    "@tanstack/react-query": "5.17.10",
+    "@tanstack/react-query-devtools": "5.17.10",
+    "@yamada-ui/react": "1.1.5",
     "axios": "1.6.3",
-    "change-case": "5.3.0",
+    "change-case": "5.4.1",
     "lodash-es": "4.17.21",
     "next": "14.0.4",
     "react": "18.2.0",
@@ -39,31 +39,31 @@
   "devDependencies": {
     "@faker-js/faker": "8.3.1",
     "@next/bundle-analyzer": "14.0.4",
-    "@storybook/addon-a11y": "7.6.7",
-    "@storybook/addon-essentials": "7.6.7",
-    "@storybook/addon-interactions": "7.6.7",
-    "@storybook/addon-links": "7.6.7",
-    "@storybook/nextjs": "7.6.7",
-    "@storybook/react": "7.6.7",
+    "@storybook/addon-a11y": "7.6.8",
+    "@storybook/addon-essentials": "7.6.8",
+    "@storybook/addon-interactions": "7.6.8",
+    "@storybook/addon-links": "7.6.8",
+    "@storybook/nextjs": "7.6.8",
+    "@storybook/react": "7.6.8",
     "@storybook/testing-library": "0.2.2",
     "@svgr/webpack": "8.1.0",
-    "@tanstack/eslint-plugin-query": "5.14.6",
+    "@tanstack/eslint-plugin-query": "5.17.7",
     "@testing-library/jest-dom": "6.2.0",
     "@testing-library/react": "14.1.2",
     "@testing-library/user-event": "14.5.2",
     "@types/jest": "29.5.11",
     "@types/lodash-es": "4.17.12",
-    "@types/react": "18.2.46",
+    "@types/react": "18.2.47",
     "@types/react-dom": "18.2.18",
-    "@typescript-eslint/eslint-plugin": "6.17.0",
-    "@typescript-eslint/parser": "6.17.0",
+    "@typescript-eslint/eslint-plugin": "6.18.1",
+    "@typescript-eslint/parser": "6.18.1",
     "eslint": "8.56.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "17.1.0",
     "eslint-config-next": "14.0.4",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-import": "2.29.1",
-    "eslint-plugin-jest": "27.6.1",
+    "eslint-plugin-jest": "27.6.3",
     "eslint-plugin-storybook": "0.6.15",
     "husky": "8.0.3",
     "jest": "29.7.0",
@@ -71,12 +71,12 @@
     "lint-staged": "15.2.0",
     "next-compose-plugins": "2.2.1",
     "postcss-preset-env": "9.3.0",
-    "prettier": "3.1.1",
-    "storybook": "7.6.7",
+    "prettier": "3.2.1",
+    "storybook": "7.6.8",
     "typescript": "5.3.3"
   },
   "resolutions": {
-    "@types/react": "18.2.46",
+    "@types/react": "18.2.47",
     "@types/react-dom": "18.2.18"
   }
 }
