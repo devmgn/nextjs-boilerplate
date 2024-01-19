@@ -6401,22 +6401,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@yamada-ui/providers@npm:1.0.13":
-  version: 1.0.13
-  resolution: "@yamada-ui/providers@npm:1.0.13"
+"@yamada-ui/providers@npm:1.0.14":
+  version: 1.0.14
+  resolution: "@yamada-ui/providers@npm:1.0.14"
   dependencies:
     "@yamada-ui/core": "npm:1.3.0"
     "@yamada-ui/loading": "npm:1.0.9"
     "@yamada-ui/motion": "npm:1.0.9"
     "@yamada-ui/notice": "npm:1.0.9"
-    "@yamada-ui/theme": "npm:1.4.0"
+    "@yamada-ui/theme": "npm:1.4.1"
     "@yamada-ui/utils": "npm:1.0.4"
   peerDependencies:
     "@emotion/react": ^11.0.0
     "@emotion/styled": ^11.0.0
     react: ">=18"
     react-dom: ">=18"
-  checksum: a479b1ef1065f3d8281dc33b724565e907f7274ab28668eb59166488ca761b8d9c4431d64d91212edcee2b33e31e7564396fa50dcf6ba0dbc5b97f709fe06e1e
+  checksum: 1b91971244f046497a4e8655c8523f68cef0373a2deff5baee90b50000eab82a8926a61956ebb9b3d7f02ea75ad37bfd7c870a74ad4436f73f91e225903e0f43
   languageName: node
   linkType: hard
 
@@ -6453,9 +6453,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@yamada-ui/react@npm:1.2.0":
-  version: 1.2.0
-  resolution: "@yamada-ui/react@npm:1.2.0"
+"@yamada-ui/react@npm:1.2.1":
+  version: 1.2.1
+  resolution: "@yamada-ui/react@npm:1.2.1"
   dependencies:
     "@yamada-ui/accordion": "npm:1.0.9"
     "@yamada-ui/alert": "npm:1.0.9"
@@ -6496,7 +6496,7 @@ __metadata:
     "@yamada-ui/popover": "npm:1.0.9"
     "@yamada-ui/portal": "npm:1.0.4"
     "@yamada-ui/progress": "npm:1.0.9"
-    "@yamada-ui/providers": "npm:1.0.13"
+    "@yamada-ui/providers": "npm:1.0.14"
     "@yamada-ui/radio": "npm:1.0.12"
     "@yamada-ui/rating": "npm:1.0.9"
     "@yamada-ui/reorder": "npm:1.0.9"
@@ -6514,8 +6514,8 @@ __metadata:
     "@yamada-ui/tabs": "npm:1.0.9"
     "@yamada-ui/tag": "npm:1.0.9"
     "@yamada-ui/textarea": "npm:1.0.11"
-    "@yamada-ui/theme": "npm:1.4.0"
-    "@yamada-ui/theme-tools": "npm:1.0.13"
+    "@yamada-ui/theme": "npm:1.4.1"
+    "@yamada-ui/theme-tools": "npm:1.0.14"
     "@yamada-ui/tooltip": "npm:1.0.10"
     "@yamada-ui/transitions": "npm:1.0.9"
     "@yamada-ui/typography": "npm:1.0.9"
@@ -6537,7 +6537,7 @@ __metadata:
     "@yamada-ui/use-interval": "npm:1.0.4"
     "@yamada-ui/use-latest-ref": "npm:1.0.0"
     "@yamada-ui/use-local-storage": "npm:1.0.4"
-    "@yamada-ui/use-media-query": "npm:1.0.13"
+    "@yamada-ui/use-media-query": "npm:1.0.14"
     "@yamada-ui/use-os": "npm:1.0.4"
     "@yamada-ui/use-outside-click": "npm:1.0.4"
     "@yamada-ui/use-pan-event": "npm:1.0.4"
@@ -6556,7 +6556,7 @@ __metadata:
     framer-motion: ">=9.0.0"
     react: ">=18"
     react-dom: ">=18"
-  checksum: c173ab165bba0dcc265452d24dd6fc548cd21a602830ae26014562253b17ca0ac422f2732b652db8cf07ae2641f1b583e138e6ad8b1926a750fa4f83b883099c
+  checksum: e72eb82ec36c1a69150a85ecd8cec684cd8ea99da3f70f4dabe573b14b81450313a45c0e64e5875d839dac0f28be7ca9ac45ecf53da373d4b7bfe28523c62dc7
   languageName: node
   linkType: hard
 
@@ -6785,24 +6785,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@yamada-ui/theme-tools@npm:1.0.13":
-  version: 1.0.13
-  resolution: "@yamada-ui/theme-tools@npm:1.0.13"
+"@yamada-ui/theme-tools@npm:1.0.14":
+  version: 1.0.14
+  resolution: "@yamada-ui/theme-tools@npm:1.0.14"
   dependencies:
     "@yamada-ui/core": "npm:1.3.0"
-    "@yamada-ui/theme": "npm:1.4.0"
+    "@yamada-ui/theme": "npm:1.4.1"
     "@yamada-ui/utils": "npm:1.0.4"
-  checksum: ce1b8727c0615e67c5725b5317dbc6596748277339f6d044c24f4f42683c32b168fb057125baac89a3b8cea5bb9c86b84217246c7fd3e9f6aa0138b5bcf0e380
+  checksum: 62af6a051e3c745fec9c3720ba2efafec773fb618f20fa56649836d4f1997c30dd7f20b156fbcfea0bd30ed5ded614f0d2161eb6538f3488160b7dc7615055ce
   languageName: node
   linkType: hard
 
-"@yamada-ui/theme@npm:1.4.0":
-  version: 1.4.0
-  resolution: "@yamada-ui/theme@npm:1.4.0"
+"@yamada-ui/theme@npm:1.4.1":
+  version: 1.4.1
+  resolution: "@yamada-ui/theme@npm:1.4.1"
   dependencies:
     "@yamada-ui/core": "npm:1.3.0"
     "@yamada-ui/utils": "npm:1.0.4"
-  checksum: bf50268e9283f16dab17c8845c76a6819b8d5390a14446a609b65e53206ecd14470dfaacca73e599af75c9ffe2068b1db633a50139a0f93519d963aade550873
+  checksum: fe1708bcd6c3aee8eadd9e060bcd031771f0b7228833c0fb0836130b72ae0cebee46cd87a2e39e37a70262668f86badda3b1c45d24330284e00f21dd612eaef1
   languageName: node
   linkType: hard
 
@@ -7053,15 +7053,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@yamada-ui/use-media-query@npm:1.0.13":
-  version: 1.0.13
-  resolution: "@yamada-ui/use-media-query@npm:1.0.13"
+"@yamada-ui/use-media-query@npm:1.0.14":
+  version: 1.0.14
+  resolution: "@yamada-ui/use-media-query@npm:1.0.14"
   dependencies:
-    "@yamada-ui/providers": "npm:1.0.13"
+    "@yamada-ui/providers": "npm:1.0.14"
     "@yamada-ui/utils": "npm:1.0.4"
   peerDependencies:
     react: ">=18"
-  checksum: 8cf4bac4bbf18b60e068efe8903b41524d2da1bdb21411a6cd30874c3bfb8a10a0ee55b1ec432304e807e04221bae9b0326a9da8d3fba80454ca6b5b0f0407df
+  checksum: f4447f2e30b513bd33f209103a9d26c2fe8acf0e5b5945abcde05a83f98f57297cb3c0900ec33b2cb20ad9f00bcdca43d848e8ca568716c240ac23e2dde59f21
   languageName: node
   linkType: hard
 
@@ -14039,7 +14039,7 @@ __metadata:
     "@types/react-dom": "npm:18.2.18"
     "@typescript-eslint/eslint-plugin": "npm:6.19.0"
     "@typescript-eslint/parser": "npm:6.19.0"
-    "@yamada-ui/react": "npm:1.2.0"
+    "@yamada-ui/react": "npm:1.2.1"
     axios: "npm:1.6.5"
     change-case: "npm:5.4.2"
     eslint: "npm:8.56.0"
