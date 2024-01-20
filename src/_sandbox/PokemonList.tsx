@@ -1,5 +1,3 @@
-'use client';
-
 import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
 import { Box, Button, Card, Flex, List, Loading, Text } from '@yamada-ui/react';
 import axios from 'axios';
@@ -19,12 +17,12 @@ type Pokemon = {
 
 export const PokemonList: React.FC<BoxProps> = (props) => {
   const queryKey = ['fetchPokemonList'];
-  const { data, isFetching } = useSuspenseQuery({
+  const { data, isFetching, error } = useSuspenseQuery({
     queryKey,
     queryFn: () =>
       axios
         .get<PokemonListResponse>('https://pokeapi.co/api/v2/pokemon', {
-          params: { limit: 5 },
+          params: { limit: 200 },
         })
         .then((res) => res.data),
   });
@@ -32,8 +30,6 @@ export const PokemonList: React.FC<BoxProps> = (props) => {
   const queryClient = useQueryClient();
   const onClickPagination = (url: string) => {
     return () => {
-      if (!url) return;
-
       queryClient.fetchQuery({
         queryKey,
         queryFn: () =>
@@ -42,8 +38,11 @@ export const PokemonList: React.FC<BoxProps> = (props) => {
     };
   };
 
+  if (error) throw error;
+
   return (
     <Box p="2" {...props}>
+      <Text>hello</Text>
       <Flex gap="2" alignItems="center">
         <Button
           onClick={onClickPagination(data.previous ?? '')}
