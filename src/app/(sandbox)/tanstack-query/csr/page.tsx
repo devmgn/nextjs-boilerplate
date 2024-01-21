@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import NextLink from 'next/link';
 import { Heading, Link, Text } from '@yamada-ui/react';
-import { PokemonList } from '@/_sandbox/PokemonList';
+import { PokemonList } from '../components/PokemonList';
 import type { NextPage } from 'next';
 
 const Sandbox: NextPage = async () => {

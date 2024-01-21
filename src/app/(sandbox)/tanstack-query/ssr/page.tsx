@@ -1,18 +1,11 @@
 import NextLink from 'next/link';
-import {
-  HydrationBoundary,
-  QueryClient,
-  dehydrate,
-} from '@tanstack/react-query';
 import { Heading, Link, Text } from '@yamada-ui/react';
-import { queryFn, queryKey } from '@/_sandbox/getPokemonList';
-import { PokemonList } from '@/_sandbox/PokemonList';
+import { queryFn, queryKey } from '../components/getPokemonList';
+import { PokemonList } from '../components/PokemonList';
+import { PrefetchQuery } from '../components/PrefetchQuery';
 import type { NextPage } from 'next';
 
-const Sandbox: NextPage = async () => {
-  const queryClient = new QueryClient();
-  await queryClient.prefetchQuery({ queryKey, queryFn });
-
+const Sandbox: NextPage = () => {
   return (
     <>
       <Heading size="xl">SSR</Heading>
@@ -21,9 +14,9 @@ const Sandbox: NextPage = async () => {
           Return
         </Link>
       </Text>
-      <HydrationBoundary state={dehydrate(queryClient)}>
+      <PrefetchQuery prefetchQueryOptions={{ queryKey, queryFn }}>
         <PokemonList />
-      </HydrationBoundary>
+      </PrefetchQuery>
     </>
   );
 };

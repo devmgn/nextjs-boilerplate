@@ -17,6 +17,6 @@ export const queryKey = ['fetchPokemonList'];
 export const queryFn = () =>
   axios
     .get<PokemonListResponse>('https://pokeapi.co/api/v2/pokemon', {
-      params: { limit: 24 },
+      params: { limit: 32 },
     })
     .then((res) => res.data);

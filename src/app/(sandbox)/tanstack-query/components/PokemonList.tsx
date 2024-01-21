@@ -3,6 +3,7 @@
 import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
 import { Box, Button, Card, Flex, List, Loading, Text } from '@yamada-ui/react';
 import axios from 'axios';
+import { useUnmount } from 'react-use';
 import { queryFn, queryKey } from './getPokemonList';
 import type { BoxProps } from '@yamada-ui/react';
 
@@ -22,6 +23,10 @@ export const PokemonList: React.FC<BoxProps> = (props) => {
       });
     };
   };
+
+  useUnmount(() => {
+    queryClient.removeQueries({ queryKey });
+  });
 
   return (
     <Box p="2" {...props}>
