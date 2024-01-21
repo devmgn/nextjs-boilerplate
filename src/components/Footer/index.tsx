@@ -8,3 +8,5 @@ export const Footer: React.FC<HTMLUIProps<'footer'>> = (props) => {
     </Box>
   );
 };
+
+Footer.displayName = 'Footer';

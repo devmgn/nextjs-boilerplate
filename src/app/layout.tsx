@@ -1,4 +1,3 @@
-import { Footer, Header } from '@/components';
 import { APP_NAME, DEFAULT_DESCRIPTION } from '@/config/env';
 import { RootProvider } from '@/providers';
 import type { Metadata, Viewport } from 'next';
@@ -19,14 +18,12 @@ const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (
     <html lang="ja">
       <body>
-        <RootProvider>
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </RootProvider>
+        <RootProvider>{children}</RootProvider>
       </body>
     </html>
   );
 };
+
+RootLayout.displayName = 'RootLayout';
 
 export default RootLayout;

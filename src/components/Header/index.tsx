@@ -8,3 +8,5 @@ export const Header: React.FC<HTMLUIProps<'header'>> = (props) => {
     </Box>
   );
 };
+
+Header.displayName = 'Header';

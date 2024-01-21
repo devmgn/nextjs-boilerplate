@@ -1,13 +1,13 @@
-import { TanstackQueryProvider } from './TanstackQueryProvider';
+import { QueryClientProvider } from './QueryClientProvider';
 import { UIProvider } from './UIProvider';
 
 export const RootProvider: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
   return (
-    <TanstackQueryProvider>
+    <QueryClientProvider>
       <UIProvider>{children}</UIProvider>
-    </TanstackQueryProvider>
+    </QueryClientProvider>
   );
 };
 
