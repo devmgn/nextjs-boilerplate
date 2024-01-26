@@ -6,5 +6,9 @@ const buildEslintCommand = (filenames) =>
     .join(' --file ')}`;
 
 module.exports = {
-  'src/**/*.[jt]s?(x)': [buildEslintCommand, 'yarn test'],
+  'src/**/*.[jt]s?(x)': [
+    'yarn tsc --incremental false --noEmit',
+    buildEslintCommand,
+    'yarn test',
+  ],
 };
