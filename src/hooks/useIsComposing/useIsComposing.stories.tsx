@@ -1,5 +1,5 @@
 import { Flex, Input, Stack, Tag, Text } from '@yamada-ui/react';
-import { useIsComposing } from '../useIsComposing';
+import { useIsComposing } from '.';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof useIsComposing> = {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Grid, Input, NumberInput, Stack, Text } from '@yamada-ui/react';
-import { useDebouncedValue } from '../useDebouncedValue';
-import { useInputValue } from '../useInputValue';
+import { useInputValue } from '../useInputValue/useInputValue';
+import { useDebouncedValue } from '.';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta: Meta<typeof useDebouncedValue> = {
@@ -10,8 +10,8 @@ const meta: Meta<typeof useDebouncedValue> = {
     layout: 'centered',
   },
   render: () => {
-    const [delay, setDelay] = useState('100');
-    const [value, setValue] = useInputValue('');
+    const [delay, setDelay] = useState(150);
+    const [value, setValue] = useInputValue(['1', '2']);
     const debouncedValue = useDebouncedValue(value, Number(delay));
 
     return (
@@ -23,16 +23,12 @@ const meta: Meta<typeof useDebouncedValue> = {
           placeholder="input value"
         />
         <Grid alignItems="center" gap="2" gridTemplateColumns="auto auto">
-          <Text>debouncedValue:</Text>
-          <Input
-            value={debouncedValue}
-            placeholder="debounced value"
-            readOnly
-          />
+          <Text>debouncedValue Result:</Text>
+          <Input value={debouncedValue} readOnly />
           <Text>delay:</Text>
           <NumberInput
             value={delay}
-            onChange={setDelay}
+            onChange={(_, v) => setDelay(v)}
             placeholder="delay time"
           />
         </Grid>

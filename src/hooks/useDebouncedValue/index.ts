@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { useDebounce, useUnmount } from 'react-use';
-import { useIsComposing } from './useIsComposing';
+import { useIsComposing } from '../useIsComposing';
 
 /**
  * デバウンスされた値を返すカスタムフック

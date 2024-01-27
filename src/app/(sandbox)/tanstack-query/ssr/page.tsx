@@ -1,9 +1,8 @@
 import NextLink from 'next/link';
 import { Heading, Link, Text } from '@yamada-ui/react';
-import { HydrationBoundary } from '@/components/PrefetchQuery';
+import { Hydrator } from '@/components/Hydrator';
 import { queryFn, queryKey } from '../components/getPokemonList';
 import { PokemonList } from '../components/PokemonList';
-import type { PokemonListResponse } from '../components/getPokemonList';
 import type { NextPage } from 'next';
 
 const Sandbox: NextPage = () => {
@@ -15,16 +14,9 @@ const Sandbox: NextPage = () => {
           Return
         </Link>
       </Text>
-      <HydrationBoundary<
-        PokemonListResponse,
-        Error,
-        PokemonListResponse,
-        string[]
-      >
-        fetchQueryOptions={{ queryKey, queryFn }}
-      >
+      <Hydrator fetchQueryOptions={{ queryKey, queryFn }}>
         <PokemonList />
-      </HydrationBoundary>
+      </Hydrator>
     </>
   );
 };
