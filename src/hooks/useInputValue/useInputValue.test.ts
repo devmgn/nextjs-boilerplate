@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
-import { useInputValue } from '../useInputValue';
+import { useInputValue } from './useInputValue';
 
 const initialValue = 'initial value';
 const updatedValue = 'updated value';

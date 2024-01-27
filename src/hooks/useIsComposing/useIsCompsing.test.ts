@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
-import { useIsComposing } from '../useIsComposing';
+import { useIsComposing } from '.';
 import type { RenderHookResult } from '@testing-library/react';
 
 const testPatterns: [string, boolean][] = [

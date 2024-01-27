@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react';
-import { useDebouncedValue } from '../useDebouncedValue';
+import { useDebouncedValue } from '.';
 import type { RenderHookResult } from '@testing-library/react';
 
 jest.useFakeTimers();
