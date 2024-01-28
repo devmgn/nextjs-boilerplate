@@ -14,6 +14,7 @@ module.exports = {
     'next/core-web-vitals',
     'prettier',
   ],
+  plugins: ['@tanstack/query'],
   rules: {
     'arrow-body-style': 'off',
     'import/prefer-default-export': 'off',
