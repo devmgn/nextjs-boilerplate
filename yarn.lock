@@ -11758,12 +11758,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:9.0.7":
-  version: 9.0.7
-  resolution: "husky@npm:9.0.7"
+"husky@npm:9.0.9":
+  version: 9.0.9
+  resolution: "husky@npm:9.0.9"
   bin:
-    husky: bin.js
-  checksum: 10c0/ac36838bc230b42ca878eeb6993cba5499b858700581fa9e8b579227af9ad47bdbf4c050f4145f51f33f77c16d359f329622b7050150c78a7c52be26cc24174e
+    husky: bin.mjs
+  checksum: 10c0/8ce04bbe983b326d27abe9bde972040b5e81e04b375c3f7183446f355fef85cb0b58a4aa3fae9c219f376e477c0b0b7fd4758b84acdeb811d3e77278fdf45689
   languageName: node
   linkType: hard
 
@@ -14058,7 +14058,7 @@ __metadata:
     eslint-plugin-import: "npm:2.29.1"
     eslint-plugin-jest: "npm:27.6.3"
     eslint-plugin-storybook: "npm:0.6.15"
-    husky: "npm:9.0.7"
+    husky: "npm:9.0.9"
     jest: "npm:29.7.0"
     jest-environment-jsdom: "npm:29.7.0"
     lint-staged: "npm:15.2.1"
