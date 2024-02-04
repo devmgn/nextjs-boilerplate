@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { axios } from '@/lib';
 
 export type PokemonListResponse = {
   count: number;

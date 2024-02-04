@@ -6,7 +6,6 @@ import {
   QueryClientProvider as TQueryClientProvider,
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { ReactQueryStreamedHydration } from '@tanstack/react-query-next-experimental';
 import { queryClientConfig } from './config';
 
 export const QueryClientProvider: React.FC<React.PropsWithChildren> = ({
@@ -16,7 +15,7 @@ export const QueryClientProvider: React.FC<React.PropsWithChildren> = ({
 
   return (
     <TQueryClientProvider client={queryClient}>
-      <ReactQueryStreamedHydration>{children}</ReactQueryStreamedHydration>
+      {children}
       <ReactQueryDevtools initialIsOpen={false} buttonPosition="bottom-left" />
     </TQueryClientProvider>
   );

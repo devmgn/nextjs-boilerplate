@@ -26,7 +26,6 @@
   "dependencies": {
     "@tanstack/react-query": "5.18.1",
     "@tanstack/react-query-devtools": "5.18.1",
-    "@tanstack/react-query-next-experimental": "5.18.1",
     "@yamada-ui/react": "1.2.3",
     "axios": "1.6.7",
     "change-case": "5.4.2",
@@ -75,9 +74,5 @@
     "prettier": "3.2.4",
     "storybook": "7.6.12",
     "typescript": "5.3.3"
-  },
-  "resolutions": {
-    "@types/react": "18.2.52",
-    "@types/react-dom": "18.2.18"
   }
 }

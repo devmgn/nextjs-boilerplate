@@ -18,6 +18,7 @@
     "next-env.d.ts": true,
     "tsconfig.tsbuildinfo": true
   },
+  "javascript.format.enable": false,
   "prettier.enable": true,
   "search.exclude": {
     "**/.pnp.*": true,
@@ -25,5 +26,6 @@
     ".next": true
   },
   "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.format.enable": false,
   "typescript.tsdk": "node_modules/typescript/lib"
 }

@@ -2,8 +2,8 @@
 
 import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
 import { Box, Button, Card, Flex, List, Loading, Text } from '@yamada-ui/react';
-import axios from 'axios';
 import { useUnmount } from 'react-use';
+import { axios } from '@/lib';
 import { queryFn, queryKey } from './getPokemonList';
 import type { BoxProps } from '@yamada-ui/react';
 
