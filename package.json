@@ -21,7 +21,7 @@
     "test:update-snapshot": "jest --update-snapshot",
     "analyze": "ANALYZE=true next build",
     "storybook": "storybook dev -p 6006",
-    "storybook:build": "storybook build"
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@tanstack/react-query": "5.18.1",
