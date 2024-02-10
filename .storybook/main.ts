@@ -1,5 +1,5 @@
-import { StorybookConfig } from '@storybook/nextjs';
 import path from 'path';
+import type { StorybookConfig } from '@storybook/nextjs';
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
@@ -21,9 +21,9 @@ const config: StorybookConfig = {
   },
   staticDirs: ['../public'],
   webpackFinal: async (config) => {
-    if (!config.resolve || !config.module?.rules) {
-      return config;
-    }
+    config.resolve = config.resolve || {};
+    config.module = config.module || {};
+    config.module.rules = config.module.rules || [];
 
     config.resolve.alias = {
       ...config.resolve.alias,
