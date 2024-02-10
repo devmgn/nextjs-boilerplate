@@ -4,6 +4,7 @@ import locale from 'axe-core/locales/ja.json';
 import { initialize, mswLoader } from 'msw-storybook-addon';
 import { RootProvider } from '../src/providers';
 import type { Preview } from '@storybook/react';
+import { ErrorBoundary } from './ErrorBoundary';
 
 initialize({ onUnhandledRequest: 'bypass' });
 
@@ -33,7 +34,9 @@ const preview: Preview = {
   decorators: [
     (Story) => (
       <RootProvider>
-        <Story />
+        <ErrorBoundary>
+          <Story />
+        </ErrorBoundary>
       </RootProvider>
     ),
   ],
