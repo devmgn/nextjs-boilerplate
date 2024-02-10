@@ -4822,14 +4822,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/eslint-plugin-query@npm:5.18.1":
-  version: 5.18.1
-  resolution: "@tanstack/eslint-plugin-query@npm:5.18.1"
+"@tanstack/eslint-plugin-query@npm:5.20.0":
+  version: 5.20.0
+  resolution: "@tanstack/eslint-plugin-query@npm:5.20.0"
   dependencies:
-    "@typescript-eslint/utils": "npm:^5.62.0"
+    "@typescript-eslint/utils": "npm:^6.20.0"
   peerDependencies:
     eslint: ^8.0.0
-  checksum: 10c0/d3ee2430d1136bab522217c3cac2e56c4ada539a06b476dcbaee88f1274f3b1e1960aa6ae6045c0a2e082fdb073ca554d49fd59013e3ecbc55b63a8ec9a698fe
+  checksum: 10c0/2e5e7f556ecc5b7bd0fd0ac0b7fcb0a7fa86f204496b3a5436753190cf75d3b29a72a6e443907c5cfd9db0a9674eb865fc78f9d5b77e9da9f760cb64478a9ad8
   languageName: node
   linkType: hard
 
@@ -5603,7 +5603,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:6.21.0":
+"@typescript-eslint/utils@npm:6.21.0, @typescript-eslint/utils@npm:^6.20.0":
   version: 6.21.0
   resolution: "@typescript-eslint/utils@npm:6.21.0"
   dependencies:
@@ -5620,7 +5620,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:^5.10.0, @typescript-eslint/utils@npm:^5.45.0, @typescript-eslint/utils@npm:^5.62.0":
+"@typescript-eslint/utils@npm:^5.10.0, @typescript-eslint/utils@npm:^5.45.0":
   version: 5.62.0
   resolution: "@typescript-eslint/utils@npm:5.62.0"
   dependencies:
@@ -14237,7 +14237,7 @@ __metadata:
     "@storybook/react": "npm:7.6.13"
     "@storybook/testing-library": "npm:0.2.2"
     "@svgr/webpack": "npm:8.1.0"
-    "@tanstack/eslint-plugin-query": "npm:5.18.1"
+    "@tanstack/eslint-plugin-query": "npm:5.20.0"
     "@tanstack/react-query": "npm:5.18.1"
     "@tanstack/react-query-devtools": "npm:5.18.1"
     "@testing-library/jest-dom": "npm:6.4.2"
