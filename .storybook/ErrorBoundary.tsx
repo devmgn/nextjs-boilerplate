@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading, Button, Box, Tag, Text, Stack } from '@yamada-ui/react';
+import { Heading, Button, Box, Tag, Stack } from '@yamada-ui/react';
 import { ErrorBoundary as NextErrorBoundary } from 'next/dist/client/components/error-boundary';
 
 export const ErrorBoundary: React.FC<

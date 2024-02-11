@@ -9732,9 +9732,9 @@ __metadata:
   linkType: hard
 
 "dotenv@npm:^16.0.0":
-  version: 16.4.1
-  resolution: "dotenv@npm:16.4.1"
-  checksum: 10c0/ef3d95f48f38146df0881a4b58447ae437d2da3f6d645074b84de4e64ef64ba75fc357c5ed66b3c2b813b5369fdeb6a4777d6ade2d50e54eed6aa06dddc98bc4
+  version: 16.4.2
+  resolution: "dotenv@npm:16.4.2"
+  checksum: 10c0/04373a742f565896de1ab3eadcd15c1543b6d1fc37bb7ab2faa2286a0b3fd432aa02c6fd330ede758432f36865f0fb128afa2e5991e0a789b9011e720ba4a876
   languageName: node
   linkType: hard
 
@@ -14055,14 +14055,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw-storybook-addon@npm:2.0.0-next.1":
-  version: 2.0.0-next.1
-  resolution: "msw-storybook-addon@npm:2.0.0-next.1"
+"msw-storybook-addon@npm:2.0.0-beta.1":
+  version: 2.0.0-beta.1
+  resolution: "msw-storybook-addon@npm:2.0.0-beta.1"
   dependencies:
     is-node-process: "npm:^1.0.1"
   peerDependencies:
-    msw: ">=0.35.0 <2.0.0"
-  checksum: 10c0/33a7e93f64e8cbca4228d00aa623e2141c004701f67bbf3fc9d5fce90fba48f151dbc591176589f54634fa271db36d97b99181401d9fc062e4ccd62cac72199c
+    msw: ^2.0.0
+  checksum: 10c0/a23dfc76ae79f73edc381365d87c6bd2eb43ce5cf3b9a1022ce55d3727f9bd6442a3c5b7984fc9127fdfefe372a3c3410865ae5399a967f0aeaa5918a9104f21
   languageName: node
   linkType: hard
 
@@ -14267,7 +14267,7 @@ __metadata:
     lint-staged: "npm:15.2.2"
     lodash-es: "npm:4.17.21"
     msw: "npm:2.1.7"
-    msw-storybook-addon: "npm:2.0.0-next.1"
+    msw-storybook-addon: "npm:2.0.0-beta.1"
     next: "npm:14.1.0"
     next-compose-plugins: "npm:2.2.1"
     postcss-preset-env: "npm:9.3.0"
