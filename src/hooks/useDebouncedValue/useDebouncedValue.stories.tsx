@@ -21,7 +21,7 @@ const meta: Meta<typeof useDebouncedValue> = {
           onChange={setValue}
           placeholder="input value"
         />
-        <div className="grid items-center gap-2 grid-cols-[1fr,auto]">
+        <div className="grid grid-cols-[1fr,auto] items-center gap-2 ">
           <p>debouncedValue Result:</p>
           <Input value={debouncedValue} readOnly />
           <p>delay:</p>
