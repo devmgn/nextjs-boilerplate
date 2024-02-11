@@ -24,17 +24,22 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "1.0.2",
     "@tanstack/react-query": "5.20.1",
     "@tanstack/react-query-devtools": "5.20.1",
     "@yamada-ui/react": "1.2.5",
     "axios": "1.6.7",
     "change-case": "5.4.2",
+    "class-variance-authority": "0.7.0",
     "clsx": "2.1.0",
     "lodash-es": "4.17.21",
+    "lucide-react": "0.323.0",
     "next": "14.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-use": "17.5.0",
+    "tailwind-merge": "2.2.1",
+    "tailwindcss-animate": "1.0.7",
     "type-fest": "4.10.2"
   },
   "devDependencies": {
