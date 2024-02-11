@@ -135,5 +135,11 @@ module.exports = {
       files: ['**/?(*.)+(spec|test).[tj]s?(x)', 'jest.setup.js?(x)'],
       extends: ['plugin:jest/recommended'],
     },
+    {
+      files: ['**/mocks/**/*.[tj]s?(x)'],
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
+      },
+    },
   ],
 };

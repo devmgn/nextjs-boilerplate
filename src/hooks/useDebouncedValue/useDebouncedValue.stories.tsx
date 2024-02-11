@@ -11,7 +11,7 @@ const meta: Meta<typeof useDebouncedValue> = {
   },
   render: () => {
     const [delay, setDelay] = useState(150);
-    const [value, setValue] = useInputValue(['1', '2']);
+    const [value, setValue] = useInputValue();
     const debouncedValue = useDebouncedValue(value, Number(delay));
 
     return (

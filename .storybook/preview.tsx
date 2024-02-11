@@ -1,8 +1,12 @@
 import React from 'react';
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import locale from 'axe-core/locales/ja.json';
+import { initialize, mswLoader } from 'msw-storybook-addon';
 import { RootProvider } from '../src/providers';
 import type { Preview } from '@storybook/react';
+import { ErrorBoundary } from './ErrorBoundary';
+
+initialize({ onUnhandledRequest: 'bypass' });
 
 const preview: Preview = {
   parameters: {
@@ -26,10 +30,13 @@ const preview: Preview = {
       config: { locale },
     },
   },
+  loaders: [mswLoader],
   decorators: [
     (Story) => (
       <RootProvider>
-        <Story />
+        <ErrorBoundary>
+          <Story />
+        </ErrorBoundary>
       </RootProvider>
     ),
   ],

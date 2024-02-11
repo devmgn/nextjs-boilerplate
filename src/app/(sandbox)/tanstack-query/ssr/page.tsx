@@ -1,6 +1,6 @@
 import NextLink from 'next/link';
 import { Heading, Link, Text } from '@yamada-ui/react';
-import { Hydrator } from '@/components/Hydrator';
+import { Hydrator } from '@/components';
 import { queryFn, queryKey } from '../components/getPokemonList';
 import { PokemonList } from '../components/PokemonList';
 import type { NextPage } from 'next';
