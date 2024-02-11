@@ -80,6 +80,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react/prop-types': 'off',
     'react/require-default-props': 'off',
+    'react/jsx-sort-props': 'warn',
     'react-hooks/exhaustive-deps': [
       'warn',
       {

@@ -1,5 +1,4 @@
-import NextLink from 'next/link';
-import { Heading, Link, Text } from '@yamada-ui/react';
+import Link from 'next/link';
 import { Hydrator } from '@/components';
 import { queryFn, queryKey } from '../components/getPokemonList';
 import { PokemonList } from '../components/PokemonList';
@@ -8,12 +7,12 @@ import type { NextPage } from 'next';
 const Sandbox: NextPage = () => {
   return (
     <>
-      <Heading size="xl">SSR</Heading>
-      <Text>
-        <Link as={NextLink} href="/tanstack-query">
+      <h1 className="text-2xl font-bold">SSR</h1>
+      <p>
+        <Link className="text-blue-500 hover:underline" href="/tanstack-query">
           Return
         </Link>
-      </Text>
+      </p>
       <Hydrator fetchQueryOptions={{ queryKey, queryFn }}>
         <PokemonList />
       </Hydrator>

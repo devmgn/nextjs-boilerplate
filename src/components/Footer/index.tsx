@@ -1,12 +1,7 @@
-import { Box } from '@yamada-ui/react';
-import type { HTMLUIProps } from '@yamada-ui/react';
-
-export const Footer: React.FC<HTMLUIProps<'footer'>> = (props) => {
-  return (
-    <Box {...props} as="footer">
-      footer
-    </Box>
-  );
+export const Footer: React.FC<React.ComponentPropsWithoutRef<'footer'>> = (
+  props,
+) => {
+  return <footer {...props}>footer</footer>;
 };
 
 Footer.displayName = 'Footer';

@@ -1,13 +1,11 @@
-import { Container, Heading } from '@yamada-ui/react';
-
 const TanstackQueryLayout: React.FC<React.PropsWithChildren> = ({
   children,
 }) => {
   return (
-    <Container as="main" maxWidth={1000} marginInline="auto">
-      <Heading size="3xl">Tanstack Query Sandbox</Heading>
+    <main className="mx-auto max-w-3xl p-4">
+      <h1 className="mb-4 text-3xl font-bold">Tanstack Query Sandbox</h1>
       {children}
-    </Container>
+    </main>
   );
 };
 

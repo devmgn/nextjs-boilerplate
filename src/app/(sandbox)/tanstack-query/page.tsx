@@ -1,21 +1,26 @@
-import NextLink from 'next/link';
-import { DiscList, Link, ListItem } from '@yamada-ui/react';
+import Link from 'next/link';
 import type { NextPage } from 'next';
 
 const Sandbox: NextPage = async () => {
   return (
-    <DiscList>
-      <ListItem>
-        <Link as={NextLink} href="/tanstack-query/ssr">
+    <ul>
+      <li>
+        <Link
+          className="text-blue-500 hover:underline"
+          href="/tanstack-query/ssr"
+        >
           SSR
         </Link>
-      </ListItem>
-      <ListItem>
-        <Link as={NextLink} href="/tanstack-query/csr">
+      </li>
+      <li>
+        <Link
+          className="text-blue-500 hover:underline"
+          href="/tanstack-query/csr"
+        >
           CSR
         </Link>
-      </ListItem>
-    </DiscList>
+      </li>
+    </ul>
   );
 };
 

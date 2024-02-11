@@ -1,18 +1,17 @@
 import { Suspense } from 'react';
-import NextLink from 'next/link';
-import { Heading, Link, Text } from '@yamada-ui/react';
+import Link from 'next/link';
 import { PokemonList } from '../components/PokemonList';
 import type { NextPage } from 'next';
 
 const Sandbox: NextPage = async () => {
   return (
     <>
-      <Heading size="xl">CSR</Heading>
-      <Text>
-        <Link as={NextLink} href="/tanstack-query">
+      <h1 className="text-2xl font-bold">CSR</h1>
+      <p>
+        <Link className="text-blue-500 hover:underline" href="/tanstack-query">
           Return
         </Link>
-      </Text>
+      </p>
       <Suspense fallback="loading...">
         <PokemonList />
       </Suspense>

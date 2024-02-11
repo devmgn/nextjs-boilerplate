@@ -1,12 +1,7 @@
-import { Button } from '@/components/ui/button';
 import type { NextPage } from 'next';
 
 const Index: NextPage = () => {
-  return (
-    <Button asChild>
-      <a href="#hoge">hoge</a>
-    </Button>
-  );
+  return null;
 };
 
 Index.displayName = 'Index';
