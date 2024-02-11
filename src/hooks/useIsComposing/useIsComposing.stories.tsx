@@ -1,4 +1,4 @@
-import { Flex, Input, Stack, Tag, Text } from '@yamada-ui/react';
+import { Input } from '@/components/ui/input';
 import { useIsComposing } from '.';
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -11,15 +11,15 @@ const meta: Meta<typeof useIsComposing> = {
     const isComposing = useIsComposing();
 
     return (
-      <Stack gap="4">
+      <div className="flex flex-col gap-4">
         <Input />
-        <Flex alignItems="center" gap="2">
-          <Text>isComposing</Text>
-          <Tag colorScheme={isComposing ? 'red' : 'primary'}>
+        <div className="flex items-center gap-2">
+          <p>isComposing</p>
+          <p className="rounded border border-gray-800 px-1 py-0.5 text-sm">
             {isComposing.toString()}
-          </Tag>
-        </Flex>
-      </Stack>
+          </p>
+        </div>
+      </div>
     );
   },
 };

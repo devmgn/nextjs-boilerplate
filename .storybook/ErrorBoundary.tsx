@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heading, Button, Box, Tag, Stack } from '@yamada-ui/react';
+import { Button } from '../src/components/ui/button';
 import { ErrorBoundary as NextErrorBoundary } from 'next/dist/client/components/error-boundary';
 
 export const ErrorBoundary: React.FC<
@@ -13,37 +13,13 @@ export const ErrorBoundary: React.FC<
       {...props}
       errorComponent={({ error, reset }) => {
         return (
-          <Box role="alert">
-            <Heading>Something went wrong:</Heading>
-            <Stack as="dl" gap="2" mt="2">
-              {Object.entries(error).map(([key, value]) => (
-                <React.Fragment key={key}>
-                  <Tag
-                    as="dt"
-                    variant="outline"
-                    size="sm"
-                    alignSelf="flex-start"
-                  >
-                    {key}
-                  </Tag>
-                  <Box
-                    as="dd"
-                    p="2"
-                    bgColor="red.50"
-                    color="gray.700"
-                    borderRadius="8"
-                    fontFamily="monospace"
-                    wordBreak="break-all"
-                  >
-                    {JSON.stringify(value)}
-                  </Box>
-                </React.Fragment>
-              ))}
-            </Stack>
-            <Button mt="4" onClick={reset}>
+          <>
+            <h1 className="text-2xl font-bold">Something went wrong:</h1>
+            <p className="mt-4 text-red-600">{error.message}</p>
+            <Button className="mt-4" onClick={reset}>
               Try again
             </Button>
-          </Box>
+          </>
         );
       }}
     />

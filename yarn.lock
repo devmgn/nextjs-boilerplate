@@ -19,6 +19,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@alloc/quick-lru@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "@alloc/quick-lru@npm:5.2.0"
+  checksum: 10c0/7b878c48b9d25277d0e1a9b8b2f2312a314af806b4129dc902f2bc29ab09b58236e53964689feec187b28c80d2203aff03829754773a707a8a5987f1b7682d92
+  languageName: node
+  linkType: hard
+
 "@ampproject/remapping@npm:^2.2.0":
   version: 2.2.1
   resolution: "@ampproject/remapping@npm:2.2.1"
@@ -205,7 +212,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/helper-module-imports@npm:^7.16.7, @babel/helper-module-imports@npm:^7.22.15":
+"@babel/helper-module-imports@npm:^7.22.15":
   version: 7.22.15
   resolution: "@babel/helper-module-imports@npm:7.22.15"
   dependencies:
@@ -1500,7 +1507,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.0.0, @babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.12.13, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.13.10, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.9.2":
+"@babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.13.10, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.23.2, @babel/runtime@npm:^7.23.7, @babel/runtime@npm:^7.8.4, @babel/runtime@npm:^7.9.2":
   version: 7.23.9
   resolution: "@babel/runtime@npm:7.23.9"
   dependencies:
@@ -2002,165 +2009,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/babel-plugin@npm:^11.11.0":
-  version: 11.11.0
-  resolution: "@emotion/babel-plugin@npm:11.11.0"
-  dependencies:
-    "@babel/helper-module-imports": "npm:^7.16.7"
-    "@babel/runtime": "npm:^7.18.3"
-    "@emotion/hash": "npm:^0.9.1"
-    "@emotion/memoize": "npm:^0.8.1"
-    "@emotion/serialize": "npm:^1.1.2"
-    babel-plugin-macros: "npm:^3.1.0"
-    convert-source-map: "npm:^1.5.0"
-    escape-string-regexp: "npm:^4.0.0"
-    find-root: "npm:^1.1.0"
-    source-map: "npm:^0.5.7"
-    stylis: "npm:4.2.0"
-  checksum: 10c0/89cbb6ec0e52c8ee9c2a4b9889ccd4fc3a75d28091d835bfac6d7c4565d3338621e23af0a85f3bcd133e1cae795c692e1dadada015784d4b0554aa5bb111df43
-  languageName: node
-  linkType: hard
-
-"@emotion/cache@npm:^11.11.0":
-  version: 11.11.0
-  resolution: "@emotion/cache@npm:11.11.0"
-  dependencies:
-    "@emotion/memoize": "npm:^0.8.1"
-    "@emotion/sheet": "npm:^1.2.2"
-    "@emotion/utils": "npm:^1.2.1"
-    "@emotion/weak-memoize": "npm:^0.3.1"
-    stylis: "npm:4.2.0"
-  checksum: 10c0/a23ab5ab2fd08e904698106d58ad3536fed51cc1aa0ef228e95bb640eaf11f560dbd91a395477b0d84e1e3c20150263764b4558517cf6576a89d2d6cc5253688
-  languageName: node
-  linkType: hard
-
-"@emotion/hash@npm:^0.9.1":
-  version: 0.9.1
-  resolution: "@emotion/hash@npm:0.9.1"
-  checksum: 10c0/cdafe5da63fc1137f3db6e232fdcde9188b2b47ee66c56c29137199642a4086f42382d866911cfb4833cae2cc00271ab45cad3946b024f67b527bb7fac7f4c9d
-  languageName: node
-  linkType: hard
-
-"@emotion/is-prop-valid@npm:^0.8.2":
-  version: 0.8.8
-  resolution: "@emotion/is-prop-valid@npm:0.8.8"
-  dependencies:
-    "@emotion/memoize": "npm:0.7.4"
-  checksum: 10c0/f6be625f067c7fa56a12a4edaf090715616dc4fc7803c87212831f38c969350107b9709b1be54100e53153b18d9fa068eb4bf4f9ac66a37a8edf1bac9b64e279
-  languageName: node
-  linkType: hard
-
-"@emotion/is-prop-valid@npm:^1.2.1":
-  version: 1.2.1
-  resolution: "@emotion/is-prop-valid@npm:1.2.1"
-  dependencies:
-    "@emotion/memoize": "npm:^0.8.1"
-  checksum: 10c0/7c2aabdf0ca9986ca25abc9dae711348308cf18d418d64ffa4c8ffd2114806c47f2e06ba8ee769f38ec67d65bd59ec73f34d94023e81baa1c43510ac86ccd5e6
-  languageName: node
-  linkType: hard
-
-"@emotion/memoize@npm:0.7.4":
-  version: 0.7.4
-  resolution: "@emotion/memoize@npm:0.7.4"
-  checksum: 10c0/b2376548fc147b43afd1ff005a80a1a025bd7eb4fb759fdb23e96e5ff290ee8ba16628a332848d600fb91c3cdc319eee5395fa33d8875e5d5a8c4ce18cddc18e
-  languageName: node
-  linkType: hard
-
-"@emotion/memoize@npm:^0.8.1":
-  version: 0.8.1
-  resolution: "@emotion/memoize@npm:0.8.1"
-  checksum: 10c0/dffed372fc3b9fa2ba411e76af22b6bb686fb0cb07694fdfaa6dd2baeb0d5e4968c1a7caa472bfcf06a5997d5e7c7d16b90e993f9a6ffae79a2c3dbdc76dfe78
-  languageName: node
-  linkType: hard
-
-"@emotion/react@npm:^11.11.0":
-  version: 11.11.3
-  resolution: "@emotion/react@npm:11.11.3"
-  dependencies:
-    "@babel/runtime": "npm:^7.18.3"
-    "@emotion/babel-plugin": "npm:^11.11.0"
-    "@emotion/cache": "npm:^11.11.0"
-    "@emotion/serialize": "npm:^1.1.3"
-    "@emotion/use-insertion-effect-with-fallbacks": "npm:^1.0.1"
-    "@emotion/utils": "npm:^1.2.1"
-    "@emotion/weak-memoize": "npm:^0.3.1"
-    hoist-non-react-statics: "npm:^3.3.1"
-  peerDependencies:
-    react: ">=16.8.0"
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-  checksum: 10c0/ce995395b8714343715284beb8478afdfa72b89ed83981a15a170ca0f4a2f77d7a4a198fd50c1f9c6efcd0535768d168ff88c5921dc5f90bb33134c7a75f9455
-  languageName: node
-  linkType: hard
-
-"@emotion/serialize@npm:^1.1.2, @emotion/serialize@npm:^1.1.3":
-  version: 1.1.3
-  resolution: "@emotion/serialize@npm:1.1.3"
-  dependencies:
-    "@emotion/hash": "npm:^0.9.1"
-    "@emotion/memoize": "npm:^0.8.1"
-    "@emotion/unitless": "npm:^0.8.1"
-    "@emotion/utils": "npm:^1.2.1"
-    csstype: "npm:^3.0.2"
-  checksum: 10c0/875241eafaa30e7d3b7cf9b585d8c1f224cbf627a674e87eb1d7662dafa76a8c8d67f14a79dbf7d1eaa017e9f68389962990fbcc699d5ad65035a1a047432a3f
-  languageName: node
-  linkType: hard
-
-"@emotion/sheet@npm:^1.2.2":
-  version: 1.2.2
-  resolution: "@emotion/sheet@npm:1.2.2"
-  checksum: 10c0/69827a1bfa43d7b188f1d8cea42163143a36312543fdade5257c459a2b3efd7ce386aac84ba152bc2517a4f7e54384c04800b26adb382bb284ac7e4ad40e584b
-  languageName: node
-  linkType: hard
-
-"@emotion/styled@npm:^11.11.0":
-  version: 11.11.0
-  resolution: "@emotion/styled@npm:11.11.0"
-  dependencies:
-    "@babel/runtime": "npm:^7.18.3"
-    "@emotion/babel-plugin": "npm:^11.11.0"
-    "@emotion/is-prop-valid": "npm:^1.2.1"
-    "@emotion/serialize": "npm:^1.1.2"
-    "@emotion/use-insertion-effect-with-fallbacks": "npm:^1.0.1"
-    "@emotion/utils": "npm:^1.2.1"
-  peerDependencies:
-    "@emotion/react": ^11.0.0-rc.0
-    react: ">=16.8.0"
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-  checksum: 10c0/a168bd7a8a6f254e54a321be4c7b7dd4bf65815e6570ba7c5a435b7d5aeebd76434e04886db7799a955817c8d5bf0103a3dcc3c785fba2bb53922320dda59a10
-  languageName: node
-  linkType: hard
-
-"@emotion/unitless@npm:^0.8.1":
-  version: 0.8.1
-  resolution: "@emotion/unitless@npm:0.8.1"
-  checksum: 10c0/a1ed508628288f40bfe6dd17d431ed899c067a899fa293a13afe3aed1d70fac0412b8a215fafab0b42829360db687fecd763e5f01a64ddc4a4b58ec3112ff548
-  languageName: node
-  linkType: hard
-
-"@emotion/use-insertion-effect-with-fallbacks@npm:^1.0.0, @emotion/use-insertion-effect-with-fallbacks@npm:^1.0.1":
+"@emotion/use-insertion-effect-with-fallbacks@npm:^1.0.0":
   version: 1.0.1
   resolution: "@emotion/use-insertion-effect-with-fallbacks@npm:1.0.1"
   peerDependencies:
     react: ">=16.8.0"
   checksum: 10c0/a15b2167940e3a908160687b73fc4fcd81e59ab45136b6967f02c7c419d9a149acd22a416b325c389642d4f1c3d33cf4196cad6b618128b55b7c74f6807a240b
-  languageName: node
-  linkType: hard
-
-"@emotion/utils@npm:^1.2.1":
-  version: 1.2.1
-  resolution: "@emotion/utils@npm:1.2.1"
-  checksum: 10c0/db43ca803361740c14dfb1cca1464d10d27f4c8b40d3e8864e6932ccf375d1450778ff4e4eadee03fb97f2aeb18de9fae98294905596a12ff7d4cd1910414d8d
-  languageName: node
-  linkType: hard
-
-"@emotion/weak-memoize@npm:^0.3.1":
-  version: 0.3.1
-  resolution: "@emotion/weak-memoize@npm:0.3.1"
-  checksum: 10c0/ed514b3cb94bbacece4ac2450d98898066c0a0698bdeda256e312405ca53634cb83c75889b25cd8bbbe185c80f4c05a1f0a0091e1875460ba6be61d0334f0b8a
   languageName: node
   linkType: hard
 
@@ -3028,13 +2882,6 @@ __metadata:
   version: 1.0.0-next.24
   resolution: "@polka/url@npm:1.0.0-next.24"
   checksum: 10c0/97d98fa911857158514457bedad8c36084c1f608302458f580ab300a25c3abf456d1d54fcf2ea7927464bee0858baf5e8e5b374b95c3375b9eb3784d81411ebd
-  languageName: node
-  linkType: hard
-
-"@popperjs/core@npm:^2.11.8":
-  version: 2.11.8
-  resolution: "@popperjs/core@npm:2.11.8"
-  checksum: 10c0/4681e682abc006d25eb380d0cf3efc7557043f53b6aea7a5057d0d1e7df849a00e281cd8ea79c902a35a414d7919621fc2ba293ecec05f413598e0b23d5a1e63
   languageName: node
   linkType: hard
 
@@ -5290,7 +5137,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
+"@types/node@npm:*, @types/node@npm:20.11.17":
   version: 20.11.17
   resolution: "@types/node@npm:20.11.17"
   dependencies:
@@ -5837,1390 +5684,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@yamada-ui/accordion@npm:1.0.12":
-  version: 1.0.12
-  resolution: "@yamada-ui/accordion@npm:1.0.12"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/icon": "npm:1.0.11"
-    "@yamada-ui/motion": "npm:1.0.12"
-    "@yamada-ui/transitions": "npm:1.0.12"
-    "@yamada-ui/use-controllable-state": "npm:1.0.5"
-    "@yamada-ui/use-descendant": "npm:1.0.5"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/f37947d1fae064e446d31c7e829f7c64362284a64be5e66fab0e449cc9f909bae46127f5d087f9dae9042edec61d89c7027ee5bf8b2497806a8214eb86acd8eb
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/alert@npm:1.0.12":
-  version: 1.0.12
-  resolution: "@yamada-ui/alert@npm:1.0.12"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/icon": "npm:1.0.11"
-    "@yamada-ui/loading": "npm:1.0.12"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/a6ed5aa8be258954bf4d772adf33c3200ca5d089181e9c16d623734cd92982d223ce2d84c4d40fd7ebb9515e7fbabf4e48c0f51fa6f86e4d99602e508f10cb30
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/autocomplete@npm:1.0.17":
-  version: 1.0.17
-  resolution: "@yamada-ui/autocomplete@npm:1.0.17"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/form-control": "npm:1.0.14"
-    "@yamada-ui/icon": "npm:1.0.11"
-    "@yamada-ui/motion": "npm:1.0.12"
-    "@yamada-ui/popover": "npm:1.0.12"
-    "@yamada-ui/portal": "npm:1.0.5"
-    "@yamada-ui/use-clickable": "npm:1.0.5"
-    "@yamada-ui/use-controllable-state": "npm:1.0.5"
-    "@yamada-ui/use-descendant": "npm:1.0.5"
-    "@yamada-ui/use-outside-click": "npm:1.0.5"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/8071fa80003d8eab5c88247a62d10bf48beaa276339cc0d5843902763ca78f6b7f6d82057b5dc8fea3c5df3877d56a7dedc66e834b1d538f734ff3e20f93d518
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/avatar@npm:1.1.10":
-  version: 1.1.10
-  resolution: "@yamada-ui/avatar@npm:1.1.10"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/icon": "npm:1.0.11"
-    "@yamada-ui/image": "npm:1.0.11"
-    "@yamada-ui/use-animation": "npm:1.0.11"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/d6000bcff9fa381e68c4bf314dcd0d498c1490f622cb73030e58133c71b5ec7e899f14971caa5a19f2124e1c489798331649307040f3c534fbd2ba58b428d4f8
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/badge@npm:1.0.11":
-  version: 1.0.11
-  resolution: "@yamada-ui/badge@npm:1.0.11"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/177bf94fbefc816f651f31e028f247244c8cc8ad687828f219276ed84f765296b67c2f92404ca6d0158c30adc3e49452e2e8a9c5bbd12d48c8cf88d56942cdee
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/breadcrumb@npm:1.0.11":
-  version: 1.0.11
-  resolution: "@yamada-ui/breadcrumb@npm:1.0.11"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/016158fb7aae57c5fccb026a3df24d299cc589614d37c16cc32454801cf81d9b1c55ffc81da93e5962bcc88cf4715a0ffe56645fef1ecf75c36185c22144ee3e
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/button@npm:1.0.13":
-  version: 1.0.13
-  resolution: "@yamada-ui/button@npm:1.0.13"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/loading": "npm:1.0.12"
-    "@yamada-ui/ripple": "npm:1.0.12"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/2cecb073a86e266ba4e992fa16dbd668d7bfe92f950ed3daabeee7549395b384fe64e1a0e51fbf7c17888e1451df2728d8561fe0a88ad28160793fb173dd7e2b
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/card@npm:1.0.12":
-  version: 1.0.12
-  resolution: "@yamada-ui/card@npm:1.0.12"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/3b56bbfd7306458af9e45288dcbd16fb4b017a591258715eb611b6d4c06108ae94279d5f5a9ce0324896c97d707c08ee4a4d7009ad36d61f11dd7a90c73ff4df
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/checkbox@npm:1.0.15":
-  version: 1.0.15
-  resolution: "@yamada-ui/checkbox@npm:1.0.15"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/form-control": "npm:1.0.14"
-    "@yamada-ui/layouts": "npm:1.1.8"
-    "@yamada-ui/motion": "npm:1.0.12"
-    "@yamada-ui/use-controllable-state": "npm:1.0.5"
-    "@yamada-ui/use-focus-visible": "npm:1.0.5"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/ee404281da2a232580f2699076169e3d62793a829e0a7e18144bba1d7604b12af8db158d7b5bfb0994774fce1ef74c3b6ba2ffab566008cd78607da9ba253212
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/close-button@npm:1.0.12":
-  version: 1.0.12
-  resolution: "@yamada-ui/close-button@npm:1.0.12"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/icon": "npm:1.0.11"
-    "@yamada-ui/ripple": "npm:1.0.12"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/02b7ce63a13c96210686f9dcbaf96e776991fe73137407b202c0aa8452bd1bb0fed419e5170a426262ef4e100e31dbfba22ecdf41ed6afcdf5128449dcf41aa2
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/color-picker@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/color-picker@npm:1.0.5"
-  dependencies:
-    "@yamada-ui/button": "npm:1.0.13"
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/form-control": "npm:1.0.14"
-    "@yamada-ui/icon": "npm:1.0.11"
-    "@yamada-ui/input": "npm:1.0.14"
-    "@yamada-ui/popover": "npm:1.0.12"
-    "@yamada-ui/portal": "npm:1.0.5"
-    "@yamada-ui/use-controllable-state": "npm:1.0.5"
-    "@yamada-ui/use-eye-dropper": "npm:^1.0.2"
-    "@yamada-ui/use-latest-ref": "npm:^1.0.0"
-    "@yamada-ui/use-outside-click": "npm:1.0.5"
-    "@yamada-ui/use-pan-event": "npm:^1.0.5"
-    "@yamada-ui/use-size": "npm:^1.0.5"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/485d414a03d806abac68030bc1f47cd1373dd229df773b40aa78417260d1591c474fd5704735f81e9ef5aaf14c45bfa97baa2be24632201717efa93a7d60892d
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/core@npm:1.3.2":
-  version: 1.3.2
-  resolution: "@yamada-ui/core@npm:1.3.2"
-  dependencies:
-    "@emotion/react": "npm:^11.11.0"
-    "@emotion/sheet": "npm:^1.2.2"
-    "@emotion/styled": "npm:^11.11.0"
-    "@yamada-ui/portal": "npm:1.0.5"
-    "@yamada-ui/utils": "npm:1.0.5"
-    csstype: "npm:^3.1.3"
-    react-fast-compare: "npm:^3.2.2"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/c3864c3596df1da818e4cc8c758cb2adcf8f3def533a7543e0c649de4a687e2a40e55efe3df4a0067717c4dd7c7be847019cef1c3ec542ccdb99524f94c90c28
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/editable@npm:1.0.14":
-  version: 1.0.14
-  resolution: "@yamada-ui/editable@npm:1.0.14"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/form-control": "npm:1.0.14"
-    "@yamada-ui/use-controllable-state": "npm:1.0.5"
-    "@yamada-ui/use-focus": "npm:1.0.5"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/3a91516833d9dcd603a6d2116753a4f6377ac1f48f8ca09b82796e3ba687d8ec890b860a51477f00840de6f045cd8cc365d98d12c378768cb44f84adb3294c75
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/file-button@npm:1.0.15":
-  version: 1.0.15
-  resolution: "@yamada-ui/file-button@npm:1.0.15"
-  dependencies:
-    "@yamada-ui/button": "npm:1.0.13"
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/form-control": "npm:1.0.14"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/82f544a61c9ad2381565ce7717517b2f02d5d6f5ee2e9145688e0015b141569cab278fef2f61b3ed4d3ee151e163c25cc06c31415f5f4dc5a65ac01a43ac44c9
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/file-input@npm:1.0.14":
-  version: 1.0.14
-  resolution: "@yamada-ui/file-input@npm:1.0.14"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/form-control": "npm:1.0.14"
-    "@yamada-ui/use-controllable-state": "npm:1.0.5"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/fe66709d3122c267d72b6cc41bf358af452dc9e05a4a43d753e9d6f8ae0685358a85722d7584435d00fc9dfd87f846352ce15dda16910497b0f6c9d3b2182a8a
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/focus-lock@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/focus-lock@npm:1.0.5"
-  dependencies:
-    "@yamada-ui/utils": "npm:1.0.5"
-    react-focus-lock: "npm:^2.9.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/01b20ef5dccc661422e277412f9dcfc929271e52369cf0e0327190706b83c24a1b0d575f4859ef1c9fdfaac7125bfffa23ef3b422bfe2e115d0a3848cc352e6e
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/form-control@npm:1.0.14":
-  version: 1.0.14
-  resolution: "@yamada-ui/form-control@npm:1.0.14"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/f920afb0b7182f81bfdd26499d6d6902eb1f4ab747868388b87fd5d56c78a8cbf54c8f7060cfd44a09b89b2a57ec65c218e6c81c74eadd331cc74e300f9f9e68
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/highlight@npm:1.0.11":
-  version: 1.0.11
-  resolution: "@yamada-ui/highlight@npm:1.0.11"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/typography": "npm:1.0.11"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/066a717b00b0d15bfee2af2e38903537decef69344f415c78eb99253529c430850c30b2d317b918e36f4cb2ce75dde6a61403c47a530e6c1b51b5dcf7d17057c
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/icon@npm:1.0.11":
-  version: 1.0.11
-  resolution: "@yamada-ui/icon@npm:1.0.11"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/use-token": "npm:1.0.11"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/a5536b9e9f22d0918855b4a088db7be37368454229fad7ea3244acc2d8573745288c3d9be7f47eb4ed71f373546af0616934fe1d24c10141ce2f0a71444cd53b
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/image@npm:1.0.11":
-  version: 1.0.11
-  resolution: "@yamada-ui/image@npm:1.0.11"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/3e5534736ea089e5d841e4743b09920dad8ebf1ff4cc149bd15ca7a2cf7e2171247ed951d82f61dbbd5e57f6f2edf7b6fdc59e3280bb80f8147837c1245d3dc2
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/indicator@npm:1.1.10":
-  version: 1.1.10
-  resolution: "@yamada-ui/indicator@npm:1.1.10"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/use-animation": "npm:1.0.11"
-    "@yamada-ui/use-value": "npm:1.0.11"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/e1bde65af42b4e1ea7543a68e61e4aee35adb089ead5043e8205fa3d60c3dfbfa99b7766117f7967a6154b6c3c37030e89ab13dffb51f24afca8c8b7fd42a151
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/input@npm:1.0.14":
-  version: 1.0.14
-  resolution: "@yamada-ui/input@npm:1.0.14"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/file-input": "npm:1.0.14"
-    "@yamada-ui/form-control": "npm:1.0.14"
-    "@yamada-ui/use-token": "npm:1.0.11"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/5970b0a80d3aa8cc6e530c4bdf492caf4183cbb8dac5ba1b2e86846f56d06bbc1c7ee85d07c036457d4b694327273d0006009e64861ea8c9a12b6a6dedd0e140
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/kbd@npm:1.0.11":
-  version: 1.0.11
-  resolution: "@yamada-ui/kbd@npm:1.0.11"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/e2779825df3356ac878361e8950146a35d3232eea346f985ce16645abe83c09a315f7d1feb05b5aa5ec6b7361bff1406390e95e55e60b40c42b656e363905f16
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/layouts@npm:1.1.8":
-  version: 1.1.8
-  resolution: "@yamada-ui/layouts@npm:1.1.8"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/48255aa831e8bc67eca23eee2ab54067166d31bd3f8aa0738070ca2e0b314592eedc597e90d05e36c5e0db10e8aeea516b530f5a404496e65657a742034bac5b
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/link@npm:1.0.11":
-  version: 1.0.11
-  resolution: "@yamada-ui/link@npm:1.0.11"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/0e223d2e0c5a6fecfbbf615cc8116a7d1684ac45dbcadc34ff27720640eaaf188f28354567c88e9c34ecd0a91749aa31161abe6ba7c5b5c79ab0051460788474
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/list@npm:1.0.11":
-  version: 1.0.11
-  resolution: "@yamada-ui/list@npm:1.0.11"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/icon": "npm:1.0.11"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/ebbe9ad9982506db6a1aeeca6ab16e47666c7a9f61813c78b658ca15529f55e43838a4cb6f2912df6269c054c365f02b06c4cadf62b344f45c7df98599ced26b
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/loading@npm:1.0.12":
-  version: 1.0.12
-  resolution: "@yamada-ui/loading@npm:1.0.12"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/icon": "npm:1.0.11"
-    "@yamada-ui/motion": "npm:1.0.12"
-    "@yamada-ui/portal": "npm:1.0.5"
-    "@yamada-ui/use-timeout": "npm:1.0.5"
-    "@yamada-ui/use-token": "npm:1.0.11"
-    "@yamada-ui/use-value": "npm:1.0.11"
-    "@yamada-ui/utils": "npm:1.0.5"
-    react-remove-scroll: "npm:^2.5.4"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/d9b0243e0b7bff57885e21fec09e288966091e5ce2f6fa77e6f7f9f4f89ca6fde8280d8929750fdad3e47c94721cc822551dfc782935db41893630ab378d8f35
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/menu@npm:1.0.12":
-  version: 1.0.12
-  resolution: "@yamada-ui/menu@npm:1.0.12"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/motion": "npm:1.0.12"
-    "@yamada-ui/popover": "npm:1.0.12"
-    "@yamada-ui/transitions": "npm:1.0.12"
-    "@yamada-ui/use-clickable": "npm:1.0.5"
-    "@yamada-ui/use-controllable-state": "npm:1.0.5"
-    "@yamada-ui/use-descendant": "npm:1.0.5"
-    "@yamada-ui/use-disclosure": "npm:1.0.5"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/f5092f4e08fc3ff480b8f812a687ed49ec86ef06a416a7191eaae5d58ff8ec8466c6c228dd396b24b08774cb4809b2f7823338aade688aec92ca4709f425d49b
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/modal@npm:1.0.14":
-  version: 1.0.14
-  resolution: "@yamada-ui/modal@npm:1.0.14"
-  dependencies:
-    "@yamada-ui/button": "npm:1.0.13"
-    "@yamada-ui/close-button": "npm:1.0.12"
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/focus-lock": "npm:1.0.5"
-    "@yamada-ui/motion": "npm:1.0.12"
-    "@yamada-ui/portal": "npm:1.0.5"
-    "@yamada-ui/transitions": "npm:1.0.12"
-    "@yamada-ui/use-value": "npm:1.0.11"
-    "@yamada-ui/utils": "npm:1.0.5"
-    react-remove-scroll: "npm:^2.5.4"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/3b13fba0de7802bfdcfdeeeceb4d7e466cbb0ddf78fa9e97968667fdf2846bbf8791e557aa903dc6f620d18f4edd2a6d0b6810a0e81afcbcd0ca0a82827aab16
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/motion@npm:1.0.12":
-  version: 1.0.12
-  resolution: "@yamada-ui/motion@npm:1.0.12"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/utils": "npm:1.0.5"
-    framer-motion: "npm:^9.1.7"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/d351dcca8bcbed0e018c47f7cf98490080230ff4a4eab04048bc4420dd33637abd9fd605e3ef324911b26b3d5802ab0c94fda20bb0645656046f65d68fc81e58
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/native-select@npm:1.0.15":
-  version: 1.0.15
-  resolution: "@yamada-ui/native-select@npm:1.0.15"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/form-control": "npm:1.0.14"
-    "@yamada-ui/icon": "npm:1.0.11"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/3056e49e8f99141412c37966bf0db479ad86907c9342bf1c91cb910f813f341ba160935ad1ff06f180b5b7cb7506afea7080d89df44ce4d543e11b1781bc865d
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/native-table@npm:1.0.12":
-  version: 1.0.12
-  resolution: "@yamada-ui/native-table@npm:1.0.12"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/3d53187aa4652c1ede9165570f2254a3b238c1294e34803f345ef36c85c52bce21dfac6f1df344448f757b6ae26e3d32cd6f635de147195b62d965c40ac2d74a
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/notice@npm:1.0.12":
-  version: 1.0.12
-  resolution: "@yamada-ui/notice@npm:1.0.12"
-  dependencies:
-    "@yamada-ui/alert": "npm:1.0.12"
-    "@yamada-ui/close-button": "npm:1.0.12"
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/motion": "npm:1.0.12"
-    "@yamada-ui/portal": "npm:1.0.5"
-    "@yamada-ui/use-timeout": "npm:1.0.5"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/61b85cd1d5076cf413a96b217c1650899b360873324a019a8ba9d0046f79e5daf5938839f830d0e3e5df0e5e8302666dbc1d3ba272463cdb516a88c74521bc3d
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/number-input@npm:1.0.14":
-  version: 1.0.14
-  resolution: "@yamada-ui/number-input@npm:1.0.14"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/form-control": "npm:1.0.14"
-    "@yamada-ui/icon": "npm:1.0.11"
-    "@yamada-ui/use-counter": "npm:1.0.5"
-    "@yamada-ui/use-event-listener": "npm:1.0.5"
-    "@yamada-ui/use-interval": "npm:1.0.5"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/a40dacbdb50d2b64321951aef29bfe09a39993b3f7d3ea2ea3831b6063e6ec3f9d87b6ed78309801008022e7a96a732e47cf3149a47862d3766b2738fc5a0c0e
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/pagination@npm:1.0.12":
-  version: 1.0.12
-  resolution: "@yamada-ui/pagination@npm:1.0.12"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/icon": "npm:1.0.11"
-    "@yamada-ui/ripple": "npm:1.0.12"
-    "@yamada-ui/use-controllable-state": "npm:1.0.5"
-    "@yamada-ui/use-value": "npm:1.0.11"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/e450a52e532e0c1dfcbff96c040a8132a96b93acbc0a406ae8804662a5c2f47d7a94b470d6ce6b7eab821cd4cec27154462562f0ab5c889db148985f6efd1678
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/pin-input@npm:1.0.14":
-  version: 1.0.14
-  resolution: "@yamada-ui/pin-input@npm:1.0.14"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/form-control": "npm:1.0.14"
-    "@yamada-ui/use-controllable-state": "npm:1.0.5"
-    "@yamada-ui/use-descendant": "npm:1.0.5"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/672473a22a452b74b6e0b618bfeabcfa618c5fc189256580edcc237eb1719d21dc1f348cbaa9136a8aceed57a2f880752192c5d1bdcd5dc7d59fc914a7d2f3a6
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/popover@npm:1.0.12":
-  version: 1.0.12
-  resolution: "@yamada-ui/popover@npm:1.0.12"
-  dependencies:
-    "@yamada-ui/close-button": "npm:1.0.12"
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/motion": "npm:1.0.12"
-    "@yamada-ui/transitions": "npm:1.0.12"
-    "@yamada-ui/use-animation": "npm:1.0.11"
-    "@yamada-ui/use-disclosure": "npm:1.0.5"
-    "@yamada-ui/use-focus": "npm:1.0.5"
-    "@yamada-ui/use-popper": "npm:1.0.11"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/9e9cee6319a5357659f00acaf79c9f0bd41e31fcaaff8a9c0f51e02957c749cc94e6b47dc7a6821ad0c54f974865572c6d4c0e19fa85e7da9d052297a9df89c5
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/portal@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/portal@npm:1.0.5"
-  dependencies:
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-    react-dom: ">=18"
-  checksum: 10c0/800aba79f2637806c4fd3dad959a3c3c235540908d55eb3dbf9988537b4e0f3f84266b0431474cc341c2ba8f8f8a4e4b587f735c3af32091075217485339e283
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/progress@npm:1.0.11":
-  version: 1.0.11
-  resolution: "@yamada-ui/progress@npm:1.0.11"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/use-animation": "npm:1.0.11"
-    "@yamada-ui/use-token": "npm:1.0.11"
-    "@yamada-ui/use-value": "npm:1.0.11"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/1acbaf1b064c8db0ea2c52080faa726b7f33e97a39bc642b870ddea75a5f11ff8be19841a5c97d98d304b53bcd3dbb3153c367fd9a01f1739b6ec0bdd1238a3c
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/providers@npm:1.0.17":
-  version: 1.0.17
-  resolution: "@yamada-ui/providers@npm:1.0.17"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/loading": "npm:1.0.12"
-    "@yamada-ui/motion": "npm:1.0.12"
-    "@yamada-ui/notice": "npm:1.0.12"
-    "@yamada-ui/theme": "npm:1.4.3"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    "@emotion/react": ^11.0.0
-    "@emotion/styled": ^11.0.0
-    react: ">=18"
-    react-dom: ">=18"
-  checksum: 10c0/1b17e5bbd45f0ef8848c2fff4e3a9bd7ee451c2b6a8c0c71d2fc0f636d1a4462b77c9ba53a876e6514b429ea9a6f4ee3db435c46cd07d331ef0b70334a15d831
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/radio@npm:1.0.15":
-  version: 1.0.15
-  resolution: "@yamada-ui/radio@npm:1.0.15"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/form-control": "npm:1.0.14"
-    "@yamada-ui/layouts": "npm:1.1.8"
-    "@yamada-ui/use-controllable-state": "npm:1.0.5"
-    "@yamada-ui/use-focus-visible": "npm:1.0.5"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/f8e8f45f4299839791aa656f8e0d5583bec3f16e041c1a97394d702f47f68ecf0e831d60621143e85b9b7c706e9a4333ef410aec04ff03b0a50b48a85527e992
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/rating@npm:1.0.12":
-  version: 1.0.12
-  resolution: "@yamada-ui/rating@npm:1.0.12"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/form-control": "npm:1.0.14"
-    "@yamada-ui/icon": "npm:1.0.11"
-    "@yamada-ui/motion": "npm:1.0.12"
-    "@yamada-ui/use-controllable-state": "npm:1.0.5"
-    "@yamada-ui/use-focus-visible": "npm:1.0.5"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/84738d47be7b224c237d2d33ce1ef757ba705b558d9d2c31c3737b9d728e6b5a702e319b8884438cbc91a147cfa91675d8538b2bf57649a9f78b36d0bf100c0c
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/react@npm:1.2.5":
-  version: 1.2.5
-  resolution: "@yamada-ui/react@npm:1.2.5"
-  dependencies:
-    "@yamada-ui/accordion": "npm:1.0.12"
-    "@yamada-ui/alert": "npm:1.0.12"
-    "@yamada-ui/autocomplete": "npm:1.0.17"
-    "@yamada-ui/avatar": "npm:1.1.10"
-    "@yamada-ui/badge": "npm:1.0.11"
-    "@yamada-ui/breadcrumb": "npm:1.0.11"
-    "@yamada-ui/button": "npm:1.0.13"
-    "@yamada-ui/card": "npm:1.0.12"
-    "@yamada-ui/checkbox": "npm:1.0.15"
-    "@yamada-ui/close-button": "npm:1.0.12"
-    "@yamada-ui/color-picker": "npm:1.0.5"
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/editable": "npm:1.0.14"
-    "@yamada-ui/file-button": "npm:1.0.15"
-    "@yamada-ui/file-input": "npm:1.0.14"
-    "@yamada-ui/focus-lock": "npm:1.0.5"
-    "@yamada-ui/form-control": "npm:1.0.14"
-    "@yamada-ui/highlight": "npm:1.0.11"
-    "@yamada-ui/icon": "npm:1.0.11"
-    "@yamada-ui/image": "npm:1.0.11"
-    "@yamada-ui/indicator": "npm:1.1.10"
-    "@yamada-ui/input": "npm:1.0.14"
-    "@yamada-ui/kbd": "npm:1.0.11"
-    "@yamada-ui/layouts": "npm:1.1.8"
-    "@yamada-ui/link": "npm:1.0.11"
-    "@yamada-ui/list": "npm:1.0.11"
-    "@yamada-ui/loading": "npm:1.0.12"
-    "@yamada-ui/menu": "npm:1.0.12"
-    "@yamada-ui/modal": "npm:1.0.14"
-    "@yamada-ui/motion": "npm:1.0.12"
-    "@yamada-ui/native-select": "npm:1.0.15"
-    "@yamada-ui/native-table": "npm:1.0.12"
-    "@yamada-ui/notice": "npm:1.0.12"
-    "@yamada-ui/number-input": "npm:1.0.14"
-    "@yamada-ui/pagination": "npm:1.0.12"
-    "@yamada-ui/pin-input": "npm:1.0.14"
-    "@yamada-ui/popover": "npm:1.0.12"
-    "@yamada-ui/portal": "npm:1.0.5"
-    "@yamada-ui/progress": "npm:1.0.11"
-    "@yamada-ui/providers": "npm:1.0.17"
-    "@yamada-ui/radio": "npm:1.0.15"
-    "@yamada-ui/rating": "npm:1.0.12"
-    "@yamada-ui/reorder": "npm:1.0.12"
-    "@yamada-ui/resizable": "npm:1.0.4"
-    "@yamada-ui/ripple": "npm:1.0.12"
-    "@yamada-ui/scroll-area": "npm:1.0.11"
-    "@yamada-ui/segmented-control": "npm:1.0.13"
-    "@yamada-ui/select": "npm:1.0.15"
-    "@yamada-ui/skeleton": "npm:1.0.11"
-    "@yamada-ui/slider": "npm:1.0.15"
-    "@yamada-ui/snacks": "npm:1.0.4"
-    "@yamada-ui/stat": "npm:1.0.9"
-    "@yamada-ui/stepper": "npm:1.0.11"
-    "@yamada-ui/switch": "npm:1.0.15"
-    "@yamada-ui/tabs": "npm:1.0.12"
-    "@yamada-ui/tag": "npm:1.0.11"
-    "@yamada-ui/textarea": "npm:1.1.1"
-    "@yamada-ui/theme": "npm:1.4.3"
-    "@yamada-ui/theme-tools": "npm:1.0.16"
-    "@yamada-ui/tooltip": "npm:1.0.13"
-    "@yamada-ui/transitions": "npm:1.0.12"
-    "@yamada-ui/typography": "npm:1.0.11"
-    "@yamada-ui/use-animation": "npm:1.0.11"
-    "@yamada-ui/use-boolean": "npm:1.0.0"
-    "@yamada-ui/use-breakpoint": "npm:1.1.10"
-    "@yamada-ui/use-clickable": "npm:1.0.5"
-    "@yamada-ui/use-clipboard": "npm:1.0.5"
-    "@yamada-ui/use-controllable-state": "npm:1.0.5"
-    "@yamada-ui/use-counter": "npm:1.0.5"
-    "@yamada-ui/use-descendant": "npm:1.0.5"
-    "@yamada-ui/use-disclosure": "npm:1.0.5"
-    "@yamada-ui/use-event-listener": "npm:1.0.5"
-    "@yamada-ui/use-eye-dropper": "npm:1.0.2"
-    "@yamada-ui/use-focus": "npm:1.0.5"
-    "@yamada-ui/use-focus-visible": "npm:1.0.5"
-    "@yamada-ui/use-hover": "npm:1.0.5"
-    "@yamada-ui/use-idle": "npm:1.0.5"
-    "@yamada-ui/use-interval": "npm:1.0.5"
-    "@yamada-ui/use-latest-ref": "npm:1.0.0"
-    "@yamada-ui/use-local-storage": "npm:1.0.5"
-    "@yamada-ui/use-media-query": "npm:1.0.17"
-    "@yamada-ui/use-os": "npm:1.0.5"
-    "@yamada-ui/use-outside-click": "npm:1.0.5"
-    "@yamada-ui/use-pan-event": "npm:1.0.5"
-    "@yamada-ui/use-popper": "npm:1.0.11"
-    "@yamada-ui/use-previous": "npm:1.0.5"
-    "@yamada-ui/use-resize-observer": "npm:1.0.5"
-    "@yamada-ui/use-size": "npm:1.0.5"
-    "@yamada-ui/use-timeout": "npm:1.0.5"
-    "@yamada-ui/use-token": "npm:1.0.11"
-    "@yamada-ui/use-value": "npm:1.0.11"
-    "@yamada-ui/use-window-event": "npm:1.0.5"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    "@emotion/react": ^11.0.0
-    "@emotion/styled": ^11.0.0
-    framer-motion: ">=9.0.0"
-    react: ">=18"
-    react-dom: ">=18"
-  checksum: 10c0/9994ab0fbb7c446ac849f449293e9c09c4d68aaed054e17c5205b455ee589bd8adec001a7668577d7eb8dff3d013c7c34d0692b81f65cfd12e0f188de065ec8f
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/reorder@npm:1.0.12":
-  version: 1.0.12
-  resolution: "@yamada-ui/reorder@npm:1.0.12"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/icon": "npm:1.0.11"
-    "@yamada-ui/motion": "npm:1.0.12"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/fdff4862d969359cb140338b3e6f2827485f9036f9fbd759220bbbc5a8d16968e35f41b2b63216631d8d811f20956d7b47aa68f748826cc6ca2f6af67e41def2
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/resizable@npm:1.0.4":
-  version: 1.0.4
-  resolution: "@yamada-ui/resizable@npm:1.0.4"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/icon": "npm:1.0.11"
-    "@yamada-ui/utils": "npm:1.0.5"
-    react-resizable-panels: "npm:^1.0.7"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/04746d86ae064fb5c6e7b46304e00a829ae6c7b874dbae89b0ea7b7b367e65268dc9b71d30bb1752f66150ebbc5f8f4c6f6ee7e96a2de404eb0b1e13aaeb8496
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/ripple@npm:1.0.12":
-  version: 1.0.12
-  resolution: "@yamada-ui/ripple@npm:1.0.12"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/motion": "npm:1.0.12"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/7f59b7e4925c3057f700599acd6ab9010660ff23818607e5d8430069872c08fc4bddbad6d744d891cea853fd21442f334f58d26d68c896de7ad95b8e6c27ae1d
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/scroll-area@npm:1.0.11":
-  version: 1.0.11
-  resolution: "@yamada-ui/scroll-area@npm:1.0.11"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/1c261ffed1526c0254916f82650c1adf13a5f1af2e13cfeab9e0a0e63741c68f8153b452f7cceaf888d7db58f60a3e829690e55ea8e0f17c0a49a5a91a65c7cb
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/segmented-control@npm:1.0.13":
-  version: 1.0.13
-  resolution: "@yamada-ui/segmented-control@npm:1.0.13"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/motion": "npm:1.0.12"
-    "@yamada-ui/use-controllable-state": "npm:1.0.5"
-    "@yamada-ui/use-descendant": "npm:1.0.5"
-    "@yamada-ui/use-focus-visible": "npm:1.0.5"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/6c6b3061afa8c32caadfc8a60d51c2224ba78a4a97951bb48bd90354e4216bf097ae49464df6fb528c354772b3dd932d57fdc9a6c5e868983e5b6b64a3ada133
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/select@npm:1.0.15":
-  version: 1.0.15
-  resolution: "@yamada-ui/select@npm:1.0.15"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/form-control": "npm:1.0.14"
-    "@yamada-ui/icon": "npm:1.0.11"
-    "@yamada-ui/motion": "npm:1.0.12"
-    "@yamada-ui/popover": "npm:1.0.12"
-    "@yamada-ui/portal": "npm:1.0.5"
-    "@yamada-ui/use-clickable": "npm:1.0.5"
-    "@yamada-ui/use-controllable-state": "npm:1.0.5"
-    "@yamada-ui/use-descendant": "npm:1.0.5"
-    "@yamada-ui/use-outside-click": "npm:1.0.5"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/932a3bc84a4b0d9794dc134cef6f3c16c2e6fc95a3d63b157b2593ad7a9b31b81166e30d61d33aa909432c2a6105a66dc36d88178ef56247e007c0c9bf2f15ee
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/skeleton@npm:1.0.11":
-  version: 1.0.11
-  resolution: "@yamada-ui/skeleton@npm:1.0.11"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/use-animation": "npm:1.0.11"
-    "@yamada-ui/use-previous": "npm:1.0.5"
-    "@yamada-ui/use-value": "npm:1.0.11"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/222daf256470110a26030498d282a81a4facc01885d1f333ded7e5f1239f3405156bd451ae7911fc74be51b9cd770c3a59e24aa5f9d433d041b9f34aabfbcdcb
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/slider@npm:1.0.15":
-  version: 1.0.15
-  resolution: "@yamada-ui/slider@npm:1.0.15"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/form-control": "npm:1.0.14"
-    "@yamada-ui/use-controllable-state": "npm:1.0.5"
-    "@yamada-ui/use-latest-ref": "npm:1.0.0"
-    "@yamada-ui/use-pan-event": "npm:1.0.5"
-    "@yamada-ui/use-size": "npm:1.0.5"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/6aa7d65be73bedff8d91b511adca168edee2d6558adc1693bab7b08ca4a42147ceb15b6133bb19b16b6989b7720ec710f8afaaf36a7c5d26f15145fd9c548a3f
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/snacks@npm:1.0.4":
-  version: 1.0.4
-  resolution: "@yamada-ui/snacks@npm:1.0.4"
-  dependencies:
-    "@yamada-ui/alert": "npm:1.0.12"
-    "@yamada-ui/close-button": "npm:1.0.12"
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/motion": "npm:1.0.12"
-    "@yamada-ui/use-timeout": "npm:1.0.5"
-    "@yamada-ui/use-token": "npm:1.0.11"
-    "@yamada-ui/use-value": "npm:1.0.11"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/94f11381023580a2b97f7e0c0d48fe2a82a2513d3a48b1a25f09332893f77d839673c81ec11ef459d3e35426d86186858231e9a02437492e24d3ba67b6acb680
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/stat@npm:1.0.9":
-  version: 1.0.9
-  resolution: "@yamada-ui/stat@npm:1.0.9"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/icon": "npm:1.0.11"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/bc1a7c1cb4a73186516f0b0a33f7f292349176d622917d2969c2c266155909c813f9a10380ba02c21fe5ffe6eb9db47ad54eaf60d1a68afd1c548e58ea65f8e2
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/stepper@npm:1.0.11":
-  version: 1.0.11
-  resolution: "@yamada-ui/stepper@npm:1.0.11"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/icon": "npm:1.0.11"
-    "@yamada-ui/use-descendant": "npm:1.0.5"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/b34a3f2d92a66a522a44ca3c494d9c856ff0b56e5cc57c8323ea4d0c8143d43707f1545b4eb43eee9a5cb9d5558b612b25992df3bdd540ec2d953a94557dcca1
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/switch@npm:1.0.15":
-  version: 1.0.15
-  resolution: "@yamada-ui/switch@npm:1.0.15"
-  dependencies:
-    "@yamada-ui/checkbox": "npm:1.0.15"
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/motion": "npm:1.0.12"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/3ab9f0972c4ff8aa746e545aad2b11eb72fcfde3198a0d23b5c448bd3c6e2ec5e91c3db27c5191114c056899968de0a0c5c7b78875c0f94ce16349608aef44d1
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/tabs@npm:1.0.12":
-  version: 1.0.12
-  resolution: "@yamada-ui/tabs@npm:1.0.12"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/ripple": "npm:1.0.12"
-    "@yamada-ui/use-clickable": "npm:1.0.5"
-    "@yamada-ui/use-controllable-state": "npm:1.0.5"
-    "@yamada-ui/use-descendant": "npm:1.0.5"
-    "@yamada-ui/use-disclosure": "npm:1.0.5"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/3094dd4f93c57c7a6f58d86463eeae1a49c7061a49b5852d07ca49f8e18a9fd954886ce67bd1b0bd36940a19514faeccbbf2b296b00b95660c439f30ccbf0428
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/tag@npm:1.0.11":
-  version: 1.0.11
-  resolution: "@yamada-ui/tag@npm:1.0.11"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/icon": "npm:1.0.11"
-    "@yamada-ui/use-clickable": "npm:1.0.5"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/36385bcc24f2ac37384c1580f1cb215e85f65390ea7cad3b90dc1ca8b4dc7d2135f21d14d9741ccb67afbde1aca9e19aa3e3a9c4ace684eb756b14e752a1bf63
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/textarea@npm:1.1.1":
-  version: 1.1.1
-  resolution: "@yamada-ui/textarea@npm:1.1.1"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/form-control": "npm:1.0.14"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/5d63cef86db2a63d6e59910307274a5abdd3af08294cdd0ab8bdf72426a70702f5235d32ea5809f889d339bb1521b486a8801c393612f3a5892bc29f7cf0762f
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/theme-tools@npm:1.0.16":
-  version: 1.0.16
-  resolution: "@yamada-ui/theme-tools@npm:1.0.16"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/theme": "npm:1.4.3"
-    "@yamada-ui/utils": "npm:1.0.5"
-  checksum: 10c0/8fea09e375f8c748223a17a727e2f75c414d3d916a67e5f9de129b7ee5ce68d374838cf3da499ebba4264deab840b08a05b53ff6f6d26322012b23377e6fd256
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/theme@npm:1.4.3":
-  version: 1.4.3
-  resolution: "@yamada-ui/theme@npm:1.4.3"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/utils": "npm:1.0.5"
-  checksum: 10c0/f79bd699eea64e3e1e5333d57285878fb69310c5664520d9afcd3b55ae142258dfaa88b0ba29c38839a2ff70d822b995f67e0d4c221654f68ef9fe89f0b1af96
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/tooltip@npm:1.0.13":
-  version: 1.0.13
-  resolution: "@yamada-ui/tooltip@npm:1.0.13"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/motion": "npm:1.0.12"
-    "@yamada-ui/portal": "npm:1.0.5"
-    "@yamada-ui/transitions": "npm:1.0.12"
-    "@yamada-ui/use-disclosure": "npm:1.0.5"
-    "@yamada-ui/use-event-listener": "npm:1.0.5"
-    "@yamada-ui/use-popper": "npm:1.0.11"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/0e82ea4b195e3adeaa538b21ae072e909f17a8e3bfd6b6ea3560722a08c1bc2a4251b2eeb8cead373fffd2a4099c924a9a1d420987db08a858677559b8c4d019
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/transitions@npm:1.0.12":
-  version: 1.0.12
-  resolution: "@yamada-ui/transitions@npm:1.0.12"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/motion": "npm:1.0.12"
-    "@yamada-ui/use-value": "npm:1.0.11"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/fcb591c8ffa0bff5167a09e87eb8dbc7f0bb2ffd47ea7b93b81e3844000f7f6d506c711fb657911a1addef498f7bd2e99c00bb43fc85f3358adafb71b15194cf
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/typography@npm:1.0.11":
-  version: 1.0.11
-  resolution: "@yamada-ui/typography@npm:1.0.11"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/3405fbd637d30d500e41bf36117601ce1fe1a92c65ccf3dc36062219fe041c5aadfb4256bc300aa15e6c3de3bed70c80497adffde632afc49fec954ebbfc55cf
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-animation@npm:1.0.11":
-  version: 1.0.11
-  resolution: "@yamada-ui/use-animation@npm:1.0.11"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/use-boolean": "npm:1.0.0"
-    "@yamada-ui/use-event-listener": "npm:1.0.5"
-    "@yamada-ui/utils": "npm:1.0.5"
-    csstype: "npm:^3.1.3"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/1eb10f69e74a6a94b83c041ac496f319c9ca86e3bc4bc44f22fca0b5547350c44d3a32b02c581884d013e403e8598f85eec64fe556fdfff4001f19a45825f760
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-boolean@npm:1.0.0":
-  version: 1.0.0
-  resolution: "@yamada-ui/use-boolean@npm:1.0.0"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/139298b61d4a5ae0c5bbec2feae4c924b052f8c622cc81bf3e14cadcc5902f4fad17ba766a6148ade34876bb01db9e1ba09be6fa129e357e109260595c6cc053
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-breakpoint@npm:1.1.10":
-  version: 1.1.10
-  resolution: "@yamada-ui/use-breakpoint@npm:1.1.10"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/fbdae6921c18511f35043cb3997f985aa7e421f92b0b66156a13a2ba245717874bfa75805f996311e750f4323223b2051e594300dd720b04624667c0515ef383
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-clickable@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/use-clickable@npm:1.0.5"
-  dependencies:
-    "@yamada-ui/use-event-listener": "npm:1.0.5"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/30d2e5fdd084bc07e8828a22f01d672349b60e7b360c6dbdd2905b9f7f5d7c15d4e8ae3d59b384b115882b76b73b9853a4f03555fc72f4e3ed15d740cebf6061
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-clipboard@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/use-clipboard@npm:1.0.5"
-  dependencies:
-    "@yamada-ui/utils": "npm:1.0.5"
-    copy-to-clipboard: "npm:3.3.3"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/f9eb006dbaedb5b324bfb3920d7e0fb32e7e11d1c1c2529c77a52ed29bf69dbfcb526c77d83aeddc47eb3cddbcec6e4f70fd262c18e27424ba46400a92cbe722
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-controllable-state@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/use-controllable-state@npm:1.0.5"
-  dependencies:
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/ef76574a7d0fff1a4d71b72f0f9495d3ab31f33bc4a11f3df09e67fe5e22032fa028fd2572bff2cb7387dc6d10e478560d64b67425d846470efdcf60dfa171c0
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-counter@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/use-counter@npm:1.0.5"
-  dependencies:
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/2938eb44430a94d0969da08fd3607f8f48f7efd5679c0ce2e1e9f02471c1eec19fcbc6d1ae5694facdd6b2561b85280751df798878f9666c6330dca9e38bb12e
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-descendant@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/use-descendant@npm:1.0.5"
-  dependencies:
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/8947bfadf8e4d79d3ebd99773aff7f06bff9ef70159d5c0816ebe165cd28d2a5626b0cbc831536f1d5431695ae99a91bfdfeaa7320cb4bbef2a2313fb71cab2f
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-disclosure@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/use-disclosure@npm:1.0.5"
-  dependencies:
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/50b7b59c9bf1c1e2473e189f337ad44be4d2a6c682b89feb49d0b22d2943ae1739f76f7e0b12a6cfc418b1681a8047adb84e12c71bdb77e6f93f3505bfb2e372
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-event-listener@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/use-event-listener@npm:1.0.5"
-  dependencies:
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/b321902f9b8d4c05302706fdb38ceaefb7ec587e08334055222c51b249b47c3dd672072c4a636a618b0b1b35e77413c57460f0b107084a813e8a025ca49d735e
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-eye-dropper@npm:1.0.2, @yamada-ui/use-eye-dropper@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "@yamada-ui/use-eye-dropper@npm:1.0.2"
-  dependencies:
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/aa66086f0facd245a1f1c44cf1b9e7d9375023aa6370aa597b3c2a799e822308c8f05d81217b7c3e378cb1c6615162b42e298ca0d12b0f612778390cc49f44f6
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-focus-visible@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/use-focus-visible@npm:1.0.5"
-  dependencies:
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/8c6b9a7661fd49376aae76f6a1b98ea1241b151ef289666b4e8eaf35b1deca05a39cbcd737bd4052bb7796d0ea5d4eb935aa59c9091549e0545e60b88deba9c4
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-focus@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/use-focus@npm:1.0.5"
-  dependencies:
-    "@yamada-ui/use-event-listener": "npm:1.0.5"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/db823f4dd338610c7742f57274637363583ef17219585f3edf30bb0b7fc4cbf2d2bae5c7b4453f0c44fbc25b53f7bdcce9f680359c50f903f3c215f10d60dfa7
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-hover@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/use-hover@npm:1.0.5"
-  dependencies:
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/3518955b105c876da3ea0a6322c79ffedf71e902e5ebfc2e0720b03ff58516ade82bd7c393cc417b33d6c6b0f549194cca738977d9ba926c0dfa61993d177f3c
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-idle@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/use-idle@npm:1.0.5"
-  dependencies:
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/6f4fa0e6d6079b5469bb89fb79e3fa470b66c5bb5538c124873fe435799256afcb82a094f9d0396d35916b2251890534605e7e6b29de21b81e957cb6a048ce0d
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-interval@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/use-interval@npm:1.0.5"
-  dependencies:
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/5f28cf891e038bea3b48493a6dbc141f1fb16932d71e634240260ef8b7ff3bd01001173a18de18ff7d0f123dba659ba40a75d9b3cc17a981e7ad194dbbdbc6bd
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-latest-ref@npm:1.0.0, @yamada-ui/use-latest-ref@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "@yamada-ui/use-latest-ref@npm:1.0.0"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/65c278e4485e1fe96990063aa58fb7833e6a622ade65b1fecffafa4cf7e68ee7b165ddf54a973d7402deff232ea68c5427a1b9508c75717ea43207bcfe7eaf58
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-local-storage@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/use-local-storage@npm:1.0.5"
-  dependencies:
-    "@yamada-ui/use-window-event": "npm:1.0.5"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/251cbfd23f4574586428eb54a033cc6ef765515759450672cf95a4111309a23a18474f46be886b5baa2b8d90611743a518c00a779adc8302a6b8ef56bf6351ec
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-media-query@npm:1.0.17":
-  version: 1.0.17
-  resolution: "@yamada-ui/use-media-query@npm:1.0.17"
-  dependencies:
-    "@yamada-ui/providers": "npm:1.0.17"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/78fa7af64e93620d11b9a80bb0291024bb36cd0b61745065b1546a42aeddf87242cce949fe27ec00bd87c0271f7245a01d2c203ec29b05d4e067e66dd2eee02d
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-os@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/use-os@npm:1.0.5"
-  dependencies:
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/a6e2fd01a993953610e3708b0d2b34683e3a19a16c4e4271d430820a1e6a591e943718de4d3b7df243441cae001d42997d3a40ba8f7b999007a5a9423738f802
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-outside-click@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/use-outside-click@npm:1.0.5"
-  dependencies:
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/0d6af208d4ffb2e954021feb0e323fd0ebf68fd9ad1260869c4d0494f7f21fdb2cef575e071cf7e17f4bd1ae688c430e35a1250249b3139ab08090b0a2e76577
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-pan-event@npm:1.0.5, @yamada-ui/use-pan-event@npm:^1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/use-pan-event@npm:1.0.5"
-  dependencies:
-    "@yamada-ui/use-latest-ref": "npm:1.0.0"
-    "@yamada-ui/utils": "npm:1.0.5"
-    framesync: "npm:6.1.2"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/15ca36f27cc54c0d9f429f5cfdaab9e832e84640b1749b61711ea646129cc4c8cbe1cce561d8d682ab197e41be90104d318e090acdf6db988e7748ff73f5e37c
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-popper@npm:1.0.11":
-  version: 1.0.11
-  resolution: "@yamada-ui/use-popper@npm:1.0.11"
-  dependencies:
-    "@popperjs/core": "npm:^2.11.8"
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/use-value": "npm:1.0.11"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/432935b38e4c5117729172bdccee547a77004a8a1e1ae60c74aa625f9184083305e7277d8b89adc6b0d49a3381c07324b3a2f02864b9fa0f7f7e09205c9f74f7
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-previous@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/use-previous@npm:1.0.5"
-  dependencies:
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/d46c05ab20a7871b1f8ef7e2a3e81c75c70c758dcafdab4c08381ef2f3c7f05fb8e7bf1dd3d8870595b9e607b8f79203007669c0db9bf6a3158ce03864d85ed1
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-resize-observer@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/use-resize-observer@npm:1.0.5"
-  dependencies:
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/1a87c37d425943f2366c12f39fa4d41553a48b1703a65569e46b2ad8332495abbc859744c91ba86f2f054e764c359dde7626cfd23409330d1843207760eef68d
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-size@npm:1.0.5, @yamada-ui/use-size@npm:^1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/use-size@npm:1.0.5"
-  dependencies:
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/15d1862efd2fde69215f3e331012446d7baa29e895bbc176a466fe309db4f2290b835c05eb857b63e014a3df28078df337ab49fce8335a356ebeacb0544ab16c
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-timeout@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/use-timeout@npm:1.0.5"
-  dependencies:
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/f79fbecfe66d6dfa0cec04be0d5f362ccdc0a9b99b0ba4c66f053a8fd3ce838a514c2dd8fddbb65000bcaf24ab31872fd4967bd9526d583e27b85e69bf2c7a7f
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-token@npm:1.0.11":
-  version: 1.0.11
-  resolution: "@yamada-ui/use-token@npm:1.0.11"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/4c48a8ca0d8ae2e2210cde2bf0455c2d5513f67cb2233a839afce3e3bd1c4cf802df00b6a17e70b6025d76c8b7e8178f92708808d23e6e78f4295c8e8ff2e97a
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-value@npm:1.0.11":
-  version: 1.0.11
-  resolution: "@yamada-ui/use-value@npm:1.0.11"
-  dependencies:
-    "@yamada-ui/core": "npm:1.3.2"
-    "@yamada-ui/use-breakpoint": "npm:1.1.10"
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/299f7e68661bcb40f05b7fd3a45ac825b02db7124a01f1397bb6726d1eb09b38e0ef3910292e7fc0907bdafc8216b10a216a6a3b44df8f39791f061f13e8833f
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/use-window-event@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/use-window-event@npm:1.0.5"
-  dependencies:
-    "@yamada-ui/utils": "npm:1.0.5"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/742eb739b3bfdb567b161c7695ad26cabb53f92795358b899d6bfc61a0f5d862d0591947e4e70c547a07195e8b35639e8df34571db6f350fcb5c71f0dac4d3e2
-  languageName: node
-  linkType: hard
-
-"@yamada-ui/utils@npm:1.0.5":
-  version: 1.0.5
-  resolution: "@yamada-ui/utils@npm:1.0.5"
-  dependencies:
-    color2k: "npm:^2.0.2"
-  peerDependencies:
-    react: ">=18"
-  checksum: 10c0/cf16c95485aade1d3a12d28ce2c69aa094e3b44b67caf72bbe945bfa8e68a4a8b8bb08cf06cc212af3cc79f79c9579e86d700f775fb6f180add73c80f3036d8f
-  languageName: node
-  linkType: hard
-
 "@yarnpkg/esbuild-plugin-pnp@npm:^3.0.0-rc.10":
   version: 3.0.0-rc.15
   resolution: "@yarnpkg/esbuild-plugin-pnp@npm:3.0.0-rc.15"
@@ -7528,6 +5991,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"any-promise@npm:^1.0.0":
+  version: 1.3.0
+  resolution: "any-promise@npm:1.3.0"
+  checksum: 10c0/60f0298ed34c74fef50daab88e8dab786036ed5a7fad02e012ab57e376e0a0b4b29e83b95ea9b5e7d89df762f5f25119b83e00706ecaccb22cfbacee98d74889
+  languageName: node
+  linkType: hard
+
 "anymatch@npm:^3.0.3, anymatch@npm:~3.1.2":
   version: 3.1.3
   resolution: "anymatch@npm:3.1.3"
@@ -7542,6 +6012,13 @@ __metadata:
   version: 1.0.2
   resolution: "app-root-dir@npm:1.0.2"
   checksum: 10c0/0225e4be7788968a82bb76df9b14b0d7f212a5c12e8c625cdc34f80548780bcbfc5f3287d0806dddd83bf9dbf9ce302e76b2887cd3a6f4be52b79df7f3aa9e7c
+  languageName: node
+  linkType: hard
+
+"arg@npm:^5.0.2":
+  version: 5.0.2
+  resolution: "arg@npm:5.0.2"
+  checksum: 10c0/ccaf86f4e05d342af6666c569f844bec426595c567d32a8289715087825c2ca7edd8a3d204e4d2fb2aa4602e09a57d0c13ea8c9eea75aac3dbb4af5514e6800e
   languageName: node
   linkType: hard
 
@@ -7909,17 +6386,6 @@ __metadata:
     "@types/babel__core": "npm:^7.1.14"
     "@types/babel__traverse": "npm:^7.0.6"
   checksum: 10c0/7e6451caaf7dce33d010b8aafb970e62f1b0c0b57f4978c37b0d457bbcf0874d75a395a102daf0bae0bd14eafb9f6e9a165ee5e899c0a4f1f3bb2e07b304ed2e
-  languageName: node
-  linkType: hard
-
-"babel-plugin-macros@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "babel-plugin-macros@npm:3.1.0"
-  dependencies:
-    "@babel/runtime": "npm:^7.12.5"
-    cosmiconfig: "npm:^7.0.0"
-    resolve: "npm:^1.19.0"
-  checksum: 10c0/c6dfb15de96f67871d95bd2e8c58b0c81edc08b9b087dc16755e7157f357dc1090a8dc60ebab955e92587a9101f02eba07e730adc253a1e4cf593ca3ebd3839c
   languageName: node
   linkType: hard
 
@@ -8400,6 +6866,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"camelcase-css@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "camelcase-css@npm:2.0.1"
+  checksum: 10c0/1a1a3137e8a781e6cbeaeab75634c60ffd8e27850de410c162cce222ea331cd1ba5364e8fb21c95e5ca76f52ac34b81a090925ca00a87221355746d049c6e273
+  languageName: node
+  linkType: hard
+
 "camelcase@npm:^5.3.1":
   version: 5.3.1
   resolution: "camelcase@npm:5.3.1"
@@ -8560,6 +7033,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"class-variance-authority@npm:0.7.0":
+  version: 0.7.0
+  resolution: "class-variance-authority@npm:0.7.0"
+  dependencies:
+    clsx: "npm:2.0.0"
+  checksum: 10c0/e11c57edf4bf50ef1c97bae41d68885afbaaedba26c48b7cc5dfb033390fed7012147e9532168d8c4f3497fce4dff15e20e6e60b8c9c9a4b0fe26b0e804513db
+  languageName: node
+  linkType: hard
+
 "clean-css@npm:^5.2.2":
   version: 5.3.3
   resolution: "clean-css@npm:5.3.3"
@@ -8667,6 +7149,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"clsx@npm:2.0.0":
+  version: 2.0.0
+  resolution: "clsx@npm:2.0.0"
+  checksum: 10c0/c09f43b3144a0b7826b6b11b6a111b2c7440831004eecc02d333533c5e58ef0aa5f2dce071d3b25fbb8c8ea97b45df96c74bcc1d51c8c2027eb981931107b0cd
+  languageName: node
+  linkType: hard
+
+"clsx@npm:2.1.0":
+  version: 2.1.0
+  resolution: "clsx@npm:2.1.0"
+  checksum: 10c0/c09c00ad14f638366ca814097e6cab533dfa1972a358da5b557be487168acbb25b4c1395e89ffa842a8a61ba87a462d2b4885bc9d4f8410b598f3cb339599cdb
+  languageName: node
+  linkType: hard
+
 "co@npm:^4.6.0":
   version: 4.6.0
   resolution: "co@npm:4.6.0"
@@ -8723,13 +7219,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"color2k@npm:^2.0.2":
-  version: 2.0.3
-  resolution: "color2k@npm:2.0.3"
-  checksum: 10c0/e7c13d212c9d1abb1690e378bbc0a6fb1751e4b02e9a73ba3b2ade9d54da673834597d342791d577d1ce400ec486c7f92c5098f9fa85cd113bcfde57420a2bb9
-  languageName: node
-  linkType: hard
-
 "color@npm:^4.2.3":
   version: 4.2.3
   resolution: "color@npm:4.2.3"
@@ -8767,6 +7256,13 @@ __metadata:
   version: 2.20.3
   resolution: "commander@npm:2.20.3"
   checksum: 10c0/74c781a5248c2402a0a3e966a0a2bba3c054aad144f5c023364be83265e796b20565aa9feff624132ff629aa64e16999fa40a743c10c12f7c61e96a794b99288
+  languageName: node
+  linkType: hard
+
+"commander@npm:^4.0.0":
+  version: 4.1.1
+  resolution: "commander@npm:4.1.1"
+  checksum: 10c0/84a76c08fe6cc08c9c93f62ac573d2907d8e79138999312c92d4155bc2325d487d64d13f669b2000c9f8caf70493c1be2dac74fec3c51d5a04f8bc3ae1830bab
   languageName: node
   linkType: hard
 
@@ -8892,7 +7388,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"convert-source-map@npm:^1.5.0, convert-source-map@npm:^1.7.0":
+"convert-source-map@npm:^1.7.0":
   version: 1.9.0
   resolution: "convert-source-map@npm:1.9.0"
   checksum: 10c0/281da55454bf8126cbc6625385928c43479f2060984180c42f3a86c8b8c12720a24eac260624a7d1e090004028d2dee78602330578ceec1a08e27cb8bb0a8a5b
@@ -8920,7 +7416,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"copy-to-clipboard@npm:3.3.3, copy-to-clipboard@npm:^3.3.1":
+"copy-to-clipboard@npm:^3.3.1":
   version: 3.3.3
   resolution: "copy-to-clipboard@npm:3.3.3"
   dependencies:
@@ -8952,7 +7448,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cosmiconfig@npm:^7.0.0, cosmiconfig@npm:^7.0.1":
+"cosmiconfig@npm:^7.0.1":
   version: 7.1.0
   resolution: "cosmiconfig@npm:7.1.0"
   dependencies:
@@ -9257,7 +7753,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"csstype@npm:^3.0.2, csstype@npm:^3.1.2, csstype@npm:^3.1.3":
+"csstype@npm:^3.0.2, csstype@npm:^3.1.2":
   version: 3.1.3
   resolution: "csstype@npm:3.1.3"
   checksum: 10c0/80c089d6f7e0c5b2bd83cf0539ab41474198579584fa10d86d0cafe0642202343cbc119e076a0b1aece191989477081415d66c9fefbf3c957fc2fc4b7009f248
@@ -9561,6 +8057,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"didyoumean@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "didyoumean@npm:1.2.2"
+  checksum: 10c0/95d0b53d23b851aacff56dfadb7ecfedce49da4232233baecfeecb7710248c4aa03f0aa8995062f0acafaf925adf8536bd7044a2e68316fd7d411477599bc27b
+  languageName: node
+  linkType: hard
+
 "diff-sequences@npm:^29.6.3":
   version: 29.6.3
   resolution: "diff-sequences@npm:29.6.3"
@@ -9585,6 +8088,13 @@ __metadata:
   dependencies:
     path-type: "npm:^4.0.0"
   checksum: 10c0/dcac00920a4d503e38bb64001acb19df4efc14536ada475725e12f52c16777afdee4db827f55f13a908ee7efc0cb282e2e3dbaeeb98c0993dd93d1802d3bf00c
+  languageName: node
+  linkType: hard
+
+"dlv@npm:^1.1.3":
+  version: 1.1.3
+  resolution: "dlv@npm:1.1.3"
+  checksum: 10c0/03eb4e769f19a027fd5b43b59e8a05e3fd2100ac239ebb0bf9a745de35d449e2f25cfaf3aa3934664551d72856f4ae8b7822016ce5c42c2d27c18ae79429ec42
   languageName: node
   linkType: hard
 
@@ -10795,7 +9305,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-glob@npm:^3.2.9, fast-glob@npm:^3.3.1":
+"fast-glob@npm:^3.2.9, fast-glob@npm:^3.3.0, fast-glob@npm:^3.3.1":
   version: 3.3.2
   resolution: "fast-glob@npm:3.3.2"
   dependencies:
@@ -10984,13 +9494,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"find-root@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "find-root@npm:1.1.0"
-  checksum: 10c0/1abc7f3bf2f8d78ff26d9e00ce9d0f7b32e5ff6d1da2857bcdf4746134c422282b091c672cde0572cac3840713487e0a7a636af9aa1b74cb11894b447a521efa
-  languageName: node
-  linkType: hard
-
 "find-up@npm:^3.0.0":
   version: 3.0.0
   resolution: "find-up@npm:3.0.0"
@@ -11052,15 +9555,6 @@ __metadata:
   version: 0.228.0
   resolution: "flow-parser@npm:0.228.0"
   checksum: 10c0/571e18b76f0523311b0654b6f749d6bdc73208e4ae12463c13c83e833de5d340e3e939898bfcd565e1e9d2877566f347021df6a1b177514adf0a57c86ec768a9
-  languageName: node
-  linkType: hard
-
-"focus-lock@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "focus-lock@npm:1.0.1"
-  dependencies:
-    tslib: "npm:^2.0.3"
-  checksum: 10c0/74bdea78a99fec994a687de96da1e4ff7c9cd9d3d40d2602d685b596e63049c91f35453140b707922b4ddd8d04d57eaccdce3715a1d967e26620318444550b31
   languageName: node
   linkType: hard
 
@@ -11138,31 +9632,6 @@ __metadata:
   version: 4.3.7
   resolution: "fraction.js@npm:4.3.7"
   checksum: 10c0/df291391beea9ab4c263487ffd9d17fed162dbb736982dee1379b2a8cc94e4e24e46ed508c6d278aded9080ba51872f1bc5f3a5fd8d7c74e5f105b508ac28711
-  languageName: node
-  linkType: hard
-
-"framer-motion@npm:^9.1.7":
-  version: 9.1.7
-  resolution: "framer-motion@npm:9.1.7"
-  dependencies:
-    "@emotion/is-prop-valid": "npm:^0.8.2"
-    tslib: "npm:^2.4.0"
-  peerDependencies:
-    react: ^18.0.0
-    react-dom: ^18.0.0
-  dependenciesMeta:
-    "@emotion/is-prop-valid":
-      optional: true
-  checksum: 10c0/4a152079cfd50d6235713534972cb1ae2d1f4f420db638f79b822e3c01a262a7883d0d84f64ddc58ea369aa0b16336c2cf282349f829dc209bd0e5c6e33d171a
-  languageName: node
-  linkType: hard
-
-"framesync@npm:6.1.2":
-  version: 6.1.2
-  resolution: "framesync@npm:6.1.2"
-  dependencies:
-    tslib: "npm:2.4.0"
-  checksum: 10c0/9e7d240ddf0bbe062bc9b71ffffd889b9923ee5d9c638ed84f2fe31aaa42e25e624eaf0b28ccca1d08f5ae170b8d083a6dabe5983f5dabea6bbbe6d4a9f8d27a
   languageName: node
   linkType: hard
 
@@ -11659,11 +10128,11 @@ __metadata:
   linkType: hard
 
 "hasown@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "hasown@npm:2.0.0"
+  version: 2.0.1
+  resolution: "hasown@npm:2.0.1"
   dependencies:
     function-bind: "npm:^1.1.2"
-  checksum: 10c0/5d415b114f410661208c95e7ab4879f1cc2765b8daceff4dc8718317d1cb7b9ffa7c5d1eafd9a4389c9aab7445d6ea88e05f3096cb1e529618b55304956b87fc
+  checksum: 10c0/9e27e70e8e4204f4124c8f99950d1ba2b1f5174864fd39ff26da190f9ea6488c1b3927dcc64981c26d1f637a971783c9489d62c829d393ea509e6f1ba20370bb
   languageName: node
   linkType: hard
 
@@ -11691,15 +10160,6 @@ __metadata:
     minimalistic-assert: "npm:^1.0.0"
     minimalistic-crypto-utils: "npm:^1.0.1"
   checksum: 10c0/f3d9ba31b40257a573f162176ac5930109816036c59a09f901eb2ffd7e5e705c6832bedfff507957125f2086a0ab8f853c0df225642a88bf1fcaea945f20600d
-  languageName: node
-  linkType: hard
-
-"hoist-non-react-statics@npm:^3.3.1":
-  version: 3.3.2
-  resolution: "hoist-non-react-statics@npm:3.3.2"
-  dependencies:
-    react-is: "npm:^16.7.0"
-  checksum: 10c0/fe0889169e845d738b59b64badf5e55fa3cf20454f9203d1eb088df322d49d4318df774828e789898dcb280e8a5521bb59b3203385662ca5e9218a6ca5820e74
   languageName: node
   linkType: hard
 
@@ -13095,7 +11555,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jiti@npm:^1.20.0":
+"jiti@npm:^1.19.1, jiti@npm:^1.20.0":
   version: 1.21.0
   resolution: "jiti@npm:1.21.0"
   bin:
@@ -13387,10 +11847,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lilconfig@npm:3.0.0":
+"lilconfig@npm:3.0.0, lilconfig@npm:^3.0.0":
   version: 3.0.0
   resolution: "lilconfig@npm:3.0.0"
   checksum: 10c0/7f5ee7a658dc016cacf146815e8d88b06f06f4402823b8b0934e305a57a197f55ccc9c5cd4fb5ea1b2b821c8ccaf2d54abd59602a4931af06eabda332388d3e6
+  languageName: node
+  linkType: hard
+
+"lilconfig@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "lilconfig@npm:2.1.0"
+  checksum: 10c0/64645641aa8d274c99338e130554abd6a0190533c0d9eb2ce7ebfaf2e05c7d9961f3ffe2bfa39efd3b60c521ba3dd24fa236fe2775fc38501bf82bf49d4678b8
   languageName: node
   linkType: hard
 
@@ -13593,6 +12060,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lucide-react@npm:0.323.0":
+  version: 0.323.0
+  resolution: "lucide-react@npm:0.323.0"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0
+  checksum: 10c0/2b4d0bbf936a2fd78f83e15a65dfd682f86817cf1942df616d0f0f6ed129d2b0c592248e736e3330085d468cfc0ef108d88f35e8a05228c2215973d8a1f2fb90
+  languageName: node
+  linkType: hard
+
 "lz-string@npm:^1.5.0":
   version: 1.5.0
   resolution: "lz-string@npm:1.5.0"
@@ -13784,7 +12260,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"micromatch@npm:4.0.5, micromatch@npm:^4.0.2, micromatch@npm:^4.0.4":
+"micromatch@npm:4.0.5, micromatch@npm:^4.0.2, micromatch@npm:^4.0.4, micromatch@npm:^4.0.5":
   version: 4.0.5
   resolution: "micromatch@npm:4.0.5"
   dependencies:
@@ -14106,6 +12582,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mz@npm:^2.7.0":
+  version: 2.7.0
+  resolution: "mz@npm:2.7.0"
+  dependencies:
+    any-promise: "npm:^1.0.0"
+    object-assign: "npm:^4.0.1"
+    thenify-all: "npm:^1.0.0"
+  checksum: 10c0/103114e93f87362f0b56ab5b2e7245051ad0276b646e3902c98397d18bb8f4a77f2ea4a2c9d3ad516034ea3a56553b60d3f5f78220001ca4c404bd711bd0af39
+  languageName: node
+  linkType: hard
+
 "nano-css@npm:^5.6.1":
   version: 5.6.1
   resolution: "nano-css@npm:5.6.1"
@@ -14230,6 +12717,7 @@ __metadata:
   dependencies:
     "@faker-js/faker": "npm:8.4.1"
     "@next/bundle-analyzer": "npm:14.1.0"
+    "@radix-ui/react-slot": "npm:1.0.2"
     "@storybook/addon-a11y": "npm:7.6.14"
     "@storybook/addon-essentials": "npm:7.6.14"
     "@storybook/addon-interactions": "npm:7.6.14"
@@ -14246,13 +12734,15 @@ __metadata:
     "@testing-library/user-event": "npm:14.5.2"
     "@types/jest": "npm:29.5.12"
     "@types/lodash-es": "npm:4.17.12"
+    "@types/node": "npm:20.11.17"
     "@types/react": "npm:18.2.55"
     "@types/react-dom": "npm:18.2.19"
     "@typescript-eslint/eslint-plugin": "npm:6.21.0"
     "@typescript-eslint/parser": "npm:6.21.0"
-    "@yamada-ui/react": "npm:1.2.5"
     axios: "npm:1.6.7"
     change-case: "npm:5.4.2"
+    class-variance-authority: "npm:0.7.0"
+    clsx: "npm:2.1.0"
     eslint: "npm:8.56.0"
     eslint-config-airbnb: "npm:19.0.4"
     eslint-config-airbnb-typescript: "npm:17.1.0"
@@ -14266,16 +12756,24 @@ __metadata:
     jest-environment-jsdom: "npm:29.7.0"
     lint-staged: "npm:15.2.2"
     lodash-es: "npm:4.17.21"
+    lucide-react: "npm:0.323.0"
     msw: "npm:2.1.7"
     msw-storybook-addon: "npm:2.0.0-beta.1"
     next: "npm:14.1.0"
     next-compose-plugins: "npm:2.2.1"
+    postcss: "npm:8.4.33"
+    postcss-import: "npm:16.0.0"
+    postcss-nesting: "npm:12.0.2"
     postcss-preset-env: "npm:9.3.0"
     prettier: "npm:3.2.5"
+    prettier-plugin-tailwindcss: "npm:0.5.11"
     react: "npm:18.2.0"
     react-dom: "npm:18.2.0"
     react-use: "npm:17.5.0"
     storybook: "npm:7.6.14"
+    tailwind-merge: "npm:2.2.1"
+    tailwindcss: "npm:3.4.1"
+    tailwindcss-animate: "npm:1.0.7"
     type-fest: "npm:4.10.2"
     typescript: "npm:5.3.3"
   languageName: unknown
@@ -14500,10 +12998,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"object-assign@npm:^4.1.1":
+"object-assign@npm:^4.0.1, object-assign@npm:^4.1.1":
   version: 4.1.1
   resolution: "object-assign@npm:4.1.1"
   checksum: 10c0/1f4df9945120325d041ccf7b86f31e8bcc14e73d29171e37a7903050e96b81323784ec59f93f102ec635bcf6fa8034ba3ea0a8c7e69fa202b87ae3b6cec5a414
+  languageName: node
+  linkType: hard
+
+"object-hash@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "object-hash@npm:3.0.0"
+  checksum: 10c0/a06844537107b960c1c8b96cd2ac8592a265186bfa0f6ccafe0d34eabdb526f6fa81da1f37c43df7ed13b12a4ae3457a16071603bcd39d8beddb5f08c37b0f47
   languageName: node
   linkType: hard
 
@@ -15039,6 +13544,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pify@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "pify@npm:2.3.0"
+  checksum: 10c0/551ff8ab830b1052633f59cb8adc9ae8407a436e06b4a9718bcb27dc5844b83d535c3a8512b388b6062af65a98c49bdc0dd523d8b2617b188f7c8fee457158dc
+  languageName: node
+  linkType: hard
+
 "pify@npm:^4.0.1":
   version: 4.0.1
   resolution: "pify@npm:4.0.1"
@@ -15046,7 +13558,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pirates@npm:^4.0.4, pirates@npm:^4.0.6":
+"pirates@npm:^4.0.1, pirates@npm:^4.0.4, pirates@npm:^4.0.6":
   version: 4.0.6
   resolution: "pirates@npm:4.0.6"
   checksum: 10c0/00d5fa51f8dded94d7429700fb91a0c1ead00ae2c7fd27089f0c5b63e6eca36197fe46384631872690a66f390c5e27198e99006ab77ae472692ab9c2ca903f36
@@ -15281,6 +13793,43 @@ __metadata:
   languageName: node
   linkType: hard
 
+"postcss-import@npm:16.0.0":
+  version: 16.0.0
+  resolution: "postcss-import@npm:16.0.0"
+  dependencies:
+    postcss-value-parser: "npm:^4.0.0"
+    read-cache: "npm:^1.0.0"
+    resolve: "npm:^1.1.7"
+  peerDependencies:
+    postcss: ^8.0.0
+  checksum: 10c0/7e9eccc2744dabdd542ba467b2df562c254d3b9e96b277752dbe525e3a8c47741cbbe802b40f64cbe92bc839244c2645cd0284ddb2938f8f38f2271fa427c932
+  languageName: node
+  linkType: hard
+
+"postcss-import@npm:^15.1.0":
+  version: 15.1.0
+  resolution: "postcss-import@npm:15.1.0"
+  dependencies:
+    postcss-value-parser: "npm:^4.0.0"
+    read-cache: "npm:^1.0.0"
+    resolve: "npm:^1.1.7"
+  peerDependencies:
+    postcss: ^8.0.0
+  checksum: 10c0/518aee5c83ea6940e890b0be675a2588db68b2582319f48c3b4e06535a50ea6ee45f7e63e4309f8754473245c47a0372632378d1d73d901310f295a92f26f17b
+  languageName: node
+  linkType: hard
+
+"postcss-js@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "postcss-js@npm:4.0.1"
+  dependencies:
+    camelcase-css: "npm:^2.0.1"
+  peerDependencies:
+    postcss: ^8.4.21
+  checksum: 10c0/af35d55cb873b0797d3b42529514f5318f447b134541844285c9ac31a17497297eb72296902967911bb737a75163441695737300ce2794e3bd8c70c13a3b106e
+  languageName: node
+  linkType: hard
+
 "postcss-lab-function@npm:^6.0.7":
   version: 6.0.9
   resolution: "postcss-lab-function@npm:6.0.9"
@@ -15292,6 +13841,24 @@ __metadata:
   peerDependencies:
     postcss: ^8.4
   checksum: 10c0/116e8ded33cc0e20be35e40317f24b066e7c26a9bd8d87dfc93931456119f496b7e5a8a6669ecf69a6a678938898d37e8590869bf55ff6b005b238edb80150bf
+  languageName: node
+  linkType: hard
+
+"postcss-load-config@npm:^4.0.1":
+  version: 4.0.2
+  resolution: "postcss-load-config@npm:4.0.2"
+  dependencies:
+    lilconfig: "npm:^3.0.0"
+    yaml: "npm:^2.3.4"
+  peerDependencies:
+    postcss: ">=8.0.9"
+    ts-node: ">=9.0.0"
+  peerDependenciesMeta:
+    postcss:
+      optional: true
+    ts-node:
+      optional: true
+  checksum: 10c0/3d7939acb3570b0e4b4740e483d6e555a3e2de815219cb8a3c8fc03f575a6bde667443aa93369c0be390af845cb84471bf623e24af833260de3a105b78d42519
   languageName: node
   linkType: hard
 
@@ -15364,7 +13931,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-nesting@npm:^12.0.1":
+"postcss-nested@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "postcss-nested@npm:6.0.1"
+  dependencies:
+    postcss-selector-parser: "npm:^6.0.11"
+  peerDependencies:
+    postcss: ^8.2.14
+  checksum: 10c0/2a50aa36d5d103c2e471954830489f4c024deed94fa066169101db55171368d5f80b32446b584029e0471feee409293d0b6b1d8ede361f6675ba097e477b3cbd
+  languageName: node
+  linkType: hard
+
+"postcss-nesting@npm:12.0.2, postcss-nesting@npm:^12.0.1":
   version: 12.0.2
   resolution: "postcss-nesting@npm:12.0.2"
   dependencies:
@@ -15517,7 +14095,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-selector-parser@npm:^6.0.10, postcss-selector-parser@npm:^6.0.13, postcss-selector-parser@npm:^6.0.2, postcss-selector-parser@npm:^6.0.4":
+"postcss-selector-parser@npm:^6.0.10, postcss-selector-parser@npm:^6.0.11, postcss-selector-parser@npm:^6.0.13, postcss-selector-parser@npm:^6.0.2, postcss-selector-parser@npm:^6.0.4":
   version: 6.0.15
   resolution: "postcss-selector-parser@npm:6.0.15"
   dependencies:
@@ -15527,7 +14105,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-value-parser@npm:^4.1.0, postcss-value-parser@npm:^4.2.0":
+"postcss-value-parser@npm:^4.0.0, postcss-value-parser@npm:^4.1.0, postcss-value-parser@npm:^4.2.0":
   version: 4.2.0
   resolution: "postcss-value-parser@npm:4.2.0"
   checksum: 10c0/f4142a4f56565f77c1831168e04e3effd9ffcc5aebaf0f538eee4b2d465adfd4b85a44257bb48418202a63806a7da7fe9f56c330aebb3cac898e46b4cbf49161
@@ -15545,7 +14123,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.2.14, postcss@npm:^8.4.21, postcss@npm:^8.4.33":
+"postcss@npm:8.4.33":
+  version: 8.4.33
+  resolution: "postcss@npm:8.4.33"
+  dependencies:
+    nanoid: "npm:^3.3.7"
+    picocolors: "npm:^1.0.0"
+    source-map-js: "npm:^1.0.2"
+  checksum: 10c0/16eda83458fcd8a91bece287b5920c7f57164c3ea293e6c80d0ea71ce7843007bcd8592260a5160b9a7f02693e6ac93e2495b02d8c7596d3f3f72c1447e3ba79
+  languageName: node
+  linkType: hard
+
+"postcss@npm:^8.2.14, postcss@npm:^8.4.21, postcss@npm:^8.4.23, postcss@npm:^8.4.33":
   version: 8.4.35
   resolution: "postcss@npm:8.4.35"
   dependencies:
@@ -15582,6 +14171,57 @@ __metadata:
   version: 1.2.1
   resolution: "prelude-ls@npm:1.2.1"
   checksum: 10c0/b00d617431e7886c520a6f498a2e14c75ec58f6d93ba48c3b639cf241b54232d90daa05d83a9e9b9fef6baa63cb7e1e4602c2372fea5bc169668401eb127d0cd
+  languageName: node
+  linkType: hard
+
+"prettier-plugin-tailwindcss@npm:0.5.11":
+  version: 0.5.11
+  resolution: "prettier-plugin-tailwindcss@npm:0.5.11"
+  peerDependencies:
+    "@ianvs/prettier-plugin-sort-imports": "*"
+    "@prettier/plugin-pug": "*"
+    "@shopify/prettier-plugin-liquid": "*"
+    "@trivago/prettier-plugin-sort-imports": "*"
+    prettier: ^3.0
+    prettier-plugin-astro: "*"
+    prettier-plugin-css-order: "*"
+    prettier-plugin-import-sort: "*"
+    prettier-plugin-jsdoc: "*"
+    prettier-plugin-marko: "*"
+    prettier-plugin-organize-attributes: "*"
+    prettier-plugin-organize-imports: "*"
+    prettier-plugin-style-order: "*"
+    prettier-plugin-svelte: "*"
+  peerDependenciesMeta:
+    "@ianvs/prettier-plugin-sort-imports":
+      optional: true
+    "@prettier/plugin-pug":
+      optional: true
+    "@shopify/prettier-plugin-liquid":
+      optional: true
+    "@trivago/prettier-plugin-sort-imports":
+      optional: true
+    prettier-plugin-astro:
+      optional: true
+    prettier-plugin-css-order:
+      optional: true
+    prettier-plugin-import-sort:
+      optional: true
+    prettier-plugin-jsdoc:
+      optional: true
+    prettier-plugin-marko:
+      optional: true
+    prettier-plugin-organize-attributes:
+      optional: true
+    prettier-plugin-organize-imports:
+      optional: true
+    prettier-plugin-style-order:
+      optional: true
+    prettier-plugin-svelte:
+      optional: true
+    prettier-plugin-twig-melody:
+      optional: true
+  checksum: 10c0/46e095d2a4298820a75a7b36022e8f2bcd1658a289f2ab11e4b9d4b6075272fee003d9959d084dcb33d5d669daf275e978d9a9aed35efe5eb9e77e70070b47f6
   languageName: node
   linkType: hard
 
@@ -15690,7 +14330,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -15923,17 +14563,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-clientside-effect@npm:^1.2.6":
-  version: 1.2.6
-  resolution: "react-clientside-effect@npm:1.2.6"
-  dependencies:
-    "@babel/runtime": "npm:^7.12.13"
-  peerDependencies:
-    react: ^15.3.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
-  checksum: 10c0/aba0adb666018e5c64657c31f4914a8558be73f71d6e2210fa871ebfcab94d786c83082868d7c7fa66feddc2aec19e375745cf0903e0619f2efffef08b92d941
-  languageName: node
-  linkType: hard
-
 "react-colorful@npm:^5.1.2":
   version: 5.6.1
   resolution: "react-colorful@npm:5.6.1"
@@ -15997,33 +14626,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-fast-compare@npm:^3.2.2":
-  version: 3.2.2
-  resolution: "react-fast-compare@npm:3.2.2"
-  checksum: 10c0/0bbd2f3eb41ab2ff7380daaa55105db698d965c396df73e6874831dbafec8c4b5b08ba36ff09df01526caa3c61595247e3269558c284e37646241cba2b90a367
-  languageName: node
-  linkType: hard
-
-"react-focus-lock@npm:^2.9.5":
-  version: 2.9.8
-  resolution: "react-focus-lock@npm:2.9.8"
-  dependencies:
-    "@babel/runtime": "npm:^7.0.0"
-    focus-lock: "npm:^1.0.1"
-    prop-types: "npm:^15.6.2"
-    react-clientside-effect: "npm:^1.2.6"
-    use-callback-ref: "npm:^1.3.0"
-    use-sidecar: "npm:^1.1.2"
-  peerDependencies:
-    "@types/react": ^16.8.0 || ^17.0.0 || ^18.0.0
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-  checksum: 10c0/ceeb228eaf7293f70aa16a5a6e81d227a5bf1c04af03ee3c9fc2e1fdde0b4b7b1cfa1899a192059abb4e2259cfdf52f027964c82a08c324774fe45a62878fb9a
-  languageName: node
-  linkType: hard
-
 "react-is@npm:18.1.0":
   version: 18.1.0
   resolution: "react-is@npm:18.1.0"
@@ -16031,7 +14633,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-is@npm:^16.13.1, react-is@npm:^16.7.0":
+"react-is@npm:^16.13.1":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: 10c0/33977da7a5f1a287936a0c85639fec6ca74f4f15ef1e59a6bc20338fc73dc69555381e211f7a3529b8150a1f71e4225525b41b60b52965bda53ce7d47377ada1
@@ -16059,7 +14661,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-remove-scroll-bar@npm:^2.3.3, react-remove-scroll-bar@npm:^2.3.4":
+"react-remove-scroll-bar@npm:^2.3.3":
   version: 2.3.4
   resolution: "react-remove-scroll-bar@npm:2.3.4"
   dependencies:
@@ -16091,35 +14693,6 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 10c0/4952657e6a7b9d661d4ad4dfcef81b9c7fa493e35164abff99c35c0b27b3d172ef7ad70c09416dc44dd14ff2e6b38a5ec7da27e27e90a15cbad36b8fd2fd8054
-  languageName: node
-  linkType: hard
-
-"react-remove-scroll@npm:^2.5.4":
-  version: 2.5.7
-  resolution: "react-remove-scroll@npm:2.5.7"
-  dependencies:
-    react-remove-scroll-bar: "npm:^2.3.4"
-    react-style-singleton: "npm:^2.2.1"
-    tslib: "npm:^2.1.0"
-    use-callback-ref: "npm:^1.3.0"
-    use-sidecar: "npm:^1.1.2"
-  peerDependencies:
-    "@types/react": ^16.8.0 || ^17.0.0 || ^18.0.0
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-  checksum: 10c0/dcd523ada602bd0a839c2032cadf0b3e4af55ee85acefee3760976a9cceaa4606927801b093bbb8bf3c2989c71e048f5428c2c6eb9e6681762e86356833d039b
-  languageName: node
-  linkType: hard
-
-"react-resizable-panels@npm:^1.0.7":
-  version: 1.0.10
-  resolution: "react-resizable-panels@npm:1.0.10"
-  peerDependencies:
-    react: ^16.14.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^16.14.0 || ^17.0.0 || ^18.0.0
-  checksum: 10c0/f7ca59f2bf0885ca5194da51d1fb4266f673dea810a06fc0074ba4f353142a2fd8a644a7232d941875b0097d747845fb3be3e43ee0d3e99ce10b3896a85072ff
   languageName: node
   linkType: hard
 
@@ -16181,6 +14754,15 @@ __metadata:
   dependencies:
     loose-envify: "npm:^1.1.0"
   checksum: 10c0/b562d9b569b0cb315e44b48099f7712283d93df36b19a39a67c254c6686479d3980b7f013dc931f4a5a3ae7645eae6386b4aa5eea933baa54ecd0f9acb0902b8
+  languageName: node
+  linkType: hard
+
+"read-cache@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "read-cache@npm:1.0.0"
+  dependencies:
+    pify: "npm:^2.3.0"
+  checksum: 10c0/90cb2750213c7dd7c80cb420654344a311fdec12944e81eb912cd82f1bc92aea21885fa6ce442e3336d9fccd663b8a7a19c46d9698e6ca55620848ab932da814
   languageName: node
   linkType: hard
 
@@ -16497,7 +15079,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resolve@npm:^1.10.0, resolve@npm:^1.14.2, resolve@npm:^1.19.0, resolve@npm:^1.20.0, resolve@npm:^1.22.1, resolve@npm:^1.22.4":
+"resolve@npm:^1.1.7, resolve@npm:^1.10.0, resolve@npm:^1.14.2, resolve@npm:^1.20.0, resolve@npm:^1.22.1, resolve@npm:^1.22.2, resolve@npm:^1.22.4":
   version: 1.22.8
   resolution: "resolve@npm:1.22.8"
   dependencies:
@@ -16523,7 +15105,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"resolve@patch:resolve@npm%3A^1.10.0#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.14.2#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.19.0#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.20.0#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.1#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.4#optional!builtin<compat/resolve>":
+"resolve@patch:resolve@npm%3A^1.1.7#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.10.0#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.14.2#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.20.0#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.1#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.2#optional!builtin<compat/resolve>, resolve@patch:resolve@npm%3A^1.22.4#optional!builtin<compat/resolve>":
   version: 1.22.8
   resolution: "resolve@patch:resolve@npm%3A1.22.8#optional!builtin<compat/resolve>::version=1.22.8&hash=c3c19d"
   dependencies:
@@ -17132,13 +15714,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"source-map@npm:^0.5.7":
-  version: 0.5.7
-  resolution: "source-map@npm:0.5.7"
-  checksum: 10c0/904e767bb9c494929be013017380cbba013637da1b28e5943b566031e29df04fba57edf3f093e0914be094648b577372bd8ad247fa98cfba9c600794cd16b599
-  languageName: node
-  linkType: hard
-
 "source-map@npm:^0.7.3":
   version: 0.7.4
   resolution: "source-map@npm:0.7.4"
@@ -17562,17 +16137,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stylis@npm:4.2.0":
-  version: 4.2.0
-  resolution: "stylis@npm:4.2.0"
-  checksum: 10c0/a7128ad5a8ed72652c6eba46bed4f416521bc9745a460ef5741edc725252cebf36ee45e33a8615a7057403c93df0866ab9ee955960792db210bb80abd5ac6543
-  languageName: node
-  linkType: hard
-
 "stylis@npm:^4.3.0":
   version: 4.3.1
   resolution: "stylis@npm:4.3.1"
   checksum: 10c0/33e8ebd2bfa5f0bd0215f718dc2d3be896e1d00c5bcaeb9a4ae03cf239db6867af9eee230f57229bf1c29499357073ba3e6b547484ba1db2f5de1e8be7d4eee9
+  languageName: node
+  linkType: hard
+
+"sucrase@npm:^3.32.0":
+  version: 3.35.0
+  resolution: "sucrase@npm:3.35.0"
+  dependencies:
+    "@jridgewell/gen-mapping": "npm:^0.3.2"
+    commander: "npm:^4.0.0"
+    glob: "npm:^10.3.10"
+    lines-and-columns: "npm:^1.1.6"
+    mz: "npm:^2.7.0"
+    pirates: "npm:^4.0.1"
+    ts-interface-checker: "npm:^0.1.9"
+  bin:
+    sucrase: bin/sucrase
+    sucrase-node: bin/sucrase-node
+  checksum: 10c0/ac85f3359d2c2ecbf5febca6a24ae9bf96c931f05fde533c22a94f59c6a74895e5d5f0e871878dfd59c2697a75ebb04e4b2224ef0bfc24ca1210735c2ec191ef
   languageName: node
   linkType: hard
 
@@ -17657,6 +16243,57 @@ __metadata:
   version: 2.0.17
   resolution: "synchronous-promise@npm:2.0.17"
   checksum: 10c0/1babe643d8417789ef6e5a2f3d4b8abcda2de236acd09bbe2c98f6be82c0a2c92ed21a6e4f934845fa8de18b1435a9cba1e8c3d945032e8a532f076224c024b1
+  languageName: node
+  linkType: hard
+
+"tailwind-merge@npm:2.2.1":
+  version: 2.2.1
+  resolution: "tailwind-merge@npm:2.2.1"
+  dependencies:
+    "@babel/runtime": "npm:^7.23.7"
+  checksum: 10c0/14ab965ec897e9377484b7593f7a700dde09b8035b762ad42652622a3ed1f202b203f48c0f235c0b1b38e9390470d94458f6f9010d33a5a18d71b15f38b986a6
+  languageName: node
+  linkType: hard
+
+"tailwindcss-animate@npm:1.0.7":
+  version: 1.0.7
+  resolution: "tailwindcss-animate@npm:1.0.7"
+  peerDependencies:
+    tailwindcss: "*"
+  checksum: 10c0/ec7dbd1631076b97d66a1fbaaa06e0725fccfa63119221e8d87a997b02dcede98ad88bb1ef6665b968f5d260fcefb10592e0299ca70208d365b37761edf5e19a
+  languageName: node
+  linkType: hard
+
+"tailwindcss@npm:3.4.1":
+  version: 3.4.1
+  resolution: "tailwindcss@npm:3.4.1"
+  dependencies:
+    "@alloc/quick-lru": "npm:^5.2.0"
+    arg: "npm:^5.0.2"
+    chokidar: "npm:^3.5.3"
+    didyoumean: "npm:^1.2.2"
+    dlv: "npm:^1.1.3"
+    fast-glob: "npm:^3.3.0"
+    glob-parent: "npm:^6.0.2"
+    is-glob: "npm:^4.0.3"
+    jiti: "npm:^1.19.1"
+    lilconfig: "npm:^2.1.0"
+    micromatch: "npm:^4.0.5"
+    normalize-path: "npm:^3.0.0"
+    object-hash: "npm:^3.0.0"
+    picocolors: "npm:^1.0.0"
+    postcss: "npm:^8.4.23"
+    postcss-import: "npm:^15.1.0"
+    postcss-js: "npm:^4.0.1"
+    postcss-load-config: "npm:^4.0.1"
+    postcss-nested: "npm:^6.0.1"
+    postcss-selector-parser: "npm:^6.0.11"
+    resolve: "npm:^1.22.2"
+    sucrase: "npm:^3.32.0"
+  bin:
+    tailwind: lib/cli.js
+    tailwindcss: lib/cli.js
+  checksum: 10c0/eec3d758f1cd4f51ab3b4c201927c3ecd18e55f8ac94256af60276aaf8d1df78f9dddb5e9fb1e057dfa7cea3c1356add4994cc3d42da9739df874e67047e656f
   languageName: node
   linkType: hard
 
@@ -17826,6 +16463,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"thenify-all@npm:^1.0.0":
+  version: 1.6.0
+  resolution: "thenify-all@npm:1.6.0"
+  dependencies:
+    thenify: "npm:>= 3.1.0 < 4"
+  checksum: 10c0/9b896a22735e8122754fe70f1d65f7ee691c1d70b1f116fda04fea103d0f9b356e3676cb789506e3909ae0486a79a476e4914b0f92472c2e093d206aed4b7d6b
+  languageName: node
+  linkType: hard
+
+"thenify@npm:>= 3.1.0 < 4":
+  version: 3.3.1
+  resolution: "thenify@npm:3.3.1"
+  dependencies:
+    any-promise: "npm:^1.0.0"
+  checksum: 10c0/f375aeb2b05c100a456a30bc3ed07ef03a39cbdefe02e0403fb714b8c7e57eeaad1a2f5c4ecfb9ce554ce3db9c2b024eba144843cd9e344566d9fcee73b04767
+  languageName: node
+  linkType: hard
+
 "throttle-debounce@npm:^3.0.1":
   version: 3.0.1
   resolution: "throttle-debounce@npm:3.0.1"
@@ -17977,6 +16632,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ts-interface-checker@npm:^0.1.9":
+  version: 0.1.13
+  resolution: "ts-interface-checker@npm:0.1.13"
+  checksum: 10c0/232509f1b84192d07b81d1e9b9677088e590ac1303436da1e92b296e9be8e31ea042e3e1fd3d29b1742ad2c959e95afe30f63117b8f1bc3a3850070a5142fea7
+  languageName: node
+  linkType: hard
+
 "ts-pnp@npm:^1.1.6":
   version: 1.2.0
   resolution: "ts-pnp@npm:1.2.0"
@@ -18018,13 +16680,6 @@ __metadata:
     minimist: "npm:^1.2.6"
     strip-bom: "npm:^3.0.0"
   checksum: 10c0/09a5877402d082bb1134930c10249edeebc0211f36150c35e1c542e5b91f1047b1ccf7da1e59babca1ef1f014c525510f4f870de7c9bda470c73bb4e2721b3ea
-  languageName: node
-  linkType: hard
-
-"tslib@npm:2.4.0":
-  version: 2.4.0
-  resolution: "tslib@npm:2.4.0"
-  checksum: 10c0/eb19bda3ae545b03caea6a244b34593468e23d53b26bf8649fbc20fce43e9b21a71127fd6d2b9662c0fe48ee6ff668ead48fd00d3b88b2b716b1c12edae25b5d
   languageName: node
   linkType: hard
 
@@ -18987,7 +17642,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yaml@npm:2.3.4":
+"yaml@npm:2.3.4, yaml@npm:^2.3.4":
   version: 2.3.4
   resolution: "yaml@npm:2.3.4"
   checksum: 10c0/cf03b68f8fef5e8516b0f0b54edaf2459f1648317fc6210391cf606d247e678b449382f4bd01f77392538429e306c7cba8ff46ff6b37cac4de9a76aff33bd9e1
