@@ -7,11 +7,9 @@ import type { NextPage } from 'next';
 const Sandbox: NextPage = () => {
   return (
     <>
-      <h1 className="text-2xl font-bold">SSR</h1>
+      <h2>SSR</h2>
       <p>
-        <Link className="text-blue-500 hover:underline" href="/tanstack-query">
-          Return
-        </Link>
+        <Link href="/tanstack-query">Return</Link>
       </p>
       <Hydrator fetchQueryOptions={{ queryKey, queryFn }}>
         <PokemonList />

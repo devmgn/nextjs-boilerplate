@@ -1,4 +1,6 @@
-import tailwindCssAnimate from 'tailwindcss-animate';
+/* eslint-disable global-require */
+/* eslint-disable import/no-extraneous-dependencies */
+
 import type { Config } from 'tailwindcss';
 
 const config = {
@@ -75,7 +77,11 @@ const config = {
       },
     },
   },
-  plugins: [tailwindCssAnimate],
+  plugins: [
+    require('@tailwindcss/container-queries'),
+    require('@tailwindcss/typography'),
+    require('tailwindcss-animate'),
+  ],
 } satisfies Config;
 
 export default config;
