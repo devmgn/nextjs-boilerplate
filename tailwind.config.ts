@@ -79,7 +79,6 @@ const config = {
   },
   plugins: [
     require('@tailwindcss/container-queries'),
-    require('@tailwindcss/line-clamp'),
     require('@tailwindcss/typography'),
     require('tailwindcss-animate'),
   ],
