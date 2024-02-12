@@ -10,9 +10,11 @@ describe('asyncDebounce', () => {
     const promise = debouncedFn(2);
 
     let result;
-    promise.then((value) => {
-      result = value;
-    });
+    promise
+      .then((value) => {
+        result = value;
+      })
+      .catch(() => {});
 
     expect(mockFn).not.toHaveBeenCalled();
     expect(result).toBeUndefined();

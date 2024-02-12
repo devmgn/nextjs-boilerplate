@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardHeader } from '@/components/ui/card';
 import { axios } from '@/lib';
 import { queryFn, queryKey } from './getPokemonList';
+import type { PokemonListResponse } from './getPokemonList';
 
 export const PokemonList: React.FC<React.ComponentPropsWithoutRef<'div'>> = (
   props,
@@ -19,10 +20,13 @@ export const PokemonList: React.FC<React.ComponentPropsWithoutRef<'div'>> = (
   const onClickPagination = (url: string | null) => {
     return () => {
       if (!url) return;
-      queryClient.fetchQuery({
-        queryKey,
-        queryFn: () => axios.get(url).then((res) => res.data),
-      });
+      queryClient
+        .fetchQuery({
+          queryKey,
+          queryFn: () =>
+            axios.get<PokemonListResponse>(url).then((res) => res.data),
+        })
+        .catch(() => {});
     };
   };
 

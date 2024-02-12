@@ -26,7 +26,7 @@ describe('useIsComposing', () => {
 
       act(() => {
         const event = new Event(eventName);
-        window?.dispatchEvent(event);
+        window.dispatchEvent(event);
       });
 
       expect(result.current).toBe(expected);
