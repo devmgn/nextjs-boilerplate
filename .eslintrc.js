@@ -12,6 +12,7 @@ module.exports = {
     'plugin:@typescript-eslint/strict',
     'plugin:@typescript-eslint/stylistic-type-checked',
     'next/core-web-vitals',
+    'plugin:tailwindcss/recommended',
     'prettier',
   ],
   plugins: ['@tanstack/query'],

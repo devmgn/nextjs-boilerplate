@@ -47,7 +47,7 @@ export const PokemonList: React.FC<React.ComponentPropsWithoutRef<'div'>> = (
         </Button>
         {isFetching && 'loading...'}
       </div>
-      <p className="mt-2">Results: {data.count}</p>
+      <p className="prose mt-2">Results: {data.count}</p>
       <ul className="mt-2 grid grid-cols-[repeat(auto-fit,minmax(198px,1fr))] gap-4">
         {data.results.map(({ name, url }) => (
           <Card key={url}>
