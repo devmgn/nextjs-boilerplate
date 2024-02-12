@@ -6,11 +6,9 @@ import type { NextPage } from 'next';
 const Sandbox: NextPage = async () => {
   return (
     <>
-      <h1 className="text-2xl font-bold">CSR</h1>
+      <h2>CSR</h2>
       <p>
-        <Link className="text-blue-500 hover:underline" href="/tanstack-query">
-          Return
-        </Link>
+        <Link href="/tanstack-query">Return</Link>
       </p>
       <Suspense fallback="loading...">
         <PokemonList />

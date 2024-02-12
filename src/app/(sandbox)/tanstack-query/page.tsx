@@ -5,20 +5,10 @@ const Sandbox: NextPage = async () => {
   return (
     <ul>
       <li>
-        <Link
-          className="text-blue-500 hover:underline"
-          href="/tanstack-query/ssr"
-        >
-          SSR
-        </Link>
+        <Link href="/tanstack-query/ssr">SSR</Link>
       </li>
       <li>
-        <Link
-          className="text-blue-500 hover:underline"
-          href="/tanstack-query/csr"
-        >
-          CSR
-        </Link>
+        <Link href="/tanstack-query/csr">CSR</Link>
       </li>
     </ul>
   );
