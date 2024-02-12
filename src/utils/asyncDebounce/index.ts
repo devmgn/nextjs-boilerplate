@@ -6,7 +6,9 @@ export const asyncDebounce = <T extends unknown[], R>(
   options?: Parameters<typeof debounce>[2],
 ) => {
   const debounced = debounce(
-    (resolve: (value: R) => void, args: T) => resolve(fn(...args)),
+    (resolve: (value: R) => void, args: T) => {
+      resolve(fn(...args));
+    },
     wait,
     options,
   );

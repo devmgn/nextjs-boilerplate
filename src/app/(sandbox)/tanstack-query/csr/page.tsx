@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { PokemonList } from '../components/PokemonList';
 import type { NextPage } from 'next';
 
-const Sandbox: NextPage = async () => {
+const Sandbox: NextPage = () => {
   return (
     <>
       <h2>CSR</h2>

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { NextPage } from 'next';
 
-const Sandbox: NextPage = async () => {
+const Sandbox: NextPage = () => {
   return (
     <ul>
       <li>
