@@ -17,8 +17,9 @@ const config: StorybookConfig = {
     disableTelemetry: true,
   },
   docs: {
-    autodocs: false,
+    autodocs: 'tag',
   },
+  logLevel: 'silent',
   staticDirs: ['../public'],
   webpackFinal: async (config) => {
     config.resolve = config.resolve || {};
