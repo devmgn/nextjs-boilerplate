@@ -16,7 +16,7 @@ export const QueryClientProvider: React.FC<React.PropsWithChildren> = ({
   return (
     <TQueryClientProvider client={queryClient}>
       {children}
-      <ReactQueryDevtools buttonPosition="bottom-left" initialIsOpen={false} />
+      <ReactQueryDevtools initialIsOpen={false} />
     </TQueryClientProvider>
   );
 };

@@ -1,15 +1,12 @@
 import React from 'react';
 import { Button } from '../src/components/ui/button';
-import { ErrorBoundary as NextErrorBoundary } from 'next/dist/client/components/error-boundary';
+import { ErrorBoundary } from 'next/dist/client/components/error-boundary';
 
-export const ErrorBoundary: React.FC<
-  Omit<
-    React.ComponentPropsWithoutRef<typeof NextErrorBoundary>,
-    'errorComponent'
-  >
+export const SBErrorBoundary: React.FC<
+  Omit<React.ComponentPropsWithoutRef<typeof ErrorBoundary>, 'errorComponent'>
 > = (props) => {
   return (
-    <NextErrorBoundary
+    <ErrorBoundary
       {...props}
       errorComponent={({ error, reset }) => {
         return (
@@ -26,4 +23,4 @@ export const ErrorBoundary: React.FC<
   );
 };
 
-ErrorBoundary.displayName = 'ErrorBoundary';
+SBErrorBoundary.displayName = 'SBErrorBoundary';
