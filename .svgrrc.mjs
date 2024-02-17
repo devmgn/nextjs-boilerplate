@@ -3,8 +3,8 @@
  * @see https://react-svgr.com/docs/options/
  */
 
-module.exports = {
-  // @see https://github.com/svg/svgo#configuration
+export default {
+  ref: true,
   svgoConfig: {
     plugins: [
       {

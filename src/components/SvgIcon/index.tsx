@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import { cva } from 'class-variance-authority';
 import { cn } from '@/lib/utils';
 import type { VariantProps } from 'class-variance-authority';
@@ -20,23 +21,22 @@ const svgIconVariants = cva('size-[1em] fill-current text-current', {
 
 type SvgIconProps = Merge<
   { component: React.ElementType },
-  React.HTMLAttributes<SVGSVGElement> & VariantProps<typeof svgIconVariants>
+  Omit<React.HTMLAttributes<SVGSVGElement>, 'children'> &
+    VariantProps<typeof svgIconVariants>
 >;
 
-export const SvgIcon: React.FC<SvgIconProps> = ({
-  component: Component,
-  className,
-  size,
-  ...props
-}) => {
-  return (
-    <Component
-      aria-hidden="true"
-      className={cn(svgIconVariants({ size, className }))}
-      focusable="false"
-      {...props}
-    />
-  );
-};
+export const SvgIcon = forwardRef<SVGSVGElement, SvgIconProps>(
+  ({ component: Component, className, size, ...props }, ref) => {
+    return (
+      <Component
+        ref={ref}
+        aria-hidden="true"
+        className={cn(svgIconVariants({ size, className }))}
+        focusable="false"
+        {...props}
+      />
+    );
+  },
+);
 
 SvgIcon.displayName = 'SvgIcon';
