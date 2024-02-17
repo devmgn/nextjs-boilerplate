@@ -4561,14 +4561,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:18.2.55, @types/react@npm:^16.8.0 || ^17.0.0 || ^18.0.0":
-  version: 18.2.55
-  resolution: "@types/react@npm:18.2.55"
+"@types/react@npm:*, @types/react@npm:18.2.56, @types/react@npm:^16.8.0 || ^17.0.0 || ^18.0.0":
+  version: 18.2.56
+  resolution: "@types/react@npm:18.2.56"
   dependencies:
     "@types/prop-types": "npm:*"
     "@types/scheduler": "npm:*"
     csstype: "npm:^3.0.2"
-  checksum: 10c0/6b1c73beafbbc582dc54ffd92b3779f6d850e8f6b5ce5d04b31e9498a3d77bfc416bb08f0d8d63ab4f4649ccd6639996472416871c01c74a528b16a55faeaf38
+  checksum: 10c0/a6dab9569799538a9e01d340a721ef1a6f5532bd11cae8d8ab9af00dab2edcafaa00950f7bf2f9ae5bbb1839d890e9ac6eb1ea1186200894b7178dde7b503269
   languageName: node
   linkType: hard
 
@@ -11985,9 +11985,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:2.2.0":
-  version: 2.2.0
-  resolution: "msw@npm:2.2.0"
+"msw@npm:2.2.1":
+  version: 2.2.1
+  resolution: "msw@npm:2.2.1"
   dependencies:
     "@bundled-es-modules/cookie": "npm:^2.0.0"
     "@bundled-es-modules/statuses": "npm:^1.0.1"
@@ -12013,7 +12013,7 @@ __metadata:
       optional: true
   bin:
     msw: cli/index.js
-  checksum: 10c0/9809c8642636ee5d95ee646e40deb4713be23aa8e91848314f02679c8c76f326a7c6fb7a778dd9a12b40edde10cf29a6fdff42553ed9189d9371fdafa2cc822c
+  checksum: 10c0/03edf048400493811648b40acef8125768061c8d7ecc43c0dad45b25c9f743f036008753eb8372cb55abc0de8d5842c77004ae9b8bedd358eb0b18992cd578ac
   languageName: node
   linkType: hard
 
@@ -12180,7 +12180,7 @@ __metadata:
     "@types/jest": "npm:29.5.12"
     "@types/lodash-es": "npm:4.17.12"
     "@types/node": "npm:20.11.19"
-    "@types/react": "npm:18.2.55"
+    "@types/react": "npm:18.2.56"
     "@types/react-dom": "npm:18.2.19"
     "@typescript-eslint/eslint-plugin": "npm:7.0.1"
     "@typescript-eslint/parser": "npm:7.0.1"
@@ -12202,7 +12202,7 @@ __metadata:
     jest-environment-jsdom: "npm:29.7.0"
     lint-staged: "npm:15.2.2"
     lodash-es: "npm:4.17.21"
-    msw: "npm:2.2.0"
+    msw: "npm:2.2.1"
     msw-storybook-addon: "npm:2.0.0-beta.1"
     next: "npm:14.1.0"
     next-compose-plugins: "npm:2.2.1"
