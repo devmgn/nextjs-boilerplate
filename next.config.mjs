@@ -10,12 +10,12 @@ export const createSvgrWebpackConfig = (config) => {
     {
       ...fileLoaderRule,
       test: /\.svg$/i,
-      resourceQuery: { not: /inline/ },
+      resourceQuery: /url/, // *.svg?url
     },
     {
       test: /\.svg$/i,
       issuer: fileLoaderRule.issuer,
-      resourceQuery: /inline/,
+      resourceQuery: { not: /url/ }, // exclude if *.svg?url
       use: ['@svgr/webpack'],
     },
   );
