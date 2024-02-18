@@ -1,10 +1,10 @@
-const path = require('path');
+import { relative } from 'path';
 
 const buildEslintCommand = (filenames) =>
   `next lint --fix --file ${filenames
-    .map((f) => path.relative(process.cwd(), f))
+    .map((f) => relative(process.cwd(), f))
     .join(' --file ')}`;
 
-module.exports = {
+export default {
   'src/**/*.[jt]s?(x)': ['bash -c "yarn tsc"', buildEslintCommand, 'yarn test'],
 };

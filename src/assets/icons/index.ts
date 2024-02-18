@@ -1,6 +1,6 @@
-import Close from './close.svg?inline';
-import Help from './help.svg?inline';
-import Info from './info.svg?inline';
-import Note from './note.svg?inline';
+import Close from './close.svg';
+import Help from './help.svg';
+import Info from './info.svg';
+import Note from './note.svg';
 
 export { Close, Help, Info, Note };
