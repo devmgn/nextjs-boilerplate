@@ -3,7 +3,7 @@
  * @see https://postcss.org
  */
 
-module.exports = {
+export default {
   plugins: {
     'postcss-import': {},
     'tailwindcss/nesting': 'postcss-nesting',
