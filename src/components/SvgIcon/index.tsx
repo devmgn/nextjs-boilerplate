@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 import { cva } from 'class-variance-authority';
-import { cn } from '@/lib/utils';
+import { cn } from '@/utils';
 import type { VariantProps } from 'class-variance-authority';
 import type { Merge } from 'type-fest';
 
