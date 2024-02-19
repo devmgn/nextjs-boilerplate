@@ -2002,6 +2002,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@csstools/selector-specificity@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "@csstools/selector-specificity@npm:3.0.2"
+  peerDependencies:
+    postcss-selector-parser: ^6.0.13
+  checksum: 10c0/d0c7dae2f1e9536e3e17f00467320a704f3208c76283c29c57fd69d4b83dcf6d062f492ed687c5ffd5f47fada9f0657c2efc89ea18fd4b038f757669553e0095
+  languageName: node
+  linkType: hard
+
 "@discoveryjs/json-ext@npm:0.5.7, @discoveryjs/json-ext@npm:^0.5.3":
   version: 0.5.7
   resolution: "@discoveryjs/json-ext@npm:0.5.7"
@@ -12199,7 +12208,7 @@ __metadata:
     next-compose-plugins: "npm:2.2.1"
     postcss: "npm:8.4.35"
     postcss-import: "npm:16.0.1"
-    postcss-nesting: "npm:12.0.2"
+    postcss-nesting: "npm:12.0.3"
     postcss-preset-env: "npm:9.3.0"
     prettier: "npm:3.2.5"
     react: "npm:18.2.0"
@@ -13370,7 +13379,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-nesting@npm:12.0.2, postcss-nesting@npm:^12.0.1":
+"postcss-nesting@npm:12.0.3":
+  version: 12.0.3
+  resolution: "postcss-nesting@npm:12.0.3"
+  dependencies:
+    "@csstools/selector-specificity": "npm:^3.0.2"
+    postcss-selector-parser: "npm:^6.0.13"
+  peerDependencies:
+    postcss: ^8.4
+  checksum: 10c0/b05bb2a2a7135ea88d646090a026d71b3a9bf66562e9678dd13810ea6d6878853b17529726b7448805d7b9f79b936f0b8020595f9031b8e3219b70283a70727d
+  languageName: node
+  linkType: hard
+
+"postcss-nesting@npm:^12.0.1":
   version: 12.0.2
   resolution: "postcss-nesting@npm:12.0.2"
   dependencies:
