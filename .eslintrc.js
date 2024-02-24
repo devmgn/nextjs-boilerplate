@@ -4,12 +4,6 @@ module.exports = {
     'jest/globals': true,
   },
   extends: [
-    'airbnb',
-    'airbnb-typescript',
-    'airbnb/hooks',
-    'plugin:react/recommended',
-    'plugin:react/jsx-runtime',
-    'plugin:@typescript-eslint/strict',
     'plugin:@typescript-eslint/strict-type-checked',
     'next/core-web-vitals',
     'plugin:tailwindcss/recommended',
@@ -132,11 +126,15 @@ module.exports = {
         'import/no-extraneous-dependencies': 'off',
         'react-hooks/rules-of-hooks': 'off',
         'react/jsx-pascal-case': ['error', { allowNamespace: true }],
+        '@typescript-eslint/no-empty-function': 'off',
       },
     },
     {
       files: ['**/?(*.)+(spec|test).[tj]s?(x)', 'jest.setup.js?(x)'],
       extends: ['plugin:jest/recommended'],
+      rules: {
+        '@typescript-eslint/no-empty-function': 'off',
+      },
     },
     {
       files: ['**/mocks/**/*.[tj]s?(x)'],

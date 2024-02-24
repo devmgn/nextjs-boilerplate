@@ -26,7 +26,9 @@ export const PokemonList: React.FC<React.ComponentPropsWithoutRef<'div'>> = (
           queryFn: () =>
             axios.get<PokemonListResponse>(url).then((res) => res.data),
         })
-        .catch(() => {});
+        .catch(() => {
+          throw Error();
+        });
     };
   };
 
