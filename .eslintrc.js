@@ -64,6 +64,7 @@ module.exports = {
         message: "Don't declare non-const enums",
       },
     ],
+    'prefer-template': 'error',
     'sort-imports': ['error', { ignoreDeclarationSort: true }],
     'react/function-component-definition': [
       'error',
