@@ -11,18 +11,6 @@ module.exports = {
   ],
   plugins: ['@tanstack/query'],
   rules: {
-    'arrow-body-style': 'off',
-    'import/prefer-default-export': 'off',
-    'no-console': ['warn', { allow: ['error', 'warn'] }],
-    'no-restricted-syntax': [
-      'error',
-      {
-        selector: 'TSEnumDeclaration:not([const=true])',
-        message: "Don't declare non-const enums",
-      },
-    ],
-    'lines-between-class-members': 'off',
-    'sort-imports': ['error', { ignoreDeclarationSort: true }],
     'import/order': [
       'error',
       {
@@ -68,13 +56,19 @@ module.exports = {
         },
       },
     ],
+    'no-console': ['warn', { allow: ['error', 'warn'] }],
+    'no-restricted-syntax': [
+      'error',
+      {
+        selector: 'TSEnumDeclaration:not([const=true])',
+        message: "Don't declare non-const enums",
+      },
+    ],
+    'sort-imports': ['error', { ignoreDeclarationSort: true }],
     'react/function-component-definition': [
       'error',
       { namedComponents: 'arrow-function' },
     ],
-    'react/jsx-props-no-spreading': 'off',
-    'react/prop-types': 'off',
-    'react/require-default-props': 'off',
     'react/jsx-sort-props': 'warn',
     'react-hooks/exhaustive-deps': [
       'warn',
@@ -84,7 +78,6 @@ module.exports = {
       },
     ],
     '@next/next/no-img-element': 'off',
-    '@typescript-eslint/consistent-type-definitions': 'off',
     '@typescript-eslint/naming-convention': [
       'warn',
       {
@@ -100,15 +93,16 @@ module.exports = {
         format: ['camelCase', 'PascalCase'],
       },
     ],
+    '@typescript-eslint/consistent-type-imports': [
+      'error',
+      { prefer: 'type-imports' },
+    ],
     '@typescript-eslint/lines-between-class-members': [
       'error',
       'always',
       { exceptAfterSingleLine: true },
     ],
-    '@typescript-eslint/consistent-type-imports': [
-      'error',
-      { prefer: 'type-imports' },
-    ],
+    '@typescript-eslint/no-import-type-side-effects': 'error',
   },
   overrides: [
     {
@@ -122,11 +116,11 @@ module.exports = {
       files: ['**/?(*.)+(stories).[tj]s?(x)'],
       extends: ['plugin:storybook/recommended'],
       rules: {
-        'no-console': 'off',
+        '@typescript-eslint/no-empty-function': 'off',
         'import/no-extraneous-dependencies': 'off',
+        'no-console': 'off',
         'react-hooks/rules-of-hooks': 'off',
         'react/jsx-pascal-case': ['error', { allowNamespace: true }],
-        '@typescript-eslint/no-empty-function': 'off',
       },
     },
     {
