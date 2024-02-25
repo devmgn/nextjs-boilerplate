@@ -29,10 +29,10 @@ export const SvgIcon = forwardRef<SVGSVGElement, SvgIconProps>(
   ({ component: Component, className, size, ...props }, ref) => {
     return (
       <Component
+        ref={ref}
         aria-hidden="true"
         className={cn(svgIconVariants({ size, className }))}
         focusable="false"
-        ref={ref}
         {...props}
       />
     );
