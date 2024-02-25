@@ -6,10 +6,6 @@ module.exports = {
   extends: [
     'airbnb',
     'airbnb-typescript',
-    'airbnb/hooks',
-    'plugin:react/recommended',
-    'plugin:react/jsx-runtime',
-    'plugin:@typescript-eslint/strict',
     'plugin:@typescript-eslint/strict-type-checked',
     'next/core-web-vitals',
     'plugin:tailwindcss/recommended',
@@ -17,8 +13,7 @@ module.exports = {
   ],
   plugins: ['@tanstack/query'],
   rules: {
-    'arrow-body-style': 'off',
-    'import/prefer-default-export': 'off',
+    'arrow-body-style': ['off'],
     'no-console': ['warn', { allow: ['error', 'warn'] }],
     'no-restricted-syntax': [
       'error',
@@ -27,7 +22,7 @@ module.exports = {
         message: "Don't declare non-const enums",
       },
     ],
-    'lines-between-class-members': 'off',
+    'prefer-template': ['error'],
     'sort-imports': ['error', { ignoreDeclarationSort: true }],
     'import/order': [
       'error',
@@ -74,14 +69,14 @@ module.exports = {
         },
       },
     ],
+    'import/prefer-default-export': ['off'],
     'react/function-component-definition': [
       'error',
       { namedComponents: 'arrow-function' },
     ],
-    'react/jsx-props-no-spreading': 'off',
-    'react/prop-types': 'off',
-    'react/require-default-props': 'off',
-    'react/jsx-sort-props': 'warn',
+    'react/jsx-props-no-spreading': ['off'],
+    'react/jsx-sort-props': ['error'],
+    'react/require-default-props': ['off'],
     'react-hooks/exhaustive-deps': [
       'warn',
       {
@@ -89,32 +84,17 @@ module.exports = {
           '^use(Async|AsyncFn|AsyncRetry|UpdateEffect|IsomorphicLayoutEffect|DeepCompareEffect|ShallowCompareEffect)$',
       },
     ],
-    '@next/next/no-img-element': 'off',
-    '@typescript-eslint/consistent-type-definitions': 'off',
-    '@typescript-eslint/naming-convention': [
-      'warn',
-      {
-        selector: ['interface', 'typeAlias', 'class'],
-        format: ['PascalCase'],
-      },
-      {
-        selector: 'variable',
-        format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
-      },
-      {
-        selector: 'function',
-        format: ['camelCase', 'PascalCase'],
-      },
+    '@next/next/no-img-element': ['off'],
+    '@typescript-eslint/consistent-type-imports': [
+      'error',
+      { prefer: 'type-imports' },
     ],
     '@typescript-eslint/lines-between-class-members': [
       'error',
       'always',
       { exceptAfterSingleLine: true },
     ],
-    '@typescript-eslint/consistent-type-imports': [
-      'error',
-      { prefer: 'type-imports' },
-    ],
+    '@typescript-eslint/no-import-type-side-effects': ['error'],
   },
   overrides: [
     {
@@ -128,20 +108,24 @@ module.exports = {
       files: ['**/?(*.)+(stories).[tj]s?(x)'],
       extends: ['plugin:storybook/recommended'],
       rules: {
-        'no-console': 'off',
-        'import/no-extraneous-dependencies': 'off',
-        'react-hooks/rules-of-hooks': 'off',
+        '@typescript-eslint/no-empty-function': ['off'],
+        'import/no-extraneous-dependencies': ['off'],
+        'no-console': ['off'],
+        'react-hooks/rules-of-hooks': ['off'],
         'react/jsx-pascal-case': ['error', { allowNamespace: true }],
       },
     },
     {
       files: ['**/?(*.)+(spec|test).[tj]s?(x)', 'jest.setup.js?(x)'],
       extends: ['plugin:jest/recommended'],
+      rules: {
+        '@typescript-eslint/no-empty-function': ['off'],
+      },
     },
     {
       files: ['**/mocks/**/*.[tj]s?(x)'],
       rules: {
-        'import/no-extraneous-dependencies': 'off',
+        'import/no-extraneous-dependencies': ['off'],
       },
     },
   ],
