@@ -12248,7 +12248,7 @@ __metadata:
     next-compose-plugins: "npm:2.2.1"
     postcss: "npm:8.4.35"
     postcss-import: "npm:16.0.1"
-    postcss-nesting: "npm:12.0.3"
+    postcss-nesting: "npm:12.0.4"
     postcss-preset-env: "npm:9.4.0"
     prettier: "npm:3.2.5"
     react: "npm:18.2.0"
@@ -13433,7 +13433,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-nesting@npm:12.0.3, postcss-nesting@npm:^12.0.3":
+"postcss-nesting@npm:12.0.4":
+  version: 12.0.4
+  resolution: "postcss-nesting@npm:12.0.4"
+  dependencies:
+    "@csstools/selector-specificity": "npm:^3.0.2"
+    postcss-selector-parser: "npm:^6.0.13"
+  peerDependencies:
+    postcss: ^8.4
+  checksum: 10c0/f6fdf0d6170d9aa7ebcbd8b74f1b4ea28ad9747e4d211fb64948cb20e5638ba32220ceb5d246125892152827da2b0493d087e7abf392c07053bdf931abc5b6de
+  languageName: node
+  linkType: hard
+
+"postcss-nesting@npm:^12.0.3":
   version: 12.0.3
   resolution: "postcss-nesting@npm:12.0.3"
   dependencies:
