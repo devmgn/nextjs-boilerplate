@@ -1742,8 +1742,8 @@ __metadata:
   linkType: hard
 
 "@csstools/postcss-gradients-interpolation-method@npm:^4.0.10":
-  version: 4.0.10
-  resolution: "@csstools/postcss-gradients-interpolation-method@npm:4.0.10"
+  version: 4.0.11
+  resolution: "@csstools/postcss-gradients-interpolation-method@npm:4.0.11"
   dependencies:
     "@csstools/css-color-parser": "npm:^1.5.2"
     "@csstools/css-parser-algorithms": "npm:^2.6.0"
@@ -1752,7 +1752,7 @@ __metadata:
     "@csstools/utilities": "npm:^1.0.0"
   peerDependencies:
     postcss: ^8.4
-  checksum: 10c0/186061f4d84d45b98f4db4b28a8b453e29c0982f37a00fbd87de06fe713d6d8441cf75fab14198b1caa5bb5e7334b2882da81fc77b5592ff29d65b1767b62fcc
+  checksum: 10c0/fdedc41238b65795a1cede0655dd6346371a79de7bf4e7b1fc7d39325ac8bfd6d590f6932a617ed7207a8567a7eeb9ae2c36ad698b7d5fbce667254d99c880b8
   languageName: node
   linkType: hard
 
@@ -4588,18 +4588,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^16.8.0 || ^17.0.0 || ^18.0.0":
-  version: 18.2.58
-  resolution: "@types/react@npm:18.2.58"
-  dependencies:
-    "@types/prop-types": "npm:*"
-    "@types/scheduler": "npm:*"
-    csstype: "npm:^3.0.2"
-  checksum: 10c0/80145b707b780d682092b51d520f58a0171c4067ff36cf488d3346d92b715b27fd334acd0fabb8eb21a4eb6c4061f1535e8bfa6642a7f4025e63ebec868fb6d1
-  languageName: node
-  linkType: hard
-
-"@types/react@npm:18.2.60":
+"@types/react@npm:*, @types/react@npm:18.2.60, @types/react@npm:^16.8.0 || ^17.0.0 || ^18.0.0":
   version: 18.2.60
   resolution: "@types/react@npm:18.2.60"
   dependencies:
@@ -6394,9 +6383,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001578, caniuse-lite@npm:^1.0.30001579, caniuse-lite@npm:^1.0.30001587":
-  version: 1.0.30001589
-  resolution: "caniuse-lite@npm:1.0.30001589"
-  checksum: 10c0/20debfb949413f603011bc7dacaf050010778bc4f8632c86fafd1bd0c43180c95ae7c31f6c82348f6309e5e221934e327c3607a216e3f09640284acf78cd6d4d
+  version: 1.0.30001591
+  resolution: "caniuse-lite@npm:1.0.30001591"
+  checksum: 10c0/21937d341c3d75994504db21340f65573a1e847a8ab33ee4964ed493994d6552864c494ba144485459abd9c711c75c0708bc9fa19f2bff525bff75ffb0a42c3b
   languageName: node
   linkType: hard
 
@@ -7217,9 +7206,9 @@ __metadata:
   linkType: hard
 
 "cssdb@npm:^7.11.0":
-  version: 7.11.0
-  resolution: "cssdb@npm:7.11.0"
-  checksum: 10c0/8a746c561ae12158263f3cf7bdc0abec8a063dc6aac52d4a505e0dcb873e899d84ba8fb1da0fea9732b1b3865893a0792492de89223f3c38a99263f7df7fecfa
+  version: 7.11.1
+  resolution: "cssdb@npm:7.11.1"
+  checksum: 10c0/afb04c0c7d824298c87151a8fed5128aef73755d2e749407375822f028e4eb57d5e71431ecb2371e52bdf4b616203029b562a805e21ef07b80802b97b0200155
   languageName: node
   linkType: hard
 
@@ -7805,9 +7794,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.668":
-  version: 1.4.681
-  resolution: "electron-to-chromium@npm:1.4.681"
-  checksum: 10c0/5b2558dfb8bb82c20fb5fa1d9bbe06a3add47431dc3e1e4815e997be6ad387787047d9e534ed96839a9e7012520a5281c865158b09db41d10c029af003f05f94
+  version: 1.4.682
+  resolution: "electron-to-chromium@npm:1.4.682"
+  checksum: 10c0/8b936d3cf185cb8bee02de71363af09999ae0903e12d360be2b11d9fe16a1f05cc7d819fec64e4de3ea49be891584778dab16389d52d945bfc36d0263d0f68ca
   languageName: node
   linkType: hard
 
@@ -8370,14 +8359,14 @@ __metadata:
   linkType: hard
 
 "eslint-module-utils@npm:^2.7.4, eslint-module-utils@npm:^2.8.0":
-  version: 2.8.0
-  resolution: "eslint-module-utils@npm:2.8.0"
+  version: 2.8.1
+  resolution: "eslint-module-utils@npm:2.8.1"
   dependencies:
     debug: "npm:^3.2.7"
   peerDependenciesMeta:
     eslint:
       optional: true
-  checksum: 10c0/c7a8d1a58d76ec8217a8fea49271ec8132d1b9390965a75f6a4ecbc9e5983d742195b46d2e4378231d2186801439fe1aa5700714b0bfd4eb17aac6e1b65309df
+  checksum: 10c0/1aeeb97bf4b688d28de136ee57c824480c37691b40fa825c711a4caf85954e94b99c06ac639d7f1f6c1d69223bd21bcb991155b3e589488e958d5b83dfd0f882
   languageName: node
   linkType: hard
 
@@ -12014,14 +12003,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw-storybook-addon@npm:2.0.0-beta.1":
-  version: 2.0.0-beta.1
-  resolution: "msw-storybook-addon@npm:2.0.0-beta.1"
+"msw-storybook-addon@npm:1.10.1--canary.138.7ca8425.0":
+  version: 1.10.1--canary.138.7ca8425.0
+  resolution: "msw-storybook-addon@npm:1.10.1--canary.138.7ca8425.0"
   dependencies:
     is-node-process: "npm:^1.0.1"
   peerDependencies:
     msw: ^2.0.0
-  checksum: 10c0/a23dfc76ae79f73edc381365d87c6bd2eb43ce5cf3b9a1022ce55d3727f9bd6442a3c5b7984fc9127fdfefe372a3c3410865ae5399a967f0aeaa5918a9104f21
+  checksum: 10c0/78d98652e470281e8b39947ddfdf72dfcf6d6bc2bea284d29a044a262ebc0985330b975a85fb8fb5ae09be4bfff58c57a307c1a81dc95ae8c6591b4a6b5310e1
   languageName: node
   linkType: hard
 
@@ -12243,7 +12232,7 @@ __metadata:
     lint-staged: "npm:15.2.2"
     lodash-es: "npm:4.17.21"
     msw: "npm:2.2.1"
-    msw-storybook-addon: "npm:2.0.0-beta.1"
+    msw-storybook-addon: "npm:1.10.1--canary.138.7ca8425.0"
     next: "npm:14.1.0"
     next-compose-plugins: "npm:2.2.1"
     postcss: "npm:8.4.35"
@@ -13433,7 +13422,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-nesting@npm:12.0.4":
+"postcss-nesting@npm:12.0.4, postcss-nesting@npm:^12.0.3":
   version: 12.0.4
   resolution: "postcss-nesting@npm:12.0.4"
   dependencies:
@@ -13442,18 +13431,6 @@ __metadata:
   peerDependencies:
     postcss: ^8.4
   checksum: 10c0/f6fdf0d6170d9aa7ebcbd8b74f1b4ea28ad9747e4d211fb64948cb20e5638ba32220ceb5d246125892152827da2b0493d087e7abf392c07053bdf931abc5b6de
-  languageName: node
-  linkType: hard
-
-"postcss-nesting@npm:^12.0.3":
-  version: 12.0.3
-  resolution: "postcss-nesting@npm:12.0.3"
-  dependencies:
-    "@csstools/selector-specificity": "npm:^3.0.2"
-    postcss-selector-parser: "npm:^6.0.13"
-  peerDependencies:
-    postcss: ^8.4
-  checksum: 10c0/b05bb2a2a7135ea88d646090a026d71b3a9bf66562e9678dd13810ea6d6878853b17529726b7448805d7b9f79b936f0b8020595f9031b8e3219b70283a70727d
   languageName: node
   linkType: hard
 
