@@ -1,11 +1,10 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base", ":timezone(Asia/Tokyo)"],
+  "extends": ["config:recommended", ":timezone(Asia/Tokyo)"],
   "dependencyDashboard": false,
-  "requiredStatusChecks": null,
-  "schedule": ["every 1 hour after 00:00 and before 23:59 every day"],
+  "ignoreTests": true,
+  "schedule": ["every 1 hour after 00:00 and before 23:59"],
   "automergeSchedule": ["every 1 hour after 00:00 and before 23:59 every day"],
-  "ignoreDeps": ["msw-storybook-addon"],
   "pin": {
     "automerge": true
   },
