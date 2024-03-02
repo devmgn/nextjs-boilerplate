@@ -20,5 +20,3 @@ export const QueryClientProvider: React.FC<React.PropsWithChildren> = ({
     </TQueryClientProvider>
   );
 };
-
-QueryClientProvider.displayName = 'QueryClientProvider';

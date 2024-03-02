@@ -22,5 +22,3 @@ export const SBErrorBoundary: React.FC<
     />
   );
 };
-
-SBErrorBoundary.displayName = 'SBErrorBoundary';

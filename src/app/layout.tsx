@@ -24,6 +24,4 @@ const RootLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
   );
 };
 
-RootLayout.displayName = 'RootLayout';
-
 export default RootLayout;

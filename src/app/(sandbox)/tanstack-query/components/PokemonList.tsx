@@ -64,5 +64,3 @@ export const PokemonList: React.FC<React.ComponentPropsWithoutRef<'div'>> = (
     </div>
   );
 };
-
-PokemonList.displayName = 'PokemonList';
