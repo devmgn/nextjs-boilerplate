@@ -21,7 +21,8 @@
     "test:update-snapshot": "jest --update-snapshot",
     "analyze": "ANALYZE=true next build",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic"
   },
   "dependencies": {
     "@radix-ui/react-slot": "1.0.2",
