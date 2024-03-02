@@ -3,5 +3,3 @@ export const Footer: React.FC<React.ComponentPropsWithoutRef<'footer'>> = (
 ) => {
   return <footer {...props}>footer</footer>;
 };
-
-Footer.displayName = 'Footer';

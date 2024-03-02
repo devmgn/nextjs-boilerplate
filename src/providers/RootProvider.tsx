@@ -6,5 +6,3 @@ export const RootProvider: React.FC<React.PropsWithChildren> = ({
 }) => {
   return <QueryClientProvider>{children}</QueryClientProvider>;
 };
-
-RootProvider.displayName = 'RootProvider';

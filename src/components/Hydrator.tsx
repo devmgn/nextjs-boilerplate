@@ -43,5 +43,3 @@ export const Hydrator = async <
     </HydrationBoundary>
   );
 };
-
-Hydrator.displayName = 'Hydrator';
