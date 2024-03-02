@@ -6,7 +6,6 @@
   },
   "packageManager": "yarn@4.1.0",
   "scripts": {
-    "clean": "rm -rf node_modules yarn.lock yarn-error.log tsconfig.tsbuildinfo coverage .next .swc out storybook-static .yarn/cache .yarn/install-state.gz",
     "postinstall": "node .husky/install.mjs",
     "dev": "next dev",
     "build": "next build",
