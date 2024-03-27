@@ -2677,9 +2677,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mswjs/interceptors@npm:^0.25.16":
-  version: 0.25.16
-  resolution: "@mswjs/interceptors@npm:0.25.16"
+"@mswjs/interceptors@npm:^0.26.12":
+  version: 0.26.13
+  resolution: "@mswjs/interceptors@npm:0.26.13"
   dependencies:
     "@open-draft/deferred-promise": "npm:^2.2.0"
     "@open-draft/logger": "npm:^0.3.0"
@@ -2687,7 +2687,7 @@ __metadata:
     is-node-process: "npm:^1.2.0"
     outvariant: "npm:^1.2.1"
     strict-event-emitter: "npm:^0.5.1"
-  checksum: 10c0/396a22d08537f927e6305589521be242d5940d07672b98539bf818e6c65766137f0fb8cf322cf44dafa429fa796488efa565ce7c577e6e62b1482f6ea3e78ab7
+  checksum: 10c0/cf276f40443ddecf828395ee555b6f3803113aeec2bcb0631decd81ebf8453438a90b70e5fba1e12391bf3643dadf37e4aebbff8a631adda0a51ccd3c2df6d40
   languageName: node
   linkType: hard
 
@@ -12105,15 +12105,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:2.2.11":
-  version: 2.2.11
-  resolution: "msw@npm:2.2.11"
+"msw@npm:2.2.12":
+  version: 2.2.12
+  resolution: "msw@npm:2.2.12"
   dependencies:
     "@bundled-es-modules/cookie": "npm:^2.0.0"
     "@bundled-es-modules/statuses": "npm:^1.0.1"
     "@inquirer/confirm": "npm:^3.0.0"
     "@mswjs/cookies": "npm:^1.1.0"
-    "@mswjs/interceptors": "npm:^0.25.16"
+    "@mswjs/interceptors": "npm:^0.26.12"
     "@open-draft/until": "npm:^2.1.0"
     "@types/cookie": "npm:^0.6.0"
     "@types/statuses": "npm:^2.0.4"
@@ -12133,7 +12133,7 @@ __metadata:
       optional: true
   bin:
     msw: cli/index.js
-  checksum: 10c0/8c2b7fef5d5f1bff7e2dd73738401ccbd162e26836c1a521c8ee92aae223b9ca13561aabda97bce12073d2e700b83281f4067c611cbae9c112f40837f0f10567
+  checksum: 10c0/1cb84a45e7d042aa87375db856e3e01f151574c4e4ddda93654b4619d4dba67e53da3ac322064bdcaa20328930112bcfddb7de3e1e578626cb24fd27db2ef532
   languageName: node
   linkType: hard
 
@@ -12323,7 +12323,7 @@ __metadata:
     jest-environment-jsdom: "npm:29.7.0"
     lint-staged: "npm:15.2.2"
     lodash-es: "npm:4.17.21"
-    msw: "npm:2.2.11"
+    msw: "npm:2.2.12"
     msw-storybook-addon: "npm:1.10.1--canary.138.7ca8425.0"
     next: "npm:14.1.4"
     next-compose-plugins: "npm:2.2.1"
