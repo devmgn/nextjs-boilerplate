@@ -1,39 +1,31 @@
 'use client';
 
+import { useState } from 'react';
 import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
 import { useUnmount } from 'react-use';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader } from '@/components/ui/card';
-import { axios } from '@/lib';
-import { queryFn, queryKey } from './getPokemonList';
-import type { PokemonListResponse } from './getPokemonList';
+import { pokemon } from './getPokemonList';
 
 export const PokemonList: React.FC<React.ComponentPropsWithoutRef<'div'>> = (
   props,
 ) => {
-  const { data, isFetching } = useSuspenseQuery({
-    queryKey,
-    queryFn,
-  });
+  const [offset, setOffset] = useState(0);
+  const { data, isFetching } = useSuspenseQuery(pokemon.list(offset));
 
   const queryClient = useQueryClient();
   const onClickPagination = (url: string | null) => {
     return () => {
       if (!url) return;
-      queryClient
-        .fetchQuery({
-          queryKey,
-          queryFn: () =>
-            axios.get<PokemonListResponse>(url).then((res) => res.data),
-        })
-        .catch(() => {
-          throw Error();
-        });
+      const parsed = new URL(url);
+      setOffset(parseInt(parsed.searchParams.get('offset') || '0', 10));
     };
   };
 
   useUnmount(() => {
-    queryClient.removeQueries({ queryKey });
+    queryClient.removeQueries({
+      queryKey: pokemon.list().queryKey.filter(Boolean),
+    });
   });
 
   return (
