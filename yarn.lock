@@ -11381,6 +11381,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lucide-react@npm:0.378.0":
+  version: 0.378.0
+  resolution: "lucide-react@npm:0.378.0"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0
+  checksum: 10c0/b420601bdda257ec9f62c40f6e048d4a3b2845d1db8599dce80497fa4ffe438a227dceedeb4a9b7afca17dfc7a07f23ef0a06e72276c5c6c6f51c32b581ece67
+  languageName: node
+  linkType: hard
+
 "lz-string@npm:^1.5.0":
   version: 1.5.0
   resolution: "lz-string@npm:1.5.0"
@@ -12037,6 +12046,7 @@ __metadata:
     jest-environment-jsdom: "npm:29.7.0"
     lint-staged: "npm:15.2.2"
     lodash-es: "npm:4.17.21"
+    lucide-react: "npm:0.378.0"
     msw: "npm:2.3.0"
     msw-storybook-addon: "npm:2.0.2"
     next: "npm:14.2.3"

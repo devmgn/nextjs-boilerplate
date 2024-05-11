@@ -19,7 +19,7 @@ export const pokemon = createQueryKeys('pokemon', {
     queryFn: () =>
       axios
         .get<PokemonListResponse>('https://pokeapi.co/api/v2/pokemon', {
-          params: { offset: offset ?? 0, limit: 200 },
+          params: { offset: offset ?? 0, limit: 12 },
         })
         .then((res) => res.data),
   }),
