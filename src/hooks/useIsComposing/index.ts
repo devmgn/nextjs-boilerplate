@@ -12,7 +12,7 @@ const COMPOSITION_EVENT_NAMES = [
 export const useIsComposing = (): boolean => {
   const [isComposing, setIsComposing] = useState<boolean>(false);
 
-  const handleComposition = ({ type }: Event) => {
+  const handleComposition = ({ type }: CompositionEvent) => {
     setIsComposing(type !== 'compositionend');
   };
 
