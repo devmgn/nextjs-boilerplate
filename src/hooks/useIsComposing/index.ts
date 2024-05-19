@@ -1,25 +1,36 @@
-import { useCallback } from 'react';
-import { useBoolean, useEvent } from 'react-use';
+import { useState, useSyncExternalStore } from 'react';
+
+const COMPOSITION_EVENT_NAMES = [
+  'compositionstart',
+  'compositionupdate',
+  'compositionend',
+] as const;
 
 /**
  * テキストの編集中にユーザーがテキストの作成中かどうかを判定するカスタムフック
  */
-export const useIsComposing = (
-  target?: Parameters<typeof useEvent>[2],
-  options?: Parameters<typeof useEvent>[3],
-): boolean => {
-  const [isComposing, setIsComposing] = useBoolean(false);
+export const useIsComposing = (): boolean => {
+  const [isComposing, setIsComposing] = useState<boolean>(false);
 
-  const handleComposition = useCallback(
-    (event: Event) => {
-      setIsComposing(event.type !== 'compositionend');
-    },
-    [setIsComposing],
+  const handleComposition = ({ type }: CompositionEvent) => {
+    setIsComposing(type !== 'compositionend');
+  };
+
+  const subscribe = () => {
+    COMPOSITION_EVENT_NAMES.forEach((eventName) => {
+      document.addEventListener(eventName, handleComposition);
+    });
+
+    return () => {
+      COMPOSITION_EVENT_NAMES.forEach((eventName) => {
+        document.removeEventListener(eventName, handleComposition);
+      });
+    };
+  };
+
+  return useSyncExternalStore<boolean>(
+    subscribe,
+    () => isComposing,
+    () => false,
   );
-
-  useEvent('compositionstart', handleComposition, target, options);
-  useEvent('compositionupdate', handleComposition, target, options);
-  useEvent('compositionend', handleComposition, target, options);
-
-  return isComposing;
 };

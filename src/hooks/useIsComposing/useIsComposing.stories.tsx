@@ -12,13 +12,13 @@ const meta: Meta<typeof useIsComposing> = {
 
     return (
       <div className="flex flex-col gap-4">
-        <Input />
         <div className="flex items-center gap-2">
           <p>isComposing</p>
           <p className="rounded border border-gray-800 px-1 py-0.5 text-sm">
             {isComposing.toString()}
           </p>
         </div>
+        <Input />
       </div>
     );
   },
