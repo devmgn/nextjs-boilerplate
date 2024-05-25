@@ -95,6 +95,10 @@ module.exports = {
       { exceptAfterSingleLine: true },
     ],
     '@typescript-eslint/no-import-type-side-effects': ['error'],
+    '@typescript-eslint/no-misused-promises': [
+      2,
+      { checksVoidReturn: { attributes: false } },
+    ],
   },
   overrides: [
     {
