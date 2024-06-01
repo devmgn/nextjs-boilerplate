@@ -11,7 +11,7 @@ const Sandbox: NextPage = () => {
       <p>
         <Link href="/tanstack-query">Return</Link>
       </p>
-      <Hydrator fetchQueryOptions={pokemon.list()}>
+      <Hydrator fetchQueryOptions={pokemon.list(0)}>
         <PokemonList />
       </Hydrator>
     </>

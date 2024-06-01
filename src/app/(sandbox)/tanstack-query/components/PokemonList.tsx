@@ -8,8 +8,12 @@ import { usePokemonList } from './usePokemonList';
 export const PokemonList: React.FC<React.ComponentPropsWithoutRef<'div'>> = (
   props,
 ) => {
-  const { data, isPending, navigateTo, extractOffsetFromUrl } =
-    usePokemonList();
+  const {
+    query: { data },
+    isPending,
+    navigateTo,
+    extractOffsetFromUrl,
+  } = usePokemonList();
 
   return (
     <div {...props}>

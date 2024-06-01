@@ -1,5 +1,5 @@
 import { createQueryKeys } from '@lukemorales/query-key-factory';
-import { kyInstance } from '@/lib';
+import { ky } from '@/lib';
 
 export type PokemonListResponse = {
   count: number;
@@ -17,7 +17,7 @@ export const pokemon = createQueryKeys('pokemon', {
   list: (offset?: number) => ({
     queryKey: [offset],
     queryFn: () =>
-      kyInstance
+      ky
         .get('https://pokeapi.co/api/v2/pokemon', {
           searchParams: { offset: offset ?? 0, limit: 12 },
         })

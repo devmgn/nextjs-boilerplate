@@ -10,8 +10,9 @@ const Sandbox: NextPage = () => {
       <p>
         <Link href="/tanstack-query">Return</Link>
       </p>
-      <Suspense fallback="loading..." />
-      <PokemonList />
+      <Suspense fallback="loading...">
+        <PokemonList />
+      </Suspense>
     </>
   );
 };

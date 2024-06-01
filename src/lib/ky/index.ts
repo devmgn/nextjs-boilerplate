@@ -4,9 +4,9 @@ import {
   requestToSnakeCase,
   responseToCamelCase,
 } from '@alice-health/ky-hooks-change-case';
-import ky from 'ky';
+import Ky from 'ky';
 
-export const kyInstance = ky.create({
+export const ky = Ky.create({
   hooks: {
     beforeRequest: [requestToSnakeCase],
     afterResponse: [responseToCamelCase],
