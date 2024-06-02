@@ -70,10 +70,6 @@ module.exports = {
       },
     ],
     'import/prefer-default-export': ['off'],
-    'react/function-component-definition': [
-      'error',
-      { namedComponents: 'arrow-function' },
-    ],
     'react/jsx-props-no-spreading': ['off'],
     'react/jsx-sort-props': ['error'],
     'react/require-default-props': ['off'],
@@ -85,6 +81,7 @@ module.exports = {
       },
     ],
     '@next/next/no-img-element': ['off'],
+    '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
     '@typescript-eslint/consistent-type-imports': [
       'error',
       { prefer: 'type-imports' },
@@ -133,4 +130,5 @@ module.exports = {
       },
     },
   ],
+  ignorePatterns: ['/src/components/ui/*'],
 };

@@ -1,7 +1,6 @@
 import Link from 'next/link';
-import type { NextPage } from 'next';
 
-const Sandbox: NextPage = () => {
+export default function Sandbox() {
   return (
     <ul>
       <li>
@@ -12,6 +11,4 @@ const Sandbox: NextPage = () => {
       </li>
     </ul>
   );
-};
-
-export default Sandbox;
+}

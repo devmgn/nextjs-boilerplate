@@ -21,7 +21,7 @@ type PrefetchQueryProps<
   >;
 }>;
 
-export const Hydrator = async <
+export async function Hydrator<
   TQueryFnData,
   TError,
   TData,
@@ -30,7 +30,7 @@ export const Hydrator = async <
   fetchQueryOptions,
   hydrationBoundaryProps,
   children,
-}: PrefetchQueryProps<TQueryFnData, TError, TData, TQueryKey>) => {
+}: PrefetchQueryProps<TQueryFnData, TError, TData, TQueryKey>) {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(fetchQueryOptions);
 
@@ -42,4 +42,4 @@ export const Hydrator = async <
       {children}
     </HydrationBoundary>
   );
-};
+}

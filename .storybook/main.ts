@@ -1,6 +1,6 @@
 import path from 'path';
-import type { StorybookConfig } from '@storybook/nextjs';
 import { createSvgrWebpackConfig } from '../next.config.mjs';
+import type { StorybookConfig } from '@storybook/nextjs';
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],

@@ -1,12 +1,9 @@
-'use client';
-
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useLoginForm } from './useLoginForm';
-import type { NextPage } from 'next';
 
-const Sandbox: NextPage = () => {
+export default function ReactHookForm() {
   const {
     submit,
     form: {
@@ -39,6 +36,4 @@ const Sandbox: NextPage = () => {
       </form>
     </main>
   );
-};
-
-export default Sandbox;
+}

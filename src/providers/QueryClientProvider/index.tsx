@@ -28,9 +28,7 @@ const getQueryClient = () => {
   return browserQueryClient;
 };
 
-export const QueryClientProvider: React.FC<React.PropsWithChildren> = ({
-  children,
-}) => {
+export function QueryClientProvider({ children }: React.PropsWithChildren) {
   const queryClient = getQueryClient();
 
   return (
@@ -39,4 +37,4 @@ export const QueryClientProvider: React.FC<React.PropsWithChildren> = ({
       <ReactQueryDevtools initialIsOpen={false} />
     </TQueryClientProvider>
   );
-};
+}

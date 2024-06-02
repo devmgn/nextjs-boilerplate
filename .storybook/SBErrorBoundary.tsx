@@ -2,9 +2,12 @@ import React from 'react';
 import { Button } from '../src/components/ui/button';
 import { ErrorBoundary } from 'next/dist/client/components/error-boundary';
 
-export const SBErrorBoundary: React.FC<
-  Omit<React.ComponentPropsWithoutRef<typeof ErrorBoundary>, 'errorComponent'>
-> = (props) => {
+export const SBErrorBoundary = (
+  props: Omit<
+    React.ComponentPropsWithoutRef<typeof ErrorBoundary>,
+    'errorComponent'
+  >,
+) => {
   return (
     <ErrorBoundary
       {...props}

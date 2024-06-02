@@ -5,9 +5,7 @@ import { Card, CardHeader } from '@/components/ui/card';
 import { Spinner } from '@/components/ui/spinner';
 import { usePokemonList } from './usePokemonList';
 
-export const PokemonList: React.FC<React.ComponentPropsWithoutRef<'div'>> = (
-  props,
-) => {
+export function PokemonList(props: React.ComponentProps<'div'>) {
   const {
     query: {
       data: { previous, next, count, results },
@@ -47,4 +45,4 @@ export const PokemonList: React.FC<React.ComponentPropsWithoutRef<'div'>> = (
       </ul>
     </div>
   );
-};
+}
