@@ -2,9 +2,8 @@ import Link from 'next/link';
 import { Hydrator } from '@/components';
 import { pokemon } from '../components/getPokemonList';
 import { PokemonList } from '../components/PokemonList';
-import type { NextPage } from 'next';
 
-const Sandbox: NextPage = () => {
+export default function Sandbox() {
   return (
     <>
       <h2>SSR</h2>
@@ -16,6 +15,4 @@ const Sandbox: NextPage = () => {
       </Hydrator>
     </>
   );
-};
-
-export default Sandbox;
+}

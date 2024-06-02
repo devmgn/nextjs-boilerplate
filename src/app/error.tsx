@@ -7,7 +7,7 @@ interface ErrorProps {
   reset: () => void;
 }
 
-const Error = ({ error, reset }: ErrorProps) => {
+function Error({ error, reset }: ErrorProps) {
   useEffect(() => {
     // Log the error to an error reporting service
     console.error(error);
@@ -21,6 +21,6 @@ const Error = ({ error, reset }: ErrorProps) => {
       </button>
     </>
   );
-};
+}
 
 export default Error;

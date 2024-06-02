@@ -26,12 +26,12 @@ interface SvgIconProps
   component: React.ElementType;
 }
 
-export const SvgIcon = ({
+export function SvgIcon({
   component: Component,
   className,
   size,
   ...props
-}: SvgIconProps) => {
+}: SvgIconProps) {
   return (
     <Component
       aria-hidden="true"
@@ -40,6 +40,4 @@ export const SvgIcon = ({
       {...props}
     />
   );
-};
-
-SvgIcon.displayName = 'SvgIcon';
+}

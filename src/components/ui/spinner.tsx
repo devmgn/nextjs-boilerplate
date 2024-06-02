@@ -36,16 +36,16 @@ interface SpinnerContentProps
   children?: React.ReactNode;
 }
 
-export const Spinner = ({
+export function Spinner({
   size,
   show,
   children,
   className,
-}: SpinnerContentProps) => {
+}: SpinnerContentProps) {
   return (
     <span className={spinnerVariants({ show })}>
       <Loader2 className={cn(loaderVariants({ size }), className)} />
       {children}
     </span>
   );
-};
+}

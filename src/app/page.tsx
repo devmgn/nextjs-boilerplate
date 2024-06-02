@@ -1,7 +1,3 @@
-import type { NextPage } from 'next';
-
-const Index: NextPage = () => {
+export default function Index() {
   return null;
-};
-
-export default Index;
+}

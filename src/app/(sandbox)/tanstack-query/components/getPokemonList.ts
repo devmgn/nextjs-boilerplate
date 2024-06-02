@@ -1,17 +1,17 @@
 import { createQueryKeys } from '@lukemorales/query-key-factory';
 import { ky } from '@/lib';
 
-export type PokemonListResponse = {
+export interface PokemonListResponse {
   count: number;
   next: string | null;
   previous: string | null;
   results: Pokemon[];
-};
+}
 
-export type Pokemon = {
+export interface Pokemon {
   name: string;
   url: string;
-};
+}
 
 export const pokemon = createQueryKeys('pokemon', {
   list: (offset: number = 0) => ({
