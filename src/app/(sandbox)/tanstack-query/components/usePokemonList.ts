@@ -1,12 +1,8 @@
-import { useState, useTransition } from 'react';
-import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
-import { useUnmount } from 'react-use';
+import { useActionState } from 'react';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { pokemon } from './getPokemonList';
 
 export const usePokemonList = () => {
-  const [offset, setOffset] = useState(0);
-  const { data } = useSuspenseQuery(pokemon.list(offset));
-
   const extractOffsetFromUrl = (url: string | null): number => {
     if (!url) return 0;
 
@@ -14,26 +10,16 @@ export const usePokemonList = () => {
     return parseInt(searchParams.get('offset') ?? '0', 10);
   };
 
-  const [isPending, startTransition] = useTransition();
-  const navigateTo = (newOffset: number) => {
-    return () => {
-      startTransition(() => {
-        setOffset(newOffset);
-      });
-    };
+  const navigateAction = (_prev: number, payload: string | null) => {
+    return extractOffsetFromUrl(payload);
   };
 
-  const queryClient = useQueryClient();
-  useUnmount(() => {
-    queryClient.removeQueries({
-      queryKey: pokemon.list().queryKey.filter(Boolean),
-    });
-  });
+  const [offset, navigateTo, isPending] = useActionState(navigateAction, 0);
+  const query = useSuspenseQuery(pokemon.list(offset));
 
   return {
-    data,
+    query,
     isPending,
-    extractOffsetFromUrl,
     navigateTo,
   };
 };

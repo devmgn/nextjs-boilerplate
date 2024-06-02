@@ -1,5 +1,5 @@
 import { createQueryKeys } from '@lukemorales/query-key-factory';
-import { axios } from '@/lib';
+import { ky } from '@/lib';
 
 export type PokemonListResponse = {
   count: number;
@@ -14,13 +14,19 @@ export type Pokemon = {
 };
 
 export const pokemon = createQueryKeys('pokemon', {
-  list: (offset?: number) => ({
+  list: (offset: number = 0) => ({
     queryKey: [offset],
-    queryFn: () =>
-      axios
-        .get<PokemonListResponse>('https://pokeapi.co/api/v2/pokemon', {
-          params: { offset: offset ?? 0, limit: 12 },
+    queryFn: async () => {
+      // NOTE: 500ms delay to simulate network latency
+      await new Promise<void>((resolve) => {
+        setTimeout(resolve, 500);
+      });
+
+      return ky
+        .get('https://pokeapi.co/api/v2/pokemon', {
+          searchParams: { offset, limit: 12 },
         })
-        .then((res) => res.data),
+        .json<PokemonListResponse>();
+    },
   }),
 });

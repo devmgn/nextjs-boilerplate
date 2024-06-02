@@ -31,6 +31,9 @@ const nextConfig = {
   compiler: {
     reactRemoveProperties: true,
   },
+  experimental: {
+    reactCompiler: true,
+  },
   webpack: createSvgrWebpackConfig,
 };
 

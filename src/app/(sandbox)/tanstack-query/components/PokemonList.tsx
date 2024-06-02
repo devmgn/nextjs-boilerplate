@@ -8,29 +8,38 @@ import { usePokemonList } from './usePokemonList';
 export const PokemonList: React.FC<React.ComponentPropsWithoutRef<'div'>> = (
   props,
 ) => {
-  const { data, isPending, navigateTo, extractOffsetFromUrl } =
-    usePokemonList();
+  const {
+    query: {
+      data: { previous, next, count, results },
+    },
+    isPending,
+    navigateTo,
+  } = usePokemonList();
 
   return (
     <div {...props}>
       <div className="flex items-center gap-2">
         <Button
-          disabled={!data.previous || isPending}
-          onClick={navigateTo(extractOffsetFromUrl(data.previous))}
+          disabled={!previous || isPending}
+          onClick={() => {
+            navigateTo(previous);
+          }}
         >
           Prev
         </Button>
         <Button
-          disabled={!data.next || isPending}
-          onClick={navigateTo(extractOffsetFromUrl(data.next))}
+          disabled={!next || isPending}
+          onClick={() => {
+            navigateTo(next);
+          }}
         >
           Next
         </Button>
         {isPending && <Spinner />}
       </div>
-      <p className="prose mt-2">Results: {data.count}</p>
+      <p className="prose mt-2">Results: {count}</p>
       <ul className="mt-2 grid grid-cols-[repeat(auto-fit,minmax(198px,1fr))] gap-4">
-        {data.results.map(({ name, url }) => (
+        {results.map(({ name, url }) => (
           <Card key={url}>
             <CardHeader>{name}</CardHeader>
           </Card>
