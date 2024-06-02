@@ -1,7 +1,5 @@
 import { QueryClientProvider } from './QueryClientProvider';
 
-export const RootProvider: React.FC<React.PropsWithChildren> = ({
-  children,
-}) => {
+export const RootProvider = ({ children }: React.PropsWithChildren) => {
   return <QueryClientProvider>{children}</QueryClientProvider>;
 };

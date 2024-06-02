@@ -5,6 +5,7 @@ import { initialize, mswLoader } from 'msw-storybook-addon';
 import { RootProvider } from '../src/providers';
 import { SBErrorBoundary } from './SBErrorBoundary';
 import type { Preview } from '@storybook/react';
+import '../src/app/globals.css';
 
 initialize({ onUnhandledRequest: 'bypass' });
 

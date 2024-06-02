@@ -1,6 +1,6 @@
 import './style.css';
 
-const DemoLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
+const DemoLayout = ({ children }: React.PropsWithChildren) => {
   return children;
 };
 

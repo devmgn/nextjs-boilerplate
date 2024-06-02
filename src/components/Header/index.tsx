@@ -1,5 +1,3 @@
-export const Header: React.FC<React.ComponentPropsWithoutRef<'header'>> = (
-  props,
-) => {
+export const Header = (props: React.ComponentProps<'header'>) => {
   return <header {...props}>header</header>;
 };

@@ -1,8 +1,7 @@
-import { forwardRef } from 'react';
 import { cva } from 'class-variance-authority';
 import { cn } from '@/utils';
 import type { VariantProps } from 'class-variance-authority';
-import type { Merge } from 'type-fest';
+import type { Merge } from 'react-hook-form';
 
 const svgIconVariants = cva('size-[1em] fill-current text-current', {
   variants: {
@@ -19,24 +18,28 @@ const svgIconVariants = cva('size-[1em] fill-current text-current', {
   },
 });
 
-type SvgIconProps = Merge<
-  { component: React.ElementType },
-  Omit<React.HTMLAttributes<SVGSVGElement>, 'children'> &
+interface SvgIconProps
+  extends Merge<
+    Omit<React.ComponentProps<'svg'>, 'children'>,
     VariantProps<typeof svgIconVariants>
->;
+  > {
+  component: React.ElementType;
+}
 
-export const SvgIcon = forwardRef<SVGSVGElement, SvgIconProps>(
-  ({ component: Component, className, size, ...props }, ref) => {
-    return (
-      <Component
-        ref={ref}
-        aria-hidden="true"
-        className={cn(svgIconVariants({ size, className }))}
-        focusable="false"
-        {...props}
-      />
-    );
-  },
-);
+export const SvgIcon = ({
+  component: Component,
+  className,
+  size,
+  ...props
+}: SvgIconProps) => {
+  return (
+    <Component
+      aria-hidden="true"
+      className={cn(svgIconVariants({ size, className }))}
+      focusable="false"
+      {...props}
+    />
+  );
+};
 
 SvgIcon.displayName = 'SvgIcon';

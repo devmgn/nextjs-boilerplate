@@ -1,5 +1,3 @@
-export const Footer: React.FC<React.ComponentPropsWithoutRef<'footer'>> = (
-  props,
-) => {
+export const Footer = (props: React.ComponentProps<'footer'>) => {
   return <footer {...props}>footer</footer>;
 };
