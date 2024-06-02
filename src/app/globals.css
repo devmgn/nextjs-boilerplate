@@ -70,12 +70,28 @@
   * {
     @apply border-border;
   }
+
   html {
+    /** 改行の処理 **/
     overflow-wrap: anywhere;
     word-break: auto-phrase;
     line-break: strict;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+
+  /** 以下タグでのダブルタップを防ぐ **/
+  a,
+  area,
+  button,
+  [role='button'],
+  input:not([type='range']),
+  label,
+  select,
+  summary,
+  textarea {
+    touch-action: manipulation;
   }
 }

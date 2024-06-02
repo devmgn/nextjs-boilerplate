@@ -14,13 +14,19 @@ export type Pokemon = {
 };
 
 export const pokemon = createQueryKeys('pokemon', {
-  list: (offset?: number) => ({
+  list: (offset: number = 0) => ({
     queryKey: [offset],
-    queryFn: () =>
-      ky
+    queryFn: async () => {
+      // NOTE: 500ms delay to simulate network latency
+      await new Promise<void>((resolve) => {
+        setTimeout(resolve, 500);
+      });
+
+      return ky
         .get('https://pokeapi.co/api/v2/pokemon', {
-          searchParams: { offset: offset ?? 0, limit: 12 },
+          searchParams: { offset, limit: 12 },
         })
-        .json<PokemonListResponse>(),
+        .json<PokemonListResponse>();
+    },
   }),
 });
