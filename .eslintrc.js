@@ -130,4 +130,5 @@ module.exports = {
       },
     },
   ],
+  ignorePatterns: ['/src/components/ui/*'],
 };
