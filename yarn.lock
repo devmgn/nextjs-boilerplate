@@ -4165,14 +4165,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/eslint-plugin-query@npm:5.43.0":
-  version: 5.43.0
-  resolution: "@tanstack/eslint-plugin-query@npm:5.43.0"
+"@tanstack/eslint-plugin-query@npm:5.43.1":
+  version: 5.43.1
+  resolution: "@tanstack/eslint-plugin-query@npm:5.43.1"
   dependencies:
     "@typescript-eslint/utils": "npm:8.0.0-alpha.28"
   peerDependencies:
-    eslint: "*"
-  checksum: 10c0/d1485604c8b7944d9060189681834e9dc6bc6b8a03878e996ac3d6d5ec39e96b9e3193d10c914d208ca4497c141973712a4e56500febd03a0d3cbf3baa55e79d
+    eslint: ^8 || ^9
+  checksum: 10c0/8f98eae269e498a01f300d49ca31f88e2182755546b82bcd694f6289806eda8499e83458aca9be2eba389a5e9084d35e12de0ea38b50760a45001f95e80012dc
   languageName: node
   linkType: hard
 
@@ -12377,7 +12377,7 @@ __metadata:
     "@svgr/webpack": "npm:8.1.0"
     "@tailwindcss/container-queries": "npm:0.1.1"
     "@tailwindcss/typography": "npm:0.5.13"
-    "@tanstack/eslint-plugin-query": "npm:5.43.0"
+    "@tanstack/eslint-plugin-query": "npm:5.43.1"
     "@tanstack/react-query": "npm:5.40.1"
     "@tanstack/react-query-devtools": "npm:5.40.1"
     "@testing-library/jest-dom": "npm:6.4.5"
