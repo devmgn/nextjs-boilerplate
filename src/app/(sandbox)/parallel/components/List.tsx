@@ -11,7 +11,7 @@ export function List() {
     <ul>
       {data.map((item) => (
         <li key={item.id}>
-          <Link href={`parallel/${item.id.toString()}`} scroll={false}>
+          <Link href={`/parallel/${item.id.toString()}`} scroll={false}>
             {item.title}
           </Link>
         </li>

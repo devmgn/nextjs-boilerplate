@@ -1,15 +1,10 @@
 'use client';
 
+import { Suspense } from 'react';
 import { useRouter } from 'next/navigation';
-import { useSuspenseQuery } from '@tanstack/react-query';
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from '@/components/ui/dialog';
-import { post } from './getPost';
+import { Dialog, DialogContent, DialogHeader } from '@/components/ui/dialog';
+import { Spinner } from '@/components/ui/spinner';
+import { ModalContent } from './ModalContent';
 
 interface PostModalProps {
   id: string;
@@ -17,7 +12,6 @@ interface PostModalProps {
 
 export function PostModal({ id }: PostModalProps) {
   const router = useRouter();
-  const { data } = useSuspenseQuery(post.item(id));
 
   return (
     <Dialog
@@ -29,10 +23,11 @@ export function PostModal({ id }: PostModalProps) {
       }}
     >
       <DialogContent>
-        <DialogHeader>
-          <DialogTitle>{data.title}</DialogTitle>
-          <DialogDescription>{data.body}</DialogDescription>
-        </DialogHeader>
+        <Suspense fallback={<Spinner />}>
+          <DialogHeader>
+            <ModalContent id={id} />
+          </DialogHeader>
+        </Suspense>
       </DialogContent>
     </Dialog>
   );

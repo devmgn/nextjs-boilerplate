@@ -1,4 +1,4 @@
-import { PostModal } from '../components/PostModal';
+import { PostModal } from '../../components/PostModal';
 
 interface ParallelPageProps {
   params: {
