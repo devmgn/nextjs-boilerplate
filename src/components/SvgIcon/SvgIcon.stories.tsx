@@ -9,7 +9,6 @@ const meta: Meta<typeof SvgIcon> = {
     component: Close,
     size: 'md',
     onClick: fn(),
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     'data-testid': 'svg-icon',
   },

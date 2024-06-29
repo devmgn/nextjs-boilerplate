@@ -1,10 +1,8 @@
-import { relative } from 'path';
+import { relative } from 'node:path';
 
 const buildEslintCommand = (filenames) =>
-  `next lint --fix --file ${filenames
-    .map((f) => relative(process.cwd(), f))
-    .join(' --file ')}`;
+  `biome format ${filenames.map((f) => relative(process.cwd(), f)).join(' ')}`;
 
 export default {
-  'src/**/*.[jt]s?(x)': ['bash -c "yarn tsc"', buildEslintCommand, 'yarn test'],
+  '*.[jt]s?(x)': ['bash -c "yarn tsc"', buildEslintCommand, 'yarn test'],
 };

@@ -9,7 +9,7 @@ describe('asyncDebounce', () => {
 
     const promise = debouncedFn(2);
 
-    let result;
+    let result: number | undefined;
     promise
       .then((value) => {
         result = value;

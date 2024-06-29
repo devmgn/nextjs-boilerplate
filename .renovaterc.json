@@ -1,6 +1,10 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended", ":timezone(Asia/Tokyo)"],
+  "extends": [
+    "config:recommended",
+    "customManagers:biomeVersions",
+    ":timezone(Asia/Tokyo)"
+  ],
   "dependencyDashboard": false,
   "ignoreTests": true,
   "schedule": ["every 1 hour after 00:00 and before 23:59"],
