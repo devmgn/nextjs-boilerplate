@@ -3,7 +3,7 @@ import { Hydrator } from '@/components';
 import { pokemon } from '../components/getPokemonList';
 import { PokemonList } from '../components/PokemonList';
 
-export default function Sandbox() {
+export default function Ssr() {
   return (
     <>
       <h2>SSR</h2>

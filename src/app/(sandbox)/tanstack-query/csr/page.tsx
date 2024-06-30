@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import Link from 'next/link';
 import { PokemonList } from '../components/PokemonList';
 
-export default function Sandbox() {
+export default function Csr() {
   return (
     <>
       <h2>CSR</h2>
