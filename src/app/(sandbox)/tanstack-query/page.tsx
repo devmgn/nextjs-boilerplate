@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default function Sandbox() {
+export default function TasnstackQuery() {
   return (
     <ul>
       <li>

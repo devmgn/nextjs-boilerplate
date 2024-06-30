@@ -8,6 +8,9 @@ export const queryClientConfig: QueryClientConfig = {
     queries: {
       refetchOnWindowFocus: false,
       retry: false,
+      // With SSR, we usually want to set some default staleTime
+      // above 0 to avoid refetching immediately on the client
+      staleTime: 60 * 1000,
     },
     mutations: {
       retry: false,
@@ -15,7 +18,6 @@ export const queryClientConfig: QueryClientConfig = {
     dehydrate: {
       // per default, only successful Queries are included,
       // this includes pending Queries as well
-      // @see https://tanstack.com/query/latest/docs/framework/react/guides/advanced-ssr#streaming-with-server-components
       shouldDehydrateQuery: (query) =>
         defaultShouldDehydrateQuery(query) || query.state.status === 'pending',
     },

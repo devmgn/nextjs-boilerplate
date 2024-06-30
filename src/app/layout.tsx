@@ -15,7 +15,7 @@ export const viewport: Viewport = {
   maximumScale: 1,
 };
 
-function RootLayout({ children }: React.PropsWithChildren) {
+export default function RootLayout({ children }: React.PropsWithChildren) {
   return (
     <html lang="ja">
       <body>
@@ -24,5 +24,3 @@ function RootLayout({ children }: React.PropsWithChildren) {
     </html>
   );
 }
-
-export default RootLayout;
