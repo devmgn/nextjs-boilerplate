@@ -18,7 +18,7 @@ export function PostModal({ id }: PostModalProps) {
       defaultOpen
       onOpenChange={(isOpen) => {
         if (!isOpen) {
-          router.push('/parallel', { scroll: false });
+          router.back();
         }
       }}
     >
