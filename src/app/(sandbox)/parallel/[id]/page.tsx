@@ -1,3 +1,5 @@
+import { Hydrator } from '@/components';
+import { post } from '../components/getPost';
 import { PostModal } from '../components/PostModal';
 
 interface ParallelPageProps {
@@ -11,5 +13,9 @@ export default function ParallelPage(props: ParallelPageProps) {
     params: { id },
   } = props;
 
-  return <PostModal id={id} />;
+  return (
+    <Hydrator fetchQueryOptions={post.item(id)}>
+      <PostModal id={id} />
+    </Hydrator>
+  );
 }

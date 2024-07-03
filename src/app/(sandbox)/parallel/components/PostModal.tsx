@@ -15,7 +15,7 @@ export function PostModal({ id }: PostModalProps) {
 
   return (
     <Dialog
-      defaultOpen={!!id}
+      defaultOpen
       onOpenChange={(isOpen) => {
         if (!isOpen) {
           router.push('/parallel', { scroll: false });
