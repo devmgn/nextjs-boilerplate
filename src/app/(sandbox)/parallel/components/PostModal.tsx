@@ -21,9 +21,9 @@ export function PostModal({ id, isIntercepted = false }: PostModalProps) {
         if (isOpen) return;
 
         if (isIntercepted) {
-          router.replace('/parallel');
-        } else {
           router.back();
+        } else {
+          router.replace('/parallel', { scroll: false });
         }
       }}
     >

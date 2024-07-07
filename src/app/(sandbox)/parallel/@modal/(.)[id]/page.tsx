@@ -11,5 +11,5 @@ export default function ModalRoute(props: ModalRouteProps) {
     params: { id },
   } = props;
 
-  return <PostModal id={id} />;
+  return <PostModal id={id} isIntercepted />;
 }

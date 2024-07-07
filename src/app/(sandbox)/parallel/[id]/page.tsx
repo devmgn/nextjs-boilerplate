@@ -15,7 +15,7 @@ export default function DynamicPage(props: DynamicPageProps) {
 
   return (
     <Hydrator fetchQueryOptions={post.item(id)}>
-      <PostModal id={id} isIntercepted />
+      <PostModal id={id} />
     </Hydrator>
   );
 }
