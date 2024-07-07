@@ -8,16 +8,21 @@ import { ModalContent } from './ModalContent';
 
 interface PostModalProps {
   id: string;
+  isIntercepted?: boolean;
 }
 
-export function PostModal({ id }: PostModalProps) {
+export function PostModal({ id, isIntercepted = false }: PostModalProps) {
   const router = useRouter();
 
   return (
     <Dialog
       defaultOpen
       onOpenChange={(isOpen) => {
-        if (!isOpen) {
+        if (isOpen) return;
+
+        if (isIntercepted) {
+          router.replace('/parallel');
+        } else {
           router.back();
         }
       }}

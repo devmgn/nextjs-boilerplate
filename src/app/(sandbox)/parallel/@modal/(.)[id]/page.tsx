@@ -1,12 +1,12 @@
 import { PostModal } from '../../components/PostModal';
 
-interface ParallelPageProps {
+interface ModalRouteProps {
   params: {
     id: string;
   };
 }
 
-export default function ParallelPage(props: ParallelPageProps) {
+export default function ModalRoute(props: ModalRouteProps) {
   const {
     params: { id },
   } = props;

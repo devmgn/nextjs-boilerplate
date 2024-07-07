@@ -1,5 +1,5 @@
-import ListPage from './page';
+import ListRoute from './page';
 
 export default function Default() {
-  return <ListPage />;
+  return <ListRoute />;
 }
