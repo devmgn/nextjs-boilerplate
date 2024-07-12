@@ -1,10 +1,9 @@
-import { createCustomEvent } from '.';
+import { createCustomEvent } from ".";
 
-describe('createCustomEvent', () => {
-  test('カスタムイベントが定義したパラメーターで初期化されること', () => {
-    const type = 'customEventName' as keyof GlobalEventHandlersEventMap;
-    const detail = { some: 'value' };
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+describe("createCustomEvent", () => {
+  test("カスタムイベントが定義したパラメーターで初期化されること", () => {
+    const type = "customEventName" as keyof GlobalEventHandlersEventMap;
+    const detail = { some: "value" };
     // @ts-expect-error
     const event = createCustomEvent(type, { detail });
 
