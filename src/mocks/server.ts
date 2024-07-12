@@ -1,5 +1,5 @@
-import { setupServer } from 'msw/node';
-import type { RequestHandler } from 'msw';
+import type { RequestHandler } from "msw";
+import { setupServer } from "msw/node";
 
 const createServer = (...handlers: RequestHandler[]) => {
   const server = setupServer(...handlers);

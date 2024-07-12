@@ -1,7 +1,7 @@
-import { Suspense } from 'react';
-import { Hydrator } from '@/components';
-import { post } from '../components/getPost';
-import { List } from '../components/List';
+import { Hydrator } from "@/components";
+import { Suspense } from "react";
+import { List } from "../components/List";
+import { post } from "../components/getPost";
 
 export default function ListRoute() {
   return (

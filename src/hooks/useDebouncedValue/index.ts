@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { debounce } from 'lodash-es';
-import { useIsComposing } from '../useIsComposing';
+import { debounce } from "lodash-es";
+import { useEffect, useState } from "react";
+import { useIsComposing } from "../useIsComposing";
 
 /**
  * デバウンスされた値を返すカスタムフック

@@ -1,5 +1,5 @@
-import { createQueryKeys } from '@lukemorales/query-key-factory';
-import ky from 'ky';
+import { createQueryKeys } from "@lukemorales/query-key-factory";
+import ky from "ky";
 
 export interface Post {
   userId: number;
@@ -8,12 +8,12 @@ export interface Post {
   body: string;
 }
 
-export const post = createQueryKeys('post', {
+export const post = createQueryKeys("post", {
   list: () => ({
-    queryKey: ['all'],
+    queryKey: ["all"],
     queryFn: async () => {
       return ky
-        .get('https://jsonplaceholder.typicode.com/posts')
+        .get("https://jsonplaceholder.typicode.com/posts")
         .json<Post[]>();
     },
   }),

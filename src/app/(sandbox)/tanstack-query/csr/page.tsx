@@ -1,6 +1,6 @@
-import { Suspense } from 'react';
-import Link from 'next/link';
-import { PokemonList } from '../components/PokemonList';
+import Link from "next/link";
+import { Suspense } from "react";
+import { PokemonList } from "../components/PokemonList";
 
 export default function Csr() {
   return (

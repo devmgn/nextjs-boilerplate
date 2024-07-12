@@ -1,7 +1,7 @@
-import { expect, fn, userEvent, within } from "@storybook/test";
 import { Close } from "@/assets/icons";
-import { SvgIcon } from ".";
 import type { Meta, StoryObj } from "@storybook/react";
+import { expect, fn, userEvent, within } from "@storybook/test";
+import { SvgIcon } from ".";
 
 const meta: Meta<typeof SvgIcon> = {
   component: SvgIcon,

@@ -10,8 +10,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "lint": "yarn biome check --write --unsafe .",
     "check-types": "tsc --noEmit",
-    "lint": "yarn check-types",
     "test": "jest --passWithNoTests --verbose",
     "test:watch": "jest --watch",
     "test:coverage": "jest --collect-coverage",
@@ -20,6 +20,13 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "chromatic": "npx chromatic"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "yarn lint",
+      "bash -c \"yarn check-types\"",
+      "yarn test"
+    ]
   },
   "dependencies": {
     "@alice-health/ky-hooks-change-case": "0.0.3",
@@ -45,6 +52,7 @@
     "valibot": "0.36.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.8.3",
     "@faker-js/faker": "8.4.1",
     "@next/bundle-analyzer": "14.2.5",
     "@storybook/addon-a11y": "8.2.2",
@@ -87,8 +95,6 @@
     "@types/react-dom": "npm:types-react-dom@rc"
   },
   "msw": {
-    "workerDirectory": [
-      "public/"
-    ]
+    "workerDirectory": ["public/"]
   }
 }

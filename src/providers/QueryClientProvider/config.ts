@@ -1,7 +1,7 @@
 import {
   type QueryClientConfig,
   defaultShouldDehydrateQuery,
-} from '@tanstack/react-query';
+} from "@tanstack/react-query";
 
 export const queryClientConfig: QueryClientConfig = {
   defaultOptions: {
@@ -19,7 +19,7 @@ export const queryClientConfig: QueryClientConfig = {
       // per default, only successful Queries are included,
       // this includes pending Queries as well
       shouldDehydrateQuery: (query) =>
-        defaultShouldDehydrateQuery(query) || query.state.status === 'pending',
+        defaultShouldDehydrateQuery(query) || query.state.status === "pending",
     },
   },
 };

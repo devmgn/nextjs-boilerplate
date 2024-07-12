@@ -1,12 +1,13 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 interface ErrorProps {
   error: Error & { digest?: string };
   reset: () => void;
 }
 
+// biome-ignore lint/suspicious/noShadowRestrictedNames: <explanation>
 export default function Error({ error, reset }: ErrorProps) {
   useEffect(() => {
     // Log the error to an error reporting service

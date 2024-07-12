@@ -1,13 +1,12 @@
-import React from 'react';
-import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
-import locale from 'axe-core/locales/ja.json';
-import { initialize, mswLoader } from 'msw-storybook-addon';
-import { RootProvider } from '../src/providers';
-import { SBErrorBoundary } from './SBErrorBoundary';
-import '../src/app/globals.css';
-import type { Preview } from '@storybook/react';
+import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
+import locale from "axe-core/locales/ja.json";
+import { initialize, mswLoader } from "msw-storybook-addon";
+import { RootProvider } from "../src/providers";
+import { SBErrorBoundary } from "./SBErrorBoundary";
+import "../src/app/globals.css";
+import type { Preview } from "@storybook/react";
 
-initialize({ onUnhandledRequest: 'bypass' });
+initialize({ onUnhandledRequest: "bypass" });
 
 const preview: Preview = {
   parameters: {
@@ -21,10 +20,10 @@ const preview: Preview = {
       viewports: INITIAL_VIEWPORTS,
     },
     backgrounds: {
-      default: 'light',
+      default: "light",
     },
     docs: {
-      source: { language: 'tsx' },
+      source: { language: "tsx" },
     },
     a11y: {
       config: { locale },

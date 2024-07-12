@@ -1,9 +1,9 @@
-import { useState, useSyncExternalStore } from 'react';
+import { useState, useSyncExternalStore } from "react";
 
 const COMPOSITION_EVENT_NAMES = [
-  'compositionstart',
-  'compositionupdate',
-  'compositionend',
+  "compositionstart",
+  "compositionupdate",
+  "compositionend",
 ] as const;
 
 /**
@@ -13,18 +13,18 @@ export const useIsComposing = (): boolean => {
   const [isComposing, setIsComposing] = useState<boolean>(false);
 
   const handleComposition = ({ type }: CompositionEvent) => {
-    setIsComposing(type !== 'compositionend');
+    setIsComposing(type !== "compositionend");
   };
 
   const subscribe = () => {
-    COMPOSITION_EVENT_NAMES.forEach((eventName) => {
+    for (const eventName of COMPOSITION_EVENT_NAMES) {
       document.addEventListener(eventName, handleComposition);
-    });
+    }
 
     return () => {
-      COMPOSITION_EVENT_NAMES.forEach((eventName) => {
+      for (const eventName of COMPOSITION_EVENT_NAMES) {
         document.removeEventListener(eventName, handleComposition);
-      });
+      }
     };
   };
 

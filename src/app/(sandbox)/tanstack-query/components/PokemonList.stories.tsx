@@ -1,7 +1,7 @@
-import { Suspense } from 'react';
-import { getPokemonListHandler } from '@/mocks/handlers/getPokemonListHandler';
-import { PokemonList } from './PokemonList';
-import type { Meta, StoryObj } from '@storybook/react';
+import { getPokemonListHandler } from "@/mocks/handlers/getPokemonListHandler";
+import type { Meta, StoryObj } from "@storybook/react";
+import { Suspense } from "react";
+import { PokemonList } from "./PokemonList";
 
 const meta: Meta<typeof PokemonList> = {
   component: PokemonList,
@@ -23,6 +23,7 @@ export const Default: Story = {
   },
 };
 
+// biome-ignore lint/suspicious/noShadowRestrictedNames: <explanation>
 export const Error: Story = {
   parameters: {
     msw: [getPokemonListHandler.error],

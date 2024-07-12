@@ -1,7 +1,7 @@
-import Link from 'next/link';
-import { Hydrator } from '@/components';
-import { pokemon } from '../components/getPokemonList';
-import { PokemonList } from '../components/PokemonList';
+import { Hydrator } from "@/components";
+import Link from "next/link";
+import { PokemonList } from "../components/PokemonList";
+import { pokemon } from "../components/getPokemonList";
 
 export default function Ssr() {
   return (

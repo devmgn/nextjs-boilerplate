@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useSuspenseQuery } from '@tanstack/react-query';
-import { DialogDescription, DialogTitle } from '@/components/ui/dialog';
-import { post } from './getPost';
+import { DialogDescription, DialogTitle } from "@/components/ui/dialog";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { post } from "./getPost";
 
 interface PostModalProps {
   id: string;

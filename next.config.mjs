@@ -1,9 +1,9 @@
-import withPlugins from 'next-compose-plugins';
-import withBundleAnalyzer from '@next/bundle-analyzer';
+import withBundleAnalyzer from "@next/bundle-analyzer";
+import withPlugins from "next-compose-plugins";
 
 export const createSvgrWebpackConfig = (config) => {
   const fileLoaderRule = config.module.rules.find((rule) =>
-    rule.test?.test?.('.svg'),
+    rule.test?.test?.(".svg"),
   );
 
   config.module.rules.push(
@@ -16,7 +16,7 @@ export const createSvgrWebpackConfig = (config) => {
       test: /\.svg$/i,
       issuer: fileLoaderRule.issuer,
       resourceQuery: { not: /url/ }, // exclude if *.svg?url
-      use: ['@svgr/webpack'],
+      use: ["@svgr/webpack"],
     },
   );
 
@@ -38,6 +38,6 @@ const nextConfig = {
 };
 
 export default withPlugins(
-  [withBundleAnalyzer({ enabled: process.env.ANALYZE === 'true' })],
+  [withBundleAnalyzer({ enabled: process.env.ANALYZE === "true" })],
   nextConfig,
 );
