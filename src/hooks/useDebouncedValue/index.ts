@@ -14,7 +14,9 @@ export const useDebouncedValue = <T>(value: T, wait = 300): T => {
   }, wait);
 
   useEffect(() => {
-    if (isComposing) return;
+    if (isComposing) {
+      return;
+    }
     update(value);
   }, [isComposing, update, value]);
 

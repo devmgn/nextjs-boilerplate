@@ -2,9 +2,9 @@ import { act, renderHook } from "@testing-library/react";
 import type { RenderHookResult } from "@testing-library/react";
 import { useDebouncedValue } from ".";
 
-jest.useFakeTimers();
-
 describe("useDebouncedValue", () => {
+  jest.useFakeTimers();
+
   const initialProps = {
     value: "initial value",
     delay: 1000,

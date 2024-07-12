@@ -5,21 +5,45 @@
   },
   "formatter": {
     "indentStyle": "space",
-    "ignore": []
+    "ignore": [
+      "node_modules/",
+      ".next/",
+      "public/",
+      "swc/",
+      "dist/",
+      "src/components/ui"
+    ]
   },
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true,
-      "nursery": {
-        "useSortedClasses": "warn"
+      "all": true,
+      "style": {
+        "useNamingConvention": "off",
+        "noNamespaceImport": "off",
+        "useFilenamingConvention": "off",
+        "noDefaultExport": "off"
       },
-      "correctness": {
-        "noUnusedImports": "error",
-        "noUnusedVariables": "error"
+      "performance": {
+        "noBarrelFile": "off",
+        "noReExportAll": "off"
       }
     }
   },
+  "javascript": {
+    "globals": ["React", "jest"]
+  },
+  "overrides": [
+    {
+      "include": ["*.test.ts", "*.test.tsx"],
+      "linter": {
+        "rules": {
+          "suspicious": { "noEmptyBlockStatements": "off" },
+          "correctness": { "noUndeclaredVariables": "off" }
+        }
+      }
+    }
+  ],
   "vcs": {
     "enabled": true,
     "clientKind": "git",

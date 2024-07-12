@@ -1,8 +1,8 @@
 import { asyncDebounce } from ".";
 
-jest.useFakeTimers();
-
 describe("asyncDebounce", () => {
+  jest.useFakeTimers();
+
   test("debounce完了後に実行されることを確認", async () => {
     const mockFn = jest.fn((n: number) => n);
     const debouncedFn = asyncDebounce(mockFn, 1000);

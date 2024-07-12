@@ -16,9 +16,11 @@ export function PostModal({ id, isIntercepted = false }: PostModalProps) {
 
   return (
     <Dialog
-      defaultOpen
+      defaultOpen={true}
       onOpenChange={(isOpen) => {
-        if (isOpen) return;
+        if (isOpen) {
+          return;
+        }
 
         if (isIntercepted) {
           router.back();

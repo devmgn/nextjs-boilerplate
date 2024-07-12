@@ -20,7 +20,7 @@ export default function Demo() {
               alt="Vercel Logo"
               className="dark:invert"
               height={24}
-              priority
+              priority={true}
               src="/images/vercel.svg"
               width={100}
             />
@@ -33,7 +33,7 @@ export default function Demo() {
           alt="Next.js Logo"
           className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
           height={37}
-          priority
+          priority={true}
           src="/images/next.svg"
           width={180}
         />

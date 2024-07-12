@@ -25,7 +25,7 @@ const meta: Meta<typeof useDebouncedValue> = {
       <div className="flex flex-col gap-4">
         <div className="grid grid-cols-[1fr,auto] items-center gap-2">
           <p>debouncedValue Result: </p>
-          <Input readOnly value={debouncedValue} />
+          <Input readOnly={true} value={debouncedValue} />
           <p>delay</p>
           <Input
             placeholder="delay time"

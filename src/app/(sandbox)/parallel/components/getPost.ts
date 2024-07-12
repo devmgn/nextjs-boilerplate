@@ -11,7 +11,7 @@ export interface Post {
 export const post = createQueryKeys("post", {
   list: () => ({
     queryKey: ["all"],
-    queryFn: async () => {
+    queryFn: () => {
       return ky
         .get("https://jsonplaceholder.typicode.com/posts")
         .json<Post[]>();
