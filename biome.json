@@ -3,16 +3,11 @@
   "organizeImports": {
     "enabled": true
   },
+  "files": {
+    "ignore": ["public", "src/components/ui"]
+  },
   "formatter": {
-    "indentStyle": "space",
-    "ignore": [
-      "node_modules/",
-      ".next/",
-      "public/",
-      "swc/",
-      "dist/",
-      "src/components/ui"
-    ]
+    "indentStyle": "space"
   },
   "linter": {
     "enabled": true,
