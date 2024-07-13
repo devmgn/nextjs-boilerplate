@@ -1,11 +1,11 @@
-import { Input } from '@/components/ui/input';
-import { useIsComposing } from '.';
-import type { Meta, StoryObj } from '@storybook/react';
+import { Input } from "@/components/ui/input";
+import type { Meta, StoryObj } from "@storybook/react";
+import { useIsComposing } from ".";
 
 const meta: Meta<typeof useIsComposing> = {
-  title: 'hooks/useIsComposing',
+  title: "hooks/useIsComposing",
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
   render: () => {
     const isComposing = useIsComposing();

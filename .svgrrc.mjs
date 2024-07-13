@@ -8,7 +8,7 @@ export default {
   svgoConfig: {
     plugins: [
       {
-        name: 'preset-default',
+        name: "preset-default",
         params: {
           overrides: { removeViewBox: false },
         },

@@ -1,4 +1,4 @@
-declare module 'helperType' {
+declare module "helperType" {
   /**
    * 交差型のプロパティの展開するためのデバッグ用のユーティリティ型
    */

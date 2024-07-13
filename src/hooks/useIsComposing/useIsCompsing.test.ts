@@ -1,26 +1,26 @@
-import { act, renderHook } from '@testing-library/react';
-import { useIsComposing } from '.';
-import type { RenderHookResult } from '@testing-library/react';
+import { act, renderHook } from "@testing-library/react";
+import type { RenderHookResult } from "@testing-library/react";
+import { useIsComposing } from ".";
 
 const testPatterns: [string, boolean][] = [
-  ['compositionstart', true],
-  ['compositionupdate', true],
-  ['compositionend', false],
+  ["compositionstart", true],
+  ["compositionupdate", true],
+  ["compositionend", false],
 ];
 
-describe('useIsComposing', () => {
+describe("useIsComposing", () => {
   let hookResult: RenderHookResult<boolean, unknown>;
 
   beforeEach(() => {
     hookResult = renderHook(() => useIsComposing());
   });
 
-  test('デフォルトはfalseが返却されること', () => {
+  test("デフォルトはfalseが返却されること", () => {
     const { result } = hookResult;
     expect(result.current).toBe(false);
   });
 
-  describe.each(testPatterns)('イベントが%sのとき', (eventName, expected) => {
+  describe.each(testPatterns)("イベントが%sのとき", (eventName, expected) => {
     test(`${expected.toString()}が返却されること`, () => {
       const { result } = hookResult;
 

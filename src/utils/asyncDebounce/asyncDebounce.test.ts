@@ -1,15 +1,15 @@
-import { asyncDebounce } from '.';
+import { asyncDebounce } from ".";
 
-jest.useFakeTimers();
+describe("asyncDebounce", () => {
+  jest.useFakeTimers();
 
-describe('asyncDebounce', () => {
-  test('debounce完了後に実行されることを確認', async () => {
+  test("debounce完了後に実行されることを確認", async () => {
     const mockFn = jest.fn((n: number) => n);
     const debouncedFn = asyncDebounce(mockFn, 1000);
 
     const promise = debouncedFn(2);
 
-    let result;
+    let result: number | undefined;
     promise
       .then((value) => {
         result = value;

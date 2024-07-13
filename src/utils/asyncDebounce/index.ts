@@ -1,4 +1,4 @@
-import { debounce } from 'lodash-es';
+import { debounce } from "lodash-es";
 
 export const asyncDebounce = <T extends unknown[], R>(
   fn: (...args: T) => R,

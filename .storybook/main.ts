@@ -1,32 +1,33 @@
-import path from 'path';
-import { createSvgrWebpackConfig } from '../next.config.mjs';
-import type { StorybookConfig } from '@storybook/nextjs';
+// biome-ignore lint/correctness/noNodejsModules: <explanation>
+import path from "node:path";
+import type { StorybookConfig } from "@storybook/nextjs";
+import { createSvgrWebpackConfig } from "../next.config.mjs";
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
-    '@storybook/addon-a11y',
-    '@chromatic-com/storybook',
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    "@storybook/addon-interactions",
+    "@storybook/addon-a11y",
+    "@chromatic-com/storybook",
   ],
   framework: {
-    name: '@storybook/nextjs',
+    name: "@storybook/nextjs",
     options: {},
   },
   core: {
     disableTelemetry: true,
   },
   docs: {
-    autodocs: 'tag',
+    autodocs: "tag",
   },
-  staticDirs: ['../public'],
-  webpackFinal: async (config) => {
+  staticDirs: ["../public"],
+  webpackFinal: (config) => {
     config.resolve = config.resolve || {};
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@': path.resolve(__dirname, '../src'),
+      "@": path.resolve(__dirname, "../src"),
     };
 
     return createSvgrWebpackConfig(config);

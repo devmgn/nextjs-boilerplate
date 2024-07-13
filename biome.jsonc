@@ -1,0 +1,86 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "organizeImports": {
+    "enabled": true
+  },
+  "files": {
+    "ignore": ["public", "src/components/ui"],
+    "ignoreUnknown": true
+  },
+  "formatter": {
+    "indentStyle": "space"
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "all": true,
+      "style": {
+        "noNamespaceImport": "off",
+        "useFilenamingConvention": "off",
+        "useNamingConvention": "off"
+      },
+      // @see https://biomejs.dev/linter/rules/#nursery
+      "nursery": {
+        "all": true,
+        "noConsole": "off",
+        "useImportExtensions": "off",
+        "noReactSpecificProps": "off",
+        "noExportedImports": "off",
+        "noUndeclaredDependencies": "off",
+        "useImportRestrictions": "off",
+        "useSortedClasses": {
+          "level": "error",
+          "options": {
+            "attributes": ["classList"],
+            "functions": ["clsx", "cva", "tw"]
+          }
+        }
+      }
+    }
+  },
+  "javascript": {
+    "globals": ["React", "jest"]
+  },
+  "overrides": [
+    {
+      "include": ["*.test.ts", "*.test.tsx"],
+      "linter": {
+        "rules": {
+          "suspicious": { "noEmptyBlockStatements": "off" },
+          "correctness": { "noUndeclaredVariables": "off" }
+        }
+      }
+    },
+    {
+      "include": [
+        "default.tsx",
+        "error.tsx",
+        "layout.tsx",
+        "loading.tsx",
+        "not-found.tsx",
+        "page.tsx",
+        "*.stories*.tsx",
+        ".storybook/",
+        "*.d.ts",
+        "tailwind.config.ts",
+        "next.config.mjs",
+        ".svgrrc.mjs",
+        "__mocks__/"
+      ],
+      "linter": {
+        "rules": {
+          "style": { "noDefaultExport": "off" },
+          "suspicious": { "noShadowRestrictedNames": "off" },
+          "nursery": {
+            "useTopLevelRegex": "off"
+          }
+        }
+      }
+    }
+  ],
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  }
+}

@@ -1,1 +1,3 @@
-export * from './ky';
+import { ky } from "./ky";
+
+export { ky };

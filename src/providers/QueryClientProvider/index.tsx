@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
 import {
   QueryClient,
   QueryClientProvider as TQueryClientProvider,
   isServer,
-} from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { queryClientConfig } from './config';
+} from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { queryClientConfig } from "./config";
 
 /**
  * @see https://tanstack.com/query/latest/docs/framework/react/guides/advanced-ssr
@@ -25,7 +25,9 @@ const getQueryClient = () => {
   // This is very important, so we don't re-make a new client if React
   // suspends during the initial render. This may not be needed if we
   // have a suspense boundary BELOW the creation of the query client
-  if (!browserQueryClient) browserQueryClient = makeQueryClient();
+  if (!browserQueryClient) {
+    browserQueryClient = makeQueryClient();
+  }
   return browserQueryClient;
 };
 

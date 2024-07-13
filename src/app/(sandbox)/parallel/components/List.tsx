@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { useSuspenseQuery } from '@tanstack/react-query';
-import { post } from './getPost';
+import { useSuspenseQuery } from "@tanstack/react-query";
+import Link from "next/link";
+import { post } from "./getPost";
 
 export function List() {
   const { data } = useSuspenseQuery(post.list());

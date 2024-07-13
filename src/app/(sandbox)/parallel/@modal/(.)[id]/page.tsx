@@ -1,4 +1,4 @@
-import { PostModal } from '../../components/PostModal';
+import { PostModal } from "../../components/PostModal";
 
 interface ModalRouteProps {
   params: {
@@ -11,5 +11,5 @@ export default function ModalRoute(props: ModalRouteProps) {
     params: { id },
   } = props;
 
-  return <PostModal id={id} isIntercepted />;
+  return <PostModal id={id} isIntercepted={true} />;
 }

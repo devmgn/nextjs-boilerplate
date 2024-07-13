@@ -1,25 +1,17 @@
 {
   "editor.codeActionsOnSave": {
     "source.addMissingImports": "explicit",
-    "source.fixAll.eslint": "explicit",
-    "source.fixAll.stylelint": "explicit"
+    "source.organizeImports.biome": "explicit",
+    "quickfix.biome": "explicit"
   },
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.defaultFormatter": "biomejs.biome",
   "editor.formatOnSave": true,
-  "eslint.enable": true,
-  "eslint.workingDirectories": [
-    {
-      "mode": "auto"
-    }
-  ],
   "files.exclude": {
     ".next": true,
-    ".stylelintcache": true,
     "next-env.d.ts": true,
     "tsconfig.tsbuildinfo": true
   },
   "javascript.format.enable": false,
-  "prettier.enable": true,
   "search.exclude": {
     "**/.pnp.*": true,
     "**/.yarn": true,

@@ -1,6 +1,6 @@
-import { Hydrator } from '@/components';
-import { post } from '../components/getPost';
-import { PostModal } from '../components/PostModal';
+import { Hydrator } from "@/components";
+import { PostModal } from "../components/PostModal";
+import { post } from "../components/getPost";
 
 interface DynamicPageProps {
   params: {

@@ -1,39 +1,39 @@
-import { useForm } from 'react-hook-form';
-import { Input } from '@/components/ui/input';
-import { useDebouncedValue } from '.';
-import type { Meta, StoryObj } from '@storybook/react';
+import { Input } from "@/components/ui/input";
+import type { Meta, StoryObj } from "@storybook/react";
+import { useForm } from "react-hook-form";
+import { useDebouncedValue } from ".";
 
 const meta: Meta<typeof useDebouncedValue> = {
-  title: 'hooks/useDebouncedValue',
+  title: "hooks/useDebouncedValue",
   parameters: {
-    layout: 'centered',
+    layout: "centered",
   },
   render: () => {
     const { register, watch } = useForm<{
       input: string;
       delay: number;
     }>({
-      defaultValues: { input: '', delay: 150 },
+      defaultValues: { input: "", delay: 150 },
     });
 
     const debouncedValue = useDebouncedValue(
-      watch('input') || '',
-      watch('delay'),
+      watch("input") || "",
+      watch("delay"),
     );
 
     return (
       <div className="flex flex-col gap-4">
         <div className="grid grid-cols-[1fr,auto] items-center gap-2">
           <p>debouncedValue Result: </p>
-          <Input readOnly value={debouncedValue} />
+          <Input readOnly={true} value={debouncedValue} />
           <p>delay</p>
           <Input
             placeholder="delay time"
             type="number"
-            {...register('delay', { valueAsNumber: true })}
+            {...register("delay", { valueAsNumber: true })}
           />
         </div>
-        <Input placeholder="input value" type="text" {...register('input')} />
+        <Input placeholder="input value" type="text" {...register("input")} />
       </div>
     );
   },

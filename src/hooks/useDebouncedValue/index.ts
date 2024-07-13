@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { debounce } from 'lodash-es';
-import { useIsComposing } from '../useIsComposing';
+import { debounce } from "lodash-es";
+import { useEffect, useState } from "react";
+import { useIsComposing } from "../useIsComposing";
 
 /**
  * デバウンスされた値を返すカスタムフック
@@ -14,7 +14,9 @@ export const useDebouncedValue = <T>(value: T, wait = 300): T => {
   }, wait);
 
   useEffect(() => {
-    if (isComposing) return;
+    if (isComposing) {
+      return;
+    }
     update(value);
   }, [isComposing, update, value]);
 
