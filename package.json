@@ -95,8 +95,6 @@
     "@types/react-dom": "npm:types-react-dom@rc"
   },
   "msw": {
-    "workerDirectory": [
-      "public/"
-    ]
+    "workerDirectory": ["public/"]
   }
 }
