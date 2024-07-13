@@ -1,4 +1,4 @@
 // biome-ignore lint/style/noNamespace: <explanation>
-declare namespace NodeJs {
-  type ProcessEnv = Readonly<Record<string, string>>;
+declare namespace nodeJs {
+  interface ProcessEnv extends Readonly<Record<string, string>> {}
 }

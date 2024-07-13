@@ -12,7 +12,7 @@ const jestConfig = {
   globalSetup: "<rootDir>/jest.globalSetup.js",
   setupFilesAfterEnv: ["<rootDir>/src/jest.setup.ts"],
   moduleNameMapper: {
-    "^.+\\.(svg\\?inline)$": "<rootDir>/__mocks__/SvgMock.jsx",
+    "^.+\\.(svg)$": "<rootDir>/__mocks__/SvgMock.jsx",
     "^@/(.*)$": "<rootDir>/src/$1",
   },
   testEnvironment: "jest-environment-jsdom",

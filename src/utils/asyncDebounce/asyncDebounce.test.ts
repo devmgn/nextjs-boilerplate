@@ -9,8 +9,7 @@ describe("asyncDebounce", () => {
 
     const promise = debouncedFn(2);
 
-    // biome-ignore lint/suspicious/noImplicitAnyLet: <explanation>
-    let result;
+    let result: number | undefined;
     promise
       .then((value) => {
         result = value;

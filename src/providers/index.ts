@@ -1,1 +1,3 @@
-export * from "./RootProvider";
+import { RootProvider } from "./RootProvider";
+
+export { RootProvider };

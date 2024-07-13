@@ -15,13 +15,16 @@
       "all": true,
       "style": {
         "useNamingConvention": "off",
-        "noNamespaceImport": "off",
-        "useFilenamingConvention": "off",
-        "noDefaultExport": "off"
+        "useFilenamingConvention": "off"
       },
-      "performance": {
-        "noBarrelFile": "off",
-        "noReExportAll": "off"
+      "nursery": {
+        "useSortedClasses": {
+          "level": "error",
+          "options": {
+            "attributes": ["classList"],
+            "functions": ["clsx", "cva", "tw"]
+          }
+        }
       }
     }
   },
@@ -35,6 +38,29 @@
         "rules": {
           "suspicious": { "noEmptyBlockStatements": "off" },
           "correctness": { "noUndeclaredVariables": "off" }
+        }
+      }
+    },
+    {
+      "include": [
+        "default.tsx",
+        "error.tsx",
+        "layout.tsx",
+        "loading.tsx",
+        "not-found.tsx",
+        "page.tsx",
+        "*.stories*.tsx",
+        ".storybook/",
+        "*.d.ts",
+        "tailwind.config.ts",
+        "next.config.mjs",
+        ".svgrrc.mjs",
+        "__mocks__/"
+      ],
+      "linter": {
+        "rules": {
+          "style": { "noDefaultExport": "off" },
+          "suspicious": { "noShadowRestrictedNames": "off" }
         }
       }
     }

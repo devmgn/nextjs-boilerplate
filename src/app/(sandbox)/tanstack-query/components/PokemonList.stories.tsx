@@ -23,8 +23,7 @@ export const Default: Story = {
   },
 };
 
-// biome-ignore lint/suspicious/noShadowRestrictedNames: <explanation>
-export const Error: Story = {
+export const FetchError: Story = {
   parameters: {
     msw: [getPokemonListHandler.error],
   },

@@ -1,6 +1,5 @@
 import { cn } from "@/utils";
-import { cva } from "class-variance-authority";
-import type { VariantProps } from "class-variance-authority";
+import { type VariantProps, cva } from "class-variance-authority";
 import type { Merge } from "react-hook-form";
 
 const svgIconVariants = cva("size-[1em] fill-current text-current", {
@@ -27,13 +26,13 @@ interface SvgIconProps
 }
 
 export function SvgIcon({
-  component: Component,
+  component: Tag,
   className,
   size,
   ...props
 }: SvgIconProps) {
   return (
-    <Component
+    <Tag
       aria-hidden="true"
       className={cn(svgIconVariants({ size, className }))}
       focusable="false"

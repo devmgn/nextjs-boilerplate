@@ -1,1 +1,3 @@
-export * from "./env";
+import { APP_NAME, DEFAULT_DESCRIPTION } from "./env";
+
+export { APP_NAME, DEFAULT_DESCRIPTION };

@@ -7,7 +7,6 @@ interface ErrorProps {
   reset: () => void;
 }
 
-// biome-ignore lint/suspicious/noShadowRestrictedNames: <explanation>
 export default function Error({ error, reset }: ErrorProps) {
   useEffect(() => {
     // Log the error to an error reporting service

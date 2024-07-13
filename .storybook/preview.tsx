@@ -5,6 +5,8 @@ import { RootProvider } from "../src/providers";
 import { SBErrorBoundary } from "./SBErrorBoundary";
 import "../src/app/globals.css";
 import type { Preview } from "@storybook/react";
+// biome-ignore lint/correctness/noUnusedImports: <explanation>
+import React from "react";
 
 initialize({ onUnhandledRequest: "bypass" });
 

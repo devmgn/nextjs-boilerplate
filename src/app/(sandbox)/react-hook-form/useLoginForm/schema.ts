@@ -1,4 +1,4 @@
-import * as v from "valibot";
+import v from "valibot";
 
 export const LoginSchema = v.object({
   email: v.pipe(v.string(), v.maxLength(8), v.email()),

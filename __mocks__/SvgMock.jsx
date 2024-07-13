@@ -1,5 +1,3 @@
-const SvgMock = (props) => {
+export default function SvgMock(props) {
   return <svg {...props} />;
-};
-
-export default SvgMock;
+}
