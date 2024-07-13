@@ -43,8 +43,8 @@
     "lodash-es": "4.17.21",
     "lucide-react": "0.408.0",
     "next": "15.0.0-rc.0",
-    "react": "19.0.0-rc-85acf2d195-20240711",
-    "react-dom": "19.0.0-rc-85acf2d195-20240711",
+    "react": "19.0.0-rc-df5f2736-20240712",
+    "react-dom": "19.0.0-rc-df5f2736-20240712",
     "react-hook-form": "7.52.1",
     "react-use": "17.5.0",
     "tailwind-merge": "2.4.0",
@@ -95,6 +95,8 @@
     "@types/react-dom": "npm:types-react-dom@rc"
   },
   "msw": {
-    "workerDirectory": ["public/"]
+    "workerDirectory": [
+      "public/"
+    ]
   }
 }

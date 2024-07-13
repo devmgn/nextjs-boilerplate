@@ -4758,14 +4758,14 @@ __metadata:
   linkType: hard
 
 "ajv@npm:^8.0.0, ajv@npm:^8.9.0":
-  version: 8.16.0
-  resolution: "ajv@npm:8.16.0"
+  version: 8.17.1
+  resolution: "ajv@npm:8.17.1"
   dependencies:
     fast-deep-equal: "npm:^3.1.3"
+    fast-uri: "npm:^3.0.1"
     json-schema-traverse: "npm:^1.0.0"
     require-from-string: "npm:^2.0.2"
-    uri-js: "npm:^4.4.1"
-  checksum: 10c0/6fc38aa8fd4fbfaa7096ac049e48c0cb440db36b76fef2d7d5b7d92b102735670d055d412d19176c08c9d48eaa9d06661b67e59f04943dc71ab1551e0484f88c
+  checksum: 10c0/ec3ba10a573c6b60f94639ffc53526275917a2df6810e4ab5a6b959d87459f9ef3f00d5e7865b82677cb7d21590355b34da14d1d0b9c32d75f95a187e76fff35
   languageName: node
   linkType: hard
 
@@ -7247,6 +7247,13 @@ __metadata:
   version: 1.0.0
   resolution: "fast-shallow-equal@npm:1.0.0"
   checksum: 10c0/526c393c011ab5a0ca5a36c5ea25c9730acd027503ccbec6c7825397ab9375f51f67f14c8829b4c4b1ccccede695391dd14863a15e40a37fc4af08c1440a1b66
+  languageName: node
+  linkType: hard
+
+"fast-uri@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "fast-uri@npm:3.0.1"
+  checksum: 10c0/3cd46d6006083b14ca61ffe9a05b8eef75ef87e9574b6f68f2e17ecf4daa7aaadeff44e3f0f7a0ef4e0f7e7c20fc07beec49ff14dc72d0b500f00386592f2d10
   languageName: node
   linkType: hard
 
@@ -10127,8 +10134,8 @@ __metadata:
     next: "npm:15.0.0-rc.0"
     next-compose-plugins: "npm:2.2.1"
     postcss: "npm:8.4.39"
-    react: "npm:19.0.0-rc-85acf2d195-20240711"
-    react-dom: "npm:19.0.0-rc-85acf2d195-20240711"
+    react: "npm:19.0.0-rc-df5f2736-20240712"
+    react-dom: "npm:19.0.0-rc-df5f2736-20240712"
     react-hook-form: "npm:7.52.1"
     react-use: "npm:17.5.0"
     storybook: "npm:8.2.2"
@@ -11296,14 +11303,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:19.0.0-rc-85acf2d195-20240711":
-  version: 19.0.0-rc-85acf2d195-20240711
-  resolution: "react-dom@npm:19.0.0-rc-85acf2d195-20240711"
+"react-dom@npm:19.0.0-rc-df5f2736-20240712":
+  version: 19.0.0-rc-df5f2736-20240712
+  resolution: "react-dom@npm:19.0.0-rc-df5f2736-20240712"
   dependencies:
-    scheduler: "npm:0.25.0-rc-85acf2d195-20240711"
+    scheduler: "npm:0.25.0-rc-df5f2736-20240712"
   peerDependencies:
-    react: 19.0.0-rc-85acf2d195-20240711
-  checksum: 10c0/d301f18a06c4ea9ed7e86ebf1815aa34afdd3dac631d5bdcc284505ce5ce9c3506fa5d089826fc3bdb241f4ef6e3220358e541bd675ed50df8bfcca824290a38
+    react: 19.0.0-rc-df5f2736-20240712
+  checksum: 10c0/d20edd2f601fbc8444a3f7622fa1dccba4e2e3dc341e2a6c0ec4e53c699921261c41230df2cffc535588c381f15ce7acec3d469c089385cafa72c92df94e0470
   languageName: node
   linkType: hard
 
@@ -11464,10 +11471,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:19.0.0-rc-85acf2d195-20240711":
-  version: 19.0.0-rc-85acf2d195-20240711
-  resolution: "react@npm:19.0.0-rc-85acf2d195-20240711"
-  checksum: 10c0/82fa613ebd161d0b706f0917a77487deecfb690cac732c0ffc69b2a7f632e43f03036fef3c9a7557725e0893509be357c02811ea9afeee98d0df33c42d908346
+"react@npm:19.0.0-rc-df5f2736-20240712":
+  version: 19.0.0-rc-df5f2736-20240712
+  resolution: "react@npm:19.0.0-rc-df5f2736-20240712"
+  checksum: 10c0/3806f66d7d8dc7c86023d9f614b201bd880d50dcfde1bc0c79c47c53a6dac7d7b39a3decb9abcb7ec3c31c2e04a8f589b2644546c804e00f6dbc3aed4566c221
   languageName: node
   linkType: hard
 
@@ -11914,10 +11921,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:0.25.0-rc-85acf2d195-20240711":
-  version: 0.25.0-rc-85acf2d195-20240711
-  resolution: "scheduler@npm:0.25.0-rc-85acf2d195-20240711"
-  checksum: 10c0/0d50bf23451a11a7ec729a8f84496817a38a46ee6691afd3551206ded9f854ca3707d3120fbeb105e084d581bb1a0aa94d270fe48b13ac5581201d0ff6f3188c
+"scheduler@npm:0.25.0-rc-df5f2736-20240712":
+  version: 0.25.0-rc-df5f2736-20240712
+  resolution: "scheduler@npm:0.25.0-rc-df5f2736-20240712"
+  checksum: 10c0/9721b91a50ab4d69fcb8b892dd78b1ed8b8281202c69564193cbcdbd7de0429c8ee103133a22e1baebe6962fc1482b4fb3f58f128d53d44a23ae1fc275a517e4
   languageName: node
   linkType: hard
 
@@ -13348,7 +13355,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uri-js@npm:^4.2.2, uri-js@npm:^4.4.1":
+"uri-js@npm:^4.2.2":
   version: 4.4.1
   resolution: "uri-js@npm:4.4.1"
   dependencies:
