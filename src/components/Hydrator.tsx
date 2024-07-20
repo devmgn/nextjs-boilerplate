@@ -10,27 +10,32 @@ import type {
 } from "@tanstack/react-query";
 
 type PrefetchQueryProps<
-  TQueryFnData = unknown,
-  TError = DefaultError,
-  TData = TQueryFnData,
-  TQueryKey extends QueryKey = QueryKey,
+  TsQueryFnData = unknown,
+  TsError = DefaultError,
+  TsData = TsQueryFnData,
+  TsQueryKey extends QueryKey = QueryKey,
 > = React.PropsWithChildren<{
-  fetchQueryOptions: FetchQueryOptions<TQueryFnData, TError, TData, TQueryKey>;
+  fetchQueryOptions: FetchQueryOptions<
+    TsQueryFnData,
+    TsError,
+    TsData,
+    TsQueryKey
+  >;
   hydrationBoundaryProps?: React.ComponentPropsWithoutRef<
     typeof HydrationBoundary
   >;
 }>;
 
 export async function Hydrator<
-  TQueryFnData,
-  TError,
-  TData,
-  TQueryKey extends QueryKey,
+  TsQueryFnData,
+  TsError,
+  TsData,
+  TsQueryKey extends QueryKey,
 >({
   fetchQueryOptions,
   hydrationBoundaryProps,
   children,
-}: PrefetchQueryProps<TQueryFnData, TError, TData, TQueryKey>) {
+}: PrefetchQueryProps<TsQueryFnData, TsError, TsData, TsQueryKey>) {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(fetchQueryOptions);
 

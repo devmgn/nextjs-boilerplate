@@ -1,4 +1,4 @@
-import { cn } from "@/utils";
+import { cn } from "./utils";
 import { type VariantProps, cva } from "class-variance-authority";
 import { Loader2 } from "lucide-react";
 import type React from "react";

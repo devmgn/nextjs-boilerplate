@@ -1,6 +1,9 @@
 import withBundleAnalyzer from "@next/bundle-analyzer";
 import withPlugins from "next-compose-plugins";
 
+const SVG_REGEX = /\.svg$/i;
+const RESOURCE_QUERY_REGEX = /url/;
+
 export const createSvgrWebpackConfig = (config) => {
   const fileLoaderRule = config.module.rules.find((rule) =>
     rule.test?.test?.(".svg"),
@@ -9,18 +12,18 @@ export const createSvgrWebpackConfig = (config) => {
   config.module.rules.push(
     {
       ...fileLoaderRule,
-      test: /\.svg$/i,
-      resourceQuery: /url/, // *.svg?url
+      test: SVG_REGEX,
+      resourceQuery: RESOURCE_QUERY_REGEX, // *.svg?url
     },
     {
-      test: /\.svg$/i,
+      test: SVG_REGEX,
       issuer: fileLoaderRule.issuer,
-      resourceQuery: { not: /url/ }, // exclude if *.svg?url
+      resourceQuery: { not: RESOURCE_QUERY_REGEX }, // exclude if *.svg?url
       use: ["@svgr/webpack"],
     },
   );
 
-  fileLoaderRule.exclude = /\.svg$/i;
+  fileLoaderRule.exclude = SVG_REGEX;
 
   return config;
 };

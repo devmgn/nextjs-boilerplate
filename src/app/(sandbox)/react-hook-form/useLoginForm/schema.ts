@@ -1,8 +1,16 @@
-import * as v from "valibot";
+import {
+  type InferInput,
+  email,
+  maxLength,
+  minLength,
+  object,
+  pipe,
+  string,
+} from "valibot";
 
-export const LoginSchema = v.object({
-  email: v.pipe(v.string(), v.maxLength(8), v.email()),
-  password: v.pipe(v.string(), v.minLength(8), v.maxLength(255)),
+export const LoginSchema = object({
+  email: pipe(string(), maxLength(8), email()),
+  password: pipe(string(), minLength(8), maxLength(255)),
 });
 
-export type LoginRequest = v.InferInput<typeof LoginSchema>;
+export type LoginRequest = InferInput<typeof LoginSchema>;

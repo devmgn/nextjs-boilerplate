@@ -3,7 +3,7 @@ import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 import React from "react";
 import { Button } from "../src/components/ui/button";
 
-export function SBErrorBoundary(
+export function SbErrorBoundary(
   props: Omit<
     React.ComponentPropsWithoutRef<typeof ErrorBoundary>,
     "errorComponent"
