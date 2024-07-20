@@ -3789,6 +3789,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/react-query-next-experimental@npm:5.51.9":
+  version: 5.51.9
+  resolution: "@tanstack/react-query-next-experimental@npm:5.51.9"
+  peerDependencies:
+    "@tanstack/react-query": ^5.51.9
+    next: ^13 || ^14 || ^15
+    react: ^18 || ^19
+  checksum: 10c0/01f1fd41e03d63b805e16225b78b51ca29d1c8f61f2330b86928c23f7669d8a565a9b27da3839ab4e45533b7500bbacc3410917a037f253f17eeb0633327c35e
+  languageName: node
+  linkType: hard
+
 "@tanstack/react-query@npm:5.51.9":
   version: 5.51.9
   resolution: "@tanstack/react-query@npm:5.51.9"
@@ -10149,6 +10160,7 @@ __metadata:
     "@tailwindcss/typography": "npm:0.5.13"
     "@tanstack/react-query": "npm:5.51.9"
     "@tanstack/react-query-devtools": "npm:5.51.9"
+    "@tanstack/react-query-next-experimental": "npm:5.51.9"
     "@testing-library/jest-dom": "npm:6.4.6"
     "@testing-library/react": "npm:16.0.0"
     "@testing-library/user-event": "npm:14.5.2"

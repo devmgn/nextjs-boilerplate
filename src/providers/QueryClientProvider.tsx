@@ -2,24 +2,35 @@
 
 import {
   QueryClient,
-  QueryClientProvider as TanstackQueryClientProvider,
+  QueryClientProvider as TsQueryClientProvider,
   isServer,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { queryClientConfig } from "./config";
+import { ReactQueryStreamedHydration } from "@tanstack/react-query-next-experimental";
 
 /**
- * @see https://tanstack.com/query/latest/docs/framework/react/guides/advanced-ssr
+ * @see https://tanstack.com/query/latest/docs/framework/react/guides/advanced-ssr#experimental-streaming-without-prefetching-in-nextjs
  */
-
-const makeQueryClient = () => new QueryClient(queryClientConfig);
-
-const hogeFuga = "hoge";
-console.error(hogeFuga);
+function makeQueryClient() {
+  return new QueryClient({
+    defaultOptions: {
+      queries: {
+        // With SSR, we usually want to set some default staleTime
+        // above 0 to avoid refetching immediately on the client
+        staleTime: 60 * 1000,
+        refetchOnWindowFocus: false,
+        retry: false,
+      },
+      mutations: {
+        retry: false,
+      },
+    },
+  });
+}
 
 let browserQueryClient: QueryClient | undefined;
 
-const getQueryClient = () => {
+function getQueryClient() {
   if (isServer) {
     // Server: always make a new query client
     return makeQueryClient();
@@ -32,7 +43,7 @@ const getQueryClient = () => {
     browserQueryClient = makeQueryClient();
   }
   return browserQueryClient;
-};
+}
 
 export function QueryClientProvider({ children }: React.PropsWithChildren) {
   // NOTE: Avoid useState when initializing the query client if you don't
@@ -42,9 +53,9 @@ export function QueryClientProvider({ children }: React.PropsWithChildren) {
   const queryClient = getQueryClient();
 
   return (
-    <TanstackQueryClientProvider client={queryClient}>
-      {children}
+    <TsQueryClientProvider client={queryClient}>
+      <ReactQueryStreamedHydration>{children}</ReactQueryStreamedHydration>
       <ReactQueryDevtools initialIsOpen={false} />
-    </TanstackQueryClientProvider>
+    </TsQueryClientProvider>
   );
 }
