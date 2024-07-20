@@ -14,10 +14,6 @@
     "enabled": true,
     "rules": {
       "all": true,
-      "style": {
-        "noNamespaceImport": "off",
-        "useFilenamingConvention": "off"
-      },
       // @see https://biomejs.dev/linter/rules/#nursery
       "nursery": {
         "all": true,
@@ -42,6 +38,29 @@
   },
   "overrides": [
     {
+      "include": [
+        "default.tsx",
+        "error.tsx",
+        "layout.tsx",
+        "loading.tsx",
+        "not-found.tsx",
+        "page.tsx",
+        "*.d.ts"
+      ],
+      "linter": {
+        "rules": { "style": { "noDefaultExport": "off" } }
+      }
+    },
+    {
+      "include": ["*.stories.tsx"],
+      "linter": {
+        "rules": {
+          "suspicious": { "noConsoleLog": "off" },
+          "style": { "noDefaultExport": "off" }
+        }
+      }
+    },
+    {
       "include": ["*.test.ts", "*.test.tsx"],
       "linter": {
         "rules": {
@@ -53,35 +72,20 @@
     {
       "include": ["tailwind.config.ts"],
       "linter": {
-        "rules": {
-          "style": { "useNamingConvention": "off" }
-        }
+        "rules": { "style": { "useNamingConvention": "off" } }
       }
     },
     {
       "include": [
-        "default.tsx",
-        "error.tsx",
-        "layout.tsx",
-        "loading.tsx",
-        "not-found.tsx",
-        "page.tsx",
-        "*.stories*.tsx",
-        ".storybook/",
-        "*.d.ts",
-        "tailwind.config.ts",
-        "next.config.mjs",
+        "__mocks__/**/*.jsx",
+        ".storybook/preview.tsx",
+        ".storybook/main.ts",
         ".svgrrc.mjs",
-        "__mocks__/"
+        "tailwind.config.ts",
+        "next.config.mjs"
       ],
       "linter": {
-        "rules": {
-          "style": { "noDefaultExport": "off" },
-          "suspicious": { "noShadowRestrictedNames": "off" },
-          "nursery": {
-            "useTopLevelRegex": "off"
-          }
-        }
+        "rules": { "style": { "noDefaultExport": "off" } }
       }
     }
   ],

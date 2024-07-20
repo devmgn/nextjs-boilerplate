@@ -1,7 +1,7 @@
 import { getPokemonListHandler } from "@/mocks/handlers/getPokemonListHandler";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Suspense } from "react";
-import { PokemonList } from "./PokemonList";
+import { PokemonList } from "./pokemonList";
 
 const meta: Meta<typeof PokemonList> = {
   component: PokemonList,

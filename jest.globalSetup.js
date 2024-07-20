@@ -1,3 +1,4 @@
+// biome-ignore lint/style/useFilenamingConvention: <explanation>
 const { loadEnvConfig } = require("@next/env");
 
 module.exports = () => {
