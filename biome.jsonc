@@ -16,8 +16,7 @@
       "all": true,
       "style": {
         "noNamespaceImport": "off",
-        "useFilenamingConvention": "off",
-        "useNamingConvention": "off"
+        "useFilenamingConvention": "off"
       },
       // @see https://biomejs.dev/linter/rules/#nursery
       "nursery": {
@@ -32,7 +31,7 @@
           "level": "error",
           "options": {
             "attributes": ["classList"],
-            "functions": ["clsx", "cva", "tw"]
+            "functions": ["clsx", "cva", "tw", "tv"]
           }
         }
       }
@@ -48,6 +47,14 @@
         "rules": {
           "suspicious": { "noEmptyBlockStatements": "off" },
           "correctness": { "noUndeclaredVariables": "off" }
+        }
+      }
+    },
+    {
+      "include": ["tailwind.config.ts"],
+      "linter": {
+        "rules": {
+          "style": { "useNamingConvention": "off" }
         }
       }
     },

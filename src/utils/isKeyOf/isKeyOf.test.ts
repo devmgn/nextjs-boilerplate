@@ -1,9 +1,9 @@
 import { isKeyOf } from "..";
 
 const TEST_ENUM_OBJECT = {
-  NAME: "John Smith",
-  AGE: 30,
-  EMAIL: "john.smith@example.com",
+  name: "John Smith",
+  age: 30,
+  email: "john.smith@example.com",
   10: "numbered key",
 } as const;
 
@@ -13,16 +13,16 @@ type TestPatterns = [
 ][];
 
 const truthyPatterns: TestPatterns = [
-  ["NAME", true],
-  ["AGE", true],
-  ["EMAIL", true],
+  ["name", true],
+  ["age", true],
+  ["email", true],
   [10, true],
 ];
 
 const falsyPatterns: TestPatterns = [
-  ["name", false],
-  ["age", false],
-  ["email", false],
+  ["NAME", false],
+  ["AGE", false],
+  ["EMAIL", false],
   [11, false],
 ];
 

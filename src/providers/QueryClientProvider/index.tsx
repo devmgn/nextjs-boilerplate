@@ -2,7 +2,7 @@
 
 import {
   QueryClient,
-  QueryClientProvider as TQueryClientProvider,
+  QueryClientProvider as TanstackQueryClientProvider,
   isServer,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -13,6 +13,9 @@ import { queryClientConfig } from "./config";
  */
 
 const makeQueryClient = () => new QueryClient(queryClientConfig);
+
+const hogeFuga = "hoge";
+console.error(hogeFuga);
 
 let browserQueryClient: QueryClient | undefined;
 
@@ -39,9 +42,9 @@ export function QueryClientProvider({ children }: React.PropsWithChildren) {
   const queryClient = getQueryClient();
 
   return (
-    <TQueryClientProvider client={queryClient}>
+    <TanstackQueryClientProvider client={queryClient}>
       {children}
       <ReactQueryDevtools initialIsOpen={false} />
-    </TQueryClientProvider>
+    </TanstackQueryClientProvider>
   );
 }
