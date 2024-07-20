@@ -1,8 +1,8 @@
-import { cn } from "@/utils";
-import { type VariantProps, cva } from "class-variance-authority";
-import type { Merge } from "react-hook-form";
+import { type VariantProps, tv } from "tailwind-variants";
+import type { Merge } from "type-fest";
 
-const svgIconVariants = cva("size-[1em] fill-current text-current", {
+const svgIcon = tv({
+  base: "size-[1em] fill-current text-current",
   variants: {
     size: {
       xs: "text-[12px]",
@@ -17,24 +17,21 @@ const svgIconVariants = cva("size-[1em] fill-current text-current", {
   },
 });
 
+type SvgIconVariants = VariantProps<typeof svgIcon>;
+
 interface SvgIconProps
   extends Merge<
     Omit<React.ComponentProps<"svg">, "children">,
-    VariantProps<typeof svgIconVariants>
+    SvgIconVariants
   > {
   component: React.ElementType;
 }
 
-export function SvgIcon({
-  component: Tag,
-  className,
-  size,
-  ...props
-}: SvgIconProps) {
+export function SvgIcon({ component: Tag, ...props }: SvgIconProps) {
   return (
     <Tag
       aria-hidden="true"
-      className={cn(svgIconVariants({ size, className }))}
+      className={svgIcon(props)}
       focusable="false"
       {...props}
     />
