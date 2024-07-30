@@ -10188,7 +10188,7 @@ __metadata:
     tailwindcss-animate: "npm:1.0.7"
     type-fest: "npm:4.23.0"
     typescript: "npm:5.5.4"
-    valibot: "npm:0.36.0"
+    valibot: "npm:0.37.0"
   languageName: unknown
   linkType: soft
 
@@ -13547,10 +13547,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"valibot@npm:0.36.0":
-  version: 0.36.0
-  resolution: "valibot@npm:0.36.0"
-  checksum: 10c0/deff84cdcdc324d5010c2087e553cd26b07752ac18912c9152eccd241b507a49a9ad77fed57501d45bcbef9bec6a7a6707b17d9bef8d35e681d45f098a70e466
+"valibot@npm:0.37.0":
+  version: 0.37.0
+  resolution: "valibot@npm:0.37.0"
+  peerDependencies:
+    typescript: ">=5"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 10c0/816d3c7bde49df0d54d72daa51682a00484fe8e52e92810e9a4ad78580a4538e42bf390e8430ba4520fbee88ac77a4da62dcc074b2c6deb2e866eee2ebe498b1
   languageName: node
   linkType: hard
 
