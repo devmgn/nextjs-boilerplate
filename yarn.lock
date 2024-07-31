@@ -3746,51 +3746,51 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-core@npm:5.51.15":
-  version: 5.51.15
-  resolution: "@tanstack/query-core@npm:5.51.15"
-  checksum: 10c0/8ae5cbec93852a6f2b79717aa0de8c024f829e8c18a01432240cabf5505d2fcd46d8e034fdaa04f69f5889ae6dbe29ffed5798090ede29b4c09cf947fee2b11a
+"@tanstack/query-core@npm:5.51.16":
+  version: 5.51.16
+  resolution: "@tanstack/query-core@npm:5.51.16"
+  checksum: 10c0/ed0922dc320cf77e4c34dac80658555617689e3a8761965300c949561426393421c184e4cd2d4b4fedf7aca1c4d82dca8e6e91e7d776347b583f8239d56a14df
   languageName: node
   linkType: hard
 
-"@tanstack/query-devtools@npm:5.51.15":
-  version: 5.51.15
-  resolution: "@tanstack/query-devtools@npm:5.51.15"
-  checksum: 10c0/9f7d8cbaf82d95f8d5999fe57164de0a736538e3d9ad3a1efbcd017be3151330dd9e7a3450926c013e76769f973fb8da75bda4a7b4a6c02b374ec7abbee35584
+"@tanstack/query-devtools@npm:5.51.16":
+  version: 5.51.16
+  resolution: "@tanstack/query-devtools@npm:5.51.16"
+  checksum: 10c0/40f1fbad77b703b96809b06323962614f9868b6e453fbcfcc1c73f3ff4f479f4ef066706fdfb3c3be33da76122dac21725de42c0f65ac0344d3839688d672c32
   languageName: node
   linkType: hard
 
-"@tanstack/react-query-devtools@npm:5.51.15":
-  version: 5.51.15
-  resolution: "@tanstack/react-query-devtools@npm:5.51.15"
+"@tanstack/react-query-devtools@npm:5.51.16":
+  version: 5.51.16
+  resolution: "@tanstack/react-query-devtools@npm:5.51.16"
   dependencies:
-    "@tanstack/query-devtools": "npm:5.51.15"
+    "@tanstack/query-devtools": "npm:5.51.16"
   peerDependencies:
-    "@tanstack/react-query": ^5.51.15
+    "@tanstack/react-query": ^5.51.16
     react: ^18 || ^19
-  checksum: 10c0/cafe075d664402bcb4612c317c9b0925589d86b23d3f72d9c581aa256009ac944af6580a2ee54e13f97bdcf8d4a9c3e9433e29db602339888858c2a8981cf70d
+  checksum: 10c0/beb5a9b691e53d6723eabbafd488fe62a1833a1aa8f9f38cd1da7a565c25dcbc6fd4757f85cdc56f996263be265f9636f796512f84d6be7790494dc165606d36
   languageName: node
   linkType: hard
 
-"@tanstack/react-query-next-experimental@npm:5.51.15":
-  version: 5.51.15
-  resolution: "@tanstack/react-query-next-experimental@npm:5.51.15"
+"@tanstack/react-query-next-experimental@npm:5.51.16":
+  version: 5.51.16
+  resolution: "@tanstack/react-query-next-experimental@npm:5.51.16"
   peerDependencies:
-    "@tanstack/react-query": ^5.51.15
+    "@tanstack/react-query": ^5.51.16
     next: ^13 || ^14 || ^15
     react: ^18 || ^19
-  checksum: 10c0/787dc9039e377e90b7d74b3daaa96230378cef0358ad403d6f8c2d3c50783d30acd86c0a73d8ea6b7bfa97464eeb80d2d359e8760ddaaea4ff813c95ba82480e
+  checksum: 10c0/d19f571a86e86c71de6e79881feebb97ab2048944762e9b4d7862902116dfc08e1aefe21787f779d74c53d78f772a7da5e517e68e5830219bc5589be7ad7a169
   languageName: node
   linkType: hard
 
-"@tanstack/react-query@npm:5.51.15":
-  version: 5.51.15
-  resolution: "@tanstack/react-query@npm:5.51.15"
+"@tanstack/react-query@npm:5.51.16":
+  version: 5.51.16
+  resolution: "@tanstack/react-query@npm:5.51.16"
   dependencies:
-    "@tanstack/query-core": "npm:5.51.15"
+    "@tanstack/query-core": "npm:5.51.16"
   peerDependencies:
     react: ^18.0.0
-  checksum: 10c0/53c53331c7b8935345fb9d474ace7d66f21ab924f74a04e71782ca5f1a031f42905c162ae61bba5ec56155e5df81ab0dfbe98029348da784617e81c545d6536d
+  checksum: 10c0/8c702acc110cddd451f00b85d8682915550a4a0cc2a3c4051fc968a3a39f0447a6fc73b6467554017a43800de3d23872630bbb81d258a59a15c976357fe3af59
   languageName: node
   linkType: hard
 
@@ -10149,9 +10149,9 @@ __metadata:
     "@svgr/webpack": "npm:8.1.0"
     "@tailwindcss/container-queries": "npm:0.1.1"
     "@tailwindcss/typography": "npm:0.5.13"
-    "@tanstack/react-query": "npm:5.51.15"
-    "@tanstack/react-query-devtools": "npm:5.51.15"
-    "@tanstack/react-query-next-experimental": "npm:5.51.15"
+    "@tanstack/react-query": "npm:5.51.16"
+    "@tanstack/react-query-devtools": "npm:5.51.16"
+    "@tanstack/react-query-next-experimental": "npm:5.51.16"
     "@testing-library/jest-dom": "npm:6.4.8"
     "@testing-library/react": "npm:16.0.0"
     "@testing-library/user-event": "npm:14.5.2"
