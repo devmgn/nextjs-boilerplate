@@ -1,12 +1,12 @@
 import { INITIAL_VIEWPORTS } from "@storybook/addon-viewport";
 import locale from "axe-core/locales/ja.json";
 import { initialize, mswLoader } from "msw-storybook-addon";
-import { RootProvider } from "../src/providers";
-import { SBErrorBoundary } from "./SBErrorBoundary";
+import { SbErrorBoundary } from "./sbErrorBoundary";
 import "../src/app/globals.css";
 import type { Preview } from "@storybook/react";
 // biome-ignore lint/correctness/noUnusedImports: <explanation>
-import React from "react";
+import React, { Suspense } from "react";
+import { RootProvider } from "../src/providers";
 
 initialize({ onUnhandledRequest: "bypass" });
 
@@ -35,9 +35,11 @@ const preview: Preview = {
   decorators: [
     (Story) => (
       <RootProvider>
-        <SBErrorBoundary>
-          <Story />
-        </SBErrorBoundary>
+        <SbErrorBoundary>
+          <Suspense fallback="loading...">
+            <Story />
+          </Suspense>
+        </SbErrorBoundary>
       </RootProvider>
     ),
   ],
