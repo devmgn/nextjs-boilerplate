@@ -7719,13 +7719,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql@npm:^16.8.1":
-  version: 16.9.0
-  resolution: "graphql@npm:16.9.0"
-  checksum: 10c0/a8850f077ff767377237d1f8b1da2ec70aeb7623cdf1dfc9e1c7ae93accc0c8149c85abe68923be9871a2934b1bce5a2496f846d4d56e1cfb03eaaa7ddba9b6a
-  languageName: node
-  linkType: hard
-
 "gzip-size@npm:^6.0.0":
   version: 6.0.0
   resolution: "gzip-size@npm:6.0.0"
@@ -9881,9 +9874,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:2.3.5":
-  version: 2.3.5
-  resolution: "msw@npm:2.3.5"
+"msw@npm:2.4.0":
+  version: 2.4.0
+  resolution: "msw@npm:2.4.0"
   dependencies:
     "@bundled-es-modules/cookie": "npm:^2.0.0"
     "@bundled-es-modules/statuses": "npm:^1.0.1"
@@ -9894,7 +9887,6 @@ __metadata:
     "@types/cookie": "npm:^0.6.0"
     "@types/statuses": "npm:^2.0.4"
     chalk: "npm:^4.1.2"
-    graphql: "npm:^16.8.1"
     headers-polyfill: "npm:^4.0.2"
     is-node-process: "npm:^1.2.0"
     outvariant: "npm:^1.4.2"
@@ -9905,11 +9897,13 @@ __metadata:
   peerDependencies:
     typescript: ">= 4.7.x"
   peerDependenciesMeta:
+    graphql:
+      optional: true
     typescript:
       optional: true
   bin:
     msw: cli/index.js
-  checksum: 10c0/f944d8eb67ccdcf74aba0ce433395a9616420b8b36d43f033635817ef7535553c7bf6854392a95b093546e3481ca99e9017525b6c0bd02f51528b669e672214d
+  checksum: 10c0/b639a22dd26e0cd8ba062f82b6a33abb365b393f20fd07cd7cdf30c9e89cdfdc21774620aba1648da7b810e390e8ff6a8de9193b64152e2c00344db072b26bc4
   languageName: node
   linkType: hard
 
@@ -10098,7 +10092,7 @@ __metadata:
     lint-staged: "npm:15.2.9"
     lodash-es: "npm:4.17.21"
     lucide-react: "npm:0.436.0"
-    msw: "npm:2.3.5"
+    msw: "npm:2.4.0"
     msw-storybook-addon: "npm:2.0.3"
     next: "npm:15.0.0-rc.0"
     next-compose-plugins: "npm:2.2.1"
