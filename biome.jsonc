@@ -16,13 +16,6 @@
       "all": true,
       // @see https://biomejs.dev/linter/rules/#nursery
       "nursery": {
-        "all": true,
-        "noConsole": "off",
-        "useImportExtensions": "off",
-        "noReactSpecificProps": "off",
-        "noExportedImports": "off",
-        "noUndeclaredDependencies": "off",
-        "useImportRestrictions": "off",
         "useSortedClasses": {
           "level": "error",
           "options": {
