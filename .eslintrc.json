@@ -1,0 +1,22 @@
+{
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "import/newline-after-import": "error",
+    "lines-around-directive": "error",
+    "next/no-img-element": "off",
+    "no-multiple-empty-lines": "error",
+    "prefer-template": "error",
+    "react/jsx-curly-brace-presence": "error",
+    "react/jsx-sort-props": "error"
+  },
+  "overrides": [
+    {
+      "files": ["**/?(*.)+(stories).[tj]s?(x)"],
+      "extends": ["plugin:storybook/recommended"],
+      "rules": {
+        "no-console": "off"
+      }
+    }
+  ],
+  "ignorePatterns": ["src/components/ui/**/**/*"]
+}

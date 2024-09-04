@@ -1,7 +1,7 @@
 import { APP_NAME, DEFAULT_DESCRIPTION } from "@/config/env";
 import { RootProvider } from "@/providers";
-import "./globals.css";
 import type { Metadata, Viewport } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: APP_NAME,
