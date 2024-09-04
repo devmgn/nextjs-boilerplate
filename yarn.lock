@@ -5484,9 +5484,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-plugin-react-compiler@npm:0.0.0-experimental-4e0eccf-20240830":
-  version: 0.0.0-experimental-4e0eccf-20240830
-  resolution: "babel-plugin-react-compiler@npm:0.0.0-experimental-4e0eccf-20240830"
+"babel-plugin-react-compiler@npm:0.0.0-experimental-4e0eccf-20240903":
+  version: 0.0.0-experimental-4e0eccf-20240903
+  resolution: "babel-plugin-react-compiler@npm:0.0.0-experimental-4e0eccf-20240903"
   dependencies:
     "@babel/generator": "npm:7.2.0"
     "@babel/types": "npm:^7.19.0"
@@ -5495,7 +5495,7 @@ __metadata:
     pretty-format: "npm:^24"
     zod: "npm:^3.22.4"
     zod-validation-error: "npm:^2.1.0"
-  checksum: 10c0/6de628038885a361b8444a6f8e9fde585a28a6d60ca91be39cb4631ea57eb1d98932db632cbbcda62cd178f80ef1a25ad67a4d81e312a9f7227ee1e7c5a33875
+  checksum: 10c0/b3722416691a33e83b65bfd3cfc7e0616e3759b64910e83dd7af93a55ad9bfad306c6a42a11c60c837cd62c169936e8c41962785e4465d7ec4947fa5c65cec50
   languageName: node
   linkType: hard
 
@@ -11408,7 +11408,7 @@ __metadata:
     "@types/react": "npm:types-react@rc"
     "@types/react-dom": "npm:types-react-dom@rc"
     autoprefixer: "npm:10.4.20"
-    babel-plugin-react-compiler: "npm:0.0.0-experimental-4e0eccf-20240830"
+    babel-plugin-react-compiler: "npm:0.0.0-experimental-4e0eccf-20240903"
     chromatic: "npm:11.7.1"
     class-variance-authority: "npm:0.7.0"
     clsx: "npm:2.1.1"
@@ -11427,8 +11427,8 @@ __metadata:
     next: "npm:15.0.0-canary.136"
     next-compose-plugins: "npm:2.2.1"
     postcss: "npm:8.4.45"
-    react: "npm:19.0.0-rc-e56f4ae3-20240830"
-    react-dom: "npm:19.0.0-rc-e56f4ae3-20240830"
+    react: "npm:19.0.0-rc-fb9a90fa48-20240614"
+    react-dom: "npm:19.0.0-rc-fb9a90fa48-20240614"
     react-hook-form: "npm:7.53.0"
     react-use: "npm:17.5.1"
     storybook: "npm:8.2.9"
@@ -12672,14 +12672,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:19.0.0-rc-e56f4ae3-20240830":
-  version: 19.0.0-rc-e56f4ae3-20240830
-  resolution: "react-dom@npm:19.0.0-rc-e56f4ae3-20240830"
+"react-dom@npm:19.0.0-rc-fb9a90fa48-20240614":
+  version: 19.0.0-rc-fb9a90fa48-20240614
+  resolution: "react-dom@npm:19.0.0-rc-fb9a90fa48-20240614"
   dependencies:
-    scheduler: "npm:0.25.0-rc-e56f4ae3-20240830"
+    scheduler: "npm:0.25.0-rc-fb9a90fa48-20240614"
   peerDependencies:
-    react: 19.0.0-rc-e56f4ae3-20240830
-  checksum: 10c0/001067df956a6782b95c99580f628bfb6a5a52c37150091630401f5548f17b2fc9fb5170ee1964a4b0e7329a5d9eb0ea0ea3d0067f58e27c17309e7f8593e43b
+    react: 19.0.0-rc-fb9a90fa48-20240614
+  checksum: 10c0/ab4f49752f71fcf3de910af463d3ec4f2ea17777dbd854df7f08987b1ae4d91e5b59a1f5998063f68c7db3af06e9cb67f26a57f0e78bb71c28884ef5029edf0d
   languageName: node
   linkType: hard
 
@@ -12840,10 +12840,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:19.0.0-rc-e56f4ae3-20240830":
-  version: 19.0.0-rc-e56f4ae3-20240830
-  resolution: "react@npm:19.0.0-rc-e56f4ae3-20240830"
-  checksum: 10c0/43dac4315ba43f939e9c179ff38d7879e82a71fc1d81c31a025664f083733871f9bcf8ad3dcdb24a93974cfa778a5d6a2fbc698f5ea084076943de8700e5b469
+"react@npm:19.0.0-rc-fb9a90fa48-20240614":
+  version: 19.0.0-rc-fb9a90fa48-20240614
+  resolution: "react@npm:19.0.0-rc-fb9a90fa48-20240614"
+  checksum: 10c0/99c3d3398d46c8c704c0deb04160f5a7c9cf2ff785a777fb0f1a4d0c91ade044c4d50cd52e008b4c45623eaa8f4d18a80272444df4972a2cc696bf35ef3e59b0
   languageName: node
   linkType: hard
 
@@ -13380,10 +13380,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:0.25.0-rc-e56f4ae3-20240830":
-  version: 0.25.0-rc-e56f4ae3-20240830
-  resolution: "scheduler@npm:0.25.0-rc-e56f4ae3-20240830"
-  checksum: 10c0/18db0871fe83f5e25b7f8fe08e4732d1f7b2e246c91be4fa65b833f62f6dcf8d65a39df59b9000b0b5bc5c9f5626985847305d7bc939b6ba846279045676ed40
+"scheduler@npm:0.25.0-rc-fb9a90fa48-20240614":
+  version: 0.25.0-rc-fb9a90fa48-20240614
+  resolution: "scheduler@npm:0.25.0-rc-fb9a90fa48-20240614"
+  checksum: 10c0/efd80573e35479d0e47e864ba5747579be2a8b20cfb61f32bcb17a8b945711d2337dd7f92ac6373f3128ed20a8915624dc82fda6b7f761aab352692a6445d411
   languageName: node
   linkType: hard
 
