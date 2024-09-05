@@ -45,4 +45,5 @@ const preview: Preview = {
   ],
 };
 
+// biome-ignore lint/style/noDefaultExport: <explanation>
 export default preview;
