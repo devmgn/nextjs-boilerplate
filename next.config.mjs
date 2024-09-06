@@ -40,6 +40,7 @@ const nextConfig = {
   webpack: createSvgrWebpackConfig,
 };
 
+// biome-ignore lint/style/noDefaultExport: <explanation>
 export default withPlugins(
   [withBundleAnalyzer({ enabled: process.env.ANALYZE === "true" })],
   nextConfig,
