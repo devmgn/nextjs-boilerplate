@@ -74,16 +74,16 @@
     line-break: strict;
   }
 
-    /** 以下タグでのダブルタップを防ぐ **/
-    a,
-    area,
-    button,
-    [role='button'],
-    input:not([type='range']),
-    label,
-    select,
-    summary,
-    textarea {
-      touch-action: manipulation;
-    }
+  /** 以下タグでのダブルタップを防ぐ **/
+  a,
+  area,
+  button,
+  [role="button"],
+  input:not([type="range"]),
+  label,
+  select,
+  summary,
+  textarea {
+    touch-action: manipulation;
+  }
 }
