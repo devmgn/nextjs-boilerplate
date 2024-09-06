@@ -3868,37 +3868,37 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-query-devtools@npm:5.54.1":
-  version: 5.54.1
-  resolution: "@tanstack/react-query-devtools@npm:5.54.1"
+"@tanstack/react-query-devtools@npm:5.55.0":
+  version: 5.55.0
+  resolution: "@tanstack/react-query-devtools@npm:5.55.0"
   dependencies:
     "@tanstack/query-devtools": "npm:5.54.0"
   peerDependencies:
-    "@tanstack/react-query": ^5.54.1
+    "@tanstack/react-query": ^5.55.0
     react: ^18 || ^19
-  checksum: 10c0/66e2c604c0c4cc71a4bdf993986d8002ccad2cc39ecf1ee3303b360b000939e4a28d7e7c6b13e1381f9c843cb0627234837a5b744651708b8f7fda569ac638fb
+  checksum: 10c0/c14793f4edcac38a8d11bc6ecac9faab4e76d578ac2a63d150187c0d317e85975ea4a7cd68abecde24c8fd52122884306ce3ebcf76b0e7c450ea94bd513d5f20
   languageName: node
   linkType: hard
 
-"@tanstack/react-query-next-experimental@npm:5.54.1":
-  version: 5.54.1
-  resolution: "@tanstack/react-query-next-experimental@npm:5.54.1"
+"@tanstack/react-query-next-experimental@npm:5.55.0":
+  version: 5.55.0
+  resolution: "@tanstack/react-query-next-experimental@npm:5.55.0"
   peerDependencies:
-    "@tanstack/react-query": ^5.54.1
+    "@tanstack/react-query": ^5.55.0
     next: ^13 || ^14 || ^15
     react: ^18 || ^19
-  checksum: 10c0/f23a41027af198cd5d6f40b493bf1a5cb3d5ceffc186c8d021af244b05af867cf70646b446af6ee027fa021f98f799073cd5679fd405a0a4cb1a5264c3c62a69
+  checksum: 10c0/438a665e30300e73a16f4ccd7bb8ef4624dc50060cb3902d00688df52d8502202c9802b0f86a497083ab81e72e882f108648f117f939fdeaa4dac6ea3be42b3c
   languageName: node
   linkType: hard
 
-"@tanstack/react-query@npm:5.54.1":
-  version: 5.54.1
-  resolution: "@tanstack/react-query@npm:5.54.1"
+"@tanstack/react-query@npm:5.55.0":
+  version: 5.55.0
+  resolution: "@tanstack/react-query@npm:5.55.0"
   dependencies:
     "@tanstack/query-core": "npm:5.54.1"
   peerDependencies:
     react: ^18 || ^19
-  checksum: 10c0/d91aafb9b386b6a7eb21be1eb960b91ad60e672c35fa16d408b222e6d731705686a8be34f312afed0165be7945b5fd6f3adebcfa4b920e00e1f5e7cfdcdb35e6
+  checksum: 10c0/77097962dcf0bd2c9e73dbf6459c95b956e949233feeb7bf53e6e0ef7238be8eee67b2b328660a1302daef646c6090928dca5bfbc10386a4e70ab4649b1eb3e2
   languageName: node
   linkType: hard
 
@@ -5536,9 +5536,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-plugin-react-compiler@npm:0.0.0-experimental-4e0eccf-20240903":
-  version: 0.0.0-experimental-4e0eccf-20240903
-  resolution: "babel-plugin-react-compiler@npm:0.0.0-experimental-4e0eccf-20240903"
+"babel-plugin-react-compiler@npm:0.0.0-experimental-7449567-20240904":
+  version: 0.0.0-experimental-7449567-20240904
+  resolution: "babel-plugin-react-compiler@npm:0.0.0-experimental-7449567-20240904"
   dependencies:
     "@babel/generator": "npm:7.2.0"
     "@babel/types": "npm:^7.19.0"
@@ -5547,7 +5547,7 @@ __metadata:
     pretty-format: "npm:^24"
     zod: "npm:^3.22.4"
     zod-validation-error: "npm:^2.1.0"
-  checksum: 10c0/b3722416691a33e83b65bfd3cfc7e0616e3759b64910e83dd7af93a55ad9bfad306c6a42a11c60c837cd62c169936e8c41962785e4465d7ec4947fa5c65cec50
+  checksum: 10c0/8813485f3327a66f6a3cf68e06600c4649b1d8c52edc0d3f6e1cf750510aab363693532eccbb798cd08069e8b3f245e9c3435df043bbf4006052d7f50e180ddf
   languageName: node
   linkType: hard
 
@@ -10800,12 +10800,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:0.438.0":
-  version: 0.438.0
-  resolution: "lucide-react@npm:0.438.0"
+"lucide-react@npm:0.439.0":
+  version: 0.439.0
+  resolution: "lucide-react@npm:0.439.0"
   peerDependencies:
     react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0-rc
-  checksum: 10c0/d5e9e9130e301b3231fffd3e5fab85975a7523fb5ab160a8125ad6937de713af46d0ac7a96c1ba532b9ff39a14d940aefa9ea41cb30123ff7f8ce88f44cfe2f1
+  checksum: 10c0/153c6da6a1bdcc03c47080b00a50a341b7e485ccbb479a742c0fb606355acf93c136630626dad2d57cafe1f5c691dd4f2fcd0f2b7c813e7c9e0e1f065cf62be0
   languageName: node
   linkType: hard
 
@@ -11448,9 +11448,9 @@ __metadata:
     "@svgr/webpack": "npm:8.1.0"
     "@tailwindcss/container-queries": "npm:0.1.1"
     "@tailwindcss/typography": "npm:0.5.15"
-    "@tanstack/react-query": "npm:5.54.1"
-    "@tanstack/react-query-devtools": "npm:5.54.1"
-    "@tanstack/react-query-next-experimental": "npm:5.54.1"
+    "@tanstack/react-query": "npm:5.55.0"
+    "@tanstack/react-query-devtools": "npm:5.55.0"
+    "@tanstack/react-query-next-experimental": "npm:5.55.0"
     "@testing-library/jest-dom": "npm:6.5.0"
     "@testing-library/react": "npm:16.0.1"
     "@testing-library/user-event": "npm:14.5.2"
@@ -11460,7 +11460,7 @@ __metadata:
     "@types/react": "npm:types-react@rc"
     "@types/react-dom": "npm:types-react-dom@rc"
     autoprefixer: "npm:10.4.20"
-    babel-plugin-react-compiler: "npm:0.0.0-experimental-4e0eccf-20240903"
+    babel-plugin-react-compiler: "npm:0.0.0-experimental-7449567-20240904"
     chromatic: "npm:11.7.1"
     class-variance-authority: "npm:0.7.0"
     clsx: "npm:2.1.1"
@@ -11473,7 +11473,7 @@ __metadata:
     ky: "npm:1.7.2"
     lint-staged: "npm:15.2.10"
     lodash-es: "npm:4.17.21"
-    lucide-react: "npm:0.438.0"
+    lucide-react: "npm:0.439.0"
     msw: "npm:2.4.2"
     msw-storybook-addon: "npm:2.0.3"
     next: "npm:15.0.0-rc.0"
