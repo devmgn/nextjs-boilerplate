@@ -1,16 +1,8 @@
-import {
-  type InferInput,
-  email,
-  maxLength,
-  minLength,
-  object,
-  pipe,
-  string,
-} from "valibot";
+import z from "zod";
 
-export const LoginSchema = object({
-  email: pipe(string(), maxLength(8), email()),
-  password: pipe(string(), minLength(8), maxLength(255)),
+export const LoginSchema = z.object({
+  email: z.string().email().max(8),
+  password: z.string().min(8).max(255),
 });
 
-export type LoginRequest = InferInput<typeof LoginSchema>;
+export type LoginRequest = z.infer<typeof LoginSchema>;
