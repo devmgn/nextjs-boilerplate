@@ -1,4 +1,4 @@
-import { Hydrator } from "@/components";
+import { Hydrator } from "@/components/Hydrator";
 import Link from "next/link";
 import { pokemon } from "../components/getPokemonList";
 import { PokemonList } from "../components/pokemonList";
