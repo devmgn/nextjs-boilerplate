@@ -10,7 +10,7 @@ export default function Ssr() {
       <p>
         <Link href="/tanstack-query">Return</Link>
       </p>
-      <Hydrator fetchQueryOptions={pokemon.list()}>
+      <Hydrator fetchQueryOptions={[pokemon.list()]}>
         <PokemonList />
       </Hydrator>
     </>

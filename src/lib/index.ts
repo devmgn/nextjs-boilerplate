@@ -1,3 +1,4 @@
+import { getQueryClient } from "./getQueryClient";
 import { ky } from "./ky";
 
-export { ky };
+export { getQueryClient, ky };

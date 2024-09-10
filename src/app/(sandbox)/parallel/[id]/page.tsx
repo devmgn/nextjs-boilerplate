@@ -14,7 +14,7 @@ export default function DynamicPage(props: DynamicPageProps) {
   } = props;
 
   return (
-    <Hydrator fetchQueryOptions={post.item(id)}>
+    <Hydrator fetchQueryOptions={[post.item(id)]}>
       <PostModal id={id} />
     </Hydrator>
   );

@@ -81,11 +81,7 @@ const config = {
       },
     },
   },
-  plugins: [
-    require("@tailwindcss/container-queries"),
-    require("@tailwindcss/typography"),
-    require("tailwindcss-animate"),
-  ],
+  plugins: [require("tailwindcss-animate")],
 } satisfies Config;
 
 // biome-ignore lint/style/noDefaultExport: <explanation>
