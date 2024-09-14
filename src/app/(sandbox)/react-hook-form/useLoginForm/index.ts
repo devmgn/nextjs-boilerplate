@@ -12,8 +12,8 @@ export const useLoginForm = () => {
     resolver: valibotResolver(LoginSchema),
   });
 
-  const submit = form.handleSubmit((value) => {
-    console.warn(value);
+  const submit = form.handleSubmit((_value) => {
+    // Do something
   });
 
   return { form, submit };
