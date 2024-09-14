@@ -14,6 +14,13 @@
     "enabled": true,
     "rules": {
       "all": true,
+      "correctness": {
+        "noUndeclaredDependencies": "off",
+        "useImportExtensions": "off"
+      },
+      "suspicious": {
+        "noReactSpecificProps": "off"
+      },
       // @see https://biomejs.dev/linter/rules/#nursery
       "nursery": {
         "useSortedClasses": {
