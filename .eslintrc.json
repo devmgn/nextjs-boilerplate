@@ -18,6 +18,15 @@
       "rules": {
         "no-console": "off"
       }
+    },
+    {
+      "files": ["**/?(*.)+(spec|test).[tj]s?(x)"],
+      "extends": ["plugin:vitest/legacy-recommended"],
+      "rules": {
+        "no-console": "off",
+        "vitest/consistent-test-it": [2, { "fn": "test" }],
+        "vitest/require-top-level-describe": ["error"]
+      }
     }
   ],
   "ignorePatterns": ["src/components/ui/**/**/*"]

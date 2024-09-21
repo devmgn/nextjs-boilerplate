@@ -69,7 +69,7 @@ const testPatterns: TestPatterns = [
 
 describe("isKeyOf", () => {
   test.each(testPatterns)(
-    "value: %p, enumObject: %p,expected: %p",
+    "value: %s, enumObject: %s, expected: %s",
     (value, enumObject, expected) => {
       expect(isValueOf(value, enumObject)).toBe(expected);
     },

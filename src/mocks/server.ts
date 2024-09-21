@@ -1,20 +1,13 @@
-import type { RequestHandler } from "msw";
 import { setupServer } from "msw/node";
+import { afterAll, afterEach, beforeAll } from "vitest";
 
-export const createServer = (...handlers: RequestHandler[]) => {
-  const server = setupServer(...handlers);
+export const server = setupServer();
 
-  beforeAll(() => {
-    server.listen();
-  });
+// Start server before all tests
+beforeAll(() => server.listen({ onUnhandledRequest: "error" }));
 
-  afterEach(() => {
-    server.resetHandlers();
-  });
+//  Close server after all tests
+afterAll(() => server.close());
 
-  afterAll(() => {
-    server.close();
-  });
-
-  return server;
-};
+// Reset handlers after each test `important for test isolation`
+afterEach(() => server.resetHandlers());

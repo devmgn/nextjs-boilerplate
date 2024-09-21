@@ -3,7 +3,7 @@ import type { RenderHookResult } from "@testing-library/react";
 import { useDebouncedValue } from ".";
 
 describe("useDebouncedValue", () => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
 
   const initialProps = {
     value: "initial value",
@@ -19,7 +19,7 @@ describe("useDebouncedValue", () => {
   let hookResult: RenderHookResult<string, typeof initialProps>;
 
   beforeEach(() => {
-    jest.clearAllTimers();
+    vi.clearAllTimers();
     hookResult = renderHook(
       ({ value, delay }) => useDebouncedValue(value, delay),
       {
@@ -31,7 +31,7 @@ describe("useDebouncedValue", () => {
   test("delayに設定された時間未経過のとき、更新された値が返却されないこと", () => {
     hookResult.rerender(updatePros);
     act(() => {
-      jest.advanceTimersByTime(500);
+      vi.advanceTimersByTime(500);
     });
     expect(hookResult.result.current).toBe(initialProps.value);
   });
@@ -39,7 +39,7 @@ describe("useDebouncedValue", () => {
   test("delayに設定された時間経過したとき、更新された値が返却されること", () => {
     hookResult.rerender(updatePros);
     act(() => {
-      jest.advanceTimersByTime(initialProps.delay);
+      vi.advanceTimersByTime(initialProps.delay);
     });
     expect(hookResult.result.current).toBe(updatePros.value);
   });
@@ -48,13 +48,13 @@ describe("useDebouncedValue", () => {
     hookResult.rerender(updatePros);
 
     act(() => {
-      jest.advanceTimersByTime(initialProps.delay - 1);
+      vi.advanceTimersByTime(initialProps.delay - 1);
     });
 
     expect(hookResult.result.current).toBe(initialProps.value);
 
     act(() => {
-      jest.advanceTimersByTime(1);
+      vi.advanceTimersByTime(1);
     });
 
     expect(hookResult.result.current).toBe(updatePros.value);

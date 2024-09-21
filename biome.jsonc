@@ -33,23 +33,12 @@
       }
     }
   },
-  "javascript": {
-    "globals": [
-      "React",
-      "jest",
-      "it",
-      "test",
-      "describe",
-      "expect",
-      "before",
-      "beforeAll",
-      "beforeEach",
-      "after",
-      "afterAll",
-      "afterEach"
-    ]
-  },
   "overrides": [
+    {
+      // tsxはReactをグローバル変数として許容
+      "include": ["*.tsx", "*.d.ts"],
+      "javascript": { "globals": ["React"] }
+    },
     {
       "include": [
         "default.tsx",
@@ -70,8 +59,28 @@
             "noConsoleLog": "off",
             "noEmptyBlockStatements": "off"
           },
-          "style": { "noDefaultExport": "off" }
+          "style": {
+            "noDefaultExport": "off",
+            "useFilenamingConvention": "off"
+          }
         }
+      }
+    },
+    {
+      // testファイルはjestのグローバル変数を許容
+      "include": ["*.test.ts", "*.test.tsx", "*.spec.ts", "*.spec.tsx"],
+      "javascript": {
+        "globals": [
+          "afterAll",
+          "afterEach",
+          "beforeAll",
+          "beforeEach",
+          "describe",
+          "expect",
+          "it",
+          "test",
+          "vi"
+        ]
       }
     }
   ],
