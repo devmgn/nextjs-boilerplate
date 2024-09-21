@@ -22,7 +22,8 @@
       "@/*": ["./src/*"]
     },
     "forceConsistentCasingInFileNames": true,
-    "noErrorTruncation": true
+    "noErrorTruncation": true,
+    "types": ["vitest/globals"]
   },
   "include": [
     "src/types/svg.d.ts",

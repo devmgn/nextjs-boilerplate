@@ -1,10 +1,10 @@
 import { asyncDebounce } from ".";
 
 describe("asyncDebounce", () => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
 
   test("debounce完了後に実行されることを確認", async () => {
-    const mockFn = jest.fn((n: number) => n);
+    const mockFn = vi.fn((n: number) => n);
     const debouncedFn = asyncDebounce(mockFn, 1000);
 
     const promise = debouncedFn(2);
@@ -19,7 +19,7 @@ describe("asyncDebounce", () => {
     expect(mockFn).not.toHaveBeenCalled();
     expect(result).toBeUndefined();
 
-    jest.advanceTimersByTime(1000);
+    vi.advanceTimersByTime(1000);
 
     await promise;
     expect(result).toBe(2);
