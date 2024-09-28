@@ -1,7 +1,7 @@
 import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 // biome-ignore lint/style/useImportType: <explanation>
 import React from "react";
-import { Button } from "../src/components/ui/button";
+import { Button } from "../../src/components/ui/button";
 
 export function SbErrorBoundary(
   props: Omit<

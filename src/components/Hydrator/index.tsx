@@ -1,5 +1,8 @@
-import { getQueryClient } from "@/lib";
-import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
+import {
+  HydrationBoundary,
+  QueryClient,
+  dehydrate,
+} from "@tanstack/react-query";
 import type {
   DefaultError,
   FetchQueryOptions,
@@ -33,7 +36,7 @@ export async function Hydrator<
   hydrationBoundaryProps,
   children,
 }: PrefetchQueryProps<TsQueryFnData, TsError, TsData, TsQueryKey>) {
-  const queryClient = getQueryClient();
+  const queryClient = new QueryClient();
   await Promise.all(fetchQueryOptions.map((o) => queryClient.prefetchQuery(o)));
 
   return (

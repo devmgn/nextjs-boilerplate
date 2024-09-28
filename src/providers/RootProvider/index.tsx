@@ -1,5 +1,5 @@
-import { QueryClientProvider } from "../QueryClientProvider";
+import { TanstackQueryProvider } from "../TanstackQueryProvider";
 
 export function RootProvider({ children }: React.PropsWithChildren) {
-  return <QueryClientProvider>{children}</QueryClientProvider>;
+  return <TanstackQueryProvider>{children}</TanstackQueryProvider>;
 }
