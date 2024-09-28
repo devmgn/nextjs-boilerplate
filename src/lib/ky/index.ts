@@ -6,6 +6,7 @@ import {
 import Ky from "ky";
 
 export const ky = Ky.create({
+  retry: 0,
   hooks: {
     beforeRequest: [requestToSnakeCase],
     afterResponse: [responseToCamelCase],
