@@ -1,4 +1,4 @@
-import { valibotResolver } from "@hookform/resolvers/valibot";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { LoginSchema } from "./schema";
 import type { LoginRequest } from "./schema";
@@ -9,7 +9,7 @@ export const useLoginForm = () => {
       email: "",
       password: "",
     },
-    resolver: valibotResolver(LoginSchema),
+    resolver: zodResolver(LoginSchema),
   });
 
   const submit = form.handleSubmit((_value) => {
