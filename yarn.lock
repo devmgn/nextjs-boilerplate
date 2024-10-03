@@ -4452,22 +4452,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/eslint-plugin@npm:1.1.4":
-  version: 1.1.4
-  resolution: "@vitest/eslint-plugin@npm:1.1.4"
+"@vitest/eslint-plugin@npm:1.1.5":
+  version: 1.1.5
+  resolution: "@vitest/eslint-plugin@npm:1.1.5"
   peerDependencies:
     "@typescript-eslint/utils": ">= 8.0"
     eslint: ">= 8.57.0"
     typescript: ">= 5.0.0"
     vitest: "*"
   peerDependenciesMeta:
-    "@typescript-eslint/utils":
-      optional: true
     typescript:
       optional: true
-    vitest:
-      optional: true
-  checksum: 10c0/e1de76593acefa063498081978746750fcd4906f9de31a463e7675b98d44b0e600c1b9d54d1873f6c01efcf2230184f414d3a4e9a7933e7105ae60c0ea18591c
+  checksum: 10c0/83fbaba361f2582647174812af65a5c97f349e923ed2a1b32b93bf90046156104c3e27cb38f715ea311d562119e455a79f8e40e885ef56831c45a81afe4266d4
   languageName: node
   linkType: hard
 
@@ -10288,7 +10284,7 @@ __metadata:
     "@types/react-dom": "npm:types-react-dom@rc"
     "@vitejs/plugin-react": "npm:4.3.2"
     "@vitest/coverage-v8": "npm:2.1.2"
-    "@vitest/eslint-plugin": "npm:1.1.4"
+    "@vitest/eslint-plugin": "npm:1.1.5"
     autoprefixer: "npm:10.4.20"
     babel-plugin-react-compiler: "npm:0.0.0"
     chromatic: "npm:11.11.0"
