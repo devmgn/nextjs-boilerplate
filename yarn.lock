@@ -3840,14 +3840,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/eslint-plugin-query@npm:5.58.1":
-  version: 5.58.1
-  resolution: "@tanstack/eslint-plugin-query@npm:5.58.1"
+"@tanstack/eslint-plugin-query@npm:5.59.1":
+  version: 5.59.1
+  resolution: "@tanstack/eslint-plugin-query@npm:5.59.1"
   dependencies:
     "@typescript-eslint/utils": "npm:^8.3.0"
   peerDependencies:
     eslint: ^8.57.0 || ^9.0.0
-  checksum: 10c0/81300bf159aaafe778d61dd06e294cd6b4121d1107bb5691f6ea8e4551c3dc7c371064fa220c2895f658a9f69b5951db1ebb24a6f4806f5fd6eefa53f80fb8bd
+  checksum: 10c0/98b2b0992391fd69e3447c7405e00efa66f26470c3f2a60c73bf1407a9747160f51c0c63d41eee84762308991572d19bdd8c016944c8f85ba1142041771feaad
   languageName: node
   linkType: hard
 
@@ -4559,9 +4559,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/eslint-plugin@npm:1.1.5":
-  version: 1.1.5
-  resolution: "@vitest/eslint-plugin@npm:1.1.5"
+"@vitest/eslint-plugin@npm:1.1.6":
+  version: 1.1.6
+  resolution: "@vitest/eslint-plugin@npm:1.1.6"
   peerDependencies:
     "@typescript-eslint/utils": ">= 8.0"
     eslint: ">= 8.57.0"
@@ -4570,7 +4570,7 @@ __metadata:
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/83fbaba361f2582647174812af65a5c97f349e923ed2a1b32b93bf90046156104c3e27cb38f715ea311d562119e455a79f8e40e885ef56831c45a81afe4266d4
+  checksum: 10c0/5a51b83ec553429466638609a928dfed90f792782166affe53a576ee502e0f8b1c0272b67492c747b730e6e7f2220a8f4964c68d43b14b14d02592ffc6848529
   languageName: node
   linkType: hard
 
@@ -10435,7 +10435,7 @@ __metadata:
     "@storybook/react": "npm:8.3.5"
     "@storybook/test": "npm:8.3.5"
     "@svgr/webpack": "npm:8.1.0"
-    "@tanstack/eslint-plugin-query": "npm:5.58.1"
+    "@tanstack/eslint-plugin-query": "npm:5.59.1"
     "@tanstack/react-query": "npm:5.59.0"
     "@tanstack/react-query-devtools": "npm:5.59.0"
     "@testing-library/jest-dom": "npm:6.5.0"
@@ -10447,7 +10447,7 @@ __metadata:
     "@types/react-dom": "npm:types-react-dom@rc"
     "@vitejs/plugin-react": "npm:4.3.2"
     "@vitest/coverage-v8": "npm:2.1.2"
-    "@vitest/eslint-plugin": "npm:1.1.5"
+    "@vitest/eslint-plugin": "npm:1.1.6"
     autoprefixer: "npm:10.4.20"
     babel-plugin-react-compiler: "npm:0.0.0-experimental-27e0f40-20241002"
     chromatic: "npm:11.11.0"
