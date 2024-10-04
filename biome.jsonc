@@ -19,7 +19,8 @@
         "useImportExtensions": "off"
       },
       "suspicious": {
-        "noReactSpecificProps": "off"
+        "noReactSpecificProps": "off",
+        "noConsoleLog": "off"
       },
       // @see https://biomejs.dev/linter/rules/#nursery
       "nursery": {

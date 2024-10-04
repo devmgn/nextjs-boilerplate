@@ -1,3 +1,4 @@
+import { createMiddlewareChain } from "./createMiddlewareChain";
 import { ky } from "./ky";
 
-export { ky };
+export { createMiddlewareChain, ky };
