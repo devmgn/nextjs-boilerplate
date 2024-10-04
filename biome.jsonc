@@ -20,6 +20,7 @@
       },
       "suspicious": {
         "noReactSpecificProps": "off",
+        // deprecatedなので将来的に削除すること
         "noConsoleLog": "off"
       },
       // @see https://biomejs.dev/linter/rules/#nursery
