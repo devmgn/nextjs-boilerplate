@@ -1,9 +1,6 @@
-// @ts-nocheck
-import {
-  requestToSnakeCase,
-  responseToCamelCase,
-} from "@alice-health/ky-hooks-change-case";
 import Ky from "ky";
+import { requestToSnakeCase } from "./requestToSnakeCase";
+import { responseToCamelCase } from "./responseToCamelCase";
 
 export const ky = Ky.create({
   retry: 0,
