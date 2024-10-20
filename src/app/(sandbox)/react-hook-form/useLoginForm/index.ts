@@ -12,7 +12,7 @@ export const useLoginForm = () => {
     resolver: zodResolver(LoginSchema),
   });
 
-  const submit = form.handleSubmit((_value) => {
+  const submit = form.handleSubmit(() => {
     // Do something
   });
 
