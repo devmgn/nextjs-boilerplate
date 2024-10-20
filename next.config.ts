@@ -1,8 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/ban-ts-comment*/
 import withBundleAnalyzer from "@next/bundle-analyzer";
-import withPlugins from "next-compose-plugins";
+import type { NextConfig } from "next";
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
   poweredByHeader: false,
   compiler: {
     reactRemoveProperties: true,
@@ -14,17 +14,18 @@ const nextConfig = {
 };
 
 // biome-ignore lint/style/noDefaultExport: <explanation>
-export default withPlugins(
-  [withBundleAnalyzer({ enabled: process.env.ANALYZE === "true" })],
-  nextConfig,
-);
+export default withBundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+})(nextConfig);
 
 /**
  * Modify the Webpack configuration to handle SVG imports in a special way.
  * @see https://react-svgr.com/docs/next/
  */
-export function createSvgrWebpackConfig(config) {
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+export function createSvgrWebpackConfig(config: any) {
   // Grab the existing rule that handles SVG imports
+  // @ts-expect-error
   const fileLoaderRule = config.module.rules.find((rule) =>
     rule.test?.test?.(".svg"),
   );

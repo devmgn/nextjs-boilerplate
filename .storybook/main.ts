@@ -1,7 +1,7 @@
 // biome-ignore lint/correctness/noNodejsModules: <explanation>
 import path from "node:path";
 import type { StorybookConfig } from "@storybook/nextjs";
-import { createSvgrWebpackConfig } from "../next.config.mjs";
+import { createSvgrWebpackConfig } from "../next.config";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
