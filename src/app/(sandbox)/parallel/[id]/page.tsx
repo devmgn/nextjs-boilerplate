@@ -3,15 +3,13 @@ import { PostModal } from "../components/PostModal";
 import { post } from "../components/getPost";
 
 interface DynamicPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-export default function DynamicPage(props: DynamicPageProps) {
-  const {
-    params: { id },
-  } = props;
+export default async function DynamicPage(props: DynamicPageProps) {
+  const { id } = await props.params;
 
   return (
     <Hydrator fetchQueryOptions={[post.item(id)]}>

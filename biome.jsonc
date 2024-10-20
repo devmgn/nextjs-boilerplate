@@ -20,6 +20,10 @@
       },
       "suspicious": {
         "noReactSpecificProps": "off",
+        "noConsole": {
+          "level": "warn",
+          "options": { "allow": ["warn", "error"] }
+        },
         // deprecatedなので将来的に削除すること
         "noConsoleLog": "off"
       },

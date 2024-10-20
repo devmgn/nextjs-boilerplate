@@ -1,1 +1,1 @@
-export { type Middleware } from "./middleware";
+export type { Middleware } from "./middleware";
