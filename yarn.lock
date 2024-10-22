@@ -3974,12 +3974,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:22.7.7, @types/node@npm:^22.0.0, @types/node@npm:^22.5.5":
+"@types/node@npm:*, @types/node@npm:^22.0.0, @types/node@npm:^22.5.5":
   version: 22.7.7
   resolution: "@types/node@npm:22.7.7"
   dependencies:
     undici-types: "npm:~6.19.2"
   checksum: 10c0/07268a1e990ad9d9b1865092881317ea679a46eb6706d83a8874eec75fdddae6cfd6452e4e68b651561183e2a8f8548276f3155744bc402c2545978c19b70d65
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:22.7.8":
+  version: 22.7.8
+  resolution: "@types/node@npm:22.7.8"
+  dependencies:
+    undici-types: "npm:~6.19.2"
+  checksum: 10c0/3d3b3a2ec5a57ca4fd37b34dce415620993ca5f87cea2c728ffe73aa31446dbfe19c53171c478447bd7d78011ef4845a46ab2f0dc38e699cc75b3d100a60c690
   languageName: node
   linkType: hard
 
@@ -10069,7 +10078,7 @@ __metadata:
     "@testing-library/react": "npm:16.0.1"
     "@testing-library/user-event": "npm:14.5.2"
     "@types/lodash-es": "npm:4.17.12"
-    "@types/node": "npm:22.7.7"
+    "@types/node": "npm:22.7.8"
     "@types/react": "npm:types-react@rc"
     "@types/react-dom": "npm:types-react-dom@rc"
     "@vitejs/plugin-react": "npm:4.3.3"
