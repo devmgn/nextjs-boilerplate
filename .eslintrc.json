@@ -4,13 +4,15 @@
     "next/typescript",
     "plugin:@tanstack/eslint-plugin-query/recommended"
   ],
+  "plugins": ["react-compiler"],
   "rules": {
     "import/newline-after-import": "error",
     "lines-around-directive": "error",
     "next/no-img-element": "off",
     "no-multiple-empty-lines": "error",
     "react/jsx-curly-brace-presence": "error",
-    "react/jsx-sort-props": "error"
+    "react/jsx-sort-props": "error",
+    "react-compiler/react-compiler": "error"
   },
   "overrides": [
     {
