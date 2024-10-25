@@ -1,5 +1,5 @@
 import { debounce } from "lodash-es";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useIsComposing } from "../useIsComposing";
 
 /**
@@ -9,16 +9,20 @@ export const useDebouncedValue = <T>(value: T, wait = 300): T => {
   const [debouncedValue, setDebouncedValue] = useState<T>(value);
   const isComposing = useIsComposing();
 
-  const update = debounce((newValue: T) => {
-    setDebouncedValue(newValue);
-  }, wait);
+  const debouncedUpdate = useMemo(
+    () => debounce((newValue: T) => setDebouncedValue(newValue), wait),
+    [wait],
+  );
 
   useEffect(() => {
-    if (isComposing) {
-      return;
+    if (!isComposing) {
+      debouncedUpdate(value);
     }
-    update(value);
-  }, [isComposing, update, value]);
+
+    return () => {
+      debouncedUpdate.cancel();
+    };
+  }, [debouncedUpdate, isComposing, value]);
 
   return debouncedValue;
 };

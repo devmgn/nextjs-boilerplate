@@ -67,7 +67,7 @@ const testPatterns: TestPatterns = [
   ...invalidPatterns,
 ];
 
-describe("isKeyOf", () => {
+describe("isValueOf", () => {
   test.each(testPatterns)(
     "value: %s, enumObject: %s, expected: %s",
     (value, enumObject, expected) => {
