@@ -1,6 +1,10 @@
-export const isValueOf = <T extends object | unknown[]>(
+/**
+ * 指定された値が対象オブジェクトの値の1つであるかを判定するカスタムタイプガード関数
+ */
+export const isValueOf = <T extends object>(
   value: unknown,
-  enumObject: T,
-): value is keyof T => {
-  return Object.values(enumObject).includes(value);
+  enumObject: { [K in keyof T]: T[K] },
+): value is T[keyof T] => {
+  const valueSet = new Set(Object.values(enumObject));
+  return valueSet.has(value);
 };

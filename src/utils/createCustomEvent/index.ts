@@ -1,28 +1,32 @@
 /**
  * 指定されたタイプと初期化パラメータを使用してカスタムイベントを作成します。
  *
- * @template T - イベントのタイプ。GlobalEventHandlersEventMapのキーの一部である必要があります。
- * @param {T} type - 作成するイベントのタイプ。
- * @param {CustomEventInit<GlobalEventHandlersEventMap[T] extends CustomEvent<infer U> ? U : never>} eventInitDict - イベントの初期化パラメータ。
- * @returns {CustomEvent} 指定されたタイプと初期化パラメータを持つ新しいカスタムイベント。
+ * @template T - イベントのタイプ（GlobalEventHandlersEventMapのキー）
+ * @template D - イベントの詳細データの型
+ * @param {T} type - 作成するイベントのタイプ
+ * @param {CustomEventInit<D>} [eventInitDict] - イベントの初期化パラメータ（オプション）
+ * @returns {CustomEvent<D>} 新しいカスタムイベント
  *
  * @example
+ * // グローバル宣言
  * declare global {
  *   interface GlobalEventHandlersEventMap {
- *     customEventName: CustomEvent<{
- *       some: type;
- *     }>;
+ *     customEventName: CustomEvent<{ some: string }>;
  *   }
  * }
  *
+ * // 使用例
  * const event = createCustomEvent('customEventName', {
- *   detail: { some: 'value' },
+ *   detail: { some: 'value' }
  * });
  * document.dispatchEvent(event);
  */
-export const createCustomEvent = <T extends keyof GlobalEventHandlersEventMap>(
+export const createCustomEvent = <
+  T extends keyof GlobalEventHandlersEventMap,
+  D = GlobalEventHandlersEventMap[T] extends CustomEvent<infer U> ? U : never,
+>(
   type: T,
-  eventInitDict?: CustomEventInit<
-    GlobalEventHandlersEventMap[T] extends CustomEvent<infer U> ? U : never
-  >,
-): CustomEvent => new CustomEvent(type, eventInitDict);
+  eventInitDict?: CustomEventInit<D>,
+): CustomEvent<D> => {
+  return new CustomEvent(type, eventInitDict);
+};

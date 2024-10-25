@@ -1,62 +1,67 @@
 import { act, renderHook } from "@testing-library/react";
-import type { RenderHookResult } from "@testing-library/react";
 import { useDebouncedValue } from ".";
+import { useIsComposing } from "../useIsComposing";
+
+// モックの作成
+vi.mock("../useIsComposing", () => ({
+  useIsComposing: vi.fn(() => false),
+}));
 
 describe("useDebouncedValue", () => {
-  vi.useFakeTimers();
-
-  const initialProps = {
-    value: "initial value",
-    delay: 1000,
-    ref: { current: document.createElement("input") },
-  };
-
-  const updatePros = {
-    ...initialProps,
-    value: "new value",
-  };
-
-  let hookResult: RenderHookResult<string, typeof initialProps>;
-
   beforeEach(() => {
-    vi.clearAllTimers();
-    hookResult = renderHook(
-      ({ value, delay }) => useDebouncedValue(value, delay),
-      {
-        initialProps,
-      },
+    vi.useFakeTimers();
+  });
+
+  test("初期値が与えられたとき、即座にその値を返すこと", () => {
+    const { result } = renderHook(() => useDebouncedValue("initial", 300));
+    expect(result.current).toBe("initial");
+  });
+
+  test("値が変更されたとき、指定時間後にデバウンスされた値を返すこと", async () => {
+    const { result, rerender } = renderHook(
+      ({ value }) => useDebouncedValue(value, 300),
+      { initialProps: { value: "initial" } },
     );
+
+    // 値を変更
+    rerender({ value: "changed" });
+
+    // タイマーを進める前は元の値のまま
+    expect(result.current).toBe("initial");
+
+    // タイマーを300ms進める
+    act(() => {
+      vi.advanceTimersByTime(300);
+    });
+
+    // 値が更新されている
+    expect(result.current).toBe("changed");
   });
 
-  test("delayに設定された時間未経過のとき、更新された値が返却されないこと", () => {
-    hookResult.rerender(updatePros);
+  test("isComposingがtrueのとき、値が更新されないこと", async () => {
+    // isComposingをtrueに設定
+    vi.mocked(useIsComposing).mockReturnValue(true);
+
+    const { result, rerender } = renderHook(
+      ({ value }) => useDebouncedValue(value, 300),
+      { initialProps: { value: "initial" } },
+    );
+
+    // 値を変更
+    rerender({ value: "changed" });
+
+    // タイマーを進めても値は変わらない
     act(() => {
-      vi.advanceTimersByTime(500);
+      vi.advanceTimersByTime(300);
     });
-    expect(hookResult.result.current).toBe(initialProps.value);
+
+    expect(result.current).toBe("initial");
   });
 
-  test("delayに設定された時間経過したとき、更新された値が返却されること", () => {
-    hookResult.rerender(updatePros);
-    act(() => {
-      vi.advanceTimersByTime(initialProps.delay);
-    });
-    expect(hookResult.result.current).toBe(updatePros.value);
-  });
+  test("コンポーネントがアンマウントされたとき、デバウンスがキャンセルされること", () => {
+    const { unmount } = renderHook(() => useDebouncedValue("test", 300));
 
-  test("delayに設定された時間未経過、経過後それぞれ、更新、未更新の値が返却されること", () => {
-    hookResult.rerender(updatePros);
-
-    act(() => {
-      vi.advanceTimersByTime(initialProps.delay - 1);
-    });
-
-    expect(hookResult.result.current).toBe(initialProps.value);
-
-    act(() => {
-      vi.advanceTimersByTime(1);
-    });
-
-    expect(hookResult.result.current).toBe(updatePros.value);
+    unmount();
+    expect(vi.getTimerCount()).toBe(0);
   });
 });

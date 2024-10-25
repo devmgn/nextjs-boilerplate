@@ -1,4 +1,4 @@
-import { useState, useSyncExternalStore } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const COMPOSITION_EVENT_NAMES = [
   "compositionstart",
@@ -10,27 +10,38 @@ const COMPOSITION_EVENT_NAMES = [
  * テキストの編集中にユーザーがテキストの作成中かどうかを判定するカスタムフック
  */
 export const useIsComposing = (): boolean => {
-  const [isComposing, setIsComposing] = useState<boolean>(false);
+  const [isComposing, setIsComposing] = useState(false);
 
-  const handleComposition = ({ type }: CompositionEvent) => {
-    setIsComposing(type !== "compositionend");
-  };
+  const handleComposition = useCallback((event: CompositionEvent) => {
+    if (event.target instanceof Element) {
+      setIsComposing(event.type !== "compositionend");
+    }
+  }, []);
 
-  const subscribe = () => {
-    for (const eventName of COMPOSITION_EVENT_NAMES) {
-      document.addEventListener(eventName, handleComposition);
+  useEffect(() => {
+    const { activeElement } = document;
+    if (!(activeElement instanceof HTMLElement)) {
+      return;
     }
 
-    return () => {
+    const addListeners = (element: HTMLElement) => {
       for (const eventName of COMPOSITION_EVENT_NAMES) {
-        document.removeEventListener(eventName, handleComposition);
+        element.addEventListener(eventName, handleComposition);
       }
     };
-  };
 
-  return useSyncExternalStore<boolean>(
-    subscribe,
-    () => isComposing,
-    () => false,
-  );
+    const removeListeners = (element: HTMLElement) => {
+      for (const eventName of COMPOSITION_EVENT_NAMES) {
+        element.removeEventListener(eventName, handleComposition);
+      }
+    };
+
+    addListeners(activeElement);
+
+    return () => {
+      removeListeners(activeElement);
+    };
+  }, [handleComposition]);
+
+  return isComposing;
 };
