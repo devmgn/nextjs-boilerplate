@@ -1,27 +1,72 @@
 import { asyncDebounce } from ".";
 
 describe("asyncDebounce", () => {
-  vi.useFakeTimers();
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
 
-  test("debounce完了後に実行されることを確認", async () => {
-    const mockFn = vi.fn((n: number) => n);
-    const debouncedFn = asyncDebounce(mockFn, 1000);
+  afterEach(() => {
+    vi.useRealTimers();
+  });
 
-    const promise = debouncedFn(2);
+  test("関数が複数回呼び出されたとき、デバウンスされること", async () => {
+    vi.useFakeTimers();
+    const mockFn = vi.fn().mockResolvedValue("result");
+    const debouncedFn = asyncDebounce(mockFn, 100);
 
-    let result: number | undefined;
-    promise
-      .then((value) => {
-        result = value;
-      })
-      .catch(() => {});
+    debouncedFn();
+    debouncedFn();
+    debouncedFn();
 
-    expect(mockFn).not.toHaveBeenCalled();
-    expect(result).toBeUndefined();
+    expect(mockFn).not.toBeCalled();
 
-    vi.advanceTimersByTime(1000);
+    await vi.runAllTimersAsync();
 
-    await promise;
-    expect(result).toBe(2);
+    expect(mockFn).toBeCalledTimes(1);
+    vi.useRealTimers();
+  });
+
+  test("デバウンスされた関数が呼び出されたとき、正しい結果を返すこと", async () => {
+    const mockFn = vi.fn().mockResolvedValue("result");
+    const debouncedFn = asyncDebounce(mockFn, 100);
+
+    const promise = debouncedFn();
+    vi.advanceTimersByTime(100);
+    const result = await promise;
+
+    expect(result).toBe("result");
+  });
+
+  test("エラーが発生したとき、適切に処理されること", async () => {
+    const mockFn = vi.fn().mockRejectedValue(new Error("Test error"));
+    const debouncedFn = asyncDebounce(mockFn, 100);
+
+    const promise = debouncedFn();
+    vi.advanceTimersByTime(100);
+
+    await expect(promise).rejects.toThrow("Test error");
+  });
+
+  test("同期関数が渡されたとき、正しく動作すること", async () => {
+    const mockFn = vi.fn().mockReturnValue("sync result");
+    const debouncedFn = asyncDebounce(mockFn, 100);
+
+    const promise = debouncedFn();
+    vi.advanceTimersByTime(100);
+    const result = await promise;
+
+    expect(result).toBe("sync result");
+  });
+
+  test("引数が渡されたとき、正しく処理されること", async () => {
+    const mockFn = vi.fn((a: number, b: string) => `${a}-${b}`);
+    const debouncedFn = asyncDebounce(mockFn, 100);
+
+    const promise = debouncedFn(1, "test");
+    vi.advanceTimersByTime(100);
+    const result = await promise;
+
+    expect(result).toBe("1-test");
+    expect(mockFn).toHaveBeenCalledWith(1, "test");
   });
 });
