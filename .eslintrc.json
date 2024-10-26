@@ -12,15 +12,16 @@
     "no-multiple-empty-lines": "error",
     "react/jsx-curly-brace-presence": "error",
     "react/jsx-sort-props": "error",
-    "react-compiler/react-compiler": "error"
+    "react-compiler/react-compiler": "error",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-explicit-any": "off"
   },
   "overrides": [
     {
       "files": ["**/*.stories.ts?(x)"],
       "extends": ["plugin:storybook/recommended"],
       "rules": {
-        "no-console": "off",
-        "@typescript-eslint/ban-ts-comment": "off"
+        "no-console": "off"
       }
     },
     {
@@ -28,7 +29,6 @@
       "extends": ["plugin:@vitest/legacy-recommended"],
       "rules": {
         "no-console": "off",
-        "@typescript-eslint/ban-ts-comment": "off",
         "@vitest/consistent-test-it": [2, { "fn": "test" }],
         "@vitest/require-top-level-describe": ["error"]
       }
