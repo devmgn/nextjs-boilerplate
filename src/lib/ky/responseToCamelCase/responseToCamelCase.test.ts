@@ -10,7 +10,7 @@ describe("responseToCamelCase", () => {
     mockOptions = {} as NormalizedOptions;
   });
 
-  test("JSON以外のコンテンツタイプに対してundefinedを返す", async () => {
+  it("JSON以外のコンテンツタイプに対してundefinedを返す", async () => {
     const mockResponse = {
       headers: new Headers({ "content-type": "text/plain" }),
     } as KyResponse;
@@ -23,7 +23,7 @@ describe("responseToCamelCase", () => {
     expect(result).toBeUndefined();
   });
 
-  test("スネークケースのキーがキャメルケースに変換されること", async () => {
+  it("スネークケースのキーがキャメルケースに変換されること", async () => {
     // biome-ignore lint/style/useNamingConvention: <explanation>
     const mockBody = { user_name: "John Doe", user_age: 30 };
     const mockResponse = {
@@ -41,7 +41,7 @@ describe("responseToCamelCase", () => {
     expect(resultBody).toEqual({ userName: "John Doe", userAge: 30 });
   });
 
-  test("ネストされたオブジェクトでも正しくキャメルケースに変換されること", async () => {
+  it("ネストされたオブジェクトでも正しくキャメルケースに変換されること", async () => {
     const mockBody = {
       // biome-ignore lint/style/useNamingConvention: <explanation>
       user_info: {
@@ -75,7 +75,7 @@ describe("responseToCamelCase", () => {
     });
   });
 
-  test("JSONのパースに失敗した場合、undefinedを返しエラーをログに出力すること", async () => {
+  it("JSONのパースに失敗した場合、undefinedを返しエラーをログに出力すること", async () => {
     const mockResponse = {
       headers: new Headers({ "content-type": "application/json" }),
       json: vi.fn().mockRejectedValue(new Error("Invalid JSON")),

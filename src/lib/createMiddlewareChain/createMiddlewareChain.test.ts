@@ -6,7 +6,7 @@ describe("createMiddlewareChain", () => {
   const mockNextEvent = {} as NextFetchEvent;
   const mockNextResponse = {} as NextResponse;
 
-  test("ミドルウェアが順番通りに実行されること", () => {
+  it("ミドルウェアが順番通りに実行されること", () => {
     const middleware1 = vi.fn((_req, _event, next) => next());
     const middleware2 = vi.fn((_req, _event, next) => next());
     const middleware3 = vi.fn((_req, _event, next) => next());
@@ -21,7 +21,7 @@ describe("createMiddlewareChain", () => {
     expect(middleware2).toHaveBeenCalledBefore(middleware3);
   });
 
-  test("最終的なレスポンスが正しく返されること", () => {
+  it("最終的なレスポンスが正しく返されること", () => {
     const middleware1 = vi.fn((_req, _event, next) => next());
     const middleware2 = vi.fn((_req, _event, next) => next());
 
@@ -35,7 +35,7 @@ describe("createMiddlewareChain", () => {
     expect(response).toBe(mockNextResponse);
   });
 
-  test("ミドルウェアが残っていない場合にnextが呼び出されること", () => {
+  it("ミドルウェアが残っていない場合にnextが呼び出されること", () => {
     const middleware1 = vi.fn((_req, _event, next) => next());
     const middleware2 = vi.fn((_req, _event, next) => next());
 

@@ -15,12 +15,12 @@ describe("useIsComposing", () => {
     vi.restoreAllMocks();
   });
 
-  test("初期化時、isComposingがfalseとなること", () => {
+  it("初期化時、isComposingがfalseとなること", () => {
     const { result } = renderHook(() => useIsComposing());
     expect(result.current).toBe(false);
   });
 
-  test("マウント時、イベントリスナーが追加されること", () => {
+  it("マウント時、イベントリスナーが追加されること", () => {
     renderHook(() => useIsComposing());
     expect(mockElement.addEventListener).toHaveBeenCalledTimes(3);
     expect(mockElement.addEventListener).toHaveBeenCalledWith(
@@ -37,7 +37,7 @@ describe("useIsComposing", () => {
     );
   });
 
-  test("アンマウント時、イベントリスナーが削除されること", () => {
+  it("アンマウント時、イベントリスナーが削除されること", () => {
     const { unmount } = renderHook(() => useIsComposing());
     unmount();
     expect(mockElement.removeEventListener).toHaveBeenCalledTimes(3);
@@ -55,7 +55,7 @@ describe("useIsComposing", () => {
     );
   });
 
-  test("コンポジションイベントの発生時、isComposingが適切に更新されること", () => {
+  it("コンポジションイベントの発生時、isComposingが適切に更新されること", () => {
     const { result } = renderHook(() => useIsComposing());
 
     const dispatchCompositionEvent = (type: string) => {

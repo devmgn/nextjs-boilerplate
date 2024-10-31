@@ -4,7 +4,9 @@ const COMPOSITION_EVENT_NAMES = [
   "compositionstart",
   "compositionupdate",
   "compositionend",
-] as const;
+] as const satisfies (keyof HTMLElementEventMap)[];
+
+type CompositionEventName = (typeof COMPOSITION_EVENT_NAMES)[number];
 
 /**
  * テキストの編集中にユーザーがテキストの作成中かどうかを判定するカスタムフック
@@ -13,9 +15,7 @@ export const useIsComposing = (): boolean => {
   const [isComposing, setIsComposing] = useState(false);
 
   const handleComposition = useCallback((event: CompositionEvent) => {
-    if (event.target instanceof Element) {
-      setIsComposing(event.type !== "compositionend");
-    }
+    setIsComposing(event.type !== "compositionend");
   }, []);
 
   useEffect(() => {
@@ -23,23 +23,20 @@ export const useIsComposing = (): boolean => {
     if (!(activeElement instanceof HTMLElement)) {
       return;
     }
+    const addListener = (eventName: CompositionEventName) =>
+      activeElement.addEventListener(eventName, handleComposition);
 
-    const addListeners = (element: HTMLElement) => {
-      for (const eventName of COMPOSITION_EVENT_NAMES) {
-        element.addEventListener(eventName, handleComposition);
-      }
-    };
+    const removeListener = (eventName: CompositionEventName) =>
+      activeElement.removeEventListener(eventName, handleComposition);
 
-    const removeListeners = (element: HTMLElement) => {
-      for (const eventName of COMPOSITION_EVENT_NAMES) {
-        element.removeEventListener(eventName, handleComposition);
-      }
-    };
-
-    addListeners(activeElement);
+    for (const eventName of COMPOSITION_EVENT_NAMES) {
+      addListener(eventName);
+    }
 
     return () => {
-      removeListeners(activeElement);
+      for (const eventName of COMPOSITION_EVENT_NAMES) {
+        removeListener(eventName);
+      }
     };
   }, [handleComposition]);
 
