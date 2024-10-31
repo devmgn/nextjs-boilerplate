@@ -1,15 +1,7 @@
-// biome-ignore lint/correctness/noNodejsModules: <explanation>
-import path from "node:path";
-// biome-ignore lint/correctness/noNodejsModules: <explanation>
-import { fileURLToPath } from "node:url";
 import { FlatCompat } from "@eslint/eslintrc";
 import reactCompiler from "eslint-plugin-react-compiler";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
+const compat = new FlatCompat();
 
 const config = [
   {
@@ -24,7 +16,6 @@ const config = [
     plugins: {
       "react-compiler": reactCompiler,
     },
-
     rules: {
       "import/newline-after-import": "error",
       "lines-around-directive": "error",
@@ -43,10 +34,7 @@ const config = [
   })),
   {
     files: ["**/*.stories.ts?(x)"],
-
-    rules: {
-      "no-console": "off",
-    },
+    rules: { "no-console": "off" },
   },
   ...compat.extends("plugin:@vitest/legacy-recommended").map((config) => ({
     ...config,
@@ -54,17 +42,9 @@ const config = [
   })),
   {
     files: ["**/?(*.)+(spec|test).[tj]s?(x)"],
-
     rules: {
       "no-console": "off",
-
-      "@vitest/consistent-test-it": [
-        2,
-        {
-          fn: "test",
-        },
-      ],
-
+      "@vitest/consistent-test-it": [2, { fn: "it" }],
       "@vitest/require-top-level-describe": ["error"],
     },
   },

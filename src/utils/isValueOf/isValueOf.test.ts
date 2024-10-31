@@ -68,7 +68,7 @@ const testPatterns: TestPatterns = [
 ];
 
 describe("isValueOf", () => {
-  test.each(testPatterns)(
+  it.each(testPatterns)(
     "value: %s, enumObject: %s, expected: %s",
     (value, enumObject, expected) => {
       expect(isValueOf(value, enumObject)).toBe(expected);

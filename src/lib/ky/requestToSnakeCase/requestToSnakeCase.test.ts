@@ -13,7 +13,7 @@ describe("requestToSnakeCase", () => {
     consoleSpy.mockRestore();
   });
 
-  test("キャメルケースのキーをスネークケースに変換されること", () => {
+  it("キャメルケースのキーをスネークケースに変換されること", () => {
     const mockRequest = {
       headers: new Headers({ "content-type": "application/json" }),
     } as KyRequest;
@@ -29,7 +29,7 @@ describe("requestToSnakeCase", () => {
     });
   });
 
-  test("ネストされたオブジェクトも正しく変換されること", () => {
+  it("ネストされたオブジェクトも正しく変換されること", () => {
     const mockRequest = {
       headers: new Headers({ "content-type": "application/json" }),
     } as KyRequest;
@@ -60,7 +60,7 @@ describe("requestToSnakeCase", () => {
     });
   });
 
-  test("JSONでないContent-Typeのとき、undefinedを返すこと", () => {
+  it("JSONでないContent-Typeのとき、undefinedを返すこと", () => {
     const mockRequest = {
       headers: new Headers({ "content-type": "text/plain" }),
     } as KyRequest;
@@ -70,7 +70,7 @@ describe("requestToSnakeCase", () => {
     expect(result).toBeUndefined();
   });
 
-  test("options.bodyが文字列でないとき、undefinedを返すこと", () => {
+  it("options.bodyが文字列でないとき、undefinedを返すこと", () => {
     const mockRequest = {
       headers: new Headers({ "content-type": "application/json" }),
     } as KyRequest;
@@ -80,7 +80,7 @@ describe("requestToSnakeCase", () => {
     expect(result).toBeUndefined();
   });
 
-  test("JSONのパースに失敗した場合、undefinedを返しエラーをログに出力する", () => {
+  it("JSONのパースに失敗した場合、undefinedを返しエラーをログに出力する", () => {
     const mockRequest = {
       headers: new Headers({ "content-type": "application/json" }),
     } as KyRequest;

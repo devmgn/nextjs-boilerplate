@@ -12,12 +12,12 @@ describe("useDebouncedValue", () => {
     vi.useFakeTimers();
   });
 
-  test("初期値が与えられたとき、即座にその値を返すこと", () => {
+  it("初期値が与えられたとき、即座にその値を返すこと", () => {
     const { result } = renderHook(() => useDebouncedValue("initial", 300));
     expect(result.current).toBe("initial");
   });
 
-  test("値が変更されたとき、指定時間後にデバウンスされた値を返すこと", async () => {
+  it("値が変更されたとき、指定時間後にデバウンスされた値を返すこと", async () => {
     const { result, rerender } = renderHook(
       ({ value }) => useDebouncedValue(value, 300),
       { initialProps: { value: "initial" } },
@@ -38,7 +38,7 @@ describe("useDebouncedValue", () => {
     expect(result.current).toBe("changed");
   });
 
-  test("isComposingがtrueのとき、値が更新されないこと", async () => {
+  it("isComposingがtrueのとき、値が更新されないこと", async () => {
     // isComposingをtrueに設定
     vi.mocked(useIsComposing).mockReturnValue(true);
 
@@ -58,7 +58,7 @@ describe("useDebouncedValue", () => {
     expect(result.current).toBe("initial");
   });
 
-  test("コンポーネントがアンマウントされたとき、デバウンスがキャンセルされること", () => {
+  it("コンポーネントがアンマウントされたとき、デバウンスがキャンセルされること", () => {
     const { unmount } = renderHook(() => useDebouncedValue("test", 300));
 
     unmount();
