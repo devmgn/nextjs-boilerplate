@@ -1,3 +1,4 @@
+import type { ShallowObject } from "@/types";
 import { isKeyOf } from "../isKeyOf";
 
 /**
@@ -10,7 +11,7 @@ import { isKeyOf } from "../isKeyOf";
  * @returns {T[K] | undefined} 指定されたキーに対応する値、またはキーが存在しない場合は undefined
  */
 export const safeGetValueByKey = <
-  T extends Record<Exclude<PropertyKey, "symbol">, unknown>,
+  T extends ShallowObject,
   K extends PropertyKey,
 >(
   obj: T,
