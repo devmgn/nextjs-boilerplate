@@ -1,15 +1,17 @@
+import type { PrimitiveValue, ShallowObject } from "@/types";
+
 /**
- * 対象の列挙型オブジェクトに指定された値が存在するかを判定するカスタムタイプガード関数
- * @param {T} obj - チェック対象のオブジェクト
+ * 対象の列挙型オブジェクトもしくは配列に指定された値が存在するかを判定するカスタムタイプガード関数
+ * @param {T} collection - チェック対象のオブジェクトもしくは配列
  * @param {unknown} value - 存在を確認する値
  * @returns {boolean} キーがオブジェクトに存在する場合はtrue、そうでない場合はfalse
  */
-export const isValueOf = <
-  T extends Record<Exclude<PropertyKey, "symbol">, unknown>,
->(
-  obj: { [K in keyof T]: T[K] },
+export const isValueOf = <T extends ShallowObject | readonly PrimitiveValue[]>(
+  collection: T,
   value: unknown,
 ): value is T[keyof T] => {
-  const valueSet = new Set(Object.values(obj));
-  return valueSet.has(value);
+  const values = Array.isArray(collection)
+    ? collection
+    : Object.values(collection);
+  return values.some((v) => v === value);
 };
