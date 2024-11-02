@@ -1,4 +1,4 @@
-import type { ShallowObject } from "@/types";
+import type { FlatObject } from "@/types";
 import { isKeyOf } from "../isKeyOf";
 
 /**
@@ -10,10 +10,7 @@ import { isKeyOf } from "../isKeyOf";
  * @param {K} key - 取得するプロパティのキー
  * @returns {T[K] | undefined} 指定されたキーに対応する値、またはキーが存在しない場合は undefined
  */
-export const safeGetValueByKey = <
-  T extends ShallowObject,
-  K extends PropertyKey,
->(
+export const safeGetValueByKey = <T extends FlatObject, K extends PropertyKey>(
   obj: T,
   key: K,
 ): T[K] | undefined => {

@@ -1,10 +1,8 @@
-/**
- * @fileoverview TypeScriptの汎用的なヘルパー型を定義したモジュール
- * @module typeHelpers
- */
+import type { Primitive } from "type-fest";
 
 /**
- * 交差型のプロパティの展開するためのデバッグ用のユーティリティ型
+ * 交差型を展開しそのメンバーを明示的にするユーティリティ型
+ * @description デバッグ用途で利用
  */
 export type Expand<T> = T extends object
   ? T extends infer O
@@ -13,14 +11,6 @@ export type Expand<T> = T extends object
   : T;
 
 /**
- * オブジェクトのプリミティブ型のプロパティを表す型
- * bigint, symbolは除外
+ * プリミティブ値のみをプロパティ値に持つ、1階層のオブジェクト
  */
-export type PrimitiveValue = string | number | boolean | null | undefined;
-
-/**
- * 1階層のオブジェクトを表す型
- */
-export interface ShallowObject {
-  [key: PropertyKey]: PrimitiveValue;
-}
+export type FlatObject = Record<PropertyKey, Primitive>;
