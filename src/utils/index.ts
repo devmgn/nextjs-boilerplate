@@ -4,7 +4,6 @@ import { isDevelopment } from "./isDevelopment";
 import { isKeyOf } from "./isKeyOf";
 import { isServer } from "./isServer";
 import { isValueOf } from "./isValueOf";
-import { safeGetValueByKey } from "./safeGetValueByKey";
 
 export {
   asyncDebounce,
@@ -13,5 +12,4 @@ export {
   isKeyOf,
   isServer,
   isValueOf,
-  safeGetValueByKey,
 };
