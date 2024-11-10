@@ -4187,9 +4187,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/eslint-plugin@npm:1.1.7":
-  version: 1.1.7
-  resolution: "@vitest/eslint-plugin@npm:1.1.7"
+"@vitest/eslint-plugin@npm:1.1.8":
+  version: 1.1.8
+  resolution: "@vitest/eslint-plugin@npm:1.1.8"
   peerDependencies:
     "@typescript-eslint/utils": ">= 8.0"
     eslint: ">= 8.57.0"
@@ -4200,7 +4200,7 @@ __metadata:
       optional: true
     vitest:
       optional: true
-  checksum: 10c0/a2c7e3361dcf02b214eaaead63838abd0a07f0fa6294871b61df4e5dc3ca951056acf75b64feeec196e12f129306dc5780601dd94a88f9df3c2e6623863b39f2
+  checksum: 10c0/4cd0314800e82a0dd332c83b32c576d4b4f0622fbf63ae358afc9f9991ddb97033c9378317e40caa6dc2380b9928b4c86d088c195f360224534e61c6bb261bbb
   languageName: node
   linkType: hard
 
@@ -9383,9 +9383,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:2.6.2":
-  version: 2.6.2
-  resolution: "msw@npm:2.6.2"
+"msw@npm:2.6.3":
+  version: 2.6.3
+  resolution: "msw@npm:2.6.3"
   dependencies:
     "@bundled-es-modules/cookie": "npm:^2.0.1"
     "@bundled-es-modules/statuses": "npm:^1.0.1"
@@ -9412,7 +9412,7 @@ __metadata:
       optional: true
   bin:
     msw: cli/index.js
-  checksum: 10c0/d34937cb532826f9305a972933ffb9b6e54c7dd73bcaf4b7b57993ec711fa74647f477e64f2ab1911e1f52fc5394c967276391a4455df173777c4c74cdc2cb0c
+  checksum: 10c0/fd83a8c23bd7f95b2443a500496fcfd883b01afa8ea72adf6b0bd61979be2b6678e2dfdde539b0a1abaafd327ff8ba080c7883113a8db4de5e8c3105fda92396
   languageName: node
   linkType: hard
 
@@ -9577,7 +9577,7 @@ __metadata:
     "@types/react-dom": "npm:18.3.1"
     "@vitejs/plugin-react": "npm:4.3.3"
     "@vitest/coverage-v8": "npm:2.1.4"
-    "@vitest/eslint-plugin": "npm:1.1.7"
+    "@vitest/eslint-plugin": "npm:1.1.8"
     autoprefixer: "npm:10.4.20"
     babel-plugin-react-compiler: "npm:19.0.0-beta-9ee70a1-20241017"
     change-case: "npm:5.4.4"
@@ -9595,13 +9595,13 @@ __metadata:
     lint-staged: "npm:15.2.10"
     lodash-es: "npm:4.17.21"
     lucide-react: "npm:0.456.0"
-    msw: "npm:2.6.2"
+    msw: "npm:2.6.3"
     msw-storybook-addon: "npm:2.0.4"
     next: "npm:15.0.3"
     postcss: "npm:8.4.47"
     react: "npm:19.0.0-rc-fb9a90fa48-20240614"
     react-dom: "npm:19.0.0-rc-fb9a90fa48-20240614"
-    react-hook-form: "npm:7.53.1"
+    react-hook-form: "npm:7.53.2"
     react-use: "npm:17.5.1"
     storybook: "npm:8.4.2"
     tailwind-merge: "npm:2.5.4"
@@ -10648,12 +10648,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:7.53.1":
-  version: 7.53.1
-  resolution: "react-hook-form@npm:7.53.1"
+"react-hook-form@npm:7.53.2":
+  version: 7.53.2
+  resolution: "react-hook-form@npm:7.53.2"
   peerDependencies:
     react: ^16.8.0 || ^17 || ^18 || ^19
-  checksum: 10c0/dd2466359a633f873755b366d367d51ab17100566b687fb3b098f704232bc6ab1c79d29f879151e492880ca5eeac35e9425fbe5a309e2a55f7a4b5baf7826e8d
+  checksum: 10c0/18336d8e8798a70dcd0af703a0becca2d5dbf82a7b7a3ca334ae0e1f26410490bc3ef2ea51adcf790bb1e7006ed7a763fd00d664e398f71225b23529a7ccf0bf
   languageName: node
   linkType: hard
 
