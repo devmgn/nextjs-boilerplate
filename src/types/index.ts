@@ -1,5 +1,2 @@
-export type { Middleware } from "./middleware";
-export type {
-  Expand,
-  FlatObject,
-} from "./typeHelpers";
+export type * from "./middleware";
+export type * from "./typeHelpers";
