@@ -1,4 +1,4 @@
-import { APP_NAME, DEFAULT_DESCRIPTION } from "./env";
+import { ENV_KEY } from "./env";
 import { queryClientConfig } from "./queryClient";
 
-export { APP_NAME, DEFAULT_DESCRIPTION, queryClientConfig };
+export { ENV_KEY, queryClientConfig };

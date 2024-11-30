@@ -1,11 +1,12 @@
-import { APP_NAME, DEFAULT_DESCRIPTION } from "@/config/env";
+import { ENV_KEY } from "@/config";
 import { RootProvider } from "@/providers";
+import { getEnv } from "@/utils";
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: APP_NAME,
-  description: DEFAULT_DESCRIPTION,
+  title: getEnv(ENV_KEY.appName),
+  description: getEnv(ENV_KEY.defaultDescription),
   icons: ["images/favicon.ico"],
 };
 
