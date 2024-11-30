@@ -1,8 +1,8 @@
 import type { EnvKey } from "@/config";
 
 interface GetEnvOptions {
-  asNumber?: boolean;
-  asBoolean?: boolean;
+  asNumber?: true;
+  asBoolean?: true;
 }
 
 /**
