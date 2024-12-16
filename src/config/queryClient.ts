@@ -1,6 +1,6 @@
 import type { QueryClientConfig } from "@tanstack/react-query";
 
-export const queryClientConfig = {
+export const QUERY_CLIENT_CONFIG = {
   defaultOptions: {
     queries: {
       retry: false,
@@ -9,4 +9,4 @@ export const queryClientConfig = {
       retry: false,
     },
   },
-} satisfies QueryClientConfig;
+} as const satisfies QueryClientConfig;

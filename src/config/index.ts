@@ -1,5 +1,4 @@
-import { ENV_KEY, type EnvKey } from "./env";
-import { queryClientConfig } from "./queryClient";
+import { ENV } from "./env";
+import { QUERY_CLIENT_CONFIG } from "./queryClient";
 
-export { ENV_KEY, type EnvKey };
-export { queryClientConfig };
+export { ENV, QUERY_CLIENT_CONFIG };

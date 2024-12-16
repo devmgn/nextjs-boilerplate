@@ -1,10 +1,6 @@
-import type { ValueOf } from "type-fest";
-
-export const ENV_KEY = {
+export const ENV = {
   /** アプリケーション名 */
-  appName: "NEXT_PUBLIC_APP_NAME",
+  appName: process.env.NEXT_PUBLIC_APP_NAME,
   /** デフォルトのdescription */
-  defaultDescription: "NEXT_PUBLIC_DEFAULT_DESCRIPTION",
+  defaultDescription: process.env.NEXT_PUBLIC_DEFAULT_DESCRIPTION,
 } as const;
-
-export type EnvKey = ValueOf<typeof ENV_KEY>;
