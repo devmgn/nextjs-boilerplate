@@ -11,6 +11,7 @@ export default defineConfig({
     environment: "jsdom",
     globalSetup: path.resolve(__dirname, "./vitest.globalSetup.ts"),
     setupFiles: path.resolve(__dirname, "./vitest.setup.ts"),
+    typecheck: { enabled: true },
     alias: [
       {
         find: /.*.svg$/,
