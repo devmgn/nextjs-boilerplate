@@ -1,7 +1,7 @@
 import { createQueryKeys } from "@lukemorales/query-key-factory";
 import ky from "ky";
 
-export interface Post {
+interface Post {
   userId: number;
   id: number;
   title: string;
