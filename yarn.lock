@@ -2601,25 +2601,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-label@npm:2.1.1":
-  version: 2.1.1
-  resolution: "@radix-ui/react-label@npm:2.1.1"
-  dependencies:
-    "@radix-ui/react-primitive": "npm:2.0.1"
-  peerDependencies:
-    "@types/react": "*"
-    "@types/react-dom": "*"
-    react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
-    react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-    "@types/react-dom":
-      optional: true
-  checksum: 10c0/902628dc2c05610462a264feedc8c548d7ecad7f000efb9a4190e365ee2b7f75eccf98b43925fac6e1fa940c437abbce03ecc6868e06e0a197c779973ccc839d
-  languageName: node
-  linkType: hard
-
 "@radix-ui/react-portal@npm:1.1.3":
   version: 1.1.3
   resolution: "@radix-ui/react-portal@npm:1.1.3"
@@ -5462,15 +5443,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"class-variance-authority@npm:0.7.1":
-  version: 0.7.1
-  resolution: "class-variance-authority@npm:0.7.1"
-  dependencies:
-    clsx: "npm:^2.1.1"
-  checksum: 10c0/0f438cea22131808b99272de0fa933c2532d5659773bfec0c583de7b3f038378996d3350683426b8e9c74a6286699382106d71fbec52f0dd5fbb191792cccb5b
-  languageName: node
-  linkType: hard
-
 "clean-css@npm:^5.2.2":
   version: 5.3.3
   resolution: "clean-css@npm:5.3.3"
@@ -5521,13 +5493,6 @@ __metadata:
     strip-ansi: "npm:^6.0.1"
     wrap-ansi: "npm:^7.0.0"
   checksum: 10c0/4bda0f09c340cbb6dfdc1ed508b3ca080f12992c18d68c6be4d9cf51756033d5266e61ec57529e610dacbf4da1c634423b0c1b11037709cc6b09045cbd815df5
-  languageName: node
-  linkType: hard
-
-"clsx@npm:2.1.1, clsx@npm:^2.1.1":
-  version: 2.1.1
-  resolution: "clsx@npm:2.1.1"
-  checksum: 10c0/c4c8eb865f8c82baab07e71bfa8897c73454881c4f99d6bc81585aecd7c441746c1399d08363dc096c550cceaf97bd4ce1e8854e1771e9998d9f94c4fe075839
   languageName: node
   linkType: hard
 
@@ -9069,15 +9034,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:0.469.0":
-  version: 0.469.0
-  resolution: "lucide-react@npm:0.469.0"
-  peerDependencies:
-    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  checksum: 10c0/0ee78d110550579b848a01446a440f733fd17e1bf1850aa01551b61f415e03e5f5ab7f26b56f1c648edc93856177f5476ff9f8f6f5d80e8fe45913d208f49961
-  languageName: node
-  linkType: hard
-
 "lz-string@npm:^1.5.0":
   version: 1.5.0
   resolution: "lz-string@npm:1.5.0"
@@ -9591,7 +9547,6 @@ __metadata:
     "@lukemorales/query-key-factory": "npm:1.3.4"
     "@next/bundle-analyzer": "npm:15.1.2"
     "@radix-ui/react-dialog": "npm:1.1.4"
-    "@radix-ui/react-label": "npm:2.1.1"
     "@radix-ui/react-slot": "npm:1.1.1"
     "@storybook/addon-a11y": "npm:8.4.7"
     "@storybook/addon-essentials": "npm:8.4.7"
@@ -9619,8 +9574,6 @@ __metadata:
     babel-plugin-react-compiler: "npm:19.0.0-beta-df7b47d-20241124"
     change-case: "npm:5.4.4"
     chromatic: "npm:11.20.2"
-    class-variance-authority: "npm:0.7.1"
-    clsx: "npm:2.1.1"
     eslint: "npm:9.17.0"
     eslint-config-next: "npm:15.1.2"
     eslint-plugin-react-compiler: "npm:19.0.0-beta-df7b47d-20241124"
@@ -9631,7 +9584,6 @@ __metadata:
     ky: "npm:1.7.4"
     lint-staged: "npm:15.2.11"
     lodash-es: "npm:4.17.21"
-    lucide-react: "npm:0.469.0"
     msw: "npm:2.7.0"
     msw-storybook-addon: "npm:2.0.4"
     next: "npm:15.1.2"
@@ -9640,7 +9592,6 @@ __metadata:
     react-hook-form: "npm:7.54.2"
     react-use: "npm:17.6.0"
     storybook: "npm:8.4.7"
-    tailwind-merge: "npm:2.5.5"
     tailwind-variants: "npm:0.3.0"
     tailwindcss: "npm:4.0.0-beta.8"
     tailwindcss-animate: "npm:1.0.7"
@@ -12070,7 +12021,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwind-merge@npm:2.5.5, tailwind-merge@npm:^2.5.4":
+"tailwind-merge@npm:^2.5.4":
   version: 2.5.5
   resolution: "tailwind-merge@npm:2.5.5"
   checksum: 10c0/32614dd2b4ddd4fab070d5ec569e6da00e2b34269b9ac2f2ff16733cef29a076c8e2210fbfc1904d7983a8fdb6b3e63d18ca117645f21b12ca7bcf8fe3507241

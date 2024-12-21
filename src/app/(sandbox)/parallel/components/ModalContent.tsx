@@ -1,10 +1,7 @@
 "use client";
 
+import { DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import {
-  DialogDescription,
-  DialogTitle,
-} from "../../../../components/ui/dialog";
 import { post } from "./getPost";
 
 interface PostModalProps {

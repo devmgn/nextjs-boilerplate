@@ -1,8 +1,7 @@
 "use client";
 
-import { Button } from "../../../../components/ui/button";
-import { Card, CardHeader } from "../../../../components/ui/card";
-import { Spinner } from "../../../../components/ui/spinner";
+import { Button } from "../../../../components/Button";
+import { Card } from "../../../../components/Card";
 import { usePokemonList } from "./usePokemonList";
 
 export function PokemonList(props: React.ComponentProps<"div">) {
@@ -33,13 +32,13 @@ export function PokemonList(props: React.ComponentProps<"div">) {
         >
           Next
         </Button>
-        {isPending && <Spinner />}
+        {isPending && <span>🔄</span>}
       </div>
       <p className="prose mt-2">Results: {count}</p>
       <ul className="mt-2 grid grid-cols-[repeat(auto-fit,minmax(198px,1fr))] gap-4">
         {results.map(({ name, url }) => (
           <Card key={url}>
-            <CardHeader>{name}</CardHeader>
+            <div>{name}</div>
           </Card>
         ))}
       </ul>

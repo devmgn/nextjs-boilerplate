@@ -1,8 +1,8 @@
 "use client";
 
-import { Button } from "../../../components/ui/button";
-import { Input } from "../../../components/ui/input";
-import { Label } from "../../../components/ui/label";
+import { Button } from "../../../components/Button";
+import { Input } from "../../../components/Input";
+import { Label } from "../../../components/Label";
 import { useLoginForm } from "./useLoginForm";
 
 export default function ReactHookForm() {
