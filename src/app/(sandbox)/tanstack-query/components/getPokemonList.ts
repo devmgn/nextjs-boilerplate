@@ -8,7 +8,7 @@ export interface PokemonListResponse {
   results: Pokemon[];
 }
 
-export interface Pokemon {
+interface Pokemon {
   name: string;
   url: string;
 }
