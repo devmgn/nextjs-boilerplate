@@ -1,5 +1,5 @@
-import type { FlatObject } from "@/types";
 import type { Primitive } from "type-fest";
+import type { FlatObject } from "../../types/typeHelpers";
 
 /**
  * 対象の列挙型オブジェクトもしくは配列に指定された値が存在するかを判定するカスタムタイプガード関数

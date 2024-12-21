@@ -1,8 +1,8 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Card, CardHeader } from "@/components/ui/card";
-import { Spinner } from "@/components/ui/spinner";
+import { Button } from "../../../../components/ui/button";
+import { Card, CardHeader } from "../../../../components/ui/card";
+import { Spinner } from "../../../../components/ui/spinner";
 import { usePokemonList } from "./usePokemonList";
 
 export function PokemonList(props: React.ComponentProps<"div">) {

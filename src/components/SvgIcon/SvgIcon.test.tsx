@@ -1,6 +1,6 @@
-import { Close } from "@/assets/icons";
 import { render } from "@testing-library/react";
 import { SvgIcon } from ".";
+import { Close } from "../../assets/icons";
 
 describe("SvgIcon", () => {
   it("renders correctly", () => {

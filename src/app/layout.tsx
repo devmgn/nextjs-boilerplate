@@ -1,6 +1,6 @@
-import { ENV } from "@/config";
-import { RootProvider } from "@/providers";
 import type { Metadata, Viewport } from "next";
+import { ENV } from "../config/env";
+import { RootProvider } from "../providers/RootProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {

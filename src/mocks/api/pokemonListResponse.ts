@@ -1,4 +1,4 @@
-import type { PokemonListResponse } from "@/app/(sandbox)/tanstack-query/components/getPokemonList";
+import type { PokemonListResponse } from "../../app/(sandbox)/tanstack-query/components/getPokemonList";
 
 export const pokemonListResponse: PokemonListResponse = {
   count: 1302,

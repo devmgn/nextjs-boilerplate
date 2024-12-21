@@ -1,4 +1,4 @@
-import type { FlatObject } from "@/types";
+import type { FlatObject } from "../../types/typeHelpers";
 
 /**
  * 対象の列挙型オブジェクトに指定されたキーが存在するかを判定するカスタムタイプガード関数

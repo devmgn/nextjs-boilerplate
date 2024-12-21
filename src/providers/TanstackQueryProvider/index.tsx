@@ -1,12 +1,12 @@
 "use client";
 
-import { QUERY_CLIENT_CONFIG } from "@/config";
 import {
   QueryClient,
   QueryClientProvider,
   isServer,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { QUERY_CLIENT_CONFIG } from "../../config/queryClient";
 
 function makeQueryClient() {
   return new QueryClient({

@@ -1,7 +1,7 @@
-import { Input } from "@/components/ui/input";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useForm } from "react-hook-form";
 import { useDebouncedValue } from ".";
+import { Input } from "../../components/ui/input";
 
 const meta: Meta<typeof useDebouncedValue> = {
   title: "hooks/useDebouncedValue",

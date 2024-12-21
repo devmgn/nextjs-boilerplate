@@ -1,5 +1,5 @@
-import { getPokemonListHandler } from "@/mocks/handlers/getPokemonListHandler";
 import type { Meta, StoryObj } from "@storybook/react";
+import { getPokemonListHandler } from "../../../../mocks/handlers/getPokemonListHandler";
 import { PokemonList } from "./pokemonList";
 
 const meta: Meta<typeof PokemonList> = {

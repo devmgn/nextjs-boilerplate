@@ -1,4 +1,4 @@
-import { isKeyOf } from "..";
+import { isKeyOf } from ".";
 
 const TEST_ENUM = {
   red: "#FF0000",

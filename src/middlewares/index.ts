@@ -1,4 +1,4 @@
-import { createMiddlewareChain } from "@/lib";
+import { createMiddlewareChain } from "../lib/createMiddlewareChain";
 import { addCustomHeaderMiddleware } from "./addCustomHeaderMiddleware";
 import { requestLogMiddleware } from "./requestLogMiddleware";
 
