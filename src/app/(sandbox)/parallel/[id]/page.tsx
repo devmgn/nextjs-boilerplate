@@ -1,4 +1,4 @@
-import { Hydrator } from "@/components/Hydrator";
+import { Hydrator } from "../../../../components/Hydrator";
 import { PostModal } from "../components/PostModal";
 import { post } from "../components/getPost";
 

@@ -1,4 +1,4 @@
-import type { Middleware } from "@/types";
+import type { Middleware } from "../types/middleware";
 
 export const requestLogMiddleware: Middleware = (req, _event, next) => {
   const response = next();

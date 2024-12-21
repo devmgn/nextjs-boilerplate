@@ -1,6 +1,6 @@
-import { Input } from "@/components/ui/input";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useIsComposing } from ".";
+import { Input } from "../../components/Input";
 
 const meta: Meta<typeof useIsComposing> = {
   title: "hooks/useIsComposing",

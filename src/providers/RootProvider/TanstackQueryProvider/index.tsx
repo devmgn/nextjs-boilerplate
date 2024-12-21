@@ -1,25 +1,15 @@
 "use client";
 
-import { QUERY_CLIENT_CONFIG } from "@/config";
 import {
   QueryClient,
   QueryClientProvider,
   isServer,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { QUERY_CLIENT_CONFIG } from "./config";
 
 function makeQueryClient() {
-  return new QueryClient({
-    defaultOptions: {
-      ...QUERY_CLIENT_CONFIG.defaultOptions,
-      queries: {
-        ...QUERY_CLIENT_CONFIG.defaultOptions.queries,
-        // With SSR, we usually want to set some default staleTime
-        // above 0 to avoid refetching immediately on the client
-        staleTime: 60 * 1000,
-      },
-    },
-  });
+  return new QueryClient(QUERY_CLIENT_CONFIG);
 }
 
 let browserQueryClient: QueryClient | undefined;

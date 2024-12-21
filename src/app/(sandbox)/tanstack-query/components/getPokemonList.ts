@@ -1,5 +1,5 @@
-import { ky } from "@/lib";
 import { createQueryKeys } from "@lukemorales/query-key-factory";
+import { ky } from "../../../../lib/ky";
 
 export interface PokemonListResponse {
   count: number;

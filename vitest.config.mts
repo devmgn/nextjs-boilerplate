@@ -13,10 +13,6 @@ export default defineConfig({
     setupFiles: path.resolve(__dirname, "./vitest.setup.ts"),
     alias: [
       {
-        find: "@",
-        replacement: path.resolve(__dirname, "./src"),
-      },
-      {
         find: /.*.svg$/,
         replacement: path.resolve(__dirname, "./__mocks__/SvgMock.jsx"),
       },

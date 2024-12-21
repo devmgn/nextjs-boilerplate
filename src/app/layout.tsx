@@ -1,11 +1,12 @@
-import { ENV } from "@/config";
-import { RootProvider } from "@/providers";
 import type { Metadata, Viewport } from "next";
+import { ENV } from "../config/env";
+import { RootProvider } from "../providers/RootProvider";
+import { parseEnv } from "../utils/parseEnv";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: ENV.appName,
-  description: ENV.defaultDescription,
+  title: parseEnv(ENV.appName),
+  description: parseEnv(ENV.defaultDescription),
   icons: ["images/favicon.ico"],
 };
 

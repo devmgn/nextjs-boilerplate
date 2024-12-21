@@ -1,5 +1,3 @@
-// biome-ignore lint/correctness/noNodejsModules: <explanation>
-import path from "node:path";
 import type { StorybookConfig } from "@storybook/nextjs";
 import { createSvgrWebpackConfig } from "../next.config";
 
@@ -22,15 +20,7 @@ const config: StorybookConfig = {
     autodocs: "tag",
   },
   staticDirs: ["../public"],
-  webpackFinal: (config) => {
-    config.resolve = config.resolve || {};
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      "@": path.resolve(__dirname, "../src"),
-    };
-
-    return createSvgrWebpackConfig(config);
-  },
+  webpackFinal: createSvgrWebpackConfig,
 };
 
 // biome-ignore lint/style/noDefaultExport: <explanation>

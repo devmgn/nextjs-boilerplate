@@ -1,4 +1,4 @@
-import { isValueOf } from "..";
+import { isValueOf } from ".";
 
 const TEST_ENUM_OBJECT = {
   red: "#FF0000",

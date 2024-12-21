@@ -1,9 +1,9 @@
 "use client";
 
-import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
-import { Spinner } from "@/components/ui/spinner";
+import { Dialog, DialogContent } from "@radix-ui/react-dialog";
 import { useRouter } from "next/navigation";
 import { Suspense } from "react";
+
 import { ModalContent } from "./ModalContent";
 
 interface PostModalProps {
@@ -30,10 +30,10 @@ export function PostModal({ id, isIntercepted = false }: PostModalProps) {
       }}
     >
       <DialogContent>
-        <Suspense fallback={<Spinner />}>
-          <DialogHeader>
+        <Suspense fallback={<span>🔄</span>}>
+          <div>
             <ModalContent id={id} />
-          </DialogHeader>
+          </div>
         </Suspense>
       </DialogContent>
     </Dialog>

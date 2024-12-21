@@ -1,7 +1,7 @@
-import { Close } from "@/assets/icons";
 import type { Meta, StoryObj } from "@storybook/react";
 import { expect, fn, userEvent, within } from "@storybook/test";
 import { SvgIcon } from ".";
+import { Close } from "../../assets/icons";
 
 const meta: Meta<typeof SvgIcon> = {
   component: SvgIcon,

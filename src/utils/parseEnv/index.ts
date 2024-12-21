@@ -1,6 +1,6 @@
 import type { ValueOf } from "type-fest";
 
-interface SafeParseEnvOptions {
+interface ParseEnvOptions {
   asNumber?: true;
   asBoolean?: true;
   asNull?: true;
@@ -29,20 +29,20 @@ type Env = ValueOf<NodeJS.ProcessEnv>;
  *
  * @example
  * // 文字列値を取得
- * const apiUrl = safeParseEnv(process.env.NEXT_PUBLIC_API_URL);
+ * const apiUrl = parseEnv(process.env.NEXT_PUBLIC_API_URL);
  *
  * // 数値を取得
- * const port = safeParseEnv(process.env.NEXT_PUBLIC_PORT, { asNumber: true });
+ * const port = parseEnv(process.env.NEXT_PUBLIC_PORT, { asNumber: true });
  *
  * // 真偽値を取得
- * const debugMode = safeParseEnv(process.env.NEXT_PUBLIC_DEBUG_MODE, { asBoolean: true });
+ * const debugMode = parseEnv(process.env.NEXT_PUBLIC_DEBUG_MODE, { asBoolean: true });
  */
-export function safeParseEnv(env: Env, options: { asNumber: true }): number;
-export function safeParseEnv(env: Env, options: { asBoolean: true }): boolean;
-export function safeParseEnv(env: Env, options: { asNull: true }): boolean;
-export function safeParseEnv(env: Env): string;
+export function parseEnv(env: Env, options: { asNumber: true }): number;
+export function parseEnv(env: Env, options: { asBoolean: true }): boolean;
+export function parseEnv(env: Env, options: { asNull: true }): boolean;
+export function parseEnv(env: Env): string;
 
-export function safeParseEnv(env: Env, options: SafeParseEnvOptions = {}) {
+export function parseEnv(env: Env, options: ParseEnvOptions = {}) {
   const { asNumber, asBoolean, asNull } = options;
 
   if (env === undefined) {
