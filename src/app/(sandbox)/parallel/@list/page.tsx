@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Hydrator } from "../../../../components/Hydrator";
+import { Hydrator } from "../../../../lib/Hydrator";
 import { List } from "../components/List";
 import { post } from "../components/getPost";
 

@@ -1,4 +1,4 @@
-import type { Middleware } from "../types/middleware";
+import type { Middleware } from "./type";
 
 export const addCustomHeaderMiddleware: Middleware = (_req, _event, next) => {
   const requestUuid = crypto.randomUUID();

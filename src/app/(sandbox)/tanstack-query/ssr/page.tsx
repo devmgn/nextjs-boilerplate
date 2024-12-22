@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Hydrator } from "../../../../components/Hydrator";
+import { Hydrator } from "../../../../lib/Hydrator";
 import { pokemon } from "../components/getPokemonList";
 import { PokemonList } from "../components/pokemonList";
 

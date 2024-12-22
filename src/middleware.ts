@@ -3,7 +3,7 @@ import {
   type NextRequest,
   NextResponse,
 } from "next/server";
-import { middlewareChain } from "./middlewares";
+import { middlewareChain } from "./lib/middlewares";
 
 export const middleware = (req: NextRequest, event: NextFetchEvent) => {
   const next = () => NextResponse.next();

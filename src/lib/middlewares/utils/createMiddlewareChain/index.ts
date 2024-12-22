@@ -1,5 +1,5 @@
 import type { NextResponse } from "next/server";
-import type { Middleware } from "../../types/middleware";
+import type { Middleware } from "../../type";
 
 /**
  * middleware 関数を順番に実行するミドルウェアを作成する
