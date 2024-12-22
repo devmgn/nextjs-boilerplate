@@ -1,8 +1,10 @@
 import { addCustomHeaderMiddleware } from "./addCustomHeaderMiddleware";
-import { requestLogMiddleware } from "./requestLogMiddleware";
+import { requestLoggerMiddleware } from "./requestLoggerMiddleware";
+import { responseLoggerMiddleware } from "./responseLoggerMiddleware";
 import { createMiddlewareChain } from "./utils/createMiddlewareChain";
 
 export const middlewareChain = createMiddlewareChain(
-  requestLogMiddleware,
+  requestLoggerMiddleware,
+  responseLoggerMiddleware,
   addCustomHeaderMiddleware,
 );

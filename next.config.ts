@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
   experimental: {
     reactCompiler: true,
   },
+  serverExternalPackages: ["pino"],
   webpack: createSvgrWebpackConfig,
 };
 
