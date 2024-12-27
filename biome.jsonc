@@ -4,7 +4,7 @@
     "enabled": true
   },
   "files": {
-    "ignore": ["public", "src/components/ui"],
+    "ignore": ["public"],
     "ignoreUnknown": true
   },
   "formatter": {
@@ -22,7 +22,7 @@
         "noReactSpecificProps": "off",
         "noConsole": {
           "level": "warn",
-          "options": { "allow": ["warn", "error"] }
+          "options": { "allow": ["error", "warn"] }
         },
         // deprecatedなので将来的に削除すること
         "noConsoleLog": "off"
@@ -33,7 +33,7 @@
           "level": "error",
           "options": {
             "attributes": ["classList"],
-            "functions": ["clsx", "cva", "tw", "tv"]
+            "functions": ["clsx", "cva", "tv", "tw"]
           }
         }
       }
@@ -42,18 +42,21 @@
   "overrides": [
     {
       // tsxはReactをグローバル変数として許容
-      "include": ["*.tsx", "*.d.ts"],
+      "include": ["*.d.ts", "*.tsx"],
       "javascript": { "globals": ["React"] }
     },
     {
       "include": [
+        "*.d.ts",
         "default.tsx",
         "error.tsx",
+        "forbidden.tsx",
+        "global-error.tsx",
         "layout.tsx",
         "loading.tsx",
         "not-found.tsx",
         "page.tsx",
-        "*.d.ts"
+        "unauthorized.tsx"
       ],
       "linter": { "rules": { "style": { "noDefaultExport": "off" } } }
     },
@@ -61,20 +64,21 @@
       "include": ["*.stories.*", "*.test.*", "*.spec.*"],
       "linter": {
         "rules": {
-          "suspicious": {
-            "noConsoleLog": "off",
-            "noEmptyBlockStatements": "off"
-          },
           "style": {
             "noDefaultExport": "off",
             "useFilenamingConvention": "off"
+          },
+          "suspicious": {
+            "noConsole": "off",
+            "noConsoleLog": "off",
+            "noEmptyBlockStatements": "off"
           }
         }
       }
     },
     {
-      // testファイルはjestのグローバル変数を許容
-      "include": ["*.test.ts", "*.test.tsx", "*.spec.ts", "*.spec.tsx"],
+      // testファイルはvitestのグローバル変数を許容
+      "include": ["*.spec.tsx", "*.spec.ts", "*.test.tsx", "*.test.ts"],
       "javascript": {
         "globals": [
           "afterAll",
@@ -92,8 +96,8 @@
     }
   ],
   "vcs": {
-    "enabled": true,
     "clientKind": "git",
+    "enabled": true,
     "useIgnoreFile": true
   }
 }
