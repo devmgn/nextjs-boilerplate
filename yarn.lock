@@ -105,7 +105,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/helper-create-class-features-plugin@npm:^7.18.6, @babel/helper-create-class-features-plugin@npm:^7.25.9":
+"@babel/helper-create-class-features-plugin@npm:^7.25.9":
   version: 7.25.9
   resolution: "@babel/helper-create-class-features-plugin@npm:7.25.9"
   dependencies:
@@ -344,18 +344,6 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.0.0
   checksum: 10c0/02b365f0cc4df8b8b811c68697c93476da387841e5f153fe42766f34241b685503ea51110d5ed6df7132759820b93e48d9fa3743cffc091eed97c19f7e5fe272
-  languageName: node
-  linkType: hard
-
-"@babel/plugin-proposal-private-methods@npm:^7.18.6":
-  version: 7.18.6
-  resolution: "@babel/plugin-proposal-private-methods@npm:7.18.6"
-  dependencies:
-    "@babel/helper-create-class-features-plugin": "npm:^7.18.6"
-    "@babel/helper-plugin-utils": "npm:^7.18.6"
-  peerDependencies:
-    "@babel/core": ^7.0.0-0
-  checksum: 10c0/1c273d0ec3d49d0fe80bd754ec0191016e5b3ab4fb1e162ac0c014e9d3c1517a5d973afbf8b6dc9f9c98a8605c79e5f9e8b5ee158a4313fa68d1ff7b02084b6a
   languageName: node
   linkType: hard
 
@@ -5010,12 +4998,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-plugin-react-compiler@npm:19.0.0-beta-b2e8e9c-20241220":
-  version: 19.0.0-beta-b2e8e9c-20241220
-  resolution: "babel-plugin-react-compiler@npm:19.0.0-beta-b2e8e9c-20241220"
+"babel-plugin-react-compiler@npm:19.0.0-beta-df7b47d-20241124":
+  version: 19.0.0-beta-df7b47d-20241124
+  resolution: "babel-plugin-react-compiler@npm:19.0.0-beta-df7b47d-20241124"
   dependencies:
     "@babel/types": "npm:^7.19.0"
-  checksum: 10c0/e4903f63bfe0e900927411e6ac5942798293fe85df0ae402bec6300c5b666089dc819ea071e0ac86929e12249cd7bda8acbc599728f03cfc1519eead79df083c
+  checksum: 10c0/d5132730c5503f2d93b07da68f443c73b22dbff8fc312d0472782b4860f72eb814b34b115823e7debe4dee9f43cf676857e9213656d9857e00309327da464c55
   languageName: node
   linkType: hard
 
@@ -6892,19 +6880,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-compiler@npm:19.0.0-beta-b2e8e9c-20241220":
-  version: 19.0.0-beta-b2e8e9c-20241220
-  resolution: "eslint-plugin-react-compiler@npm:19.0.0-beta-b2e8e9c-20241220"
+"eslint-plugin-react-compiler@npm:19.0.0-beta-df7b47d-20241124":
+  version: 19.0.0-beta-df7b47d-20241124
+  resolution: "eslint-plugin-react-compiler@npm:19.0.0-beta-df7b47d-20241124"
   dependencies:
     "@babel/core": "npm:^7.24.4"
     "@babel/parser": "npm:^7.24.4"
-    "@babel/plugin-proposal-private-methods": "npm:^7.18.6"
+    "@babel/plugin-transform-private-methods": "npm:^7.25.9"
     hermes-parser: "npm:^0.25.1"
     zod: "npm:^3.22.4"
     zod-validation-error: "npm:^3.0.3"
   peerDependencies:
     eslint: ">=7"
-  checksum: 10c0/fc6b009d3c49aca87fdb1e70d3cccd72d5afaac9b77ead6c52e8fe8220f4994f71aa267188a921866f0e8547cf18c64fd86a7e91a254144ab90cd78e78ed36ad
+  checksum: 10c0/0f9d215d922fda2b452bb0eb203f90acf2fd5233a663151f976210778fd266cf1ddb5499a3a652b476ed30ee7393db3a411338287e712020f2e66c9680da927c
   languageName: node
   linkType: hard
 
@@ -9606,12 +9594,12 @@ __metadata:
     "@vitejs/plugin-react": "npm:4.3.4"
     "@vitest/coverage-v8": "npm:2.1.8"
     "@vitest/eslint-plugin": "npm:1.1.21"
-    babel-plugin-react-compiler: "npm:19.0.0-beta-b2e8e9c-20241220"
+    babel-plugin-react-compiler: "npm:19.0.0-beta-df7b47d-20241124"
     change-case: "npm:5.4.4"
     chromatic: "npm:11.20.2"
     eslint: "npm:9.17.0"
     eslint-config-next: "npm:15.1.3"
-    eslint-plugin-react-compiler: "npm:19.0.0-beta-b2e8e9c-20241220"
+    eslint-plugin-react-compiler: "npm:19.0.0-beta-df7b47d-20241124"
     eslint-plugin-storybook: "npm:0.11.1"
     husky: "npm:9.1.7"
     jest-extended: "npm:4.0.2"
