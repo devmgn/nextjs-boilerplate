@@ -1,0 +1,24 @@
+@layer base {
+  /* 
+   * 文章の折り返し処理
+   * @see https://ics.media/entry/240411/
+  */
+  body {
+    overflow-wrap: anywhere;
+    word-break: auto-phrase;
+    line-break: strict;
+  }
+
+  /** 以下タグでのダブルタップを防ぐ **/
+  a,
+  area,
+  button,
+  [role="button"],
+  input:not([type="range"]),
+  label,
+  select,
+  summary,
+  textarea {
+    touch-action: manipulation;
+  }
+}

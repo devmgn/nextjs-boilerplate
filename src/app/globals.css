@@ -1,31 +1,4 @@
 @import "tailwindcss";
-
-@theme {
-  /* add theme */
-}
-
-@layer base {
-  body {
-    /** 改行の処理 **/
-    overflow-wrap: anywhere;
-    word-break: auto-phrase;
-    line-break: strict;
-  }
-
-  /** 以下タグでのダブルタップを防ぐ **/
-  a,
-  area,
-  button,
-  [role="button"],
-  input:not([type="range"]),
-  label,
-  select,
-  summary,
-  textarea {
-    touch-action: manipulation;
-  }
-}
-
-@layer utilities {
-  /* utilities here */
-}
+@import "../lib/styles/theme.css";
+@import "../lib/styles/base.css";
+@import "../lib/styles/utilities.css";
