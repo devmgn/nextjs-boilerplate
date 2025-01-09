@@ -9637,6 +9637,7 @@ __metadata:
     storybook: "npm:8.4.7"
     tailwind-variants: "npm:0.3.0"
     tailwindcss: "npm:4.0.0-beta.8"
+    tailwindcss-animate: "npm:1.0.7"
     type-fest: "npm:4.31.0"
     typescript: "npm:5.7.2"
     vitest: "npm:2.1.8"
@@ -12204,6 +12205,15 @@ __metadata:
   peerDependencies:
     tailwindcss: "*"
   checksum: 10c0/115b0efb5ca5b76d4dfe6148e3f2f314f5af8490d0d2be8bdb6f062c0963ead87227ffd7340c6fb38cd95c0c751e2f65b04f3c0d833bf058d8cfe25210777bc7
+  languageName: node
+  linkType: hard
+
+"tailwindcss-animate@npm:1.0.7":
+  version: 1.0.7
+  resolution: "tailwindcss-animate@npm:1.0.7"
+  peerDependencies:
+    tailwindcss: "*"
+  checksum: 10c0/ec7dbd1631076b97d66a1fbaaa06e0725fccfa63119221e8d87a997b02dcede98ad88bb1ef6665b968f5d260fcefb10592e0299ca70208d365b37761edf5e19a
   languageName: node
   linkType: hard
 
