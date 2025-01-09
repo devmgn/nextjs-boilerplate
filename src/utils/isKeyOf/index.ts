@@ -10,5 +10,5 @@ export const isKeyOf = <T extends FlatObject>(
   obj: T,
   key: PropertyKey,
 ): key is keyof T => {
-  return Object.prototype.hasOwnProperty.call(obj, key);
+  return Object.hasOwn(obj, key);
 };
