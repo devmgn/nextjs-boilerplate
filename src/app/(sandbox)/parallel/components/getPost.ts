@@ -1,5 +1,4 @@
 import { createQueryKeys } from "@lukemorales/query-key-factory";
-import ky from "ky";
 
 interface Post {
   userId: number;
@@ -11,10 +10,12 @@ interface Post {
 export const post = createQueryKeys("post", {
   list: () => ({
     queryKey: ["all"],
-    queryFn: () => {
-      return ky
-        .get("https://jsonplaceholder.typicode.com/posts")
-        .json<Post[]>();
+    queryFn: async () => {
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/posts",
+      );
+      const data: Post[] = await response.json();
+      return data;
     },
   }),
   item: (id: string) => ({
@@ -25,9 +26,11 @@ export const post = createQueryKeys("post", {
         setTimeout(resolve, 500);
       });
 
-      return ky
-        .get(`https://jsonplaceholder.typicode.com/posts/${id}`)
-        .json<Post>();
+      const response = await fetch(
+        `https://jsonplaceholder.typicode.com/posts/${id}`,
+      );
+      const data: Post = await response.json();
+      return data;
     },
   }),
 });

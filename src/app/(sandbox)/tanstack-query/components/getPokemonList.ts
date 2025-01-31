@@ -1,5 +1,4 @@
 import { createQueryKeys } from "@lukemorales/query-key-factory";
-import { ky } from "../../../../lib/ky";
 
 export interface PokemonListResponse {
   count: number;
@@ -22,11 +21,11 @@ export const pokemon = createQueryKeys("pokemon", {
         setTimeout(resolve, 500);
       });
 
-      return ky
-        .get("https://pokeapi.co/api/v2/pokemon", {
-          searchParams: { offset, limit: 12 },
-        })
-        .json<PokemonListResponse>();
+      const response = await fetch(
+        `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=12`,
+      );
+      const data: PokemonListResponse = await response.json();
+      return data;
     },
   }),
 });
