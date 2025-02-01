@@ -1,9 +1,9 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useActionState } from "react";
-import { pokemon } from "./getPokemonList";
+import { pokemon } from "./pokemon.queries";
 
 export const usePokemonList = () => {
-  const extractOffsetFromUrl = (url: string | null): number => {
+  const extractOffsetFromUrl = (url: string | undefined): number => {
     if (!url) {
       return 0;
     }
@@ -12,12 +12,14 @@ export const usePokemonList = () => {
     return Number.parseInt(searchParams.get("offset") ?? "0", 10);
   };
 
-  const navigateAction = (_prev: number, payload: string | null) => {
+  const navigateAction = (_prev: number, payload: string | undefined) => {
     return extractOffsetFromUrl(payload);
   };
 
   const [offset, navigateTo, isPending] = useActionState(navigateAction, 0);
-  const query = useSuspenseQuery(pokemon.list(offset));
+  const query = useSuspenseQuery({
+    ...pokemon.getPokemonList({ offset }),
+  });
 
   return {
     query,

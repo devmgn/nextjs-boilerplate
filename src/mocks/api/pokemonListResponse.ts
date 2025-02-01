@@ -1,9 +1,9 @@
-import type { PokemonListResponse } from "../../app/(sandbox)/tanstack-query/components/getPokemonList";
+import type { PaginatedPokemonSummaryList } from "../../openapi";
 
-export const pokemonListResponse: PokemonListResponse = {
+export const pokemonListResponse: PaginatedPokemonSummaryList = {
   count: 1302,
   next: "https://pokeapi.co/api/v2/pokemon?offset=32&limit=32",
-  previous: null,
+  previous: undefined,
   results: [
     {
       name: "bulbasaur",

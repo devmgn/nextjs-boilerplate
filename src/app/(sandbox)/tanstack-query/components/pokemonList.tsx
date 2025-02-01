@@ -36,7 +36,7 @@ export function PokemonList(props: React.ComponentProps<"div">) {
       </div>
       <p className="prose mt-2">Results: {count}</p>
       <ul className="mt-2 grid grid-cols-[repeat(auto-fit,minmax(198px,1fr))] gap-4">
-        {results.map(({ name, url }) => (
+        {results?.map(({ name, url }) => (
           <Card key={url}>
             <div>{name}</div>
           </Card>

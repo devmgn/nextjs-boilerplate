@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Hydrator } from "../../../../lib/Hydrator";
-import { pokemon } from "../components/getPokemonList";
+import { pokemon } from "../components/pokemon.queries";
 import { PokemonList } from "../components/pokemonList";
 
 export default function Ssr() {
@@ -10,7 +10,7 @@ export default function Ssr() {
       <p>
         <Link href="/tanstack-query">Return</Link>
       </p>
-      <Hydrator fetchQueryOptions={[pokemon.list()]}>
+      <Hydrator fetchQueryOptions={[pokemon.getPokemonList()]}>
         <PokemonList />
       </Hydrator>
     </>
