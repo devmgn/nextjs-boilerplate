@@ -3339,7 +3339,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tailwindcss/node@npm:^4.0.1":
+"@tailwindcss/node@npm:^4.0.2":
   version: 4.0.2
   resolution: "@tailwindcss/node@npm:4.0.2"
   dependencies:
@@ -3427,7 +3427,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tailwindcss/oxide@npm:^4.0.1":
+"@tailwindcss/oxide@npm:^4.0.2":
   version: 4.0.2
   resolution: "@tailwindcss/oxide@npm:4.0.2"
   dependencies:
@@ -3469,17 +3469,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tailwindcss/postcss@npm:4.0.1":
-  version: 4.0.1
-  resolution: "@tailwindcss/postcss@npm:4.0.1"
+"@tailwindcss/postcss@npm:4.0.2":
+  version: 4.0.2
+  resolution: "@tailwindcss/postcss@npm:4.0.2"
   dependencies:
     "@alloc/quick-lru": "npm:^5.2.0"
-    "@tailwindcss/node": "npm:^4.0.1"
-    "@tailwindcss/oxide": "npm:^4.0.1"
+    "@tailwindcss/node": "npm:^4.0.2"
+    "@tailwindcss/oxide": "npm:^4.0.2"
     lightningcss: "npm:^1.29.1"
     postcss: "npm:^8.4.41"
-    tailwindcss: "npm:4.0.1"
-  checksum: 10c0/34a95ec1e730a266a30a45f25a2837c39ce66839376a1da239ee37f453edff8fe7b59952030f8391b1f557da3c17338e85e9e432ff0a1d3dbb7161a3092f900e
+    tailwindcss: "npm:4.0.2"
+  checksum: 10c0/69ecaaa8f2aaf09c8cadba01f189210028f566aea743dd5e1f78d008901dfaa9f6f4a8435bbda5c9319b2658e673cfd51edff339ecfbd95df2b6d8c5b34381c8
   languageName: node
   linkType: hard
 
@@ -3755,21 +3755,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
+"@types/node@npm:*, @types/node@npm:22.13.0":
   version: 22.13.0
   resolution: "@types/node@npm:22.13.0"
   dependencies:
     undici-types: "npm:~6.20.0"
   checksum: 10c0/9cf6358b2863ae7bf9588ca1cc3d87f6a6289c3880e95a046a188760666870e2c12502df8b0a473bec8aa8ffee85e025d60382a6104b10f197120793235b2c22
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:22.12.0":
-  version: 22.12.0
-  resolution: "@types/node@npm:22.12.0"
-  dependencies:
-    undici-types: "npm:~6.20.0"
-  checksum: 10c0/be220706732d95db2ed1c441c1e64cab90bf9a47519ce6f4c79cc5a9ec9d5c517131a149a9ac30afac1a30103e67e3a00d453ba7c1b0141608a3a7ba6397c303
   languageName: node
   linkType: hard
 
@@ -9179,7 +9170,7 @@ __metadata:
     "@storybook/nextjs": "npm:8.5.2"
     "@storybook/react": "npm:8.5.2"
     "@storybook/test": "npm:8.5.2"
-    "@tailwindcss/postcss": "npm:4.0.1"
+    "@tailwindcss/postcss": "npm:4.0.2"
     "@tanstack/eslint-plugin-query": "npm:5.66.0"
     "@tanstack/react-query": "npm:5.66.0"
     "@tanstack/react-query-devtools": "npm:5.66.0"
@@ -9187,7 +9178,7 @@ __metadata:
     "@testing-library/react": "npm:16.2.0"
     "@testing-library/user-event": "npm:14.6.1"
     "@types/lodash-es": "npm:4.17.12"
-    "@types/node": "npm:22.12.0"
+    "@types/node": "npm:22.13.0"
     "@types/react": "npm:19.0.8"
     "@types/react-dom": "npm:19.0.3"
     "@vitejs/plugin-react": "npm:4.3.4"
@@ -9213,7 +9204,7 @@ __metadata:
     react-use: "npm:17.6.0"
     storybook: "npm:8.5.2"
     tailwind-variants: "npm:0.3.1"
-    tailwindcss: "npm:4.0.1"
+    tailwindcss: "npm:4.0.2"
     tailwindcss-animate: "npm:1.0.7"
     type-fest: "npm:4.33.0"
     typescript: "npm:5.7.3"
@@ -11671,13 +11662,6 @@ __metadata:
   peerDependencies:
     tailwindcss: "*"
   checksum: 10c0/ec7dbd1631076b97d66a1fbaaa06e0725fccfa63119221e8d87a997b02dcede98ad88bb1ef6665b968f5d260fcefb10592e0299ca70208d365b37761edf5e19a
-  languageName: node
-  linkType: hard
-
-"tailwindcss@npm:4.0.1":
-  version: 4.0.1
-  resolution: "tailwindcss@npm:4.0.1"
-  checksum: 10c0/06a512f34a3eb89ad3de83952d6b4f00a8a07d9859145a7c60e6cb20dcaaed97a2b96e0a204823cb63d385575eb0380b26be124f02e73d729fd8a98ac4ed7087
   languageName: node
   linkType: hard
 
