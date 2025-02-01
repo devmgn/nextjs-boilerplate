@@ -1,5 +1,4 @@
 import type { StorybookConfig } from "@storybook/nextjs";
-import { createSvgrWebpackConfig } from "../next.config";
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
@@ -20,7 +19,6 @@ const config: StorybookConfig = {
     autodocs: "tag",
   },
   staticDirs: ["../public"],
-  webpackFinal: createSvgrWebpackConfig,
 };
 
 // biome-ignore lint/style/noDefaultExport: <explanation>

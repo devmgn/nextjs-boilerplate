@@ -1,16 +1,21 @@
+import { FaceIcon } from "@radix-ui/react-icons";
 import type { Meta, StoryObj } from "@storybook/react";
 import { expect, fn, userEvent, within } from "@storybook/test";
 import { SvgIcon } from ".";
-import { Close } from "../../assets/icons";
 
 const meta: Meta<typeof SvgIcon> = {
   component: SvgIcon,
   args: {
-    component: Close,
+    icon: FaceIcon,
+    label: "Face icon",
     size: "md",
     onClick: fn(),
-    // @ts-expect-error
-    "data-testid": "svg-icon",
+  },
+  argTypes: {
+    size: {
+      options: ["xs", "sm", "md", "lg", "xl"],
+      control: { type: "inline-radio" },
+    },
   },
 };
 
@@ -20,7 +25,7 @@ type Story = StoryObj<typeof SvgIcon>;
 export const Default: Story = {
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);
-    const icon = await canvas.findByTestId("svg-icon");
+    const icon = await canvas.findByLabelText("Face icon");
     await userEvent.click(icon);
     await expect(args.onClick).toHaveBeenCalled();
     await expect(icon).toHaveAttribute("aria-hidden", "true");

@@ -12,12 +12,6 @@ export default defineConfig({
     globalSetup: path.resolve(__dirname, "./vitest.globalSetup.ts"),
     setupFiles: path.resolve(__dirname, "./vitest.setup.ts"),
     typecheck: { enabled: true },
-    alias: [
-      {
-        find: /.*.svg$/,
-        replacement: path.resolve(__dirname, "./__mocks__/SvgMock.jsx"),
-      },
-    ],
     coverage: {
       include: ["src/**"],
       exclude: ["**/*.stories.*", "**/*.d.ts"],

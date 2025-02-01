@@ -24,14 +24,22 @@ interface SvgIconProps
     Omit<React.ComponentProps<"svg">, "children">,
     SvgIconVariants
   > {
-  component: React.ElementType;
+  icon: React.ElementType;
+  label: string;
 }
 
-export function SvgIcon({ component: Tag, ...props }: SvgIconProps) {
+export function SvgIcon({
+  icon: Icon,
+  label,
+  className,
+  size,
+  ...props
+}: SvgIconProps) {
   return (
-    <Tag
+    <Icon
       aria-hidden="true"
-      className={svgIcon(props)}
+      aria-label={label}
+      className={svgIcon({ className, size })}
       focusable="false"
       {...props}
     />

@@ -1,9 +1,9 @@
 import type { Middleware } from "./type";
-import { logger } from "./utils/logger";
 
 export const responseLoggerMiddleware: Middleware = (_req, _event, next) => {
   const response = next();
   const { status, type } = response;
-  logger.info({ status, type }, "[RESPONSE]");
+  // biome-ignore lint/suspicious/noConsole: <explanation>
+  console.log("[RESPONSE]", { status, type });
   return response;
 };
