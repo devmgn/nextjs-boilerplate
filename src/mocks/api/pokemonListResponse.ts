@@ -1,4 +1,4 @@
-import type { PaginatedPokemonSummaryList } from "../../openapi";
+import type { PaginatedPokemonSummaryList } from "../../api/openapi";
 
 export const pokemonListResponse: PaginatedPokemonSummaryList = {
   count: 1302,

@@ -40,7 +40,7 @@ const config = [
       "@vitest/require-top-level-describe": ["error"],
     },
   },
-  { ignores: ["src/openapi"] },
+  { ignores: ["src/api/openapi"] },
 ];
 
 // biome-ignore lint/style/noDefaultExport: <explanation>

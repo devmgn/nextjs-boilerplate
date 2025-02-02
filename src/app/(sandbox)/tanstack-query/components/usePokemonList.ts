@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useActionState } from "react";
-import { pokemon } from "./pokemon.queries";
+import { pokemon } from "../../../../api/queries/pokemon.queries";
 
 export const usePokemonList = () => {
   const extractOffsetFromUrl = (url: string | undefined): number => {

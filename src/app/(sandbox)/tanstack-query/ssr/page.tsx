@@ -1,6 +1,6 @@
 import Link from "next/link";
+import { pokemon } from "../../../../api/queries/pokemon.queries";
 import { Hydrator } from "../../../../lib/Hydrator";
-import { pokemon } from "../components/pokemon.queries";
 import { PokemonList } from "../components/pokemonList";
 
 export default function Ssr() {
