@@ -1,6 +1,11 @@
 {
   "$schema": "https://unpkg.com/knip@5/schema.json",
   "project": ["src/**/*.{ts,tsx}"],
-  "ignore": ["src/assets/icons/**", "src/mocks/**", "src/types/**"],
+  "ignore": [
+    "src/api/openapi/**",
+    "src/assets/icons/**",
+    "src/mocks/**",
+    "src/types/**"
+  ],
   "exclude": ["dependencies", "unlisted"]
 }
