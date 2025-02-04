@@ -19,7 +19,9 @@
     "analyze": "ANALYZE=true next build",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic"
+    "chromatic": "npx chromatic",
+    "generate-api": "npx @openapitools/openapi-generator-cli generate -i openapi.yml -g typescript-fetch -o ./src/api/openapi -c openapiconfig.json --openapi-normalizer SET_TAGS_FOR_ALL_OPERATIONS=default",
+    "generate-api:clean": "rm -rf src/api/openapi && yarn generate-api"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
