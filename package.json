@@ -7,7 +7,7 @@
   "packageManager": "yarn@4.6.0",
   "scripts": {
     "postinstall": "node .husky/install.mjs",
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint --fix && yarn biome check --write --unsafe .",
