@@ -1,8 +1,10 @@
 import { FlatCompat } from "@eslint/eslintrc";
+import vitest from "@vitest/eslint-plugin";
 import reactCompiler from "eslint-plugin-react-compiler";
 
 const compat = new FlatCompat();
 
+/** @type {import('eslint').Linter.Config[]} */
 const config = [
   ...compat.extends(
     "next/core-web-vitals",
@@ -29,15 +31,13 @@ const config = [
     ...config,
     files: ["**/*.stories.ts?(x)"],
   })),
-  ...compat.extends("plugin:@vitest/legacy-recommended").map((config) => ({
-    ...config,
-    files: ["**/?(*.)+(spec|test).[tj]s?(x)"],
-  })),
   {
     files: ["**/?(*.)+(spec|test).[tj]s?(x)"],
+    plugins: { vitest },
     rules: {
-      "@vitest/consistent-test-it": [2, { fn: "it" }],
-      "@vitest/require-top-level-describe": ["error"],
+      ...vitest.configs.recommended.rules,
+      "vitest/consistent-test-it": ["error", { fn: "it" }],
+      "vitest/require-top-level-describe": ["error"],
     },
   },
   { ignores: ["src/api/openapi"] },
