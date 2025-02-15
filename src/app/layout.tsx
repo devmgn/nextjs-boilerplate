@@ -17,7 +17,7 @@ export const viewport: Viewport = {
   maximumScale: 1,
 };
 
-export default function RootLayout({ children }: React.PropsWithChildren) {
+export default function Layout({ children }: React.PropsWithChildren) {
   return (
     <html lang="ja">
       <body>
