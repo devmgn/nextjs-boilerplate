@@ -8,6 +8,6 @@ interface CardProps
   extends React.ComponentProps<"div">,
     VariantProps<typeof cardVaraints> {}
 
-export const Card = ({ className, ...props }: CardProps) => {
+export function Card({ className, ...props }: CardProps) {
   return <div className={cardVaraints(className)} {...props} />;
-};
+}

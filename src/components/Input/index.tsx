@@ -8,6 +8,6 @@ interface InputProps
   extends React.ComponentProps<"input">,
     VariantProps<typeof inputVariants> {}
 
-export const Input = ({ className, type = "text", ...props }: InputProps) => {
+export function Input({ className, type = "text", ...props }: InputProps) {
   return <input className={inputVariants(className)} type={type} {...props} />;
-};
+}
