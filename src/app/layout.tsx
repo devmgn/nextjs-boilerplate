@@ -3,12 +3,11 @@ import { ENV } from "../config/env";
 import { WebVitalsReporter } from "../lib/WebVitalsReporter";
 import { RootProvider } from "../providers/RootProvider";
 import { isProduction } from "../utils/nodeEnv";
-import { parseEnv } from "../utils/parseEnv";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: parseEnv(ENV.appName),
-  description: parseEnv(ENV.defaultDescription),
+  title: ENV.appName,
+  description: ENV.defaultDescription,
   icons: ["images/favicon.ico"],
 };
 

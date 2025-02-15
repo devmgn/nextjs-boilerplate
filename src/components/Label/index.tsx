@@ -8,7 +8,7 @@ interface LabelProps
   extends React.ComponentProps<"label">,
     VariantProps<typeof labelVariants> {}
 
-export const Label = ({ className, ...props }: LabelProps) => {
+export function Label({ className, ...props }: LabelProps) {
   const Component = "label";
   return <Component className={labelVariants(className)} {...props} />;
-};
+}
