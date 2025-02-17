@@ -4,7 +4,7 @@ import { createMiddlewareChain } from "./index";
 describe("createMiddlewareChain", () => {
   const mockNextRequest = {} as NextRequest;
   const mockNextEvent = {} as NextFetchEvent;
-  const mockNextResponse = {} as NextResponse;
+  const mockNextResponse = Promise.resolve({} as NextResponse);
 
   it("ミドルウェアが順番通りに実行されること", () => {
     const middleware1 = vi.fn((_req, _event, next) => next());
@@ -21,18 +21,18 @@ describe("createMiddlewareChain", () => {
     expect(middleware2).toHaveBeenCalledBefore(middleware3);
   });
 
-  it("最終的なレスポンスが正しく返されること", () => {
+  it("最終的なレスポンスが正しく返されること", async () => {
     const middleware1 = vi.fn((_req, _event, next) => next());
     const middleware2 = vi.fn((_req, _event, next) => next());
 
     const chain = createMiddlewareChain(middleware1, middleware2);
-    const response = chain(
+    const response = await chain(
       mockNextRequest,
       mockNextEvent,
       () => mockNextResponse,
     );
 
-    expect(response).toBe(mockNextResponse);
+    expect(response).toBe(await mockNextResponse);
   });
 
   it("ミドルウェアが残っていない場合にnextが呼び出されること", () => {

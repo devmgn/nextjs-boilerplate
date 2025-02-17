@@ -37,7 +37,7 @@ export async function Hydrator<
   children,
 }: PrefetchQueryProps<TsQueryFnData, TsError, TsData, TsQueryKey>) {
   const queryClient = new QueryClient();
-  await Promise.all(fetchQueryOptions.map(queryClient.prefetchQuery));
+  await Promise.all(fetchQueryOptions.map((o) => queryClient.prefetchQuery(o)));
 
   return (
     <HydrationBoundary

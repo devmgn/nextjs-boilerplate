@@ -6,7 +6,7 @@ import {
 import { middlewareChain } from "./lib/middlewares";
 
 export const middleware = (req: NextRequest, event: NextFetchEvent) => {
-  const next = () => NextResponse.next();
+  const next = async () => NextResponse.next();
 
   return middlewareChain(req, event, next);
 };
