@@ -1,5 +1,5 @@
-import { getFormProps, getInputProps, useForm } from "@conform-to/react";
 import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 import { useDebouncedValue } from ".";
 import { Input } from "../../components/Input";
 
@@ -9,34 +9,30 @@ const meta: Meta<typeof useDebouncedValue> = {
     layout: "centered",
   },
   render: () => {
-    const [form, fields] = useForm<{
-      input: string;
-      delay: number;
-    }>({
-      defaultValue: { delay: 250 },
-    });
+    const [delayTime, setDelayTime] = useState(250);
+    const [input, setInput] = useState("");
 
-    const debouncedValue = useDebouncedValue(
-      form.value?.input ?? "",
-      Number(form.value?.delay),
-    );
+    const debouncedValue = useDebouncedValue(input, delayTime);
 
     return (
-      <form className="flex flex-col gap-4" {...getFormProps(form)}>
+      <div className="flex flex-col gap-4">
         <div className="grid grid-cols-[1fr_auto] items-center gap-2">
           <p>debouncedValue Result: </p>
           <Input readOnly={true} value={debouncedValue} />
           <p>delay</p>
           <Input
+            onChange={(e) => setDelayTime(+e.target.value)}
             placeholder="delay time"
-            {...getInputProps(fields.delay, { type: "number" })}
+            type="number"
+            value={delayTime}
           />
         </div>
         <Input
+          onChange={(e) => setInput(e.target.value)}
           placeholder="input value"
-          {...getInputProps(fields.input, { type: "text" })}
+          value={input}
         />
-      </form>
+      </div>
     );
   },
 };
