@@ -41,10 +41,7 @@ const meta: Meta<typeof useDebouncedCallback> = {
             value={delayTime}
           />
         </div>
-        <Input
-          onChange={onChange}
-          onCompositionEnd={(e) => setResult(e.data)}
-        />
+        <Input onChange={onChange} />
       </div>
     );
   },
