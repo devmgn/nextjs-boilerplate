@@ -16,20 +16,20 @@ const meta: Meta<typeof useDebouncedCallback> = {
     const isComposing = useIsComposing();
 
     const onChange = useDebouncedCallback(
-      (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (isComposing) {
-          return;
+      (
+        e:
+          | React.ChangeEvent<HTMLInputElement>
+          | React.CompositionEvent<HTMLInputElement>,
+      ) => {
+        if (!isComposing && e.target instanceof HTMLInputElement) {
+          setResult(e.target.value);
         }
-        setResult(e.target.value);
       },
       delayTime,
     );
 
     return (
-      <div
-        className="flex flex-col gap-4"
-        onCompositionEnd={(e) => console.log(e)}
-      >
+      <div className="flex flex-col gap-4">
         <div className="grid grid-cols-[1fr_auto] items-center gap-2">
           <p>debouncedValue Result: </p>
           <Input readOnly={true} value={result} />
@@ -41,7 +41,14 @@ const meta: Meta<typeof useDebouncedCallback> = {
             value={delayTime}
           />
         </div>
-        <Input onChange={onChange} />
+        <Input
+          onChange={onChange}
+          onCompositionEnd={(e) => {
+            onChange(e);
+            onChange.flush();
+          }}
+          placeholder="input text"
+        />
       </div>
     );
   },
