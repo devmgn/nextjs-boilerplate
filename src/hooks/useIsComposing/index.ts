@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const COMPOSITION_EVENT_NAMES = [
   "compositionstart",
@@ -6,39 +6,50 @@ const COMPOSITION_EVENT_NAMES = [
   "compositionend",
 ] as const satisfies (keyof HTMLElementEventMap)[];
 
-type CompositionEventName = (typeof COMPOSITION_EVENT_NAMES)[number];
-
 /**
  * テキストの編集中にユーザーがテキストの作成中かどうかを判定するカスタムフック
  */
 export const useIsComposing = (): boolean => {
   const [isComposing, setIsComposing] = useState(false);
+  const activeElementRef = useRef<HTMLElement | null>(null);
 
   const handleComposition = useCallback((event: CompositionEvent) => {
     setIsComposing(event.type !== "compositionend");
   }, []);
 
-  useEffect(() => {
-    const { activeElement } = document;
-    if (!(activeElement instanceof HTMLElement)) {
+  const removeListeners = useCallback(() => {
+    const { current: activeElement } = activeElementRef;
+    if (activeElement === null) {
       return;
     }
-    const addListener = (eventName: CompositionEventName) =>
-      activeElement.addEventListener(eventName, handleComposition);
-
-    const removeListener = (eventName: CompositionEventName) =>
+    COMPOSITION_EVENT_NAMES.forEach((eventName) => {
       activeElement.removeEventListener(eventName, handleComposition);
+    });
+  }, [handleComposition]);
 
-    for (const eventName of COMPOSITION_EVENT_NAMES) {
-      addListener(eventName);
+  const updateListeners = useCallback(() => {
+    removeListeners();
+
+    const { activeElement } = document;
+    if (activeElement instanceof HTMLElement) {
+      activeElementRef.current = activeElement;
+      for (const eventName of COMPOSITION_EVENT_NAMES) {
+        activeElement.addEventListener(eventName, handleComposition);
+      }
+    } else {
+      activeElementRef.current = null;
     }
+  }, [removeListeners, handleComposition]);
+
+  useEffect(() => {
+    updateListeners();
+    document.addEventListener("focusin", updateListeners);
 
     return () => {
-      for (const eventName of COMPOSITION_EVENT_NAMES) {
-        removeListener(eventName);
-      }
+      document.removeEventListener("focusin", updateListeners);
+      removeListeners();
     };
-  }, [handleComposition]);
+  }, [updateListeners, removeListeners]);
 
   return isComposing;
 };
