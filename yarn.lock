@@ -4170,10 +4170,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitest/eslint-plugin@npm:1.1.34":
-  version: 1.1.34
-  resolution: "@vitest/eslint-plugin@npm:1.1.34"
+"@vitest/eslint-plugin@npm:1.1.35":
+  version: 1.1.35
+  resolution: "@vitest/eslint-plugin@npm:1.1.35"
   peerDependencies:
+    "@typescript-eslint/utils": ^8.24.0
     eslint: ">= 8.57.0"
     typescript: ">= 5.0.0"
     vitest: "*"
@@ -4182,7 +4183,7 @@ __metadata:
       optional: true
     vitest:
       optional: true
-  checksum: 10c0/edf5e09a83ee73a17cbb6b8f3c4e47be12e806bae1d4e228417e62d1e71ff44cc3f338ac7858738efdb3e52eb579c3bbd784618b553d376f47d489e01dbecce1
+  checksum: 10c0/4bcbdd4686065f2c87868f071399a16d42a1aa278275f6f671fed8cd3224207fb824f91b3a4646fba6197fa64a597237d5680a58c1ef7db34c22a622fbe722ba
   languageName: node
   linkType: hard
 
@@ -9487,7 +9488,7 @@ __metadata:
     "@types/react-dom": "npm:19.0.4"
     "@vitejs/plugin-react": "npm:4.3.4"
     "@vitest/coverage-v8": "npm:3.0.7"
-    "@vitest/eslint-plugin": "npm:1.1.34"
+    "@vitest/eslint-plugin": "npm:1.1.35"
     babel-plugin-react-compiler: "npm:19.0.0-beta-e1e972c-20250221"
     chromatic: "npm:11.26.1"
     eslint: "npm:9.21.0"
