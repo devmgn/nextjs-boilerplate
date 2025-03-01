@@ -3320,18 +3320,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/instrumenter@npm:8.6.2":
-  version: 8.6.2
-  resolution: "@storybook/instrumenter@npm:8.6.2"
-  dependencies:
-    "@storybook/global": "npm:^5.0.0"
-    "@vitest/utils": "npm:^2.1.1"
-  peerDependencies:
-    storybook: ^8.6.2
-  checksum: 10c0/f4c4c00d992df8387036f496aa096c3eea215c7640c44437d6dc6f0af6bb6675c8a6fa4eeada62f898aebee1c5f28b5ac523b49c045d25f99855bcba0a352b84
-  languageName: node
-  linkType: hard
-
 "@storybook/instrumenter@npm:8.6.3":
   version: 8.6.3
   resolution: "@storybook/instrumenter@npm:8.6.3"
@@ -3499,23 +3487,6 @@ __metadata:
     typescript:
       optional: true
   checksum: 10c0/1dcffc2843d93bd4f611d5517192ee8a2f4de64c2edb79831004484bf5f3a7204e5e5001f0b8f6d8ab97e0681f98db0d755b438c048203fbd96cc327ed3e2f9e
-  languageName: node
-  linkType: hard
-
-"@storybook/test@npm:8.6.2":
-  version: 8.6.2
-  resolution: "@storybook/test@npm:8.6.2"
-  dependencies:
-    "@storybook/global": "npm:^5.0.0"
-    "@storybook/instrumenter": "npm:8.6.2"
-    "@testing-library/dom": "npm:10.4.0"
-    "@testing-library/jest-dom": "npm:6.5.0"
-    "@testing-library/user-event": "npm:14.5.2"
-    "@vitest/expect": "npm:2.0.5"
-    "@vitest/spy": "npm:2.0.5"
-  peerDependencies:
-    storybook: ^8.6.2
-  checksum: 10c0/03ce2253bb5dc2e570bcd18d2ce6210eca16e8409b2f0daf89e5ef1bc583720060d19d3fc4180b046a7b96b781bd50553d555e824c26df91ed95407bc36359d9
   languageName: node
   linkType: hard
 
@@ -9512,7 +9483,7 @@ __metadata:
     "@storybook/blocks": "npm:8.6.3"
     "@storybook/nextjs": "npm:8.6.3"
     "@storybook/react": "npm:8.6.3"
-    "@storybook/test": "npm:8.6.2"
+    "@storybook/test": "npm:8.6.3"
     "@tailwindcss/postcss": "npm:4.0.9"
     "@tanstack/eslint-plugin-query": "npm:5.66.1"
     "@tanstack/react-query": "npm:5.66.11"
