@@ -1,8 +1,8 @@
-import type { Middleware } from "./type";
+import type { MiddlewareHandler } from "hono";
 
-export const requestLoggerMiddleware: Middleware = (req, _event, next) => {
-  const { url, method } = req;
+export const requestLoggerMiddleware: MiddlewareHandler = async (ctx, next) => {
+  await next();
+  const { url, method } = ctx.req;
   // biome-ignore lint/suspicious/noConsole: <explanation>
   console.log("[REQUEST]", { url, method });
-  return next();
 };

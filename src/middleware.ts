@@ -1,15 +1,22 @@
-import {
-  type NextFetchEvent,
-  type NextRequest,
-  NextResponse,
-} from "next/server";
-import { middlewareChain } from "./lib/middlewares";
+import { Hono } from "hono";
+import { handle } from "hono/vercel";
+import { NextResponse } from "next/server";
+import { addCustomHeaderMiddleware } from "./lib/middlewares/addCustomHeaderMiddleware";
+import { requestLoggerMiddleware } from "./lib/middlewares/requestLoggerMiddleware";
+import { responseLoggerMiddleware } from "./lib/middlewares/responseLoggerMiddleware";
 
-export const middleware = (req: NextRequest, event: NextFetchEvent) => {
-  const next = async () => NextResponse.next();
+const app = new Hono();
 
-  return middlewareChain(req, event, next);
-};
+app
+  .use(addCustomHeaderMiddleware)
+  .use(requestLoggerMiddleware)
+  .use(responseLoggerMiddleware);
+
+app.all("*", (ctx) => {
+  return NextResponse.next({ request: ctx.req.raw });
+});
+
+export const middleware = handle(app);
 
 export const config = {
   matcher: [
