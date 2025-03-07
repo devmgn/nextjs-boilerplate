@@ -1,13 +1,10 @@
-import type { Middleware } from "./type";
+import type { MiddlewareHandler } from "hono";
 
-export const addCustomHeaderMiddleware: Middleware = async (
-  _req,
-  _event,
+export const addCustomHeaderMiddleware: MiddlewareHandler = async (
+  ctx,
   next,
 ) => {
+  await next();
   const requestUuid = crypto.randomUUID();
-  const response = await next();
-  response.headers.set("x-request-id", requestUuid);
-
-  return response;
+  ctx.header("x-request-id", requestUuid);
 };

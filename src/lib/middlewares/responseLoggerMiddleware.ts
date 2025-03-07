@@ -1,13 +1,11 @@
-import type { Middleware } from "./type";
+import type { MiddlewareHandler } from "hono";
 
-export const responseLoggerMiddleware: Middleware = async (
-  _req,
-  _event,
+export const responseLoggerMiddleware: MiddlewareHandler = async (
+  ctx,
   next,
 ) => {
-  const response = await next();
-  const { status, type } = response;
+  await next();
+  const { status, type } = ctx.res;
   // biome-ignore lint/suspicious/noConsole: <explanation>
   console.log("[RESPONSE]", { status, type });
-  return response;
 };
