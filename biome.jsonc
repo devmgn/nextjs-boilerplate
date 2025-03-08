@@ -18,15 +18,16 @@
         "noForEach": "off"
       },
       "correctness": {
+        "noNodejsModules": "off",
         "noUndeclaredDependencies": "off",
         "useImportExtensions": "off"
       },
       "suspicious": {
-        "noReactSpecificProps": "off",
         "noConsole": {
           "level": "warn",
           "options": { "allow": ["error", "warn"] }
         },
+        "noReactSpecificProps": "off",
         // deprecatedなので将来的に削除すること
         "noConsoleLog": "off"
       },
