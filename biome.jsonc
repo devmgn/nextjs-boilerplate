@@ -22,6 +22,14 @@
         "noUndeclaredDependencies": "off",
         "useImportExtensions": "off"
       },
+      "style": {
+        "useNamingConvention": {
+          "level": "error",
+          "options": {
+            "strictCase": false
+          }
+        }
+      },
       "suspicious": {
         "noConsole": {
           "level": "warn",

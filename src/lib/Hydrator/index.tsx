@@ -9,42 +9,66 @@ import type {
   QueryKey,
 } from "@tanstack/react-query";
 
-type PrefetchQueryProps<
-  TsQueryFnData = unknown,
-  TsError = DefaultError,
-  TsData = TsQueryFnData,
-  TsQueryKey extends QueryKey = QueryKey,
+/**
+ * Hydrator コンポーネントのプロパティ型定義
+ * サーバーサイドでデータをプリフェッチし、クライアントサイドでハイドレーションするために使用
+ */
+type HydratorProps<
+  TQueryFnData = unknown,
+  TError = DefaultError,
+  TData = TQueryFnData,
+  TQueryKey extends QueryKey = QueryKey,
 > = React.PropsWithChildren<{
+  /**
+   * プリフェッチするクエリオプションの配列
+   */
   fetchQueryOptions: FetchQueryOptions<
-    TsQueryFnData,
-    TsError,
-    TsData,
-    TsQueryKey
+    TQueryFnData,
+    TError,
+    TData,
+    TQueryKey
   >[];
+  /**
+   * HydrationBoundary コンポーネントに渡す追加のプロパティ
+   */
   hydrationBoundaryProps?: React.ComponentPropsWithoutRef<
     typeof HydrationBoundary
   >;
 }>;
 
+/**
+ * サーバーサイドでデータをプリフェッチし、クライアントサイドでハイドレーションするためのコンポーネント
+ */
 export async function Hydrator<
-  TsQueryFnData,
-  TsError,
-  TsData,
-  TsQueryKey extends QueryKey,
+  TQueryFnData,
+  TError,
+  TData,
+  TQueryKey extends QueryKey,
 >({
   fetchQueryOptions,
   hydrationBoundaryProps,
   children,
-}: PrefetchQueryProps<TsQueryFnData, TsError, TsData, TsQueryKey>) {
+}: HydratorProps<TQueryFnData, TError, TData, TQueryKey>) {
+  // サーバーサイドでのみ実行される QueryClient インスタンスを作成
   const queryClient = new QueryClient();
-  await Promise.all(fetchQueryOptions.map((o) => queryClient.prefetchQuery(o)));
 
-  return (
-    <HydrationBoundary
-      state={dehydrate(queryClient)}
-      {...hydrationBoundaryProps}
-    >
-      {children}
-    </HydrationBoundary>
-  );
+  try {
+    // すべてのクエリを並行してプリフェッチ
+    await Promise.all(
+      fetchQueryOptions.map((options) => queryClient.prefetchQuery(options)),
+    );
+
+    // ハイドレーションステートを作成し、HydrationBoundary に渡す
+    return (
+      <HydrationBoundary
+        state={dehydrate(queryClient)}
+        {...hydrationBoundaryProps}
+      >
+        {children}
+      </HydrationBoundary>
+    );
+  } finally {
+    // QueryClient のリソースをクリーンアップ
+    queryClient.clear();
+  }
 }
