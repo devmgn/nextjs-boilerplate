@@ -1,7 +1,6 @@
 import type { Preview } from "@storybook/react";
 import locale from "axe-core/locales/ja.json";
 import { initialize, mswLoader } from "msw-storybook-addon";
-// biome-ignore lint/correctness/noUnusedImports: <explanation>
 import React from "react";
 import { SbProvider } from "./providers/SbProvider";
 
@@ -29,5 +28,4 @@ const preview: Preview = {
   ],
 };
 
-// biome-ignore lint/style/noDefaultExport: <explanation>
 export default preview;
