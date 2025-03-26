@@ -3,7 +3,8 @@
   "assist": {
     "actions": {
       "source": {
-        "organizeImports": "on"
+        "organizeImports": "on",
+        "useSortedAttributes": "on"
       }
     }
   },
@@ -16,129 +17,45 @@
   },
   "linter": {
     "enabled": true,
+    "domains": {
+      "next": "all",
+      "react": "all",
+      "test": "all",
+      "solid": "none"
+    },
     "rules": {
+      "recommended": true,
+      "suspicious": {
+        "noConsole": {
+          "level": "warn",
+          "options": { "allow": ["error", "warn"] }
+        }
+      },
       "style": {
         "useNamingConvention": {
+          "fix": "safe",
           "level": "error",
           "options": {
             "strictCase": false
           }
         },
-        "useLiteralEnumMembers": "error",
-        "noCommaOperator": "error",
-        "useNodejsImportProtocol": "error",
-        "useAsConstAssertion": "error",
-        "useNumericLiterals": "error",
-        "useEnumInitializers": "error",
-        "useSelfClosingElements": "error",
-        "useConst": "error",
-        "useSingleVarDeclarator": "error",
-        "noUnusedTemplateLiteral": "error",
-        "useNumberNamespace": "error",
-        "noInferrableTypes": "error",
-        "useExponentiationOperator": "error",
-        "useTemplate": "error",
-        "noParameterAssign": "error",
-        "noNonNullAssertion": "error",
-        "useDefaultParameterLast": "error",
-        "noArguments": "error",
-        "useImportType": "error",
-        "useExportType": "error",
-        "noUselessElse": "error",
-        "useShorthandFunctionType": "error"
+        "useTemplate": {
+          "fix": "safe",
+          "level": "error"
+        }
       },
-      "correctness": {
-        "noNodejsModules": "off",
-        "noUndeclaredDependencies": "off",
-        "useImportExtensions": "off"
-      },
-      // @see https://biomejs.dev/linter/rules/#nursery
       "nursery": {
         "useSortedClasses": {
+          "fix": "safe",
           "level": "error",
           "options": {
             "attributes": ["classList"],
             "functions": ["clsx", "cva", "tv", "tw"]
           }
         }
-      },
-      "complexity": {
-        "noForEach": "off"
-      },
-      "suspicious": {
-        "noConsole": {
-          "level": "warn",
-          "options": { "allow": ["error", "warn"] }
-        },
-        "noReactSpecificProps": "off"
       }
     }
   },
-  "overrides": [
-    {
-      // tsxはReactをグローバル変数として許容
-      "includes": ["**/*.d.ts", "**/*.tsx"],
-      "javascript": { "globals": ["React"] }
-    },
-    {
-      "includes": [
-        "**/*.d.ts",
-        "**/default.tsx",
-        "**/error.tsx",
-        "**/forbidden.tsx",
-        "**/global-error.tsx",
-        "**/layout.tsx",
-        "**/loading.tsx",
-        "**/not-found.tsx",
-        "**/page.tsx",
-        "**/unauthorized.tsx"
-      ],
-      "linter": { "rules": { "style": { "noDefaultExport": "off" } } }
-    },
-    {
-      "includes": ["**/*.stories.*", "**/*.test.*", "**/*.spec.*"],
-      "linter": {
-        "rules": {
-          "style": {
-            "noDefaultExport": "off",
-            "useFilenamingConvention": "off"
-          },
-          "suspicious": {
-            "noConsole": {
-              "level": "off",
-              "options": {
-                "allow": ["log"]
-              }
-            },
-            "noEmptyBlockStatements": "off"
-          }
-        }
-      }
-    },
-    {
-      // testファイルはvitestのグローバル変数を許容
-      "includes": [
-        "**/*.spec.tsx",
-        "**/*.spec.ts",
-        "**/*.test.tsx",
-        "**/*.test.ts"
-      ],
-      "javascript": {
-        "globals": [
-          "afterAll",
-          "afterEach",
-          "beforeAll",
-          "beforeEach",
-          "describe",
-          "expect",
-          "expectTypeOf",
-          "it",
-          "test",
-          "vi"
-        ]
-      }
-    }
-  ],
   "vcs": {
     "clientKind": "git",
     "enabled": true,

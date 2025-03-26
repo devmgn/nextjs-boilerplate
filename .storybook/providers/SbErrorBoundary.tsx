@@ -1,5 +1,4 @@
 import { ErrorBoundary } from "next/dist/client/components/error-boundary";
-// biome-ignore lint/style/useImportType: <explanation>
 import React from "react";
 import { Button } from "../../src/components/Button";
 
