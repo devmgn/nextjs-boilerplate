@@ -4,12 +4,13 @@
     "actions": {
       "source": {
         "organizeImports": "on",
-        "useSortedAttributes": "on"
+        "useSortedAttributes": "on",
+        "useSortedProperties": "on"
       }
     }
   },
   "files": {
-    "includes": ["**", "!**/public", "!**/src/api/openapi"],
+    "includes": ["**", "!src/api/openapi"],
     "ignoreUnknown": true
   },
   "formatter": {
