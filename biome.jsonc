@@ -1,10 +1,16 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-  "organizeImports": {
-    "enabled": true
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on",
+        "useSortedAttributes": "on",
+        "useSortedProperties": "on"
+      }
+    }
   },
   "files": {
-    "ignore": ["public", "src/api/openapi"],
+    "includes": ["**", "!src/api/openapi"],
     "ignoreUnknown": true
   },
   "formatter": {
@@ -12,36 +18,36 @@
   },
   "linter": {
     "enabled": true,
+    "domains": {
+      "next": "all",
+      "react": "all",
+      "test": "all",
+      "solid": "none"
+    },
     "rules": {
-      "all": true,
-      "complexity": {
-        "noForEach": "off"
-      },
-      "correctness": {
-        "noNodejsModules": "off",
-        "noUndeclaredDependencies": "off",
-        "useImportExtensions": "off"
-      },
-      "style": {
-        "useNamingConvention": {
-          "level": "error",
-          "options": {
-            "strictCase": false
-          }
-        }
-      },
+      "recommended": true,
       "suspicious": {
         "noConsole": {
           "level": "warn",
           "options": { "allow": ["error", "warn"] }
-        },
-        "noReactSpecificProps": "off",
-        // deprecatedなので将来的に削除すること
-        "noConsoleLog": "off"
+        }
       },
-      // @see https://biomejs.dev/linter/rules/#nursery
+      "style": {
+        "useNamingConvention": {
+          "fix": "safe",
+          "level": "error",
+          "options": {
+            "strictCase": false
+          }
+        },
+        "useTemplate": {
+          "fix": "safe",
+          "level": "error"
+        }
+      },
       "nursery": {
         "useSortedClasses": {
+          "fix": "safe",
           "level": "error",
           "options": {
             "attributes": ["classList"],
@@ -51,62 +57,6 @@
       }
     }
   },
-  "overrides": [
-    {
-      // tsxはReactをグローバル変数として許容
-      "include": ["*.d.ts", "*.tsx"],
-      "javascript": { "globals": ["React"] }
-    },
-    {
-      "include": [
-        "*.d.ts",
-        "default.tsx",
-        "error.tsx",
-        "forbidden.tsx",
-        "global-error.tsx",
-        "layout.tsx",
-        "loading.tsx",
-        "not-found.tsx",
-        "page.tsx",
-        "unauthorized.tsx"
-      ],
-      "linter": { "rules": { "style": { "noDefaultExport": "off" } } }
-    },
-    {
-      "include": ["*.stories.*", "*.test.*", "*.spec.*"],
-      "linter": {
-        "rules": {
-          "style": {
-            "noDefaultExport": "off",
-            "useFilenamingConvention": "off"
-          },
-          "suspicious": {
-            "noConsole": "off",
-            "noConsoleLog": "off",
-            "noEmptyBlockStatements": "off"
-          }
-        }
-      }
-    },
-    {
-      // testファイルはvitestのグローバル変数を許容
-      "include": ["*.spec.tsx", "*.spec.ts", "*.test.tsx", "*.test.ts"],
-      "javascript": {
-        "globals": [
-          "afterAll",
-          "afterEach",
-          "beforeAll",
-          "beforeEach",
-          "describe",
-          "expect",
-          "expectTypeOf",
-          "it",
-          "test",
-          "vi"
-        ]
-      }
-    }
-  ],
   "vcs": {
     "clientKind": "git",
     "enabled": true,

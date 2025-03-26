@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { useDisclosure } from ".";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
+import { useDisclosure } from ".";
 
 const meta: Meta<typeof useDisclosure> = {
   title: "hooks/useDisclosure",

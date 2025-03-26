@@ -1,9 +1,9 @@
 "use client";
 
 import {
+  isServer,
   QueryClient,
   QueryClientProvider,
-  isServer,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QUERY_CLIENT_CONFIG } from "./config";

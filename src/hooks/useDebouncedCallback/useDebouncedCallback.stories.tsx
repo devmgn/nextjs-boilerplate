@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
-import { useDebouncedCallback } from ".";
 import { Input } from "../../components/Input";
 import { useIsComposing } from "../useIsComposing";
+import { useDebouncedCallback } from ".";
 
 const meta: Meta<typeof useDebouncedCallback> = {
   title: "hooks/useDebouncedCallback",

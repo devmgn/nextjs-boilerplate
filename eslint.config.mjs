@@ -20,9 +20,7 @@ const config = [
       "import/newline-after-import": "error",
       "lines-around-directive": "error",
       "no-multiple-empty-lines": "error",
-      "prefer-template": "error",
       "react/jsx-curly-brace-presence": "error",
-      "react/jsx-sort-props": "error",
     },
   },
   reactCompiler.configs.recommended,
@@ -40,5 +38,4 @@ const config = [
   { ignores: ["src/api/openapi"] },
 ];
 
-// biome-ignore lint/style/noDefaultExport: <explanation>
 export default config;
