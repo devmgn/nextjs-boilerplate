@@ -33,17 +33,30 @@
         }
       },
       "style": {
+        "noArguments": "error",
+        "noCommaOperator": "error",
+        "noInferrableTypes": { "fix": "safe", "level": "error" },
+        "noNonNullAssertion": "error",
+        "noParameterAssign": "error",
+        "noUnusedTemplateLiteral": { "fix": "safe", "level": "error" },
+        "noUselessElse": { "fix": "safe", "level": "error" },
+        "useAsConstAssertion": { "fix": "safe", "level": "error" },
+        "useConst": { "fix": "safe", "level": "error" },
+        "useDefaultParameterLast": "error",
+        "useExponentiationOperator": { "fix": "safe", "level": "error" },
+        "useExportType": { "fix": "safe", "level": "error" },
+        "useImportType": { "fix": "safe", "level": "error" },
         "useNamingConvention": {
           "fix": "safe",
           "level": "error",
-          "options": {
-            "strictCase": false
-          }
+          "options": { "strictCase": false }
         },
-        "useTemplate": {
-          "fix": "safe",
-          "level": "error"
-        }
+        "useNodejsImportProtocol": { "fix": "safe", "level": "error" },
+        "useNumberNamespace": { "fix": "safe", "level": "error" },
+        "useSelfClosingElements": { "fix": "safe", "level": "error" },
+        "useShorthandFunctionType": { "fix": "safe", "level": "error" },
+        "useSingleVarDeclarator": { "fix": "safe", "level": "error" },
+        "useTemplate": { "fix": "safe", "level": "error" }
       },
       "nursery": {
         "useSortedClasses": {
@@ -53,7 +66,8 @@
             "attributes": ["classList"],
             "functions": ["clsx", "cva", "tv", "tw"]
           }
-        }
+        },
+        "noEnum": "error"
       }
     }
   },
