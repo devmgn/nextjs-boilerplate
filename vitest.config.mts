@@ -2,6 +2,7 @@ import path from "node:path";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vitest/config";
 
+// biome-ignore lint/style/noDefaultExport: <explanation>
 export default defineConfig({
   plugins: [react()],
   test: {
