@@ -15,11 +15,17 @@ const config = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
     rules: {
+      "no-var": "off",
       "@typescript-eslint/ban-ts-comment": "off",
+      "@typescript-eslint/no-namespace": "off",
+      "@typescript-eslint/no-array-constructor": "off",
       "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-unused-vars": "off",
       "import/newline-after-import": "error",
       "lines-around-directive": "error",
       "no-multiple-empty-lines": "error",
+      "react-hooks/exhaustive-deps": "off",
+      "react-hooks/rules-of-hooks": "off",
       "react/jsx-curly-brace-presence": "error",
     },
   },
@@ -38,4 +44,5 @@ const config = [
   { ignores: ["src/api/openapi"] },
 ];
 
+// biome-ignore lint/style/noDefaultExport: <explanation>
 export default config;

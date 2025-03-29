@@ -10,8 +10,8 @@
     }
   },
   "files": {
-    "includes": ["**", "!src/api/openapi"],
-    "ignoreUnknown": true
+    "ignoreUnknown": true,
+    "includes": ["**", "!public/**", "!src/api/openapi/**"]
   },
   "formatter": {
     "indentStyle": "space"
@@ -21,34 +21,108 @@
     "domains": {
       "next": "all",
       "react": "all",
-      "test": "all",
-      "solid": "none"
+      "solid": "none",
+      "test": "all"
     },
     "rules": {
       "recommended": true,
-      "suspicious": {
-        "noConsole": {
-          "level": "warn",
-          "options": { "allow": ["error", "warn"] }
-        }
+      "complexity": {
+        "noUselessStringConcat": { "level": "error", "fix": "safe" },
+        "noUselessUndefinedInitialization": "error",
+        "noVoid": "error",
+        "useDateNow": { "level": "error", "fix": "safe" },
+        "useSimplifiedLogicExpression": { "level": "error", "fix": "safe" },
+        "useWhile": { "level": "error", "fix": "safe" }
+      },
+      "correctness": {
+        "noConstantMathMinMaxClamp": { "level": "error", "fix": "safe" },
+        "noUnusedFunctionParameters": "error",
+        "noUnusedImports": "error",
+        "noUnusedPrivateClassMembers": "error",
+        "noUnusedVariables": "error",
+        "useArrayLiterals": { "level": "error", "fix": "safe" },
+        "useExhaustiveDependencies": { "level": "error", "fix": "safe" }
+      },
+      "performance": {
+        "noBarrelFile": "error",
+        "noDelete": "error",
+        "noReExportAll": "error",
+        "useTopLevelRegex": "error"
       },
       "style": {
-        "useNamingConvention": {
-          "fix": "safe",
+        "noArguments": "error",
+        "noCommaOperator": "error",
+        "noDefaultExport": "error",
+        "noDoneCallback": "error",
+        "noImplicitBoolean": { "level": "error", "fix": "safe" },
+        "noInferrableTypes": { "level": "error", "fix": "safe" },
+        "noNamespace": "error",
+        "noNegationElse": { "level": "error", "fix": "safe" },
+        "noNonNullAssertion": "error",
+        "noParameterAssign": "error",
+        "noParameterProperties": "error",
+        "noRestrictedGlobals": "error",
+        "noShoutyConstants": "error",
+        "noUnusedTemplateLiteral": { "level": "error", "fix": "safe" },
+        "noUselessElse": { "level": "error", "fix": "safe" },
+        "noYodaExpression": { "level": "error", "fix": "safe" },
+        "useAsConstAssertion": { "level": "error", "fix": "safe" },
+        "useBlockStatements": { "level": "error", "fix": "safe" },
+        "useCollapsedElseIf": { "level": "error", "fix": "safe" },
+        "useConsistentArrayType": { "level": "error", "fix": "safe" },
+        "useConsistentBuiltinInstantiation": {
           "level": "error",
+          "fix": "safe"
+        },
+        "useConst": { "level": "error", "fix": "safe" },
+        "useDefaultParameterLast": "error",
+        "useDefaultSwitchClause": "error",
+        "useExplicitLengthCheck": { "level": "error", "fix": "safe" },
+        "useExponentiationOperator": { "level": "error", "fix": "safe" },
+        "useExportType": { "level": "error", "fix": "safe" },
+        "useFilenamingConvention": {
+          "level": "error",
+          "options": {
+            "filenameCases": ["camelCase", "PascalCase"]
+          }
+        },
+        "useForOf": "error",
+        "useFragmentSyntax": { "level": "error", "fix": "safe" },
+        "useImportType": { "level": "error", "fix": "safe" },
+        "useNamingConvention": {
+          "level": "error",
+          "fix": "safe",
           "options": {
             "strictCase": false
           }
         },
-        "useTemplate": {
-          "fix": "safe",
-          "level": "error"
-        }
+        "useNodejsImportProtocol": { "level": "error", "fix": "safe" },
+        "useNumberNamespace": { "level": "error", "fix": "safe" },
+        "useSelfClosingElements": { "level": "error", "fix": "safe" },
+        "useShorthandAssign": { "level": "error", "fix": "safe" },
+        "useShorthandFunctionType": { "level": "error", "fix": "safe" },
+        "useSingleVarDeclarator": { "level": "error", "fix": "safe" },
+        "useTemplate": { "level": "error", "fix": "safe" },
+        "useThrowOnlyError": "error"
+      },
+      "suspicious": {
+        "noConsole": {
+          "level": "warn",
+          "options": { "allow": ["error", "warn"] }
+        },
+        "noEmptyBlockStatements": "error",
+        "noMisplacedAssertion": "error",
+        "noSkippedTests": "error",
+        "noVar": { "level": "error", "fix": "safe" },
+        "useAwait": "error",
+        "useErrorMessage": "error",
+        "useNumberToFixedDigitsArgument": { "level": "error", "fix": "safe" }
       },
       "nursery": {
+        "noEnum": "error",
         "useSortedClasses": {
-          "fix": "safe",
           "level": "error",
+          "fix": "safe",
           "options": {
             "attributes": ["classList"],
             "functions": ["clsx", "cva", "tv", "tw"]
@@ -57,6 +131,49 @@
       }
     }
   },
+  "overrides": [
+    {
+      "includes": [
+        "**/default.tsx",
+        "**/error.tsx",
+        "**/forbidden.tsx",
+        "**/global-error.tsx",
+        "**/layout.tsx",
+        "**/loading.tsx",
+        "**/not-found.tsx",
+        "**/page.tsx",
+        "**/unauthorized.tsx"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDefaultExport": "off",
+            "useFilenamingConvention": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["**/*.stories.*"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDefaultExport": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["**/*.test.*"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noEmptyBlockStatements": "off"
+          }
+        }
+      }
+    }
+  ],
   "vcs": {
     "clientKind": "git",
     "enabled": true,
