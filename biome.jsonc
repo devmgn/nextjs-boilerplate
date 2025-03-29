@@ -10,7 +10,7 @@
     }
   },
   "files": {
-    "includes": ["**", "!src/api/openapi"],
+    "includes": ["**", "!public/**", "!src/api/openapi/**"],
     "ignoreUnknown": true
   },
   "formatter": {
@@ -26,25 +26,63 @@
     },
     "rules": {
       "recommended": true,
-      "suspicious": {
-        "noConsole": {
-          "level": "warn",
-          "options": { "allow": ["error", "warn"] }
-        }
+      "complexity": {
+        "noUselessStringConcat": { "fix": "safe", "level": "error" },
+        "noUselessUndefinedInitialization": "error",
+        "noVoid": "error",
+        "useDateNow": { "fix": "safe", "level": "error" },
+        "useSimplifiedLogicExpression": { "fix": "safe", "level": "error" },
+        "useWhile": { "fix": "safe", "level": "error" }
+      },
+      "correctness": {
+        "noConstantMathMinMaxClamp": { "fix": "safe", "level": "error" },
+        "noUnusedFunctionParameters": "error",
+        "noUnusedImports": "error",
+        "noUnusedPrivateClassMembers": "error",
+        "noUnusedVariables": "error",
+        "useArrayLiterals": { "fix": "safe", "level": "error" },
+        "useExhaustiveDependencies": { "fix": "safe", "level": "error" }
+      },
+      "performance": {
+        "noBarrelFile": "error",
+        "noDelete": "error",
+        "noReExportAll": "error",
+        "useTopLevelRegex": "error"
       },
       "style": {
         "noArguments": "error",
         "noCommaOperator": "error",
+        "noDefaultExport": "error",
+        "noDoneCallback": "error",
+        "noImplicitBoolean": { "fix": "safe", "level": "error" },
         "noInferrableTypes": { "fix": "safe", "level": "error" },
+        "noNamespace": "error",
+        "noNegationElse": { "fix": "safe", "level": "error" },
         "noNonNullAssertion": "error",
         "noParameterAssign": "error",
+        "noParameterProperties": "error",
+        "noRestrictedGlobals": "error",
+        "noShoutyConstants": "error",
         "noUnusedTemplateLiteral": { "fix": "safe", "level": "error" },
         "noUselessElse": { "fix": "safe", "level": "error" },
+        "noYodaExpression": { "fix": "safe", "level": "error" },
         "useAsConstAssertion": { "fix": "safe", "level": "error" },
+        "useBlockStatements": { "fix": "safe", "level": "error" },
+        "useCollapsedElseIf": { "fix": "safe", "level": "error" },
+        "useConsistentArrayType": { "fix": "safe", "level": "error" },
+        "useConsistentBuiltinInstantiation": {
+          "fix": "safe",
+          "level": "error"
+        },
         "useConst": { "fix": "safe", "level": "error" },
         "useDefaultParameterLast": "error",
+        "useDefaultSwitchClause": "error",
+        "useExplicitLengthCheck": { "fix": "safe", "level": "error" },
+        // "useFilenamingConvention": "error",
         "useExponentiationOperator": { "fix": "safe", "level": "error" },
         "useExportType": { "fix": "safe", "level": "error" },
+        "useForOf": "error",
+        "useFragmentSyntax": { "fix": "safe", "level": "error" },
         "useImportType": { "fix": "safe", "level": "error" },
         "useNamingConvention": {
           "fix": "safe",
@@ -54,9 +92,24 @@
         "useNodejsImportProtocol": { "fix": "safe", "level": "error" },
         "useNumberNamespace": { "fix": "safe", "level": "error" },
         "useSelfClosingElements": { "fix": "safe", "level": "error" },
+        "useShorthandAssign": { "fix": "safe", "level": "error" },
         "useShorthandFunctionType": { "fix": "safe", "level": "error" },
         "useSingleVarDeclarator": { "fix": "safe", "level": "error" },
-        "useTemplate": { "fix": "safe", "level": "error" }
+        "useTemplate": { "fix": "safe", "level": "error" },
+        "useThrowOnlyError": "error"
+      },
+      "suspicious": {
+        "noConsole": {
+          "level": "warn",
+          "options": { "allow": ["error", "warn"] }
+        },
+        "noEmptyBlockStatements": "error",
+        "noMisplacedAssertion": "error",
+        "noSkippedTests": "error",
+        "noVar": { "fix": "safe", "level": "error" },
+        "useAwait": "error",
+        "useErrorMessage": "error",
+        "useNumberToFixedDigitsArgument": { "fix": "safe", "level": "error" }
       },
       "nursery": {
         "useSortedClasses": {
@@ -71,6 +124,48 @@
       }
     }
   },
+  "overrides": [
+    {
+      "includes": [
+        "**/default.tsx",
+        "**/error.tsx",
+        "**/forbidden.tsx",
+        "**/global-error.tsx",
+        "**/layout.tsx",
+        "**/loading.tsx",
+        "**/not-found.tsx",
+        "**/page.tsx",
+        "**/unauthorized.tsx"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDefaultExport": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["**/*.stories.*"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDefaultExport": "off"
+          }
+        }
+      }
+    },
+    {
+      "includes": ["**/*.test.*"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noEmptyBlockStatements": "off"
+          }
+        }
+      }
+    }
+  ],
   "vcs": {
     "clientKind": "git",
     "enabled": true,
