@@ -4,7 +4,7 @@
   "engines": {
     "node": "22.14.0"
   },
-  "packageManager": "yarn@4.8.0",
+  "packageManager": "yarn@4.8.1",
   "scripts": {
     "postinstall": "node .husky/install.mjs",
     "dev": "next dev --turbopack",
