@@ -3557,10 +3557,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-core@npm:5.71.0":
-  version: 5.71.0
-  resolution: "@tanstack/query-core@npm:5.71.0"
-  checksum: 10c0/9f22ca925b7b16d8cb1f32a13b16d5ebbbd4bf89711b1019e47f38d8bef3da4434371d4009c2f5c49a7ff458b7a1e62f10a1612647a484e4a1d347f5370ab760
+"@tanstack/query-core@npm:5.71.1":
+  version: 5.71.1
+  resolution: "@tanstack/query-core@npm:5.71.1"
+  checksum: 10c0/cc26032439fa1f4f249a56505a51b251440e08312c65b2dcf6b6970c751a3a1c9b3dba4a03e7a64a5b9be5634b6d86c3f93d95e91d73d3875a86e4d50da7e9ae
   languageName: node
   linkType: hard
 
@@ -3571,26 +3571,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-query-devtools@npm:5.71.0":
-  version: 5.71.0
-  resolution: "@tanstack/react-query-devtools@npm:5.71.0"
+"@tanstack/react-query-devtools@npm:5.71.1":
+  version: 5.71.1
+  resolution: "@tanstack/react-query-devtools@npm:5.71.1"
   dependencies:
     "@tanstack/query-devtools": "npm:5.67.2"
   peerDependencies:
-    "@tanstack/react-query": ^5.71.0
+    "@tanstack/react-query": ^5.71.1
     react: ^18 || ^19
-  checksum: 10c0/9ebd956060ed2082793aacf9325f5eab8595902170f3a2202c2bee672e76f87c207bb2616bf34e8a11b6605a8050e9bf2fb9ce93a44686c8ebf93b961dac3b6b
+  checksum: 10c0/48100df0c406cdec9a08b209d8b33305f9681a7fc6c73490c9da2c5b9ca679e8cdea932f7edae137f4aab67915a3641021c19cf8b52ed0ee70403038b78622cc
   languageName: node
   linkType: hard
 
-"@tanstack/react-query@npm:5.71.0":
-  version: 5.71.0
-  resolution: "@tanstack/react-query@npm:5.71.0"
+"@tanstack/react-query@npm:5.71.1":
+  version: 5.71.1
+  resolution: "@tanstack/react-query@npm:5.71.1"
   dependencies:
-    "@tanstack/query-core": "npm:5.71.0"
+    "@tanstack/query-core": "npm:5.71.1"
   peerDependencies:
     react: ^18 || ^19
-  checksum: 10c0/3d5f6113de1e503036048a1dd45c210245215279d8a668eaa43441be84123c175def20625865b5e75cc7ad8524f17d7125ba4755808967c95536317745dfcf17
+  checksum: 10c0/10b852ff99839069282ff2262817672a1243c781469e71643007a5610a579557a0f50cc0cc39bf3bb59d79c09d16e367952bce6b889117b461bbb548dc2f464e
   languageName: node
   linkType: hard
 
@@ -9364,8 +9364,8 @@ __metadata:
     "@storybook/test": "npm:8.6.11"
     "@tailwindcss/postcss": "npm:4.0.17"
     "@tanstack/eslint-plugin-query": "npm:5.68.0"
-    "@tanstack/react-query": "npm:5.71.0"
-    "@tanstack/react-query-devtools": "npm:5.71.0"
+    "@tanstack/react-query": "npm:5.71.1"
+    "@tanstack/react-query-devtools": "npm:5.71.1"
     "@testing-library/jest-dom": "npm:6.6.3"
     "@testing-library/react": "npm:16.2.0"
     "@testing-library/user-event": "npm:14.6.1"
