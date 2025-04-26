@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { expect, userEvent, within } from "storybook/test";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { useDisclosure } from ".";
@@ -29,3 +30,21 @@ export default meta;
 type Story = StoryObj<typeof useDisclosure>;
 
 export const Default: Story = {};
+
+export const Test: Story = {
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const input = canvas.getByRole("textbox");
+    expect(input).toHaveValue("false");
+    const [openButton, closeButton, toggleButton] =
+      canvas.getAllByRole("button");
+    await userEvent.click(openButton);
+    await expect(input).toHaveValue("true");
+    await userEvent.click(closeButton);
+    await expect(input).toHaveValue("false");
+    await userEvent.click(toggleButton);
+    await expect(input).toHaveValue("true");
+    await userEvent.click(toggleButton);
+    await expect(input).toHaveValue("false");
+  },
+};
