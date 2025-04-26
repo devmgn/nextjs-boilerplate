@@ -1,6 +1,6 @@
 import { FaceIcon } from "@radix-ui/react-icons";
-import type { Meta, StoryObj } from "@storybook/react";
-import { expect, fn, userEvent, within } from "@storybook/test";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { expect, fn, userEvent, within } from "storybook/test";
 import { SvgIcon } from ".";
 
 const meta: Meta<typeof SvgIcon> = {
@@ -22,7 +22,9 @@ const meta: Meta<typeof SvgIcon> = {
 export default meta;
 type Story = StoryObj<typeof SvgIcon>;
 
-export const Default: Story = {
+export const Default: Story = {};
+
+export const Test: Story = {
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);
     const icon = await canvas.findByLabelText("Face icon");

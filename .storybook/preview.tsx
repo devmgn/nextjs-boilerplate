@@ -1,4 +1,4 @@
-import type { Preview } from "@storybook/react";
+import type { Preview } from "@storybook/nextjs-vite";
 import locale from "axe-core/locales/ja.json";
 import { initialize, mswLoader } from "msw-storybook-addon";
 // biome-ignore lint/correctness/noUnusedImports: <explanation>

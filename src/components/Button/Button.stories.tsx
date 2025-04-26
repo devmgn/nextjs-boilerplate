@@ -1,9 +1,10 @@
 import { faker } from "@faker-js/faker/locale/ja";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Button } from ".";
 
 const meta: Meta<typeof Button> = {
   component: Button,
+  tags: ["autodocs"],
   args: {
     children: faker.lorem.sentence(),
   },
