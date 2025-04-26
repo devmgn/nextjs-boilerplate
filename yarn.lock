@@ -6561,7 +6561,7 @@ __metadata:
     tailwind-variants: "npm:1.0.0"
     tailwindcss: "npm:4.1.4"
     tailwindcss-animate: "npm:1.0.7"
-    type-fest: "npm:4.40.0"
+    type-fest: "npm:4.40.1"
     typescript: "npm:5.8.3"
     vitest: "npm:3.1.2"
     zod: "npm:3.24.3"
@@ -8486,10 +8486,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:4.40.0, type-fest@npm:^4.26.1":
-  version: 4.40.0
-  resolution: "type-fest@npm:4.40.0"
-  checksum: 10c0/b39d4da6f9a154e3db7e714cd05ccf56b53f4f0bbf74dd294cb6be4921b16ecca5cb00cb81b53ab621a31c8e8509c74b5101895ada47af9de368a317d24538a3
+"type-fest@npm:4.40.1":
+  version: 4.40.1
+  resolution: "type-fest@npm:4.40.1"
+  checksum: 10c0/590cb7d4dcd3da83efe49b5b52cd041661f6fa29f18cb76650fe1fdeb4090688e92955656e9d981e606abb13d25c0418be8c6c6504d80e87fe18dc9ca0888392
   languageName: node
   linkType: hard
 
@@ -8497,6 +8497,13 @@ __metadata:
   version: 0.21.3
   resolution: "type-fest@npm:0.21.3"
   checksum: 10c0/902bd57bfa30d51d4779b641c2bc403cdf1371fb9c91d3c058b0133694fcfdb817aef07a47f40faf79039eecbaa39ee9d3c532deff244f3a19ce68cea71a61e8
+  languageName: node
+  linkType: hard
+
+"type-fest@npm:^4.26.1":
+  version: 4.40.0
+  resolution: "type-fest@npm:4.40.0"
+  checksum: 10c0/b39d4da6f9a154e3db7e714cd05ccf56b53f4f0bbf74dd294cb6be4921b16ecca5cb00cb81b53ab621a31c8e8509c74b5101895ada47af9de368a317d24538a3
   languageName: node
   linkType: hard
 
