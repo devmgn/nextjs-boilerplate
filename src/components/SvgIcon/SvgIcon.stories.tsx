@@ -24,7 +24,7 @@ type Story = StoryObj<typeof SvgIcon>;
 
 export const Default: Story = {};
 
-export const RenderTest: Story = {
+export const Test: Story = {
   play: async ({ args, canvasElement }) => {
     const canvas = within(canvasElement);
     const icon = await canvas.findByLabelText("Face icon");
