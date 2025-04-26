@@ -22,7 +22,7 @@ const meta: Meta<typeof SvgIcon> = {
 export default meta;
 type Story = StoryObj<typeof SvgIcon>;
 
-export const Default = {};
+export const Default: Story = {};
 
 export const RenderTest: Story = {
   play: async ({ args, canvasElement }) => {
