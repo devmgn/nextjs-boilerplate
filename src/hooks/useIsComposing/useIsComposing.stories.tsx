@@ -18,7 +18,10 @@ const meta: Meta<typeof useIsComposing> = {
             {isComposing.toString()}
           </p>
         </div>
-        <Input />
+        <div className="flex flex-col gap-2">
+          <label htmlFor="type">Type your text</label>
+          <Input id="type" />
+        </div>
       </div>
     );
   },
