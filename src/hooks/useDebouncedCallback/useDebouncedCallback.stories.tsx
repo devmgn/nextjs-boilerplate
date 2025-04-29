@@ -31,10 +31,11 @@ const meta: Meta<typeof useDebouncedCallback> = {
     return (
       <div className="flex flex-col gap-4">
         <div className="grid grid-cols-[1fr_auto] items-center gap-2">
-          <p>debouncedValue Result: </p>
-          <Input readOnly={true} value={result} />
-          <p>DelayTime</p>
+          <label htmlFor="result">debouncedValue Result: </label>
+          <Input id="result" readOnly={true} value={result} />
+          <label htmlFor="delayTime">DelayTime</label>
           <Input
+            id="delayTime"
             onChange={(e) => setDelayTime(+e.target.value)}
             placeholder="delay time"
             type="number"

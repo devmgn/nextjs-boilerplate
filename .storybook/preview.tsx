@@ -9,6 +9,9 @@ initialize({ onUnhandledRequest: "bypass" });
 
 const preview: Preview = {
   parameters: {
+    globals: {
+      locale: "ja",
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -17,6 +20,8 @@ const preview: Preview = {
     },
     a11y: {
       config: { locale },
+      // @see https://storybook.js.org/docs/writing-tests/accessibility-testing#configure-accessibility-tests-with-the-test-addon
+      test: "error",
     },
   },
   loaders: [mswLoader],

@@ -15,8 +15,8 @@ const meta: Meta<typeof useDisclosure> = {
     return (
       <div className="flex flex-col gap-4">
         <div className="flex gap-2">
-          <p>disclosure Result: </p>
-          <Input readOnly={true} value={isOpen.toString()} />
+          <label htmlFor="result">disclosure Result: </label>
+          <Input id="result" readOnly={true} value={isOpen.toString()} />
         </div>
         <Button onClick={open}>Open</Button>
         <Button onClick={close}>Close</Button>
