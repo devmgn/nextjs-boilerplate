@@ -37,5 +37,5 @@ const config = [
   { ignores: ["src/api/openapi"] },
 ];
 
-// biome-ignore lint/style/noDefaultExport: <explanation>
+// biome-ignore lint/style/noDefaultExport: use default export
 export default config;

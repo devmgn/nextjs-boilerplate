@@ -1,8 +1,6 @@
 import type { Preview } from "@storybook/nextjs-vite";
 import locale from "axe-core/locales/ja.json";
 import { initialize, mswLoader } from "msw-storybook-addon";
-// biome-ignore lint/correctness/noUnusedImports: <explanation>
-import React from "react";
 import { SbProvider } from "./providers/SbProvider";
 
 initialize({ onUnhandledRequest: "bypass" });
@@ -34,5 +32,5 @@ const preview: Preview = {
   ],
 };
 
-// biome-ignore lint/style/noDefaultExport: <explanation>
+// biome-ignore lint/style/noDefaultExport: ues default export
 export default preview;

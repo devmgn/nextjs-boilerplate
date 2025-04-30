@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
   },
 };
 
-// biome-ignore lint/style/noDefaultExport: <explanation>
+// biome-ignore lint/style/noDefaultExport: using default export
 export default withBundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
 })(nextConfig);

@@ -6,5 +6,5 @@ const config = () => {
   process.env.LANG = "ja_JP.UTF-8";
 };
 
-// biome-ignore lint/style/noDefaultExport: <explanation>
+// biome-ignore lint/style/noDefaultExport: use default export
 export default config;
