@@ -1,8 +1,8 @@
-import type { Metadata, Viewport } from "next";
 import { ENV } from "../config/env";
 import { WebVitalsReporter } from "../lib/WebVitalsReporter";
 import { RootProvider } from "../providers/RootProvider";
 import { isProduction } from "../utils/nodeEnv";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {

@@ -1,7 +1,7 @@
 import { FaceIcon } from "@radix-ui/react-icons";
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { expect, fn, userEvent, within } from "storybook/test";
 import { SvgIcon } from ".";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 const meta: Meta<typeof SvgIcon> = {
   component: SvgIcon,

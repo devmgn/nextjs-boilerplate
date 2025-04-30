@@ -1,7 +1,7 @@
-import type { Preview } from "@storybook/nextjs-vite";
 import locale from "axe-core/locales/ja.json";
 import { initialize, mswLoader } from "msw-storybook-addon";
 import { SbProvider } from "./providers/SbProvider";
+import type { Preview } from "@storybook/nextjs-vite";
 
 initialize({ onUnhandledRequest: "bypass" });
 
