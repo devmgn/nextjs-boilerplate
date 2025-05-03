@@ -3,6 +3,7 @@ import type { Primitive } from "type-fest";
 /**
  * 交差型を展開しそのメンバーを明示的にするユーティリティ型
  * @description デバッグ用途で利用
+ * @public
  */
 export type Expand<T> = T extends object
   ? T extends infer O
