@@ -14,5 +14,6 @@ export const envSchema = z
 
 /**
  * 環境変数の型定義
+ * @public
  */
 export type EnvSchema = z.infer<typeof envSchema>;

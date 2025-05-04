@@ -3,7 +3,12 @@
   "assist": {
     "actions": {
       "source": {
-        "organizeImports": "on",
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [{ "type": false }]
+          }
+        },
         "useSortedAttributes": "on",
         "useSortedProperties": "on"
       }
@@ -134,6 +139,7 @@
         "useAriaPropsSupportedByRole": "error",
         "useCollapsedIf": { "level": "error", "fix": "safe" },
         "useConsistentCurlyBraces": { "level": "error", "fix": "safe" },
+        "useIterableCallbackReturn": "error",
         "useSortedClasses": {
           "level": "error",
           "fix": "safe",

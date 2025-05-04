@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Input } from "../../components/Input";
 import { useIsComposing } from ".";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 const meta: Meta<typeof useIsComposing> = {
   title: "hooks/useIsComposing",

@@ -7,7 +7,7 @@ import { defineConfig } from "vitest/config";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// biome-ignore lint/style/noDefaultExport: <explanation>
+// biome-ignore lint/style/noDefaultExport: use default export
 export default defineConfig({
   test: {
     coverage: {

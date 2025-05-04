@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { useState } from "react";
 import { Input } from "../../components/Input";
 import { useIsComposing } from "../useIsComposing";
 import { useDebouncedCallback } from ".";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 const meta: Meta<typeof useDebouncedCallback> = {
   title: "hooks/useDebouncedCallback",

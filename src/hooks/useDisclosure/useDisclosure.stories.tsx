@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { expect, userEvent, within } from "storybook/test";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { useDisclosure } from ".";
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 const meta: Meta<typeof useDisclosure> = {
   title: "hooks/useDisclosure",

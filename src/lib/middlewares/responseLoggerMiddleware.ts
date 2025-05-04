@@ -6,6 +6,6 @@ export const responseLoggerMiddleware: MiddlewareHandler = async (
 ) => {
   await next();
   const { status, type } = ctx.res;
-  // biome-ignore lint/suspicious/noConsole: <explanation>
+  // biome-ignore lint/suspicious/noConsole: logging
   console.log("[RESPONSE]", { status, type });
 };

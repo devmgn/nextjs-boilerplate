@@ -1,13 +1,11 @@
 {
-  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "$schema": "./node_modules/knip/schema.json",
   "project": ["src/**/*.{ts,tsx}"],
   "ignore": [
     "openapiconfig.json",
     "package.json",
     "src/api/openapi/**",
-    "src/assets/icons/**",
-    "src/mocks/**",
-    "src/types/**"
+    "src/mocks/**"
   ],
   "exclude": ["dependencies", "unlisted"]
 }

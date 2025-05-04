@@ -12,7 +12,7 @@ const style = `
 
 export function WebVitalsReporter() {
   useReportWebVitals((metric) => {
-    // biome-ignore lint/suspicious/noConsole: <explanation>
+    // biome-ignore lint/suspicious/noConsole: logging
     console.info(
       `%c [Web Vitals]: ${metric.name}: ${metric.value} / Rating: ${metric.rating}`,
       style.toString(),
