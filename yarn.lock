@@ -459,14 +459,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@conform-to/react@npm:1.4.0":
-  version: 1.4.0
-  resolution: "@conform-to/react@npm:1.4.0"
+"@conform-to/dom@npm:1.5.0":
+  version: 1.5.0
+  resolution: "@conform-to/dom@npm:1.5.0"
+  checksum: 10c0/3172e76154006a4fbe8b22ff76d0b0446087a8ddb1a3dc3aa3a1f9236508e4cb669d9eb86fb6fa833e056240480b578944a799015e0d7a0a0b640ca7e4fdaeaf
+  languageName: node
+  linkType: hard
+
+"@conform-to/react@npm:1.5.0":
+  version: 1.5.0
+  resolution: "@conform-to/react@npm:1.5.0"
   dependencies:
-    "@conform-to/dom": "npm:1.4.0"
+    "@conform-to/dom": "npm:1.5.0"
   peerDependencies:
     react: ">=18"
-  checksum: 10c0/22141594815c13b7e7e93fbb6887353557099a318fa928cc27fe9cd2b6fcbeaadcf049f7b9ca6d5223794be6adf7af4bb3814f64ebf9715c012bb58c0389b15a
+  checksum: 10c0/3baffec8cccc831d175ed1885495536a80503ef2c74488c06540b29910afea36e47b80ea7fe50b9e54066c88f5e023494877758449fcccedcd349c953abafde7
   languageName: node
   linkType: hard
 
@@ -6807,7 +6814,7 @@ __metadata:
   resolution: "nextjs-boilerplate@workspace:."
   dependencies:
     "@biomejs/biome": "npm:2.0.0-beta.2"
-    "@conform-to/react": "npm:1.4.0"
+    "@conform-to/react": "npm:1.5.0"
     "@conform-to/zod": "npm:1.4.0"
     "@faker-js/faker": "npm:9.7.0"
     "@lukemorales/query-key-factory": "npm:1.3.4"
