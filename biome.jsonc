@@ -31,7 +31,11 @@
     },
     "rules": {
       "recommended": true,
+      "a11y": {
+        "useAriaPropsSupportedByRole": "error"
+      },
       "complexity": {
+        "noUselessEscapeInRegex": { "level": "error", "fix": "safe" },
         "noUselessStringConcat": { "level": "error", "fix": "safe" },
         "noUselessUndefinedInitialization": "error",
         "noVoid": "error",
@@ -59,10 +63,12 @@
         "noCommaOperator": "error",
         "noDefaultExport": "error",
         "noDoneCallback": "error",
+        "noEnum": "error",
         "noImplicitBoolean": { "level": "error", "fix": "safe" },
         "noInferrableTypes": { "level": "error", "fix": "safe" },
         "noNamespace": "error",
         "noNegationElse": { "level": "error", "fix": "safe" },
+        "noNestedTernary": "error",
         "noNonNullAssertion": "error",
         "noParameterAssign": "error",
         "noParameterProperties": "error",
@@ -74,22 +80,23 @@
         "useAsConstAssertion": { "level": "error", "fix": "safe" },
         "useBlockStatements": { "level": "error", "fix": "safe" },
         "useCollapsedElseIf": { "level": "error", "fix": "safe" },
+        "useCollapsedIf": { "level": "error", "fix": "safe" },
         "useConsistentArrayType": { "level": "error", "fix": "safe" },
         "useConsistentBuiltinInstantiation": {
           "level": "error",
           "fix": "safe"
         },
+        "useConsistentCurlyBraces": { "level": "error", "fix": "safe" },
         "useConst": { "level": "error", "fix": "safe" },
         "useDefaultParameterLast": "error",
         "useDefaultSwitchClause": "error",
+        "useEnumInitializers": "error",
         "useExplicitLengthCheck": { "level": "error", "fix": "safe" },
         "useExponentiationOperator": { "level": "error", "fix": "safe" },
         "useExportType": { "level": "error", "fix": "safe" },
         "useFilenamingConvention": {
           "level": "error",
-          "options": {
-            "filenameCases": ["camelCase", "PascalCase"]
-          }
+          "options": { "filenameCases": ["camelCase", "PascalCase"] }
         },
         "useForOf": "error",
         "useFragmentSyntax": { "level": "error", "fix": "safe" },
@@ -97,9 +104,7 @@
         "useNamingConvention": {
           "level": "error",
           "fix": "safe",
-          "options": {
-            "strictCase": false
-          }
+          "options": { "strictCase": false }
         },
         "useNodejsImportProtocol": { "level": "error", "fix": "safe" },
         "useNumberNamespace": { "level": "error", "fix": "safe" },
@@ -121,24 +126,19 @@
         "noVar": { "level": "error", "fix": "safe" },
         "useAwait": "error",
         "useErrorMessage": "error",
-        "useNumberToFixedDigitsArgument": { "level": "error", "fix": "safe" }
-      },
-      "nursery": {
+        "useNumberToFixedDigitsArgument": { "level": "error", "fix": "safe" },
         "noDuplicateElseIf": "error",
-        "noEnum": "error",
-        "noImportCycles": "error",
         "noIrregularWhitespace": "error",
-        "noNestedTernary": "error",
-        "noNoninteractiveElementInteractions": "error",
         "noOctalEscape": { "level": "error", "fix": "safe" },
         "noTemplateCurlyInString": "error",
-        "noUselessEscapeInRegex": { "level": "error", "fix": "safe" },
+        "useAdjacentOverloadSignatures": "error"
+      },
+      "nursery": {
+        "noImportCycles": "error",
+        "noNoninteractiveElementInteractions": "error",
+        "noUselessBackrefInRegex": "error",
         "noUselessEscapeInString": { "level": "error", "fix": "safe" },
         "noUselessUndefined": { "level": "error", "fix": "safe" },
-        "useAdjacentOverloadSignatures": "error",
-        "useAriaPropsSupportedByRole": "error",
-        "useCollapsedIf": { "level": "error", "fix": "safe" },
-        "useConsistentCurlyBraces": { "level": "error", "fix": "safe" },
         "useIterableCallbackReturn": "error",
         "useSortedClasses": {
           "level": "error",
@@ -162,6 +162,7 @@
         "**/loading.tsx",
         "**/not-found.tsx",
         "**/page.tsx",
+        "**/sitemap.ts",
         "**/unauthorized.tsx"
       ],
       "linter": {
