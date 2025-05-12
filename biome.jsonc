@@ -31,6 +31,9 @@
     },
     "rules": {
       "recommended": true,
+      "a11y": {
+        "useAriaPropsSupportedByRole": "error"
+      },
       "complexity": {
         "noUselessEscapeInRegex": { "level": "error", "fix": "safe" },
         "noUselessStringConcat": { "level": "error", "fix": "safe" },
@@ -145,9 +148,6 @@
             "functions": ["clsx", "cva", "tv", "tw"]
           }
         }
-      },
-      "a11y": {
-        "useAriaPropsSupportedByRole": "error"
       }
     }
   },
