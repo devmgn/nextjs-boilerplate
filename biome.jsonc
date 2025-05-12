@@ -133,6 +133,7 @@
       "nursery": {
         "noImportCycles": "error",
         "noNoninteractiveElementInteractions": "error",
+        "noUselessBackrefInRegex": "error",
         "noUselessEscapeInString": { "level": "error", "fix": "safe" },
         "noUselessUndefined": { "level": "error", "fix": "safe" },
         "useIterableCallbackReturn": "error",
