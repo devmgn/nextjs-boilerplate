@@ -4625,15 +4625,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-storybook@npm:9.0.0-rc.0":
-  version: 9.0.0-rc.0
-  resolution: "eslint-plugin-storybook@npm:9.0.0-rc.0"
+"eslint-plugin-storybook@npm:9.0.0-rc.1":
+  version: 9.0.0-rc.1
+  resolution: "eslint-plugin-storybook@npm:9.0.0-rc.1"
   dependencies:
     "@typescript-eslint/utils": "npm:^8.8.1"
   peerDependencies:
     eslint: ">=8"
-    storybook: ^9.0.0-rc.0
-  checksum: 10c0/a23566db628bf0d126891ea07f19d9a77467e058ed2430cdb126946b7690cfd4ceda70a94d8736400873621ccdeee6b9412629fda9747110df4576363ab11138
+    storybook: ^9.0.0-rc.1
+  checksum: 10c0/d7452d60aa284bec0053b64757f26357920668251673ef296648f0e773970a9793339e3f19539621564e7d55ed86a6f8203037bdd0b053a7bc4f191466e9db23
   languageName: node
   linkType: hard
 
@@ -6906,7 +6906,7 @@ __metadata:
     eslint: "npm:9.26.0"
     eslint-config-next: "npm:15.3.2"
     eslint-plugin-react-compiler: "npm:19.1.0-rc.2"
-    eslint-plugin-storybook: "npm:9.0.0-rc.0"
+    eslint-plugin-storybook: "npm:9.0.0-rc.1"
     hono: "npm:4.7.9"
     husky: "npm:9.1.7"
     jest-extended: "npm:4.0.2"
