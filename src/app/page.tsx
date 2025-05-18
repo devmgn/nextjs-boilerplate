@@ -1,3 +1,3 @@
 export default function Page() {
-  return null;
+  throw new Error("This is a test error");
 }
