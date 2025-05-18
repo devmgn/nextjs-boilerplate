@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
     reactRemoveProperties: true,
   },
   experimental: {
+    authInterrupts: true,
     reactCompiler: true,
   },
 };

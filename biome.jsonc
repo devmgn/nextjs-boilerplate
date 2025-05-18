@@ -139,6 +139,7 @@
         "noUselessBackrefInRegex": "error",
         "noUselessEscapeInString": { "level": "error", "fix": "safe" },
         "noUselessUndefined": { "level": "error", "fix": "safe" },
+        "useExhaustiveSwitchCases": { "level": "error", "fix": "safe" },
         "useIterableCallbackReturn": "error",
         "useSortedClasses": {
           "level": "error",
@@ -158,6 +159,7 @@
         "**/error.tsx",
         "**/forbidden.tsx",
         "**/global-error.tsx",
+        "**/instrumentation-client.ts",
         "**/layout.tsx",
         "**/loading.tsx",
         "**/not-found.tsx",

@@ -5,6 +5,8 @@
     "openapiconfig.json",
     "package.json",
     "src/api/openapi/**",
+    "src/app/forbidden.tsx",
+    "src/app/unauthorized.tsx",
     "src/mocks/**"
   ],
   "exclude": ["dependencies", "unlisted"]
