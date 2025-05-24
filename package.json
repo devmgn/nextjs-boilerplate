@@ -12,7 +12,7 @@
     "start": "next start",
     "lint": "yarn lint:next && yarn lint:biome",
     "lint:next": "next lint --fix",
-    "lint:biome": "biome check --write --unsafe",
+    "lint:biome": "biome check --write",
     "knip": "knip --cache",
     "check-types": "tsc --noEmit",
     "test": "vitest run",
