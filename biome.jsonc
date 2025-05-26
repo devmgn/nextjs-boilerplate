@@ -42,7 +42,64 @@
       "correctness": {
         "noConstantMathMinMaxClamp": { "level": "error", "fix": "safe" },
         "noUnusedFunctionParameters": { "level": "warn", "fix": "safe" },
-        "useExhaustiveDependencies": { "level": "error", "fix": "safe" },
+        "useExhaustiveDependencies": {
+          "level": "error",
+          "fix": "safe",
+          "options": {
+            "hooks": [
+              {
+                "name": "useAsync",
+                "closureIndex": 0,
+                "dependenciesIndex": 1
+              },
+              {
+                "name": "useAsyncFn",
+                "closureIndex": 0,
+                "dependenciesIndex": 1
+              },
+              {
+                "name": "useAsyncRetry",
+                "closureIndex": 0,
+                "dependenciesIndex": 1
+              },
+              {
+                "name": "useCustomCompareEffect",
+                "closureIndex": 0,
+                "dependenciesIndex": 1
+              },
+              {
+                "name": "useDebounce",
+                "closureIndex": 0,
+                "dependenciesIndex": 2
+              },
+              {
+                "name": "useDeepCompareEffect",
+                "closureIndex": 0,
+                "dependenciesIndex": 1
+              },
+              {
+                "name": "useIsomorphicLayoutEffect",
+                "closureIndex": 0,
+                "dependenciesIndex": 1
+              },
+              {
+                "name": "useShallowCompareEffect",
+                "closureIndex": 0,
+                "dependenciesIndex": 1
+              },
+              {
+                "name": "useThrottleFn",
+                "closureIndex": 0,
+                "dependenciesIndex": 2
+              },
+              {
+                "name": "useUpdateEffect",
+                "closureIndex": 0,
+                "dependenciesIndex": 1
+              }
+            ]
+          }
+        },
         // 以下の設定は domains.project: "all"により有効化されたものでオフにしている
         "noUndeclaredDependencies": "off",
         "useImportExtensions": "off"
@@ -67,19 +124,19 @@
         "noParameterProperties": "warn",
         "noRestrictedGlobals": "warn",
         "noShoutyConstants": { "level": "info", "fix": "safe" },
+        "noSubstr": { "level": "info", "fix": "safe" },
         "noUnusedTemplateLiteral": "warn",
         "noUselessElse": "info",
         "noYodaExpression": "info",
         "useAsConstAssertion": "info",
+        "useAtIndex": { "level": "warn", "fix": "safe" },
         "useBlockStatements": { "level": "error", "fix": "safe" },
         "useCollapsedElseIf": "info",
         "useCollapsedIf": "info",
         "useConsistentArrayType": { "level": "info", "fix": "safe" },
-        "useConsistentBuiltinInstantiation": {
-          "level": "info",
-          "fix": "safe"
-        },
+        "useConsistentBuiltinInstantiation": { "level": "info", "fix": "safe" },
         "useConsistentCurlyBraces": { "level": "info", "fix": "safe" },
+        "useConsistentMemberAccessibility": "info",
         "useDefaultParameterLast": "warn",
         "useDefaultSwitchClause": "warn",
         "useEnumInitializers": "warn",
@@ -96,13 +153,15 @@
           "fix": "safe",
           "options": { "strictCase": false }
         },
+        "useNodeAssertStrict": "warn",
         "useNodejsImportProtocol": { "level": "info", "fix": "safe" },
         "useNumberNamespace": "info",
         "useSelfClosingElements": "info",
         "useShorthandAssign": { "level": "info", "fix": "safe" },
         "useSingleVarDeclarator": { "level": "info", "fix": "safe" },
         "useTemplate": { "level": "info", "fix": "safe" },
-        "useThrowOnlyError": "warn"
+        "useThrowOnlyError": "warn",
+        "useTrimStartEnd": "info"
       },
       "suspicious": {
         "noConsole": {
@@ -130,7 +189,9 @@
             "attributes": ["classList"],
             "functions": ["clsx", "cva", "tv", "tw"]
           }
-        }
+        },
+        // 以下の設定は domains.project: "all"により有効化されたものでオフにしている
+        "noUnresolvedImports": "off"
       }
     }
   },
