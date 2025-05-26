@@ -45,6 +45,7 @@
         "useExhaustiveDependencies": {
           "level": "error",
           "fix": "safe",
+          // react-useのフックを追加設定
           "options": {
             "hooks": [
               {
