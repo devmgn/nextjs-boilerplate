@@ -1,7 +1,7 @@
 "use client";
 
 import { getFormProps, getInputProps, useForm } from "@conform-to/react";
-import { parseWithZod } from "@conform-to/zod";
+import { parseWithZod } from "@conform-to/zod/v4";
 import { useActionState } from "react";
 import { Button } from "../../../components/Button";
 import { Input } from "../../../components/Input";
@@ -16,29 +16,18 @@ export default function Page() {
     onValidate: ({ formData }) => {
       return parseWithZod(formData, { schema: postSchema });
     },
+    shouldValidate: "onInput",
   });
 
   return (
     <form {...getFormProps(form)} action={action} onSubmit={form.onSubmit}>
-      <Input
-        {...getInputProps(fields.userId, { type: "number" })}
-        key={fields.userId.key}
-      />
+      <Input {...getInputProps(fields.userId, { type: "number" })} />
       <p>{fields.userId.errors}</p>
-      <Input
-        {...getInputProps(fields.id, { type: "number" })}
-        key={fields.id.key}
-      />
+      <Input {...getInputProps(fields.id, { type: "number" })} />
       <p>{fields.id.errors}</p>
-      <Input
-        {...getInputProps(fields.title, { type: "text" })}
-        key={fields.title.key}
-      />
+      <Input {...getInputProps(fields.title, { type: "text" })} />
       <p>{fields.title.errors}</p>
-      <Input
-        {...getInputProps(fields.body, { type: "text" })}
-        key={fields.body.key}
-      />
+      <Input {...getInputProps(fields.body, { type: "text" })} />
       <p>{fields.body.errors}</p>
       <Button type="submit">Submit</Button>
     </form>

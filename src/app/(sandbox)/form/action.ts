@@ -1,6 +1,6 @@
 "use server";
 
-import { parseWithZod } from "@conform-to/zod";
+import { parseWithZod } from "@conform-to/zod/v4";
 import { apiClient } from "../../../api/apiClient";
 import { postSchema } from "./schema";
 
