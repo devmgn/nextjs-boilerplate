@@ -452,13 +452,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@conform-to/dom@npm:1.6.0":
-  version: 1.6.0
-  resolution: "@conform-to/dom@npm:1.6.0"
-  checksum: 10c0/d168eaf28d48e5aacf374b9f6a78c8b32b604f5fe73f4a7731110378cccd2298ef75004b582f8900af05172e82a78366a8838d84544584b95f7e7c6f409514c9
-  languageName: node
-  linkType: hard
-
 "@conform-to/dom@npm:1.6.1":
   version: 1.6.1
   resolution: "@conform-to/dom@npm:1.6.1"
@@ -477,14 +470,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@conform-to/zod@npm:1.6.0":
-  version: 1.6.0
-  resolution: "@conform-to/zod@npm:1.6.0"
+"@conform-to/zod@npm:1.6.1":
+  version: 1.6.1
+  resolution: "@conform-to/zod@npm:1.6.1"
   dependencies:
-    "@conform-to/dom": "npm:1.6.0"
+    "@conform-to/dom": "npm:1.6.1"
   peerDependencies:
     zod: ^3.21.0
-  checksum: 10c0/42e6370360be57a5b3482fc835cdc18ad1020ecbd40f78682b7f8178fac3072ea6c7e8518414916e8b127d5cc072380e99f54d90096fd31bb30f3f4e2f3ed046
+  checksum: 10c0/46e36409757e8852811e94fcb9401277ed78cebec9e3d5f119f845bc83f9394fb24af311bc99564fd032494c08f329ec6edee178e91ce84d5bacbe214f191f24
   languageName: node
   linkType: hard
 
@@ -6612,7 +6605,7 @@ __metadata:
   dependencies:
     "@biomejs/biome": "npm:2.0.0-beta.5"
     "@conform-to/react": "npm:1.6.1"
-    "@conform-to/zod": "npm:1.6.0"
+    "@conform-to/zod": "npm:1.6.1"
     "@faker-js/faker": "npm:9.8.0"
     "@lukemorales/query-key-factory": "npm:1.3.4"
     "@next/bundle-analyzer": "npm:15.3.3"
