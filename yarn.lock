@@ -7286,8 +7286,8 @@ __metadata:
   linkType: hard
 
 "react-remove-scroll@npm:^2.6.3":
-  version: 2.7.0
-  resolution: "react-remove-scroll@npm:2.7.0"
+  version: 2.7.1
+  resolution: "react-remove-scroll@npm:2.7.1"
   dependencies:
     react-remove-scroll-bar: "npm:^2.3.7"
     react-style-singleton: "npm:^2.2.3"
@@ -7300,7 +7300,7 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: 10c0/cf8b9a1b0808cafe9f2b1fbb2ab56e3efff7f311fba847f26154b972a681c003c288af517cf48d0b68704c2be0d3d73152e7ec2cc8590fa495135b0aac07a871
+  checksum: 10c0/7ad8f6ffd3e2aedf9b3d79f0c9088a9a3d7c5332d80c923427a6d97fe0626fb4cb33a6d9174d19fad57d860be69c96f68497a0619c3a8af0e8a5332e49bdde31
   languageName: node
   linkType: hard
 
@@ -9396,16 +9396,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:3.25.46":
+"zod@npm:3.25.46, zod@npm:^3.22.4":
   version: 3.25.46
   resolution: "zod@npm:3.25.46"
   checksum: 10c0/2cc754a49244f9d80ef50c0da8e01136e0202a9fa92229bcfef2b8285ca07f865bcdd17f0fb609219bd91a2de7965b9a27627cd456e151924144d7a06c6d6686
-  languageName: node
-  linkType: hard
-
-"zod@npm:^3.22.4":
-  version: 3.25.44
-  resolution: "zod@npm:3.25.44"
-  checksum: 10c0/b105df0eb68481b676bba6ede0a982568387b98666bb519213bdab9325c61af8164ad72b6dc3283882d350435f80cf225c2b0e754c23eec4e229c6aad0cd5be8
   languageName: node
   linkType: hard
