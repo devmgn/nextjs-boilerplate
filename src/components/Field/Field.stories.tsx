@@ -21,3 +21,9 @@ export const WithErrorMessage: Story = {
     errorMessage: "This field is required.",
   },
 };
+
+export const WithDisabledInput: Story = {
+  args: {
+    children: <Input disabled={true} id="field-id" />,
+  },
+};

@@ -13,7 +13,11 @@ const fieldVariants = tv({
 interface FieldProps extends React.ComponentProps<"div"> {
   label: string;
   errorMessage?: string;
-  children: React.ReactElement<{ id?: string; isError?: boolean }>;
+  children: React.ReactElement<{
+    disabled?: boolean;
+    id?: string;
+    isError?: boolean;
+  }>;
 }
 
 export const Field = (props: FieldProps) => {
