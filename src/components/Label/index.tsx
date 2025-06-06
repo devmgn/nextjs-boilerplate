@@ -1,7 +1,7 @@
 import { tv, type VariantProps } from "tailwind-variants";
 
 const labelVariants = tv({
-  base: "block w-max font-medium text-sm has-[+[disabled]]:cursor-default [&[for]]:cursor-pointer",
+  base: "block w-max font-medium text-sm [&[for]]:cursor-pointer [&[for]]:has-[+[disabled]]:cursor-auto",
 });
 
 interface LabelProps
