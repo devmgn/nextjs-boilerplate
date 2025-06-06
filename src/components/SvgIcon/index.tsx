@@ -28,20 +28,16 @@ interface SvgIconProps
   label: string;
 }
 
-export function SvgIcon({
-  icon: Icon,
-  label,
-  className,
-  size,
-  ...props
-}: SvgIconProps) {
+export function SvgIcon(props: SvgIconProps) {
+  const { icon: Icon, label, className, size = "md", ...restProps } = props;
+
   return (
     <Icon
-      aria-hidden="true"
+      aria-hidden={true}
       aria-label={label}
       className={svgIcon({ className, size })}
-      focusable="false"
-      {...props}
+      focusable={false}
+      {...restProps}
     />
   );
 }

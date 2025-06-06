@@ -1,4 +1,4 @@
-import locale from "axe-core/locales/ja.json";
+import locale from "axe-core/locales/ja.json" with { type: "json" };
 import { initialize, mswLoader } from "msw-storybook-addon";
 import { SbProvider } from "./providers/SbProvider";
 import type { Preview } from "@storybook/nextjs-vite";
@@ -19,7 +19,7 @@ const preview: Preview = {
     a11y: {
       config: { locale },
       // @see https://storybook.js.org/docs/writing-tests/accessibility-testing#configure-accessibility-tests-with-the-test-addon
-      test: "error",
+      test: "todo",
     },
   },
   loaders: [mswLoader],

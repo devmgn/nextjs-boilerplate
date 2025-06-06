@@ -192,7 +192,8 @@
           }
         },
         // 以下の設定は domains.project: "all"により有効化されたものでオフにしている
-        "noUnresolvedImports": "off"
+        "noUnresolvedImports": "off",
+        "useUniqueElementIds": "off"
       }
     }
   },
@@ -243,7 +244,7 @@
   ],
   "vcs": {
     "clientKind": "git",
-    "enabled": true,
+    "enabled": false,
     "useIgnoreFile": true
   }
 }

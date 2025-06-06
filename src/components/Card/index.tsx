@@ -1,13 +1,15 @@
 import { tv, type VariantProps } from "tailwind-variants";
 
-const cardVaraints = tv({
+const cardVariants = tv({
   base: "rounded-lg border bg-card text-card-foreground shadow-xs",
 });
 
 interface CardProps
   extends React.ComponentProps<"div">,
-    VariantProps<typeof cardVaraints> {}
+    VariantProps<typeof cardVariants> {}
 
-export function Card({ className, ...props }: CardProps) {
-  return <div className={cardVaraints(className)} {...props} />;
+export function Card(props: CardProps) {
+  const { className, ...restProps } = props;
+
+  return <div className={cardVariants(className)} {...restProps} />;
 }
