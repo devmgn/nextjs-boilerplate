@@ -2,44 +2,53 @@
 
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { startTransition, useActionState } from "react";
-import { Form, useForm } from "react-hook-form";
+import { createFormControl, Form, useFormState } from "react-hook-form";
 import { Button } from "../../../components/Button";
+import { Field } from "../../../components/Field";
 import { Input } from "../../../components/Input";
 import { post } from "./action";
 import { type PostSchema, postSchema } from "./schema";
 
+const form = createFormControl<PostSchema>({
+  resolver: standardSchemaResolver(postSchema),
+  defaultValues: {
+    userId: 1,
+    id: 1,
+    title: "Default Title",
+    body: "Default Body",
+  },
+});
+
 export default function Page() {
   const [, formAction, isPending] = useActionState(post, null);
-
-  const {
-    register,
-    control,
-    formState: { errors },
-  } = useForm<PostSchema>({
-    resolver: standardSchemaResolver(postSchema),
-    defaultValues: {
-      userId: 1,
-      id: 1,
-      title: "Default Title",
-      body: "Default Body",
-    },
-  });
+  const { control, register } = form;
+  const { errors } = useFormState({ control });
 
   return (
     <Form
+      className="grid-template-cols-[auto] grid max-w-2xl gap-4"
       control={control}
       onSubmit={({ data }) => {
         startTransition(() => formAction(data));
       }}
     >
-      <Input {...register("userId", { valueAsNumber: true })} type="number" />
-      <p>{errors.userId?.message}</p>
-      <Input {...register("id", { valueAsNumber: true })} type="number" />
-      <p>{errors.id?.message}</p>
-      <Input {...register("title")} />
-      <p>{errors.title?.message}</p>
-      <Input {...register("body")} />
-      <p>{errors.body?.message}</p>
+      <Field errorMessage={errors.userId?.message} label="User ID">
+        <Input
+          {...register("userId", { valueAsNumber: true })}
+          disabled={true}
+          id="userId"
+          type="number"
+        />
+      </Field>
+      <Field errorMessage={errors.id?.message} label="ID">
+        <Input {...register("id", { valueAsNumber: true })} type="number" />
+      </Field>
+      <Field errorMessage={errors.title?.message} label="Title">
+        <Input {...register("title")} />
+      </Field>
+      <Field errorMessage={errors.body?.message} label="Body">
+        <Input {...register("body")} />
+      </Field>
       <Button disabled={isPending} type="submit">
         {isPending ? "Pending" : "Submit"}
       </Button>

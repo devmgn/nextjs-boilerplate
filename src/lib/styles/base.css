@@ -1,12 +1,7 @@
 @layer base {
-  /* 
-   * 文章の折り返し処理
-   * @see https://ics.media/entry/240411/
-  */
-  body {
-    overflow-wrap: anywhere;
-    word-break: auto-phrase;
-    line-break: strict;
+  html {
+    line-height: 1;
+    @apply text-wrap-strict;
   }
 
   /** 以下タグでのダブルタップを防ぐ **/

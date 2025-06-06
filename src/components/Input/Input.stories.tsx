@@ -7,6 +7,7 @@ const meta: Meta<typeof Input> = {
   args: {
     defaultValue: faker.lorem.sentence(),
     placeholder: faker.lorem.sentence(),
+    isError: false,
   },
 };
 

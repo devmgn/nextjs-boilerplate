@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 // biome-ignore lint/style/useImportType: use import type
 import React from "react";
-import "../../src/app/globals.css";
+import "../../src/lib/styles/globals.css";
 import { Suspense } from "react";
 import { QUERY_CLIENT_CONFIG } from "../../src/providers/RootProvider/TanstackQueryProvider/config";
 import { SbErrorBoundary } from "./SbErrorBoundary";
