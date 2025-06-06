@@ -14,7 +14,6 @@ interface FieldProps extends React.ComponentProps<"div"> {
   label: string;
   errorMessage?: string;
   children: React.ReactElement<{
-    disabled?: boolean;
     id?: string;
     isError?: boolean;
   }>;
