@@ -1,0 +1,214 @@
+{
+  "mcpServers": {
+    "Biome Docs": {
+      "url": "https://gitmcp.io/biomejs/biome",
+      "disabled": false,
+      "alwaysAllow": [
+        "fetch_biome_documentation",
+        "fetch_generic_url_content",
+        "search_biome_code",
+        "search_biome_documentation"
+      ]
+    },
+    "Claude Code Docs": {
+      "url": "https://gitmcp.io//anthropics/claude-code",
+      "disabled": false,
+      "alwaysAllow": [
+        "fetch_generic_url_content",
+        "fetch_type_fest_documentation",
+        "search_type_fest_code",
+        "search_type_fest_documentation"
+      ]
+    },
+    "ESLint Docs": {
+      "url": "https://gitmcp.io/eslint/eslint",
+      "disabled": false,
+      "alwaysAllow": [
+        "fetch_eslint_documentation",
+        "fetch_generic_url_content",
+        "search_eslint_code",
+        "search_eslint_documentation"
+      ]
+    },
+    "Faker Docs": {
+      "url": "https://gitmcp.io/faker-js/faker",
+      "disabled": false,
+      "alwaysAllow": [
+        "fetch_faker_documentation",
+        "fetch_generic_url_content",
+        "search_faker_code",
+        "search_faker_documentation"
+      ]
+    },
+    "Hono Docs": {
+      "url": "https://gitmcp.io/honojs/hono",
+      "disabled": false,
+      "alwaysAllow": [
+        "fetch_generic_url_content",
+        "fetch_hono_documentation",
+        "search_hono_code",
+        "search_hono_documentation"
+      ]
+    },
+    "Knip Docs": {
+      "url": "https://gitmcp.io/webpro-nl/knip",
+      "disabled": false,
+      "alwaysAllow": [
+        "fetch_generic_url_content",
+        "fetch_knip_documentation",
+        "search_knip_code",
+        "search_knip_documentation"
+      ]
+    },
+    "lodash Docs": {
+      "url": "https://gitmcp.io/lodash/lodash",
+      "disabled": false,
+      "alwaysAllow": [
+        "fetch_generic_url_content",
+        "fetch_lodash_documentation",
+        "search_lodash_code",
+        "search_lodash_documentation"
+      ]
+    },
+    "Next.js Docs": {
+      "url": "https://gitmcp.io/vercel/next.js",
+      "disabled": false,
+      "alwaysAllow": [
+        "fetch_generic_url_content",
+        "fetch_next_js_documentation",
+        "search_next_js_code",
+        "search_next_js_documentation"
+      ]
+    },
+    "OpenAPI Generator Docs": {
+      "url": "https://gitmcp.io/OpenAPITools/openapi-generator",
+      "disabled": false,
+      "alwaysAllow": [
+        "fetch_generic_url_content",
+        "fetch_openapi_generator_docs",
+        "search_openapi_generator_code",
+        "search_openapi_generator_docs"
+      ]
+    },
+    "Radix Primitives Docs": {
+      "url": "https://gitmcp.io/radix-ui/primitives",
+      "disabled": false,
+      "alwaysAllow": [
+        "fetch_generic_url_content",
+        "fetch_primitives_documentation",
+        "search_primitives_code",
+        "search_primitives_documentation"
+      ]
+    },
+    "React Docs": {
+      "url": "https://gitmcp.io/facebook/react",
+      "disabled": false,
+      "alwaysAllow": [
+        "fetch_generic_url_content",
+        "fetch_react_documentation",
+        "search_react_code",
+        "search_react_documentation"
+      ]
+    },
+    "React Hook Form Docs": {
+      "url": "https://gitmcp.io/react-hook-form/react-hook-form",
+      "disabled": false,
+      "alwaysAllow": [
+        "fetch_generic_url_content",
+        "fetch_react_hook_form_docs",
+        "search_react_hook_form_code",
+        "search_react_hook_form_docs"
+      ]
+    },
+    "react-use Docs": {
+      "url": "https://gitmcp.io/streamich/react-use",
+      "disabled": false,
+      "alwaysAllow": [
+        "fetch_generic_url_content",
+        "fetch_react_use_documentation",
+        "search_react_use_code",
+        "search_react_use_documentation"
+      ]
+    },
+    "Storybook Docs": {
+      "url": "https://gitmcp.io/storybookjs/storybook",
+      "disabled": false,
+      "alwaysAllow": [
+        "fetch_generic_url_content",
+        "fetch_storybook_documentation",
+        "search_storybook_code",
+        "search_storybook_documentation"
+      ]
+    },
+    "Tailwind CSS Docs": {
+      "url": "https://gitmcp.io/tailwindlabs/tailwindcss",
+      "disabled": false,
+      "alwaysAllow": [
+        "fetch_generic_url_content",
+        "fetch_tailwindcss_documentation",
+        "search_tailwindcss_code",
+        "search_tailwindcss_documentation"
+      ]
+    },
+    "tailwind-variants Docs": {
+      "url": "https://gitmcp.io/heroui-inc/tailwind-variants",
+      "disabled": false,
+      "alwaysAllow": [
+        "fetch_generic_url_content",
+        "fetch_tailwind_variants_docs",
+        "search_tailwind_variants_code",
+        "search_tailwind_variants_docs"
+      ]
+    },
+    "TanStack Query Docs": {
+      "url": "https://gitmcp.io/tanstack/query",
+      "disabled": false,
+      "alwaysAllow": [
+        "fetch_generic_url_content",
+        "fetch_query_documentation",
+        "search_query_code",
+        "search_query_documentation"
+      ]
+    },
+    "type-fest Docs": {
+      "url": "https://gitmcp.io/sindresorhus/type-fest",
+      "disabled": false,
+      "alwaysAllow": [
+        "fetch_generic_url_content",
+        "fetch_type_fest_documentation",
+        "search_type_fest_code",
+        "search_type_fest_documentation"
+      ]
+    },
+    "TypeScript Docs": {
+      "url": "https://gitmcp.io/microsoft/TypeScript",
+      "disabled": false,
+      "alwaysAllow": [
+        "fetch_generic_url_content",
+        "fetch_TypeScript_documentation",
+        "search_TypeScript_code",
+        "search_TypeScript_documentation"
+      ]
+    },
+    "Vitest Docs": {
+      "url": "https://gitmcp.io/vitest-dev/vitest",
+      "disabled": false,
+      "alwaysAllow": [
+        "fetch_generic_url_content",
+        "fetch_vitest_documentation",
+        "search_vitest_code",
+        "search_vitest_documentation"
+      ]
+    },
+    "Zod Docs": {
+      "url": "https://gitmcp.io/colinhacks/zod",
+      "disabled": false,
+      "alwaysAllow": [
+        "fetch_generic_url_content",
+        "fetch_zod_documentation",
+        "search_zod_code",
+        "search_zod_documentation"
+      ]
+    }
+  }
+}
