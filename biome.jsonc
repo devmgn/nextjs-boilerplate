@@ -237,6 +237,9 @@
         "rules": {
           "suspicious": {
             "noEmptyBlockStatements": "off"
+          },
+          "nursery": {
+            "noFloatingPromises": "off"
           }
         }
       }
@@ -244,7 +247,7 @@
   ],
   "vcs": {
     "clientKind": "git",
-    "enabled": false,
+    "enabled": true,
     "useIgnoreFile": true
   }
 }
