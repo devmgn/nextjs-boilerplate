@@ -3737,9 +3737,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chromatic@npm:13.0.0":
-  version: 13.0.0
-  resolution: "chromatic@npm:13.0.0"
+"chromatic@npm:13.0.1":
+  version: 13.0.1
+  resolution: "chromatic@npm:13.0.1"
   peerDependencies:
     "@chromatic-com/cypress": ^0.*.* || ^1.0.0
     "@chromatic-com/playwright": ^0.*.* || ^1.0.0
@@ -3752,7 +3752,7 @@ __metadata:
     chroma: dist/bin.js
     chromatic: dist/bin.js
     chromatic-cli: dist/bin.js
-  checksum: 10c0/30c697eb84d5b3b8cdab989df0e4fed0bf51f4bfefb616873f68fc00337978b9b38b84e52af22861769176181bd98525d467baeb22daa712a0f7a58bd61bf336
+  checksum: 10c0/0f0a59964a5ec8b1550247e196ab3f85e84470e2275e44c2d4200e2c0a6f1734e4538d563fff788b126f44e868c16a6af6ebe1f5aefe781ff77b777b6bcb8b47
   languageName: node
   linkType: hard
 
@@ -6837,7 +6837,7 @@ __metadata:
     "@vitest/coverage-v8": "npm:3.2.4"
     "@vitest/eslint-plugin": "npm:1.2.7"
     babel-plugin-react-compiler: "npm:19.1.0-rc.2"
-    chromatic: "npm:13.0.0"
+    chromatic: "npm:13.0.1"
     eslint: "npm:9.29.0"
     eslint-config-next: "npm:15.3.3"
     eslint-plugin-react-compiler: "npm:19.1.0-rc.2"
