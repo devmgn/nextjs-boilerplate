@@ -6,7 +6,6 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
   test: {
     coverage: {
-      reporter: ["text", "json", "html", "lcov"],
       include: ["src/**"],
       exclude: ["**/*.d.ts", "src/mocks/**", "src/api/**", "**/*.stories.tsx"],
       thresholds: {
@@ -16,14 +15,8 @@ export default defineConfig({
         statements: 80,
       },
     },
-    pool: "threads",
-    poolOptions: {
-      threads: {
-        singleThread: true,
-      },
-    },
-    testTimeout: 30_000,
-    hookTimeout: 30_000,
+    testTimeout: 10_000,
+    hookTimeout: 10_000,
     projects: [
       {
         extends: true,
