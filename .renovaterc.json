@@ -1,32 +1,32 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "automergeSchedule": ["every 1 hour after 00:00 and before 23:59 every day"],
+  "dependencyDashboard": true,
+  "digest": {
+    "automerge": true
+  },
   "extends": [
     "config:recommended",
     "customManagers:biomeVersions",
     ":timezone(Asia/Tokyo)"
   ],
-  "dependencyDashboard": true,
   "ignoreTests": true,
-  "schedule": ["every 1 hour after 00:00 and before 23:59"],
-  "automergeSchedule": ["every 1 hour after 00:00 and before 23:59 every day"],
-  "pin": {
-    "automerge": true
+  "lockFileMaintenance": {
+    "automerge": true,
+    "enabled": true,
+    "schedule": ["before 4am on monday"]
   },
-  "digest": {
+  "major": {
+    "automerge": false
+  },
+  "minor": {
     "automerge": true
   },
   "patch": {
     "automerge": true
   },
-  "minor": {
+  "pin": {
     "automerge": true
   },
-  "major": {
-    "automerge": false
-  },
-  "lockFileMaintenance": {
-    "enabled": true,
-    "automerge": true,
-    "schedule": ["before 4am on monday"]
-  }
+  "schedule": ["every 1 hour after 00:00 and before 23:59"]
 }

@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/knip/schema.json",
-  "project": ["src/**/*.{ts,tsx}"],
+  "exclude": ["dependencies", "unlisted"],
   "ignore": [
     "openapiconfig.json",
     "package.json",
@@ -9,5 +9,5 @@
     "src/app/unauthorized.tsx",
     "src/mocks/**"
   ],
-  "exclude": ["dependencies", "unlisted"]
+  "project": ["src/**/*.{ts,tsx}"]
 }
