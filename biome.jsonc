@@ -30,6 +30,7 @@
       "test": "all"
     },
     "rules": {
+      "recommended": true,
       "complexity": {
         "noUselessStringConcat": "info",
         "noVoid": "warn",
@@ -101,9 +102,11 @@
         "useImportExtensions": "off"
       },
       "nursery": {
+        "noImportantStyles": "warn",
         "noNoninteractiveElementInteractions": "info",
         "noReactPropAssign": "info",
         "noShadow": "info",
+        "noUnknownAtRule": "error",
         "noUselessBackrefInRegex": "warn",
         "noUselessEscapeInString": "warn",
         "noUselessUndefined": "info",
@@ -135,7 +138,6 @@
         "noReExportAll": "warn",
         "useTopLevelRegex": "warn"
       },
-      "recommended": true,
       "style": {
         "noCommonJs": "warn",
         "noDefaultExport": "warn",
@@ -207,6 +209,11 @@
       }
     }
   },
+  "css": {
+    "assist": {
+      "enabled": true
+    }
+  },
   "overrides": [
     {
       "includes": [
@@ -246,7 +253,8 @@
       "linter": {
         "rules": {
           "nursery": {
-            "noFloatingPromises": "off"
+            "noFloatingPromises": "off",
+            "useSymbolDescription": "off"
           },
           "suspicious": {
             "noEmptyBlockStatements": "off"
