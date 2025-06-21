@@ -17,10 +17,12 @@ const config = [
     rules: {
       "@typescript-eslint/ban-ts-comment": "off",
       "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-require-imports": "off",
       "@typescript-eslint/no-unused-vars": "off",
       "import/newline-after-import": "error",
       "lines-around-directive": "error",
       "no-multiple-empty-lines": "error",
+      "no-var": "off",
     },
   },
   reactCompiler.configs.recommended,

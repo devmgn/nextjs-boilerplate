@@ -1,7 +1,9 @@
 {
+  "cSpell.words": ["fileoverview", "tanstack"],
   "css.format.enable": false,
   "editor.codeActionsOnSave": {
     "source.action.useSortedAttributes.biome": "explicit",
+    "source.action.useSortedKeys.biome": "explicit",
     "source.action.useSortedProperties.biome": "explicit",
     "source.addMissingImports": "explicit",
     "source.fixAll.biome": "explicit",
@@ -13,12 +15,11 @@
   "explorer.excludeGitIgnore": true,
   "javascript.format.enable": false,
   "search.exclude": {
+    ".next": true,
     "**/.pnp.*": true,
-    "**/.yarn": true,
-    ".next": true
+    "**/.yarn": true
   },
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.format.enable": false,
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "cSpell.words": ["fileoverview", "tanstack"]
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

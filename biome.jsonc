@@ -22,7 +22,6 @@
     "indentStyle": "space"
   },
   "linter": {
-    "enabled": true,
     "domains": {
       "next": "all",
       "project": "all",
@@ -31,72 +30,68 @@
       "test": "all"
     },
     "rules": {
-      "recommended": true,
       "complexity": {
         "noUselessStringConcat": "info",
         "noVoid": "warn",
-        "useDateNow": { "level": "warn", "fix": "safe" },
         "useSimplifiedLogicExpression": "info",
         "useWhile": "warn"
       },
       "correctness": {
-        "noConstantMathMinMaxClamp": { "level": "error", "fix": "safe" },
-        "noUnusedFunctionParameters": { "level": "warn", "fix": "safe" },
         "useExhaustiveDependencies": {
-          "level": "error",
           "fix": "safe",
+          "level": "error",
           // react-useのフックを追加設定
           "options": {
             "hooks": [
               {
-                "name": "useAsync",
                 "closureIndex": 0,
-                "dependenciesIndex": 1
+                "dependenciesIndex": 1,
+                "name": "useAsync"
               },
               {
-                "name": "useAsyncFn",
                 "closureIndex": 0,
-                "dependenciesIndex": 1
+                "dependenciesIndex": 1,
+                "name": "useAsyncFn"
               },
               {
-                "name": "useAsyncRetry",
                 "closureIndex": 0,
-                "dependenciesIndex": 1
+                "dependenciesIndex": 1,
+                "name": "useAsyncRetry"
               },
               {
-                "name": "useCustomCompareEffect",
                 "closureIndex": 0,
-                "dependenciesIndex": 1
+                "dependenciesIndex": 1,
+                "name": "useCustomCompareEffect"
               },
               {
-                "name": "useDebounce",
                 "closureIndex": 0,
-                "dependenciesIndex": 2
+                "dependenciesIndex": 2,
+                "name": "useDebounce"
               },
               {
-                "name": "useDeepCompareEffect",
                 "closureIndex": 0,
-                "dependenciesIndex": 1
+                "dependenciesIndex": 1,
+                "name": "useDeepCompareEffect"
               },
               {
-                "name": "useIsomorphicLayoutEffect",
                 "closureIndex": 0,
-                "dependenciesIndex": 1
+                "dependenciesIndex": 1,
+                "name": "useIsomorphicLayoutEffect"
               },
               {
-                "name": "useShallowCompareEffect",
                 "closureIndex": 0,
-                "dependenciesIndex": 1
+                "dependenciesIndex": 1,
+                "name": "useShallowCompareEffect"
               },
               {
-                "name": "useThrottleFn",
                 "closureIndex": 0,
-                "dependenciesIndex": 2
+                "dependenciesIndex": 2,
+                "name": "useThrottleFn"
               },
               {
-                "name": "useUpdateEffect",
                 "closureIndex": 0,
-                "dependenciesIndex": 1
+                "dependenciesIndex": 1,
+                "name": "useUpdateEffect"
               }
             ]
           }
@@ -105,13 +100,44 @@
         "noUndeclaredDependencies": "off",
         "useImportExtensions": "off"
       },
+      "nursery": {
+        "noNoninteractiveElementInteractions": "info",
+        "noReactPropAssign": "info",
+        "noShadow": "info",
+        "noUselessBackrefInRegex": "warn",
+        "noUselessEscapeInString": "warn",
+        "noUselessUndefined": "info",
+        "useAdjacentGetterSetter": "info",
+        "useConsistentObjectDefinition": "error",
+        "useConsistentResponse": "info",
+        "useIndexOf": "info",
+        "useIterableCallbackReturn": "error",
+        "useNumericSeparators": "info",
+        "useObjectSpread": "info",
+        "useParseIntRadix": "info",
+        "useSingleJsDocAsterisk": { "fix": "safe", "level": "info" },
+        "useSortedClasses": {
+          "fix": "safe",
+          "level": "info",
+          "options": {
+            "attributes": ["classList"],
+            "functions": ["clsx", "cva", "tv", "tw"]
+          }
+        },
+        "useSymbolDescription": "info",
+        "useUniqueElementIds": "off",
+        // 以下の設定は domains.project: "all"により有効化されたものでオフにしている
+        "noUnresolvedImports": "off"
+      },
       "performance": {
         "noBarrelFile": "warn",
         "noDelete": "warn",
         "noReExportAll": "warn",
         "useTopLevelRegex": "warn"
       },
+      "recommended": true,
       "style": {
+        "noCommonJs": "warn",
         "noDefaultExport": "warn",
         "noDoneCallback": "info",
         "noEnum": "warn",
@@ -120,47 +146,48 @@
         "noNamespace": "warn",
         "noNegationElse": "info",
         "noNestedTernary": "info",
-        "noNonNullAssertion": { "level": "warn", "fix": "safe" },
         "noParameterAssign": "warn",
         "noParameterProperties": "warn",
         "noRestrictedGlobals": "warn",
-        "noShoutyConstants": { "level": "info", "fix": "safe" },
-        "noSubstr": { "level": "info", "fix": "safe" },
+        "noShoutyConstants": "info",
+        "noSubstr": "info",
         "noUnusedTemplateLiteral": "warn",
         "noUselessElse": "info",
         "noYodaExpression": "info",
         "useAsConstAssertion": "info",
-        "useAtIndex": { "level": "warn", "fix": "safe" },
-        "useBlockStatements": { "level": "error", "fix": "safe" },
+        "useAtIndex": "info",
+        "useBlockStatements": { "fix": "safe", "level": "error" },
         "useCollapsedElseIf": "info",
         "useCollapsedIf": "info",
-        "useConsistentArrayType": { "level": "info", "fix": "safe" },
-        "useConsistentBuiltinInstantiation": { "level": "info", "fix": "safe" },
-        "useConsistentCurlyBraces": { "level": "info", "fix": "safe" },
+        "useComponentExportOnlyModules": {
+          "level": "warn",
+          "options": { "allowExportNames": ["metadata", "viewport"] }
+        },
+        "useConsistentArrayType": { "fix": "safe", "level": "info" },
+        "useConsistentBuiltinInstantiation": { "fix": "safe", "level": "info" },
+        "useConsistentCurlyBraces": { "fix": "safe", "level": "info" },
         "useConsistentMemberAccessibility": "info",
         "useDefaultParameterLast": "warn",
         "useDefaultSwitchClause": "warn",
         "useEnumInitializers": "warn",
-        "useExplicitLengthCheck": { "level": "info", "fix": "safe" },
-        "useExponentiationOperator": "info",
+        "useExplicitLengthCheck": "info",
         "useFilenamingConvention": {
           "level": "info",
           "options": { "filenameCases": ["camelCase", "PascalCase"] }
         },
         "useForOf": "info",
-        "useFragmentSyntax": { "level": "info", "fix": "safe" },
+        "useFragmentSyntax": { "fix": "safe", "level": "info" },
         "useNamingConvention": {
-          "level": "error",
           "fix": "safe",
+          "level": "error",
           "options": { "strictCase": false }
         },
         "useNodeAssertStrict": "warn",
-        "useNodejsImportProtocol": { "level": "info", "fix": "safe" },
         "useNumberNamespace": "info",
         "useSelfClosingElements": "info",
-        "useShorthandAssign": { "level": "info", "fix": "safe" },
-        "useSingleVarDeclarator": { "level": "info", "fix": "safe" },
-        "useTemplate": { "level": "info", "fix": "safe" },
+        "useShorthandAssign": "info",
+        "useSingleVarDeclarator": "info",
+        "useTemplate": { "fix": "safe", "level": "info" },
         "useThrowOnlyError": "warn",
         "useTrimStartEnd": "info"
       },
@@ -171,29 +198,12 @@
         },
         "noEmptyBlockStatements": "warn",
         "noMisplacedAssertion": "warn",
-        "noSkippedTests": { "level": "warn", "fix": "safe" },
-        "noVar": { "level": "warn", "fix": "safe" },
+        "noSkippedTests": "warn",
+        "noVar": "warn",
         "useAwait": "warn",
         "useErrorMessage": "warn",
+        "useGuardForIn": "warn",
         "useNumberToFixedDigitsArgument": "warn"
-      },
-      "nursery": {
-        "noNoninteractiveElementInteractions": "info",
-        "noUselessBackrefInRegex": "warn",
-        "noUselessEscapeInString": "warn",
-        "noUselessUndefined": "info",
-        "useIterableCallbackReturn": "error",
-        "useSortedClasses": {
-          "level": "info",
-          "fix": "safe",
-          "options": {
-            "attributes": ["classList"],
-            "functions": ["clsx", "cva", "tv", "tw"]
-          }
-        },
-        // 以下の設定は domains.project: "all"により有効化されたものでオフにしている
-        "noUnresolvedImports": "off",
-        "useUniqueElementIds": "off"
       }
     }
   },
@@ -235,11 +245,11 @@
       "includes": ["**/*.test.*"],
       "linter": {
         "rules": {
-          "suspicious": {
-            "noEmptyBlockStatements": "off"
-          },
           "nursery": {
             "noFloatingPromises": "off"
+          },
+          "suspicious": {
+            "noEmptyBlockStatements": "off"
           }
         }
       }
