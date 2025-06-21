@@ -1,20 +1,30 @@
-import path, { dirname } from "node:path";
-import { fileURLToPath } from "node:url";
 import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vitest/config";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 // biome-ignore lint/style/noDefaultExport: use default export
 export default defineConfig({
   test: {
     coverage: {
+      reporter: ["text", "json", "html", "lcov"],
       include: ["src/**"],
-      exclude: ["**/*.d.ts", "src/mocks/**", "src/api/**"],
+      exclude: ["**/*.d.ts", "src/mocks/**", "src/api/**", "**/*.stories.tsx"],
+      thresholds: {
+        lines: 80,
+        functions: 80,
+        branches: 80,
+        statements: 80,
+      },
     },
-    workspace: [
+    pool: "threads",
+    poolOptions: {
+      threads: {
+        singleThread: true,
+      },
+    },
+    testTimeout: 30_000,
+    hookTimeout: 30_000,
+    projects: [
       {
         extends: true,
         plugins: [react()],
@@ -22,9 +32,8 @@ export default defineConfig({
           name: "unit",
           globals: true,
           environment: "jsdom",
-          globalSetup: path.resolve(__dirname, "./vitest.globalSetup.ts"),
-          setupFiles: path.resolve(__dirname, "./vitest.setup.ts"),
-          typecheck: { enabled: true },
+          globalSetup: "./vitest.globalSetup.ts",
+          setupFiles: "./vitest.setup.ts",
         },
       },
       {
@@ -33,7 +42,7 @@ export default defineConfig({
           // The plugin will run tests for the stories defined in your Storybook config
           // See options at: https://storybook.js.org/docs/writing-tests/test-addon#storybooktest
           storybookTest({
-            configDir: path.resolve(__dirname, ".storybook"),
+            configDir: ".storybook",
             tags: {
               include: ["test"],
               exclude: [],
