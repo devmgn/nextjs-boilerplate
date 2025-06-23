@@ -14,6 +14,11 @@
       }
     }
   },
+  "css": {
+    "assist": {
+      "enabled": true
+    }
+  },
   "files": {
     "ignoreUnknown": true,
     "includes": ["**", "!public/**", "!src/api/openapi/**"]
@@ -118,6 +123,7 @@
         "useNumericSeparators": "info",
         "useObjectSpread": "info",
         "useParseIntRadix": "info",
+        "useReadonlyClassProperties": "info",
         "useSingleJsDocAsterisk": { "fix": "safe", "level": "info" },
         "useSortedClasses": {
           "fix": "safe",
@@ -207,11 +213,6 @@
         "useGuardForIn": "warn",
         "useNumberToFixedDigitsArgument": "warn"
       }
-    }
-  },
-  "css": {
-    "assist": {
-      "enabled": true
     }
   },
   "overrides": [
