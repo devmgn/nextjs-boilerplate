@@ -30,6 +30,9 @@ jobs:
       - name: Lint
         run: yarn lint
 
+      - name: Check unused dependencies
+        run: yarn knip
+
       - name: Test
         run: yarn test:unit
 
