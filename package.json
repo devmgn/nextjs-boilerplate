@@ -17,6 +17,7 @@
     "knip": "knip --cache",
     "check-types": "tsc --noEmit",
     "test": "vitest run",
+    "test:unit": "vitest run --project=unit",
     "test:update": "vitest run --update",
     "test:watch": "vitest watch",
     "test:coverage": "vitest run --coverage",

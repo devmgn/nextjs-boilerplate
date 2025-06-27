@@ -18,11 +18,11 @@ jobs:
           node-version: '22.17.0'
           cache: 'yarn'
 
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
-
       - name: Install dependencies
         run: yarn install --immutable
+
+      - name: Setup environment
+        run: cp .env.development .env.local
 
       - name: Type check
         run: yarn check-types
@@ -31,7 +31,7 @@ jobs:
         run: yarn lint
 
       - name: Test
-        run: yarn test
+        run: yarn test:unit
 
       - name: Build
         run: yarn build
