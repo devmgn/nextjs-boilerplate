@@ -20,7 +20,10 @@ export const Field = (props: FieldProps) => {
           {label}
         </Label>
       )}
-      {cloneElement(children, { ...children.props, isError: !!errorMessage })}
+      {cloneElement(children, {
+        ...children.props,
+        isError: Boolean(errorMessage),
+      })}
       {errorMessage && (
         <p className="mt-1 font-normal text-red-500 text-xs">{errorMessage}</p>
       )}

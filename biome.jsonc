@@ -107,10 +107,12 @@
         "useImportExtensions": "off"
       },
       "nursery": {
+        "noImplicitCoercion": "info",
         "noImportantStyles": "warn",
         "noNoninteractiveElementInteractions": "info",
         "noReactPropAssign": "info",
         "noShadow": "info",
+        "noUnassignedVariables": "info",
         "noUnknownAtRule": "error",
         "noUselessBackrefInRegex": "warn",
         "noUselessEscapeInString": "warn",
@@ -134,6 +136,7 @@
           }
         },
         "useSymbolDescription": "info",
+        "useUnifiedTypeSignature": "info",
         "useUniqueElementIds": "off",
         // 以下の設定は domains.project: "all"により有効化されたものでオフにしている
         "noUnresolvedImports": "off"

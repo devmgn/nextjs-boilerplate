@@ -36,7 +36,7 @@ const meta: Meta<typeof useDebouncedCallback> = {
           <label htmlFor="delayTime">DelayTime</label>
           <Input
             id="delayTime"
-            onChange={(e) => setDelayTime(+e.target.value)}
+            onChange={(e) => setDelayTime(Number(e.target.value))}
             placeholder="delay time"
             type="number"
             value={delayTime}
