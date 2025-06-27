@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches-ignore:
+      - main
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.17.0'
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Setup environment
+        run: cp .env.development .env.local
+
+      - name: Type check
+        run: yarn check-types
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Check unused dependencies
+        run: yarn knip
+
+      - name: Test
+        run: yarn test:unit
+
+      - name: Build
+        run: yarn build
