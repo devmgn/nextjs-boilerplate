@@ -1,32 +1,46 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "automergeSchedule": ["every 1 hour after 00:00 and before 23:59 every day"],
-  "dependencyDashboard": true,
-  "digest": {
-    "automerge": true
-  },
   "extends": [
+    ":timezone(Asia/Tokyo)",
     "config:recommended",
     "customManagers:biomeVersions",
-    ":timezone(Asia/Tokyo)"
+    "customManagers:githubActionsVersions"
   ],
-  "ignoreTests": true,
+  "dependencyDashboard": true,
+  "platformAutomerge": true,
+  "semanticCommits": "enabled",
+  "semanticCommitType": "chore",
+  "semanticCommitScope": "deps",
+  "prConcurrentLimit": 10,
+  "prHourlyLimit": 2,
+  "labels": ["dependencies", "renovate"],
+  "addLabels": ["dependencies"],
+  "prBodyTemplate": "{{{table}}}\n{{{notes}}}\n{{{changelogs}}}",
+  "prBodyColumns": ["Package", "Type", "Update", "Change", "Pending"],
+  "schedule": [
+    "after 10pm and before 5am on weekdays",
+    "after 10pm on Friday and before 5am on Monday"
+  ],
+  "automergeSchedule": [
+    "after 10pm and before 5am on weekdays",
+    "after 10pm on Friday and before 5am on Monday"
+  ],
   "lockFileMaintenance": {
-    "automerge": true,
     "enabled": true,
-    "schedule": ["before 4am on monday"]
+    "automerge": true,
+    "schedule": ["before 4am on the first day of the month"],
+    "commitMessageAction": "Update",
+    "commitMessageTopic": "lock file maintenance"
   },
-  "major": {
-    "automerge": false
-  },
-  "minor": {
-    "automerge": true
-  },
-  "patch": {
-    "automerge": true
-  },
-  "pin": {
-    "automerge": true
-  },
-  "schedule": ["every 1 hour after 00:00 and before 23:59"]
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["patch"],
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["lockFileMaintenance"],
+      "automergeType": "branch",
+      "automergeStrategy": "merge-commit"
+    }
+  ]
 }
