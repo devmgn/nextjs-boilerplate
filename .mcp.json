@@ -28,6 +28,10 @@
       "args": ["mcp-remote", "https://gitmcp.io/mdn/content"],
       "command": "npx"
     },
+    "Mend Renovate Docs": {
+      "args": ["mcp-remote", "https://gitmcp.io/renovatebot/renovate"],
+      "command": "npx"
+    },
     "Next.js Docs": {
       "args": ["mcp-remote", "https://gitmcp.io/vercel/next.js"],
       "command": "npx"
