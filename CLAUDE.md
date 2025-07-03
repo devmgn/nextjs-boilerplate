@@ -22,8 +22,8 @@ Next.js 15 ボイラープレート:
 
 ## 環境設定
 
-- **Node.js**: 22.16.0 (package.jsonで固定)
-- **パッケージマネージャー**: Yarn 4.9.2 (Berry)
+- **Node.js**: 22.17.0 (package.jsonで固定)
+- **パッケージマネージャー**: pnpm 10.12.4
 - **環境変数**: `.env.development`、`.env.test`、`.env.local`で管理
 - **環境変数スキーマ**: `src/schemas/env.schema.ts`で定義
 - **設定管理**: `src/config/env.ts`で環境変数を型安全に使用
@@ -32,46 +32,46 @@ Next.js 15 ボイラープレート:
 
 ### 開発
 ```bash
-yarn dev           # Turbopackで開発サーバー起動
-yarn build         # プロダクションビルド
-yarn start         # プロダクションサーバー起動
-yarn analyze       # バンドルサイズ分析 (ANALYZE=true yarn build)
+pnpm dev           # Turbopackで開発サーバー起動
+pnpm build         # プロダクションビルド
+pnpm start         # プロダクションサーバー起動
+pnpm analyze       # バンドルサイズ分析 (ANALYZE=true pnpm build)
 ```
 
 ### コード品質
 ```bash
-yarn lint          # Next.js ESLintとBiome両方を実行
-yarn lint:next     # Next.js ESLint (自動修正付き)
-yarn lint:biome    # Biomeチェック (自動修正付き)
-yarn check-types   # TypeScript型チェック
-yarn knip          # 未使用の依存関係/エクスポートを検出
+pnpm lint          # Next.js ESLintとBiome両方を実行
+pnpm lint:next     # Next.js ESLint (自動修正付き)
+pnpm lint:biome    # Biomeチェック (自動修正付き)
+pnpm check-types   # TypeScript型チェック
+pnpm knip          # 未使用の依存関係/エクスポートを検出
 ```
 
 ### テスト
 ```bash
-yarn test          # 全テストを1回実行
-yarn test:watch    # ウォッチモードでテスト実行
-yarn test:update   # テストスナップショット更新
-yarn test:coverage # カバレッジレポート付きテスト実行
+pnpm test          # 全テストを1回実行
+pnpm test:watch    # ウォッチモードでテスト実行
+pnpm test:update   # テストスナップショット更新
+pnpm test:coverage # カバレッジレポート付きテスト実行
 
 # 特定のテストファイルを実行
-yarn test path/to/file.test.tsx
+pnpm test path/to/file.test.tsx
 
 # パターンに一致するテストを実行
-yarn test --grep "pattern"
+pnpm test --grep "pattern"
 ```
 
 ### Storybook
 ```bash
-yarn storybook       # Storybook開発サーバー起動
-yarn build-storybook # Storybookビルド
-yarn chromatic       # ビジュアルリグレッションテスト実行
+pnpm storybook       # Storybook開発サーバー起動
+pnpm build-storybook # Storybookビルド
+pnpm chromatic       # ビジュアルリグレッションテスト実行
 ```
 
 ### API生成
 ```bash
-yarn generate-api        # OpenAPI仕様からTypeScriptクライアント生成
-yarn generate-api:clean  # クリーン後に再生成
+pnpm generate-api        # OpenAPI仕様からTypeScriptクライアント生成
+pnpm generate-api:clean  # クリーン後に再生成
 ```
 
 ## アーキテクチャ

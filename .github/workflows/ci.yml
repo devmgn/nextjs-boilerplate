@@ -16,25 +16,30 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22.17.0'
-          cache: 'yarn'
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.12.4
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: pnpm install --frozen-lockfile
 
       - name: Setup environment
         run: cp .env.development .env.local
 
       - name: Type check
-        run: yarn check-types
+        run: pnpm check-types
 
       - name: Lint
-        run: yarn lint
+        run: pnpm lint
 
       - name: Check unused dependencies
-        run: yarn knip
+        run: pnpm knip
 
       - name: Test
-        run: yarn test:unit
+        run: pnpm test:unit
 
       - name: Build
-        run: yarn build
+        run: pnpm build
