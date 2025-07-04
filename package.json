@@ -6,7 +6,7 @@
   },
   "packageManager": "pnpm@10.12.4",
   "scripts": {
-    "postinstall": "node .husky/install.mjs",
+    "postinstall": "node .husky/install.mjs && npx msw init",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
@@ -90,7 +90,7 @@
     "jsdom": "26.1.0",
     "knip": "5.61.3",
     "lint-staged": "16.1.2",
-    "msw": "2.10.2",
+    "msw": "2.10.3",
     "msw-storybook-addon": "2.0.5",
     "playwright": "1.53.2",
     "storybook": "9.0.15",
@@ -99,6 +99,6 @@
     "vitest": "3.2.4"
   },
   "msw": {
-    "workerDirectory": "public/"
+    "workerDirectory": "./public"
   }
 }
