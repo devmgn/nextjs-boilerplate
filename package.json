@@ -6,7 +6,7 @@
   },
   "packageManager": "pnpm@10.12.4",
   "scripts": {
-    "postinstall": "node .husky/install.mjs",
+    "postinstall": "node .husky/install.mjs && npx msw init",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
@@ -99,6 +99,6 @@
     "vitest": "3.2.4"
   },
   "msw": {
-    "workerDirectory": "public/"
+    "workerDirectory": "./public"
   }
 }
