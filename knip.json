@@ -1,9 +1,9 @@
 {
   "$schema": "./node_modules/knip/schema.json",
-  "exclude": ["dependencies", "unlisted"],
   "ignore": [
     "openapiconfig.json",
     "package.json",
+    "postcss.config.mjs",
     "src/api/openapi/**",
     "src/app/forbidden.tsx",
     "src/app/unauthorized.tsx",
