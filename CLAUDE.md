@@ -23,7 +23,7 @@ Next.js 15 ボイラープレート:
 ## 環境設定
 
 - **Node.js**: 22.17.0 (package.jsonで固定)
-- **パッケージマネージャー**: pnpm 10.12.4
+- **パッケージマネージャー**: pnpm 10.13.1
 - **環境変数**: `.env.development`、`.env.test`、`.env.local`で管理
 - **環境変数スキーマ**: `src/schemas/env.schema.ts`で定義
 - **設定管理**: `src/config/env.ts`で環境変数を型安全に使用
