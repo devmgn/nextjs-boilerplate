@@ -21,7 +21,8 @@
   "packageRules": [
     {
       "matchUpdateTypes": ["patch"],
-      "automerge": true
+      "automerge": true,
+      "platformAutomerge": true
     },
     {
       "matchUpdateTypes": ["lockFileMaintenance"],
