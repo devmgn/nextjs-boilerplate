@@ -1,171 +1,162 @@
 # CLAUDE.md
 
-このファイルは、このリポジトリでコードを扱う際のClaude Code (claude.ai/code) へのガイダンスを提供します。
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## 重要な指示
+## Development Commands
 
-**このプロジェクトでは、Claude Codeとのやり取りは全て日本語で行ってください。**
-
-## プロジェクト概要
-
-Next.js 15 ボイラープレート:
-- TypeScript (strict mode, noErrorTruncation有効)
-- React 19 (実験的React Compiler搭載)
-- Turbopack (開発用)
-- Tailwind CSS v4 (PostCSSプラグイン)
-- TanStack Query (データフェッチング)
-- React Hook Form + Zod (フォーム処理)
-- Radix UI (アクセシブルなコンポーネント)
-- Vitest (Storybook統合テスト)
-- Biome (主要フォーマッター/リンター)
-- Hono (ミドルウェアフレームワーク)
-
-## 環境設定
-
-- **Node.js**: 22.17.0 (package.jsonで固定)
-- **パッケージマネージャー**: pnpm 10.13.1
-- **環境変数**: `.env.development`、`.env.test`、`.env.local`で管理
-- **環境変数スキーマ**: `src/schemas/env.schema.ts`で定義
-- **設定管理**: `src/config/env.ts`で環境変数を型安全に使用
-
-## 必須コマンド
-
-### 開発
+### Essential Commands
 ```bash
-pnpm dev           # Turbopackで開発サーバー起動
-pnpm build         # プロダクションビルド
-pnpm start         # プロダクションサーバー起動
-pnpm analyze       # バンドルサイズ分析 (ANALYZE=true pnpm build)
+# Development server with Turbopack
+pnpm dev
+
+# Build for production
+pnpm build
+
+# Start production server
+pnpm start
+
+# Run linting (both Next.js and Biome)
+pnpm lint
+
+# Run Biome linting with auto-fix
+pnpm lint:biome
+
+# Run type checking
+pnpm check-types
+
+# Run dead code detection
+pnpm knip
+
+# Generate OpenAPI client code
+pnpm generate-api
 ```
 
-### コード品質
+### Testing Commands
 ```bash
-pnpm lint          # Next.js ESLintとBiome両方を実行
-pnpm lint:next     # Next.js ESLint (自動修正付き)
-pnpm lint:biome    # Biomeチェック (自動修正付き)
-pnpm check-types   # TypeScript型チェック
-pnpm knip          # 未使用の依存関係/エクスポートを検出
+# Run all tests
+pnpm test
+
+# Run unit tests only
+pnpm test:unit
+
+# Run tests in watch mode
+pnpm test:watch
+
+# Run tests with coverage (80% threshold required)
+pnpm test:coverage
+
+# Update test snapshots
+pnpm test:update
+
+# Run specific test file
+pnpm vitest run path/to/test.test.ts
 ```
 
-### テスト
+### Storybook Commands
 ```bash
-pnpm test          # 全テストを1回実行
-pnpm test:watch    # ウォッチモードでテスト実行
-pnpm test:update   # テストスナップショット更新
-pnpm test:coverage # カバレッジレポート付きテスト実行
+# Start Storybook development server
+pnpm storybook
 
-# 特定のテストファイルを実行
-pnpm test path/to/file.test.tsx
-
-# パターンに一致するテストを実行
-pnpm test --grep "pattern"
+# Build static Storybook
+pnpm build-storybook
 ```
 
-### Storybook
-```bash
-pnpm storybook       # Storybook開発サーバー起動
-pnpm build-storybook # Storybookビルド
-pnpm chromatic       # ビジュアルリグレッションテスト実行
-```
+## Project Architecture
 
-### API生成
-```bash
-pnpm generate-api        # OpenAPI仕様からTypeScriptクライアント生成
-pnpm generate-api:clean  # クリーン後に再生成
-```
+### Core Technology Stack
+- **Next.js** with App Router and React
+- **TypeScript** with strict type checking
+- **Tailwind CSS** for styling
+- **TanStack Query** for server state management
+- **React Hook Form + Zod** for form handling and validation
+- **Hono** for middleware
+- **Vitest** for testing with 80% coverage requirement
+- **Storybook** for component development
+- **Biome** as primary linter/formatter
+- **MSW** for API mocking
 
-## アーキテクチャ
+### Directory Structure & Conventions
 
-### ディレクトリ構造
-```
-src/
-├── api/          # 生成されたAPIクライアントとクエリ関数
-│   ├── openapi/  # 自動生成（編集禁止）
-│   └── queries/  # TanStack Queryフック
-├── app/          # Next.js App Routerのページとレイアウト
-├── components/   # 再利用可能なUIコンポーネント
-├── config/       # アプリ設定（環境変数など）
-├── features/     # 機能モジュール（ドメイン固有のコード）
-├── hooks/        # カスタムReactフック
-├── lib/          # サードパーティライブラリ設定
-│   └── middlewares/ # Honoミドルウェア
-├── mocks/        # MSWモックサーバー設定
-├── providers/    # Reactコンテキストプロバイダー
-├── schemas/      # Zodバリデーションスキーマ
-├── types/        # TypeScript型定義
-└── utils/        # ユーティリティ関数
-```
+#### `/src/app/` - Next.js App Router
+- Uses file-based routing with App Router conventions
+- Layout hierarchy: root layout � nested layouts � pages
+- Special files: `page.tsx`, `layout.tsx`, `error.tsx`, `not-found.tsx`, `global-error.tsx`
+- Route groups: `(sandbox)/` for logical grouping without affecting URL
 
-### 主要パターン
+#### `/src/components/` - Reusable UI Components
+- Each component in its own directory with `index.tsx`
+- Includes Storybook stories (`*.stories.tsx`) and tests
+- Uses `tailwind-variants` for component styling with variants
+- Exports only named exports (no default exports per linting rules)
 
-1. **データフェッチング**: Query Keyファクトリーパターンを使用したTanStack Query
-   - クエリ関数は `src/api/queries/` に配置
-   - クエリキーは `@lukemorales/query-key-factory` で管理
+#### `/src/api/` - API Layer
+- `/openapi/` - Auto-generated TypeScript client from OpenAPI spec
+- `/queries/` - TanStack Query hooks using query key factory pattern
+- `/apiClient/` - Configured API client instance
 
-2. **コンポーネント開発**: 
-   - Storybookで独立して開発
-   - スタイリングにTailwind Variantsを使用
-   - アクセシブルなプリミティブにRadix UIを使用
+#### `/src/providers/` - Context Providers
+- `RootProvider` wraps all providers (currently TanStack Query)
+- Provider hierarchy is centralized here
 
-3. **フォーム処理**: React Hook Form + Zod
-   - スキーマは `src/schemas/` に配置
-   - フォームコンポーネントは `useForm` とzodResolverを使用
+#### `/src/hooks/` - Custom React Hooks
+- Each hook in its own directory with tests and stories
+- Includes debounce, disclosure, and composing detection utilities
 
-4. **テスト戦略**:
-   - コンポーネントと同じ場所にユニットテスト (`.test.tsx`)
-   - コンポーネントの相互作用にStorybookテスト
-   - APIモッキングにMSW (public/mockServiceWorker.js)
-   - Vitestワークスペース: unitテストとStorybookテストを分離
-   - カバレッジ除外: `*.d.ts`、`src/mocks/**`、`src/api/**`
+#### `/src/lib/` - Library Code
+- `/middlewares/` - Hono middleware for logging and headers
+- `/styles/` - Global CSS files and Tailwind configuration
+- `Hydrator` - Server state hydration component
+- `WebVitalsReporter` - Performance monitoring (dev only)
 
-5. **型安全性**:
-   - 厳格なTypeScript設定
-   - OpenAPI仕様から生成されたAPI型
-   - ランタイムバリデーション用のZodスキーマ
+#### `/src/utils/` - Utility Functions
+- Pure utility functions with comprehensive tests
+- Type helpers and environment detection utilities
 
-## 開発ワークフロー
+### Key Architectural Patterns
 
-1. **プリコミットフック**: ステージングされたファイルに自動実行:
-   - リンティング (Biome + ESLint)
-   - 型チェック
-   - 関連テスト
+#### Middleware Architecture
+The project uses Hono for middleware, configured in `src/middleware.ts`:
+- Request/response logging
+- Custom header injection
+- Excludes API routes and static assets
 
-2. **インポート整理**: Biomeが自動的にインポートをソート
+#### State Management
+- **Server State**: TanStack Query with centralized configuration
+- **Form State**: React Hook Form with Zod schemas
+- **No global client state management** (no Redux/Zustand)
 
-3. **コードスタイル**: 
-   - Biomeがフォーマットを処理
-   - Next.jsのページ/レイアウト以外はデフォルトエクスポート禁止
-   - 名前付きエクスポートを推奨
+#### Type Safety
+- Zod schemas for runtime validation (forms, environment variables)
+- Generated types from OpenAPI specification
+- Strict TypeScript configuration with no implicit any
 
-4. **コンポーネントファイル**: 命名規則に従う:
-   - コンポーネント: `ComponentName.tsx`
-   - ストーリー: `ComponentName.stories.tsx`
-   - テスト: `ComponentName.test.tsx`
+#### Testing Strategy
+- Unit tests with Vitest (JSDOM environment)
+- Storybook tests run in browser environment (Playwright)
+- 80% coverage threshold enforced
+- MSW for API mocking in tests
 
-## Linting/Formatting設定
+#### Code Quality
+- Biome for linting with extensive rules
+- Knip for dead code detection (ignores generated API code)
+- Pre-commit hooks via Husky and lint-staged
+- Consistent naming conventions enforced
 
-### Biome設定
-- インポート自動整理、属性・プロパティのソート
-- react-useフックの依存関係チェック
-- domains設定（next、project、react、test）でインポート順序管理
-- パフォーマンス、スタイル、疑わしいコードの警告
+### Environment Configuration
+Environment variables are validated through Zod schemas:
+- `NEXT_PUBLIC_APP_NAME` - Application name
+- `NEXT_PUBLIC_DEFAULT_DESCRIPTION` - Default meta description
+- All env vars must be defined in `src/schemas/env.schema.ts`
 
-### ESLint設定
-- React Compiler推奨設定
-- TanStack Query推奨設定
-- Vitest推奨設定（`it`使用、トップレベルdescribe必須）
+### OpenAPI Integration
+The project generates TypeScript clients from `openapi.yml`:
+- Run `pnpm generate-api` to regenerate
+- Generated code is in `src/api/openapi/` (do not edit)
+- Configuration in `openapiconfig.json`
 
-## 特殊な設定
-
-1. **React Compiler**: babel-plugin-react-compilerで実験的に有効化
-2. **Middleware**: Honoフレームワークでカスタムヘッダー、ログ機能実装
-3. **ビルド分析**: `ANALYZE=true`環境変数でバンドルアナライザー有効化
-4. **Chromatic**: GitHub ActionsでPRマージ時に自動デプロイ
-5. **knip除外**: `src/app/forbidden.tsx`、`unauthorized.tsx`は無視設定
-
-## 注意事項
-
-- `src/api/openapi/`ディレクトリは自動生成されるため、**絶対に編集しない**
-- 環境変数を追加する際は必ず`src/schemas/env.schema.ts`にスキーマを定義
-- テスト実行時は`vitest.globalSetup.ts`と`vitest.setup.ts`が適用される
-- MSWのワーカーファイルは`public/mockServiceWorker.js`に配置
+### Component Development Workflow
+1. Create component in `/src/components/ComponentName/index.tsx`
+2. Add Storybook stories for visual testing
+3. Use `tailwind-variants` for styling with type-safe variants
+4. Export as named export (no default exports)
+5. Add unit tests if component has logic
