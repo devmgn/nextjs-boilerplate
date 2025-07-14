@@ -30,8 +30,8 @@ importers:
         specifier: 5.83.0
         version: 5.83.0(@tanstack/react-query@5.83.0(react@19.1.0))(react@19.1.0)
       hono:
-        specifier: 4.8.4
-        version: 4.8.4
+        specifier: 4.8.5
+        version: 4.8.5
       lodash-es:
         specifier: 4.17.21
         version: 4.17.21
@@ -2698,8 +2698,8 @@ packages:
   hermes-parser@0.25.1:
     resolution: {integrity: sha512-6pEjquH3rqaI6cYAXYPcz9MS4rY6R4ngRgrgfDshRptUZIc3lw0MCIJIGDj9++mfySOuPTHB4nrSW99BCvOPIA==}
 
-  hono@4.8.4:
-    resolution: {integrity: sha512-KOIBp1+iUs0HrKztM4EHiB2UtzZDTBihDtOF5K6+WaJjCPeaW4Q92R8j63jOhvJI5+tZSMuKD9REVEXXY9illg==}
+  hono@4.8.5:
+    resolution: {integrity: sha512-Up2cQbtNz1s111qpnnECdTGqSIUIhZJMLikdKkshebQSEBcoUKq6XJayLGqSZWidiH0zfHRCJqFu062Mz5UuRA==}
     engines: {node: '>=16.9.0'}
 
   html-encoding-sniffer@4.0.0:
@@ -6818,7 +6818,7 @@ snapshots:
     dependencies:
       hermes-estree: 0.25.1
 
-  hono@4.8.4: {}
+  hono@4.8.5: {}
 
   html-encoding-sniffer@4.0.0:
     dependencies:
