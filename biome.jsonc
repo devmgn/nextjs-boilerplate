@@ -45,62 +45,7 @@
       "correctness": {
         "useExhaustiveDependencies": {
           "fix": "safe",
-          "level": "error",
-          // react-useのフックを追加設定
-          "options": {
-            "hooks": [
-              {
-                "closureIndex": 0,
-                "dependenciesIndex": 1,
-                "name": "useAsync"
-              },
-              {
-                "closureIndex": 0,
-                "dependenciesIndex": 1,
-                "name": "useAsyncFn"
-              },
-              {
-                "closureIndex": 0,
-                "dependenciesIndex": 1,
-                "name": "useAsyncRetry"
-              },
-              {
-                "closureIndex": 0,
-                "dependenciesIndex": 1,
-                "name": "useCustomCompareEffect"
-              },
-              {
-                "closureIndex": 0,
-                "dependenciesIndex": 2,
-                "name": "useDebounce"
-              },
-              {
-                "closureIndex": 0,
-                "dependenciesIndex": 1,
-                "name": "useDeepCompareEffect"
-              },
-              {
-                "closureIndex": 0,
-                "dependenciesIndex": 1,
-                "name": "useIsomorphicLayoutEffect"
-              },
-              {
-                "closureIndex": 0,
-                "dependenciesIndex": 1,
-                "name": "useShallowCompareEffect"
-              },
-              {
-                "closureIndex": 0,
-                "dependenciesIndex": 2,
-                "name": "useThrottleFn"
-              },
-              {
-                "closureIndex": 0,
-                "dependenciesIndex": 1,
-                "name": "useUpdateEffect"
-              }
-            ]
-          }
+          "level": "error"
         },
         // 以下の設定は domains.project: "all"により有効化されたものでオフにしている
         "noUndeclaredDependencies": "off",
