@@ -130,8 +130,8 @@ importers:
         specifier: 19.1.0-rc.2
         version: 19.1.0-rc.2
       chromatic:
-        specifier: 13.1.2
-        version: 13.1.2
+        specifier: 13.1.3
+        version: 13.1.3
       eslint:
         specifier: 9.32.0
         version: 9.32.0(jiti@2.5.1)
@@ -2063,8 +2063,8 @@ packages:
     resolution: {integrity: sha512-+IxzY9BZOQd/XuYPRmrvEVjF/nqj5kgT4kEq7VofrDoM1MxoRjEWkrCC3EtLi59TVawxTAn+orJwFQcrqEN1+g==}
     engines: {node: '>=18'}
 
-  chromatic@13.1.2:
-    resolution: {integrity: sha512-jgVptQabJHOnzmmvLjbtfutREkWGhDDk2gVqMH6N+V7z56oIy4Sd2/U7ZxNvnVFPinZQMSjSdUce4b6JIP64Dg==}
+  chromatic@13.1.3:
+    resolution: {integrity: sha512-aOZDwg1PsDe9/UhiXqS6EJPoCGK91hYbj3HaunV/0Ij492eWLkXIzku/e5cF1t7Ma7cAuGpCQDo0vGHg0UO91w==}
     hasBin: true
     peerDependencies:
       '@chromatic-com/cypress': ^0.*.* || ^1.0.0
@@ -5944,7 +5944,7 @@ snapshots:
 
   chownr@3.0.0: {}
 
-  chromatic@13.1.2: {}
+  chromatic@13.1.3: {}
 
   cli-cursor@5.0.0:
     dependencies:
