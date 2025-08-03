@@ -4,7 +4,7 @@
   "engines": {
     "node": "22.18.0"
   },
-  "packageManager": "pnpm@10.13.1",
+  "packageManager": "pnpm@10.14.0",
   "scripts": {
     "postinstall": "node .husky/install.mjs && npx msw init",
     "dev": "next dev --turbopack",
