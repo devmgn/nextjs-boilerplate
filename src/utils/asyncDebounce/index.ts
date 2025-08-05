@@ -1,14 +1,9 @@
 import { debounce } from "es-toolkit";
 
-type DebounceOptions = {
-  signal?: AbortSignal;
-  edges?: Array<"leading" | "trailing">;
-};
-
 export const asyncDebounce = <T extends unknown[], R>(
   fn: (...args: T) => R | Promise<R>,
   wait: number,
-  options?: DebounceOptions,
+  options?: Parameters<typeof debounce>[2],
 ): ((...args: T) => Promise<R>) => {
   const debounceFn = debounce(
     async (
