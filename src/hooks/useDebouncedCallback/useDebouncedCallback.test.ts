@@ -103,10 +103,10 @@ describe("useDebouncedCallback", () => {
     expect(callback).toHaveBeenCalledTimes(1);
   });
 
-  it("leading: true オプションで最初の呼び出しが即時実行されること", () => {
+  it("edges: ['leading'] オプションで最初の呼び出しが即時実行されること", () => {
     const callback = vi.fn();
     const { result } = renderHook(() =>
-      useDebouncedCallback(callback, 500, { leading: true }),
+      useDebouncedCallback(callback, 500, { edges: ["leading", "trailing"] }),
     );
 
     act(() => {
@@ -123,5 +123,22 @@ describe("useDebouncedCallback", () => {
       vi.advanceTimersByTime(500);
     });
     expect(callback).toHaveBeenCalledTimes(2);
+  });
+
+  it("schedule メソッドでdebounce実行をスケジュールできること", () => {
+    const callback = vi.fn();
+    const { result } = renderHook(() => useDebouncedCallback(callback, 500));
+
+    act(() => {
+      result.current("test");
+      result.current.schedule();
+    });
+    expect(callback).not.toHaveBeenCalled();
+
+    act(() => {
+      vi.advanceTimersByTime(500);
+    });
+    expect(callback).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenCalledWith("test");
   });
 });

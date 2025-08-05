@@ -1,4 +1,4 @@
-import { debounce } from "lodash-es";
+import { debounce } from "es-toolkit";
 import { useEffect, useMemo } from "react";
 
 export const useDebouncedCallback = (...args: Parameters<typeof debounce>) => {

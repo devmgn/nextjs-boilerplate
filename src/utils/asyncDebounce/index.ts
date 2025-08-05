@@ -1,8 +1,8 @@
-import { debounce } from "lodash-es";
+import { debounce } from "es-toolkit";
 
 export const asyncDebounce = <T extends unknown[], R>(
   fn: (...args: T) => R | Promise<R>,
-  wait?: number,
+  wait: number,
   options?: Parameters<typeof debounce>[2],
 ): ((...args: T) => Promise<R>) => {
   const debounceFn = debounce(
