@@ -21,9 +21,7 @@
   "packageRules": [
     {
       "groupName": "patch dependencies",
-      "matchUpdateTypes": ["patch"],
-      "automerge": true,
-      "platformAutomerge": true
+      "matchUpdateTypes": ["patch"]
     },
     {
       "matchUpdateTypes": ["lockFileMaintenance"],
