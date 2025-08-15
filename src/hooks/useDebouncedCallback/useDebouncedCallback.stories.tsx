@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useId, useState } from "react";
 import { Input } from "../../components/Input";
 import { useIsComposing } from "../useIsComposing";
 import { useDebouncedCallback } from ".";
@@ -12,6 +12,9 @@ const meta: Meta<typeof useDebouncedCallback> = {
   render: () => {
     const [delayTime, setDelayTime] = useState(250);
     const [result, setResult] = useState("");
+
+    const resultId = useId();
+    const delayTimeId = useId();
 
     const isComposing = useIsComposing();
 
@@ -31,11 +34,11 @@ const meta: Meta<typeof useDebouncedCallback> = {
     return (
       <div className="flex flex-col gap-4">
         <div className="grid grid-cols-[1fr_auto] items-center gap-2">
-          <label htmlFor="result">debouncedValue Result: </label>
-          <Input id="result" readOnly={true} value={result} />
-          <label htmlFor="delayTime">DelayTime</label>
+          <label htmlFor={resultId}>debouncedValue Result: </label>
+          <Input id={resultId} readOnly={true} value={result} />
+          <label htmlFor={delayTimeId}>DelayTime</label>
           <Input
-            id="delayTime"
+            id={delayTimeId}
             onChange={(e) => setDelayTime(Number(e.target.value))}
             placeholder="delay time"
             type="number"

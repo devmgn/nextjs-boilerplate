@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 const meta: Meta<typeof Field> = {
   component: Field,
   args: {
-    children: <Input id="field-id" />,
+    children: <Input />,
     label: "Field Label",
     errorMessage: "",
   },
@@ -24,6 +24,6 @@ export const WithErrorMessage: Story = {
 
 export const WithDisabledInput: Story = {
   args: {
-    children: <Input disabled={true} id="field-id" />,
+    children: <Input disabled={true} />,
   },
 };

@@ -27,19 +27,19 @@ const falsyPatterns: TestPatterns = [
 ];
 
 const invalidPatterns: TestPatterns = [
-  // @ts-ignore
+  // @ts-expect-error
   [{}, false],
-  // @ts-ignore
+  // @ts-expect-error
   [[], false],
-  // @ts-ignore
+  // @ts-expect-error
   [null, false],
-  // @ts-ignore
+  // @ts-expect-error
   [undefined, false],
-  // @ts-ignore
+  // @ts-expect-error
   [true, false],
-  // @ts-ignore
+  // @ts-expect-error
   [false, false],
-  // @ts-ignore
+  // @ts-expect-error
   [() => {}, false],
   [Symbol(""), false],
 ];

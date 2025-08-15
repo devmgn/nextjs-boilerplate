@@ -1,3 +1,4 @@
+import { useId } from "react";
 import { expect, userEvent, within } from "storybook/test";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
@@ -11,12 +12,13 @@ const meta: Meta<typeof useDisclosure> = {
   },
   render: () => {
     const { isOpen, open, close, toggle } = useDisclosure();
+    const id = useId();
 
     return (
       <div className="flex flex-col gap-4">
         <div className="flex gap-2">
-          <label htmlFor="result">disclosure Result: </label>
-          <Input id="result" readOnly={true} value={isOpen.toString()} />
+          <label htmlFor={id}>disclosure Result: </label>
+          <Input id={id} readOnly={true} value={isOpen.toString()} />
         </div>
         <Button onClick={open}>Open</Button>
         <Button onClick={close}>Close</Button>

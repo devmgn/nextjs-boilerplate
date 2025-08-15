@@ -21,7 +21,7 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**", "!public/**", "!src/api/openapi/**"]
+    "includes": ["**", "!public", "!src/api/openapi"]
   },
   "formatter": {
     "indentStyle": "space"
@@ -36,42 +36,30 @@
     },
     "rules": {
       "recommended": true,
+      "a11y": {
+        "noNoninteractiveElementInteractions": "info"
+      },
       "complexity": {
         "noUselessStringConcat": "info",
         "noVoid": "warn",
         "useSimplifiedLogicExpression": "info",
-        "useWhile": "warn"
+        "useWhile": "warn",
+        "noImplicitCoercions": "info"
       },
       "correctness": {
         "useExhaustiveDependencies": {
           "fix": "safe",
           "level": "error"
         },
+        "useSingleJsDocAsterisk": { "fix": "safe", "level": "info" },
+        "noReactPropAssignments": "info",
         // 以下の設定は domains.project: "all"により有効化されたものでオフにしている
         "noUndeclaredDependencies": "off",
         "useImportExtensions": "off"
       },
       "nursery": {
-        "noImplicitCoercion": "info",
-        "noImportantStyles": "warn",
-        "noNoninteractiveElementInteractions": "info",
-        "noReactPropAssign": "info",
         "noShadow": "info",
-        "noUnassignedVariables": "info",
-        "noUnknownAtRule": "error",
-        "noUselessBackrefInRegex": "warn",
-        "noUselessEscapeInString": "warn",
         "noUselessUndefined": "info",
-        "useAdjacentGetterSetter": "info",
-        "useConsistentObjectDefinition": "error",
-        "useConsistentResponse": "info",
-        "useIndexOf": "info",
-        "useIterableCallbackReturn": "error",
-        "useNumericSeparators": "info",
-        "useObjectSpread": "info",
-        "useParseIntRadix": "info",
-        "useReadonlyClassProperties": "info",
-        "useSingleJsDocAsterisk": { "fix": "safe", "level": "info" },
         "useSortedClasses": {
           "fix": "safe",
           "level": "info",
@@ -80,9 +68,6 @@
             "functions": ["clsx", "cva", "tv", "tw"]
           }
         },
-        "useSymbolDescription": "info",
-        "useUnifiedTypeSignature": "info",
-        "useUniqueElementIds": "off",
         // 以下の設定は domains.project: "all"により有効化されたものでオフにしている
         "noUnresolvedImports": "off"
       },
@@ -106,6 +91,13 @@
         "noParameterProperties": "warn",
         "noRestrictedGlobals": "warn",
         "noShoutyConstants": "info",
+        "useObjectSpread": "info",
+        "useSymbolDescription": "info",
+        "useReadonlyClassProperties": "info",
+        "useGroupedAccessorPairs": "info",
+        "useUnifiedTypeSignatures": "info",
+        "useConsistentObjectDefinitions": "warn",
+        "useNumericSeparators": "info",
         "noSubstr": "info",
         "noUnusedTemplateLiteral": "warn",
         "noUselessElse": "info",
@@ -152,6 +144,8 @@
           "level": "warn",
           "options": { "allow": ["error", "warn"] }
         },
+        "noUnassignedVariables": "info",
+        "useStaticResponseMethods": "info",
         "noEmptyBlockStatements": "warn",
         "noMisplacedAssertion": "warn",
         "noSkippedTests": "warn",
@@ -202,7 +196,9 @@
       "linter": {
         "rules": {
           "nursery": {
-            "noFloatingPromises": "off",
+            "noFloatingPromises": "off"
+          },
+          "style": {
             "useSymbolDescription": "off"
           },
           "suspicious": {
