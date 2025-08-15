@@ -21,7 +21,7 @@
   },
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**", "!public/**", "!src/api/openapi/**"]
+    "includes": ["**", "!public", "!src/api/openapi"]
   },
   "formatter": {
     "indentStyle": "space"
@@ -36,42 +36,30 @@
     },
     "rules": {
       "recommended": true,
+      "a11y": {
+        "noNoninteractiveElementInteractions": "info"
+      },
       "complexity": {
+        "noImplicitCoercions": "info",
         "noUselessStringConcat": "info",
         "noVoid": "warn",
         "useSimplifiedLogicExpression": "info",
         "useWhile": "warn"
       },
       "correctness": {
+        "noReactPropAssignments": "info",
         "useExhaustiveDependencies": {
           "fix": "safe",
           "level": "error"
         },
+        "useSingleJsDocAsterisk": { "fix": "safe", "level": "info" },
         // 以下の設定は domains.project: "all"により有効化されたものでオフにしている
         "noUndeclaredDependencies": "off",
         "useImportExtensions": "off"
       },
       "nursery": {
-        "noImplicitCoercion": "info",
-        "noImportantStyles": "warn",
-        "noNoninteractiveElementInteractions": "info",
-        "noReactPropAssign": "info",
         "noShadow": "info",
-        "noUnassignedVariables": "info",
-        "noUnknownAtRule": "error",
-        "noUselessBackrefInRegex": "warn",
-        "noUselessEscapeInString": "warn",
         "noUselessUndefined": "info",
-        "useAdjacentGetterSetter": "info",
-        "useConsistentObjectDefinition": "error",
-        "useConsistentResponse": "info",
-        "useIndexOf": "info",
-        "useIterableCallbackReturn": "error",
-        "useNumericSeparators": "info",
-        "useObjectSpread": "info",
-        "useParseIntRadix": "info",
-        "useReadonlyClassProperties": "info",
-        "useSingleJsDocAsterisk": { "fix": "safe", "level": "info" },
         "useSortedClasses": {
           "fix": "safe",
           "level": "info",
@@ -80,9 +68,6 @@
             "functions": ["clsx", "cva", "tv", "tw"]
           }
         },
-        "useSymbolDescription": "info",
-        "useUnifiedTypeSignature": "info",
-        "useUniqueElementIds": "off",
         // 以下の設定は domains.project: "all"により有効化されたものでオフにしている
         "noUnresolvedImports": "off"
       },
@@ -123,6 +108,7 @@
         "useConsistentBuiltinInstantiation": { "fix": "safe", "level": "info" },
         "useConsistentCurlyBraces": { "fix": "safe", "level": "info" },
         "useConsistentMemberAccessibility": "info",
+        "useConsistentObjectDefinitions": "warn",
         "useDefaultParameterLast": "warn",
         "useDefaultSwitchClause": "warn",
         "useEnumInitializers": "warn",
@@ -133,6 +119,7 @@
         },
         "useForOf": "info",
         "useFragmentSyntax": { "fix": "safe", "level": "info" },
+        "useGroupedAccessorPairs": "info",
         "useNamingConvention": {
           "fix": "safe",
           "level": "error",
@@ -140,12 +127,17 @@
         },
         "useNodeAssertStrict": "warn",
         "useNumberNamespace": "info",
+        "useNumericSeparators": "info",
+        "useObjectSpread": "info",
+        "useReadonlyClassProperties": "info",
         "useSelfClosingElements": "info",
         "useShorthandAssign": "info",
         "useSingleVarDeclarator": "info",
+        "useSymbolDescription": "info",
         "useTemplate": { "fix": "safe", "level": "info" },
         "useThrowOnlyError": "warn",
-        "useTrimStartEnd": "info"
+        "useTrimStartEnd": "info",
+        "useUnifiedTypeSignatures": "info"
       },
       "suspicious": {
         "noConsole": {
@@ -155,11 +147,13 @@
         "noEmptyBlockStatements": "warn",
         "noMisplacedAssertion": "warn",
         "noSkippedTests": "warn",
+        "noUnassignedVariables": "info",
         "noVar": "warn",
         "useAwait": "warn",
         "useErrorMessage": "warn",
         "useGuardForIn": "warn",
-        "useNumberToFixedDigitsArgument": "warn"
+        "useNumberToFixedDigitsArgument": "warn",
+        "useStaticResponseMethods": "info"
       }
     }
   },
@@ -202,7 +196,9 @@
       "linter": {
         "rules": {
           "nursery": {
-            "noFloatingPromises": "off",
+            "noFloatingPromises": "off"
+          },
+          "style": {
             "useSymbolDescription": "off"
           },
           "suspicious": {

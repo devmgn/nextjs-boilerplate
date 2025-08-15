@@ -1,7 +1,7 @@
 "use client";
 
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
-import { startTransition, useActionState } from "react";
+import { startTransition, useActionState, useId } from "react";
 import { createFormControl, Form, useFormState } from "react-hook-form";
 import { Button } from "../../../components/Button";
 import { Field } from "../../../components/Field";
@@ -23,6 +23,7 @@ export default function Page() {
   const [, formAction, isPending] = useActionState(post, null);
   const { control, register } = form;
   const { errors } = useFormState({ control });
+  const id = useId();
 
   return (
     <Form
@@ -36,7 +37,7 @@ export default function Page() {
         <Input
           {...register("userId", { valueAsNumber: true })}
           disabled={true}
-          id="userId"
+          id={id}
           type="number"
         />
       </Field>

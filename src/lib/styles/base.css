@@ -1,7 +1,7 @@
 @layer base {
   html {
     line-height: 1;
-    /* biome-ignore lint/nursery/noUnknownAtRule: tailwind custom class */
+    /* biome-ignore lint/suspicious/noUnknownAtRules: tailwind custom class */
     @apply text-wrap-strict;
   }
 

@@ -1,3 +1,4 @@
+import { useId } from "react";
 import { Input } from "../../components/Input";
 import { useIsComposing } from ".";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
@@ -9,6 +10,7 @@ const meta: Meta<typeof useIsComposing> = {
   },
   render: () => {
     const isComposing = useIsComposing();
+    const id = useId();
 
     return (
       <div className="flex flex-col gap-4">
@@ -19,8 +21,8 @@ const meta: Meta<typeof useIsComposing> = {
           </p>
         </div>
         <div className="flex flex-col gap-2">
-          <label htmlFor="type">Type your text</label>
-          <Input id="type" />
+          <label htmlFor={id}>your text</label>
+          <Input id={id} />
         </div>
       </div>
     );
