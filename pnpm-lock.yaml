@@ -33,8 +33,8 @@ importers:
         specifier: 1.39.9
         version: 1.39.9
       hono:
-        specifier: 4.9.1
-        version: 4.9.1
+        specifier: 4.9.2
+        version: 4.9.2
       next:
         specifier: 15.4.6
         version: 15.4.6(@babel/core@7.28.0)(babel-plugin-react-compiler@19.1.0-rc.2)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
@@ -2662,8 +2662,8 @@ packages:
   hermes-parser@0.25.1:
     resolution: {integrity: sha512-6pEjquH3rqaI6cYAXYPcz9MS4rY6R4ngRgrgfDshRptUZIc3lw0MCIJIGDj9++mfySOuPTHB4nrSW99BCvOPIA==}
 
-  hono@4.9.1:
-    resolution: {integrity: sha512-qfvdJ42t6CQE0N/iSCa8KsW8SQqYD67YB+TYbwPHlnALvX+s7ynh8otR1NEk5jXtUg73gpV/B82OSufDmwtX3w==}
+  hono@4.9.2:
+    resolution: {integrity: sha512-UG2jXGS/gkLH42l/1uROnwXpkjvvxkl3kpopL3LBo27NuaDPI6xHNfuUSilIHcrBkPfl4y0z6y2ByI455TjNRw==}
     engines: {node: '>=16.9.0'}
 
   html-encoding-sniffer@4.0.0:
@@ -6675,7 +6675,7 @@ snapshots:
     dependencies:
       hermes-estree: 0.25.1
 
-  hono@4.9.1: {}
+  hono@4.9.2: {}
 
   html-encoding-sniffer@4.0.0:
     dependencies:
