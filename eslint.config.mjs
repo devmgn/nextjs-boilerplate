@@ -37,7 +37,16 @@ const config = [
       "vitest/require-top-level-describe": "error",
     },
   },
-  { ignores: ["src/api/openapi"] },
+  {
+    ignores: [
+      "src/api/openapi/**",
+      "node_modules/**",
+      ".next/**",
+      "out/**",
+      "build/**",
+      "next-env.d.ts",
+    ],
+  },
 ];
 
 // biome-ignore lint/style/noDefaultExport: use default export
