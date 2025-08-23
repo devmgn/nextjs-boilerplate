@@ -14,19 +14,13 @@
   "lockFileMaintenance": {
     "enabled": true,
     "automerge": true,
-    "schedule": ["after 10pm on sunday", "before 5am on sunday"],
-    "commitMessageAction": "Update",
-    "commitMessageTopic": "lock file maintenance"
+    "automergeType": "branch",
+    "schedule": ["after 10pm on sunday", "before 5am on sunday"]
   },
   "packageRules": [
     {
       "groupName": "patch dependencies",
       "matchUpdateTypes": ["patch"]
-    },
-    {
-      "matchUpdateTypes": ["lockFileMaintenance"],
-      "automergeType": "branch",
-      "automergeStrategy": "merge-commit"
     }
   ]
 }
