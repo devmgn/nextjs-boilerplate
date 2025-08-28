@@ -3,7 +3,7 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { postQueries } from "../../../../api/queries/post.queries";
 
-export const PostList = () => {
+export function PostList() {
   const { data } = useSuspenseQuery({ ...postQueries.getPosts() });
 
   return (
@@ -16,4 +16,4 @@ export const PostList = () => {
       </ul>
     </div>
   );
-};
+}

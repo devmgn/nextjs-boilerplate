@@ -1,7 +1,7 @@
 import { debounce } from "es-toolkit";
 import { useEffect, useMemo } from "react";
 
-export const useDebouncedCallback = (...args: Parameters<typeof debounce>) => {
+export function useDebouncedCallback(...args: Parameters<typeof debounce>) {
   const debouncedFn = useMemo(() => debounce(...args), [args]);
 
   useEffect(() => {
@@ -11,4 +11,4 @@ export const useDebouncedCallback = (...args: Parameters<typeof debounce>) => {
   }, [debouncedFn]);
 
   return debouncedFn;
-};
+}

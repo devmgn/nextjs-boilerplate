@@ -10,7 +10,7 @@ interface FieldProps extends React.ComponentProps<"div"> {
   }>;
 }
 
-export const Field = (props: FieldProps) => {
+export function Field(props: FieldProps) {
   const { label, errorMessage, children, ...restProps } = props;
 
   return (
@@ -29,4 +29,4 @@ export const Field = (props: FieldProps) => {
       )}
     </div>
   );
-};
+}
