@@ -6,9 +6,9 @@ import type { FlatObject } from "../../types/typeHelpers";
  * @param {PropertyKey} key - 存在を確認するキー
  * @returns {boolean} キーがオブジェクトに存在する場合はtrue、そうでない場合はfalse
  */
-export const isKeyOf = <T extends FlatObject>(
+export function isKeyOf<T extends FlatObject>(
   obj: T,
   key: PropertyKey,
-): key is keyof T => {
+): key is keyof T {
   return Object.hasOwn(obj, key);
-};
+}

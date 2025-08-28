@@ -1,10 +1,10 @@
 import { debounce } from "es-toolkit";
 
-export const asyncDebounce = <T extends unknown[], R>(
+export function asyncDebounce<T extends unknown[], R>(
   fn: (...args: T) => R | Promise<R>,
   wait: number,
   options?: Parameters<typeof debounce>[2],
-): ((...args: T) => Promise<R>) => {
+): (...args: T) => Promise<R> {
   const debounceFn = debounce(
     async (
       resolve: (value: R) => void,
@@ -26,4 +26,4 @@ export const asyncDebounce = <T extends unknown[], R>(
     new Promise((resolve, reject) => {
       debounceFn(resolve, reject, args);
     });
-};
+}

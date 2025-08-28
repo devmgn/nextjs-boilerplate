@@ -23,6 +23,19 @@ const config = [
       "lines-around-directive": "error",
       "no-multiple-empty-lines": "error",
       "no-var": "off",
+      "no-restricted-syntax": [
+        "error",
+        {
+          selector:
+            "Program > VariableDeclaration > VariableDeclarator[init.type='ArrowFunctionExpression']",
+          message: "Use function declarations at the top level",
+        },
+        {
+          selector:
+            "Program > ExportNamedDeclaration > VariableDeclaration > VariableDeclarator[init.type='ArrowFunctionExpression']",
+          message: "Use function declarations for exported functions",
+        },
+      ],
     },
   },
   reactCompiler.configs.recommended,

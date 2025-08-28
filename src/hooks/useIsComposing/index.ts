@@ -9,7 +9,7 @@ const COMPOSITION_EVENT_NAMES = [
 /**
  * テキストの編集中にユーザーがテキストの作成中かどうかを判定するカスタムフック
  */
-export const useIsComposing = (): boolean => {
+export function useIsComposing(): boolean {
   const [isComposing, setIsComposing] = useState(false);
   const activeElementRef = useRef<HTMLElement | null>(null);
 
@@ -52,4 +52,4 @@ export const useIsComposing = (): boolean => {
   }, [updateListeners, removeListeners]);
 
   return isComposing;
-};
+}

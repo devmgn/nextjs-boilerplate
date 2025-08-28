@@ -33,7 +33,7 @@ interface ButtonProps
   asChild?: boolean;
 }
 
-export const Button = (props: ButtonProps) => {
+export function Button(props: ButtonProps) {
   const { className, variant, size, asChild = false, ...restProps } = props;
   const Component = asChild ? Slot : "button";
 
@@ -43,4 +43,4 @@ export const Button = (props: ButtonProps) => {
       {...restProps}
     />
   );
-};
+}
