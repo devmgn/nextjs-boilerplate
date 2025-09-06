@@ -115,6 +115,10 @@
         "useForOf": "info",
         "useFragmentSyntax": { "fix": "safe", "level": "info" },
         "useGroupedAccessorPairs": "info",
+        "useImportType": {
+          "level": "warn",
+          "options": { "style": "separatedType" }
+        },
         "useNamingConvention": {
           "fix": "safe",
           "level": "error",

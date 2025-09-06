@@ -7,7 +7,8 @@ import { Button } from "../../../components/Button";
 import { Field } from "../../../components/Field";
 import { Input } from "../../../components/Input";
 import { post } from "./action";
-import { type PostSchema, postSchema } from "./schema";
+import { postSchema } from "./schema";
+import type { PostSchema } from "./schema";
 
 const form = createFormControl<PostSchema>({
   resolver: standardSchemaResolver(postSchema),
