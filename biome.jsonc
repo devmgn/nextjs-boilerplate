@@ -54,6 +54,7 @@
       },
       "nursery": {
         "noShadow": "info",
+        "noUselessCatchBinding": "info",
         "noUselessUndefined": "info",
         "useSortedClasses": {
           "fix": "safe",
