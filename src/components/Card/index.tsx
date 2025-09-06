@@ -1,4 +1,5 @@
-import { tv, type VariantProps } from "tailwind-variants";
+import { tv } from "tailwind-variants";
+import type { VariantProps } from "tailwind-variants";
 
 const cardVariants = tv({
   base: "rounded-lg border bg-card text-card-foreground shadow-xs",
