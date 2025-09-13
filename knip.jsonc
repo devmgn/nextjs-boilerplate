@@ -1,0 +1,19 @@
+{
+  "$schema": "./node_modules/knip/schema.json",
+  "ignore": ["src/**/openapi/**", "src/mocks/server.ts"],
+  "ignoreBinaries": ["openapiconfig.json"],
+  "ignoreDependencies": [
+    "postcss",
+    "postcss-load-config",
+    "@next/eslint-plugin-next",
+    "@testing-library/user-event",
+    "eslint-config-next",
+    "eslint-plugin-react-hooks"
+  ],
+  "vitest": true,
+  "storybook": true,
+  "next": {
+    "config": ["next.config.ts"],
+    "entry": ["src/app/forbidden.tsx", "src/app/unauthorized.tsx"]
+  }
+}
