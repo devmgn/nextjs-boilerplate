@@ -1,3 +1,5 @@
+"use client";
+
 import { FaceIcon } from "@radix-ui/react-icons";
 import { isArray } from "es-toolkit/compat";
 import { Card } from "../../../components/Card";
@@ -11,9 +13,9 @@ import { isKeyOf } from "../../../utils/isKeyOf";
 import { isServer } from "../../../utils/isServer";
 import { isValueOf } from "../../../utils/isValueOf";
 import { isDevelopment } from "../../../utils/nodeEnv";
-import "type-fest";
+import type {} from "type-fest";
 
-export function Page() {
+export default function Page() {
   useDisclosure();
   useDebouncedCallback(() => {
     // noop
