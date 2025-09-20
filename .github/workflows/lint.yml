@@ -1,20 +1,17 @@
-name: 'Deploy Chromatic'
+name: Lint
 
 on:
-  pull_request:
-    branches:
+  push:
+    branches-ignore:
       - main
-    types: [closed]
+  pull_request:
 
 jobs:
-  chromatic-deployment:
-    if: github.event.pull_request.merged == true
+  quality-check:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
-        with:
-          fetch-depth: 0
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4
@@ -26,9 +23,19 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile --prefer-offline
 
-      - name: Publish to Chromatic
-        uses: chromaui/action@latest
-        with:
-          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+      - name: Setup environment
+        run: cp .env.development .env.local
+
+      - name: Type check
+        run: pnpm check-types
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Check unused dependencies
+        run: pnpm knip
+
+      - name: Test
+        run: pnpm test:unit
