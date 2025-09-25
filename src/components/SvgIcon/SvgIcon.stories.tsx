@@ -3,7 +3,7 @@ import { expect, fn, userEvent, within } from "storybook/test";
 import { SvgIcon } from ".";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-const meta: Meta<typeof SvgIcon> = {
+const meta = {
   component: SvgIcon,
   args: {
     icon: FaceIcon,
@@ -17,7 +17,7 @@ const meta: Meta<typeof SvgIcon> = {
       control: { type: "inline-radio" },
     },
   },
-};
+} satisfies Meta<typeof SvgIcon>;
 
 export default meta;
 type Story = StoryObj<typeof SvgIcon>;

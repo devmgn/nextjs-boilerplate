@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker/locale/ja";
 import { Button } from ".";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-const meta: Meta<typeof Button> = {
+const meta = {
   component: Button,
   tags: ["autodocs"],
   args: {
@@ -25,7 +25,7 @@ const meta: Meta<typeof Button> = {
       control: { type: "inline-radio" },
     },
   },
-};
+} satisfies Meta<typeof Button>;
 
 export default meta;
 type Story = StoryObj<typeof Button>;

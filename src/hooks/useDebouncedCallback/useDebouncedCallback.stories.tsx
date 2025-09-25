@@ -4,8 +4,7 @@ import { useIsComposing } from "../useIsComposing";
 import { useDebouncedCallback } from ".";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-const meta: Meta<typeof useDebouncedCallback> = {
-  title: "hooks/useDebouncedCallback",
+const meta = {
   parameters: {
     layout: "centered",
   },
@@ -56,7 +55,7 @@ const meta: Meta<typeof useDebouncedCallback> = {
       </div>
     );
   },
-};
+} satisfies Meta<typeof useDebouncedCallback>;
 
 export default meta;
 type Story = StoryObj<typeof useDebouncedCallback>;

@@ -52,12 +52,14 @@ const config = [
   },
   {
     ignores: [
-      "src/api/openapi/**",
-      "node_modules/**",
       ".next/**",
-      "out/**",
       "build/**",
       "next-env.d.ts",
+      "node_modules/**",
+      "out/**",
+      "src/api/openapi/**",
+      "storybook-static/**",
+      "public/**",
     ],
   },
 ];
