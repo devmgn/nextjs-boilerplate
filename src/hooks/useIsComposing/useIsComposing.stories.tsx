@@ -3,8 +3,7 @@ import { Input } from "../../components/Input";
 import { useIsComposing } from ".";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-const meta: Meta<typeof useIsComposing> = {
-  title: "hooks/useIsComposing",
+const meta = {
   parameters: {
     layout: "centered",
   },
@@ -27,7 +26,7 @@ const meta: Meta<typeof useIsComposing> = {
       </div>
     );
   },
-};
+} satisfies Meta<typeof useIsComposing>;
 
 export default meta;
 type Story = StoryObj<typeof useIsComposing>;

@@ -5,8 +5,7 @@ import { Input } from "../../components/Input";
 import { useDisclosure } from ".";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
-const meta: Meta<typeof useDisclosure> = {
-  title: "hooks/useDisclosure",
+const meta = {
   parameters: {
     layout: "centered",
   },
@@ -26,7 +25,7 @@ const meta: Meta<typeof useDisclosure> = {
       </div>
     );
   },
-};
+} satisfies Meta<typeof useDisclosure>;
 
 export default meta;
 type Story = StoryObj<typeof useDisclosure>;
