@@ -19,6 +19,9 @@ const preview: Preview = {
     a11y: {
       config: { locale },
       // @see https://storybook.js.org/docs/writing-tests/accessibility-testing#configure-accessibility-tests-with-the-test-addon
+      // 'todo' - show a11y violations in the test UI only
+      // 'error' - fail CI on a11y violations
+      // 'off' - skip a11y checks entirely
       test: "todo",
     },
   },

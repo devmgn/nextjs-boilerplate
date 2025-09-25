@@ -13,7 +13,6 @@ import { isKeyOf } from "../../../utils/isKeyOf";
 import { isServer } from "../../../utils/isServer";
 import { isValueOf } from "../../../utils/isValueOf";
 import { isDevelopment } from "../../../utils/nodeEnv";
-import type {} from "type-fest";
 
 export default function Page() {
   useDisclosure();

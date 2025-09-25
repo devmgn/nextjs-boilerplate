@@ -15,7 +15,7 @@
     "entry": ["src/app/forbidden.tsx", "src/app/unauthorized.tsx"]
   },
   "vitest": {
-    "config": ["vitest.config.mts"],
+    "config": ["vitest.config.ts"],
     "entry": [
       "**/*.{test,spec}.{ts,tsx}",
       ".storybook/vitest.setup.ts",
