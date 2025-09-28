@@ -1,13 +1,20 @@
 import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
 import react from "@vitejs/plugin-react";
+import { playwright } from "@vitest/browser/providers/playwright";
 import { defineConfig } from "vitest/config";
 
 // biome-ignore lint/style/noDefaultExport: use default export
 export default defineConfig({
   test: {
     coverage: {
-      include: ["src/**"],
-      exclude: ["**/*.d.ts", "src/mocks/**", "src/api/**", "**/*.stories.tsx"],
+      include: ["src/**/*.{ts,tsx}"],
+      exclude: [
+        "**/*.d.ts",
+        "src/**/*.stories.tsx",
+        "src/{api,mocks}/**",
+        "src/{instrumentation-client,instrumentation,middleware}.ts",
+        "src/app/**/{default,error,forbidden,global-error,global-not-found,layout,loading,not-found,page,route,template,unauthorized}.{ts,tsx}",
+      ],
       thresholds: {
         lines: 80,
         functions: 80,
@@ -48,7 +55,7 @@ export default defineConfig({
           browser: {
             enabled: true,
             headless: true,
-            provider: "playwright",
+            provider: playwright(),
             instances: [{ browser: "chromium" }],
           },
           setupFiles: [".storybook/vitest.setup.ts"],
