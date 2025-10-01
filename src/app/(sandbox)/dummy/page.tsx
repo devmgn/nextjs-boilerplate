@@ -2,6 +2,7 @@
 
 import { FaceIcon } from "@radix-ui/react-icons";
 import { isArray } from "es-toolkit/compat";
+import { Backdrop } from "../../../components/Backdrop";
 import { Card } from "../../../components/Card";
 import { SvgIcon } from "../../../components/SvgIcon";
 import { useDebouncedCallback } from "../../../hooks/useDebouncedCallback";
@@ -34,6 +35,7 @@ export default function Page() {
     <>
       <SvgIcon icon={FaceIcon} label="" />
       <Card />
+      <Backdrop open={true} />
     </>
   );
 }
