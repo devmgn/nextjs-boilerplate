@@ -15,7 +15,7 @@ const backdropVariants = tv({
 });
 
 interface BackdropProps
-  extends Omit<React.ComponentProps<"div">, "children">,
+  extends React.ComponentProps<"div">,
     VariantProps<typeof backdropVariants> {
   open: boolean;
 }
