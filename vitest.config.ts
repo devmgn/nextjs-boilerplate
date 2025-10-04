@@ -1,6 +1,6 @@
 import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
 import react from "@vitejs/plugin-react";
-import { playwright } from "@vitest/browser/providers/playwright";
+import { playwright } from "@vitest/browser-playwright";
 import { defineConfig } from "vitest/config";
 
 // biome-ignore lint/style/noDefaultExport: use default export
