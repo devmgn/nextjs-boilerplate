@@ -142,8 +142,8 @@ importers:
         specifier: 19.1.0-rc.2
         version: 19.1.0-rc.2(eslint@9.37.0(jiti@2.6.1))
       eslint-plugin-react-hooks:
-        specifier: 6.1.0
-        version: 6.1.0(eslint@9.37.0(jiti@2.6.1))
+        specifier: 6.1.1
+        version: 6.1.1(eslint@9.37.0(jiti@2.6.1))
       eslint-plugin-storybook:
         specifier: 10.0.0-beta.9
         version: 10.0.0-beta.9(eslint@9.37.0(jiti@2.6.1))(storybook@10.0.0-beta.9(@testing-library/dom@10.4.1)(msw@2.11.3(@types/node@24.6.2)(typescript@5.9.3))(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(vite@7.1.9(@types/node@24.6.2)(jiti@2.6.1)(lightningcss@1.30.1)(yaml@2.8.1)))(typescript@5.9.3)
@@ -2268,8 +2268,8 @@ packages:
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
 
-  eslint-plugin-react-hooks@6.1.0:
-    resolution: {integrity: sha512-72mucw/WLzEqGvL2vwE6fWR6geO6UbmDjz3eAb3pezxTpFzgbfyUeFKzmZKr9LhwUWMXfTVh1g0rKEJoyKNdoA==}
+  eslint-plugin-react-hooks@6.1.1:
+    resolution: {integrity: sha512-St9EKZzOAQF704nt2oJvAKZHjhrpg25ClQoaAlHmPZuajFldVLqRDW4VBNAS01NzeiQF0m0qhG1ZA807K6aVaQ==}
     engines: {node: '>=18'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
@@ -6054,15 +6054,13 @@ snapshots:
     dependencies:
       eslint: 9.37.0(jiti@2.6.1)
 
-  eslint-plugin-react-hooks@6.1.0(eslint@9.37.0(jiti@2.6.1)):
+  eslint-plugin-react-hooks@6.1.1(eslint@9.37.0(jiti@2.6.1)):
     dependencies:
       '@babel/core': 7.28.4
       '@babel/parser': 7.28.4
-      '@babel/plugin-proposal-private-methods': 7.18.6(@babel/core@7.28.4)
       eslint: 9.37.0(jiti@2.6.1)
-      hermes-parser: 0.25.1
-      zod: 3.25.76
-      zod-validation-error: 3.5.3(zod@3.25.76)
+      zod: 4.1.11
+      zod-validation-error: 3.5.3(zod@4.1.11)
     transitivePeerDependencies:
       - supports-color
 
@@ -7932,6 +7930,10 @@ snapshots:
   zod-validation-error@3.5.3(zod@3.25.76):
     dependencies:
       zod: 3.25.76
+
+  zod-validation-error@3.5.3(zod@4.1.11):
+    dependencies:
+      zod: 4.1.11
 
   zod@3.25.76: {}
 
