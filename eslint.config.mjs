@@ -70,8 +70,6 @@ const config = [
       ...vitest.configs.recommended.rules,
       "vitest/consistent-test-it": ["error", { fn: "it" }],
       "vitest/require-top-level-describe": "error",
-      // TODO: fix and enable
-      "vitest/prefer-called-exactly-once-with": "off",
     },
   },
   {
