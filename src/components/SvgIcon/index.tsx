@@ -3,7 +3,7 @@ import type { VariantProps } from "tailwind-variants";
 import type { Merge } from "type-fest";
 
 const svgIcon = tv({
-  base: "size-[1em] fill-current text-current",
+  base: "size-[1em] shrink-0 fill-current text-current",
   variants: {
     size: {
       xs: "text-[12px]",
@@ -30,7 +30,7 @@ interface SvgIconProps
 }
 
 export function SvgIcon(props: SvgIconProps) {
-  const { icon: Icon, label, className, size = "md", ...restProps } = props;
+  const { icon: Icon, label, className, size, ...restProps } = props;
 
   return (
     <Icon
