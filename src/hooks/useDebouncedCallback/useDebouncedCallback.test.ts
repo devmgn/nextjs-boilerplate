@@ -81,7 +81,7 @@ describe("useDebouncedCallback", () => {
       vi.advanceTimersByTime(500);
     });
 
-    expect(callback).toHaveBeenCalledWith("test", 123);
+    expect(callback).toHaveBeenCalledExactlyOnceWith("test", 123);
   });
 
   it("異なるwait時間で正しく動作すること", () => {
@@ -138,7 +138,7 @@ describe("useDebouncedCallback", () => {
     act(() => {
       vi.advanceTimersByTime(500);
     });
-    expect(callback).toHaveBeenCalledTimes(1);
-    expect(callback).toHaveBeenCalledWith("test");
+
+    expect(callback).toHaveBeenCalledExactlyOnceWith("test");
   });
 });

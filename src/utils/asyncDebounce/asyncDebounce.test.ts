@@ -67,6 +67,6 @@ describe("asyncDebounce", () => {
     const result = await promise;
 
     expect(result).toBe("1-test");
-    expect(mockFn).toHaveBeenCalledWith(1, "test");
+    expect(mockFn).toHaveBeenCalledExactlyOnceWith(1, "test");
   });
 });
