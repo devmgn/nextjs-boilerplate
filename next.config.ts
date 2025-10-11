@@ -4,12 +4,12 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   typedRoutes: true,
+  reactCompiler: true,
   compiler: {
     reactRemoveProperties: true,
   },
   experimental: {
     authInterrupts: true,
-    reactCompiler: true,
   },
 };
 

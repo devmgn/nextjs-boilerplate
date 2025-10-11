@@ -57,9 +57,9 @@ const config = [
       "next-env.d.ts",
       "node_modules/**",
       "out/**",
+      "public/**",
       "src/api/openapi/**",
       "storybook-static/**",
-      "public/**",
     ],
   },
 ];
