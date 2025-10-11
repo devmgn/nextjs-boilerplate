@@ -4,7 +4,7 @@
   "engines": {
     "node": "22.20.0"
   },
-  "packageManager": "pnpm@10.18.1",
+  "packageManager": "pnpm@10.18.2",
   "scripts": {
     "postinstall": "pnpm init:husky && pnpm init:msw",
     "init:husky": "node .husky/install.mjs",
@@ -90,10 +90,10 @@
     "husky": "9.1.7",
     "jest-extended": "6.0.0",
     "jsdom": "27.0.0",
-    "knip": "5.64.2",
+    "knip": "5.64.3",
     "lint-staged": "16.2.3",
     "msw": "2.11.5",
-    "msw-storybook-addon": "2.0.5",
+    "msw-storybook-addon": "2.0.6",
     "playwright": "1.56.0",
     "storybook": "10.0.0-beta.10",
     "tailwindcss": "4.1.14",
