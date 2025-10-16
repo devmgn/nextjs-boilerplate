@@ -1,4 +1,38 @@
 /* biome-ignore lint/suspicious/noUnknownAtRules: tailwind custom theme */
 @theme {
-  /* add theme */
+  --animate-fade-in: fade-in 0.2s ease-in forwards;
+  --animate-fade-out: fade-out 0.2s ease-out forwards;
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes spinner-circle {
+    0% {
+      stroke-dasharray: 1px, 200px;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 100px, 200px;
+      stroke-dashoffset: -15px;
+    }
+    100% {
+      stroke-dasharray: 1px, 200px;
+      stroke-dashoffset: -126px;
+    }
+  }
 }

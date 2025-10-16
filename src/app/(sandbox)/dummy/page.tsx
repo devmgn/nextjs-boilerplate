@@ -2,7 +2,9 @@
 
 import { FaceIcon } from "@radix-ui/react-icons";
 import { isArray } from "es-toolkit/compat";
+import { Backdrop } from "../../../components/Backdrop";
 import { Card } from "../../../components/Card";
+import { Spinner } from "../../../components/Spinner";
 import { SvgIcon } from "../../../components/SvgIcon";
 import { useDebouncedCallback } from "../../../hooks/useDebouncedCallback";
 import { useDisclosure } from "../../../hooks/useDisclosure";
@@ -34,6 +36,8 @@ export default function Page() {
     <>
       <SvgIcon icon={FaceIcon} label="" />
       <Card />
+      <Spinner />
+      <Backdrop open={true} />
     </>
   );
 }
