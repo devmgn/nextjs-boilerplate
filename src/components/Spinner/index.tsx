@@ -3,56 +3,72 @@ import type { VariantProps } from "tailwind-variants";
 
 const spinnerVariants = tv({
   slots: {
-    base: "inline-block size-[1em] animate-spin",
-    circle: "animate-spinner stroke-current",
+    base: "inline-block animate-[spin_1.4s_linear_infinite]",
+    circle: "animate-[spinner-circle_1.4s_ease-in-out_infinite] stroke-current",
+    track: "stroke-current opacity-15",
   },
   variants: {
     color: {
       primary: { base: "text-primary-600" },
     },
-    size: {
-      xs: { base: "text-[12px]" },
-      sm: { base: "text-[24px]" },
-      md: { base: "text-[32px]" },
-      lg: { base: "text-[48px]" },
-    },
   },
   defaultVariants: {
-    size: "md",
     color: "primary",
   },
 });
 
+const SIZE_MAP = {
+  sm: 16,
+  md: 24,
+  lg: 32,
+  xl: 48,
+} as const;
+
 interface SpinnerProps
-  extends Omit<React.ComponentProps<"svg">, "size" | "color">,
+  extends Omit<React.SVGProps<SVGSVGElement>, "size" | "color">,
     VariantProps<typeof spinnerVariants> {
-  open: boolean;
+  showTrack?: boolean;
+  size?: number | keyof typeof SIZE_MAP;
 }
-const { base, circle } = spinnerVariants();
+const { base, circle, track } = spinnerVariants();
 
 export function Spinner(props: SpinnerProps) {
-  const { className, size, ...restProps } = props;
+  const {
+    className,
+    showTrack = true,
+    size = SIZE_MAP.md,
+    ...restProps
+  } = props;
 
-  const viewBoxSize = 24;
-  const svgSize = viewBoxSize / 2;
-  const strokeWidth = 2;
-  const radius = svgSize - strokeWidth / 2;
+  const finalSize = typeof size === "number" ? size : SIZE_MAP[size];
 
   return (
     // biome-ignore lint/a11y/noSvgWithoutTitle: unnecessary
     <svg
+      className={base({ className })}
+      height={finalSize}
+      viewBox="22 22 44 44"
+      width={finalSize}
       {...restProps}
-      className={base({ className, size })}
-      viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
     >
       <circle
-        className={circle()}
-        cx={svgSize}
-        cy={svgSize}
+        className={circle({ className })}
+        cx="44"
+        cy="44"
         fill="none"
-        r={radius}
-        strokeWidth={strokeWidth}
+        r="20.2"
+        strokeWidth="3.6"
       />
+      {showTrack && (
+        <circle
+          className={track({ className })}
+          cx="44"
+          cy="44"
+          fill="none"
+          r="20.2"
+          strokeWidth="3.6"
+        />
+      )}
     </svg>
   );
 }
