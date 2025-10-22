@@ -29,6 +29,12 @@ pnpm knip
 
 # Generate OpenAPI client code
 pnpm generate-api
+
+# Clean and regenerate OpenAPI client
+pnpm generate-api:clean
+
+# Analyze bundle size (requires build)
+pnpm analyze
 ```
 
 ### Testing Commands
@@ -64,16 +70,27 @@ pnpm build-storybook
 ## Project Architecture
 
 ### Core Technology Stack
-- **Next.js** with App Router and React
+- **Next.js** (beta) with App Router, React 19, and Turbopack
+  - Experimental: React Compiler (babel-plugin-react-compiler)
+  - Node.js 22+ required
+  - pnpm package manager
 - **TypeScript** with strict type checking
 - **Tailwind CSS** for styling
 - **TanStack Query** for server state management
 - **React Hook Form + Zod** for form handling and validation
-- **Hono** for middleware
-- **Vitest** for testing with 80% coverage requirement
-- **Storybook** for component development
+- **Hono** for proxy middleware
+- **Vitest** (beta) for testing with 80% coverage requirement
+  - Browser testing via Playwright
+  - Coverage via @vitest/coverage-v8
+- **Storybook** (beta) for component development
+  - Integration with Vitest for component testing
+  - Accessibility testing via axe-core
 - **Biome** as primary linter/formatter
 - **MSW** for API mocking
+- **ESLint** with flat config
+  - React Hooks plugin
+  - TanStack Query plugin
+  - React Compiler plugin
 
 ### Directory Structure & Conventions
 
@@ -103,7 +120,7 @@ pnpm build-storybook
 - Includes debounce, disclosure, and composing detection utilities
 
 #### `/src/lib/` - Library Code
-- `/middlewares/` - Hono middleware for logging and headers
+- `/proxy/` - Hono middleware for logging and headers
 - `/styles/` - Global CSS files and Tailwind configuration
 - `Hydrator` - Server state hydration component
 - `WebVitalsReporter` - Performance monitoring (dev only)
@@ -114,8 +131,8 @@ pnpm build-storybook
 
 ### Key Architectural Patterns
 
-#### Middleware Architecture
-The project uses Hono for middleware, configured in `src/middleware.ts`:
+#### Proxy Architecture
+The project uses Hono for proxy middleware, configured in `src/middleware.ts`:
 - Request/response logging
 - Custom header injection
 - Excludes API routes and static assets
@@ -138,8 +155,14 @@ The project uses Hono for middleware, configured in `src/middleware.ts`:
 
 #### Code Quality
 - Biome for linting with extensive rules
+  - Use `pnpm lint:biome:unsafe` for unsafe auto-fixes
+- ESLint with flat config (eslint.config.js)
+  - Includes React Compiler plugin for early optimization warnings
 - Knip for dead code detection (ignores generated API code)
+  - Use `pnpm lint:knip` for strict mode checking
 - Pre-commit hooks via Husky and lint-staged
+  - Runs linting, type checking, Knip, and unit tests on changed files
+  - Initialized via `pnpm init:husky`
 - Consistent naming conventions enforced
 
 ### Environment Configuration
@@ -150,13 +173,28 @@ Environment variables are validated through Zod schemas:
 
 ### OpenAPI Integration
 The project generates TypeScript clients from `openapi.yml`:
-- Run `pnpm generate-api` to regenerate
-- Generated code is in `src/api/openapi/` (do not edit)
+- Run `pnpm generate-api` to regenerate (or `pnpm generate-api:clean` for full cleanup)
+- Generated code is in `src/api/openapi/` (do not edit manually)
 - Configuration in `openapiconfig.json`
+- Uses typescript-fetch generator from OpenAPI Generator
+
+### Performance & Optimization
+- Bundle analysis available via `pnpm analyze` (uses @next/bundle-analyzer)
+- React Compiler experimental support for automatic optimization
+- Turbopack for faster builds in both dev and production
+- Web Vitals monitoring in development (WebVitalsReporter component)
 
 ### Component Development Workflow
 1. Create component in `/src/components/ComponentName/index.tsx`
-2. Add Storybook stories for visual testing
+2. Add Storybook stories (`*.stories.tsx`) for visual testing
 3. Use `tailwind-variants` for styling with type-safe variants
-4. Export as named export (no default exports)
+4. Export as named export (no default exports per linting rules)
 5. Add unit tests if component has logic
+6. Test runs automatically on pre-commit for changed files
+
+### Important Notes
+- This project uses **Next.js 16 beta** and **React 19** - expect potential breaking changes
+- MSW worker is initialized automatically via `pnpm init:msw` (postinstall hook)
+- The `.claude` directory is gitignored for Claude Code specific files
+- All builds use Turbopack (both dev and production)
+- Git hooks are managed by Husky and set up via `pnpm init:husky`
