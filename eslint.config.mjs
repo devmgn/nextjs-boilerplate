@@ -6,8 +6,8 @@ import nextTs from "eslint-config-next/typescript";
 import reactCompiler from "eslint-plugin-react-compiler";
 import storybook from "eslint-plugin-storybook";
 
-/** @type {import('eslint').Linter.Config[]} */
-const config = defineConfig([
+// biome-ignore lint/style/noDefaultExport: use default export
+export default defineConfig([
   ...nextVitals,
   ...nextTs,
   {
@@ -58,6 +58,3 @@ const config = defineConfig([
     "storybook-static/**",
   ]),
 ]);
-
-// biome-ignore lint/style/noDefaultExport: use default export
-export default config;
