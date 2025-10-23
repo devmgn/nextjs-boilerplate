@@ -36,6 +36,10 @@
       "args": ["mcp-remote", "https://gitmcp.io/vercel/next.js"],
       "command": "npx"
     },
+    "next-devtools": {
+      "command": "npx",
+      "args": ["-y", "next-devtools-mcp@latest"]
+    },
     "OpenAPI Generator Docs": {
       "args": [
         "mcp-remote",

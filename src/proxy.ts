@@ -13,6 +13,10 @@ app.all("*", (ctx) => {
   return NextResponse.next({ request: ctx.req.raw });
 });
 
+export function proxy(request: Request) {
+  return handle(app)(request);
+}
+
 export const config = {
   matcher: [
     /*
@@ -25,5 +29,3 @@ export const config = {
     "/((?!api|_next/static|_next/image|images/favicon.ico|sitemap.xml|robots.txt).*)",
   ],
 };
-
-export default handle(app);
