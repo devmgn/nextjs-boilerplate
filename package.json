@@ -35,7 +35,7 @@
       "pnpm lint",
       "bash -c \"pnpm lint:knip\"",
       "bash -c \"pnpm check-types\"",
-      "vitest run --project=unit --changed"
+      "vitest run --changed"
     ]
   },
   "dependencies": {
