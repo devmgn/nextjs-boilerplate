@@ -35,9 +35,9 @@ describe("createCustomEvent", () => {
   });
 
   it("カスタムイベントタイプを使用したとき、正しく処理されること", () => {
-    type CustomEventMap = {
+    interface CustomEventMap {
       customTestEvent: CustomEvent<{ data: string }>;
-    };
+    }
 
     const event = createCustomEvent<keyof CustomEventMap, { data: string }>(
       "customTestEvent",
