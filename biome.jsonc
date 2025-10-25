@@ -105,6 +105,7 @@
         "useConsistentCurlyBraces": { "fix": "safe", "level": "info" },
         "useConsistentMemberAccessibility": "info",
         "useConsistentObjectDefinitions": "warn",
+        "useConsistentTypeDefinitions": "warn",
         "useDefaultParameterLast": "warn",
         "useDefaultSwitchClause": "warn",
         "useEnumInitializers": "warn",
@@ -156,6 +157,9 @@
         "useStaticResponseMethods": "info"
       }
     }
+  },
+  "css": {
+    "parser": { "tailwindDirectives": true }
   },
   "overrides": [
     {
