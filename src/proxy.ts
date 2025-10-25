@@ -1,22 +1,21 @@
 import { Hono } from "hono";
 import { handle } from "hono/vercel";
 import { NextResponse } from "next/server";
-import { addCustomHeaderMiddleware } from "./lib/middlewares/addCustomHeaderMiddleware";
-import { requestLoggerMiddleware } from "./lib/middlewares/requestLoggerMiddleware";
-import { responseLoggerMiddleware } from "./lib/middlewares/responseLoggerMiddleware";
+import { addCustomHeader } from "./lib/proxy/addCustomHeader";
+import { requestLogger } from "./lib/proxy/requestLogger";
+import { responseLogger } from "./lib/proxy/responseLogger";
 
 const app = new Hono();
 
-app
-  .use(addCustomHeaderMiddleware)
-  .use(requestLoggerMiddleware)
-  .use(responseLoggerMiddleware);
+app.use(addCustomHeader).use(requestLogger).use(responseLogger);
 
 app.all("*", (ctx) => {
   return NextResponse.next({ request: ctx.req.raw });
 });
 
-export const middleware = handle(app);
+export function proxy(request: Request) {
+  return handle(app)(request);
+}
 
 export const config = {
   matcher: [
