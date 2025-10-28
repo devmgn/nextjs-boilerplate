@@ -4,7 +4,7 @@
   "engines": {
     "node": "24.10.0"
   },
-  "packageManager": "pnpm@10.19.0",
+  "packageManager": "pnpm@10.20.0",
   "scripts": {
     "postinstall": "pnpm init:husky && pnpm init:msw",
     "init:husky": "node .husky/install.mjs",
