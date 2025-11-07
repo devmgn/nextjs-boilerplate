@@ -13,6 +13,7 @@
     "entry": ["src/lib/styles/globals.css"]
   },
   "vitest": {
-    "config": ["vitest.config.ts"]
+    "config": ["vitest.config.ts"],
+    "entry": ["vitest.globalSetup.ts", "vitest.setup.ts"]
   }
 }
