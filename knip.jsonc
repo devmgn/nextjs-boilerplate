@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/knip/schema.json",
-  "ignore": [".husky/**", "src/**/openapi/**", "src/mocks/server.ts"],
+  "ignore": [".husky/**", "src/**/openapi/**", "src/mocks/**"],
   "ignoreBinaries": ["openapiconfig.json"],
   "ignoreDependencies": [
     "@next/eslint-plugin-next",
@@ -9,21 +9,7 @@
     "postcss",
     "postcss-load-config"
   ],
-  "next": {
-    "config": ["next.config.ts"],
-    "entry": [
-      "src/app/forbidden.tsx",
-      "src/app/unauthorized.tsx",
-      "src/proxy.ts"
-    ]
-  },
-  "vitest": {
-    "config": ["vitest.config.ts"],
-    "entry": [
-      "**/*.{test,spec}.{ts,tsx}",
-      ".storybook/vitest.setup.ts",
-      "vitest.globalSetup.ts",
-      "vitest.setup.ts"
-    ]
+  "tailwind": {
+    "entry": ["src/lib/styles/globals.css"]
   }
 }

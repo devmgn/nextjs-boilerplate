@@ -1,6 +1,6 @@
 "use client";
 
-import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { startTransition, useActionState, useId } from "react";
 import { createFormControl, Form, useFormState } from "react-hook-form";
 import { Button } from "../../../components/Button";
@@ -11,7 +11,7 @@ import { postSchema } from "./schema";
 import type { PostSchema } from "./schema";
 
 const form = createFormControl<PostSchema>({
-  resolver: standardSchemaResolver(postSchema),
+  resolver: zodResolver(postSchema),
   defaultValues: {
     userId: 1,
     id: 1,
@@ -37,7 +37,6 @@ export default function Page() {
       <Field errorMessage={errors.userId?.message} label="User ID">
         <Input
           {...register("userId", { valueAsNumber: true })}
-          disabled={true}
           id={id}
           type="number"
         />
