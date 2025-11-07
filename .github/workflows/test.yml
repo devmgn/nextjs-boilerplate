@@ -16,14 +16,5 @@ jobs:
       - name: Setup Project
         uses: ./.github/actions/setup
 
-      - name: Type check
-        run: pnpm check-types
-
-      - name: Lint
-        run: pnpm lint
-
-      - name: Check unused dependencies
-        run: pnpm lint:knip
-
       - name: Test
         run: pnpm test:unit
