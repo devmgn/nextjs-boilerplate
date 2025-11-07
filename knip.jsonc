@@ -11,5 +11,8 @@
   ],
   "tailwind": {
     "entry": ["src/lib/styles/globals.css"]
+  },
+  "vitest": {
+    "config": ["vitest.config.ts"]
   }
 }
