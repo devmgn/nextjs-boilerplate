@@ -21,12 +21,12 @@ interface BackdropProps
 }
 
 export function Backdrop(props: BackdropProps) {
-  const { open, blur, className, ...restProps } = props;
+  const { open, blur, className, ..._props } = props;
 
   return (
     <Presence present={open}>
       <div
-        {...restProps}
+        {..._props}
         aria-hidden="true"
         className={backdropVariants({ className, blur })}
         data-state={open ? "open" : "closed"}

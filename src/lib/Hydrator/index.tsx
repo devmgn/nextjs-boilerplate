@@ -3,6 +3,7 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
+import { QUERY_CLIENT_CONFIG } from "../../config/queryClientConfig";
 import type {
   DefaultError,
   FetchQueryOptions,
@@ -44,13 +45,10 @@ export async function Hydrator<
   TError,
   TData,
   TQueryKey extends QueryKey,
->({
-  fetchQueryOptions,
-  hydrationBoundaryProps,
-  children,
-}: HydratorProps<TQueryFnData, TError, TData, TQueryKey>) {
+>(props: HydratorProps<TQueryFnData, TError, TData, TQueryKey>) {
+  const { children, fetchQueryOptions, hydrationBoundaryProps } = props;
   // サーバーサイドでのみ実行される QueryClient インスタンスを作成
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient(QUERY_CLIENT_CONFIG);
 
   try {
     // すべてのクエリを並行してプリフェッチ

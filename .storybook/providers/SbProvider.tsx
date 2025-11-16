@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React from "react";
 import "../../src/lib/styles/globals.css";
 import { Suspense, useState } from "react";
-import { QUERY_CLIENT_CONFIG } from "../../src/providers/RootProvider/TanstackQueryProvider/config";
+import { QUERY_CLIENT_CONFIG } from "../../src/config/queryClientConfig";
 import { SbErrorBoundary } from "./SbErrorBoundary";
 
 export function SbProvider({ children }: React.PropsWithChildren) {

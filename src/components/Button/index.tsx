@@ -35,13 +35,13 @@ interface ButtonProps
 }
 
 export function Button(props: ButtonProps) {
-  const { className, variant, size, asChild = false, ...restProps } = props;
+  const { className, variant, size, asChild = false, ..._props } = props;
   const Component = asChild ? Slot : "button";
 
   return (
     <Component
       className={buttonVariants({ className, variant, size })}
-      {...restProps}
+      {..._props}
     />
   );
 }

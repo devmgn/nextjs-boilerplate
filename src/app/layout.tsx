@@ -1,7 +1,5 @@
 import { ENV } from "../config/env";
-import { WebVitalsReporter } from "../lib/WebVitalsReporter";
 import { RootProvider } from "../providers/RootProvider";
-import { isProduction } from "../utils/nodeEnv";
 import type { Metadata, Viewport } from "next";
 import "../lib/styles/globals.css";
 
@@ -17,11 +15,12 @@ export const viewport: Viewport = {
   maximumScale: 1,
 };
 
-export default function Layout({ children }: React.PropsWithChildren) {
+export default function Layout(props: React.PropsWithChildren) {
+  const { children } = props;
+
   return (
     <html lang="ja">
       <body>
-        {!isProduction && <WebVitalsReporter />}
         <RootProvider>{children}</RootProvider>
       </body>
     </html>

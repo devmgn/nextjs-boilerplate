@@ -10,7 +10,7 @@ interface CardProps
     VariantProps<typeof cardVariants> {}
 
 export function Card(props: CardProps) {
-  const { className, ...restProps } = props;
+  const { className, ..._props } = props;
 
-  return <div className={cardVariants(className)} {...restProps} />;
+  return <div className={cardVariants(className)} {..._props} />;
 }
