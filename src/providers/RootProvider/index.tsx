@@ -1,8 +1,8 @@
 import { NuqsAdapter } from "nuqs/adapters/next/app";
-import { WebVitalsReporter } from "../../lib/WebVitalsReporter";
 import { isProduction } from "../../utils/nodeEnv";
 import { AppErrorBoundary } from "../AppErrorBoundary";
 import { QueryClientProvider } from "../QueryClientProvider";
+import { WebVitalsReporter } from "../WebVitalsReporter";
 
 export function RootProvider(props: React.PropsWithChildren) {
   const { children } = props;
