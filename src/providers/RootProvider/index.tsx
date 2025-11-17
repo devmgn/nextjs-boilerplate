@@ -10,9 +10,9 @@ export function RootProvider(props: React.PropsWithChildren) {
   return (
     <>
       <NuqsAdapter>
-        <QueryClientProvider>
-          <AppErrorBoundary>{children}</AppErrorBoundary>
-        </QueryClientProvider>
+        <AppErrorBoundary>
+          <QueryClientProvider>{children}</QueryClientProvider>
+        </AppErrorBoundary>
       </NuqsAdapter>
       {!isProduction && <WebVitalsReporter />}
     </>
