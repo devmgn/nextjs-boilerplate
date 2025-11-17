@@ -18,9 +18,9 @@ interface InputProps
     VariantProps<typeof inputVariants> {}
 
 export function Input(props: InputProps) {
-  const { className, isError, ...restProps } = props;
+  const { className, isError, ..._props } = props;
 
   return (
-    <input className={inputVariants({ className, isError })} {...restProps} />
+    <input className={inputVariants({ className, isError })} {..._props} />
   );
 }

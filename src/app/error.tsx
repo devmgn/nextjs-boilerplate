@@ -5,7 +5,9 @@ interface ErrorProps {
   reset: () => void;
 }
 
-export default function ErrorPage({ reset }: ErrorProps) {
+export default function ErrorPage(props: ErrorProps) {
+  const { reset } = props;
+
   return (
     <>
       <h2>Something went wrong!</h2>

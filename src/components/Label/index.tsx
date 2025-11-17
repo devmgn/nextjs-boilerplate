@@ -2,7 +2,7 @@ import { tv } from "tailwind-variants";
 import type { VariantProps } from "tailwind-variants";
 
 const labelVariants = tv({
-  base: "block w-max font-medium text-sm [&[for]]:cursor-pointer [&[for]]:has-[+[disabled]]:cursor-auto",
+  base: "block w-max font-medium text-sm [[for]]:cursor-pointer [[for]]:has-[+[disabled]]:cursor-auto",
 });
 
 interface LabelProps
@@ -10,10 +10,10 @@ interface LabelProps
     VariantProps<typeof labelVariants> {}
 
 export function Label(props: LabelProps) {
-  const { className, ...restProps } = props;
+  const { className, ..._props } = props;
 
   return (
     // biome-ignore lint/a11y/noLabelWithoutControl: component does not require a control
-    <label className={labelVariants({ className })} {...restProps} />
+    <label className={labelVariants({ className })} {..._props} />
   );
 }

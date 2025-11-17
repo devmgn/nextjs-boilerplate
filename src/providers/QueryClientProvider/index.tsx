@@ -1,12 +1,12 @@
 "use client";
 
 import {
+  QueryClientProvider as _QueryClientProvider,
   isServer,
   QueryClient,
-  QueryClientProvider,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { QUERY_CLIENT_CONFIG } from "./config";
+import { QUERY_CLIENT_CONFIG } from "../../config/queryClientConfig";
 
 function makeQueryClient() {
   return new QueryClient(QUERY_CLIENT_CONFIG);
@@ -29,7 +29,9 @@ function getQueryClient() {
   return browserQueryClient;
 }
 
-export function TanstackQueryProvider({ children }: React.PropsWithChildren) {
+export function QueryClientProvider(props: React.PropsWithChildren) {
+  const { children } = props;
+
   // NOTE: Avoid useState when initializing the query client if you don't
   //       have a suspense boundary between this and the code that may
   //       suspend because React will throw away the client on the initial
@@ -37,11 +39,9 @@ export function TanstackQueryProvider({ children }: React.PropsWithChildren) {
   const queryClient = getQueryClient();
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <_QueryClientProvider client={queryClient}>
       {children}
-      {process.env.NODE_ENV === "development" && (
-        <ReactQueryDevtools initialIsOpen={false} />
-      )}
-    </QueryClientProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </_QueryClientProvider>
   );
 }

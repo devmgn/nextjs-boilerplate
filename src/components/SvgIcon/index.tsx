@@ -30,7 +30,7 @@ interface SvgIconProps
 }
 
 export function SvgIcon(props: SvgIconProps) {
-  const { icon: Icon, label, className, size, ...restProps } = props;
+  const { icon: Icon, label, className, size, ..._props } = props;
 
   return (
     <Icon
@@ -38,7 +38,7 @@ export function SvgIcon(props: SvgIconProps) {
       aria-label={label}
       className={svgIcon({ className, size })}
       focusable={false}
-      {...restProps}
+      {..._props}
     />
   );
 }

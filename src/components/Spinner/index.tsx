@@ -33,12 +33,7 @@ interface SpinnerProps
 const { base, circle, track } = spinnerVariants();
 
 export function Spinner(props: SpinnerProps) {
-  const {
-    className,
-    showTrack = true,
-    size = SIZE_MAP.md,
-    ...restProps
-  } = props;
+  const { className, showTrack = true, size = SIZE_MAP.md, ..._props } = props;
 
   const finalSize = typeof size === "number" ? size : SIZE_MAP[size];
 
@@ -49,7 +44,7 @@ export function Spinner(props: SpinnerProps) {
       height={finalSize}
       viewBox="22 22 44 44"
       width={finalSize}
-      {...restProps}
+      {..._props}
     >
       <circle
         className={circle({ className })}

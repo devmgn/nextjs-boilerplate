@@ -5,7 +5,9 @@ interface ErrorProps {
   reset: () => void;
 }
 
-export default function GlobalError({ reset }: ErrorProps) {
+export default function GlobalError(props: ErrorProps) {
+  const { reset } = props;
+
   return (
     <html lang="ja">
       <body>
