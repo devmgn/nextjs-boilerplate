@@ -53,9 +53,11 @@
         "useImportExtensions": "off"
       },
       "nursery": {
+        "noParametersOnlyUsedInRecursion": "warn",
         "noShadow": "info",
         "noUselessCatchBinding": "info",
         "noUselessUndefined": "info",
+        "useFind": "info",
         "useSortedClasses": {
           "fix": "safe",
           "level": "info",
