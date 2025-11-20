@@ -14,7 +14,7 @@ runs:
         cache: 'pnpm'
 
     - name: Cache Next.js build
-      uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4
+      uses: actions/cache@v4
       with:
         path: |
           .next/cache
@@ -25,7 +25,7 @@ runs:
           ${{ runner.os }}-nextjs-
 
     - name: Cache linting tools
-      uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4
+      uses: actions/cache@v4
       with:
         path: |
           .eslintcache
