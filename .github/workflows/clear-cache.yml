@@ -1,0 +1,68 @@
+name: Clear Cache
+
+on:
+  workflow_dispatch:
+    inputs:
+      cache_type:
+        description: 'Which cache to clear'
+        required: true
+        type: choice
+        options:
+          - all
+          - nextjs
+          - pnpm
+          - lint
+        default: 'all'
+
+jobs:
+  clear-cache:
+    runs-on: ubuntu-24.04
+    permissions:
+      actions: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
+
+      - name: Clear All Caches
+        if: ${{ inputs.cache_type == 'all' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Clearing all caches..."
+          gh cache list --json id,key | jq -r '.[] | .key' | while read key; do
+            gh cache delete "$key" || true
+          done
+          echo "All caches cleared successfully"
+
+      - name: Clear Next.js Cache
+        if: ${{ inputs.cache_type == 'nextjs' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Clearing Next.js caches..."
+          gh cache list --json id,key | jq -r '.[] | select(.key | startswith("Linux-nextjs-")) | .key' | while read key; do
+            gh cache delete "$key" || true
+          done
+          echo "Next.js caches cleared successfully"
+
+      - name: Clear pnpm Cache
+        if: ${{ inputs.cache_type == 'pnpm' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Clearing pnpm caches..."
+          gh cache list --json id,key | jq -r '.[] | select(.key | contains("pnpm")) | .key' | while read key; do
+            gh cache delete "$key" || true
+          done
+          echo "pnpm caches cleared successfully"
+
+      - name: Clear Lint Cache
+        if: ${{ inputs.cache_type == 'lint' }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Clearing lint caches..."
+          gh cache list --json id,key | jq -r '.[] | select(.key | startswith("Linux-lint-")) | .key' | while read key; do
+            gh cache delete "$key" || true
+          done
+          echo "Lint caches cleared successfully"

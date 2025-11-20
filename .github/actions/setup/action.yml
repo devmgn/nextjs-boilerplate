@@ -13,9 +13,34 @@ runs:
         node-version-file: 'package.json'
         cache: 'pnpm'
 
+    - name: Cache Next.js build
+      uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4
+      with:
+        path: |
+          .next/cache
+          .turbopack
+        key: ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx', '!node_modules/**') }}
+        restore-keys: |
+          ${{ runner.os }}-nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
+          ${{ runner.os }}-nextjs-
+
+    - name: Cache linting tools
+      uses: actions/cache@6849a6489940f00c2f30c0fb92c6274307ccb58a # v4
+      with:
+        path: |
+          .eslintcache
+          node_modules/.cache
+        key: ${{ runner.os }}-lint-${{ hashFiles('pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-lint-
+
+    - name: Fetch dependencies
+      shell: bash
+      run: pnpm fetch --frozen-lockfile
+
     - name: Install dependencies
       shell: bash
-      run: pnpm install --frozen-lockfile --prefer-offline
+      run: pnpm install --offline --frozen-lockfile
 
     - name: Setup environment
       shell: bash
