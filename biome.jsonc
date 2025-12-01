@@ -53,7 +53,12 @@
         "useImportExtensions": "off"
       },
       "nursery": {
+        "noDuplicatedSpreadProps": "info",
+        "noEqualsToNull": "error",
+        "noLeakedRender": "info",
+        "noMultiStr": "error",
         "noParametersOnlyUsedInRecursion": "warn",
+        "noProto": "info",
         "noShadow": "info",
         "noUselessCatchBinding": "info",
         "noUselessUndefined": "info",

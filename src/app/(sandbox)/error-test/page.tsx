@@ -60,7 +60,7 @@ export default function ErrorTestPage() {
           <Button disabled={isLoading} onClick={handleAsyncError}>
             {isLoading ? "Loading..." : "Trigger Async Error"}
           </Button>
-          {asyncError && (
+          {asyncError !== null && (
             <div className="mt-4 rounded border border-red-200 bg-red-50 p-3">
               <p className="font-medium text-red-800">Error caught:</p>
               <p className="text-red-600 text-sm">{asyncError.message}</p>

@@ -54,7 +54,7 @@ export function Spinner(props: SpinnerProps) {
         r="20.2"
         strokeWidth="3.6"
       />
-      {showTrack && (
+      {Boolean(showTrack) && (
         <circle
           className={track({ className })}
           cx="44"
