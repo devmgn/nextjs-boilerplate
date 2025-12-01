@@ -15,7 +15,7 @@ export function Field(props: FieldProps) {
 
   return (
     <div {...restProps}>
-      {label && (
+      {Boolean(label) && (
         <Label className="mb-2" htmlFor={children.props.id}>
           {label}
         </Label>
@@ -24,7 +24,7 @@ export function Field(props: FieldProps) {
         ...children.props,
         isError: Boolean(errorMessage),
       })}
-      {errorMessage && (
+      {Boolean(errorMessage) && (
         <p className="mt-1 font-normal text-red-500 text-xs">{errorMessage}</p>
       )}
     </div>
