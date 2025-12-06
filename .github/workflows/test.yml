@@ -1,10 +1,9 @@
-name: Lint
+name: Test
 
 on:
   push:
     branches-ignore:
       - main
-  pull_request:
 
 jobs:
   Lint:
