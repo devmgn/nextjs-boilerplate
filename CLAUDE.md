@@ -217,9 +217,6 @@ The project uses Hono for proxy middleware, configured in `src/proxy.ts`:
   - Includes React Compiler, React Hooks, TanStack Query, and Vitest plugins
 - Knip for dead code detection (ignores generated API code)
   - Use `pnpm lint:knip` for strict mode checking
-- Pre-commit hooks via Husky and lint-staged
-  - Runs linting, type checking, Knip, and unit tests on changed files
-  - Initialized via `pnpm init:husky`
 - Consistent naming conventions enforced
 
 ### Environment Configuration
@@ -251,12 +248,10 @@ The project generates TypeScript clients from `openapi.yml`:
 3. Use `tailwind-variants` for styling with type-safe variants
 4. Export as named export (no default exports per linting rules)
 5. Add unit tests if component has logic
-6. Test runs automatically on pre-commit for changed files
 
 ### Important Notes
 - This project uses **Next.js 16** and **React 19** with React Compiler enabled
 - MSW worker is initialized automatically via `pnpm init:msw` (postinstall hook)
-- Husky is initialized automatically via `pnpm init:husky` (postinstall hook)
 - The `.claude` directory is gitignored for Claude Code specific files
 - All builds use Turbopack (both dev and production)
 - TypeScript typed routes are enabled for type-safe navigation

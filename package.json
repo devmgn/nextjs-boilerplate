@@ -6,9 +6,7 @@
   },
   "packageManager": "pnpm@10.24.0",
   "scripts": {
-    "postinstall": "pnpm init:husky && pnpm init:msw",
-    "init:husky": "node .husky/install.mjs",
-    "init:msw": "msw init",
+    "postinstall": "msw init",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -29,14 +27,6 @@
     "chromatic": "pnpm dlx chromatic",
     "generate-api": "pnpm dlx @openapitools/openapi-generator-cli generate -i openapi.yml -g typescript-fetch -o ./src/api/openapi -c openapiconfig.json --openapi-normalizer SET_TAGS_FOR_ALL_OPERATIONS=default",
     "generate-api:clean": "rm -rf src/api/openapi && pnpm generate-api"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "pnpm lint",
-      "bash -c \"pnpm lint:knip\"",
-      "bash -c \"pnpm check-types\"",
-      "vitest run --changed"
-    ]
   },
   "dependencies": {
     "@hookform/resolvers": "5.2.2",
@@ -89,11 +79,9 @@
     "eslint-plugin-react-compiler": "19.1.0-rc.2",
     "eslint-plugin-react-hooks": "7.0.1",
     "eslint-plugin-storybook": "10.1.4",
-    "husky": "9.1.7",
     "jest-extended": "7.0.0",
     "jsdom": "27.2.0",
     "knip": "5.71.0",
-    "lint-staged": "16.2.7",
     "msw": "2.12.4",
     "msw-storybook-addon": "2.0.6",
     "playwright": "1.57.0",
