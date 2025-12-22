@@ -4,7 +4,7 @@
   "engines": {
     "node": "24.12.0"
   },
-  "packageManager": "pnpm@10.26.0",
+  "packageManager": "pnpm@10.26.1",
   "scripts": {
     "postinstall": "msw init",
     "dev": "next dev",
@@ -70,7 +70,7 @@
     "@vitest/browser": "4.0.16",
     "@vitest/browser-playwright": "4.0.16",
     "@vitest/coverage-v8": "4.0.16",
-    "@vitest/eslint-plugin": "1.5.2",
+    "@vitest/eslint-plugin": "1.5.4",
     "axe-core": "4.11.0",
     "babel-plugin-react-compiler": "1.0.0",
     "chromatic": "13.3.4",
@@ -81,7 +81,7 @@
     "eslint-plugin-storybook": "10.1.10",
     "jest-extended": "7.0.0",
     "jsdom": "27.3.0",
-    "knip": "5.75.1",
+    "knip": "5.75.2",
     "msw": "2.12.4",
     "msw-storybook-addon": "2.0.6",
     "playwright": "1.57.0",
