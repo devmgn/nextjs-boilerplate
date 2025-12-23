@@ -21,7 +21,7 @@
     "test:update": "vitest run --update",
     "test:watch": "vitest watch",
     "test:coverage": "vitest run --coverage",
-    "analyze": "ANALYZE=true next build",
+    "analyze": "next experimental-analyze",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "chromatic": "pnpm dlx chromatic",
@@ -51,7 +51,6 @@
   "devDependencies": {
     "@biomejs/biome": "2.3.10",
     "@faker-js/faker": "10.1.0",
-    "@next/bundle-analyzer": "16.1.0",
     "@next/env": "16.1.0",
     "@next/eslint-plugin-next": "16.1.0",
     "@storybook/addon-a11y": "10.1.10",
