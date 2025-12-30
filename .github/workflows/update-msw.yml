@@ -1,0 +1,30 @@
+name: Update MSW Service Worker
+
+on:
+  pull_request:
+    paths:
+      - pnpm-lock.yaml
+
+jobs:
+  UpdateMSW:
+    if: github.actor == 'renovate[bot]'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Setup Project
+        uses: ./.github/actions/setup
+
+      - name: Update mockServiceWorker.js
+        run: pnpm msw init public --save
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@b863ae1933cb653a53c021fe36dbb774e1fb9403 # v5
+        with:
+          commit_message: "chore: update mockServiceWorker.js"
+          file_pattern: public/mockServiceWorker.js
