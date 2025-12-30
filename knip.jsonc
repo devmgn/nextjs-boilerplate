@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/knip/schema-jsonc.json",
   "ignore": ["src/**/openapi/**", "src/mocks/**"],
-  "ignoreBinaries": ["msw", "openapiconfig.json"],
+  "ignoreBinaries": ["openapiconfig.json"],
   "ignoreDependencies": [
     "@next/eslint-plugin-next",
     "@testing-library/user-event",
