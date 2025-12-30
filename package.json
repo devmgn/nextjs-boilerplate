@@ -6,7 +6,6 @@
   },
   "packageManager": "pnpm@10.26.2",
   "scripts": {
-    "postinstall": "[ \"$NODE_ENV\" != \"production\" ] && msw init || true",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
