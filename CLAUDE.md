@@ -249,6 +249,22 @@ The project generates TypeScript clients from `openapi.yml`:
 4. Export as named export (no default exports per linting rules)
 5. Add unit tests if component has logic
 
+### GitHub & CI/CD
+
+#### Branch Strategy
+- Main branch: `main`
+- Feature branches: `feature/*` (e.g., `feature/add-login`, `feature/fix-header`)
+- Always create branches from `main` with `feature/` prefix
+
+#### Shared Setup Action
+- Located at `.github/actions/setup/action.yml`
+- Handles: pnpm install, Node.js setup, dependency caching
+- Input `setup-env`: Set to `'false'` to skip `.env.local` copy (used by Chromatic)
+
+#### CI Notes
+- `upload-artifact` requires `include-hidden-files: true` for `.next/` directory
+- `.tool-versions` uses `nodejs` (not `node`) for Renovate compatibility
+
 ### Important Notes
 - This project uses **Next.js 16** and **React 19** with React Compiler enabled
 - MSW worker is initialized automatically via `pnpm init:msw` (postinstall hook)
