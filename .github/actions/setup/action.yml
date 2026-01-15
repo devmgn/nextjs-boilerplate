@@ -1,6 +1,12 @@
 name: 'Setup'
 description: 'Setup Node.js, pnpm, and install dependencies'
 
+inputs:
+  setup-env:
+    description: 'Whether to setup .env.local file'
+    required: false
+    default: 'true'
+
 runs:
   using: 'composite'
   steps:
@@ -10,7 +16,7 @@ runs:
     - name: Setup Node.js
       uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6
       with:
-        node-version-file: '.node-version'
+        node-version-file: '.tool-versions'
         cache: 'pnpm'
 
     - name: Install dependencies
@@ -18,5 +24,6 @@ runs:
       run: pnpm install --frozen-lockfile --prefer-offline
 
     - name: Setup environment
+      if: inputs.setup-env == 'true'
       shell: bash
       run: cp .env.development .env.local
