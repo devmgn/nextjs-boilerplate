@@ -18,16 +18,10 @@ jobs:
       - name: Build
         run: pnpm build
 
-      - name: Debug - List build output
-        run: |
-          echo "Working directory: $(pwd)"
-          ls -la
-          echo "---"
-          ls -la .next/ || echo ".next/ not found"
-
       - name: Upload build artifacts
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
         with:
           name: nextjs-build
           path: .next/
           retention-days: 7
+          include-hidden-files: true
