@@ -22,7 +22,7 @@
     },
     "knip": {
       "command": "npx",
-      "args": ["@genar/knip-mcp-server"],
+      "args": ["-y", "knip-mcp-server"],
       "env": {
         "KNIP_PROJECT_ROOT": ".",
         "KNIP_LOG_LEVEL": "info",
