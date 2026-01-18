@@ -9,11 +9,17 @@
     "postcss",
     "postcss-load-config"
   ],
+  "storybook": {
+    "entry": [
+      ".storybook/{preview,vitest.setup}.tsx",
+      ".storybook/SbProvider.tsx",
+      "src/**/*.stories.@(js|jsx|ts|tsx)"
+    ]
+  },
   "tailwind": {
     "entry": ["src/lib/styles/globals.css"]
   },
   "vitest": {
-    "config": ["vitest.config.ts"],
     "entry": [
       "**/*.{test,spec}.{ts,tsx}",
       ".storybook/vitest.setup.ts",
