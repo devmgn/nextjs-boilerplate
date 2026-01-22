@@ -1,7 +1,7 @@
 "use client";
 
 interface ErrorProps {
-  error: Error & { digest?: string };
+  error: (Error & { digest?: string }) | unknown;
   reset: () => void;
 }
 
