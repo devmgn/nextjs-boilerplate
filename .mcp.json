@@ -1,103 +1,12 @@
 {
   "mcpServers": {
-    "Biome Docs": {
-      "args": ["mcp-remote", "https://gitmcp.io/biomejs/biome"],
-      "command": "npx"
-    },
-    "caniuse Docs": {
-      "args": ["mcp-remote", "https://gitmcp.io/Fyrd/caniuse"],
-      "command": "npx"
-    },
-    "ESLint Docs": {
-      "args": ["mcp-remote", "https://gitmcp.io/eslint/eslint"],
-      "command": "npx"
-    },
-    "es-toolkit Docs": {
-      "args": ["mcp-remote", "https://gitmcp.io/toss/es-toolkit"],
-      "command": "npx"
-    },
-    "Faker Docs": {
-      "args": ["mcp-remote", "https://gitmcp.io/faker-js/faker"],
-      "command": "npx"
-    },
-    "knip": {
-      "command": "npx",
-      "args": ["-y", "knip-mcp-server"],
-      "env": {
-        "KNIP_PROJECT_ROOT": ".",
-        "KNIP_LOG_LEVEL": "info",
-        "KNIP_SAFE_MODE": "true"
-      }
-    },
-    "MDN content Docs": {
-      "args": ["mcp-remote", "https://gitmcp.io/mdn/content"],
-      "command": "npx"
-    },
-    "Mend Renovate Docs": {
-      "args": ["mcp-remote", "https://gitmcp.io/renovatebot/renovate"],
-      "command": "npx"
-    },
-    "Next.js Docs": {
-      "args": ["mcp-remote", "https://gitmcp.io/vercel/next.js"],
-      "command": "npx"
-    },
     "next-devtools": {
       "command": "npx",
       "args": ["-y", "next-devtools-mcp@latest"]
     },
-    "OpenAPI Generator Docs": {
-      "args": [
-        "mcp-remote",
-        "https://gitmcp.io/OpenAPITools/openapi-generator"
-      ],
-      "command": "npx"
-    },
-    "Radix Primitives Docs": {
-      "args": ["mcp-remote", "https://gitmcp.io/radix-ui/primitives"],
-      "command": "npx"
-    },
-    "React Docs": {
-      "args": ["mcp-remote", "https://gitmcp.io/facebook/react"],
-      "command": "npx"
-    },
-    "React Hook Form Docs": {
-      "args": [
-        "mcp-remote",
-        "https://gitmcp.io/react-hook-form/react-hook-form"
-      ],
-      "command": "npx"
-    },
-    "Storybook Docs": {
-      "args": ["mcp-remote", "https://gitmcp.io/storybookjs/storybook"],
-      "command": "npx"
-    },
-    "Tailwind CSS Docs": {
-      "args": ["mcp-remote", "https://gitmcp.io/tailwindlabs/tailwindcss"],
-      "command": "npx"
-    },
-    "TanStack Query Docs": {
-      "args": ["mcp-remote", "https://gitmcp.io/tanstack/query"],
-      "command": "npx"
-    },
-    "TypeScript Docs": {
-      "args": ["mcp-remote", "https://gitmcp.io/microsoft/TypeScript"],
-      "command": "npx"
-    },
-    "tailwind-variants Docs": {
-      "args": ["mcp-remote", "https://gitmcp.io/heroui-inc/tailwind-variants"],
-      "command": "npx"
-    },
-    "type-fest Docs": {
-      "args": ["mcp-remote", "https://gitmcp.io/sindresorhus/type-fest"],
-      "command": "npx"
-    },
-    "Vitest Docs": {
-      "args": ["mcp-remote", "https://gitmcp.io/vitest-dev/vitest"],
-      "command": "npx"
-    },
-    "Zod Docs": {
-      "args": ["mcp-remote", "https://gitmcp.io/colinhacks/zod"],
-      "command": "npx"
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"]
     }
   }
 }
