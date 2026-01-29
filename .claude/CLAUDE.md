@@ -272,3 +272,12 @@ The project generates TypeScript clients from `openapi.yml`:
 - All builds use Turbopack (both dev and production)
 - TypeScript typed routes are enabled for type-safe navigation
 - Proxy middleware is defined in `src/proxy.ts` (not `middleware.ts`)
+
+### MCP Tool Usage
+
+When looking up library documentation, use the appropriate MCP tool:
+
+| Purpose | MCP Tool |
+|---------|----------|
+| **Next.js official docs** | `next-devtools` (`nextjs_docs`, `nextjs_index`, `nextjs_call`) |
+| **Other libraries** (React, TanStack Query, Zod, Tailwind, etc.) | `context7` (`resolve-library-id` → `query-docs`) |
