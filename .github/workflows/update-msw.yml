@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-24.04
     permissions:
       contents: write
+      actions: write
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
@@ -24,7 +25,18 @@ jobs:
         run: pnpm msw init public --save
 
       - name: Commit changes
+        id: commit
         uses: stefanzweifel/git-auto-commit-action@04702edda442b2e678b25b537cec683a1493fcb9 # v7
         with:
           commit_message: "chore: update mockServiceWorker.js"
           file_pattern: public/mockServiceWorker.js
+
+      - name: Trigger CI workflows
+        if: steps.commit.outputs.changes_detected == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH_REF: ${{ github.ref }}
+        run: |
+          gh workflow run lint.yml --ref "$BRANCH_REF"
+          gh workflow run test.yml --ref "$BRANCH_REF"
+          gh workflow run build.yml --ref "$BRANCH_REF"
