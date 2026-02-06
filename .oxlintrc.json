@@ -63,17 +63,18 @@
     "require-await": "warn",
     "symbol-description": "warn",
     "yoda": "warn",
-    "no-restricted-syntax": [
-      "error",
-      {
-        "selector": "Program > VariableDeclaration > VariableDeclarator[init.type='ArrowFunctionExpression']",
-        "message": "Use function declarations at the top level"
-      },
-      {
-        "selector": "Program > ExportNamedDeclaration > VariableDeclaration > VariableDeclarator[init.type='ArrowFunctionExpression']",
-        "message": "Use function declarations for exported functions"
-      }
-    ],
+    // no-restricted-syntax: Oxlint未実装。scripts/check-top-level-arrow-functions.ts で代替
+    // "no-restricted-syntax": [
+    //   "error",
+    //   {
+    //     "selector": "Program > VariableDeclaration > VariableDeclarator[init.type='ArrowFunctionExpression']",
+    //     "message": "Use function declarations at the top level"
+    //   },
+    //   {
+    //     "selector": "Program > ExportNamedDeclaration > VariableDeclaration > VariableDeclarator[init.type='ArrowFunctionExpression']",
+    //     "message": "Use function declarations for exported functions"
+    //   }
+    // ],
 
     // ── TypeScript ──
     "@typescript-eslint/array-type": "warn",
