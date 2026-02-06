@@ -1,8 +1,8 @@
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { useId, useState } from "react";
+import { useDebouncedCallback } from ".";
 import { Input } from "../../components/Input";
 import { useIsComposing } from "../useIsComposing";
-import { useDebouncedCallback } from ".";
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 const meta = {
   parameters: {
@@ -18,11 +18,7 @@ const meta = {
     const isComposing = useIsComposing();
 
     const onChange = useDebouncedCallback(
-      (
-        e:
-          | React.ChangeEvent<HTMLInputElement>
-          | React.CompositionEvent<HTMLInputElement>,
-      ) => {
+      (e: React.ChangeEvent<HTMLInputElement> | React.CompositionEvent<HTMLInputElement>) => {
         if (!isComposing && e.target instanceof HTMLInputElement) {
           setResult(e.target.value);
         }
@@ -34,7 +30,7 @@ const meta = {
       <div className="flex flex-col gap-4">
         <div className="grid grid-cols-[1fr_auto] items-center gap-2">
           <label htmlFor={resultId}>debouncedValue Result: </label>
-          <Input id={resultId} readOnly={true} value={result} />
+          <Input id={resultId} readOnly value={result} />
           <label htmlFor={delayTimeId}>DelayTime</label>
           <Input
             id={delayTimeId}

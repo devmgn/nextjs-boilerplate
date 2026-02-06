@@ -1,0 +1,262 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": [
+    "import",
+    "jsdoc",
+    "jsx-a11y",
+    "nextjs",
+    "oxc",
+    "promise",
+    "react",
+    "typescript",
+    "unicorn",
+    "vitest"
+  ],
+  "categories": {
+    "correctness": "warn"
+  },
+  "env": {
+    "builtin": true,
+    "browser": true,
+    "node": true
+  },
+  "ignorePatterns": [
+    ".*/skills/**",
+    ".next/**",
+    "build/**",
+    "next-env.d.ts",
+    "node_modules/**",
+    "out/**",
+    "public/**",
+    "src/api/openapi/**",
+    "storybook-static/**"
+  ],
+  "rules": {
+    // ── ESLint core ──
+    "sort-imports": ["warn", { "ignoreDeclarationSort": true }],
+    "curly": "error",
+    "default-case": "warn",
+    "default-param-last": "warn",
+    "grouped-accessor-pairs": "warn",
+    "guard-for-in": "warn",
+    "no-console": ["warn", { "allow": ["error", "warn"] }],
+    "no-else-return": "warn",
+    "no-empty": "warn",
+    "no-empty-function": "warn",
+    "no-eq-null": "error",
+    "no-implicit-coercion": "warn",
+    "no-lonely-if": "warn",
+    "no-multi-str": "error",
+    "no-negated-condition": "warn",
+    "no-nested-ternary": "warn",
+    "no-param-reassign": "warn",
+    "no-proto": "warn",
+    "no-restricted-globals": "warn",
+    "no-throw-literal": "warn",
+    "no-useless-catch": "warn",
+    "no-useless-concat": "warn",
+    "no-var": "warn",
+    "no-void": "warn",
+    "operator-assignment": "warn",
+    "prefer-object-spread": "warn",
+    "prefer-template": "warn",
+    "require-await": "warn",
+    "symbol-description": "warn",
+    "yoda": "warn",
+    // no-restricted-syntax: Oxlint未実装。scripts/check-top-level-arrow-functions.ts で代替
+    // "no-restricted-syntax": [
+    //   "error",
+    //   {
+    //     "selector": "Program > VariableDeclaration > VariableDeclarator[init.type='ArrowFunctionExpression']",
+    //     "message": "Use function declarations at the top level"
+    //   },
+    //   {
+    //     "selector": "Program > ExportNamedDeclaration > VariableDeclaration > VariableDeclarator[init.type='ArrowFunctionExpression']",
+    //     "message": "Use function declarations for exported functions"
+    //   }
+    // ],
+
+    // ── TypeScript ──
+    "@typescript-eslint/array-type": "warn",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/consistent-type-definitions": "warn",
+    "@typescript-eslint/consistent-type-imports": [
+      "warn",
+      {
+        "prefer": "type-imports",
+        "fixStyle": "separate-type-imports"
+      }
+    ],
+    "@typescript-eslint/no-dynamic-delete": "warn",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-inferrable-types": "warn",
+    "@typescript-eslint/no-namespace": "warn",
+    "@typescript-eslint/no-require-imports": "off",
+    "@typescript-eslint/no-unnecessary-template-expression": "warn",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/only-throw-error": "warn",
+    "@typescript-eslint/prefer-as-const": "warn",
+    "@typescript-eslint/prefer-enum-initializers": "warn",
+    "@typescript-eslint/prefer-for-of": "warn",
+
+    // ── React ──
+    "react-hooks/exhaustive-deps": "error",
+    "react/jsx-boolean-value": "warn",
+    "react/jsx-curly-brace-presence": "warn",
+    "react/jsx-fragments": "warn",
+    "react/jsx-props-no-spread-multi": "warn",
+    "react/self-closing-comp": "warn",
+    "react/jsx-no-target-blank": "off",
+    "react/no-unknown-property": "off",
+    "react/no-unsafe": "off",
+    "react/react-in-jsx-scope": "off",
+    "react-perf/jsx-no-new-function-as-prop": "off",
+    "react-perf/jsx-no-new-object-as-prop": "off",
+    "react-perf/jsx-no-new-array-as-prop": "off",
+
+    // ── Import ──
+    "import-js/newline-after-import": "error",
+    "import/no-commonjs": "warn",
+    "import/no-default-export": "warn",
+    "import/no-anonymous-default-export": "warn",
+
+    // ── Unicorn ──
+    "unicorn/error-message": "warn",
+    "unicorn/explicit-length-check": "warn",
+    "unicorn/filename-case": [
+      "warn",
+      {
+        "cases": { "camelCase": true, "pascalCase": true }
+      }
+    ],
+    "unicorn/new-for-builtins": "warn",
+    "unicorn/numeric-separators-style": "warn",
+    "unicorn/prefer-array-find": "warn",
+    "unicorn/prefer-at": "warn",
+    "unicorn/prefer-number-properties": "warn",
+    "unicorn/prefer-string-slice": "warn",
+    "unicorn/prefer-string-trim-start-end": "warn",
+    "unicorn/require-number-to-fixed-digits-argument": "warn",
+
+    // ── Oxc ──
+    "oxc/no-barrel-file": "warn",
+    "oxc/only-used-in-recursion": "warn",
+
+    // ── jsx-a11y ──
+    "jsx-a11y/no-static-element-interactions": "warn",
+    "jsx-a11y/alt-text": [
+      "warn",
+      {
+        "elements": ["img"],
+        "img": ["Image"]
+      }
+    ],
+
+    // ── Next.js ──
+    "@next/next/google-font-display": "warn",
+    "@next/next/google-font-preconnect": "warn",
+    "@next/next/next-script-for-ga": "warn",
+    "@next/next/no-async-client-component": "warn",
+    "@next/next/no-before-interactive-script-outside-document": "warn",
+    "@next/next/no-css-tags": "warn",
+    "@next/next/no-head-element": "warn",
+    "@next/next/no-html-link-for-pages": "error",
+    "@next/next/no-img-element": "warn",
+    "@next/next/no-page-custom-font": "warn",
+    "@next/next/no-styled-jsx-in-document": "warn",
+    "@next/next/no-sync-scripts": "error",
+    "@next/next/no-title-in-document-head": "warn",
+    "@next/next/no-typos": "warn",
+    "@next/next/no-unwanted-polyfillio": "warn",
+    "@next/next/inline-script-id": "error",
+    "@next/next/no-assign-module-variable": "error",
+    "@next/next/no-document-import-in-page": "error",
+    "@next/next/no-duplicate-head": "error",
+    "@next/next/no-head-import-in-document": "error",
+    "@next/next/no-script-component-in-head": "error",
+
+    // ── jsPlugins rules ──
+    "react-compiler/react-compiler": "error",
+    "@tanstack/query/exhaustive-deps": "error",
+    "@tanstack/query/stable-query-client": "error",
+    "@tanstack/query/no-rest-destructuring": "warn",
+    "@tanstack/query/no-unstable-deps": "error",
+    "@tanstack/query/infinite-query-property-order": "error",
+    "@tanstack/query/no-void-query-fn": "error",
+    "@tanstack/query/mutation-property-order": "error"
+  },
+  "jsPlugins": [
+    "eslint-plugin-react-compiler",
+    "@tanstack/eslint-plugin-query",
+    { "name": "import-js", "specifier": "eslint-plugin-import" }
+  ],
+  "overrides": [
+    {
+      // Next.js special files + config files → allow default export, relax filename
+      "files": [
+        "**/default.tsx",
+        "**/error.tsx",
+        "**/forbidden.tsx",
+        "**/global-error.tsx",
+        "**/instrumentation-client.ts",
+        "**/instrumentation.ts",
+        "**/layout.tsx",
+        "**/loading.tsx",
+        "**/not-found.tsx",
+        "**/page.tsx",
+        "**/proxy.ts",
+        "**/sitemap.ts",
+        "**/template.tsx",
+        "**/unauthorized.tsx",
+        "next.config.ts",
+        "vitest.config.ts",
+        "vitest.globalSetup.ts",
+        "postcss.config.mjs",
+        ".storybook/main.ts",
+        ".storybook/preview.tsx"
+      ],
+      "rules": {
+        "import/no-default-export": "off",
+        "unicorn/filename-case": "off"
+      }
+    },
+    {
+      // Storybook stories
+      "files": ["**/*.stories.*", "**/*.story.*"],
+      "rules": {
+        "import/no-default-export": "off",
+        "react-hooks/rules-of-hooks": "off",
+        "import/no-anonymous-default-export": "off",
+        "storybook/await-interactions": "error",
+        "storybook/context-in-play-function": "error",
+        "storybook/default-exports": "error",
+        "storybook/hierarchy-separator": "warn",
+        "storybook/no-redundant-story-name": "warn",
+        "storybook/no-renderer-packages": "error",
+        "storybook/prefer-pascal-case": "warn",
+        "storybook/story-exports": "error",
+        "storybook/use-storybook-expect": "error",
+        "storybook/use-storybook-testing-library": "error"
+      },
+      "jsPlugins": ["eslint-plugin-storybook"]
+    },
+    {
+      // Storybook main config
+      "files": [".storybook/main.*"],
+      "rules": {
+        "storybook/no-uninstalled-addons": "error"
+      },
+      "jsPlugins": ["eslint-plugin-storybook"]
+    },
+    {
+      // Test files
+      "files": ["**/*.test.*", "**/*.spec.*"],
+      "rules": {
+        "vitest/consistent-test-it": ["error", { "fn": "it" }],
+        "vitest/require-top-level-describe": "error",
+        "vitest/no-disabled-tests": "warn",
+        "no-empty-function": "off"
+      }
+    }
+  ]
+}

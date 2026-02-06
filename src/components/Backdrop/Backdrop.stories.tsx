@@ -1,7 +1,7 @@
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { faker } from "@faker-js/faker/locale/ja";
 import Image from "next/image";
 import { Backdrop } from ".";
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 const paragraphs = faker.lorem.paragraphs();
 const image = faker.image.avatarGitHub();

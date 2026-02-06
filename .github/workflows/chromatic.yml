@@ -1,4 +1,4 @@
-name: 'Deploy Chromatic'
+name: "Deploy Chromatic"
 
 on:
   pull_request:
@@ -19,7 +19,7 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup
         with:
-          setup-env: 'false'
+          setup-env: "false"
 
       - name: Publish to Chromatic
         uses: chromaui/action@latest

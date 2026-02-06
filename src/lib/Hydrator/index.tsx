@@ -1,14 +1,6 @@
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from "@tanstack/react-query";
+import type { DefaultError, FetchQueryOptions, QueryKey } from "@tanstack/react-query";
+import { HydrationBoundary, QueryClient, dehydrate } from "@tanstack/react-query";
 import { QUERY_CLIENT_CONFIG } from "../../config/queryClientConfig";
-import type {
-  DefaultError,
-  FetchQueryOptions,
-  QueryKey,
-} from "@tanstack/react-query";
 
 /**
  * Hydrator コンポーネントのプロパティ型定義
@@ -23,45 +15,30 @@ type HydratorProps<
   /**
    * プリフェッチするクエリオプションの配列
    */
-  fetchQueryOptions: FetchQueryOptions<
-    TQueryFnData,
-    TError,
-    TData,
-    TQueryKey
-  >[];
+  fetchQueryOptions: FetchQueryOptions<TQueryFnData, TError, TData, TQueryKey>[];
   /**
    * HydrationBoundary コンポーネントに渡す追加のプロパティ
    */
-  hydrationBoundaryProps?: React.ComponentPropsWithoutRef<
-    typeof HydrationBoundary
-  >;
+  hydrationBoundaryProps?: React.ComponentPropsWithoutRef<typeof HydrationBoundary>;
 }>;
 
 /**
  * サーバーサイドでデータをプリフェッチし、クライアントサイドでハイドレーションするためのコンポーネント
  */
-export async function Hydrator<
-  TQueryFnData,
-  TError,
-  TData,
-  TQueryKey extends QueryKey,
->(props: HydratorProps<TQueryFnData, TError, TData, TQueryKey>) {
+export async function Hydrator<TQueryFnData, TError, TData, TQueryKey extends QueryKey>(
+  props: HydratorProps<TQueryFnData, TError, TData, TQueryKey>,
+) {
   const { children, fetchQueryOptions, hydrationBoundaryProps } = props;
   // サーバーサイドでのみ実行される QueryClient インスタンスを作成
   const queryClient = new QueryClient(QUERY_CLIENT_CONFIG);
 
   try {
     // すべてのクエリを並行してプリフェッチ
-    await Promise.all(
-      fetchQueryOptions.map((options) => queryClient.prefetchQuery(options)),
-    );
+    await Promise.all(fetchQueryOptions.map((options) => queryClient.prefetchQuery(options)));
 
     // ハイドレーションステートを作成し、HydrationBoundary に渡す
     return (
-      <HydrationBoundary
-        state={dehydrate(queryClient)}
-        {...hydrationBoundaryProps}
-      >
+      <HydrationBoundary state={dehydrate(queryClient)} {...hydrationBoundaryProps}>
         {children}
       </HydrationBoundary>
     );

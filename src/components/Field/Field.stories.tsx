@@ -1,6 +1,6 @@
-import { Input } from "../Input";
-import { Field } from ".";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { Field } from ".";
+import { Input } from "../Input";
 
 const meta = {
   component: Field,
@@ -24,6 +24,6 @@ export const WithErrorMessage: Story = {
 
 export const WithDisabledInput: Story = {
   args: {
-    children: <Input disabled={true} />,
+    children: <Input disabled />,
   },
 };

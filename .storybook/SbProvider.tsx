@@ -15,8 +15,8 @@ export function SbProvider({ children }: React.PropsWithChildren) {
           const { error, resetErrorBoundary } = props;
           return (
             <>
-              <h1 className="font-bold text-2xl">Something went wrong:</h1>
-              <p className="mt-4 text-red-600">{error.message}</p>
+              <h1 className="text-2xl font-bold">Something went wrong:</h1>
+              {error instanceof Error && <p className="mt-4 text-red-600">{error.message}</p>}
               <Button className="mt-4" onClick={resetErrorBoundary}>
                 Try again
               </Button>

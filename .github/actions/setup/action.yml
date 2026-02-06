@@ -1,14 +1,14 @@
-name: 'Setup'
-description: 'Setup Node.js, pnpm, and install dependencies'
+name: "Setup"
+description: "Setup Node.js, pnpm, and install dependencies"
 
 inputs:
   setup-env:
-    description: 'Whether to setup .env.local file'
+    description: "Whether to setup .env.local file"
     required: false
-    default: 'true'
+    default: "true"
 
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
     - name: Install pnpm
       uses: pnpm/action-setup@v4
@@ -16,8 +16,8 @@ runs:
     - name: Setup Node.js
       uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
       with:
-        node-version-file: '.tool-versions'
-        cache: 'pnpm'
+        node-version-file: ".tool-versions"
+        cache: "pnpm"
 
     - name: Install dependencies
       shell: bash

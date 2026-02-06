@@ -1,19 +1,17 @@
-import { tv } from "tailwind-variants";
 import type { VariantProps } from "tailwind-variants";
+import { tv } from "tailwind-variants";
 
 const labelVariants = tv({
-  base: "block w-max font-medium text-sm [[for]]:cursor-pointer [[for]]:has-[+[disabled]]:cursor-auto",
+  base: "block w-max text-sm font-medium [[for]]:cursor-pointer [[for]]:has-[+[disabled]]:cursor-auto",
 });
 
-interface LabelProps
-  extends React.ComponentProps<"label">,
-    VariantProps<typeof labelVariants> {}
+interface LabelProps extends React.ComponentProps<"label">, VariantProps<typeof labelVariants> {}
 
 export function Label(props: LabelProps) {
   const { className, ..._props } = props;
 
   return (
-    // biome-ignore lint/a11y/noLabelWithoutControl: component does not require a control
+    // oxlint-disable-next-line jsx-a11y/label-has-associated-control
     <label className={labelVariants({ className })} {..._props} />
   );
 }
