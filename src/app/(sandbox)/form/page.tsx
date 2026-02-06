@@ -2,13 +2,13 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { startTransition, useActionState, useId } from "react";
-import { createFormControl, Form, useFormState } from "react-hook-form";
+import { Form, createFormControl, useFormState } from "react-hook-form";
+import type { PostSchema } from "./schema";
 import { Button } from "../../../components/Button";
 import { Field } from "../../../components/Field";
 import { Input } from "../../../components/Input";
 import { post } from "./action";
 import { postSchema } from "./schema";
-import type { PostSchema } from "./schema";
 
 const form = createFormControl<PostSchema>({
   resolver: zodResolver(postSchema),
@@ -35,11 +35,7 @@ export default function Page() {
       }}
     >
       <Field errorMessage={errors.userId?.message} label="User ID">
-        <Input
-          {...register("userId", { valueAsNumber: true })}
-          id={id}
-          type="number"
-        />
+        <Input {...register("userId", { valueAsNumber: true })} id={id} type="number" />
       </Field>
       <Field errorMessage={errors.id?.message} label="ID">
         <Input {...register("id", { valueAsNumber: true })} type="number" />

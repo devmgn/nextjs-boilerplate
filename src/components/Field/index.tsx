@@ -25,7 +25,7 @@ export function Field(props: FieldProps) {
         isError: Boolean(errorMessage),
       })}
       {Boolean(errorMessage) && (
-        <p className="mt-1 font-normal text-red-500 text-xs">{errorMessage}</p>
+        <p className="mt-1 text-xs font-normal text-red-500">{errorMessage}</p>
       )}
     </div>
   );

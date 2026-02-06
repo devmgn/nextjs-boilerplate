@@ -14,5 +14,4 @@ const nextConfig = {
   typedRoutes: true,
 } satisfies NextConfig;
 
-// biome-ignore lint/style/noDefaultExport: using default export
 export default nextConfig;

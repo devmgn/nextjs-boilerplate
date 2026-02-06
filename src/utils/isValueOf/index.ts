@@ -11,8 +11,6 @@ export function isValueOf<T extends FlatObject | readonly Primitive[]>(
   collection: T,
   value: unknown,
 ): value is T[keyof T] {
-  const values = Array.isArray(collection)
-    ? collection
-    : Object.values(collection);
+  const values = Array.isArray(collection) ? collection : Object.values(collection);
   return values.some((v) => v === value);
 }

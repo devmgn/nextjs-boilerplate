@@ -1,6 +1,6 @@
+import type { Metadata, Viewport } from "next";
 import { ENV } from "../config/env";
 import { RootProvider } from "../providers/RootProvider";
-import type { Metadata, Viewport } from "next";
 import "../lib/styles/globals.css";
 
 export const metadata: Metadata = {

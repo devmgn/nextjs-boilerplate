@@ -1,5 +1,5 @@
-import { tv } from "tailwind-variants";
 import type { VariantProps } from "tailwind-variants";
+import { tv } from "tailwind-variants";
 
 const spinnerVariants = tv({
   slots: {
@@ -25,7 +25,8 @@ const SIZE_MAP = {
 } as const;
 
 interface SpinnerProps
-  extends Omit<React.SVGProps<SVGSVGElement>, "size" | "color">,
+  extends
+    Omit<React.SVGProps<SVGSVGElement>, "size" | "color">,
     VariantProps<typeof spinnerVariants> {
   showTrack?: boolean;
   size?: number | keyof typeof SIZE_MAP;
@@ -38,7 +39,7 @@ export function Spinner(props: SpinnerProps) {
   const finalSize = typeof size === "number" ? size : SIZE_MAP[size];
 
   return (
-    // biome-ignore lint/a11y/noSvgWithoutTitle: unnecessary
+    // oxlint-disable-next-line jsx-a11y/svg-has-accessible-name
     <svg
       className={base({ className })}
       height={finalSize}

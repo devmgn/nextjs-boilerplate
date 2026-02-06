@@ -1,9 +1,9 @@
+import type { VariantProps } from "tailwind-variants";
 import { Presence } from "@radix-ui/react-presence";
 import { tv } from "tailwind-variants";
-import type { VariantProps } from "tailwind-variants";
 
 const backdropVariants = tv({
-  base: "fixed inset-0 select-none bg-black/50 data-[state=closed]:animate-[fade-out_0.2s_ease-in-out] data-[state=open]:animate-[fade-in_0.2s_ease-in-out]",
+  base: "fixed inset-0 bg-black/50 select-none data-[state=closed]:animate-[fade-out_0.2s_ease-in-out] data-[state=open]:animate-[fade-in_0.2s_ease-in-out]",
   variants: {
     blur: {
       true: "backdrop-blur-xs",
@@ -14,9 +14,7 @@ const backdropVariants = tv({
   },
 });
 
-interface BackdropProps
-  extends React.ComponentProps<"div">,
-    VariantProps<typeof backdropVariants> {
+interface BackdropProps extends React.ComponentProps<"div">, VariantProps<typeof backdropVariants> {
   open: boolean;
 }
 

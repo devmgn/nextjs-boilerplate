@@ -4,9 +4,7 @@ import { SvgIcon } from ".";
 
 describe("SvgIcon", () => {
   it("renders correctly", () => {
-    const { asFragment } = render(
-      <SvgIcon icon={FaceIcon} label="face icon" />,
-    );
+    const { asFragment } = render(<SvgIcon icon={FaceIcon} label="face icon" />);
     expect(asFragment()).toMatchSnapshot();
   });
 });

@@ -1,6 +1,6 @@
-import { tv } from "tailwind-variants";
 import type { VariantProps } from "tailwind-variants";
 import type { Merge } from "type-fest";
+import { tv } from "tailwind-variants";
 
 const svgIcon = tv({
   base: "size-[1em] shrink-0 fill-current text-current",
@@ -20,11 +20,10 @@ const svgIcon = tv({
 
 type SvgIconVariants = VariantProps<typeof svgIcon>;
 
-interface SvgIconProps
-  extends Merge<
-    Omit<React.ComponentProps<"svg">, "children">,
-    SvgIconVariants
-  > {
+interface SvgIconProps extends Merge<
+  Omit<React.ComponentProps<"svg">, "children">,
+  SvgIconVariants
+> {
   icon: React.ElementType;
   label: string;
 }
@@ -34,7 +33,7 @@ export function SvgIcon(props: SvgIconProps) {
 
   return (
     <Icon
-      aria-hidden={true}
+      aria-hidden
       aria-label={label}
       className={svgIcon({ className, size })}
       focusable={false}

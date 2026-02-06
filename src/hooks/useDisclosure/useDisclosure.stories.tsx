@@ -1,9 +1,9 @@
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { useId } from "react";
 import { expect, userEvent, within } from "storybook/test";
+import { useDisclosure } from ".";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
-import { useDisclosure } from ".";
-import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 
 const meta = {
   parameters: {
@@ -17,7 +17,7 @@ const meta = {
       <div className="flex flex-col gap-4">
         <div className="flex gap-2">
           <label htmlFor={id}>disclosure Result: </label>
-          <Input id={id} readOnly={true} value={isOpen.toString()} />
+          <Input id={id} readOnly value={isOpen.toString()} />
         </div>
         <Button onClick={open}>Open</Button>
         <Button onClick={close}>Close</Button>
@@ -37,8 +37,7 @@ export const Test: Story = {
     const canvas = within(canvasElement);
     const input = canvas.getByRole("textbox");
     expect(input).toHaveValue("false");
-    const [openButton, closeButton, toggleButton] =
-      canvas.getAllByRole("button");
+    const [openButton, closeButton, toggleButton] = canvas.getAllByRole("button");
     await userEvent.click(openButton);
     await expect(input).toHaveValue("true");
     await userEvent.click(closeButton);

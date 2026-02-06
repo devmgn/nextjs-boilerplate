@@ -37,7 +37,7 @@ export default function Page() {
       <SvgIcon icon={FaceIcon} label="" />
       <Card />
       <Spinner />
-      <Backdrop open={true} />
+      <Backdrop open />
     </>
   );
 }

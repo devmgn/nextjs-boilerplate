@@ -1,8 +1,7 @@
-// biome-ignore lint/correctness/useJsonImportAttributes: Disabled due to warnings when launching Storybook
+import type { Preview } from "@storybook/nextjs-vite";
 import locale from "axe-core/locales/ja.json";
 import { initialize, mswLoader } from "msw-storybook-addon";
 import { SbProvider } from "./SbProvider";
-import type { Preview } from "@storybook/nextjs-vite";
 
 initialize({ onUnhandledRequest: "bypass" });
 
@@ -36,5 +35,4 @@ const preview: Preview = {
   ],
 };
 
-// biome-ignore lint/style/noDefaultExport: ues default export
 export default preview;

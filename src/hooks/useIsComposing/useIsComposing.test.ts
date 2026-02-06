@@ -23,21 +23,13 @@ describe("useIsComposing", () => {
   it("マウント時、イベントリスナーが追加されること", () => {
     renderHook(() => useIsComposing());
     expect(mockElement.addEventListener).toHaveBeenCalledTimes(3);
-    expect(mockElement.addEventListener).nthCalledWith(
-      1,
-      "compositionstart",
-      expect.any(Function),
-    );
+    expect(mockElement.addEventListener).nthCalledWith(1, "compositionstart", expect.any(Function));
     expect(mockElement.addEventListener).nthCalledWith(
       2,
       "compositionupdate",
       expect.any(Function),
     );
-    expect(mockElement.addEventListener).nthCalledWith(
-      3,
-      "compositionend",
-      expect.any(Function),
-    );
+    expect(mockElement.addEventListener).nthCalledWith(3, "compositionend", expect.any(Function));
   });
 
   it("アンマウント時、イベントリスナーが削除されること", () => {

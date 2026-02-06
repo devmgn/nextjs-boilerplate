@@ -3,28 +3,30 @@
   "ignore": ["src/**/openapi/**", "src/mocks/**"],
   "ignoreBinaries": ["openapiconfig.json"],
   "ignoreDependencies": [
-    "@next/eslint-plugin-next",
+    "@tanstack/eslint-plugin-query",
     "@testing-library/user-event",
-    "eslint-plugin-react-hooks",
+    "eslint-plugin-import",
+    "eslint-plugin-react-compiler",
+    "eslint-plugin-storybook",
     "postcss",
-    "postcss-load-config"
+    "postcss-load-config",
   ],
   "storybook": {
     "entry": [
       ".storybook/{preview,vitest.setup}.tsx",
       ".storybook/SbProvider.tsx",
-      "src/**/*.stories.@(js|jsx|ts|tsx)"
-    ]
+      "src/**/*.stories.@(js|jsx|ts|tsx)",
+    ],
   },
   "tailwind": {
-    "entry": ["src/lib/styles/globals.css"]
+    "entry": ["src/lib/styles/globals.css"],
   },
   "vitest": {
     "entry": [
       "**/*.{test,spec}.{ts,tsx}",
       ".storybook/vitest.setup.ts",
       "vitest.globalSetup.ts",
-      "vitest.setup.ts"
-    ]
-  }
+      "vitest.setup.ts",
+    ],
+  },
 }

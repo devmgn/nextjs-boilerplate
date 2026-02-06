@@ -5,6 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Development Commands
 
 ### Essential Commands
+
 ```bash
 # Development server with Turbopack
 pnpm dev
@@ -41,6 +42,7 @@ pnpm analyze
 ```
 
 ### Testing Commands
+
 ```bash
 # Run all tests
 pnpm test
@@ -62,6 +64,7 @@ pnpm vitest run path/to/test.test.ts
 ```
 
 ### Storybook Commands
+
 ```bash
 # Start Storybook development server
 pnpm storybook
@@ -76,6 +79,7 @@ pnpm chromatic
 ## Project Architecture
 
 ### Core Technology Stack
+
 - **Next.js** with App Router, React 19, and Turbopack
   - React Compiler enabled (reactCompiler: true)
   - TypeScript typed routes (typedRoutes: true)
@@ -94,7 +98,7 @@ pnpm chromatic
   - @hookform/resolvers for Zod integration
 - **Hono** for proxy middleware
 - **UI Libraries**:
-  - @radix-ui/react-* primitives for accessible components
+  - @radix-ui/react-\* primitives for accessible components
   - tailwind-variants for component styling with type-safe variants
   - tailwind-merge for conditional class merging
 - **Utility Libraries**:
@@ -124,6 +128,7 @@ pnpm chromatic
 ### Directory Structure & Conventions
 
 #### `/src/app/` - Next.js App Router
+
 - Uses file-based routing with App Router conventions
 - Layout hierarchy: root layout → nested layouts → pages
 - Special files: `page.tsx`, `layout.tsx`, `error.tsx`, `not-found.tsx`, `global-error.tsx`
@@ -131,73 +136,90 @@ pnpm chromatic
 - Instrumentation support via `instrumentation.ts` and `instrumentation-client.ts`
 
 #### `/src/components/` - Reusable UI Components
+
 - Each component in its own directory with `index.tsx`
 - Includes Storybook stories (`*.stories.tsx`) and tests
 - Uses `tailwind-variants` for component styling with variants
 - Exports only named exports (no default exports per linting rules)
 
 #### `/src/api/` - API Layer
+
 - `/openapi/` - Auto-generated TypeScript client from OpenAPI spec
 - `/queries/` - TanStack Query hooks using query key factory pattern
 - `/apiClient/` - Configured API client instance
 
 #### `/src/providers/` - Context Providers
+
 - `RootProvider` wraps all providers (currently TanStack Query)
 - Provider hierarchy is centralized here
 
 #### `/src/hooks/` - Custom React Hooks
+
 - Each hook in its own directory with tests and stories
 - Includes debounce, disclosure, and composing detection utilities
 
 #### `/src/lib/` - Library Code
+
 - `/proxy/` - Hono middleware for logging and headers
 - `/styles/` - Global CSS files and Tailwind configuration
 - `Hydrator` - Server state hydration component
 - `WebVitalsReporter` - Performance monitoring (dev only)
 
 #### `/src/utils/` - Utility Functions
+
 - Pure utility functions with comprehensive tests
 - Type helpers and environment detection utilities
 
 #### `/src/config/` - Configuration Files
+
 - Application-wide configuration constants
 
 #### `/src/features/` - Feature Modules
+
 - Feature-specific code organized by domain
 - Self-contained feature implementations
 
 #### `/src/mocks/` - Mock Data and Handlers
+
 - MSW mock handlers for API endpoints
 - Test data and fixtures
 
 #### `/src/schemas/` - Zod Schemas
+
 - Runtime validation schemas
 - Environment variable validation (env.schema.ts)
 
 #### `/src/stories/` - Storybook Stories
+
 - Standalone Storybook examples
 - Pattern demonstrations
 
 #### `/src/types/` - TypeScript Type Definitions
+
 - Shared TypeScript types and interfaces
 
 ### Key Architectural Patterns
 
 #### Proxy Architecture
+
 The project uses Hono for proxy middleware, configured in `src/proxy.ts`:
+
 - Excludes API routes, static assets, and metadata files via matcher config
 
 #### State Management
+
 - **Server State**: TanStack Query with centralized configuration
 - **Form State**: React Hook Form with Zod schemas
 - **No global client state management** (no Redux/Zustand)
 
 #### Type Safety
+
 - Zod schemas for runtime validation (forms, environment variables)
 - Generated types from OpenAPI specification
 - Strict TypeScript configuration with no implicit any
 
 #### Testing Strategy
+
 - **Unit tests** with Vitest (project: "unit")
   - JSDOM environment for React component testing
   - Global setup via vitest.globalSetup.ts
@@ -211,6 +233,7 @@ The project uses Hono for proxy middleware, configured in `src/proxy.ts`:
 - Coverage excludes generated code, stories, and Next.js special files
 
 #### Code Quality
+
 - Biome for linting with extensive rules (biome.jsonc)
   - Use `pnpm lint:biome:unsafe` for unsafe auto-fixes
 - ESLint with flat config (eslint.config.mjs)
@@ -220,19 +243,24 @@ The project uses Hono for proxy middleware, configured in `src/proxy.ts`:
 - Consistent naming conventions enforced
 
 ### Environment Configuration
+
 Environment variables are validated through Zod schemas:
+
 - `NEXT_PUBLIC_APP_NAME` - Application name
 - `NEXT_PUBLIC_DEFAULT_DESCRIPTION` - Default meta description
 - All env vars must be defined in `src/schemas/env.schema.ts`
 
 ### OpenAPI Integration
+
 The project generates TypeScript clients from `openapi.yml`:
+
 - Run `pnpm generate-api` to regenerate (or `pnpm generate-api:clean` for full cleanup)
 - Generated code is in `src/api/openapi/` (do not edit manually)
 - Configuration in `openapiconfig.json`
 - Uses typescript-fetch generator from OpenAPI Generator
 
 ### Performance & Optimization
+
 - Bundle analysis available via `pnpm analyze` (uses @next/bundle-analyzer)
 - React Compiler enabled for automatic memoization and optimization
 - reactRemoveProperties compiler option removes development-only props in production
@@ -243,6 +271,7 @@ The project generates TypeScript clients from `openapi.yml`:
 - Auth interrupts support for better authentication UX (experimental.authInterrupts)
 
 ### Component Development Workflow
+
 1. Create component in `/src/components/ComponentName/index.tsx`
 2. Add Storybook stories (`*.stories.tsx`) for visual testing
 3. Use `tailwind-variants` for styling with type-safe variants
@@ -252,20 +281,24 @@ The project generates TypeScript clients from `openapi.yml`:
 ### GitHub & CI/CD
 
 #### Branch Strategy
+
 - Main branch: `main`
 - Feature branches: `feature/*` (e.g., `feature/add-login`, `feature/fix-header`)
 - Always create branches from `main` with `feature/` prefix
 
 #### Shared Setup Action
+
 - Located at `.github/actions/setup/action.yml`
 - Handles: pnpm install, Node.js setup, dependency caching
 - Input `setup-env`: Set to `'false'` to skip `.env.local` copy (used by Chromatic)
 
 #### CI Notes
+
 - `upload-artifact` requires `include-hidden-files: true` for `.next/` directory
 - `.tool-versions` uses `nodejs` (not `node`) for Renovate compatibility
 
 ### Important Notes
+
 - This project uses **Next.js 16** and **React 19** with React Compiler enabled
 - MSW worker is initialized automatically via `pnpm init:msw` (postinstall hook)
 - The `.claude` directory is gitignored for Claude Code specific files
@@ -277,7 +310,7 @@ The project generates TypeScript clients from `openapi.yml`:
 
 When looking up library documentation, use the appropriate MCP tool:
 
-| Purpose | MCP Tool |
-|---------|----------|
-| **Next.js official docs** | `next-devtools` (`nextjs_docs`, `nextjs_index`, `nextjs_call`) |
-| **Other libraries** (React, TanStack Query, Zod, Tailwind, etc.) | `context7` (`resolve-library-id` → `query-docs`) |
+| Purpose                                                          | MCP Tool                                                       |
+| ---------------------------------------------------------------- | -------------------------------------------------------------- |
+| **Next.js official docs**                                        | `next-devtools` (`nextjs_docs`, `nextjs_index`, `nextjs_call`) |
+| **Other libraries** (React, TanStack Query, Zod, Tailwind, etc.) | `context7` (`resolve-library-id` → `query-docs`)               |
