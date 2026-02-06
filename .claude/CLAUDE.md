@@ -71,21 +71,21 @@ pnpm chromatic        # Deploy to Chromatic (visual testing)
 
 ### Directory Structure
 
-| Directory | Purpose |
-|-----------|---------|
-| `src/app/` | Next.js App Router (file-based routing) |
+| Directory         | Purpose                                                                 |
+| ----------------- | ----------------------------------------------------------------------- |
+| `src/app/`        | Next.js App Router (file-based routing)                                 |
 | `src/components/` | Reusable UI components (each in own dir with index.tsx, stories, tests) |
-| `src/api/` | API layer (openapi/ generated client, queries/ TanStack Query hooks) |
-| `src/providers/` | Context providers (RootProvider) |
-| `src/hooks/` | Custom React hooks |
-| `src/lib/` | Library code (proxy/, styles/, Hydrator, WebVitalsReporter) |
-| `src/utils/` | Pure utility functions |
-| `src/config/` | Application configuration |
-| `src/features/` | Feature modules (domain-organized) |
-| `src/mocks/` | MSW mock handlers and fixtures |
-| `src/schemas/` | Zod schemas (runtime validation, env vars) |
-| `src/types/` | Shared TypeScript types |
-| `scripts/` | Custom lint/check scripts |
+| `src/api/`        | API layer (openapi/ generated client, queries/ TanStack Query hooks)    |
+| `src/providers/`  | Context providers (RootProvider)                                        |
+| `src/hooks/`      | Custom React hooks                                                      |
+| `src/lib/`        | Library code (proxy/, styles/, Hydrator, WebVitalsReporter)             |
+| `src/utils/`      | Pure utility functions                                                  |
+| `src/config/`     | Application configuration                                               |
+| `src/features/`   | Feature modules (domain-organized)                                      |
+| `src/mocks/`      | MSW mock handlers and fixtures                                          |
+| `src/schemas/`    | Zod schemas (runtime validation, env vars)                              |
+| `src/types/`      | Shared TypeScript types                                                 |
+| `scripts/`        | Custom lint/check scripts                                               |
 
 ### Key Patterns
 
@@ -108,6 +108,7 @@ pnpm chromatic        # Deploy to Chromatic (visual testing)
 ### Environment Configuration
 
 Env vars validated through Zod schemas in `src/schemas/env.schema.ts`:
+
 - `NEXT_PUBLIC_APP_NAME`, `NEXT_PUBLIC_DEFAULT_DESCRIPTION`
 
 ### GitHub & CI/CD
@@ -126,7 +127,7 @@ Env vars validated through Zod schemas in `src/schemas/env.schema.ts`:
 
 ### MCP Tool Usage
 
-| Purpose | MCP Tool |
-|---------|----------|
-| **Next.js official docs** | `next-devtools` (`nextjs_docs`, `nextjs_index`, `nextjs_call`) |
-| **Other libraries** (React, TanStack Query, Zod, Tailwind, etc.) | `context7` (`resolve-library-id` → `query-docs`) |
+| Purpose                                                          | MCP Tool                                                       |
+| ---------------------------------------------------------------- | -------------------------------------------------------------- |
+| **Next.js official docs**                                        | `next-devtools` (`nextjs_docs`, `nextjs_index`, `nextjs_call`) |
+| **Other libraries** (React, TanStack Query, Zod, Tailwind, etc.) | `context7` (`resolve-library-id` → `query-docs`)               |

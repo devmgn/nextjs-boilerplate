@@ -6,7 +6,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "pnpm lint:oxlint && pnpm lint:fmt:check && pnpm lint:fn-style",
-    "lint:fn-style": "node --experimental-strip-types --no-warnings scripts/check-top-level-arrow-functions.ts",
+    "lint:fn-style": "node --experimental-strip-types --no-warnings scripts/checkTopLevelArrowFunctions.ts",
     "lint:oxlint": "oxlint --fix",
     "lint:fmt": "oxfmt --write .",
     "lint:fmt:check": "oxfmt --check .",
