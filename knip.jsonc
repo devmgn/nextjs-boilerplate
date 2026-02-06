@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/knip/schema-jsonc.json",
-  "ignore": ["src/**/openapi/**", "src/mocks/**"],
+  "ignore": ["src/**/openapi/**", "src/mocks/**", "scripts/**"],
   "ignoreBinaries": ["openapiconfig.json"],
   "ignoreDependencies": [
     "@tanstack/eslint-plugin-query",
