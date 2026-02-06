@@ -1,9 +1,9 @@
-import { Project, SyntaxKind } from 'ts-morph';
+import { Project, SyntaxKind } from "ts-morph";
 
-const project = new Project({ tsConfigFilePath: 'tsconfig.json' });
+const project = new Project({ tsConfigFilePath: "tsconfig.json" });
 let hasError = false;
 
-for (const file of project.getSourceFiles('src/**/*.{ts,tsx}')) {
+for (const file of project.getSourceFiles("src/**/*.{ts,tsx}")) {
   // トップレベルの変数宣言のみ取得
   for (const stmt of file.getVariableStatements()) {
     // export された宣言も含む
