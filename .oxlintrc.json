@@ -63,18 +63,9 @@
     "require-await": "warn",
     "symbol-description": "warn",
     "yoda": "warn",
-    // no-restricted-syntax: Oxlint未実装。scripts/check-top-level-arrow-functions.ts で代替
-    // "no-restricted-syntax": [
-    //   "error",
-    //   {
-    //     "selector": "Program > VariableDeclaration > VariableDeclarator[init.type='ArrowFunctionExpression']",
-    //     "message": "Use function declarations at the top level"
-    //   },
-    //   {
-    //     "selector": "Program > ExportNamedDeclaration > VariableDeclaration > VariableDeclarator[init.type='ArrowFunctionExpression']",
-    //     "message": "Use function declarations for exported functions"
-    //   }
-    // ],
+
+    // ── fn-style (jsPlugin) ──
+    "fn-style/no-top-level-arrow": "error",
 
     // ── TypeScript ──
     "@typescript-eslint/array-type": "warn",
@@ -188,7 +179,8 @@
   "jsPlugins": [
     "eslint-plugin-react-compiler",
     "@tanstack/eslint-plugin-query",
-    { "name": "import-js", "specifier": "eslint-plugin-import" }
+    { "name": "import-js", "specifier": "eslint-plugin-import" },
+    "./scripts/oxlint-plugin-fn-style.mjs"
   ],
   "overrides": [
     {
@@ -256,6 +248,15 @@
         "vitest/require-top-level-describe": "error",
         "vitest/no-disabled-tests": "warn",
         "no-empty-function": "off"
+      }
+    },
+    {
+      // Scripts
+      "files": ["scripts/**"],
+      "rules": {
+        "unicorn/filename-case": "off",
+        "import/no-default-export": "off",
+        "import/no-anonymous-default-export": "off"
       }
     }
   ]

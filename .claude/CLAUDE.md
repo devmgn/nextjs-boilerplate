@@ -10,11 +10,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 pnpm dev              # Development server with Turbopack
 pnpm build            # Build for production
 pnpm start            # Start production server
-pnpm lint             # Run all linting (Oxlint + Oxfmt check + fn-style)
-pnpm lint:oxlint      # Run Oxlint with auto-fix
+pnpm lint             # Run all linting (Oxlint + Oxfmt check)
+pnpm lint:oxlint      # Run Oxlint with auto-fix (includes fn-style/no-top-level-arrow)
 pnpm lint:fmt         # Run Oxfmt formatting (write)
 pnpm lint:fmt:check   # Run Oxfmt formatting (check only)
-pnpm lint:fn-style    # Check top-level arrow functions (ts-morph)
 pnpm lint:knip        # Dead code detection (strict mode)
 pnpm check-types      # TypeScript type checking
 pnpm generate-api     # Generate OpenAPI client
@@ -90,7 +89,7 @@ pnpm chromatic        # Deploy to Chromatic (visual testing)
 ### Key Patterns
 
 - **No default exports** except Next.js special files (page.tsx, layout.tsx, etc.) and Storybook stories
-- **Function declarations** at top level (no top-level arrow functions, enforced by `lint:fn-style`)
+- **Function declarations** at top level (no top-level arrow functions, enforced by `fn-style/no-top-level-arrow` Oxlint rule)
 - **Named exports only** for components
 - **TanStack Query** for server state, **React Hook Form + Zod** for form state, **no global client state**
 - **Zod schemas** for runtime validation (forms, env vars)
@@ -102,7 +101,7 @@ pnpm chromatic        # Deploy to Chromatic (visual testing)
 - **Oxlint** (.oxlintrc.json) — linting with auto-fix
 - **Oxfmt** (.oxfmtrc.jsonc) — formatting (single quotes, import sorting, Tailwind class sorting)
 - **Knip** (knip.jsonc) — dead code detection (`pnpm lint:knip`)
-- **ts-morph** script — top-level arrow function check (`pnpm lint:fn-style`)
+- **fn-style jsPlugin** — top-level arrow function check (integrated in Oxlint)
 - **Coverage**: 80% threshold (lines, functions, branches, statements)
 
 ### Environment Configuration
