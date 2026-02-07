@@ -1,0 +1,11 @@
+{
+  "ignorePatterns": [".*/skills/**", "public/**", "src/api/openapi/**"],
+  "experimentalSortImports": {
+    "newlinesBetween": false
+  },
+  "experimentalTailwindcss": {
+    "stylesheet": "./src/lib/styles/globals.css",
+    "attributes": ["class", "className"],
+    "functions": ["clsx", "cva", "tv", "tw"]
+  }
+}
