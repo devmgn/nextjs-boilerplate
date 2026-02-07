@@ -1,21 +1,53 @@
 {
-  "cSpell.words": ["fileoverview", "tanstack"],
-  "css.format.enable": false,
-  "css.validate": false,
+  // ── Editor ──
   "editor.codeActionsOnSave": {
     "source.addMissingImports": "explicit",
     "source.fixAll": "explicit"
   },
   "editor.defaultFormatter": "oxc.oxc-vscode",
   "editor.formatOnSave": true,
-  "explorer.excludeGitIgnore": true,
+
+  // ── TypeScript ──
   "javascript.format.enable": false,
-  "search.exclude": {
-    ".next": true,
-    "**/.pnp.*": true,
-    "**/.yarn": true
-  },
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.format.enable": false,
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.preferences.preferTypeOnlyAutoImports": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+
+  // ── CSS / Tailwind CSS ──
+  "css.format.enable": false,
+  "css.validate": false,
+  "files.associations": { "*.css": "tailwindcss" },
+  "less.validate": false,
+  "scss.validate": false,
+  "tailwindCSS.experimental.classRegex": [
+    ["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*)[\"'`]"],
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*)[\"'`]"],
+    ["clsx\\(([^)]*)\\)", "[\"'`]([^\"'`]*)[\"'`]"],
+    ["tw`([^`]*)`"]
+  ],
+
+  // ── Search / Files ──
+  "search.exclude": {
+    ".next": true,
+    "build": true,
+    "out": true,
+    "storybook-static": true,
+    "coverage": true
+  },
+
+  // ── Spell Check ──
+  "cSpell.words": ["fileoverview", "tanstack"],
+  "cSpell.ignorePaths": [
+    ".next",
+    ".vscode",
+    "build",
+    "coverage",
+    "node_modules",
+    "out",
+    "pnpm-lock.yaml",
+    "src/api/openapi",
+    "storybook-static"
+  ]
 }
