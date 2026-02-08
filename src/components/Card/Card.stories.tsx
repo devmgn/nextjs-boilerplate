@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { faker } from "@faker-js/faker/locale/ja";
-import { Card } from ".";
+import { Card } from "./Card";
 
 const meta = {
   component: Card,

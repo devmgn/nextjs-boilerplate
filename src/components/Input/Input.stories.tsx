@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { faker } from "@faker-js/faker/locale/ja";
-import { Input } from ".";
+import { Input } from "./Input";
 
 const meta = {
   component: Input,

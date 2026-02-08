@@ -12,9 +12,8 @@ import { useIsComposing } from "../../../hooks/useIsComposing";
 import { asyncDebounce } from "../../../utils/asyncDebounce";
 import { createCustomEvent } from "../../../utils/createCustomEvent";
 import { isKeyOf } from "../../../utils/isKeyOf";
-import { isServer } from "../../../utils/isServer";
 import { isValueOf } from "../../../utils/isValueOf";
-import { isDevelopment } from "../../../utils/nodeEnv";
+import { isDevelopment, isServer } from "../../../utils/runtime";
 
 export default function Page() {
   useDisclosure();

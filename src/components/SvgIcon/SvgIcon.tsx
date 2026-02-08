@@ -1,5 +1,4 @@
 import type { VariantProps } from "tailwind-variants";
-import type { Merge } from "type-fest";
 import { tv } from "tailwind-variants";
 
 const svgIcon = tv({
@@ -20,10 +19,8 @@ const svgIcon = tv({
 
 type SvgIconVariants = VariantProps<typeof svgIcon>;
 
-interface SvgIconProps extends Merge<
-  Omit<React.ComponentProps<"svg">, "children">,
-  SvgIconVariants
-> {
+interface SvgIconProps
+  extends Omit<React.ComponentProps<"svg">, "children" | keyof SvgIconVariants>, SvgIconVariants {
   icon: React.ElementType;
   label: string;
 }

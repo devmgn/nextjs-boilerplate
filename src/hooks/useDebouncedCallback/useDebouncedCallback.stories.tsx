@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { useId, useState } from "react";
-import { useDebouncedCallback } from ".";
 import { Input } from "../../components/Input";
 import { useIsComposing } from "../useIsComposing";
+import { useDebouncedCallback } from "./useDebouncedCallback";
 
 const meta = {
   parameters: {
