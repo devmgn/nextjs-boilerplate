@@ -31,9 +31,15 @@
     "src/api/openapi/**",
     "storybook-static/**"
   ],
+  "jsPlugins": [
+    "./scripts/oxlint-plugin-entry-point.mjs",
+    "./scripts/oxlint-plugin-fn-style.mjs",
+    "@tanstack/eslint-plugin-query",
+    "eslint-plugin-react-compiler",
+    { "name": "import-js", "specifier": "eslint-plugin-import" }
+  ],
   "rules": {
     // ── ESLint core ──
-    "sort-imports": ["warn", { "ignoreDeclarationSort": true }],
     "curly": "error",
     "default-case": "warn",
     "default-param-last": "warn",
@@ -61,11 +67,15 @@
     "prefer-object-spread": "warn",
     "prefer-template": "warn",
     "require-await": "warn",
+    "sort-imports": ["warn", { "ignoreDeclarationSort": true }],
     "symbol-description": "warn",
     "yoda": "warn",
 
     // ── fn-style (jsPlugin) ──
     "fn-style/no-top-level-arrow": "error",
+
+    // ── entry-point (jsPlugin) ──
+    "entry-point/no-index-tsx": "error",
 
     // ── TypeScript ──
     "@typescript-eslint/array-type": "warn",
@@ -73,10 +83,7 @@
     "@typescript-eslint/consistent-type-definitions": "warn",
     "@typescript-eslint/consistent-type-imports": [
       "warn",
-      {
-        "prefer": "type-imports",
-        "fixStyle": "separate-type-imports"
-      }
+      { "prefer": "type-imports", "fixStyle": "separate-type-imports" }
     ],
     "@typescript-eslint/no-dynamic-delete": "warn",
     "@typescript-eslint/no-explicit-any": "off",
@@ -92,34 +99,32 @@
 
     // ── React ──
     "react-hooks/exhaustive-deps": "error",
+    "react-perf/jsx-no-new-array-as-prop": "off",
+    "react-perf/jsx-no-new-function-as-prop": "off",
+    "react-perf/jsx-no-new-object-as-prop": "off",
     "react/jsx-boolean-value": "warn",
     "react/jsx-curly-brace-presence": "warn",
     "react/jsx-fragments": "warn",
-    "react/jsx-props-no-spread-multi": "warn",
-    "react/self-closing-comp": "warn",
     "react/jsx-no-target-blank": "off",
+    "react/jsx-props-no-spread-multi": "warn",
     "react/no-unknown-property": "off",
     "react/no-unsafe": "off",
     "react/react-in-jsx-scope": "off",
-    "react-perf/jsx-no-new-function-as-prop": "off",
-    "react-perf/jsx-no-new-object-as-prop": "off",
-    "react-perf/jsx-no-new-array-as-prop": "off",
+    "react/self-closing-comp": "warn",
 
     // ── Import ──
     "import-js/newline-after-import": "error",
+    "import/no-anonymous-default-export": "warn",
     "import/no-commonjs": "warn",
     "import/no-default-export": "warn",
-    "import/no-anonymous-default-export": "warn",
+
+    // ── OxC ──
+    "oxc/no-barrel-file": ["error", { "threshold": 1 }],
 
     // ── Unicorn ──
     "unicorn/error-message": "warn",
     "unicorn/explicit-length-check": "warn",
-    "unicorn/filename-case": [
-      "warn",
-      {
-        "cases": { "camelCase": true, "pascalCase": true }
-      }
-    ],
+    "unicorn/filename-case": ["warn", { "cases": { "camelCase": true, "pascalCase": true } }],
     "unicorn/new-for-builtins": "warn",
     "unicorn/numeric-separators-style": "warn",
     "unicorn/prefer-array-find": "warn",
@@ -129,59 +134,43 @@
     "unicorn/prefer-string-trim-start-end": "warn",
     "unicorn/require-number-to-fixed-digits-argument": "warn",
 
-    // ── Oxc ──
-    "oxc/no-barrel-file": "warn",
-    "oxc/only-used-in-recursion": "warn",
-
     // ── jsx-a11y ──
     "jsx-a11y/no-static-element-interactions": "warn",
-    "jsx-a11y/alt-text": [
-      "warn",
-      {
-        "elements": ["img"],
-        "img": ["Image"]
-      }
-    ],
+    "jsx-a11y/alt-text": ["warn", { "elements": ["img"], "img": ["Image"] }],
 
     // ── Next.js ──
     "@next/next/google-font-display": "warn",
     "@next/next/google-font-preconnect": "warn",
+    "@next/next/inline-script-id": "error",
     "@next/next/next-script-for-ga": "warn",
+    "@next/next/no-assign-module-variable": "error",
     "@next/next/no-async-client-component": "warn",
     "@next/next/no-before-interactive-script-outside-document": "warn",
     "@next/next/no-css-tags": "warn",
+    "@next/next/no-document-import-in-page": "error",
+    "@next/next/no-duplicate-head": "error",
     "@next/next/no-head-element": "warn",
+    "@next/next/no-head-import-in-document": "error",
     "@next/next/no-html-link-for-pages": "error",
     "@next/next/no-img-element": "warn",
     "@next/next/no-page-custom-font": "warn",
+    "@next/next/no-script-component-in-head": "error",
     "@next/next/no-styled-jsx-in-document": "warn",
     "@next/next/no-sync-scripts": "error",
     "@next/next/no-title-in-document-head": "warn",
     "@next/next/no-typos": "warn",
     "@next/next/no-unwanted-polyfillio": "warn",
-    "@next/next/inline-script-id": "error",
-    "@next/next/no-assign-module-variable": "error",
-    "@next/next/no-document-import-in-page": "error",
-    "@next/next/no-duplicate-head": "error",
-    "@next/next/no-head-import-in-document": "error",
-    "@next/next/no-script-component-in-head": "error",
 
     // ── jsPlugins rules ──
-    "react-compiler/react-compiler": "error",
     "@tanstack/query/exhaustive-deps": "error",
-    "@tanstack/query/stable-query-client": "error",
+    "@tanstack/query/infinite-query-property-order": "error",
+    "@tanstack/query/mutation-property-order": "error",
     "@tanstack/query/no-rest-destructuring": "warn",
     "@tanstack/query/no-unstable-deps": "error",
-    "@tanstack/query/infinite-query-property-order": "error",
     "@tanstack/query/no-void-query-fn": "error",
-    "@tanstack/query/mutation-property-order": "error"
+    "@tanstack/query/stable-query-client": "error",
+    "react-compiler/react-compiler": "error"
   },
-  "jsPlugins": [
-    "eslint-plugin-react-compiler",
-    "@tanstack/eslint-plugin-query",
-    { "name": "import-js", "specifier": "eslint-plugin-import" },
-    "./scripts/oxlint-plugin-fn-style.mjs"
-  ],
   "overrides": [
     {
       // Next.js special files + config files → allow default export, relax filename
@@ -200,12 +189,12 @@
         "**/sitemap.ts",
         "**/template.tsx",
         "**/unauthorized.tsx",
-        "next.config.ts",
-        "vitest.config.ts",
-        "vitest.globalSetup.ts",
-        "postcss.config.mjs",
         ".storybook/main.ts",
-        ".storybook/preview.tsx"
+        ".storybook/preview.tsx",
+        "next.config.ts",
+        "postcss.config.mjs",
+        "vitest.config.ts",
+        "vitest.globalSetup.ts"
       ],
       "rules": {
         "import/no-default-export": "off",
@@ -216,9 +205,9 @@
       // Storybook stories
       "files": ["**/*.stories.*", "**/*.story.*"],
       "rules": {
+        "import/no-anonymous-default-export": "off",
         "import/no-default-export": "off",
         "react-hooks/rules-of-hooks": "off",
-        "import/no-anonymous-default-export": "off",
         "storybook/await-interactions": "error",
         "storybook/context-in-play-function": "error",
         "storybook/default-exports": "error",
@@ -244,19 +233,19 @@
       // Test files
       "files": ["**/*.test.*", "**/*.spec.*"],
       "rules": {
+        "no-empty-function": "off",
         "vitest/consistent-test-it": ["error", { "fn": "it" }],
-        "vitest/require-top-level-describe": "error",
         "vitest/no-disabled-tests": "warn",
-        "no-empty-function": "off"
+        "vitest/require-top-level-describe": "error"
       }
     },
     {
       // Scripts
       "files": ["scripts/**"],
       "rules": {
-        "unicorn/filename-case": "off",
+        "import/no-anonymous-default-export": "off",
         "import/no-default-export": "off",
-        "import/no-anonymous-default-export": "off"
+        "unicorn/filename-case": "off"
       }
     }
   ]

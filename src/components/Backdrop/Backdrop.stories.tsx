@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { faker } from "@faker-js/faker/locale/ja";
 import Image from "next/image";
-import { Backdrop } from ".";
+import { Backdrop } from "./Backdrop";
 
 const paragraphs = faker.lorem.paragraphs();
 const image = faker.image.avatarGitHub();
@@ -14,7 +14,7 @@ const meta = {
   },
   decorators: [
     (story) => (
-      <div className="relative h-[200px] w-full">
+      <div className="relative h-50 w-full">
         <p>{paragraphs}</p>
         <div>
           <Image alt="" height="320" src={image} width="320" />

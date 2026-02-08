@@ -15,19 +15,19 @@ describe("isProduction", () => {
   it('NODE_ENVが"production"のとき、trueとなること', async () => {
     // @ts-expect-error
     process.env.NODE_ENV = "production";
-    const { isProduction } = await import(".");
+    const { isProduction } = await import("./isProduction");
     expect(isProduction).toBe(true);
   });
 
   it('NODE_ENVが"production"以外のとき、falseとなること', async () => {
     // @ts-expect-error
     process.env.NODE_ENV = "development";
-    const { isProduction } = await import(".");
+    const { isProduction } = await import("./isProduction");
     expect(isProduction).toBe(false);
   });
 
   it("NODE_ENVが未定義のとき、falseとなること", async () => {
-    const { isProduction } = await import(".");
+    const { isProduction } = await import("./isProduction");
     expect(isProduction).toBe(false);
   });
 });

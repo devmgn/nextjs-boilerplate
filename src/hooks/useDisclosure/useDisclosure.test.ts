@@ -1,5 +1,5 @@
 import { act, renderHook } from "@testing-library/react";
-import { useDisclosure } from ".";
+import { useDisclosure } from "./useDisclosure";
 
 describe("useDisclosure", () => {
   it("initialStateを指定しないとき、初期状態でisOpenはfalseとなること", () => {

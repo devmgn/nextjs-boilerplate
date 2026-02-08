@@ -1,4 +1,4 @@
-import { createCustomEvent } from ".";
+import { createCustomEvent } from "./createCustomEvent";
 
 declare global {
   interface GlobalEventHandlersEventMap {

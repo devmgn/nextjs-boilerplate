@@ -1,6 +1,6 @@
 import { FaceIcon } from "@radix-ui/react-icons";
 import { render } from "@testing-library/react";
-import { SvgIcon } from ".";
+import { SvgIcon } from "./SvgIcon";
 
 describe("SvgIcon", () => {
   it("renders correctly", () => {
