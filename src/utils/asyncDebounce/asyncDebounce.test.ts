@@ -1,4 +1,4 @@
-import { asyncDebounce } from ".";
+import { asyncDebounce } from "./asyncDebounce";
 
 describe("asyncDebounce", () => {
   beforeEach(() => {
