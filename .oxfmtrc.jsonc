@@ -2,11 +2,11 @@
   "ignorePatterns": [".*/skills/**", "public/**", "src/api/openapi/**"],
   "printWidth": 80,
   "experimentalSortImports": {
-    "newlinesBetween": false
+    "newlinesBetween": false,
   },
   "experimentalTailwindcss": {
     "stylesheet": "./src/lib/styles/globals.css",
     "attributes": ["class", "className"],
-    "functions": ["clsx", "cva", "tv", "tw"]
-  }
+    "functions": ["clsx", "cva", "tv", "tw"],
+  },
 }
