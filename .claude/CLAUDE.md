@@ -10,12 +10,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 pnpm dev              # Development server with Turbopack
 pnpm build            # Build for production
 pnpm start            # Start production server
-pnpm lint             # Run all linting (Oxlint + Oxfmt check)
-pnpm lint:oxlint      # Run Oxlint with auto-fix (includes fn-style/no-top-level-arrow)
-pnpm lint:fmt         # Run Oxfmt formatting (write)
-pnpm lint:fmt:check   # Run Oxfmt formatting (check only)
+pnpm lint             # Run all checks (Oxlint + type check + Oxfmt check)
+pnpm lint:oxlint      # Oxlint check (type-aware + type-check)
+pnpm lint:oxlint:fix  # Oxlint with auto-fix
+pnpm lint:fmt         # Oxfmt formatting (check only)
+pnpm lint:fmt:fix     # Oxfmt formatting (write)
 pnpm lint:knip        # Dead code detection (strict mode)
-pnpm check-types      # TypeScript type checking
 pnpm generate-api     # Generate OpenAPI client
 pnpm generate-api:clean # Clean and regenerate OpenAPI client
 pnpm analyze          # Analyze bundle size (requires build)
@@ -98,7 +98,7 @@ pnpm chromatic        # Deploy to Chromatic (visual testing)
 
 ### Code Quality
 
-- **Oxlint** (.oxlintrc.json) — linting with auto-fix
+- **Oxlint** (oxlint.config.ts) — linting + type checking (type-aware + `--type-check` replaces `tsc --noEmit`)
 - **Oxfmt** (.oxfmtrc.jsonc) — formatting (single quotes, import sorting, Tailwind class sorting)
 - **Knip** (knip.jsonc) — dead code detection (`pnpm lint:knip`)
 - **fn-style jsPlugin** — top-level arrow function check (integrated in Oxlint)

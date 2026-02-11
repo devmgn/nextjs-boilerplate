@@ -36,7 +36,7 @@ export const Test: Story = {
   play: async ({ canvasElement }) => {
     const canvas = within(canvasElement);
     const input = canvas.getByRole("textbox");
-    expect(input).toHaveValue("false");
+    await expect(input).toHaveValue("false");
     const [openButton, closeButton, toggleButton] = canvas.getAllByRole("button");
     await userEvent.click(openButton);
     await expect(input).toHaveValue("true");

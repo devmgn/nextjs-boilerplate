@@ -23,12 +23,19 @@
     "types": ["vitest/globals"]
   },
   "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts"
+    ".next/types/**/*.ts",
+    ".storybook/**/*.ts",
+    ".storybook/**/*.tsx",
+    "next-env.d.ts",
+    "next.config.ts",
+    "oxlint.config.ts",
+    "postcss.config.mjs",
+    "scripts/**/*.mjs",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "vitest.config.ts",
+    "vitest.globalSetup.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "src/api/openapi"]
 }
