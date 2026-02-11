@@ -15,7 +15,8 @@ export default {
             const parent = varDecl?.parent;
             const isTopLevel =
               parent?.type === "Program" ||
-              (parent?.type === "ExportNamedDeclaration" && parent?.parent?.type === "Program");
+              (parent?.type === "ExportNamedDeclaration" &&
+                parent?.parent?.type === "Program");
             if (isTopLevel) {
               context.report({
                 node,

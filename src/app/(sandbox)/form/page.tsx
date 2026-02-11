@@ -35,7 +35,11 @@ export default function Page() {
       }}
     >
       <Field errorMessage={errors.userId?.message} label="User ID">
-        <Input {...register("userId", { valueAsNumber: true })} id={id} type="number" />
+        <Input
+          {...register("userId", { valueAsNumber: true })}
+          id={id}
+          type="number"
+        />
       </Field>
       <Field errorMessage={errors.id?.message} label="ID">
         <Input {...register("id", { valueAsNumber: true })} type="number" />

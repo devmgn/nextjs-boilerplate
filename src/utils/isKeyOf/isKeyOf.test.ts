@@ -7,7 +7,10 @@ const TEST_ENUM = {
   1: "#FFFFFF",
 } as const;
 
-type TestPatterns = [Parameters<typeof isKeyOf>[1], ReturnType<typeof isKeyOf>][];
+type TestPatterns = [
+  Parameters<typeof isKeyOf>[1],
+  ReturnType<typeof isKeyOf>,
+][];
 
 const truthyPatterns: TestPatterns = [
   ["red", true],
@@ -41,7 +44,11 @@ const invalidPatterns: TestPatterns = [
   [Symbol(""), false],
 ];
 
-const testPatterns: TestPatterns = [...truthyPatterns, ...falsyPatterns, ...invalidPatterns];
+const testPatterns: TestPatterns = [
+  ...truthyPatterns,
+  ...falsyPatterns,
+  ...invalidPatterns,
+];
 
 describe("isKeyOf", () => {
   it.each(testPatterns)("value: %s, expected: %s", (value, expected) => {

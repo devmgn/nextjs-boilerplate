@@ -39,9 +39,12 @@ describe("createCustomEvent", () => {
       customTestEvent: CustomEvent<{ data: string }>;
     }
 
-    const event = createCustomEvent<keyof CustomEventMap, { data: string }>("customTestEvent", {
-      detail: { data: "test" },
-    });
+    const event = createCustomEvent<keyof CustomEventMap, { data: string }>(
+      "customTestEvent",
+      {
+        detail: { data: "test" },
+      },
+    );
 
     expect(event.type).toBe("customTestEvent");
     expect(event.detail).toEqual({ data: "test" });

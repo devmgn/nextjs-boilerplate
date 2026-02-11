@@ -18,7 +18,11 @@ const meta = {
     const isComposing = useIsComposing();
 
     const onChange = useDebouncedCallback(
-      (e: React.ChangeEvent<HTMLInputElement> | React.CompositionEvent<HTMLInputElement>) => {
+      (
+        e:
+          | React.ChangeEvent<HTMLInputElement>
+          | React.CompositionEvent<HTMLInputElement>,
+      ) => {
         if (!isComposing && e.target instanceof HTMLInputElement) {
           setResult(e.target.value);
         }

@@ -10,7 +10,14 @@ const meta = {
   },
   argTypes: {
     variant: {
-      options: ["default", "destructive", "outline", "secondary", "ghost", "link"],
+      options: [
+        "default",
+        "destructive",
+        "outline",
+        "secondary",
+        "ghost",
+        "link",
+      ],
       control: { type: "inline-radio" },
     },
     size: {

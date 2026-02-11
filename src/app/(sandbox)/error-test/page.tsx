@@ -23,7 +23,9 @@ export default function ErrorTestPage() {
     } catch (error) {
       // 非同期エラーはErrorBoundaryでキャッチされないため、
       // try-catchで明示的にハンドリングする必要がある
-      setAsyncError(error instanceof Error ? error : new Error("Unknown error"));
+      setAsyncError(
+        error instanceof Error ? error : new Error("Unknown error"),
+      );
     } finally {
       setIsLoading(false);
     }
@@ -39,7 +41,9 @@ export default function ErrorTestPage() {
 
       <div className="space-y-4">
         <div className="rounded-lg border border-gray-200 p-4">
-          <h2 className="mb-2 text-lg font-semibold">Render Error (Caught by ErrorBoundary)</h2>
+          <h2 className="mb-2 text-lg font-semibold">
+            Render Error (Caught by ErrorBoundary)
+          </h2>
           <p className="mb-4 text-sm text-gray-600">
             レンダリング中にエラーを発生させます。ErrorBoundaryがキャッチします。
           </p>
@@ -47,7 +51,9 @@ export default function ErrorTestPage() {
         </div>
 
         <div className="rounded-lg border border-gray-200 p-4">
-          <h2 className="mb-2 text-lg font-semibold">Async Error (Manual Handling)</h2>
+          <h2 className="mb-2 text-lg font-semibold">
+            Async Error (Manual Handling)
+          </h2>
           <p className="mb-4 text-sm text-gray-600">
             非同期エラーはErrorBoundaryではキャッチされないため、try-catchで処理します。
           </p>
@@ -70,7 +76,8 @@ export default function ErrorTestPage() {
         <h3 className="font-medium">ErrorBoundaryの仕組み:</h3>
         <ul className="mt-2 list-inside list-disc space-y-1 text-sm">
           <li>
-            <strong>キャッチする:</strong> レンダリング中のエラー、ライフサイクルメソッドのエラー
+            <strong>キャッチする:</strong>{" "}
+            レンダリング中のエラー、ライフサイクルメソッドのエラー
           </li>
           <li>
             <strong>キャッチしない:</strong>{" "}

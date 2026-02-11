@@ -5,7 +5,8 @@ const labelVariants = tv({
   base: "block w-max text-sm font-medium [[for]]:cursor-pointer [[for]]:has-[+[disabled]]:cursor-auto",
 });
 
-interface LabelProps extends React.ComponentProps<"label">, VariantProps<typeof labelVariants> {}
+interface LabelProps
+  extends React.ComponentProps<"label">, VariantProps<typeof labelVariants> {}
 
 export function Label(props: LabelProps) {
   const { className, ..._props } = props;

@@ -20,7 +20,9 @@ const svgIcon = tv({
 type SvgIconVariants = VariantProps<typeof svgIcon>;
 
 interface SvgIconProps
-  extends Omit<React.ComponentProps<"svg">, "children" | keyof SvgIconVariants>, SvgIconVariants {
+  extends
+    Omit<React.ComponentProps<"svg">, "children" | keyof SvgIconVariants>,
+    SvgIconVariants {
   icon: React.ElementType;
   label: string;
 }
