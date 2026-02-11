@@ -7,8 +7,10 @@ const buttonVariants = tv({
   variants: {
     variant: {
       default: "bg-primary text-primary-foreground hover:bg-primary/90",
-      destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-      outline: "border-input bg-background hover:bg-accent hover:text-accent-foreground border",
+      destructive:
+        "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+      outline:
+        "border-input bg-background hover:bg-accent hover:text-accent-foreground border",
       secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
       ghost: "hover:bg-accent hover:text-accent-foreground",
       link: "text-primary underline-offset-4 hover:underline",
@@ -26,7 +28,8 @@ const buttonVariants = tv({
   },
 });
 
-interface ButtonProps extends React.ComponentProps<"button">, VariantProps<typeof buttonVariants> {
+interface ButtonProps
+  extends React.ComponentProps<"button">, VariantProps<typeof buttonVariants> {
   asChild?: boolean;
 }
 
@@ -34,5 +37,10 @@ export function Button(props: ButtonProps) {
   const { className, variant, size, asChild = false, ..._props } = props;
   const Component = asChild ? Slot : "button";
 
-  return <Component className={buttonVariants({ className, variant, size })} {..._props} />;
+  return (
+    <Component
+      className={buttonVariants({ className, variant, size })}
+      {..._props}
+    />
+  );
 }

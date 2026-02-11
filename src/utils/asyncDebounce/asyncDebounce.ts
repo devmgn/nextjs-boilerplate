@@ -6,7 +6,11 @@ export function asyncDebounce<T extends unknown[], R>(
   options?: Parameters<typeof debounce>[2],
 ): (...args: T) => Promise<R> {
   const debounceFn = debounce(
-    async (resolve: (value: R) => void, reject: (reason?: unknown) => void, args: T) => {
+    async (
+      resolve: (value: R) => void,
+      reject: (reason?: unknown) => void,
+      args: T,
+    ) => {
       try {
         const result = await fn(...args);
         resolve(result);

@@ -12,7 +12,14 @@ export type Expand<T> = T extends object
 /**
  * JavaScriptのプリミティブ型の union
  */
-export type Primitive = null | undefined | string | number | boolean | symbol | bigint;
+export type Primitive =
+  | null
+  | undefined
+  | string
+  | number
+  | boolean
+  | symbol
+  | bigint;
 
 /**
  * プリミティブ値のみをプロパティ値に持つ、1階層のオブジェクト

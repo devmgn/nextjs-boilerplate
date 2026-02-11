@@ -37,7 +37,8 @@ export const Test: Story = {
     const canvas = within(canvasElement);
     const input = canvas.getByRole("textbox");
     await expect(input).toHaveValue("false");
-    const [openButton, closeButton, toggleButton] = canvas.getAllByRole("button");
+    const [openButton, closeButton, toggleButton] =
+      canvas.getAllByRole("button");
     await userEvent.click(openButton);
     await expect(input).toHaveValue("true");
     await userEvent.click(closeButton);

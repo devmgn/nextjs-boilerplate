@@ -171,7 +171,10 @@ export default defineConfig({
     // ── Unicorn ──
     "unicorn/error-message": "warn",
     "unicorn/explicit-length-check": "warn",
-    "unicorn/filename-case": ["warn", { cases: { camelCase: true, pascalCase: true } }],
+    "unicorn/filename-case": [
+      "warn",
+      { cases: { camelCase: true, pascalCase: true } },
+    ],
     "unicorn/new-for-builtins": "warn",
     "unicorn/numeric-separators-style": "warn",
     "unicorn/prefer-array-find": "warn",

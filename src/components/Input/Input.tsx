@@ -13,10 +13,13 @@ const inputVariants = tv({
   },
 });
 
-interface InputProps extends React.ComponentProps<"input">, VariantProps<typeof inputVariants> {}
+interface InputProps
+  extends React.ComponentProps<"input">, VariantProps<typeof inputVariants> {}
 
 export function Input(props: InputProps) {
   const { className, isError, ..._props } = props;
 
-  return <input className={inputVariants({ className, isError })} {..._props} />;
+  return (
+    <input className={inputVariants({ className, isError })} {..._props} />
+  );
 }

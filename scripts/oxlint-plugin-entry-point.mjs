@@ -6,7 +6,10 @@ export default {
     "no-index-tsx": {
       create(context) {
         const { filename } = context;
-        if (!filename.endsWith("/index.tsx") && !filename.endsWith("/index.jsx")) {
+        if (
+          !filename.endsWith("/index.tsx") &&
+          !filename.endsWith("/index.jsx")
+        ) {
           return {};
         }
         return {

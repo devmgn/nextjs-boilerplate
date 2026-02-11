@@ -7,7 +7,10 @@ const TEST_ENUM_OBJECT = {
   1: "#FFFFFF",
 } as const;
 
-type TestPatterns = [Parameters<typeof isValueOf>[1], ReturnType<typeof isValueOf>][];
+type TestPatterns = [
+  Parameters<typeof isValueOf>[1],
+  ReturnType<typeof isValueOf>,
+][];
 
 const truthyObjectPatterns: TestPatterns = [
   ["#FF0000", true],
