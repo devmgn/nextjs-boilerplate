@@ -7,7 +7,7 @@ declare global {
   }
 }
 
-describe("createCustomEvent", () => {
+describe(createCustomEvent, () => {
   it("タイプを指定したとき、そのタイプのCustomEventが作成されること", () => {
     const event = createCustomEvent("testEvent");
     expect(event).toBeInstanceOf(CustomEvent);

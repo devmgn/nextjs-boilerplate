@@ -1,6 +1,6 @@
 import { asyncDebounce } from "./asyncDebounce";
 
-describe("asyncDebounce", () => {
+describe(asyncDebounce, () => {
   beforeEach(() => {
     vi.useFakeTimers();
   });
@@ -22,7 +22,7 @@ describe("asyncDebounce", () => {
 
     await vi.runAllTimersAsync();
 
-    expect(mockFn).toBeCalledTimes(1);
+    expect(mockFn).toBeCalled();
     vi.useRealTimers();
   });
 

@@ -37,9 +37,6 @@ export default defineConfig({
     "unicorn",
     "vitest",
   ],
-  categories: {
-    correctness: "warn",
-  },
   env: {
     builtin: true,
     browser: true,
@@ -63,6 +60,17 @@ export default defineConfig({
     { name: "import-js", specifier: "eslint-plugin-import" },
   ],
   rules: {
+    // ── OxC rules ──
+    "oxc/approx-constant": "error",
+    "oxc/bad-bitwise-operator": "error",
+    "oxc/branches-sharing-code": "error",
+    "oxc/misrefactored-assign-op": "error",
+    "oxc/no-accumulating-spread": "error",
+    "oxc/no-barrel-file": ["error", { threshold: 1 }],
+    "oxc/no-const-enum": "error",
+    "oxc/no-map-spread": "error",
+    "oxc/no-this-in-exported-function": "error",
+
     // ── ESLint core ──
     "array-callback-return": "error",
     curly: "error",
@@ -165,9 +173,6 @@ export default defineConfig({
     "import/no-commonjs": "warn",
     "import/no-default-export": "warn",
 
-    // ── OxC ──
-    "oxc/no-barrel-file": ["error", { threshold: 1 }],
-
     // ── Unicorn ──
     "unicorn/error-message": "warn",
     "unicorn/explicit-length-check": "warn",
@@ -264,8 +269,18 @@ export default defineConfig({
       rules: {
         "no-empty-function": "off",
         "typescript/unbound-method": "off",
+        "vitest/consistent-each-for": "error",
+        "vitest/consistent-test-filename": "error",
         "vitest/consistent-test-it": ["error", { fn: "it" }],
+        "vitest/consistent-vitest-vi": "error",
+        "vitest/hoisted-apis-on-top": "error",
+        "vitest/no-conditional-tests": "error",
         "vitest/no-disabled-tests": "warn",
+        "vitest/prefer-called-once": "error",
+        "vitest/prefer-describe-function-title": "error",
+        "vitest/prefer-expect-type-of": "error",
+        "vitest/prefer-to-be-object": "error",
+        "vitest/require-local-test-context-for-concurrent-snapshots": "error",
         "vitest/require-top-level-describe": "error",
       },
     },

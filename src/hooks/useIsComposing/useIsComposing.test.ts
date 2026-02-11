@@ -1,7 +1,7 @@
 import { act, renderHook } from "@testing-library/react";
 import { useIsComposing } from "./useIsComposing";
 
-describe("useIsComposing", () => {
+describe(useIsComposing, () => {
   let mockElement: HTMLElement;
 
   beforeEach(() => {

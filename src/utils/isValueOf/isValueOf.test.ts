@@ -69,7 +69,7 @@ const testArrayPattern: TestPatterns = [
   ...invalidPatterns,
 ];
 
-describe("isValueOf", () => {
+describe(isValueOf, () => {
   it.each(testObjectPatterns)("value: %s, expected: %s", (value, expected) => {
     expect(isValueOf(TEST_ENUM_OBJECT, value)).toBe(expected);
   });

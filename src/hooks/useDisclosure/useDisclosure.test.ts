@@ -1,7 +1,7 @@
 import { act, renderHook } from "@testing-library/react";
 import { useDisclosure } from "./useDisclosure";
 
-describe("useDisclosure", () => {
+describe(useDisclosure, () => {
   it("initialStateを指定しないとき、初期状態でisOpenはfalseとなること", () => {
     const { result } = renderHook(() => useDisclosure());
     expect(result.current.isOpen).toBe(false);

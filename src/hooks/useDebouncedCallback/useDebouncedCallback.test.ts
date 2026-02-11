@@ -2,7 +2,7 @@ import { renderHook } from "@testing-library/react";
 import { act } from "react";
 import { useDebouncedCallback } from "./useDebouncedCallback";
 
-describe("useDebouncedCallback", () => {
+describe(useDebouncedCallback, () => {
   beforeEach(() => vi.useFakeTimers());
   afterEach(() => vi.useRealTimers());
 
@@ -22,7 +22,7 @@ describe("useDebouncedCallback", () => {
     act(() => {
       vi.advanceTimersByTime(500);
     });
-    expect(callback).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenCalledOnce();
   });
 
   it("flush を呼び出すと即時実行されること", () => {
@@ -35,13 +35,13 @@ describe("useDebouncedCallback", () => {
       // flush で即実行
       result.current.flush();
     });
-    expect(callback).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenCalledOnce();
 
     // その後タイマーを進めても追加で呼ばれない
     act(() => {
       vi.advanceTimersByTime(500);
     });
-    expect(callback).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenCalledOnce();
   });
 
   it("cancel を呼び出すと保留中の実行がキャンセルされること", () => {
@@ -100,7 +100,7 @@ describe("useDebouncedCallback", () => {
     act(() => {
       vi.advanceTimersByTime(500);
     });
-    expect(callback).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenCalledOnce();
   });
 
   it("edges: ['leading'] オプションで最初の呼び出しが即時実行されること", () => {
@@ -112,12 +112,12 @@ describe("useDebouncedCallback", () => {
     act(() => {
       result.current();
     });
-    expect(callback).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenCalledOnce();
 
     act(() => {
       result.current();
     });
-    expect(callback).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenCalledOnce();
 
     act(() => {
       vi.advanceTimersByTime(500);

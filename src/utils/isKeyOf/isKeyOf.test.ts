@@ -50,7 +50,7 @@ const testPatterns: TestPatterns = [
   ...invalidPatterns,
 ];
 
-describe("isKeyOf", () => {
+describe(isKeyOf, () => {
   it.each(testPatterns)("value: %s, expected: %s", (value, expected) => {
     expect(isKeyOf(TEST_ENUM, value)).toBe(expected);
   });
