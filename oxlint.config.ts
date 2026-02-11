@@ -1,6 +1,31 @@
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": [
+import { defineConfig } from "oxlint";
+
+const nextjsSpecialFiles = [
+  ".storybook/main.ts",
+  ".storybook/preview.tsx",
+  "next.config.ts",
+  "oxlint.config.ts",
+  "postcss.config.mjs",
+  "src/**/default.tsx",
+  "src/**/error.tsx",
+  "src/**/forbidden.tsx",
+  "src/**/global-error.tsx",
+  "src/**/instrumentation-client.ts",
+  "src/**/instrumentation.ts",
+  "src/**/layout.tsx",
+  "src/**/loading.tsx",
+  "src/**/not-found.tsx",
+  "src/**/page.tsx",
+  "src/**/proxy.ts",
+  "src/**/sitemap.ts",
+  "src/**/template.tsx",
+  "src/**/unauthorized.tsx",
+  "vitest.config.ts",
+  "vitest.globalSetup.ts",
+];
+
+export default defineConfig({
+  plugins: [
     "import",
     "jsdoc",
     "jsx-a11y",
@@ -10,18 +35,17 @@
     "react",
     "typescript",
     "unicorn",
-    "vitest"
+    "vitest",
   ],
-  "categories": {
-    "correctness": "warn"
+  categories: {
+    correctness: "warn",
   },
-  "env": {
-    "builtin": true,
-    "browser": true,
-    "node": true
+  env: {
+    builtin: true,
+    browser: true,
+    node: true,
   },
-  "ignorePatterns": [
-    ".*/skills/**",
+  ignorePatterns: [
     ".next/**",
     "build/**",
     "next-env.d.ts",
@@ -29,23 +53,26 @@
     "out/**",
     "public/**",
     "src/api/openapi/**",
-    "storybook-static/**"
+    "storybook-static/**",
   ],
-  "jsPlugins": [
+  jsPlugins: [
     "./scripts/oxlint-plugin-entry-point.mjs",
     "./scripts/oxlint-plugin-fn-style.mjs",
     "@tanstack/eslint-plugin-query",
     "eslint-plugin-react-compiler",
-    { "name": "import-js", "specifier": "eslint-plugin-import" }
+    { name: "import-js", specifier: "eslint-plugin-import" },
   ],
-  "rules": {
+  rules: {
     // ── ESLint core ──
-    "curly": "error",
+    "array-callback-return": "error",
+    curly: "error",
     "default-case": "warn",
+    "default-case-last": "warn",
     "default-param-last": "warn",
+    eqeqeq: "error",
     "grouped-accessor-pairs": "warn",
     "guard-for-in": "warn",
-    "no-console": ["warn", { "allow": ["error", "warn"] }],
+    "no-console": ["warn", { allow: ["error", "warn"] }],
     "no-else-return": "warn",
     "no-empty": "warn",
     "no-empty-function": "warn",
@@ -62,14 +89,13 @@
     "no-useless-catch": "warn",
     "no-useless-concat": "warn",
     "no-var": "warn",
-    "no-void": "warn",
+    "no-void": ["warn", { allowAsStatement: true }],
     "operator-assignment": "warn",
     "prefer-object-spread": "warn",
     "prefer-template": "warn",
-    "require-await": "warn",
-    "sort-imports": ["warn", { "ignoreDeclarationSort": true }],
+    "sort-imports": ["warn", { ignoreDeclarationSort: true }],
     "symbol-description": "warn",
-    "yoda": "warn",
+    yoda: "warn",
 
     // ── fn-style (jsPlugin) ──
     "fn-style/no-top-level-arrow": "error",
@@ -83,19 +109,40 @@
     "@typescript-eslint/consistent-type-definitions": "warn",
     "@typescript-eslint/consistent-type-imports": [
       "warn",
-      { "prefer": "type-imports", "fixStyle": "separate-type-imports" }
+      { prefer: "type-imports", fixStyle: "separate-type-imports" },
     ],
     "@typescript-eslint/no-dynamic-delete": "warn",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-inferrable-types": "warn",
     "@typescript-eslint/no-namespace": "warn",
     "@typescript-eslint/no-require-imports": "off",
-    "@typescript-eslint/no-unnecessary-template-expression": "warn",
+    "@typescript-eslint/no-unnecessary-template-expression": "off",
     "@typescript-eslint/no-unused-vars": "off",
-    "@typescript-eslint/only-throw-error": "warn",
+    "@typescript-eslint/only-throw-error": "off",
     "@typescript-eslint/prefer-as-const": "warn",
     "@typescript-eslint/prefer-enum-initializers": "warn",
     "@typescript-eslint/prefer-for-of": "warn",
+
+    // ── TypeScript (type-aware) ──
+    // Replaced from non-type-aware versions
+    "typescript/require-await": "warn",
+    "typescript/only-throw-error": "warn",
+    "typescript/no-unnecessary-template-expression": "warn",
+    // Error level (safety-critical)
+    "typescript/no-floating-promises": "error",
+    "typescript/no-misused-promises": "error",
+    "typescript/await-thenable": "error",
+    "typescript/no-for-in-array": "error",
+    // Warn level (code quality)
+    "typescript/no-unnecessary-type-assertion": "warn",
+    "typescript/no-unnecessary-type-arguments": "warn",
+    "typescript/no-unnecessary-boolean-literal-compare": "warn",
+    "typescript/restrict-plus-operands": "warn",
+    "typescript/restrict-template-expressions": "warn",
+    "typescript/prefer-optional-chain": "warn",
+    "typescript/prefer-nullish-coalescing": "warn",
+    "typescript/return-await": "warn",
+    "typescript/switch-exhaustiveness-check": "warn",
 
     // ── React ──
     "react-hooks/exhaustive-deps": "error",
@@ -119,12 +166,12 @@
     "import/no-default-export": "warn",
 
     // ── OxC ──
-    "oxc/no-barrel-file": ["error", { "threshold": 1 }],
+    "oxc/no-barrel-file": ["error", { threshold: 1 }],
 
     // ── Unicorn ──
     "unicorn/error-message": "warn",
     "unicorn/explicit-length-check": "warn",
-    "unicorn/filename-case": ["warn", { "cases": { "camelCase": true, "pascalCase": true } }],
+    "unicorn/filename-case": ["warn", { cases: { camelCase: true, pascalCase: true } }],
     "unicorn/new-for-builtins": "warn",
     "unicorn/numeric-separators-style": "warn",
     "unicorn/prefer-array-find": "warn",
@@ -136,7 +183,7 @@
 
     // ── jsx-a11y ──
     "jsx-a11y/no-static-element-interactions": "warn",
-    "jsx-a11y/alt-text": ["warn", { "elements": ["img"], "img": ["Image"] }],
+    "jsx-a11y/alt-text": ["warn", { elements: ["img"], img: ["Image"] }],
 
     // ── Next.js ──
     "@next/next/google-font-display": "warn",
@@ -169,42 +216,21 @@
     "@tanstack/query/no-unstable-deps": "error",
     "@tanstack/query/no-void-query-fn": "error",
     "@tanstack/query/stable-query-client": "error",
-    "react-compiler/react-compiler": "error"
+    "react-compiler/react-compiler": "error",
   },
-  "overrides": [
+  overrides: [
     {
       // Next.js special files + config files → allow default export, relax filename
-      "files": [
-        "**/default.tsx",
-        "**/error.tsx",
-        "**/forbidden.tsx",
-        "**/global-error.tsx",
-        "**/instrumentation-client.ts",
-        "**/instrumentation.ts",
-        "**/layout.tsx",
-        "**/loading.tsx",
-        "**/not-found.tsx",
-        "**/page.tsx",
-        "**/proxy.ts",
-        "**/sitemap.ts",
-        "**/template.tsx",
-        "**/unauthorized.tsx",
-        ".storybook/main.ts",
-        ".storybook/preview.tsx",
-        "next.config.ts",
-        "postcss.config.mjs",
-        "vitest.config.ts",
-        "vitest.globalSetup.ts"
-      ],
-      "rules": {
+      files: nextjsSpecialFiles,
+      rules: {
         "import/no-default-export": "off",
-        "unicorn/filename-case": "off"
-      }
+        "unicorn/filename-case": "off",
+      },
     },
     {
       // Storybook stories
-      "files": ["**/*.stories.*", "**/*.story.*"],
-      "rules": {
+      files: ["**/*.stories.*", "**/*.story.*"],
+      rules: {
         "import/no-anonymous-default-export": "off",
         "import/no-default-export": "off",
         "react-hooks/rules-of-hooks": "off",
@@ -217,36 +243,38 @@
         "storybook/prefer-pascal-case": "warn",
         "storybook/story-exports": "error",
         "storybook/use-storybook-expect": "error",
-        "storybook/use-storybook-testing-library": "error"
+        "storybook/use-storybook-testing-library": "error",
       },
-      "jsPlugins": ["eslint-plugin-storybook"]
+      jsPlugins: ["eslint-plugin-storybook"],
     },
     {
       // Storybook main config
-      "files": [".storybook/main.*"],
-      "rules": {
-        "storybook/no-uninstalled-addons": "error"
+      files: [".storybook/main.*"],
+      rules: {
+        "storybook/no-uninstalled-addons": "error",
       },
-      "jsPlugins": ["eslint-plugin-storybook"]
+      jsPlugins: ["eslint-plugin-storybook"],
     },
     {
       // Test files
-      "files": ["**/*.test.*", "**/*.spec.*"],
-      "rules": {
+      files: ["**/*.test.*", "**/*.spec.*"],
+      rules: {
         "no-empty-function": "off",
-        "vitest/consistent-test-it": ["error", { "fn": "it" }],
+        "typescript/unbound-method": "off",
+        "vitest/consistent-test-it": ["error", { fn: "it" }],
         "vitest/no-disabled-tests": "warn",
-        "vitest/require-top-level-describe": "error"
-      }
+        "vitest/require-top-level-describe": "error",
+      },
     },
     {
       // Scripts
-      "files": ["scripts/**"],
-      "rules": {
+      files: ["scripts/**"],
+      rules: {
+        "@typescript-eslint/no-redundant-type-constituents": "off",
         "import/no-anonymous-default-export": "off",
         "import/no-default-export": "off",
-        "unicorn/filename-case": "off"
-      }
-    }
-  ]
-}
+        "unicorn/filename-case": "off",
+      },
+    },
+  ],
+});

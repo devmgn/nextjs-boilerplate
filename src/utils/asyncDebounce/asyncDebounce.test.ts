@@ -14,9 +14,9 @@ describe("asyncDebounce", () => {
     const mockFn = vi.fn().mockResolvedValue("result");
     const debouncedFn = asyncDebounce(mockFn, 100);
 
-    debouncedFn();
-    debouncedFn();
-    debouncedFn();
+    void debouncedFn();
+    void debouncedFn();
+    void debouncedFn();
 
     expect(mockFn).not.toBeCalled();
 

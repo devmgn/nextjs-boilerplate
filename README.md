@@ -25,8 +25,9 @@ pnpm dev
 ```bash
 pnpm dev              # Development server
 pnpm build            # Production build
-pnpm lint             # Lint (Oxlint + Oxfmt + fn-style)
-pnpm check-types      # Type check
+pnpm lint             # Lint + type check (Oxlint + Oxfmt)
+pnpm lint:oxlint:fix  # Oxlint with auto-fix
+pnpm lint:fmt:fix     # Oxfmt formatting (write)
 pnpm test             # Run tests
 pnpm test:coverage    # Tests with coverage (80% threshold)
 pnpm storybook        # Storybook dev server
