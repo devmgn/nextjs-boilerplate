@@ -12,6 +12,9 @@
     "postcss",
     "postcss-load-config",
   ],
+  "oxlint": {
+    "entry": ["oxlint.config.ts"],
+  },
   "storybook": {
     "entry": [
       ".storybook/{preview,vitest.setup}.tsx",
