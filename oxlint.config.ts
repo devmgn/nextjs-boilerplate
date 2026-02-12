@@ -56,8 +56,8 @@ export default defineConfig({
     "./scripts/oxlint-plugin-entry-point.mjs",
     "./scripts/oxlint-plugin-fn-style.mjs",
     "@tanstack/eslint-plugin-query",
-    "eslint-plugin-react-compiler",
     { name: "import-js", specifier: "eslint-plugin-import" },
+    { name: "react-hooks-js", specifier: "eslint-plugin-react-hooks" },
   ],
   rules: {
     // ── OxC rules ──
@@ -153,7 +153,8 @@ export default defineConfig({
     "typescript/switch-exhaustiveness-check": "warn",
 
     // ── React ──
-    "react-hooks/exhaustive-deps": "error",
+    "react/exhaustive-deps": "off",
+    "react/rules-of-hooks": "off",
     "react-perf/jsx-no-new-array-as-prop": "off",
     "react-perf/jsx-no-new-function-as-prop": "off",
     "react-perf/jsx-no-new-object-as-prop": "off",
@@ -224,7 +225,25 @@ export default defineConfig({
     "@tanstack/query/no-unstable-deps": "error",
     "@tanstack/query/no-void-query-fn": "error",
     "@tanstack/query/stable-query-client": "error",
-    "react-compiler/react-compiler": "error",
+
+    // ── react-hooks-js (jsPlugin) ──
+    "react-hooks-js/exhaustive-deps": "error",
+    "react-hooks-js/rules-of-hooks": "error",
+    "react-hooks-js/component-hook-factories": "error",
+    "react-hooks-js/config": "error",
+    "react-hooks-js/error-boundaries": "error",
+    "react-hooks-js/gating": "error",
+    "react-hooks-js/globals": "error",
+    "react-hooks-js/immutability": "error",
+    "react-hooks-js/incompatible-library": "error",
+    "react-hooks-js/preserve-manual-memoization": "error",
+    "react-hooks-js/purity": "error",
+    "react-hooks-js/refs": "error",
+    "react-hooks-js/set-state-in-effect": "error",
+    "react-hooks-js/set-state-in-render": "error",
+    "react-hooks-js/static-components": "error",
+    "react-hooks-js/unsupported-syntax": "error",
+    "react-hooks-js/use-memo": "error",
   },
   overrides: [
     {
@@ -241,7 +260,8 @@ export default defineConfig({
       rules: {
         "import/no-anonymous-default-export": "off",
         "import/no-default-export": "off",
-        "react-hooks/rules-of-hooks": "off",
+        "react/rules-of-hooks": "off",
+        "react-hooks-js/rules-of-hooks": "off",
         "storybook/await-interactions": "error",
         "storybook/context-in-play-function": "error",
         "storybook/default-exports": "error",
