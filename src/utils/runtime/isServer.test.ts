@@ -1,10 +1,10 @@
 describe("isServer", () => {
-  beforeEach(() => {
-    vi.resetModules();
-  });
-
   afterEach(() => {
     vi.unstubAllGlobals();
+  });
+
+  beforeEach(() => {
+    vi.resetModules();
   });
 
   it("window が undefined のとき、isServer が true となること", async () => {

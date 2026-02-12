@@ -17,7 +17,7 @@ describe(createCustomEvent, () => {
   it("detailを指定したとき、そのdetailを持つCustomEventが作成されること", () => {
     const detail = { test: "value" };
     const event = createCustomEvent("testEvent", { detail });
-    expect(event.detail).toEqual(detail);
+    expect(event.detail).toStrictEqual(detail);
   });
 
   it("オプションを指定したとき、そのオプションを持つCustomEventが作成されること", () => {
@@ -47,6 +47,6 @@ describe(createCustomEvent, () => {
     );
 
     expect(event.type).toBe("customTestEvent");
-    expect(event.detail).toEqual({ data: "test" });
+    expect(event.detail).toStrictEqual({ data: "test" });
   });
 });

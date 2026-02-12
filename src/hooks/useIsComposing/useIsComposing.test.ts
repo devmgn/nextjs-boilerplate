@@ -23,17 +23,17 @@ describe(useIsComposing, () => {
   it("マウント時、イベントリスナーが追加されること", () => {
     renderHook(() => useIsComposing());
     expect(mockElement.addEventListener).toHaveBeenCalledTimes(3);
-    expect(mockElement.addEventListener).nthCalledWith(
+    expect(mockElement.addEventListener).toHaveBeenNthCalledWith(
       1,
       "compositionstart",
       expect.any(Function),
     );
-    expect(mockElement.addEventListener).nthCalledWith(
+    expect(mockElement.addEventListener).toHaveBeenNthCalledWith(
       2,
       "compositionupdate",
       expect.any(Function),
     );
-    expect(mockElement.addEventListener).nthCalledWith(
+    expect(mockElement.addEventListener).toHaveBeenNthCalledWith(
       3,
       "compositionend",
       expect.any(Function),
@@ -44,17 +44,17 @@ describe(useIsComposing, () => {
     const { unmount } = renderHook(() => useIsComposing());
     unmount();
     expect(mockElement.removeEventListener).toHaveBeenCalledTimes(3);
-    expect(mockElement.removeEventListener).nthCalledWith(
+    expect(mockElement.removeEventListener).toHaveBeenNthCalledWith(
       1,
       "compositionstart",
       expect.any(Function),
     );
-    expect(mockElement.removeEventListener).nthCalledWith(
+    expect(mockElement.removeEventListener).toHaveBeenNthCalledWith(
       2,
       "compositionupdate",
       expect.any(Function),
     );
-    expect(mockElement.removeEventListener).nthCalledWith(
+    expect(mockElement.removeEventListener).toHaveBeenNthCalledWith(
       3,
       "compositionend",
       expect.any(Function),

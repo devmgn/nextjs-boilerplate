@@ -18,11 +18,11 @@ describe(asyncDebounce, () => {
     void debouncedFn();
     void debouncedFn();
 
-    expect(mockFn).not.toBeCalled();
+    expect(mockFn).not.toHaveBeenCalled();
 
     await vi.runAllTimersAsync();
 
-    expect(mockFn).toBeCalled();
+    expect(mockFn).toHaveBeenCalledWith();
     vi.useRealTimers();
   });
 
