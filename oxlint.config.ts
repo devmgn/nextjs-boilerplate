@@ -148,9 +148,6 @@ export default defineConfig({
     "typescript/switch-exhaustiveness-check": "warn",
 
     // ── React ──
-    "react-perf/jsx-no-new-array-as-prop": "off",
-    "react-perf/jsx-no-new-function-as-prop": "off",
-    "react-perf/jsx-no-new-object-as-prop": "off",
     "react/jsx-boolean-value": "warn",
     "react/jsx-curly-brace-presence": "warn",
     "react/jsx-fragments": "warn",
@@ -162,9 +159,26 @@ export default defineConfig({
     "react/self-closing-comp": "warn",
 
     // ── Import ──
-    "import/no-anonymous-default-export": "warn",
-    "import/no-commonjs": "warn",
-    "import/no-default-export": "warn",
+    "import/consistent-type-specifier-style": "error",
+    "import/default": "error",
+    "import/export": "error",
+    "import/first": "error",
+    "import/named": "error",
+    "import/namespace": "error",
+    "import/no-anonymous-default-export": "error",
+    "import/no-commonjs": "error",
+    "import/no-cycle": "error",
+    "import/no-default-export": "error",
+    "import/no-duplicates": "error",
+    "import/no-dynamic-require": "error",
+    "import/no-empty-named-blocks": "error",
+    "import/no-mutable-exports": "error",
+    "import/no-named-as-default": "error",
+    "import/no-named-as-default-member": "error",
+    "import/no-named-default": "error",
+    "import/no-namespace": "error",
+    "import/no-self-import": "error",
+    "import/no-webpack-loader-syntax": "error",
 
     // ── Unicorn ──
     "unicorn/error-message": "warn",
