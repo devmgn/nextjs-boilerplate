@@ -153,8 +153,6 @@ export default defineConfig({
     "typescript/switch-exhaustiveness-check": "warn",
 
     // ── React ──
-    "react/exhaustive-deps": "off",
-    "react/rules-of-hooks": "off",
     "react-perf/jsx-no-new-array-as-prop": "off",
     "react-perf/jsx-no-new-function-as-prop": "off",
     "react-perf/jsx-no-new-object-as-prop": "off",
@@ -169,7 +167,6 @@ export default defineConfig({
     "react/self-closing-comp": "warn",
 
     // ── Import ──
-    "import-js/newline-after-import": "error",
     "import/no-anonymous-default-export": "warn",
     "import/no-commonjs": "warn",
     "import/no-default-export": "warn",
@@ -217,7 +214,10 @@ export default defineConfig({
     "@next/next/no-typos": "warn",
     "@next/next/no-unwanted-polyfillio": "warn",
 
-    // ── jsPlugins rules ──
+    // ── eslint-plugin-import (jsPlugin) ──
+    "import-js/newline-after-import": "error",
+
+    // ── @tanstack/eslint-plugin-query (jsPlugin) ──
     "@tanstack/query/exhaustive-deps": "error",
     "@tanstack/query/infinite-query-property-order": "error",
     "@tanstack/query/mutation-property-order": "error",
@@ -226,7 +226,7 @@ export default defineConfig({
     "@tanstack/query/no-void-query-fn": "error",
     "@tanstack/query/stable-query-client": "error",
 
-    // ── react-hooks-js (jsPlugin) ──
+    // ── eslint-plugin-react-hooks (jsPlugin) ──
     "react-hooks-js/exhaustive-deps": "error",
     "react-hooks-js/rules-of-hooks": "error",
     "react-hooks-js/component-hook-factories": "error",
@@ -260,14 +260,16 @@ export default defineConfig({
       rules: {
         "import/no-anonymous-default-export": "off",
         "import/no-default-export": "off",
-        "react/rules-of-hooks": "off",
         "react-hooks-js/rules-of-hooks": "off",
         "storybook/await-interactions": "error",
         "storybook/context-in-play-function": "error",
         "storybook/default-exports": "error",
         "storybook/hierarchy-separator": "warn",
+        "storybook/meta-inline-properties": "warn",
+        "storybook/meta-satisfies-type": "error",
         "storybook/no-redundant-story-name": "warn",
         "storybook/no-renderer-packages": "error",
+        "storybook/no-stories-of": "error",
         "storybook/prefer-pascal-case": "warn",
         "storybook/story-exports": "error",
         "storybook/use-storybook-expect": "error",
@@ -287,10 +289,6 @@ export default defineConfig({
       // Test files
       files: ["**/*.test.*", "**/*.spec.*"],
       rules: {
-        "jest/no-untyped-mock-factory": "error",
-        "jest/prefer-called-with": "error",
-        "jest/prefer-mock-promise-shorthand": "error",
-        "jest/prefer-to-be": "error",
         "no-empty-function": "off",
         "typescript/unbound-method": "off",
         "vitest/consistent-each-for": "error",
@@ -314,6 +312,7 @@ export default defineConfig({
         "vitest/no-test-return-statement": "error",
         "vitest/no-unneeded-async-expect-function": "error",
         "vitest/prefer-called-once": "error",
+        "vitest/prefer-called-with": "error",
         "vitest/prefer-comparison-matcher": "error",
         "vitest/prefer-describe-function-title": "error",
         "vitest/prefer-each": "error",
@@ -321,8 +320,10 @@ export default defineConfig({
         "vitest/prefer-expect-resolves": "error",
         "vitest/prefer-expect-type-of": "error",
         "vitest/prefer-hooks-on-top": "error",
+        "vitest/prefer-mock-promise-shorthand": "error",
         "vitest/prefer-spy-on": "error",
         "vitest/prefer-strict-equal": "error",
+        "vitest/prefer-to-be": "error",
         "vitest/prefer-to-be-object": "error",
         "vitest/prefer-to-contain": "error",
         "vitest/prefer-to-have-length": "error",
