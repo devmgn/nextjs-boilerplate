@@ -96,9 +96,7 @@ export default {
               return;
             }
 
-            const elements = /** @type {import("estree").Expression[]} */ (
-              depsArray.elements
-            );
+            const { elements } = depsArray;
             const sortKeys = elements.map((el) => getSortKey(context, el));
 
             // Check if already sorted (case-insensitive)
@@ -134,10 +132,9 @@ export default {
                 const sorted = pairs.map((p) => p.text);
 
                 // Reconstruct the array content, preserving brackets
-                const firstElement = elements[0];
+                const [firstElement] = elements;
                 const lastElement = elements.at(-1);
-                const rangeStart = firstElement.range[0];
-                const rangeEnd = lastElement.range[1];
+                const [rangeStart, rangeEnd] = firstElement.range;
 
                 // Detect separator style from source
                 const originalText = context.sourceCode

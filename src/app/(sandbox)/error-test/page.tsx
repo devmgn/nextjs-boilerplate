@@ -18,7 +18,9 @@ export default function ErrorTestPage() {
 
     try {
       // 実際のAPI呼び出しをシミュレート
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => {
+        setTimeout(resolve, 1000);
+      });
       throw new Error("API request failed: 500 Internal Server Error");
     } catch (error) {
       // 非同期エラーはErrorBoundaryでキャッチされないため、
