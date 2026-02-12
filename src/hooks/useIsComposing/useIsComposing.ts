@@ -39,7 +39,7 @@ export function useIsComposing(): boolean {
     } else {
       activeElementRef.current = null;
     }
-  }, [removeListeners, handleComposition]);
+  }, [handleComposition, removeListeners]);
 
   useEffect(() => {
     updateListeners();
@@ -49,7 +49,7 @@ export function useIsComposing(): boolean {
       document.removeEventListener("focusin", updateListeners);
       removeListeners();
     };
-  }, [updateListeners, removeListeners]);
+  }, [removeListeners, updateListeners]);
 
   return isComposing;
 }

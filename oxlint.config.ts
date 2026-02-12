@@ -55,6 +55,7 @@ export default defineConfig({
   jsPlugins: [
     "./scripts/oxlint-plugin-entry-point.mjs",
     "./scripts/oxlint-plugin-fn-style.mjs",
+    "./scripts/oxlint-plugin-sort-hook-deps.mjs",
     "@tanstack/eslint-plugin-query",
     { name: "import-js", specifier: "eslint-plugin-import" },
     { name: "react-hooks-js", specifier: "eslint-plugin-react-hooks" },
@@ -104,12 +105,6 @@ export default defineConfig({
     "sort-imports": ["warn", { ignoreDeclarationSort: true }],
     "symbol-description": "warn",
     yoda: "warn",
-
-    // ── fn-style (jsPlugin) ──
-    "fn-style/no-top-level-arrow": "error",
-
-    // ── entry-point (jsPlugin) ──
-    "entry-point/no-index-tsx": "error",
 
     // ── TypeScript ──
     "@typescript-eslint/array-type": "warn",
@@ -244,6 +239,15 @@ export default defineConfig({
     "react-hooks-js/static-components": "error",
     "react-hooks-js/unsupported-syntax": "error",
     "react-hooks-js/use-memo": "error",
+
+    // ── fn-style (jsPlugin) ──
+    "fn-style/no-top-level-arrow": "error",
+
+    // ── entry-point (jsPlugin) ──
+    "entry-point/no-index-tsx": "error",
+
+    // ── sort-hook-deps (jsPlugin) ──
+    "sort-hook-deps/sort-deps": "error",
   },
   overrides: [
     {
