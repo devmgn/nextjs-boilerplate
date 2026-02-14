@@ -20,8 +20,24 @@ describe(useDisclosure, () => {
     expect(result.current.isOpen).toBe(true);
   });
 
+  it("すでにisOpenがtrueのとき、open関数を呼び出してもtrueのままであること", () => {
+    const { result } = renderHook(() => useDisclosure(true));
+    act(() => {
+      result.current.open();
+    });
+    expect(result.current.isOpen).toBe(true);
+  });
+
   it("close関数を呼び出したとき、isOpenはfalseとなること", () => {
     const { result } = renderHook(() => useDisclosure(true));
+    act(() => {
+      result.current.close();
+    });
+    expect(result.current.isOpen).toBe(false);
+  });
+
+  it("すでにisOpenがfalseのとき、close関数を呼び出してもfalseのままであること", () => {
+    const { result } = renderHook(() => useDisclosure());
     act(() => {
       result.current.close();
     });
