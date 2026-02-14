@@ -25,9 +25,7 @@ export default function ErrorTestPage() {
     } catch (error) {
       // 非同期エラーはErrorBoundaryでキャッチされないため、
       // try-catchで明示的にハンドリングする必要がある
-      setAsyncError(
-        error instanceof Error ? error : new Error("Unknown error"),
-      );
+      setAsyncError(Error.isError(error) ? error : new Error("Unknown error"));
     } finally {
       setIsLoading(false);
     }
