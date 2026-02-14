@@ -1,55 +1,47 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useSyncExternalStore } from "react";
 
-const COMPOSITION_EVENT_NAMES = [
-  "compositionstart",
-  "compositionupdate",
-  "compositionend",
-] as const satisfies Array<keyof HTMLElementEventMap>;
+const store = { composing: false, callbacks: new Set<() => void>() };
+
+function handleCompositionStart() {
+  store.composing = true;
+  for (const notify of store.callbacks) {
+    notify();
+  }
+}
+
+function handleCompositionEnd() {
+  store.composing = false;
+  for (const notify of store.callbacks) {
+    notify();
+  }
+}
+
+function subscribe(onStoreChange: () => void) {
+  if (store.callbacks.size === 0) {
+    document.addEventListener("compositionstart", handleCompositionStart);
+    document.addEventListener("compositionend", handleCompositionEnd);
+  }
+  store.callbacks.add(onStoreChange);
+  return () => {
+    store.callbacks.delete(onStoreChange);
+    if (store.callbacks.size === 0) {
+      document.removeEventListener("compositionstart", handleCompositionStart);
+      document.removeEventListener("compositionend", handleCompositionEnd);
+    }
+  };
+}
+
+function getSnapshot() {
+  return store.composing;
+}
+
+function getServerSnapshot() {
+  return false;
+}
 
 /**
  * テキストの編集中にユーザーがテキストの作成中かどうかを判定するカスタムフック
  */
 export function useIsComposing(): boolean {
-  const [isComposing, setIsComposing] = useState(false);
-  const activeElementRef = useRef<HTMLElement | null>(null);
-
-  const handleComposition = useCallback((event: CompositionEvent) => {
-    setIsComposing(event.type !== "compositionend");
-  }, []);
-
-  const removeListeners = useCallback(() => {
-    const { current: activeElement } = activeElementRef;
-    if (activeElement === null) {
-      return;
-    }
-    COMPOSITION_EVENT_NAMES.forEach((eventName) => {
-      activeElement.removeEventListener(eventName, handleComposition);
-    });
-  }, [handleComposition]);
-
-  const updateListeners = useCallback(() => {
-    removeListeners();
-
-    const { activeElement } = document;
-    if (activeElement instanceof HTMLElement) {
-      activeElementRef.current = activeElement;
-      for (const eventName of COMPOSITION_EVENT_NAMES) {
-        activeElement.addEventListener(eventName, handleComposition);
-      }
-    } else {
-      activeElementRef.current = null;
-    }
-  }, [handleComposition, removeListeners]);
-
-  useEffect(() => {
-    updateListeners();
-    document.addEventListener("focusin", updateListeners);
-
-    return () => {
-      document.removeEventListener("focusin", updateListeners);
-      removeListeners();
-    };
-  }, [removeListeners, updateListeners]);
-
-  return isComposing;
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 }
