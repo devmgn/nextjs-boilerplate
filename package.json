@@ -45,7 +45,7 @@
     "zod": "4.3.6"
   },
   "devDependencies": {
-    "@faker-js/faker": "10.2.0",
+    "@faker-js/faker": "10.3.0",
     "@next/env": "16.1.6",
     "@storybook/addon-a11y": "10.2.8",
     "@storybook/addon-docs": "10.2.8",
@@ -65,8 +65,8 @@
     "@vitest/coverage-v8": "4.0.18",
     "axe-core": "4.11.1",
     "babel-plugin-react-compiler": "1.0.0",
-    "chromatic": "15.0.0",
-    "eslint": "9.39.2",
+    "chromatic": "15.1.0",
+    "eslint": "10.0.0",
     "eslint-plugin-import": "2.32.0",
     "eslint-plugin-react-hooks": "7.0.1",
     "eslint-plugin-storybook": "10.2.8",
@@ -75,9 +75,9 @@
     "knip": "5.83.1",
     "msw": "2.12.10",
     "msw-storybook-addon": "2.0.6",
-    "oxfmt": "0.28.0",
+    "oxfmt": "0.31.0",
     "oxlint": "1.46.0",
-    "oxlint-tsgolint": "0.11.5",
+    "oxlint-tsgolint": "0.12.2",
     "playwright": "1.58.2",
     "storybook": "10.2.8",
     "tailwindcss": "4.1.18",
@@ -87,7 +87,7 @@
   "engines": {
     "node": "24.13.1"
   },
-  "packageManager": "pnpm@10.28.2",
+  "packageManager": "pnpm@10.29.2",
   "msw": {
     "workerDirectory": "./public"
   }
