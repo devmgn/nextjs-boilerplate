@@ -9,10 +9,13 @@ interface LabelProps
   extends React.ComponentProps<"label">, VariantProps<typeof labelVariants> {}
 
 export function Label(props: LabelProps) {
-  const { className, ..._props } = props;
+  const { className, htmlFor, ..._props } = props;
 
   return (
-    // oxlint-disable-next-line jsx-a11y/label-has-associated-control
-    <label className={labelVariants({ className })} {..._props} />
+    <label
+      className={labelVariants({ className })}
+      htmlFor={htmlFor}
+      {..._props}
+    />
   );
 }
