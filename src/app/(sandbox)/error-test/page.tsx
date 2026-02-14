@@ -64,7 +64,12 @@ export default function ErrorTestPage() {
             <div className="mt-4 rounded border border-red-200 bg-red-50 p-3">
               <p className="font-medium text-red-800">Error caught:</p>
               <p className="text-sm text-red-600">{asyncError.message}</p>
-              <Button className="mt-2" onClick={() => setAsyncError(null)}>
+              <Button
+                className="mt-2"
+                onClick={() => {
+                  setAsyncError(null);
+                }}
+              >
                 Clear Error
               </Button>
             </div>

@@ -34,7 +34,7 @@ function getSortKey(context, node) {
  */
 function getDepsArray(node) {
   const calleeName = getHookName(node.callee);
-  if (!calleeName || !HOOKS_WITH_DEPS.has(calleeName)) {
+  if (calleeName === null || !HOOKS_WITH_DEPS.has(calleeName)) {
     return null;
   }
 
@@ -133,7 +133,6 @@ export default {
 
                 // Reconstruct the array content, preserving brackets
                 const [firstElement] = elements;
-                const lastElement = elements.at(-1);
                 const [rangeStart, rangeEnd] = firstElement.range;
 
                 // Detect separator style from source

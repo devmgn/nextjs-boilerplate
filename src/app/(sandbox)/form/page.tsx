@@ -31,7 +31,9 @@ export default function Page() {
       className="grid-template-cols-[auto] grid max-w-2xl gap-4"
       control={control}
       onSubmit={({ data }) => {
-        startTransition(() => formAction(data));
+        startTransition(() => {
+          formAction(data);
+        });
       }}
     >
       <Field errorMessage={errors.userId?.message} label="User ID">

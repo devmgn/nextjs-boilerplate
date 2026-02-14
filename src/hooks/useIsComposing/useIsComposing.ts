@@ -4,7 +4,7 @@ const COMPOSITION_EVENT_NAMES = [
   "compositionstart",
   "compositionupdate",
   "compositionend",
-] as const satisfies (keyof HTMLElementEventMap)[];
+] as const satisfies Array<keyof HTMLElementEventMap>;
 
 /**
  * テキストの編集中にユーザーがテキストの作成中かどうかを判定するカスタムフック

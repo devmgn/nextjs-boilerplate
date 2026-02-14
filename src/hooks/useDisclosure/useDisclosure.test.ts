@@ -14,21 +14,29 @@ describe(useDisclosure, () => {
 
   it("open関数を呼び出したとき、isOpenはtrueとなること", () => {
     const { result } = renderHook(() => useDisclosure());
-    act(() => result.current.open());
+    act(() => {
+      result.current.open();
+    });
     expect(result.current.isOpen).toBe(true);
   });
 
   it("close関数を呼び出したとき、isOpenはfalseとなること", () => {
     const { result } = renderHook(() => useDisclosure(true));
-    act(() => result.current.close());
+    act(() => {
+      result.current.close();
+    });
     expect(result.current.isOpen).toBe(false);
   });
 
   it("toggle関数を呼び出したとき、isOpenの状態が反転すること", () => {
     const { result } = renderHook(() => useDisclosure());
-    act(() => result.current.toggle());
+    act(() => {
+      result.current.toggle();
+    });
     expect(result.current.isOpen).toBe(true);
-    act(() => result.current.toggle());
+    act(() => {
+      result.current.toggle();
+    });
     expect(result.current.isOpen).toBe(false);
   });
 });

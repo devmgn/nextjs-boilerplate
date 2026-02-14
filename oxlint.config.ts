@@ -64,7 +64,7 @@ export default defineConfig({
     vitest: { typecheck: true },
   },
   rules: {
-    // ── OxC rules ──
+    // ── OxC rules (builtin) ──
     "oxc/approx-constant": "error",
     "oxc/bad-bitwise-operator": "error",
     "oxc/branches-sharing-code": "error",
@@ -75,7 +75,7 @@ export default defineConfig({
     "oxc/no-map-spread": "error",
     "oxc/no-this-in-exported-function": "error",
 
-    // ── ESLint core ──
+    // ── ESLint rules (builtin) ──
     "array-callback-return": "error",
     curly: "error",
     "default-case": "error",
@@ -156,48 +156,74 @@ export default defineConfig({
     "symbol-description": "error",
     yoda: "error",
 
-    // ── TypeScript ──
-    "@typescript-eslint/array-type": "warn",
-    "@typescript-eslint/ban-ts-comment": "off",
-    "@typescript-eslint/consistent-type-definitions": "warn",
-    "@typescript-eslint/consistent-type-imports": [
+    // ── TypeScript rules (builtin) ──
+    "typescript/adjacent-overload-signatures": "error",
+    "typescript/array-type": [
+      "error",
+      { default: "array-simple", readonly: "array-simple" },
+    ],
+    "typescript/class-literal-property-style": "error",
+    "typescript/consistent-generic-constructors": "error",
+    "typescript/consistent-indexed-object-style": "error",
+    "typescript/consistent-type-assertions": "error",
+    "typescript/consistent-type-definitions": "error",
+    "typescript/consistent-type-imports": [
       "warn",
       { prefer: "type-imports", fixStyle: "separate-type-imports" },
     ],
-    "@typescript-eslint/no-dynamic-delete": "warn",
-    "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/no-inferrable-types": "warn",
-    "@typescript-eslint/no-namespace": "warn",
-    "@typescript-eslint/no-require-imports": "off",
-    "@typescript-eslint/no-unnecessary-template-expression": "off",
-    "@typescript-eslint/no-unused-vars": "off",
-    "@typescript-eslint/only-throw-error": "off",
-    "@typescript-eslint/prefer-as-const": "warn",
-    "@typescript-eslint/prefer-enum-initializers": "warn",
-    "@typescript-eslint/prefer-for-of": "warn",
-
-    // ── TypeScript (type-aware) ──
-    // Replaced from non-type-aware versions
-    "typescript/require-await": "warn",
-    "typescript/only-throw-error": "warn",
-    "typescript/no-unnecessary-template-expression": "warn",
-    // Error level (safety-critical)
-    "typescript/no-floating-promises": "error",
+    "typescript/no-confusing-non-null-assertion": "error",
+    "typescript/no-confusing-void-expression": "error",
+    "typescript/no-deprecated": "error",
+    "typescript/no-dynamic-delete": "error",
+    "typescript/no-empty-interface": "error",
+    "typescript/no-empty-object-type": "error",
+    "typescript/no-explicit-any": "error",
+    "typescript/no-extraneous-class": "error",
+    "typescript/no-import-type-side-effects": "error",
+    "typescript/no-inferrable-types": "error",
+    "typescript/no-invalid-void-type": "error",
     "typescript/no-misused-promises": "error",
-    "typescript/await-thenable": "error",
-    "typescript/no-for-in-array": "error",
-    // Warn level (code quality)
-    "typescript/no-unnecessary-type-assertion": "warn",
-    "typescript/no-unnecessary-type-arguments": "warn",
-    "typescript/no-unnecessary-boolean-literal-compare": "warn",
-    "typescript/restrict-plus-operands": "warn",
-    "typescript/restrict-template-expressions": "warn",
-    "typescript/prefer-optional-chain": "warn",
-    "typescript/prefer-nullish-coalescing": "warn",
-    "typescript/return-await": "warn",
-    "typescript/switch-exhaustiveness-check": "warn",
+    "typescript/no-mixed-enums": "error",
+    "typescript/no-namespace": "error",
+    "typescript/no-non-null-asserted-nullish-coalescing": "error",
+    "typescript/no-non-null-assertion": "error",
+    "typescript/no-require-imports": "error",
+    "typescript/no-unnecessary-boolean-literal-compare": "error",
+    "typescript/no-unnecessary-template-expression": "error",
+    "typescript/no-unnecessary-type-arguments": "error",
+    "typescript/no-unnecessary-type-assertion": "error",
+    "typescript/no-unnecessary-type-constraint": "error",
+    "typescript/no-unsafe-argument": "error",
+    "typescript/no-unsafe-assignment": "error",
+    "typescript/no-unsafe-call": "error",
+    "typescript/no-unsafe-enum-comparison": "error",
+    "typescript/no-unsafe-function-type": "error",
+    "typescript/no-unsafe-member-access": "error",
+    "typescript/no-unsafe-return": "error",
+    "typescript/no-unsafe-type-assertion": "error",
+    "typescript/no-var-requires": "error",
+    "typescript/non-nullable-type-assertion-style": "error",
+    "typescript/only-throw-error": "error",
+    "typescript/prefer-enum-initializers": "error",
+    "typescript/prefer-for-of": "error",
+    "typescript/prefer-function-type": "error",
+    "typescript/prefer-includes": "error",
+    "typescript/prefer-literal-enum-member": "error",
+    "typescript/prefer-nullish-coalescing": "error",
+    "typescript/prefer-optional-chain": "error",
+    "typescript/prefer-promise-reject-errors": "error",
+    "typescript/prefer-reduce-type-parameter": "error",
+    "typescript/prefer-return-this-type": "error",
+    "typescript/prefer-ts-expect-error": "error",
+    "typescript/related-getter-setter-pairs": "error",
+    "typescript/require-await": "error",
+    "typescript/restrict-plus-operands": "error",
+    "typescript/return-await": "error",
+    "typescript/strict-boolean-expressions": "error",
+    "typescript/switch-exhaustiveness-check": "error",
+    "typescript/use-unknown-in-catch-callback-variable": "error",
 
-    // ── React ──
+    // ── React rules (builtin) ──
     "react/jsx-boolean-value": "warn",
     "react/jsx-curly-brace-presence": "warn",
     "react/jsx-fragments": "warn",
@@ -208,7 +234,7 @@ export default defineConfig({
     "react/react-in-jsx-scope": "off",
     "react/self-closing-comp": "warn",
 
-    // ── Import ──
+    // ── Import rules (builtin) ──
     "import/consistent-type-specifier-style": "error",
     "import/default": "error",
     "import/export": "error",
@@ -230,7 +256,7 @@ export default defineConfig({
     "import/no-self-import": "error",
     "import/no-webpack-loader-syntax": "error",
 
-    // ── Unicorn ──
+    // ── Unicorn rules (builtin) ──
     "unicorn/catch-error-name": "error",
     "unicorn/consistent-assert": "error",
     "unicorn/consistent-date-clone": "error",
@@ -348,7 +374,7 @@ export default defineConfig({
     "unicorn/text-encoding-identifier-case": "error",
     "unicorn/throw-new-error": "error",
 
-    // ── jsx-a11y ──
+    // ── jsx-a11y rules ──
     "jsx-a11y/alt-text": ["error", { img: ["Image"] }],
     "jsx-a11y/anchor-has-content": "error",
     "jsx-a11y/anchor-is-valid": "error",
@@ -383,7 +409,7 @@ export default defineConfig({
     "jsx-a11y/scope": "error",
     "jsx-a11y/tabindex-no-positive": "error",
 
-    // ── Next.js ──
+    // ── Next.js rules ──
     "nextjs/google-font-display": "error",
     "nextjs/google-font-preconnect": "error",
     "nextjs/inline-script-id": "error",
@@ -406,7 +432,7 @@ export default defineConfig({
     "nextjs/no-typos": "error",
     "nextjs/no-unwanted-polyfillio": "error",
 
-    // ── Promise ──
+    // ── Promise rules (builtin)──
     "promise/always-return": "error",
     "promise/catch-or-return": "error",
     "promise/no-callback-in-promise": "error",
@@ -477,6 +503,8 @@ export default defineConfig({
       rules: {
         "import/no-anonymous-default-export": "off",
         "import/no-default-export": "off",
+        "typescript/consistent-type-assertions": "off",
+        "typescript/no-explicit-any": "off",
         "react-hooks-js/rules-of-hooks": "off",
         "storybook/await-interactions": "error",
         "storybook/context-in-play-function": "error",
@@ -508,6 +536,9 @@ export default defineConfig({
       rules: {
         "no-empty-function": "off",
         "no-undef": "off",
+        "typescript/consistent-type-assertions": "off",
+        "typescript/no-explicit-any": "off",
+        "typescript/no-unsafe-assignment": "off",
         "typescript/unbound-method": "off",
         "vitest/consistent-each-for": "error",
         "vitest/consistent-test-filename": "error",
@@ -554,10 +585,16 @@ export default defineConfig({
       },
     },
     {
-      // Scripts
+      // Scripts — plain .mjs files lack TS type info, so no-unsafe-* rules produce false positives
       files: ["scripts/**"],
       rules: {
-        "@typescript-eslint/no-redundant-type-constituents": "off",
+        "typescript/no-redundant-type-constituents": "off",
+        "typescript/no-unsafe-argument": "off",
+        "typescript/no-unsafe-assignment": "off",
+        "typescript/no-unsafe-call": "off",
+        "typescript/no-unsafe-member-access": "off",
+        "typescript/no-unsafe-return": "off",
+        "typescript/strict-boolean-expressions": "off",
         "import/no-anonymous-default-export": "off",
         "import/no-default-export": "off",
         "unicorn/filename-case": "off",

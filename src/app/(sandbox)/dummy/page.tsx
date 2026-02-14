@@ -24,6 +24,7 @@ export default function Page() {
   asyncDebounce(() => {
     // noop
   }, 1000);
+  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
   createCustomEvent("" as keyof GlobalEventHandlersEventMap);
   const _isServer = isServer;
   const _isDevelopment = isDevelopment;
