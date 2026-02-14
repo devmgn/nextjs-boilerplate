@@ -42,6 +42,63 @@ describe(useIsComposing, () => {
     expect(result2.current).toBe(false);
   });
 
+  it("デフォルトでキャプチャフェーズでイベントを購読すること", () => {
+    const spy = vi.spyOn(document, "addEventListener");
+
+    const { unmount } = renderHook(() => useIsComposing());
+
+    expect(spy).toHaveBeenCalledWith(
+      "compositionstart",
+      expect.any(Function),
+      true,
+    );
+    expect(spy).toHaveBeenCalledWith(
+      "compositionend",
+      expect.any(Function),
+      true,
+    );
+
+    unmount();
+    spy.mockRestore();
+  });
+
+  it("capture=false でバブルフェーズでイベントを購読すること", () => {
+    const spy = vi.spyOn(document, "addEventListener");
+
+    const { unmount } = renderHook(() => useIsComposing(false));
+
+    expect(spy).toHaveBeenCalledWith(
+      "compositionstart",
+      expect.any(Function),
+      false,
+    );
+    expect(spy).toHaveBeenCalledWith(
+      "compositionend",
+      expect.any(Function),
+      false,
+    );
+
+    unmount();
+    spy.mockRestore();
+  });
+
+  it("capture が異なるインスタンスは独立したstoreを持つこと", () => {
+    const { result: capture } = renderHook(() => useIsComposing(true));
+    const { result: bubble } = renderHook(() => useIsComposing(false));
+
+    act(() => {
+      dispatchComposition("compositionstart");
+    });
+    expect(capture.current).toBe(true);
+    expect(bubble.current).toBe(true);
+
+    act(() => {
+      dispatchComposition("compositionend");
+    });
+    expect(capture.current).toBe(false);
+    expect(bubble.current).toBe(false);
+  });
+
   it("アンマウント後はイベントに反応しないこと", () => {
     const { result, unmount } = renderHook(() => useIsComposing());
     unmount();

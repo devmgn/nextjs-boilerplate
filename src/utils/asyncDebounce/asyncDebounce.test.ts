@@ -1,16 +1,10 @@
 import { asyncDebounce } from "./asyncDebounce";
 
 describe(asyncDebounce, () => {
-  beforeEach(() => {
-    vi.useFakeTimers();
-  });
-
-  afterEach(() => {
-    vi.useRealTimers();
-  });
+  beforeEach(() => vi.useFakeTimers());
+  afterEach(() => vi.useRealTimers());
 
   it("関数が複数回呼び出されたとき、デバウンスされること", async () => {
-    vi.useFakeTimers();
     const mockFn = vi.fn().mockResolvedValue("result");
     const debouncedFn = asyncDebounce(mockFn, 100);
 
@@ -22,8 +16,7 @@ describe(asyncDebounce, () => {
 
     await vi.runAllTimersAsync();
 
-    expect(mockFn).toHaveBeenCalledWith();
-    vi.useRealTimers();
+    expect(mockFn).toHaveBeenCalledOnce();
   });
 
   it("デバウンスされた関数が呼び出されたとき、正しい結果を返すこと", async () => {
@@ -68,5 +61,40 @@ describe(asyncDebounce, () => {
 
     expect(result).toBe("1-test");
     expect(mockFn).toHaveBeenCalledExactlyOnceWith(1, "test");
+  });
+
+  it("複数回呼び出されたとき、全てのPromiseが同じ結果でresolveされること", async () => {
+    const mockFn = vi.fn().mockResolvedValue("result");
+    const debouncedFn = asyncDebounce(mockFn, 100);
+
+    const p1 = debouncedFn();
+    const p2 = debouncedFn();
+    const p3 = debouncedFn();
+
+    await vi.runAllTimersAsync();
+
+    await expect(p1).resolves.toBe("result");
+    await expect(p2).resolves.toBe("result");
+    await expect(p3).resolves.toBe("result");
+    expect(mockFn).toHaveBeenCalledOnce();
+  });
+
+  it("複数回呼び出されてエラーが発生したとき、全てのPromiseがrejectされること", async () => {
+    const mockFn = vi.fn().mockRejectedValue(new Error("Test error"));
+    const debouncedFn = asyncDebounce(mockFn, 100);
+
+    const p1 = debouncedFn();
+    const p2 = debouncedFn();
+
+    // oxlint-disable-next-line promise/prefer-await-to-then -- タイマー発火前にrejectionハンドラを設定する必要がある
+    const settled = Promise.allSettled([p1, p2]);
+
+    await vi.runAllTimersAsync();
+
+    const results = await settled;
+    expect(results).toStrictEqual([
+      { status: "rejected", reason: new Error("Test error") },
+      { status: "rejected", reason: new Error("Test error") },
+    ]);
   });
 });

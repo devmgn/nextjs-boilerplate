@@ -1,21 +1,29 @@
+import type { DebounceOptions } from "es-toolkit";
 import { debounce } from "es-toolkit";
 
 export function asyncDebounce<T extends unknown[], R>(
   fn: (...args: T) => R | Promise<R>,
   wait: number,
-  options?: Parameters<typeof debounce>[2],
+  options?: DebounceOptions,
 ): (...args: T) => Promise<R> {
-  const debounceFn = debounce(
-    async (
-      resolve: (value: R) => void,
-      reject: (reason?: unknown) => void,
-      args: T,
-    ) => {
+  const pending: Array<{
+    resolve: (value: R) => void;
+    reject: (reason?: unknown) => void;
+  }> = [];
+
+  const debouncedFn = debounce(
+    async (args: T) => {
+      const callbacks = pending.splice(0);
+
       try {
         const result = await fn(...args);
-        resolve(result);
+        for (const { resolve } of callbacks) {
+          resolve(result);
+        }
       } catch (error) {
-        reject(error);
+        for (const { reject } of callbacks) {
+          reject(error);
+        }
       }
     },
     wait,
@@ -24,6 +32,7 @@ export function asyncDebounce<T extends unknown[], R>(
 
   return (...args: T): Promise<R> =>
     new Promise((resolve, reject) => {
-      debounceFn(resolve, reject, args);
+      pending.push({ resolve, reject });
+      debouncedFn(args);
     });
 }
