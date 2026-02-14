@@ -29,6 +29,6 @@ const meta = {
 } satisfies Meta<typeof useIsComposing>;
 
 export default meta;
-type Story = StoryObj<typeof useIsComposing>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};

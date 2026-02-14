@@ -60,7 +60,14 @@ describe(useDebouncedCallback, () => {
 
   it("コンポーネントのアンマウント時にdebouncedFnがキャンセルされること", () => {
     const callback = vi.fn();
-    const { unmount } = renderHook(() => useDebouncedCallback(callback, 500));
+    const { result, unmount } = renderHook(() =>
+      useDebouncedCallback(callback, 500),
+    );
+
+    // 保留中の実行がある状態でアンマウント
+    act(() => {
+      result.current();
+    });
 
     unmount();
     act(() => {
@@ -84,26 +91,7 @@ describe(useDebouncedCallback, () => {
     expect(callback).toHaveBeenCalledExactlyOnceWith("test", 123);
   });
 
-  it("異なるwait時間で正しく動作すること", () => {
-    const callback = vi.fn();
-    const { result } = renderHook(() => useDebouncedCallback(callback, 1000));
-
-    act(() => {
-      result.current();
-    });
-
-    act(() => {
-      vi.advanceTimersByTime(500);
-    });
-    expect(callback).not.toHaveBeenCalled();
-
-    act(() => {
-      vi.advanceTimersByTime(500);
-    });
-    expect(callback).toHaveBeenCalledOnce();
-  });
-
-  it("edges: ['leading'] オプションで最初の呼び出しが即時実行されること", () => {
+  it("edges: ['leading', 'trailing'] オプションで先頭と末尾の両方で実行されること", () => {
     const callback = vi.fn();
     const { result } = renderHook(() =>
       useDebouncedCallback(callback, 500, { edges: ["leading", "trailing"] }),
@@ -123,6 +111,38 @@ describe(useDebouncedCallback, () => {
       vi.advanceTimersByTime(500);
     });
     expect(callback).toHaveBeenCalledTimes(2);
+  });
+
+  it("wait が変更されると新しい debounced 関数が生成されること", () => {
+    const callback = vi.fn();
+    let wait = 500;
+    const { result, rerender } = renderHook(() =>
+      useDebouncedCallback(callback, wait),
+    );
+
+    // 旧 wait (500ms) で呼び出し
+    act(() => {
+      result.current();
+    });
+
+    // wait を変更して再レンダリング → 保留中の実行はクリーンアップされる
+    wait = 1000;
+    rerender();
+
+    // 旧タイマー (500ms) が発火しないことを確認
+    act(() => {
+      vi.advanceTimersByTime(500);
+    });
+    expect(callback).not.toHaveBeenCalled();
+
+    // 新しい wait (1000ms) で動作すること
+    act(() => {
+      result.current();
+    });
+    act(() => {
+      vi.advanceTimersByTime(1000);
+    });
+    expect(callback).toHaveBeenCalledOnce();
   });
 
   it("schedule メソッドでdebounce実行をスケジュールできること", () => {

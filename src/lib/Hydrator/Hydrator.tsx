@@ -50,9 +50,7 @@ export async function Hydrator<
   try {
     // すべてのクエリを並行してプリフェッチ
     await Promise.all(
-      fetchQueryOptions.map(async (options) => {
-        await queryClient.prefetchQuery(options);
-      }),
+      fetchQueryOptions.map((options) => queryClient.prefetchQuery(options)),
     );
 
     // ハイドレーションステートを作成し、HydrationBoundary に渡す

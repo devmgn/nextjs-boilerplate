@@ -23,21 +23,9 @@ const falsyPatterns: TestPatterns = [
   ["age", false],
   ["email", false],
   [11, false],
-  ["name", false],
-  ["age", false],
-  ["email", false],
-  [11, false],
 ];
 
 const invalidPatterns: TestPatterns = [
-  [{}, false],
-  [[], false],
-  [null, false],
-  [undefined, false],
-  [true, false],
-  [false, false],
-  [() => {}, false],
-  [Symbol(""), false],
   [{}, false],
   [[], false],
   [null, false],
