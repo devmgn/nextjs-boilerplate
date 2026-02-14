@@ -20,7 +20,6 @@
     "analyze": "next experimental-analyze",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "pnpm dlx chromatic",
     "generate-api": "pnpm dlx @openapitools/openapi-generator-cli generate -i openapi.yml -g typescript-fetch -o ./src/api/openapi -c openapiconfig.json --openapi-normalizer SET_TAGS_FOR_ALL_OPERATIONS=default",
     "generate-api:clean": "rm -rf src/api/openapi && pnpm generate-api"
   },
@@ -65,7 +64,6 @@
     "@vitest/coverage-v8": "4.0.18",
     "axe-core": "4.11.1",
     "babel-plugin-react-compiler": "1.0.0",
-    "chromatic": "15.1.0",
     "eslint": "10.0.0",
     "eslint-plugin-import": "2.32.0",
     "eslint-plugin-react-hooks": "7.0.1",

@@ -37,7 +37,6 @@ pnpm vitest run path/to/test.test.ts  # Run specific test file
 ```bash
 pnpm storybook        # Start Storybook development server
 pnpm build-storybook  # Build static Storybook
-pnpm chromatic        # Deploy to Chromatic (visual testing)
 ```
 
 ## Project Architecture
@@ -65,7 +64,7 @@ pnpm chromatic        # Deploy to Chromatic (visual testing)
 - **Vitest** with 80% coverage requirement
   - Unit tests (JSDOM) + Storybook tests (Playwright)
   - @testing-library/react, jest-extended, @faker-js/faker
-- **Storybook 10** with Vitest integration, a11y testing, MSW, Chromatic
+- **Storybook 10** with Vitest integration, a11y testing, MSW
 - **MSW** for API mocking (worker directory: ./public)
 
 ### Directory Structure
