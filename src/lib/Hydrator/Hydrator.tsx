@@ -23,12 +23,9 @@ type HydratorProps<
   /**
    * プリフェッチするクエリオプションの配列
    */
-  fetchQueryOptions: FetchQueryOptions<
-    TQueryFnData,
-    TError,
-    TData,
-    TQueryKey
-  >[];
+  fetchQueryOptions: Array<
+    FetchQueryOptions<TQueryFnData, TError, TData, TQueryKey>
+  >;
   /**
    * HydrationBoundary コンポーネントに渡す追加のプロパティ
    */
@@ -53,7 +50,9 @@ export async function Hydrator<
   try {
     // すべてのクエリを並行してプリフェッチ
     await Promise.all(
-      fetchQueryOptions.map((options) => queryClient.prefetchQuery(options)),
+      fetchQueryOptions.map(async (options) => {
+        await queryClient.prefetchQuery(options);
+      }),
     );
 
     // ハイドレーションステートを作成し、HydrationBoundary に渡す

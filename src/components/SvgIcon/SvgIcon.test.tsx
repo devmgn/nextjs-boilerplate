@@ -2,7 +2,7 @@ import { FaceIcon } from "@radix-ui/react-icons";
 import { render } from "@testing-library/react";
 import { SvgIcon } from "./SvgIcon";
 
-describe("SvgIcon", () => {
+describe(SvgIcon, () => {
   it("renders correctly", () => {
     const { asFragment } = render(
       <SvgIcon icon={FaceIcon} label="face icon" />,

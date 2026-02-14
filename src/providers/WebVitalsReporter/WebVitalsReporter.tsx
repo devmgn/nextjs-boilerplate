@@ -14,6 +14,7 @@ export function WebVitalsReporter() {
   useReportWebVitals((metric) => {
     // oxlint-disable-next-line no-console
     console.info(
+      // oxlint-disable-next-line typescript/no-unsafe-member-access
       `%c [Web Vitals]: ${metric.name}: ${metric.value} / Rating: ${metric.rating}`,
       style.toString(),
       metric,

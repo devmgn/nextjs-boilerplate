@@ -4,7 +4,7 @@ const COMPOSITION_EVENT_NAMES = [
   "compositionstart",
   "compositionupdate",
   "compositionend",
-] as const satisfies (keyof HTMLElementEventMap)[];
+] as const satisfies Array<keyof HTMLElementEventMap>;
 
 /**
  * テキストの編集中にユーザーがテキストの作成中かどうかを判定するカスタムフック
@@ -39,7 +39,7 @@ export function useIsComposing(): boolean {
     } else {
       activeElementRef.current = null;
     }
-  }, [removeListeners, handleComposition]);
+  }, [handleComposition, removeListeners]);
 
   useEffect(() => {
     updateListeners();
@@ -49,7 +49,7 @@ export function useIsComposing(): boolean {
       document.removeEventListener("focusin", updateListeners);
       removeListeners();
     };
-  }, [updateListeners, removeListeners]);
+  }, [removeListeners, updateListeners]);
 
   return isComposing;
 }

@@ -7,10 +7,9 @@ const TEST_ENUM = {
   1: "#FFFFFF",
 } as const;
 
-type TestPatterns = [
-  Parameters<typeof isKeyOf>[1],
-  ReturnType<typeof isKeyOf>,
-][];
+type TestPatterns = Array<
+  [Parameters<typeof isKeyOf>[1], ReturnType<typeof isKeyOf>]
+>;
 
 const truthyPatterns: TestPatterns = [
   ["red", true],
@@ -50,7 +49,7 @@ const testPatterns: TestPatterns = [
   ...invalidPatterns,
 ];
 
-describe("isKeyOf", () => {
+describe(isKeyOf, () => {
   it.each(testPatterns)("value: %s, expected: %s", (value, expected) => {
     expect(isKeyOf(TEST_ENUM, value)).toBe(expected);
   });

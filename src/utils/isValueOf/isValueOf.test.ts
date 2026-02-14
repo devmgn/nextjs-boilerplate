@@ -7,10 +7,9 @@ const TEST_ENUM_OBJECT = {
   1: "#FFFFFF",
 } as const;
 
-type TestPatterns = [
-  Parameters<typeof isValueOf>[1],
-  ReturnType<typeof isValueOf>,
-][];
+type TestPatterns = Array<
+  [Parameters<typeof isValueOf>[1], ReturnType<typeof isValueOf>]
+>;
 
 const truthyObjectPatterns: TestPatterns = [
   ["#FF0000", true],
@@ -69,7 +68,7 @@ const testArrayPattern: TestPatterns = [
   ...invalidPatterns,
 ];
 
-describe("isValueOf", () => {
+describe(isValueOf, () => {
   it.each(testObjectPatterns)("value: %s, expected: %s", (value, expected) => {
     expect(isValueOf(TEST_ENUM_OBJECT, value)).toBe(expected);
   });

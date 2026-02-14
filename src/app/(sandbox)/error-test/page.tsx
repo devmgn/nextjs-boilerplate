@@ -18,14 +18,14 @@ export default function ErrorTestPage() {
 
     try {
       // 実際のAPI呼び出しをシミュレート
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => {
+        setTimeout(resolve, 1000);
+      });
       throw new Error("API request failed: 500 Internal Server Error");
     } catch (error) {
       // 非同期エラーはErrorBoundaryでキャッチされないため、
       // try-catchで明示的にハンドリングする必要がある
-      setAsyncError(
-        error instanceof Error ? error : new Error("Unknown error"),
-      );
+      setAsyncError(Error.isError(error) ? error : new Error("Unknown error"));
     } finally {
       setIsLoading(false);
     }
@@ -64,7 +64,12 @@ export default function ErrorTestPage() {
             <div className="mt-4 rounded border border-red-200 bg-red-50 p-3">
               <p className="font-medium text-red-800">Error caught:</p>
               <p className="text-sm text-red-600">{asyncError.message}</p>
-              <Button className="mt-2" onClick={() => setAsyncError(null)}>
+              <Button
+                className="mt-2"
+                onClick={() => {
+                  setAsyncError(null);
+                }}
+              >
                 Clear Error
               </Button>
             </div>

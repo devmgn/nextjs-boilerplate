@@ -38,7 +38,9 @@ const meta = {
           <label htmlFor={delayTimeId}>DelayTime</label>
           <Input
             id={delayTimeId}
-            onChange={(e) => setDelayTime(Number(e.target.value))}
+            onChange={(e) => {
+              setDelayTime(Number(e.target.value));
+            }}
             placeholder="delay time"
             type="number"
             value={delayTime}
