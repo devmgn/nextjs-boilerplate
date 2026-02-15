@@ -50,7 +50,7 @@ const testPatterns: TestPatterns = [
 ];
 
 describe(isKeyOf, () => {
-  it.each(testPatterns)("value: %s, expected: %s", (value, expected) => {
+  it.for(testPatterns)("value: %s, expected: %s", ([value, expected]) => {
     expect(isKeyOf(TEST_ENUM, value)).toBe(expected);
   });
 });

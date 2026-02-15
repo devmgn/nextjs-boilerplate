@@ -115,9 +115,9 @@ describe(useDebouncedCallback, () => {
 
   it("wait が変更されると新しい debounced 関数が生成されること", () => {
     const callback = vi.fn();
-    let wait = 500;
-    const { result, rerender } = renderHook(() =>
-      useDebouncedCallback(callback, wait),
+    const { result, rerender } = renderHook(
+      ({ wait }) => useDebouncedCallback(callback, wait),
+      { initialProps: { wait: 500 } },
     );
 
     // 旧 wait (500ms) で呼び出し
@@ -126,8 +126,7 @@ describe(useDebouncedCallback, () => {
     });
 
     // wait を変更して再レンダリング → 保留中の実行はクリーンアップされる
-    wait = 1000;
-    rerender();
+    rerender({ wait: 1000 });
 
     // 旧タイマー (500ms) が発火しないことを確認
     act(() => {

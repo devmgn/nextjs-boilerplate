@@ -57,10 +57,10 @@ const testArrayPattern: TestPatterns = [
 ];
 
 describe(isValueOf, () => {
-  it.each(testObjectPatterns)("value: %s, expected: %s", (value, expected) => {
+  it.for(testObjectPatterns)("value: %s, expected: %s", ([value, expected]) => {
     expect(isValueOf(TEST_ENUM_OBJECT, value)).toBe(expected);
   });
-  it.each(testArrayPattern)("value: %s, expected: %s", (value, expected) => {
+  it.for(testArrayPattern)("value: %s, expected: %s", ([value, expected]) => {
     expect(isValueOf(TEST_ENUM_ARRAY, value)).toBe(expected);
   });
 });
