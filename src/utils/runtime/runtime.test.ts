@@ -83,7 +83,7 @@ describe("runtime", () => {
     });
 
     it("window が定義されているとき、isServer が false となること", async () => {
-      vi.stubGlobal("", {});
+      vi.stubGlobal("window", {});
       const { isServer } = await import("./runtime");
       expect(isServer).toBe(false);
     });

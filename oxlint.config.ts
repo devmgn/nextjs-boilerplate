@@ -551,7 +551,10 @@ export default defineConfig({
         "vitest/no-focused-tests": "error",
         "vitest/no-identical-title": "error",
         "vitest/no-mocks-import": "error",
-        "vitest/no-standalone-expect": "error",
+        "vitest/no-standalone-expect": [
+          "error",
+          { additionalTestBlockFunctions: ["it.for"] },
+        ],
         "vitest/no-test-prefixes": "error",
         "vitest/no-test-return-statement": "error",
         "vitest/no-unneeded-async-expect-function": "error",
