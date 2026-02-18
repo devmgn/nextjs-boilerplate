@@ -1,6 +1,6 @@
 import { createQueryKeys } from "@lukemorales/query-key-factory";
-import type { ListPostsRequest, PostsPostIdGetRequest } from "../openapi";
 import { apiClient } from "../apiClient";
+import type { ListPostsRequest, PostsPostIdGetRequest } from "../openapi";
 
 export const postQueries = createQueryKeys("postQueries", {
   getPosts: (request: ListPostsRequest = {}) => ({

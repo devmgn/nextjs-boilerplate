@@ -1,5 +1,5 @@
-import type { VariantProps } from "tailwind-variants";
 import { Presence } from "@radix-ui/react-presence";
+import type { VariantProps } from "tailwind-variants";
 import { tv } from "tailwind-variants";
 
 const backdropVariants = tv({
