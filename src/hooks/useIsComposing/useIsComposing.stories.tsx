@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { useId } from "react";
-import { Input } from "../../components/Input";
 import { useIsComposing } from "./useIsComposing";
+import { Input } from "../../components/Input";
 
 const meta = {
   parameters: {

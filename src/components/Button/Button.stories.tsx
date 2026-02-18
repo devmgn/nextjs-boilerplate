@@ -1,5 +1,5 @@
-import { faker } from "@faker-js/faker/locale/ja";
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { faker } from "@faker-js/faker/locale/ja";
 import { Button } from "./Button";
 
 const meta = {
