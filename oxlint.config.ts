@@ -127,6 +127,7 @@ export default defineConfig({
     "no-template-curly-in-string": "error",
     "no-undef": "error",
     "no-unexpected-multiline": "error",
+    "no-unmodified-loop-condition": "error",
     "no-unneeded-ternary": "error",
     "no-unreachable": "error",
     "no-useless-call": "error",
@@ -183,7 +184,9 @@ export default defineConfig({
     "typescript/no-non-null-asserted-nullish-coalescing": "error",
     "typescript/no-non-null-assertion": "error",
     "typescript/no-require-imports": "error",
+    "typescript/no-shadow": "error",
     "typescript/no-unnecessary-boolean-literal-compare": "error",
+    "typescript/no-unnecessary-condition": "error",
     "typescript/no-unnecessary-template-expression": "error",
     "typescript/no-unnecessary-type-arguments": "error",
     "typescript/no-unnecessary-type-assertion": "error",
@@ -196,6 +199,7 @@ export default defineConfig({
     "typescript/no-unsafe-member-access": "error",
     "typescript/no-unsafe-return": "error",
     "typescript/no-unsafe-type-assertion": "error",
+    "typescript/no-use-before-define": ["error", { functions: false }],
     "typescript/no-var-requires": "error",
     "typescript/non-nullable-type-assertion-style": "error",
     "typescript/only-throw-error": "error",
@@ -216,6 +220,7 @@ export default defineConfig({
     "typescript/return-await": "error",
     "typescript/strict-boolean-expressions": "error",
     "typescript/switch-exhaustiveness-check": "error",
+    "typescript/unified-signatures": "error",
     "typescript/use-unknown-in-catch-callback-variable": "error",
 
     // ── React rules (builtin) ──
