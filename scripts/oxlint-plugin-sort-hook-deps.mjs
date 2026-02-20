@@ -169,6 +169,6 @@ export default {
  */
 function guessIndent(context, node) {
   const line = context.sourceCode.lines[node.loc.start.line - 1];
-  const match = line.match(/^(\s*)/);
+  const match = /^(\s*)/.exec(line);
   return match ? match[1] : "";
 }
