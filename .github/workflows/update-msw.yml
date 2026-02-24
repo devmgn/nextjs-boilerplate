@@ -1,16 +1,22 @@
 name: Update MSW Service Worker
 
 on:
+  workflow_dispatch:
   push:
     branches-ignore:
       - main
     paths:
       - pnpm-lock.yaml
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   UpdateMSW:
-    if: github.actor == 'renovate[bot]'
+    if: github.event_name == 'workflow_dispatch' || github.actor == 'renovate[bot]'
     runs-on: ubuntu-24.04
+    timeout-minutes: 10
     permissions:
       contents: write
     steps:
@@ -22,11 +28,13 @@ jobs:
       - name: Setup Project
         uses: ./.github/actions/setup
 
-      - name: Update mockServiceWorker.js
-        run: pnpm msw init public --save
-
-      - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@04702edda442b2e678b25b537cec683a1493fcb9 # v7
-        with:
-          commit_message: "chore: update mockServiceWorker.js"
-          file_pattern: public/mockServiceWorker.js
+      - name: Update and commit mockServiceWorker.js
+        run: |
+          pnpm msw init public --save
+          git add public/mockServiceWorker.js
+          if ! git diff --staged --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "chore: update mockServiceWorker.js"
+            git push
+          fi
