@@ -51,7 +51,7 @@ pnpm build-storybook  # Build static Storybook
 - **React 19** with React Compiler optimizations
 - **TypeScript** with strict type checking (type-fest for advanced utilities)
 - **Tailwind CSS v4** with @tailwindcss/postcss
-- **TanStack Query** with @lukemorales/query-key-factory
+- **TanStack Query** with queryOptions helper
 - **React Hook Form + Zod v4** with @hookform/resolvers
 - **Hono** for proxy middleware
 - **UI**: @radix-ui primitives, tailwind-variants, tailwind-merge

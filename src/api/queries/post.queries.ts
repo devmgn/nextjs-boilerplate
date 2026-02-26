@@ -1,14 +1,17 @@
 import type { ListPostsRequest, PostsPostIdGetRequest } from "../openapi";
-import { createQueryKeys } from "@lukemorales/query-key-factory";
+import { queryOptions } from "@tanstack/react-query";
 import { apiClient } from "../apiClient";
 
-export const postQueries = createQueryKeys("postQueries", {
-  getPosts: (request: ListPostsRequest = {}) => ({
-    queryKey: ["getPosts", request],
+export function getPostsQueryOptions(request: ListPostsRequest = {}) {
+  return queryOptions({
+    queryKey: ["getPosts", request] as const,
     queryFn: () => apiClient.listPosts(request),
-  }),
-  getPostById: (request: PostsPostIdGetRequest) => ({
-    queryKey: ["getPost", request],
+  });
+}
+
+export function getPostByIdQueryOptions(request: PostsPostIdGetRequest) {
+  return queryOptions({
+    queryKey: ["getPostById", request] as const,
     queryFn: () => apiClient.postsPostIdGet(request),
-  }),
-});
+  });
+}
