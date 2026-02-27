@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { faker } from "@faker-js/faker/locale/ja";
 import { Card } from "./Card";
 
 const meta = {
   component: Card,
   args: {
-    children: faker.lorem.sentence(),
+    children: "カードコンテンツ",
+    style: { padding: "1rem" },
   },
 } satisfies Meta<typeof Card>;
 

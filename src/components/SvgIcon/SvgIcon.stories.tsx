@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { FaceIcon } from "@radix-ui/react-icons";
-import { expect, fn, userEvent, within } from "storybook/test";
+import { expect, fn, userEvent } from "storybook/test";
 import { SvgIcon } from "./SvgIcon";
 
 const meta = {
@@ -24,10 +24,25 @@ type Story = StoryObj<typeof SvgIcon>;
 
 export const Default: Story = {};
 
-export const Test: Story = {
-  play: async ({ args, canvasElement }) => {
-    const canvas = within(canvasElement);
-    const icon = await canvas.findByLabelText("Face icon");
+export const ExtraSmall: Story = {
+  args: { size: "xs" },
+};
+
+export const Small: Story = {
+  args: { size: "sm" },
+};
+
+export const Large: Story = {
+  args: { size: "lg" },
+};
+
+export const ExtraLarge: Story = {
+  args: { size: "xl" },
+};
+
+export const ClickTest: Story = {
+  play: async ({ args, canvas }) => {
+    const icon = canvas.getByLabelText("Face icon");
     await userEvent.click(icon);
     await expect(args.onClick).toHaveBeenCalled();
     await expect(icon).toHaveAttribute("aria-hidden", "true");
