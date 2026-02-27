@@ -6,6 +6,15 @@ const config: StorybookConfig = {
     "@storybook/addon-a11y",
     "@storybook/addon-docs",
     "@storybook/addon-vitest",
+    {
+      name: "@storybook/addon-mcp",
+      options: {
+        toolsets: {
+          dev: true,
+          docs: true,
+        },
+      },
+    },
   ],
   framework: {
     name: "@storybook/nextjs-vite",
@@ -13,6 +22,9 @@ const config: StorybookConfig = {
   },
   core: {
     disableTelemetry: true,
+  },
+  features: {
+    experimentalComponentsManifest: true,
   },
   staticDirs: ["../public"],
 };
