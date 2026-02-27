@@ -8,10 +8,3 @@ export function getPostsQueryOptions(request: ListPostsRequest = {}) {
     queryFn: () => apiClient.listPosts(request),
   });
 }
-
-export function getPostByIdQueryOptions(request: PostsPostIdGetRequest) {
-  return queryOptions({
-    queryKey: ["getPostById", request] as const,
-    queryFn: () => apiClient.postsPostIdGet(request),
-  });
-}
