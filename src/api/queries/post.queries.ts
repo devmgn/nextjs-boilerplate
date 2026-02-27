@@ -1,4 +1,4 @@
-import type { ListPostsRequest, PostsPostIdGetRequest } from "../openapi";
+import type { ListPostsRequest } from "../openapi";
 import { queryOptions } from "@tanstack/react-query";
 import { apiClient } from "../apiClient";
 
