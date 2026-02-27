@@ -1,10 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { faker } from "@faker-js/faker/locale/ja";
-import Image from "next/image";
+import { expect, within } from "storybook/test";
 import { Backdrop } from "./Backdrop";
-
-const paragraphs = faker.lorem.paragraphs();
-const image = faker.image.avatarGitHub();
 
 const meta = {
   component: Backdrop,
@@ -15,10 +11,7 @@ const meta = {
   decorators: [
     (story) => (
       <div className="relative h-50 w-full">
-        <p>{paragraphs}</p>
-        <div>
-          <Image alt="" height="320" src={image} width="320" />
-        </div>
+        <p>背景コンテンツ。Backdropの後ろに表示されます。</p>
         {story()}
       </div>
     ),
@@ -29,3 +22,21 @@ export default meta;
 type Story = StoryObj<typeof Backdrop>;
 
 export const Default: Story = {};
+
+export const WithoutBlur: Story = {
+  args: { blur: false },
+};
+
+export const Closed: Story = {
+  args: { open: false },
+};
+
+export const OpenStateTest: Story = {
+  play: async ({ canvasElement }) => {
+    const backdrop = within(canvasElement).getByRole("presentation", {
+      hidden: true,
+    });
+    await expect(backdrop).toHaveAttribute("data-state", "open");
+    await expect(backdrop).toHaveAttribute("aria-hidden", "true");
+  },
+};

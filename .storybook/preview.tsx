@@ -6,6 +6,7 @@ import { SbProvider } from "./SbProvider";
 initialize({ onUnhandledRequest: "bypass" });
 
 const preview: Preview = {
+  tags: ["autodocs"],
   parameters: {
     globals: {
       locale: "ja",

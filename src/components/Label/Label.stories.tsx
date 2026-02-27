@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
-import { faker } from "@faker-js/faker/locale/ja";
 import { Label } from "./Label";
 
 const meta = {
   component: Label,
   args: {
-    children: faker.lorem.sentence(),
+    children: "ラベルテキスト",
   },
 } satisfies Meta<typeof Label>;
 

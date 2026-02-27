@@ -35,7 +35,8 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "vitest.config.ts",
-    "vitest.globalSetup.ts"
+    "vitest.globalSetup.ts",
+    "vitest.shims.d.ts"
   ],
   "exclude": ["node_modules", "src/api/openapi"]
 }
