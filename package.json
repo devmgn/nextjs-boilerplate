@@ -44,11 +44,11 @@
   },
   "devDependencies": {
     "@next/env": "16.1.6",
-    "@storybook/addon-a11y": "10.2.11",
-    "@storybook/addon-docs": "10.2.11",
+    "@storybook/addon-a11y": "10.2.12",
+    "@storybook/addon-docs": "10.2.12",
     "@storybook/addon-mcp": "0.3.3",
-    "@storybook/addon-vitest": "10.2.11",
-    "@storybook/nextjs-vite": "10.2.11",
+    "@storybook/addon-vitest": "10.2.12",
+    "@storybook/nextjs-vite": "10.2.12",
     "@tailwindcss/postcss": "4.2.1",
     "@tanstack/eslint-plugin-query": "5.91.4",
     "@testing-library/jest-dom": "6.9.1",
@@ -62,10 +62,10 @@
     "@vitest/coverage-v8": "4.0.18",
     "axe-core": "4.11.1",
     "babel-plugin-react-compiler": "1.0.0",
-    "eslint": "10.0.1",
+    "eslint": "10.0.2",
     "eslint-plugin-import": "2.32.0",
     "eslint-plugin-react-hooks": "7.0.1",
-    "eslint-plugin-storybook": "10.2.11",
+    "eslint-plugin-storybook": "10.2.12",
     "jest-extended": "7.0.0",
     "jsdom": "28.1.0",
     "knip": "5.85.0",
@@ -75,16 +75,16 @@
     "oxlint": "1.50.0",
     "oxlint-tsgolint": "0.14.2",
     "playwright": "1.58.2",
-    "storybook": "10.2.11",
+    "storybook": "10.2.12",
     "tailwindcss": "4.2.1",
-    "typescript": "6.0.0-dev.20260223",
+    "typescript": "6.0.0-dev.20260224",
     "vite": "7.3.1",
     "vitest": "4.0.18"
   },
   "engines": {
     "node": "24.14.0"
   },
-  "packageManager": "pnpm@10.30.1",
+  "packageManager": "pnpm@10.30.2",
   "msw": {
     "workerDirectory": "./public"
   }
