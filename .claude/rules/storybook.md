@@ -62,6 +62,7 @@ const meta = {
 ## MCP Integration
 
 `@storybook/addon-mcp` is enabled with `dev` and `docs` toolsets. Use the `storybook-mcp` MCP server for:
+
 - `get_ui_building_instructions` — get component building guidance
 - `preview-stories` — preview stories
 - `get-documentation` — query Storybook docs

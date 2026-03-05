@@ -38,7 +38,9 @@ import { act, renderHook } from "@testing-library/react";
 describe(useHookName, () => {
   it("returns expected value", () => {
     const { result } = renderHook(() => useHookName());
-    act(() => { result.current.action(); });
+    act(() => {
+      result.current.action();
+    });
     expect(result.current.value).toBe(expected);
   });
 });

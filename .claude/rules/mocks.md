@@ -29,7 +29,7 @@ afterAll(() => {
 });
 
 afterEach(() => {
-  server.resetHandlers();  // Critical for test isolation
+  server.resetHandlers(); // Critical for test isolation
 });
 ```
 
