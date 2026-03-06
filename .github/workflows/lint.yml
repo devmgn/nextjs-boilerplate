@@ -21,8 +21,5 @@ jobs:
       - name: Setup Project
         uses: ./.github/actions/setup
 
-      - name: Lint
-        run: pnpm lint
-
-      - name: Check unused dependencies
-        run: pnpm lint:knip
+      - name: Check
+        run: pnpm check

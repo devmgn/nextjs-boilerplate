@@ -14,12 +14,13 @@ pnpm start            # Start production server
 ## Linting & Formatting
 
 ```bash
-pnpm lint             # Run all checks (Oxlint + type check + Oxfmt check)
-pnpm lint:oxlint      # Oxlint check (type-aware + type-check)
-pnpm lint:oxlint:fix  # Oxlint with auto-fix
-pnpm lint:fmt         # Oxfmt formatting (check only)
-pnpm lint:fmt:fix     # Oxfmt formatting (write)
-pnpm lint:knip        # Dead code detection (strict mode)
+pnpm check            # Run all checks (Oxlint + Oxfmt + Knip)
+pnpm fix              # Auto-fix lint + format
+pnpm lint             # Oxlint check (type-aware + type-check)
+pnpm lint:fix         # Oxlint with auto-fix
+pnpm fmt              # Oxfmt formatting (check only)
+pnpm fmt:fix          # Oxfmt formatting (write)
+pnpm knip             # Dead code detection (strict mode)
 ```
 
 ## Testing
