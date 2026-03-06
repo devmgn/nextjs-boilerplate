@@ -26,10 +26,12 @@ jobs:
           persist-credentials: false
 
       - name: actionlint
-        run: bash <(curl -s https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash) && ./actionlint
-
-      - name: Setup uv
-        uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5
+        env:
+          ACTIONLINT_VERSION: "1.7.7"
+        run: |
+          curl -sLO "https://github.com/rhysd/actionlint/releases/download/v${ACTIONLINT_VERSION}/actionlint_${ACTIONLINT_VERSION}_linux_amd64.tar.gz"
+          tar xzf "actionlint_${ACTIONLINT_VERSION}_linux_amd64.tar.gz" actionlint
+          ./actionlint
 
       - name: zizmor
-        run: uvx zizmor --config .github/zizmor.yml .github/workflows/
+        run: pipx run zizmor --config .github/zizmor.yml .github/workflows/
