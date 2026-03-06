@@ -29,4 +29,4 @@ jobs:
         run: bash <(curl -s https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash) && ./actionlint
 
       - name: zizmor
-        run: pipx run zizmor --config .github/zizmor.yml .github/workflows/
+        run: uvx zizmor --config .github/zizmor.yml .github/workflows/
