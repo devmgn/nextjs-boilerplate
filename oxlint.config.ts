@@ -1,30 +1,15 @@
 import { defineConfig } from "oxlint";
 
-const nextjsSpecialFiles = [
-  ".storybook/main.ts",
-  ".storybook/preview.tsx",
-  "next.config.ts",
-  "oxlint.config.ts",
-  "postcss.config.mjs",
-  "src/**/default.tsx",
-  "src/**/error.tsx",
-  "src/**/forbidden.tsx",
-  "src/**/global-error.tsx",
-  "src/**/instrumentation-client.ts",
-  "src/**/instrumentation.ts",
-  "src/**/layout.tsx",
-  "src/**/loading.tsx",
-  "src/**/not-found.tsx",
-  "src/**/page.tsx",
-  "src/**/proxy.ts",
-  "src/**/sitemap.ts",
-  "src/**/template.tsx",
-  "src/**/unauthorized.tsx",
-  "vitest.config.ts",
-  "vitest.globalSetup.ts",
-];
-
 export default defineConfig({
+  options: {
+    typeCheck: true,
+    typeAware: true,
+  },
+  env: {
+    builtin: true,
+    browser: true,
+    node: true,
+  },
   plugins: [
     "import",
     "jsdoc",
@@ -36,21 +21,6 @@ export default defineConfig({
     "typescript",
     "unicorn",
     "vitest",
-  ],
-  env: {
-    builtin: true,
-    browser: true,
-    node: true,
-  },
-  ignorePatterns: [
-    ".next/**",
-    "build/**",
-    "next-env.d.ts",
-    "node_modules/**",
-    "out/**",
-    "public/**",
-    "src/api/openapi/**",
-    "storybook-static/**",
   ],
   jsPlugins: [
     "./scripts/oxlint-plugin-entry-point.mjs",
@@ -502,7 +472,29 @@ export default defineConfig({
   overrides: [
     {
       // Next.js special files + config files → allow default export, relax filename
-      files: nextjsSpecialFiles,
+      files: [
+        ".storybook/main.ts",
+        ".storybook/preview.tsx",
+        "next.config.ts",
+        "oxlint.config.ts",
+        "postcss.config.mjs",
+        "src/**/default.tsx",
+        "src/**/error.tsx",
+        "src/**/forbidden.tsx",
+        "src/**/global-error.tsx",
+        "src/**/instrumentation-client.ts",
+        "src/**/instrumentation.ts",
+        "src/**/layout.tsx",
+        "src/**/loading.tsx",
+        "src/**/not-found.tsx",
+        "src/**/page.tsx",
+        "src/**/proxy.ts",
+        "src/**/sitemap.ts",
+        "src/**/template.tsx",
+        "src/**/unauthorized.tsx",
+        "vitest.config.ts",
+        "vitest.globalSetup.ts",
+      ],
       rules: {
         "import/no-default-export": "off",
         "unicorn/filename-case": "off",
@@ -617,5 +609,15 @@ export default defineConfig({
         "unicorn/filename-case": "off",
       },
     },
+  ],
+  ignorePatterns: [
+    ".next/**",
+    "build/**",
+    "next-env.d.ts",
+    "node_modules/**",
+    "out/**",
+    "public/**",
+    "src/api/openapi/**",
+    "storybook-static/**",
   ],
 });
