@@ -26,12 +26,7 @@ jobs:
           persist-credentials: false
 
       - name: actionlint
-        env:
-          ACTIONLINT_VERSION: "1.7.7"
-        run: |
-          curl -sLO "https://github.com/rhysd/actionlint/releases/download/v${ACTIONLINT_VERSION}/actionlint_${ACTIONLINT_VERSION}_linux_amd64.tar.gz"
-          tar xzf "actionlint_${ACTIONLINT_VERSION}_linux_amd64.tar.gz" actionlint
-          ./actionlint
+        run: go run github.com/rhysd/actionlint/cmd/actionlint@latest
 
       - name: zizmor
         run: pipx run zizmor --config .github/zizmor.yml .github/workflows/
