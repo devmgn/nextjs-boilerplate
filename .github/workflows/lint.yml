@@ -1,4 +1,4 @@
-name: Check
+name: Lint
 
 on:
   push:
@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  Check:
+  Lint:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:

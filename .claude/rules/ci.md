@@ -12,7 +12,7 @@ paths:
 
 ## Workflows
 
-- **check.yml**: `pnpm check` (Oxlint + Oxfmt + Knip)
+- **lint.yml**: `pnpm check` (Oxlint + Oxfmt + Knip)
 - **test.yml**: `pnpm test:unit` (Vitest)
 - **build.yml**: `pnpm build` + upload `.next/` artifact
 - **update-msw.yml**: Auto-update MSW worker (manual trigger + pnpm-lock.yaml changes, Renovate bot only)
