@@ -2,8 +2,6 @@ name: Actions Lint
 
 on:
   push:
-    branches-ignore:
-      - main
     paths:
       - ".github/**"
   workflow_dispatch:
@@ -14,6 +12,7 @@ concurrency:
 
 permissions:
   contents: read
+  security-events: write
 
 jobs:
   ActionsLint:
@@ -32,4 +31,8 @@ jobs:
         shell: bash
 
       - name: zizmor
-        run: pipx run zizmor --config .github/zizmor.yml .github/workflows/
+        uses: zizmorcore/zizmor-action@0dce2577a4760a2749d8cfb7a84b7d5585ebcb7d # v0.5.0
+        with:
+          config: .github/zizmor.yml
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
