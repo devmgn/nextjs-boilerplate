@@ -542,6 +542,7 @@ export default defineConfig({
         "typescript/consistent-type-assertions": "off",
         "typescript/no-explicit-any": "off",
         "typescript/no-unsafe-assignment": "off",
+        "typescript/no-unsafe-type-assertion": "off",
         "typescript/unbound-method": "off",
         "vitest/consistent-each-for": "error",
         "vitest/consistent-test-filename": "error",

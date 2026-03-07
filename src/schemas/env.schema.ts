@@ -5,15 +5,11 @@ import { z } from "zod";
  */
 export const envSchema = z
   .object({
+    /** サイトURL */
+    SITE_URL: z.url(),
     /** アプリケーション名 */
-    appName: z.string(),
+    APP_NAME: z.string(),
     /** デフォルトのdescription */
-    defaultDescription: z.string(),
+    DEFAULT_DESCRIPTION: z.string(),
   })
   .readonly();
-
-/**
- * 環境変数の型定義
- * @public
- */
-export type EnvSchema = z.infer<typeof envSchema>;

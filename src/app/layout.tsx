@@ -4,8 +4,8 @@ import { RootProvider } from "../providers/RootProvider";
 import "../lib/styles/globals.css";
 
 export const metadata: Metadata = {
-  title: ENV.appName,
-  description: ENV.defaultDescription,
+  title: ENV.APP_NAME,
+  description: ENV.DEFAULT_DESCRIPTION,
   icons: ["images/favicon.ico"],
 };
 
