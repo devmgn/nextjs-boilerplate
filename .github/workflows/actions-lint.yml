@@ -2,8 +2,6 @@ name: Actions Lint
 
 on:
   push:
-    branches-ignore:
-      - main
     paths:
       - ".github/**"
   workflow_dispatch:
