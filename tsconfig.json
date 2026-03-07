@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2025",
+    "target": "esnext",
     "lib": ["dom", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -18,7 +18,6 @@
         "name": "next"
       }
     ],
-    "forceConsistentCasingInFileNames": true,
     "noErrorTruncation": true,
     "types": ["vitest/globals"]
   },
