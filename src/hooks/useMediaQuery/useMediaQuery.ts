@@ -9,7 +9,7 @@ export function useMediaQuery(
 ): boolean {
   return useSyncExternalStore(
     (onStoreChange) => {
-      const mql = globalThis.matchMedia(query);
+      const mql = window.matchMedia(query);
       const handler = (event: MediaQueryListEvent) => {
         onStoreChange();
         onChange?.(event);
@@ -19,7 +19,7 @@ export function useMediaQuery(
         mql.removeEventListener("change", handler);
       };
     },
-    () => globalThis.matchMedia(query).matches,
+    () => window.matchMedia(query).matches,
     () => false,
   );
 }

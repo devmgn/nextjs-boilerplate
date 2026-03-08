@@ -1,66 +1,64 @@
 import { isValueOf } from "./isValueOf";
 
-const TEST_ENUM_OBJECT = {
+const TEST_OBJECT = {
   red: "#FF0000",
   green: "#00FF00",
   blue: "#0000FF",
   1: "#FFFFFF",
 } as const;
 
-type TestPatterns = Array<
-  [Parameters<typeof isValueOf>[1], ReturnType<typeof isValueOf>]
->;
+const TEST_ARRAY = ["#FF0000", "#00FF00", "#0000FF", "#FFFFFF"] as const;
 
-const truthyObjectPatterns: TestPatterns = [
-  ["#FF0000", true],
-  ["#00FF00", true],
-  ["#0000FF", true],
-  ["#FFFFFF", true],
-];
-
-const falsyPatterns: TestPatterns = [
-  ["name", false],
-  ["age", false],
-  ["email", false],
-  [11, false],
-];
-
-const invalidPatterns: TestPatterns = [
-  [{}, false],
-  [[], false],
-  [null, false],
-  [undefined, false],
-  [true, false],
-  [false, false],
-  [() => {}, false],
-  [Symbol(""), false],
-];
-
-const TEST_ENUM_ARRAY = ["#FF0000", "#00FF00", "#0000FF", "#FFFFFF"] as const;
-const truthyArrayPatterns: TestPatterns = [
-  ["#FF0000", true],
-  ["#00FF00", true],
-  ["#0000FF", true],
-  ["#FFFFFF", true],
-];
-
-const testObjectPatterns: TestPatterns = [
-  ...truthyObjectPatterns,
-  ...falsyPatterns,
-  ...invalidPatterns,
-];
-
-const testArrayPattern: TestPatterns = [
-  ...truthyArrayPatterns,
-  ...falsyPatterns,
-  ...invalidPatterns,
+const falsyCases = [
+  { value: "name" },
+  { value: "age" },
+  { value: 11 },
+  { value: {} },
+  { value: [] },
+  { value: null },
+  { value: undefined },
+  { value: true },
+  { value: false },
+  { value: () => {} },
+  { value: Symbol("") },
 ];
 
 describe(isValueOf, () => {
-  it.for(testObjectPatterns)("value: %s, expected: %s", ([value, expected]) => {
-    expect(isValueOf(TEST_ENUM_OBJECT, value)).toBe(expected);
+  describe("オブジェクト", () => {
+    describe("値が存在する場合", () => {
+      it.for([
+        { value: "#FF0000" },
+        { value: "#00FF00" },
+        { value: "#0000FF" },
+        { value: "#FFFFFF" },
+      ])("value: $value → true", ({ value }) => {
+        expect(isValueOf(TEST_OBJECT, value)).toBe(true);
+      });
+    });
+
+    describe("値が存在しない場合", () => {
+      it.for(falsyCases)("value: $value → false", ({ value }) => {
+        expect(isValueOf(TEST_OBJECT, value)).toBe(false);
+      });
+    });
   });
-  it.for(testArrayPattern)("value: %s, expected: %s", ([value, expected]) => {
-    expect(isValueOf(TEST_ENUM_ARRAY, value)).toBe(expected);
+
+  describe("配列", () => {
+    describe("値が存在する場合", () => {
+      it.for([
+        { value: "#FF0000" },
+        { value: "#00FF00" },
+        { value: "#0000FF" },
+        { value: "#FFFFFF" },
+      ])("value: $value → true", ({ value }) => {
+        expect(isValueOf(TEST_ARRAY, value)).toBe(true);
+      });
+    });
+
+    describe("値が存在しない場合", () => {
+      it.for(falsyCases)("value: $value → false", ({ value }) => {
+        expect(isValueOf(TEST_ARRAY, value)).toBe(false);
+      });
+    });
   });
 });

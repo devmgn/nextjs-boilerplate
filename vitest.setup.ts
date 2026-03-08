@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 /**
- * Jestの追加のマッチャーを使うための設定
+ * jest-extended の追加マッチャーを Vitest に登録する
  * @see https://github.com/jest-community/jest-extended
  */
 // oxlint-disable-next-line import/no-namespace
