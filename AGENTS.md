@@ -37,7 +37,8 @@ This file provides guidance to AI coding agents when working with code in this r
 | `src/features/`   | Feature modules (domain-organized)                                      |
 | `src/mocks/`      | MSW mock handlers and fixtures                                          |
 | `src/schemas/`    | Zod schemas (runtime validation, env vars)                              |
-| `src/types/`      | Shared TypeScript types                                                 |
+| `src/@types/`     | Type declarations (`.d.ts` — global types, module augmentations)        |
+| `src/types/`      | Shared TypeScript type utilities                                        |
 | `scripts/`        | Custom lint/check scripts                                               |
 
 ### Key Patterns
