@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Toaster } from "sonner";
 import { ENV } from "../config/env";
 import { RootProvider } from "../providers/RootProvider";
 import "../lib/styles/globals.css";
@@ -22,6 +23,7 @@ export default function Layout(props: React.PropsWithChildren) {
     <html lang="ja">
       <body>
         <RootProvider>{children}</RootProvider>
+        <Toaster richColors closeButton />
       </body>
     </html>
   );
