@@ -1,81 +1,49 @@
 describe("runtime", () => {
+  beforeEach(() => {
+    vi.resetModules();
+  });
+
   describe("isDevelopment", () => {
-    const originalNodeEnv = process.env.NODE_ENV;
-
-    beforeEach(() => {
-      // @ts-expect-error
-      process.env.NODE_ENV = undefined;
-      vi.resetModules();
-    });
-
-    afterEach(() => {
-      // @ts-expect-error
-      process.env.NODE_ENV = originalNodeEnv;
-    });
-
     it('NODE_ENVが"development"のとき、trueとなること', async () => {
-      // @ts-expect-error
-      process.env.NODE_ENV = "development";
+      vi.stubEnv("NODE_ENV", "development");
       const { isDevelopment } = await import("./runtime");
       expect(isDevelopment).toBe(true);
     });
 
     it('NODE_ENVが"development"以外のとき、falseとなること', async () => {
-      // @ts-expect-error
-      process.env.NODE_ENV = "production";
+      vi.stubEnv("NODE_ENV", "production");
       const { isDevelopment } = await import("./runtime");
       expect(isDevelopment).toBe(false);
     });
 
     it("NODE_ENVが未定義のとき、falseとなること", async () => {
+      vi.stubEnv("NODE_ENV", "");
       const { isDevelopment } = await import("./runtime");
       expect(isDevelopment).toBe(false);
     });
   });
 
   describe("isProduction", () => {
-    const originalNodeEnv = process.env.NODE_ENV;
-
-    beforeEach(() => {
-      // @ts-expect-error
-      process.env.NODE_ENV = undefined;
-      vi.resetModules();
-    });
-
-    afterEach(() => {
-      // @ts-expect-error
-      process.env.NODE_ENV = originalNodeEnv;
-    });
-
     it('NODE_ENVが"production"のとき、trueとなること', async () => {
-      // @ts-expect-error
-      process.env.NODE_ENV = "production";
+      vi.stubEnv("NODE_ENV", "production");
       const { isProduction } = await import("./runtime");
       expect(isProduction).toBe(true);
     });
 
     it('NODE_ENVが"production"以外のとき、falseとなること', async () => {
-      // @ts-expect-error
-      process.env.NODE_ENV = "development";
+      vi.stubEnv("NODE_ENV", "development");
       const { isProduction } = await import("./runtime");
       expect(isProduction).toBe(false);
     });
 
     it("NODE_ENVが未定義のとき、falseとなること", async () => {
+      vi.stubEnv("NODE_ENV", "");
       const { isProduction } = await import("./runtime");
       expect(isProduction).toBe(false);
     });
   });
 
   describe("isServer", () => {
-    afterEach(() => {
-      vi.unstubAllGlobals();
-    });
-
-    beforeEach(() => {
-      vi.resetModules();
-    });
-
     it("window が undefined のとき、isServer が true となること", async () => {
       vi.stubGlobal("window", undefined);
       const { isServer } = await import("./runtime");

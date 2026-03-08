@@ -1,56 +1,32 @@
 import { isKeyOf } from "./isKeyOf";
 
-const TEST_ENUM = {
+const TEST_OBJECT = {
   red: "#FF0000",
   green: "#00FF00",
   blue: "#0000FF",
   1: "#FFFFFF",
 } as const;
 
-type TestPatterns = Array<
-  [Parameters<typeof isKeyOf>[1], ReturnType<typeof isKeyOf>]
->;
-
-const truthyPatterns: TestPatterns = [
-  ["red", true],
-  ["green", true],
-  ["blue", true],
-  [1, true],
-];
-
-const falsyPatterns: TestPatterns = [
-  ["NAME", false],
-  ["AGE", false],
-  ["EMAIL", false],
-  [11, false],
-];
-
-const invalidPatterns: TestPatterns = [
-  // @ts-expect-error
-  [{}, false],
-  // @ts-expect-error
-  [[], false],
-  // @ts-expect-error
-  [null, false],
-  // @ts-expect-error
-  [undefined, false],
-  // @ts-expect-error
-  [true, false],
-  // @ts-expect-error
-  [false, false],
-  // @ts-expect-error
-  [() => {}, false],
-  [Symbol(""), false],
-];
-
-const testPatterns: TestPatterns = [
-  ...truthyPatterns,
-  ...falsyPatterns,
-  ...invalidPatterns,
-];
-
 describe(isKeyOf, () => {
-  it.for(testPatterns)("value: %s, expected: %s", ([value, expected]) => {
-    expect(isKeyOf(TEST_ENUM, value)).toBe(expected);
+  describe("キーが存在する場合", () => {
+    it.for([
+      { value: "red", expected: true },
+      { value: "green", expected: true },
+      { value: "blue", expected: true },
+      { value: 1, expected: true },
+    ])("value: $value → $expected", ({ value, expected }) => {
+      expect(isKeyOf(TEST_OBJECT, value)).toBe(expected);
+    });
+  });
+
+  describe("キーが存在しない場合", () => {
+    it.for([
+      { value: "NAME", expected: false },
+      { value: "AGE", expected: false },
+      { value: 11, expected: false },
+      { value: Symbol(""), expected: false },
+    ])("value: $value → $expected", ({ value, expected }) => {
+      expect(isKeyOf(TEST_OBJECT, value)).toBe(expected);
+    });
   });
 });

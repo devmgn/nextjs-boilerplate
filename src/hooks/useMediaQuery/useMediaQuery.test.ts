@@ -45,10 +45,6 @@ describe(useMediaQuery, () => {
     vi.stubGlobal("matchMedia", matchMediaSpy);
   });
 
-  afterEach(() => {
-    vi.restoreAllMocks();
-  });
-
   it("クエリが一致しないとき、falseを返すこと", () => {
     const { result } = renderHook(() => useMediaQuery(QUERY));
     expect(result.current).toBe(false);
@@ -106,14 +102,14 @@ describe(useMediaQuery, () => {
 
   it("queryが変わったときにリスナーが再登録されること", () => {
     const newMql = createMockMediaQueryList(true);
-    let currentQuery = QUERY;
 
-    const { rerender } = renderHook(() => useMediaQuery(currentQuery));
+    const { rerender } = renderHook(({ query }) => useMediaQuery(query), {
+      initialProps: { query: QUERY },
+    });
     expect(mockMql.hasListener).toBe(true);
 
     matchMediaSpy.mockReturnValue(newMql);
-    currentQuery = "(min-width: 1024px)";
-    rerender();
+    rerender({ query: "(min-width: 1024px)" });
 
     expect(mockMql.hasListener).toBe(false);
     expect(newMql.hasListener).toBe(true);
