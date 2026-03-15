@@ -39,4 +39,4 @@ export default function Page() {
 
 ## Proxy
 
-- `src/proxy.ts` (NOT `middleware.ts`) — Hono + `handle(app)` from `hono/vercel`
+- `src/proxy.ts` (NOT `middleware.ts`) — Next.js Proxy convention (`NextRequest`/`NextResponse`)
