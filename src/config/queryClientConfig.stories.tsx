@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { useQuery } from "@tanstack/react-query";
-import { expect } from "storybook/test";
+import { expect, screen, waitFor } from "storybook/test";
 import { Button } from "../components/Button";
 
 function ErrorToastDemo(props: { skipToast?: boolean }) {
@@ -44,8 +44,11 @@ type Story = StoryObj<typeof ErrorToastDemo>;
 export const Default: Story = {
   play: async ({ canvas }) => {
     canvas.getByRole("button").click();
-    const toast = await canvas.findByText("サーバーエラーが発生しました");
-    await expect(toast).toBeVisible();
+    await waitFor(async () => {
+      await expect(
+        screen.getByText("サーバーエラーが発生しました"),
+      ).toBeVisible();
+    });
   },
 };
 
