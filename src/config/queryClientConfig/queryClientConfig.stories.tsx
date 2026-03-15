@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { useQuery } from "@tanstack/react-query";
 import { expect, screen, waitFor } from "storybook/test";
-import { Button } from "../components/Button";
+import { Button } from "../../components/Button";
 
 function ErrorToastDemo(props: { skipToast?: boolean }) {
   const { skipToast } = props;

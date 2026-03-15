@@ -1,4 +1,4 @@
-import { envSchema } from "../schemas/env.schema";
+import { envSchema } from "../../schemas/env.schema";
 
 export const ENV = envSchema.parse({
   SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
