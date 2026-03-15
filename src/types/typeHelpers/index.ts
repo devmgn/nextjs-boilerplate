@@ -1,1 +1,6 @@
-export type { FlatObject, Primitive } from "./typeHelpers";
+export type {
+  /** @public */
+  Expand,
+  FlatObject,
+  Primitive,
+} from "./typeHelpers";
