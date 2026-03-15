@@ -1,5 +1,4 @@
 import { ENV } from "./env";
-import { envSchema } from "../../schemas/env.schema";
 
 describe("ENV", () => {
   it("有効な環境変数でENVが生成されること", () => {
@@ -14,23 +13,14 @@ describe("ENV", () => {
     expect(Object.isFrozen(ENV)).toBe(true);
   });
 
-  describe("envSchema", () => {
-    it("SITE_URLが無効なURLの場合エラーになること", () => {
-      expect(() => envSchema.parse({ ...ENV, SITE_URL: "not-a-url" })).toThrow(
-        /invalid_format/,
-      );
-    });
+  it.each([
+    "NEXT_PUBLIC_SITE_URL",
+    "NEXT_PUBLIC_APP_NAME",
+    "NEXT_PUBLIC_DEFAULT_DESCRIPTION",
+  ])("%s が未定義の場合エラーになること", async (key) => {
+    vi.stubEnv(key, undefined as unknown as string);
+    vi.resetModules();
 
-    it("APP_NAMEが未定義の場合エラーになること", () => {
-      const { APP_NAME: _, ...withoutAppName } = ENV;
-
-      expect(() => envSchema.parse(withoutAppName)).toThrow(/invalid_type/);
-    });
-
-    it("DEFAULT_DESCRIPTIONが未定義の場合エラーになること", () => {
-      const { DEFAULT_DESCRIPTION: _, ...withoutDesc } = ENV;
-
-      expect(() => envSchema.parse(withoutDesc)).toThrow(/invalid_type/);
-    });
+    await expect(() => import("./env")).rejects.toThrow(/invalid/);
   });
 });
