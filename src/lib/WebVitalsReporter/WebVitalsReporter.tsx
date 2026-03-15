@@ -1,6 +1,7 @@
 "use client";
 
 import { useReportWebVitals } from "next/web-vitals";
+import { z } from "zod";
 
 const style = `
   font-size: 10px;
@@ -10,13 +11,24 @@ const style = `
   color: #FFF;
 `;
 
+const metricSchema = z.object({
+  name: z.string(),
+  value: z.number(),
+  rating: z.string(),
+});
+
 export function WebVitalsReporter() {
   useReportWebVitals((metric) => {
+    const result = metricSchema.safeParse(metric);
+    if (!result.success) {
+      return;
+    }
+
+    const { name, value, rating } = result.data;
     // oxlint-disable-next-line no-console
     console.info(
-      // oxlint-disable-next-line typescript/no-unsafe-member-access
-      `%c [Web Vitals]: ${metric.name}: ${metric.value} / Rating: ${metric.rating}`,
-      style.toString(),
+      `%c [Web Vitals]: ${name}: ${value} / Rating: ${rating}`,
+      style,
       metric,
     );
   });
