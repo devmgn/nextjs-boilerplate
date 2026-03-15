@@ -9,6 +9,7 @@ import { SvgIcon } from "../../../components/SvgIcon";
 import { useDebouncedCallback } from "../../../hooks/useDebouncedCallback";
 import { useDisclosure } from "../../../hooks/useDisclosure";
 import { useIsComposing } from "../../../hooks/useIsComposing";
+import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import { useMediaQuery } from "../../../hooks/useMediaQuery";
 import { asyncDebounce } from "../../../utils/asyncDebounce";
 import { createCustomEvent } from "../../../utils/createCustomEvent";
@@ -22,6 +23,7 @@ export default function Page() {
     // noop
   }, 1000);
   useIsComposing();
+  useLocalStorage("dummy", "");
   useMediaQuery("(min-width: 768px)");
   asyncDebounce(() => {
     // noop

@@ -8,7 +8,7 @@ This file provides guidance to AI coding agents when working with code in this r
 
 - **Next.js 16** with App Router, React 19, Turbopack, React Compiler (see `next.config.ts`)
   - Node.js 24, pnpm 10 (exact versions in package.json)
-- **TypeScript** with strict type checking (type-fest for advanced utilities)
+- **TypeScript** with strict type checking
 - **Tailwind CSS v4** with @tailwindcss/postcss
 - **TanStack Query** with queryOptions helper
 - **React Hook Form + Zod v4** with @hookform/resolvers
