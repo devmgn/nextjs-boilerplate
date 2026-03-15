@@ -1,20 +1,19 @@
-import { Hono } from "hono";
-import { handle } from "hono/vercel";
+import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { addCustomHeader } from "./lib/proxy/addCustomHeader";
 import { requestLogger } from "./lib/proxy/requestLogger";
 import { responseLogger } from "./lib/proxy/responseLogger";
 
-const app = new Hono();
+export function proxy(request: NextRequest) {
+  const response = NextResponse.next({
+    request: { headers: new Headers(request.headers) },
+  });
 
-app.use(addCustomHeader).use(requestLogger).use(responseLogger);
+  addCustomHeader(response);
+  requestLogger(request);
+  responseLogger(response);
 
-app.all("*", (ctx) => {
-  return NextResponse.next({ request: ctx.req.raw });
-});
-
-export function proxy(request: Request) {
-  return handle(app)(request);
+  return response;
 }
 
 export const config = {

@@ -12,7 +12,6 @@ This file provides guidance to AI coding agents when working with code in this r
 - **Tailwind CSS v4** with @tailwindcss/postcss
 - **TanStack Query** with queryOptions helper
 - **React Hook Form + Zod v4** with @hookform/resolvers
-- **Hono** for proxy middleware
 - **UI**: @radix-ui primitives, tailwind-variants, tailwind-merge
 - **Utilities**: es-toolkit (lodash alternative)
 - **nuqs** for URL state management (NuqsAdapter in RootProvider)
