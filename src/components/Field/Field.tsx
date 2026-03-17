@@ -1,30 +1,20 @@
-import { cloneElement } from "react";
 import { Label } from "../Label";
 
-interface FieldProps extends React.ComponentProps<"div"> {
+interface FieldProps extends Omit<React.ComponentProps<"div">, "children"> {
   label?: string;
   errorMessage?: string;
-  children: React.ReactElement<{
-    id?: string;
-    isError?: boolean;
-  }>;
+  children: (props: { isError: boolean }) => React.ReactNode;
 }
 
 export function Field(props: FieldProps) {
   const { label, errorMessage, children, ...restProps } = props;
+  const isError = Boolean(errorMessage);
 
   return (
     <div {...restProps}>
-      {Boolean(label) && (
-        <Label className="mb-2" htmlFor={children.props.id}>
-          {label}
-        </Label>
-      )}
-      {cloneElement(children, {
-        ...children.props,
-        isError: Boolean(errorMessage),
-      })}
-      {Boolean(errorMessage) && (
+      {Boolean(label) && <Label className="mb-2">{label}</Label>}
+      {children({ isError })}
+      {isError && (
         <p className="mt-1 text-xs font-normal text-red-500">{errorMessage}</p>
       )}
     </div>

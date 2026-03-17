@@ -39,10 +39,11 @@ export function Spinner(props: SpinnerProps) {
   const finalSize = typeof size === "number" ? size : SIZE_MAP[size];
 
   return (
-    // oxlint-disable-next-line jsx-a11y/svg-has-accessible-name
     <svg
+      aria-label="Loading"
       className={base({ className })}
       height={finalSize}
+      role="status"
       viewBox="22 22 44 44"
       width={finalSize}
       {..._props}
@@ -55,7 +56,7 @@ export function Spinner(props: SpinnerProps) {
         r="20.2"
         strokeWidth="3.6"
       />
-      {Boolean(showTrack) && (
+      {showTrack && (
         <circle
           className={track({ className })}
           cx="44"

@@ -4,6 +4,7 @@ export default defineConfig({
   options: {
     typeCheck: true,
     typeAware: true,
+    reportUnusedDisableDirectives: "error",
   },
   env: {
     builtin: true,
@@ -165,6 +166,7 @@ export default defineConfig({
     "typescript/no-unnecessary-type-arguments": "error",
     "typescript/no-unnecessary-type-assertion": "error",
     "typescript/no-unnecessary-type-constraint": "error",
+    "typescript/no-unnecessary-type-conversion": "error",
     "typescript/no-unnecessary-type-parameters": "error",
     "typescript/no-unsafe-argument": "error",
     "typescript/no-unsafe-assignment": "error",
@@ -203,6 +205,8 @@ export default defineConfig({
     "typescript/use-unknown-in-catch-callback-variable": "error",
 
     // ── React rules (builtin) ──
+    "react/no-clone-element": "error",
+    "react/no-react-children": "error",
     "react/jsx-boolean-value": "error",
     "react/jsx-curly-brace-presence": "error",
     "react/jsx-fragments": "error",
@@ -475,6 +479,7 @@ export default defineConfig({
         ".storybook/main.ts",
         ".storybook/preview.tsx",
         "next.config.ts",
+        "oxfmt.config.ts",
         "oxlint.config.ts",
         "postcss.config.mjs",
         "src/**/default.tsx",

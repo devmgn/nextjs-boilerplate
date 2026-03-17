@@ -37,20 +37,29 @@ export default function Page() {
       }}
     >
       <Field errorMessage={errors.userId?.message} label="User ID">
-        <Input
-          {...register("userId", { valueAsNumber: true })}
-          id={id}
-          type="number"
-        />
+        {({ isError }) => (
+          <Input
+            {...register("userId", { valueAsNumber: true })}
+            id={id}
+            isError={isError}
+            type="number"
+          />
+        )}
       </Field>
       <Field errorMessage={errors.id?.message} label="ID">
-        <Input {...register("id", { valueAsNumber: true })} type="number" />
+        {({ isError }) => (
+          <Input
+            {...register("id", { valueAsNumber: true })}
+            isError={isError}
+            type="number"
+          />
+        )}
       </Field>
       <Field errorMessage={errors.title?.message} label="Title">
-        <Input {...register("title")} />
+        {({ isError }) => <Input {...register("title")} isError={isError} />}
       </Field>
       <Field errorMessage={errors.body?.message} label="Body">
-        <Input {...register("body")} />
+        {({ isError }) => <Input {...register("body")} isError={isError} />}
       </Field>
       <Button disabled={isPending} type="submit">
         {isPending ? "Pending" : "Submit"}
