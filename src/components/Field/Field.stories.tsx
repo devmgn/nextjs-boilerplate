@@ -6,7 +6,7 @@ import { Input } from "../Input";
 const meta = {
   component: Field,
   args: {
-    children: <Input id="field-input" />,
+    children: ({ isError }) => <Input id="field-input" isError={isError} />,
     label: "フィールドラベル",
     errorMessage: "",
   },
@@ -25,7 +25,9 @@ export const WithErrorMessage: Story = {
 
 export const WithDisabledInput: Story = {
   args: {
-    children: <Input id="field-input" disabled />,
+    children: ({ isError }) => (
+      <Input id="field-input" disabled isError={isError} />
+    ),
   },
 };
 
