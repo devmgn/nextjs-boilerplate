@@ -475,6 +475,7 @@ export default defineConfig({
         ".storybook/main.ts",
         ".storybook/preview.tsx",
         "next.config.ts",
+        "oxfmt.config.ts",
         "oxlint.config.ts",
         "postcss.config.mjs",
         "src/**/default.tsx",
