@@ -13,7 +13,7 @@
     "postcss-load-config",
   ],
   "oxlint": {
-    "config": ["oxlint.config.ts"],
+    "config": ["oxlint.config.ts", "oxfmt.config.ts"],
   },
   "storybook": {
     "entry": [
