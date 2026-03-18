@@ -86,7 +86,6 @@ describe(asyncDebounce, () => {
     const p1 = debouncedFn();
     const p2 = debouncedFn();
 
-    // oxlint-disable-next-line promise/prefer-await-to-then -- タイマー発火前にrejectionハンドラを設定する必要がある
     const settled = Promise.allSettled([p1, p2]);
 
     await vi.runAllTimersAsync();
