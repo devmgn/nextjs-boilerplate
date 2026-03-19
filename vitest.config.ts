@@ -30,7 +30,7 @@ export default defineConfig({
         test: {
           name: "unit",
           globals: true,
-          environment: "jsdom",
+          environment: "happy-dom",
           globalSetup: "./vitest.globalSetup.ts",
           setupFiles: "./vitest.setup.ts",
           restoreMocks: true,
