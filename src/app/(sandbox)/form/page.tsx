@@ -2,7 +2,7 @@
 
 import type { PostSchema } from "./schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { startTransition, useActionState, useId } from "react";
+import { startTransition, useActionState } from "react";
 import { Form, createFormControl, useFormState } from "react-hook-form";
 import { post } from "./action";
 import { postSchema } from "./schema";
@@ -24,7 +24,6 @@ export default function Page() {
   const [, formAction, isPending] = useActionState(post, null);
   const { control, register } = form;
   const { errors } = useFormState({ control });
-  const id = useId();
 
   return (
     <Form
@@ -36,31 +35,38 @@ export default function Page() {
         });
       }}
     >
-      <Field errorMessage={errors.userId?.message} label="User ID">
-        {({ isError }) => (
+      <Field
+        errorMessage={errors.userId?.message}
+        label="User ID"
+        render={(props) => (
           <Input
             {...register("userId", { valueAsNumber: true })}
-            id={id}
-            isError={isError}
+            {...props}
             type="number"
           />
         )}
-      </Field>
-      <Field errorMessage={errors.id?.message} label="ID">
-        {({ isError }) => (
+      />
+      <Field
+        errorMessage={errors.id?.message}
+        label="ID"
+        render={(props) => (
           <Input
             {...register("id", { valueAsNumber: true })}
-            isError={isError}
+            {...props}
             type="number"
           />
         )}
-      </Field>
-      <Field errorMessage={errors.title?.message} label="Title">
-        {({ isError }) => <Input {...register("title")} isError={isError} />}
-      </Field>
-      <Field errorMessage={errors.body?.message} label="Body">
-        {({ isError }) => <Input {...register("body")} isError={isError} />}
-      </Field>
+      />
+      <Field
+        errorMessage={errors.title?.message}
+        label="Title"
+        render={(props) => <Input {...register("title")} {...props} />}
+      />
+      <Field
+        errorMessage={errors.body?.message}
+        label="Body"
+        render={(props) => <Input {...register("body")} {...props} />}
+      />
       <Button disabled={isPending} type="submit">
         {isPending ? "Pending" : "Submit"}
       </Button>
