@@ -24,17 +24,19 @@ interface SvgIconProps
     Omit<React.ComponentProps<"svg">, "children" | keyof SvgIconVariants>,
     SvgIconVariants {
   icon: React.ElementType;
-  label: string;
+  label?: string;
 }
 
 /** サイズプリセットとアクセシブルなラベリング付き SVG アイコンラッパー。 */
 export function SvgIcon(props: SvgIconProps) {
   const { icon: Icon, label, className, size, ..._props } = props;
+  const existsLabel = Boolean(label);
 
   return (
     <Icon
-      aria-hidden
+      aria-hidden={!existsLabel}
       aria-label={label}
+      role={existsLabel ? "img" : undefined}
       className={svgIcon({ className, size })}
       focusable={false}
       {..._props}

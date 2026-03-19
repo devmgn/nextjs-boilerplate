@@ -40,12 +40,20 @@ export const ExtraLarge: Story = {
   args: { size: "xl" },
 };
 
+export const Decorative: Story = {
+  args: { label: undefined },
+  play: async ({ canvasElement }) => {
+    const icon = canvasElement.querySelector("svg");
+    await expect(icon).toHaveAttribute("aria-hidden", "true");
+  },
+};
+
 export const ClickTest: Story = {
   play: async ({ args, canvas }) => {
-    const icon = canvas.getByLabelText("Face icon");
+    const icon = canvas.getByRole("img", { name: "Face icon" });
     await userEvent.click(icon);
     await expect(args.onClick).toHaveBeenCalled();
-    await expect(icon).toHaveAttribute("aria-hidden", "true");
+    await expect(icon).toHaveAttribute("aria-hidden", "false");
     await expect(icon).toHaveAttribute("focusable", "false");
   },
 };

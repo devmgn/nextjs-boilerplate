@@ -6,39 +6,52 @@ import { Input } from "../Input";
 const meta = {
   component: Field,
   args: {
-    children: ({ isError }) => <Input id="field-input" isError={isError} />,
+    render: (props) => <Input {...props} />,
     label: "フィールドラベル",
-    errorMessage: "",
   },
 } satisfies Meta<typeof Field>;
 
 export default meta;
 type Story = StoryObj<typeof Field>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  play: async ({ canvas }) => {
+    const label = canvas.getByText("フィールドラベル");
+    const input = canvas.getByRole("textbox");
+    await expect(label).toHaveAttribute("for", input.id);
+  },
+};
 
 export const WithErrorMessage: Story = {
   args: {
     errorMessage: "この項目は必須です。",
   },
+  play: async ({ canvas }) => {
+    const error = canvas.getByText("この項目は必須です。");
+    await expect(error).toBeInTheDocument();
+
+    const input = canvas.getByRole("textbox");
+    await expect(input).toHaveClass("text-red-600");
+  },
 };
 
 export const WithDisabledInput: Story = {
   args: {
-    children: ({ isError }) => (
-      <Input id="field-input" disabled isError={isError} />
-    ),
+    render: (props) => <Input {...props} disabled />,
+  },
+  play: async ({ canvas }) => {
+    const input = canvas.getByRole("textbox");
+    await expect(input).toBeDisabled();
   },
 };
 
-export const ErrorDisplayTest: Story = {
+export const WithoutLabel: Story = {
   args: {
-    errorMessage: "エラーメッセージ",
+    label: undefined,
+    render: (props) => <Input {...props} aria-label="ラベルなし入力" />,
   },
   play: async ({ canvas }) => {
-    const errorText = canvas.getByText("エラーメッセージ");
-    await expect(errorText).toBeInTheDocument();
     const input = canvas.getByRole("textbox");
-    await expect(input).toHaveClass("text-red-600");
+    await expect(input).not.toHaveAttribute("id");
   },
 };
