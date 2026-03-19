@@ -28,6 +28,7 @@ function ErrorToastDemo(props: { skipToast?: boolean }) {
 
 const meta = {
   component: ErrorToastDemo,
+  tags: ["!manifest"],
   parameters: {
     layout: "centered",
   },
@@ -42,6 +43,7 @@ export default meta;
 type Story = StoryObj<typeof ErrorToastDemo>;
 
 export const Default: Story = {
+  tags: ["!manifest"],
   play: async ({ canvas }) => {
     canvas.getByRole("button").click();
     await waitFor(async () => {

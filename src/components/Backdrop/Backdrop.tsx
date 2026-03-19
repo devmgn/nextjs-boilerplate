@@ -19,6 +19,7 @@ interface BackdropProps
   open: boolean;
 }
 
+/** 半透明オーバーレイ。オプションのブラー効果とフェードイン/アウトアニメーション付き。 */
 export function Backdrop(props: BackdropProps) {
   const { open, blur, className, ..._props } = props;
 

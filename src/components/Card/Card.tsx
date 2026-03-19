@@ -8,6 +8,7 @@ const cardVariants = tv({
 interface CardProps
   extends React.ComponentProps<"div">, VariantProps<typeof cardVariants> {}
 
+/** 角丸・ボーダー・シャドウ付きのコンテナ。関連コンテンツのグルーピング用。 */
 export function Card(props: CardProps) {
   const { className, ..._props } = props;
 

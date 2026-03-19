@@ -33,6 +33,7 @@ interface SpinnerProps
 }
 const { base, circle, track } = spinnerVariants();
 
+/** サイズ設定可能な SVG ベースのローディングスピナー。トラックサークルのオプション付き。 */
 export function Spinner(props: SpinnerProps) {
   const { className, showTrack = true, size = SIZE_MAP.md, ..._props } = props;
 

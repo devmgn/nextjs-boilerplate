@@ -33,6 +33,7 @@ interface ButtonProps
   asChild?: boolean;
 }
 
+/** バリアントとサイズオプション付きの多態ボタン。`asChild` でカスタム要素のレンダリングに対応。 */
 export function Button(props: ButtonProps) {
   const { className, variant, size, asChild = false, ..._props } = props;
   const Component = asChild ? Slot : "button";

@@ -8,6 +8,7 @@ const labelVariants = tv({
 interface LabelProps
   extends React.ComponentProps<"label">, VariantProps<typeof labelVariants> {}
 
+/** 統一されたタイポグラフィのフォームラベル要素。 */
 export function Label(props: LabelProps) {
   const { className, htmlFor, ..._props } = props;
 
