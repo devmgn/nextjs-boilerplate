@@ -1,5 +1,9 @@
 import type { QueryClientConfig } from "@tanstack/react-query";
-import { MutationCache, QueryCache } from "@tanstack/react-query";
+import {
+  MutationCache,
+  QueryCache,
+  defaultShouldDehydrateQuery,
+} from "@tanstack/react-query";
 import { toast } from "sonner";
 
 function handleCacheError(
@@ -23,6 +27,11 @@ export const QUERY_CLIENT_CONFIG = {
     },
     mutations: {
       retry: false,
+    },
+    dehydrate: {
+      // include pending queries in dehydration
+      shouldDehydrateQuery: (query) =>
+        defaultShouldDehydrateQuery(query) || query.state.status === "pending",
     },
   },
   queryCache: new QueryCache({
