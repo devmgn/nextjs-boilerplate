@@ -3,10 +3,10 @@
 import {
   QueryClient,
   QueryClientProvider as _QueryClientProvider,
-  isServer,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { QUERY_CLIENT_CONFIG } from "../../config/queryClientConfig";
+import { isServer } from "../../utils/runtime";
 
 function makeQueryClient() {
   return new QueryClient(QUERY_CLIENT_CONFIG);
