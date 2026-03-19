@@ -41,6 +41,7 @@ function UseLocalStorageDemo() {
 }
 
 const meta = {
+  tags: ["!manifest"],
   parameters: {
     layout: "centered",
   },

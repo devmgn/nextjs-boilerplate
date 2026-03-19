@@ -11,6 +11,7 @@ const QUERIES = [
 ] as const;
 
 const meta = {
+  tags: ["!manifest"],
   parameters: {
     layout: "centered",
   },

@@ -16,6 +16,7 @@ const inputVariants = tv({
 interface InputProps
   extends React.ComponentProps<"input">, VariantProps<typeof inputVariants> {}
 
+/** エラー状態をサポートするスタイル付きテキスト入力。 */
 export function Input(props: InputProps) {
   const { className, isError, ..._props } = props;
 

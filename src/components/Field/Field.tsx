@@ -6,6 +6,7 @@ interface FieldProps extends Omit<React.ComponentProps<"div">, "children"> {
   children: (props: { isError: boolean }) => React.ReactNode;
 }
 
+/** ラベル、render prop による子入力、エラーメッセージを表示するフォームフィールドラッパー。 */
 export function Field(props: FieldProps) {
   const { label, errorMessage, children, ...restProps } = props;
   const isError = Boolean(errorMessage);
