@@ -61,11 +61,23 @@ const meta = {
 
 ## MCP Integration
 
-`@storybook/addon-mcp` is enabled with `dev` and `docs` toolsets. Use the `storybook-mcp` MCP server for:
+`@storybook/addon-mcp` is enabled with `dev` and `docs` toolsets. Use the `storybook-mcp` MCP server tools:
 
-- `get_ui_building_instructions` — get component building guidance
-- `preview-stories` — preview stories
-- `get-documentation` — query Storybook docs
+- `list-all-documentation` — list all components and documentation entries
+- `get-documentation` — get detailed component info (props, stories, docs)
+- `get-documentation-for-story` — get full story code when `get-documentation` is insufficient
+- `get-storybook-story-instructions` — get latest instructions for creating/updating stories
+- `preview-stories` — preview stories in chat or get Storybook links
+- `run-story-tests` — run tests for specific stories including a11y checks
+
+### Component Property Verification
+
+- **Never hallucinate component properties.** Before using ANY property, verify it via MCP tools.
+- Query `list-all-documentation` → `get-documentation` to see all available properties and examples.
+- Only use properties explicitly documented or shown in example stories.
+- If a property isn't documented, do not assume it exists. Check back with the user.
+- Always use `get-storybook-story-instructions` before creating or updating stories.
+- Check your work by running `run-story-tests`.
 
 ## Key Points
 

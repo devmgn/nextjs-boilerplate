@@ -23,9 +23,6 @@ const config: StorybookConfig = {
   core: {
     disableTelemetry: true,
   },
-  features: {
-    experimentalComponentsManifest: true,
-  },
   staticDirs: ["../public"],
 };
 
