@@ -90,4 +90,36 @@ describe("QUERY_CLIENT_CONFIG", () => {
       ).toBe(false);
     });
   });
+
+  describe("dehydrate", () => {
+    it("successステータスのクエリがdehydrate対象であること", () => {
+      const { shouldDehydrateQuery } =
+        QUERY_CLIENT_CONFIG.defaultOptions.dehydrate;
+      const query = { state: { status: "success" } } as Parameters<
+        typeof shouldDehydrateQuery
+      >[0];
+
+      expect(shouldDehydrateQuery(query)).toBe(true);
+    });
+
+    it("pendingステータスのクエリがdehydrate対象であること", () => {
+      const { shouldDehydrateQuery } =
+        QUERY_CLIENT_CONFIG.defaultOptions.dehydrate;
+      const query = { state: { status: "pending" } } as Parameters<
+        typeof shouldDehydrateQuery
+      >[0];
+
+      expect(shouldDehydrateQuery(query)).toBe(true);
+    });
+
+    it("errorステータスのクエリがdehydrate対象外であること", () => {
+      const { shouldDehydrateQuery } =
+        QUERY_CLIENT_CONFIG.defaultOptions.dehydrate;
+      const query = { state: { status: "error" } } as Parameters<
+        typeof shouldDehydrateQuery
+      >[0];
+
+      expect(shouldDehydrateQuery(query)).toBe(false);
+    });
+  });
 });
