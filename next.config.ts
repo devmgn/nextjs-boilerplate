@@ -6,6 +6,7 @@ const nextConfig = {
   },
   experimental: {
     authInterrupts: true,
+    strictRouteTypes: true,
     turbopackFileSystemCacheForDev: true,
     viewTransition: true,
   },
