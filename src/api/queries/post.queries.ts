@@ -5,6 +5,6 @@ import { apiClient } from "../apiClient";
 export function getPostsQueryOptions(request: ListPostsRequest = {}) {
   return queryOptions({
     queryKey: ["getPosts", request] as const,
-    queryFn: () => apiClient.listPosts(request),
+    queryFn: async () => apiClient.listPosts(request),
   });
 }

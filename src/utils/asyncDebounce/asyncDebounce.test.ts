@@ -16,7 +16,7 @@ describe(asyncDebounce, () => {
 
     await vi.runAllTimersAsync();
 
-    expect(mockFn).toHaveBeenCalledOnce();
+    expect(mockFn).toHaveBeenCalledTimes(1);
   });
 
   it("デバウンスされた関数が呼び出されたとき、正しい結果を返すこと", async () => {
@@ -76,7 +76,7 @@ describe(asyncDebounce, () => {
     await expect(p1).resolves.toBe("result");
     await expect(p2).resolves.toBe("result");
     await expect(p3).resolves.toBe("result");
-    expect(mockFn).toHaveBeenCalledOnce();
+    expect(mockFn).toHaveBeenCalledTimes(1);
   });
 
   it("複数回呼び出されてエラーが発生したとき、全てのPromiseがrejectされること", async () => {

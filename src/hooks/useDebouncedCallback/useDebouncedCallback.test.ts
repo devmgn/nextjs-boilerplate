@@ -22,7 +22,7 @@ describe(useDebouncedCallback, () => {
     act(() => {
       vi.advanceTimersByTime(500);
     });
-    expect(callback).toHaveBeenCalledOnce();
+    expect(callback).toHaveBeenCalledTimes(1);
   });
 
   it("flush を呼び出すと即時実行されること", () => {
@@ -35,13 +35,13 @@ describe(useDebouncedCallback, () => {
       // flush で即実行
       result.current.flush();
     });
-    expect(callback).toHaveBeenCalledOnce();
+    expect(callback).toHaveBeenCalledTimes(1);
 
     // その後タイマーを進めても追加で呼ばれない
     act(() => {
       vi.advanceTimersByTime(500);
     });
-    expect(callback).toHaveBeenCalledOnce();
+    expect(callback).toHaveBeenCalledTimes(1);
   });
 
   it("cancel を呼び出すと保留中の実行がキャンセルされること", () => {
@@ -100,12 +100,12 @@ describe(useDebouncedCallback, () => {
     act(() => {
       result.current();
     });
-    expect(callback).toHaveBeenCalledOnce();
+    expect(callback).toHaveBeenCalledTimes(1);
 
     act(() => {
       result.current();
     });
-    expect(callback).toHaveBeenCalledOnce();
+    expect(callback).toHaveBeenCalledTimes(1);
 
     act(() => {
       vi.advanceTimersByTime(500);
@@ -141,7 +141,7 @@ describe(useDebouncedCallback, () => {
     act(() => {
       vi.advanceTimersByTime(1000);
     });
-    expect(callback).toHaveBeenCalledOnce();
+    expect(callback).toHaveBeenCalledTimes(1);
   });
 
   it("schedule メソッドでdebounce実行をスケジュールできること", () => {
