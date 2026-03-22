@@ -83,7 +83,7 @@ describe(useMediaQuery, () => {
     act(() => {
       mockMql.fire(true);
     });
-    expect(onChange).toHaveBeenCalledOnce();
+    expect(onChange).toHaveBeenCalledTimes(1);
     expect(onChange).toHaveBeenCalledWith(
       expect.objectContaining({ matches: true }),
     );

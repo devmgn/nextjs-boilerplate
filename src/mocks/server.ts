@@ -1,3 +1,4 @@
+// oxlint-disable jest/require-top-level-describe, jest/no-hooks
 import { setupServer } from "msw/node";
 import { afterAll, afterEach, beforeAll } from "vitest";
 
@@ -8,12 +9,12 @@ beforeAll(() => {
   server.listen({ onUnhandledRequest: "error" });
 });
 
-//  Close server after all tests
-afterAll(() => {
-  server.close();
-});
-
 // Reset handlers after each test `important for test isolation`
 afterEach(() => {
   server.resetHandlers();
+});
+
+//  Close server after all tests
+afterAll(() => {
+  server.close();
 });

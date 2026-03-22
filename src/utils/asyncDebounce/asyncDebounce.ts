@@ -31,6 +31,7 @@ export function asyncDebounce<T extends unknown[], R>(
   );
 
   return (...args: T): Promise<R> =>
+    // oxlint-disable-next-line promise/avoid-new
     new Promise((resolve, reject) => {
       pending.push({ resolve, reject });
       debouncedFn(args);

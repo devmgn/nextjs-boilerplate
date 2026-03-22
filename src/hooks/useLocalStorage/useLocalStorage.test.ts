@@ -184,7 +184,7 @@ describe(useLocalStorage, () => {
         result.current[1]("large-value");
       });
 
-      expect(warnSpy).toHaveBeenCalledOnce();
+      expect(warnSpy).toHaveBeenCalledTimes(1);
       expect(result.current[0]).toBe("default");
       // localStorage に書き込まれていないことを確認
       expect(mockStorage.getItem(key)).toBeNull();
