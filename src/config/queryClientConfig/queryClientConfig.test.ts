@@ -24,7 +24,7 @@ describe("QUERY_CLIENT_CONFIG", () => {
       await queryClient
         .fetchQuery({
           queryKey: ["test-error"],
-          queryFn: () => Promise.reject(new Error("fetch failed")),
+          queryFn: async () => Promise.reject(new Error("fetch failed")),
         })
         .catch(() => {});
 
@@ -35,7 +35,7 @@ describe("QUERY_CLIENT_CONFIG", () => {
       await queryClient
         .fetchQuery({
           queryKey: ["test-skip"],
-          queryFn: () => Promise.reject(new Error("fetch failed")),
+          queryFn: async () => Promise.reject(new Error("fetch failed")),
           meta: { skipToast: true },
         })
         .catch(() => {});
@@ -49,7 +49,7 @@ describe("QUERY_CLIENT_CONFIG", () => {
       await queryClient
         .getMutationCache()
         .build(queryClient, {
-          mutationFn: () => Promise.reject(new Error("mutation failed")),
+          mutationFn: async () => Promise.reject(new Error("mutation failed")),
         })
         .execute(undefined)
         .catch(() => {});
@@ -61,7 +61,7 @@ describe("QUERY_CLIENT_CONFIG", () => {
       await queryClient
         .getMutationCache()
         .build(queryClient, {
-          mutationFn: () => Promise.reject(new Error("mutation failed")),
+          mutationFn: async () => Promise.reject(new Error("mutation failed")),
           meta: { skipToast: true },
         })
         .execute(undefined)
