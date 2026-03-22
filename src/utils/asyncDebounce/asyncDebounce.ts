@@ -30,10 +30,10 @@ export function asyncDebounce<T extends unknown[], R>(
     options,
   );
 
-  return async (...args: T): Promise<R> =>
-    // oxlint-disable-next-line promise/avoid-new
-    new Promise((resolve, reject) => {
-      pending.push({ resolve, reject });
-      debouncedFn(args);
-    });
+  return async (...args: T): Promise<R> => {
+    const { promise, resolve, reject } = Promise.withResolvers<R>();
+    pending.push({ resolve, reject });
+    debouncedFn(args);
+    return promise;
+  };
 }
