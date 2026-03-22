@@ -12,7 +12,8 @@ function makeQueryClient() {
   return new QueryClient(QUERY_CLIENT_CONFIG);
 }
 
-let browserQueryClient: QueryClient | undefined = undefined;
+// oxlint-disable-next-line init-declarations
+let browserQueryClient: QueryClient | undefined;
 
 function getQueryClient() {
   if (isServer) {
