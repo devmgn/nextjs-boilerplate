@@ -5,6 +5,7 @@ import { Input } from "../../components/Input";
 import { useIsComposing } from "../useIsComposing";
 
 const meta = {
+  component: undefined,
   tags: ["!manifest"],
   parameters: {
     layout: "centered",
