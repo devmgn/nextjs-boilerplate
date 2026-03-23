@@ -26,11 +26,8 @@ export default defineConfig({
     "vitest",
   ],
   jsPlugins: [
-    "./scripts/oxlint-plugin-entry-point.mjs",
-    "./scripts/oxlint-plugin-fn-style.mjs",
-    "./scripts/oxlint-plugin-sort-hook-deps.mjs",
+    "./scripts/oxlint-custom-rules/index.mjs",
     "@tanstack/eslint-plugin-query",
-    { name: "import-js", specifier: "eslint-plugin-import" },
     { name: "react-hooks-js", specifier: "eslint-plugin-react-hooks" },
   ],
   settings: {
@@ -134,9 +131,6 @@ export default defineConfig({
     "vitest/no-importing-vitest-globals": "off",
     "vitest/require-hook": "off",
 
-    // ── eslint-plugin-import (jsPlugin) ──
-    "import-js/newline-after-import": "error",
-
     // ── @tanstack/eslint-plugin-query (jsPlugin) ──
     "@tanstack/query/exhaustive-deps": "error",
     "@tanstack/query/infinite-query-property-order": "error",
@@ -165,14 +159,11 @@ export default defineConfig({
     "react-hooks-js/unsupported-syntax": "error",
     "react-hooks-js/use-memo": "error",
 
-    // ── fn-style (jsPlugin) ──
-    "fn-style/no-top-level-arrow": "error",
-
-    // ── entry-point (jsPlugin) ──
-    "entry-point/no-index-tsx": "error",
-
-    // ── sort-hook-deps (jsPlugin) ──
-    "sort-hook-deps/sort-deps": "error",
+    // ── custom rules (jsPlugin: ./scripts/oxlint/) ──
+    "custom-rules/newline-after-import": "error",
+    "custom-rules/no-index-tsx": "error",
+    "custom-rules/no-top-level-arrow": "error",
+    "custom-rules/sort-hook-deps": "error",
   },
   overrides: [
     {
