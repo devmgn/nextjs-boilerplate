@@ -1,0 +1,357 @@
+{/* @meta */}
+import { Meta, ColorPalette, ColorItem, Typeset } from "@storybook/addon-docs/blocks";
+
+<Meta title="Design Tokens/M3 Overview" />
+
+# Material Design 3 — Design Tokens
+
+Seed Color: **Purple (#6750A4)**
+
+---
+
+## Color — Primary
+
+<ColorPalette>
+  <ColorItem
+    title="primary"
+    subtitle="#6750A4"
+    colors={{ primary: "#6750A4" }}
+  />
+  <ColorItem
+    title="on-primary"
+    subtitle="#FFFFFF"
+    colors={{ "on-primary": "#FFFFFF" }}
+  />
+  <ColorItem
+    title="primary-container"
+    subtitle="#EADDFF"
+    colors={{ "primary-container": "#EADDFF" }}
+  />
+  <ColorItem
+    title="on-primary-container"
+    subtitle="#21005D"
+    colors={{ "on-primary-container": "#21005D" }}
+  />
+</ColorPalette>
+
+## Color — Secondary
+
+<ColorPalette>
+  <ColorItem
+    title="secondary"
+    subtitle="#625B71"
+    colors={{ secondary: "#625B71" }}
+  />
+  <ColorItem
+    title="on-secondary"
+    subtitle="#FFFFFF"
+    colors={{ "on-secondary": "#FFFFFF" }}
+  />
+  <ColorItem
+    title="secondary-container"
+    subtitle="#E8DEF8"
+    colors={{ "secondary-container": "#E8DEF8" }}
+  />
+  <ColorItem
+    title="on-secondary-container"
+    subtitle="#1D192B"
+    colors={{ "on-secondary-container": "#1D192B" }}
+  />
+</ColorPalette>
+
+## Color — Tertiary
+
+<ColorPalette>
+  <ColorItem
+    title="tertiary"
+    subtitle="#7D5260"
+    colors={{ tertiary: "#7D5260" }}
+  />
+  <ColorItem
+    title="on-tertiary"
+    subtitle="#FFFFFF"
+    colors={{ "on-tertiary": "#FFFFFF" }}
+  />
+  <ColorItem
+    title="tertiary-container"
+    subtitle="#FFD8E4"
+    colors={{ "tertiary-container": "#FFD8E4" }}
+  />
+  <ColorItem
+    title="on-tertiary-container"
+    subtitle="#31111D"
+    colors={{ "on-tertiary-container": "#31111D" }}
+  />
+</ColorPalette>
+
+## Color — Error
+
+<ColorPalette>
+  <ColorItem title="error" subtitle="#B3261E" colors={{ error: "#B3261E" }} />
+  <ColorItem
+    title="on-error"
+    subtitle="#FFFFFF"
+    colors={{ "on-error": "#FFFFFF" }}
+  />
+  <ColorItem
+    title="error-container"
+    subtitle="#F9DEDC"
+    colors={{ "error-container": "#F9DEDC" }}
+  />
+  <ColorItem
+    title="on-error-container"
+    subtitle="#410E0B"
+    colors={{ "on-error-container": "#410E0B" }}
+  />
+</ColorPalette>
+
+## Color — Surface
+
+<ColorPalette>
+  <ColorItem
+    title="surface"
+    subtitle="#FEF7FF"
+    colors={{ surface: "#FEF7FF" }}
+  />
+  <ColorItem
+    title="on-surface"
+    subtitle="#1D1B20"
+    colors={{ "on-surface": "#1D1B20" }}
+  />
+  <ColorItem
+    title="surface-variant"
+    subtitle="#E7E0EC"
+    colors={{ "surface-variant": "#E7E0EC" }}
+  />
+  <ColorItem
+    title="on-surface-variant"
+    subtitle="#49454F"
+    colors={{ "on-surface-variant": "#49454F" }}
+  />
+  <ColorItem
+    title="surface-dim"
+    subtitle="#DED8E1"
+    colors={{ "surface-dim": "#DED8E1" }}
+  />
+  <ColorItem
+    title="surface-bright"
+    subtitle="#FEF7FF"
+    colors={{ "surface-bright": "#FEF7FF" }}
+  />
+</ColorPalette>
+
+### Surface Containers
+
+<ColorPalette>
+  <ColorItem
+    title="surface-container"
+    subtitle="5 levels of elevation"
+    colors={{
+      lowest: "#FFFFFF",
+      low: "#F7F2FA",
+      default: "#F3EDF7",
+      high: "#ECE6F0",
+      highest: "#E6E0E9",
+    }}
+  />
+</ColorPalette>
+
+## Color — Outline
+
+<ColorPalette>
+  <ColorItem
+    title="outline"
+    subtitle="#79747E"
+    colors={{ outline: "#79747E" }}
+  />
+  <ColorItem
+    title="outline-variant"
+    subtitle="#CAC4D0"
+    colors={{ "outline-variant": "#CAC4D0" }}
+  />
+</ColorPalette>
+
+## Color — Inverse
+
+<ColorPalette>
+  <ColorItem
+    title="inverse-surface"
+    subtitle="#322F35"
+    colors={{ "inverse-surface": "#322F35" }}
+  />
+  <ColorItem
+    title="inverse-on-surface"
+    subtitle="#F5EFF7"
+    colors={{ "inverse-on-surface": "#F5EFF7" }}
+  />
+  <ColorItem
+    title="inverse-primary"
+    subtitle="#D0BCFF"
+    colors={{ "inverse-primary": "#D0BCFF" }}
+  />
+</ColorPalette>
+
+---
+
+## Radius — Shape Corner
+
+<div
+  style={{ display: "flex", gap: "24px", alignItems: "end", flexWrap: "wrap" }}
+>
+  {[
+    { name: "none", value: "0px", role: "None" },
+    { name: "xs", value: "4px", role: "Extra Small" },
+    { name: "sm", value: "8px", role: "Small" },
+    { name: "md", value: "12px", role: "Medium" },
+    { name: "lg", value: "16px", role: "Large" },
+    { name: "xl", value: "28px", role: "Extra Large" },
+    { name: "full", value: "9999px", role: "Full" },
+  ].map((r) => (
+    <div key={r.name} style={{ textAlign: "center", minWidth: "72px" }}>
+      <div
+        style={{
+          width: "72px",
+          height: "72px",
+          backgroundColor: "#EADDFF",
+          borderRadius: r.value,
+          border: "2px solid #6750A4",
+        }}
+      />
+      <div style={{ fontSize: "13px", fontWeight: 600, marginTop: "8px" }}>
+        rounded-{r.name}
+      </div>
+      <div style={{ fontSize: "11px", color: "#49454F" }}>{r.value}</div>
+    </div>
+  ))}
+</div>
+
+---
+
+## Elevation — Shadow Levels
+
+<div
+  style={{
+    display: "flex",
+    gap: "32px",
+    alignItems: "end",
+    flexWrap: "wrap",
+    padding: "24px 0",
+  }}
+>
+  {[
+    { level: 0, usage: "Flat surface" },
+    { level: 1, usage: "Card, Nav bar" },
+    { level: 2, usage: "FAB, Sheet" },
+    { level: 3, usage: "Drawer" },
+    { level: 4, usage: "—" },
+    { level: 5, usage: "Modal, Dialog" },
+  ].map((e) => (
+    <div key={e.level} style={{ textAlign: "center" }}>
+      <div
+        style={{
+          width: "96px",
+          height: "96px",
+          backgroundColor: "#F7F2FA",
+          borderRadius: "12px",
+          boxShadow: `var(--shadow-elevation-${e.level})`,
+        }}
+      />
+      <div style={{ fontSize: "13px", fontWeight: 600, marginTop: "8px" }}>
+        shadow-elevation-{e.level}
+      </div>
+      <div style={{ fontSize: "10px", color: "#79747E" }}>{e.usage}</div>
+    </div>
+  ))}
+</div>
+
+---
+
+## Typography — Type Scale
+
+M3 Type Scale は5カテゴリ x 3サイズの15段階で構成。Display/Headline は Regular (400)、Title/Label は Medium (500)、Body は Regular (400)。
+
+### Display
+
+<Typeset
+  fontSizes={["57px", "45px", "36px"]}
+  fontWeight={400}
+  sampleText="Display Large / Medium / Small"
+/>
+
+### Headline
+
+<Typeset
+  fontSizes={["32px", "28px", "24px"]}
+  fontWeight={400}
+  sampleText="Headline Large / Medium / Small"
+/>
+
+### Title
+
+<Typeset
+  fontSizes={["22px", "16px", "14px"]}
+  fontWeight={500}
+  sampleText="Title Large / Medium / Small"
+/>
+
+### Body
+
+<Typeset
+  fontSizes={["16px", "14px", "12px"]}
+  fontWeight={400}
+  sampleText="Body Large / Medium / Small"
+/>
+
+### Label
+
+<Typeset
+  fontSizes={["14px", "12px", "11px"]}
+  fontWeight={500}
+  sampleText="Label Large / Medium / Small"
+/>
+
+### Token Reference
+
+`text-*` は Tailwind 組み込みで font-size + line-height + letter-spacing を自動適用。
+`typeset-*` は font-weight を含む一括ショートハンド。
+
+| Shorthand             | Tailwind utilities                 | size | height | spacing | weight |
+| --------------------- | ---------------------------------- | ---- | ------ | ------- | ------ |
+| `typeset-display-lg`  | `text-display-lg font-m3-regular`  | 57px | 64px   | -0.25px | 400    |
+| `typeset-display-md`  | `text-display-md font-m3-regular`  | 45px | 52px   | 0px     | 400    |
+| `typeset-display-sm`  | `text-display-sm font-m3-regular`  | 36px | 44px   | 0px     | 400    |
+| `typeset-headline-lg` | `text-headline-lg font-m3-regular` | 32px | 40px   | 0px     | 400    |
+| `typeset-headline-md` | `text-headline-md font-m3-regular` | 28px | 36px   | 0px     | 400    |
+| `typeset-headline-sm` | `text-headline-sm font-m3-regular` | 24px | 32px   | 0px     | 400    |
+| `typeset-title-lg`    | `text-title-lg font-m3-medium`     | 22px | 28px   | 0px     | 500    |
+| `typeset-title-md`    | `text-title-md font-m3-medium`     | 16px | 24px   | 0.15px  | 500    |
+| `typeset-title-sm`    | `text-title-sm font-m3-medium`     | 14px | 20px   | 0.1px   | 500    |
+| `typeset-body-lg`     | `text-body-lg font-m3-regular`     | 16px | 24px   | 0.5px   | 400    |
+| `typeset-body-md`     | `text-body-md font-m3-regular`     | 14px | 20px   | 0.25px  | 400    |
+| `typeset-body-sm`     | `text-body-sm font-m3-regular`     | 12px | 16px   | 0.4px   | 400    |
+| `typeset-label-lg`    | `text-label-lg font-m3-medium`     | 14px | 20px   | 0.1px   | 500    |
+| `typeset-label-md`    | `text-label-md font-m3-medium`     | 12px | 16px   | 0.5px   | 500    |
+| `typeset-label-sm`    | `text-label-sm font-m3-medium`     | 11px | 16px   | 0.5px   | 500    |
+
+---
+
+## Component Token Mapping
+
+コンポーネントで使用しているセマンティックトークンとM3ロールの対応表。
+
+| Token                    | M3 Role                  | Tailwind Class                |
+| ------------------------ | ------------------------ | ----------------------------- |
+| `background`             | `surface`                | `bg-background`               |
+| `foreground`             | `on-surface`             | `text-foreground`             |
+| `primary`                | `primary`                | `bg-primary`                  |
+| `primary-foreground`     | `on-primary`             | `text-primary-foreground`     |
+| `secondary`              | `secondary-container`    | `bg-secondary`                |
+| `secondary-foreground`   | `on-secondary-container` | `text-secondary-foreground`   |
+| `destructive`            | `error`                  | `bg-destructive`              |
+| `destructive-foreground` | `on-error`               | `text-destructive-foreground` |
+| `card`                   | `surface-container-low`  | `bg-card`                     |
+| `accent`                 | `secondary-container`    | `bg-accent`                   |
+| `muted`                  | `surface-container`      | `bg-muted`                    |
+| `muted-foreground`       | `on-surface-variant`     | `text-muted-foreground`       |
+| `input` / `border`       | `outline-variant`        | `border-input`                |
+| `ring`                   | `primary`                | `ring-ring`                   |

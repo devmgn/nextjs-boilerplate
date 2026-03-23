@@ -29,7 +29,9 @@ export function Field(props: FieldProps) {
         id: existsLabel ? id : undefined,
       })}
       {isError && (
-        <p className="mt-1 text-xs font-normal text-red-500">{errorMessage}</p>
+        <p className="mt-1 text-xs font-normal text-destructive">
+          {errorMessage}
+        </p>
       )}
     </div>
   );

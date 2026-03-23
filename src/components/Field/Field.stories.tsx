@@ -31,7 +31,7 @@ export const WithErrorMessage: Story = {
     await expect(error).toBeInTheDocument();
 
     const input = canvas.getByRole("textbox");
-    await expect(input).toHaveClass("text-red-600");
+    await expect(input).toHaveClass("text-destructive");
   },
 };
 
