@@ -1,5 +1,5 @@
 {/* @meta */}
-import { Meta, ColorPalette, ColorItem, Typeset } from "@storybook/addon-docs/blocks";
+import { Meta, ColorPalette, ColorItem } from "@storybook/addon-docs/blocks";
 
 <Meta title="Design Tokens/M3 Overview" />
 
@@ -205,9 +205,9 @@ Seed Color: **Purple (#6750A4)**
     { name: "xl", value: "28px", cls: "rounded-xl" },
     { name: "full", value: "9999px", cls: "rounded-full" },
   ].map((r) => (
-    <div key={r.name} className="min-w-[72px] text-center">
+    <div key={r.name} className="min-w-18 text-center">
       <div
-        className={`size-[72px] border-2 border-m3-primary bg-m3-primary-container ${r.cls}`}
+        className={`size-18 border-2 border-m3-primary bg-m3-primary-container ${r.cls}`}
       />
       <div className="mt-2 text-[13px] font-semibold">rounded-{r.name}</div>
       <div className="text-[11px] text-m3-on-surface-variant">{r.value}</div>
@@ -246,45 +246,68 @@ Seed Color: **Purple (#6750A4)**
 
 M3 Type Scale は5カテゴリ x 3サイズの15段階で構成。Display/Headline は Regular (400)、Title/Label は Medium (500)、Body は Regular (400)。
 
-### Display
-
-<Typeset
-  fontSizes={["57px", "45px", "36px"]}
-  fontWeight={400}
-  sampleText="Display Large / Medium / Small"
-/>
-
-### Headline
-
-<Typeset
-  fontSizes={["32px", "28px", "24px"]}
-  fontWeight={400}
-  sampleText="Headline Large / Medium / Small"
-/>
-
-### Title
-
-<Typeset
-  fontSizes={["22px", "16px", "14px"]}
-  fontWeight={500}
-  sampleText="Title Large / Medium / Small"
-/>
-
-### Body
-
-<Typeset
-  fontSizes={["16px", "14px", "12px"]}
-  fontWeight={400}
-  sampleText="Body Large / Medium / Small"
-/>
-
-### Label
-
-<Typeset
-  fontSizes={["14px", "12px", "11px"]}
-  fontWeight={500}
-  sampleText="Label Large / Medium / Small"
-/>
+<div className="flex flex-col gap-6">
+  {[
+    {
+      category: "Display",
+      items: [
+        { cls: "text-display-lg", label: "text-display-lg" },
+        { cls: "text-display-md", label: "text-display-md" },
+        { cls: "text-display-sm", label: "text-display-sm" },
+      ],
+    },
+    {
+      category: "Headline",
+      items: [
+        { cls: "text-headline-lg", label: "text-headline-lg" },
+        { cls: "text-headline-md", label: "text-headline-md" },
+        { cls: "text-headline-sm", label: "text-headline-sm" },
+      ],
+    },
+    {
+      category: "Title",
+      items: [
+        { cls: "text-title-lg", label: "text-title-lg" },
+        { cls: "text-title-md", label: "text-title-md" },
+        { cls: "text-title-sm", label: "text-title-sm" },
+      ],
+    },
+    {
+      category: "Body",
+      items: [
+        { cls: "text-body-lg", label: "text-body-lg" },
+        { cls: "text-body-md", label: "text-body-md" },
+        { cls: "text-body-sm", label: "text-body-sm" },
+      ],
+    },
+    {
+      category: "Label",
+      items: [
+        { cls: "text-label-lg", label: "text-label-lg" },
+        { cls: "text-label-md", label: "text-label-md" },
+        { cls: "text-label-sm", label: "text-label-sm" },
+      ],
+    },
+  ].map((group) => (
+    <div key={group.category}>
+      <div className="mb-2 text-label-sm text-m3-on-surface-variant uppercase tracking-widest">
+        {group.category}
+      </div>
+      <div className="flex flex-col gap-1 border-t border-m3-outline-variant pt-2">
+        {group.items.map((item) => (
+          <div key={item.cls} className="flex items-baseline gap-4">
+            <span className={`${item.cls} text-m3-on-surface`}>
+              The quick brown fox
+            </span>
+            <code className="shrink-0 text-label-sm text-m3-outline">
+              {item.label}
+            </code>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+</div>
 
 ### Token Reference
 
