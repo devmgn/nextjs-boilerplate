@@ -13,6 +13,7 @@ pnpm fix                            # Auto-fix lint + format
 pnpm knip                           # Dead code detection
 pnpm test                           # Run all tests
 pnpm test:unit                      # Unit tests only
+pnpm test:watch                     # Watch mode
 pnpm test:coverage                  # Tests with coverage (80% threshold)
 pnpm test:update                    # Update snapshots
 pnpm vitest run path/to/test.test.ts  # Specific test file
