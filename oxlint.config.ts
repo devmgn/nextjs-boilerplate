@@ -146,14 +146,11 @@ export default defineConfig({
     "react-compiler-rules/component-hook-factories": "error",
     "react-compiler-rules/config": "error",
     "react-compiler-rules/error-boundaries": "error",
-    "react-compiler-rules/fbt": "error",
-    "react-compiler-rules/fire": "error",
     "react-compiler-rules/gating": "error",
     "react-compiler-rules/globals": "error",
     "react-compiler-rules/hooks": "error",
     "react-compiler-rules/immutability": "error",
     "react-compiler-rules/incompatible-library": "error",
-    "react-compiler-rules/invariant": "error",
     "react-compiler-rules/memoized-effect-dependencies": "error",
     "react-compiler-rules/no-deriving-state-in-effects": "error",
     "react-compiler-rules/preserve-manual-memoization": "error",
@@ -168,7 +165,7 @@ export default defineConfig({
     "react-compiler-rules/use-memo": "error",
     "react-compiler-rules/void-use-memo": "error",
 
-    // ── custom rules (jsPlugin: ./scripts/oxlint/) ──
+    // ── custom rules (jsPlugin: ./scripts/oxlint-custom-rules/) ──
     "custom-rules/newline-after-import": "error",
     "custom-rules/no-index-tsx": "error",
     "custom-rules/no-top-level-arrow": "error",
