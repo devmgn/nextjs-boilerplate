@@ -18,6 +18,7 @@ pnpm test:coverage                  # Tests with coverage (80% threshold)
 pnpm test:update                    # Update snapshots
 pnpm vitest run path/to/test.test.ts  # Specific test file
 pnpm storybook                      # Storybook dev server
+pnpm build-storybook                # Storybook static build
 pnpm generate-api                   # Generate OpenAPI client
 pnpm generate-api:clean             # Clean + regenerate OpenAPI client
 pnpm analyze                        # Bundle size analysis (requires build)
