@@ -1,3 +1,9 @@
+---
+paths:
+  - "src/lib/styles/**"
+  - "src/components/**"
+---
+
 # M3 Design Tokens
 
 See `src/lib/styles/DesignTokens.mdx` for full token catalog and usage guide.
