@@ -296,11 +296,11 @@ M3 Type Scale は5カテゴリ x 3サイズの15段階で構成。Display/Headli
       <div className="flex flex-col gap-1 border-t border-m3-outline-variant pt-2">
         {group.items.map((item) => (
           <div key={item.cls} className="flex items-baseline gap-4">
+            <div className="shrink-0 text-label-sm font-mono text-m3-outline w-44">
+              {item.label}
+            </div>
             <div className={`${item.cls} text-m3-on-surface`}>
               The quick brown fox
-            </div>
-            <div className="shrink-0 text-label-sm font-mono text-m3-outline">
-              {item.label}
             </div>
           </div>
         ))}
