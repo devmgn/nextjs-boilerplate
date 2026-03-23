@@ -195,32 +195,22 @@ Seed Color: **Purple (#6750A4)**
 
 ## Radius — Shape Corner
 
-<div
-  style={{ display: "flex", gap: "24px", alignItems: "end", flexWrap: "wrap" }}
->
+<div className="flex flex-wrap items-end gap-6">
   {[
-    { name: "none", value: "0px", role: "None" },
-    { name: "xs", value: "4px", role: "Extra Small" },
-    { name: "sm", value: "8px", role: "Small" },
-    { name: "md", value: "12px", role: "Medium" },
-    { name: "lg", value: "16px", role: "Large" },
-    { name: "xl", value: "28px", role: "Extra Large" },
-    { name: "full", value: "9999px", role: "Full" },
+    { name: "none", value: "0px", cls: "rounded-none" },
+    { name: "xs", value: "4px", cls: "rounded-xs" },
+    { name: "sm", value: "8px", cls: "rounded-sm" },
+    { name: "md", value: "12px", cls: "rounded-md" },
+    { name: "lg", value: "16px", cls: "rounded-lg" },
+    { name: "xl", value: "28px", cls: "rounded-xl" },
+    { name: "full", value: "9999px", cls: "rounded-full" },
   ].map((r) => (
-    <div key={r.name} style={{ textAlign: "center", minWidth: "72px" }}>
+    <div key={r.name} className="min-w-[72px] text-center">
       <div
-        style={{
-          width: "72px",
-          height: "72px",
-          backgroundColor: "#EADDFF",
-          borderRadius: r.value,
-          border: "2px solid #6750A4",
-        }}
+        className={`size-[72px] border-2 border-m3-primary bg-m3-primary-container ${r.cls}`}
       />
-      <div style={{ fontSize: "13px", fontWeight: 600, marginTop: "8px" }}>
-        rounded-{r.name}
-      </div>
-      <div style={{ fontSize: "11px", color: "#49454F" }}>{r.value}</div>
+      <div className="mt-2 text-[13px] font-semibold">rounded-{r.name}</div>
+      <div className="text-[11px] text-m3-on-surface-variant">{r.value}</div>
     </div>
   ))}
 </div>
@@ -229,15 +219,7 @@ Seed Color: **Purple (#6750A4)**
 
 ## Elevation — Shadow Levels
 
-<div
-  style={{
-    display: "flex",
-    gap: "32px",
-    alignItems: "end",
-    flexWrap: "wrap",
-    padding: "24px 0",
-  }}
->
+<div className="flex flex-wrap items-end gap-8 py-6">
   {[
     { level: 0, usage: "Flat surface" },
     { level: 1, usage: "Card, Nav bar" },
@@ -246,20 +228,14 @@ Seed Color: **Purple (#6750A4)**
     { level: 4, usage: "—" },
     { level: 5, usage: "Modal, Dialog" },
   ].map((e) => (
-    <div key={e.level} style={{ textAlign: "center" }}>
+    <div key={e.level} className="text-center">
       <div
-        style={{
-          width: "96px",
-          height: "96px",
-          backgroundColor: "#F7F2FA",
-          borderRadius: "12px",
-          boxShadow: `var(--shadow-elevation-${e.level})`,
-        }}
+        className={`size-24 rounded-md bg-m3-surface-container-low shadow-elevation-${e.level}`}
       />
-      <div style={{ fontSize: "13px", fontWeight: 600, marginTop: "8px" }}>
+      <div className="mt-2 text-[13px] font-semibold">
         shadow-elevation-{e.level}
       </div>
-      <div style={{ fontSize: "10px", color: "#79747E" }}>{e.usage}</div>
+      <div className="text-[10px] text-m3-outline">{e.usage}</div>
     </div>
   ))}
 </div>
