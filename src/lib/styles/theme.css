@@ -85,68 +85,79 @@
    * Typography — M3 Type Scale
    * --text-* generates text-* utilities
    * --text-*--line-height auto-applies with text-*
-   * --tracking-* generates tracking-* utilities
-   * --font-weight-* generates font-* utilities
+   * --text-*--letter-spacing auto-applies with text-*
+   * --text-*--font-weight auto-applies with text-*
    * ======================================== */
 
-  /* Display */
+  /* Display (weight: 400) */
   --text-display-lg: 57px;
   --text-display-lg--line-height: 64px;
   --text-display-lg--letter-spacing: -0.25px;
+  --text-display-lg--font-weight: 400;
   --text-display-md: 45px;
   --text-display-md--line-height: 52px;
   --text-display-md--letter-spacing: 0px;
+  --text-display-md--font-weight: 400;
   --text-display-sm: 36px;
   --text-display-sm--line-height: 44px;
   --text-display-sm--letter-spacing: 0px;
+  --text-display-sm--font-weight: 400;
 
-  /* Headline */
+  /* Headline (weight: 400) */
   --text-headline-lg: 32px;
   --text-headline-lg--line-height: 40px;
   --text-headline-lg--letter-spacing: 0px;
+  --text-headline-lg--font-weight: 400;
   --text-headline-md: 28px;
   --text-headline-md--line-height: 36px;
   --text-headline-md--letter-spacing: 0px;
+  --text-headline-md--font-weight: 400;
   --text-headline-sm: 24px;
   --text-headline-sm--line-height: 32px;
   --text-headline-sm--letter-spacing: 0px;
+  --text-headline-sm--font-weight: 400;
 
-  /* Title */
+  /* Title (weight: 500) */
   --text-title-lg: 22px;
   --text-title-lg--line-height: 28px;
   --text-title-lg--letter-spacing: 0px;
+  --text-title-lg--font-weight: 500;
   --text-title-md: 16px;
   --text-title-md--line-height: 24px;
   --text-title-md--letter-spacing: 0.15px;
+  --text-title-md--font-weight: 500;
   --text-title-sm: 14px;
   --text-title-sm--line-height: 20px;
   --text-title-sm--letter-spacing: 0.1px;
+  --text-title-sm--font-weight: 500;
 
-  /* Body */
+  /* Body (weight: 400) */
   --text-body-lg: 16px;
   --text-body-lg--line-height: 24px;
   --text-body-lg--letter-spacing: 0.5px;
+  --text-body-lg--font-weight: 400;
   --text-body-md: 14px;
   --text-body-md--line-height: 20px;
   --text-body-md--letter-spacing: 0.25px;
+  --text-body-md--font-weight: 400;
   --text-body-sm: 12px;
   --text-body-sm--line-height: 16px;
   --text-body-sm--letter-spacing: 0.4px;
+  --text-body-sm--font-weight: 400;
 
-  /* Label */
+  /* Label (weight: 500) */
   --text-label-lg: 14px;
   --text-label-lg--line-height: 20px;
   --text-label-lg--letter-spacing: 0.1px;
+  --text-label-lg--font-weight: 500;
   --text-label-md: 12px;
   --text-label-md--line-height: 16px;
   --text-label-md--letter-spacing: 0.5px;
+  --text-label-md--font-weight: 500;
   --text-label-sm: 11px;
   --text-label-sm--line-height: 16px;
   --text-label-sm--letter-spacing: 0.5px;
-
-  /* Font weights for M3 categories */
-  --font-weight-m3-regular: 400;
-  --font-weight-m3-medium: 500;
+  --text-label-sm--font-weight: 500;
 
   /* ========================================
    * Animations
