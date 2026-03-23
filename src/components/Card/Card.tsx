@@ -2,7 +2,7 @@ import type { VariantProps } from "tailwind-variants";
 import { tv } from "tailwind-variants";
 
 const cardVariants = tv({
-  base: "bg-card text-card-foreground rounded-lg border shadow-xs",
+  base: "rounded-lg border bg-card text-card-foreground shadow-xs",
 });
 
 interface CardProps

@@ -9,7 +9,7 @@ const spinnerVariants = tv({
   },
   variants: {
     color: {
-      primary: { base: "text-primary-600" },
+      primary: { base: "text-primary" },
     },
   },
   defaultVariants: {
