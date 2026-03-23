@@ -28,7 +28,7 @@ export default defineConfig({
   jsPlugins: [
     "./scripts/oxlint-custom-rules/index.mjs",
     "@tanstack/eslint-plugin-query",
-    { name: "react-hooks-js", specifier: "eslint-plugin-react-hooks" },
+    { name: "react-compiler-rules", specifier: "eslint-plugin-react-hooks" },
   ],
   settings: {
     vitest: { typecheck: true },
@@ -140,24 +140,22 @@ export default defineConfig({
     "@tanstack/query/no-void-query-fn": "error",
     "@tanstack/query/stable-query-client": "error",
 
-    // ── eslint-plugin-react-hooks (jsPlugin) ──
-    "react-hooks-js/exhaustive-deps": "error",
-    "react-hooks-js/rules-of-hooks": "error",
-    "react-hooks-js/component-hook-factories": "error",
-    "react-hooks-js/config": "error",
-    "react-hooks-js/error-boundaries": "error",
-    "react-hooks-js/gating": "error",
-    "react-hooks-js/globals": "error",
-    "react-hooks-js/immutability": "error",
-    "react-hooks-js/incompatible-library": "error",
-    "react-hooks-js/preserve-manual-memoization": "error",
-    "react-hooks-js/purity": "error",
-    "react-hooks-js/refs": "error",
-    "react-hooks-js/set-state-in-effect": "error",
-    "react-hooks-js/set-state-in-render": "error",
-    "react-hooks-js/static-components": "error",
-    "react-hooks-js/unsupported-syntax": "error",
-    "react-hooks-js/use-memo": "error",
+    // ── react-compiler-rules (jsPlugin: eslint-plugin-react-hooks) ──
+    "react-compiler-rules/component-hook-factories": "error",
+    "react-compiler-rules/config": "error",
+    "react-compiler-rules/error-boundaries": "error",
+    "react-compiler-rules/gating": "error",
+    "react-compiler-rules/globals": "error",
+    "react-compiler-rules/immutability": "error",
+    "react-compiler-rules/incompatible-library": "error",
+    "react-compiler-rules/preserve-manual-memoization": "error",
+    "react-compiler-rules/purity": "error",
+    "react-compiler-rules/refs": "error",
+    "react-compiler-rules/set-state-in-effect": "error",
+    "react-compiler-rules/set-state-in-render": "error",
+    "react-compiler-rules/static-components": "error",
+    "react-compiler-rules/unsupported-syntax": "error",
+    "react-compiler-rules/use-memo": "error",
 
     // ── custom rules (jsPlugin: ./scripts/oxlint/) ──
     "custom-rules/newline-after-import": "error",
@@ -171,7 +169,6 @@ export default defineConfig({
       files: ["**/*.stories.*", "**/*.story.*"],
       rules: {
         "import/no-default-export": "off",
-        "react-hooks-js/rules-of-hooks": "off",
         "react/rules-of-hooks": "off",
         "typescript/consistent-type-assertions": "off",
         "typescript/no-explicit-any": "off",
