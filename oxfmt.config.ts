@@ -22,7 +22,7 @@ export default defineConfig({
   },
   sortTailwindcss: {
     stylesheet: "./src/lib/styles/globals.css",
-    attributes: ["class", "className"],
-    functions: ["clsx", "cva", "tv", "tw"],
+    attributes: ["className"],
+    functions: ["tv"],
   },
 });

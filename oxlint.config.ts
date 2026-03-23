@@ -36,6 +36,7 @@ export default defineConfig({
   ignorePatterns: [
     ".next/**",
     "build/**",
+    "coverage/**",
     "next-env.d.ts",
     "node_modules/**",
     "out/**",
