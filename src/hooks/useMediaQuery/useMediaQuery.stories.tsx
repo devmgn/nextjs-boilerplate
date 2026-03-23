@@ -11,6 +11,7 @@ const QUERIES = [
 ] as const;
 
 const meta = {
+  component: undefined,
   tags: ["!manifest"],
   parameters: {
     layout: "centered",

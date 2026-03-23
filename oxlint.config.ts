@@ -26,12 +26,9 @@ export default defineConfig({
     "vitest",
   ],
   jsPlugins: [
-    "./scripts/oxlint-plugin-entry-point.mjs",
-    "./scripts/oxlint-plugin-fn-style.mjs",
-    "./scripts/oxlint-plugin-sort-hook-deps.mjs",
+    "./scripts/oxlint-custom-rules/index.mjs",
     "@tanstack/eslint-plugin-query",
-    { name: "import-js", specifier: "eslint-plugin-import" },
-    { name: "react-hooks-js", specifier: "eslint-plugin-react-hooks" },
+    { name: "react-compiler-rules", specifier: "eslint-plugin-react-hooks" },
   ],
   settings: {
     vitest: { typecheck: true },
@@ -134,9 +131,6 @@ export default defineConfig({
     "vitest/no-importing-vitest-globals": "off",
     "vitest/require-hook": "off",
 
-    // ── eslint-plugin-import (jsPlugin) ──
-    "import-js/newline-after-import": "error",
-
     // ── @tanstack/eslint-plugin-query (jsPlugin) ──
     "@tanstack/query/exhaustive-deps": "error",
     "@tanstack/query/infinite-query-property-order": "error",
@@ -146,33 +140,36 @@ export default defineConfig({
     "@tanstack/query/no-void-query-fn": "error",
     "@tanstack/query/stable-query-client": "error",
 
-    // ── eslint-plugin-react-hooks (jsPlugin) ──
-    "react-hooks-js/exhaustive-deps": "error",
-    "react-hooks-js/rules-of-hooks": "error",
-    "react-hooks-js/component-hook-factories": "error",
-    "react-hooks-js/config": "error",
-    "react-hooks-js/error-boundaries": "error",
-    "react-hooks-js/gating": "error",
-    "react-hooks-js/globals": "error",
-    "react-hooks-js/immutability": "error",
-    "react-hooks-js/incompatible-library": "error",
-    "react-hooks-js/preserve-manual-memoization": "error",
-    "react-hooks-js/purity": "error",
-    "react-hooks-js/refs": "error",
-    "react-hooks-js/set-state-in-effect": "error",
-    "react-hooks-js/set-state-in-render": "error",
-    "react-hooks-js/static-components": "error",
-    "react-hooks-js/unsupported-syntax": "error",
-    "react-hooks-js/use-memo": "error",
+    // ── react-compiler-rules (jsPlugin: eslint-plugin-react-hooks) ──
+    "react-compiler-rules/automatic-effect-dependencies": "error",
+    "react-compiler-rules/capitalized-calls": "error",
+    "react-compiler-rules/component-hook-factories": "error",
+    "react-compiler-rules/config": "error",
+    "react-compiler-rules/error-boundaries": "error",
+    "react-compiler-rules/gating": "error",
+    "react-compiler-rules/globals": "error",
+    "react-compiler-rules/hooks": "error",
+    "react-compiler-rules/immutability": "error",
+    "react-compiler-rules/incompatible-library": "error",
+    "react-compiler-rules/memoized-effect-dependencies": "error",
+    "react-compiler-rules/no-deriving-state-in-effects": "error",
+    "react-compiler-rules/preserve-manual-memoization": "error",
+    "react-compiler-rules/purity": "error",
+    "react-compiler-rules/refs": "error",
+    "react-compiler-rules/rule-suppression": "error",
+    "react-compiler-rules/set-state-in-effect": "error",
+    "react-compiler-rules/set-state-in-render": "error",
+    "react-compiler-rules/static-components": "error",
+    "react-compiler-rules/syntax": "error",
+    "react-compiler-rules/unsupported-syntax": "error",
+    "react-compiler-rules/use-memo": "error",
+    "react-compiler-rules/void-use-memo": "error",
 
-    // ── fn-style (jsPlugin) ──
-    "fn-style/no-top-level-arrow": "error",
-
-    // ── entry-point (jsPlugin) ──
-    "entry-point/no-index-tsx": "error",
-
-    // ── sort-hook-deps (jsPlugin) ──
-    "sort-hook-deps/sort-deps": "error",
+    // ── custom rules (jsPlugin: ./scripts/oxlint-custom-rules/) ──
+    "custom-rules/newline-after-import": "error",
+    "custom-rules/no-index-tsx": "error",
+    "custom-rules/no-top-level-arrow": "error",
+    "custom-rules/sort-hook-deps": "error",
   },
   overrides: [
     {
@@ -180,7 +177,6 @@ export default defineConfig({
       files: ["**/*.stories.*", "**/*.story.*"],
       rules: {
         "import/no-default-export": "off",
-        "react-hooks-js/rules-of-hooks": "off",
         "react/rules-of-hooks": "off",
         "typescript/consistent-type-assertions": "off",
         "typescript/no-explicit-any": "off",
@@ -188,6 +184,7 @@ export default defineConfig({
         // eslint-plugin-storybook (jsPlugin)
         "storybook/await-interactions": "error",
         "storybook/context-in-play-function": "error",
+        "storybook/csf-component": "error",
         "storybook/default-exports": "error",
         "storybook/hierarchy-separator": "error",
         "storybook/meta-inline-properties": "error",
@@ -195,6 +192,7 @@ export default defineConfig({
         "storybook/no-redundant-story-name": "error",
         "storybook/no-renderer-packages": "error",
         "storybook/no-stories-of": "error",
+        "storybook/no-title-property-in-meta": "error",
         "storybook/prefer-pascal-case": "error",
         "storybook/story-exports": "error",
         "storybook/use-storybook-expect": "error",
