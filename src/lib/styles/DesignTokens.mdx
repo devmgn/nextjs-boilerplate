@@ -221,20 +221,18 @@ Seed Color: **Purple (#6750A4)**
 
 <div className="flex flex-wrap items-end gap-8 py-6">
   {[
-    { level: 0, usage: "Flat surface" },
-    { level: 1, usage: "Card, Nav bar" },
-    { level: 2, usage: "FAB, Sheet" },
-    { level: 3, usage: "Drawer" },
-    { level: 4, usage: "—" },
-    { level: 5, usage: "Modal, Dialog" },
+    { cls: "shadow-elevation-0", usage: "Flat surface" },
+    { cls: "shadow-elevation-1", usage: "Card, Nav bar" },
+    { cls: "shadow-elevation-2", usage: "FAB, Sheet" },
+    { cls: "shadow-elevation-3", usage: "Drawer" },
+    { cls: "shadow-elevation-4", usage: "—" },
+    { cls: "shadow-elevation-5", usage: "Modal, Dialog" },
   ].map((e) => (
-    <div key={e.level} className="text-center">
+    <div key={e.cls} className="text-center">
       <div
-        className={`size-24 rounded-md bg-m3-surface-container-low shadow-elevation-${e.level}`}
+        className={`size-24 rounded-md bg-m3-surface-container-low ${e.cls}`}
       />
-      <div className="mt-2 text-[13px] font-semibold">
-        shadow-elevation-{e.level}
-      </div>
+      <div className="mt-2 text-[13px] font-semibold">{e.cls}</div>
       <div className="text-[10px] text-m3-outline">{e.usage}</div>
     </div>
   ))}
