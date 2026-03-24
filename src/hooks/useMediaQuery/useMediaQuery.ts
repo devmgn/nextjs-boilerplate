@@ -1,8 +1,6 @@
 import { useSyncExternalStore } from "react";
 
-/**
- * メディアクエリの一致状態を監視するカスタムフック
- */
+/** メディアクエリの一致状態を監視するカスタムフック */
 export function useMediaQuery(
   query: string,
   onChange?: (event: MediaQueryListEvent) => void,

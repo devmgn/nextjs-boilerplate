@@ -20,23 +20,17 @@ type HydratorProps<
   TData = TQueryFnData,
   TQueryKey extends QueryKey = QueryKey,
 > = React.PropsWithChildren<{
-  /**
-   * プリフェッチするクエリオプションの配列
-   */
+  /** プリフェッチするクエリオプションの配列 */
   fetchQueryOptions: Array<
     FetchQueryOptions<TQueryFnData, TError, TData, TQueryKey>
   >;
-  /**
-   * HydrationBoundary コンポーネントに渡す追加のプロパティ
-   */
+  /** HydrationBoundary コンポーネントに渡す追加のプロパティ */
   hydrationBoundaryProps?: React.ComponentPropsWithoutRef<
     typeof HydrationBoundary
   >;
 }>;
 
-/**
- * サーバーサイドでデータをプリフェッチし、クライアントサイドでハイドレーションするためのコンポーネント
- */
+/** サーバーサイドでデータをプリフェッチし、クライアントサイドでハイドレーションするためのコンポーネント */
 export async function Hydrator<
   TQueryFnData,
   TError,

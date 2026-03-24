@@ -234,6 +234,8 @@ export default defineConfig({
       // Scripts — plain .mjs files lack TS type info, so no-unsafe-* rules produce false positives
       files: ["scripts/**"],
       rules: {
+        "import/no-anonymous-default-export": "off",
+        "import/no-default-export": "off",
         "typescript/no-redundant-type-constituents": "off",
         "typescript/no-unsafe-argument": "off",
         "typescript/no-unsafe-assignment": "off",
@@ -241,8 +243,6 @@ export default defineConfig({
         "typescript/no-unsafe-member-access": "off",
         "typescript/no-unsafe-return": "off",
         "typescript/strict-boolean-expressions": "off",
-        "import/no-anonymous-default-export": "off",
-        "import/no-default-export": "off",
         "unicorn/filename-case": "off",
       },
     },

@@ -20,6 +20,9 @@ export default defineConfig({
     ],
     newlinesBetween: false,
   },
+  jsdoc: {
+    lineWrappingStyle: "balance",
+  },
   sortTailwindcss: {
     stylesheet: "./src/lib/styles/globals.css",
     attributes: ["className"],

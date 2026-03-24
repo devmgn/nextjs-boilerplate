@@ -32,9 +32,7 @@ function isFunction<T>(value: T | ((prev: T) => T)): value is (prev: T) => T {
   return typeof value === "function";
 }
 
-/**
- * SSR対応のlocalStorageフック（useSyncExternalStoreベース）
- */
+/** SSR対応のlocalStorageフック（useSyncExternalStoreベース） */
 export function useLocalStorage<T>(
   key: string,
   initialValue: T,

@@ -2,6 +2,7 @@ import type { FlatObject, Primitive } from "../../types/typeHelpers";
 
 /**
  * 対象の列挙型オブジェクトもしくは配列に指定された値が存在するかを判定するカスタムタイプガード関数
+ *
  * @param {T} collection - チェック対象のオブジェクトもしくは配列
  * @param {unknown} value - 存在を確認する値
  * @returns {boolean} キーがオブジェクトに存在する場合はtrue、そうでない場合はfalse

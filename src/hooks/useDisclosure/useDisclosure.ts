@@ -15,9 +15,7 @@ function reducer(state: boolean, action: Action) {
   }
 }
 
-/**
- * モーダルなどのコンポーネントの開閉状態を管理するためのカスタムフック
- */
+/** モーダルなどのコンポーネントの開閉状態を管理するためのカスタムフック */
 export function useDisclosure(initialState = false) {
   const [isOpen, dispatch] = useReducer(reducer, initialState);
 
