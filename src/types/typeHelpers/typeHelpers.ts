@@ -1,6 +1,8 @@
 /**
  * 交差型を展開しそのメンバーを明示的にするユーティリティ型
- * @description デバッグ用途で利用
+ *
+ * デバッグ用途で利用
+ *
  * @public
  */
 export type Expand<T> = T extends object
@@ -9,9 +11,7 @@ export type Expand<T> = T extends object
     : never
   : T;
 
-/**
- * JavaScriptのプリミティブ型の union
- */
+/** JavaScriptのプリミティブ型の union */
 export type Primitive =
   | null
   | undefined
@@ -21,7 +21,5 @@ export type Primitive =
   | symbol
   | bigint;
 
-/**
- * プリミティブ値のみをプロパティ値に持つ、1階層のオブジェクト
- */
+/** プリミティブ値のみをプロパティ値に持つ、1階層のオブジェクト */
 export type FlatObject = Record<PropertyKey, Primitive>;

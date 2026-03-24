@@ -2,7 +2,10 @@
 export default {
   create(context) {
     return {
-      /** @param {import("eslint").Rule.Node & import("estree").VariableDeclarator} node */
+      /**
+       * @param {import("eslint").Rule.Node &
+       *   import("estree").VariableDeclarator} node
+       */
       VariableDeclarator(node) {
         if (node.init?.type !== "ArrowFunctionExpression") {
           return;

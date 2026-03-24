@@ -1,7 +1,7 @@
 /**
  * Enforces alphabetical sorting of dependency arrays in React hooks.
  * Targets: useEffect, useMemo, useCallback, useLayoutEffect,
- *          useInsertionEffect, useImperativeHandle
+ * useInsertionEffect, useImperativeHandle
  *
  * Provides auto-fix via `pnpm lint:fix`.
  */
@@ -17,6 +17,7 @@ const HOOKS_WITH_DEPS = new Set([
 
 /**
  * Get the source text representation of an AST node for sorting.
+ *
  * @param {import("eslint").Rule.RuleContext} context
  * @param {import("estree").Expression} node
  * @returns {string}
@@ -27,6 +28,7 @@ function getSortKey(context, node) {
 
 /**
  * Extract the dependency array node from a hook call.
+ *
  * @param {import("estree").CallExpression} node
  * @returns {import("estree").ArrayExpression | null}
  */
@@ -50,6 +52,7 @@ function getDepsArray(node) {
 /**
  * Get the hook name from a callee node.
  * Handles `useEffect` and `React.useEffect` patterns.
+ *
  * @param {import("estree").Expression} callee
  * @returns {string | null}
  */
@@ -69,6 +72,7 @@ function getHookName(callee) {
 
 /**
  * Guess indentation of a node by looking at its line start.
+ *
  * @param {import("eslint").Rule.RuleContext} context
  * @param {import("estree").Expression} node
  * @returns {string}
@@ -86,7 +90,10 @@ export default {
   },
   create(context) {
     return {
-      /** @param {import("eslint").Rule.Node & import("estree").CallExpression} node */
+      /**
+       * @param {import("eslint").Rule.Node &
+       *   import("estree").CallExpression} node
+       */
       CallExpression(node) {
         const depsArray = getDepsArray(node);
         if (!depsArray || depsArray.elements.length < 2) {
