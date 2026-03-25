@@ -16,6 +16,7 @@ jobs:
   UpdateMSW:
     if: github.event_name == 'workflow_dispatch' || startsWith(github.ref_name, 'renovate/')
     runs-on: ubuntu-24.04
+    environment: bot
     timeout-minutes: 10
     permissions:
       contents: write
@@ -23,18 +24,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
-          token: ${{ secrets.PUSH_TOKEN }}
+          persist-credentials: false
 
       - name: Setup Project
         uses: ./.github/actions/setup
 
       - name: Update and commit mockServiceWorker.js
+        env:
+          PUSH_TOKEN: ${{ secrets.PUSH_TOKEN }}
         run: |
           pnpm msw init public --save
           git add public/mockServiceWorker.js
           if ! git diff --staged --quiet; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git remote set-url origin "https://x-access-token:${PUSH_TOKEN}@github.com/${{ github.repository }}.git"
             git commit -m "chore: update mockServiceWorker.js"
             git push
           fi
