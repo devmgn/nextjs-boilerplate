@@ -10,7 +10,7 @@
     "fix": "pnpm lint:fix && pnpm fmt:fix",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
-    "lint:workflows": "bash scripts/lint-workflows.sh",
+    "lint:workflows": "actionlint -color && zizmor .github/workflows/",
     "fmt": "oxfmt --check .",
     "fmt:fix": "oxfmt --write .",
     "knip": "knip --strict --cache",
