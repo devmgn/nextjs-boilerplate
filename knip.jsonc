@@ -1,33 +1,13 @@
 {
   "$schema": "./node_modules/knip/schema-jsonc.json",
-  "ignore": ["src/**/openapi/**", "src/mocks/**", "scripts/**"],
+  "ignore": ["scripts/**", "src/**/openapi/**", "src/mocks/**", "tools/**"],
   "ignoreBinaries": ["openapiconfig.json"],
-  "ignoreDependencies": [
-    "@tanstack/eslint-plugin-query",
-    "@testing-library/user-event",
-    "eslint",
-    "eslint-plugin-react-hooks",
-    "eslint-plugin-storybook",
-    "postcss",
-    "postcss-load-config",
-  ],
-  "oxlint": {
-    "config": ["oxlint.config.ts", "oxfmt.config.ts"],
-  },
-  "storybook": {
-    "entry": [
-      ".storybook/{preview,vitest.setup}.tsx",
-      ".storybook/SbProvider.tsx",
-      "src/**/*.stories.@(js|jsx|ts|tsx)",
-    ],
-  },
   "tailwind": {
     "entry": ["src/lib/styles/globals.css"],
   },
   "vitest": {
     "entry": [
       "**/*.{test,spec}.{ts,tsx}",
-      ".storybook/vitest.setup.ts",
       "vitest.globalSetup.ts",
       "vitest.setup.ts",
     ],
