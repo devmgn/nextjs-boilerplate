@@ -18,7 +18,6 @@ export default function ErrorTestPage() {
 
     try {
       // 実際のAPI呼び出しをシミュレート
-      // oxlint-disable-next-line promise/avoid-new
       await new Promise((resolve) => {
         setTimeout(resolve, 1000);
       });

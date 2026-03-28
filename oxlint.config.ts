@@ -101,6 +101,10 @@ export default defineConfig({
     "oxc/no-optional-chaining": "off",
     "oxc/no-rest-spread-properties": "off",
 
+    // ── eslint-plugin-promise (built-in) ──
+    "promise/avoid-new": "off",
+    "promise/prefer-await-to-callbacks": "off",
+
     // ── eslint-plugin-react (built-in) ──
     "react/jsx-filename-extension": ["error", { extensions: [".tsx"] }],
     "react/jsx-max-depth": "off",
