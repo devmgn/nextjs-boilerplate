@@ -5,4 +5,7 @@
   "tailwind": {
     "entry": ["src/lib/styles/globals.css"],
   },
+  "vitest": {
+    "entry": ["vitest.globalSetup.ts", "vitest.setup.ts"],
+  },
 }
