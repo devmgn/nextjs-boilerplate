@@ -26,7 +26,7 @@ export default defineConfig({
     "vitest",
   ],
   jsPlugins: [
-    "./scripts/oxlint-custom-rules/index.mjs",
+    "./tools/oxlint-rules/index.mjs",
     "@tanstack/eslint-plugin-query",
     { name: "react-compiler-rules", specifier: "eslint-plugin-react-hooks" },
   ],
@@ -121,7 +121,7 @@ export default defineConfig({
     // ── eslint-plugin-unicorn (built-in) ──
     "unicorn/filename-case": [
       "error",
-      { cases: { camelCase: true, pascalCase: true } },
+      { cases: { camelCase: true, kebabCase: true, pascalCase: true } },
     ],
     "unicorn/no-null": "off",
     "unicorn/no-useless-undefined": "off",
@@ -166,7 +166,7 @@ export default defineConfig({
     "react-compiler-rules/use-memo": "error",
     "react-compiler-rules/void-use-memo": "error",
 
-    // ── custom rules (jsPlugin: ./scripts/oxlint-custom-rules/) ──
+    // ── custom rules (jsPlugin: ./tools/oxlint-rules/) ──
     "custom-rules/newline-after-import": "error",
     "custom-rules/no-index-tsx": "error",
     "custom-rules/no-top-level-arrow": "error",
@@ -232,7 +232,7 @@ export default defineConfig({
     },
     {
       // Scripts — plain .mjs files lack TS type info, so no-unsafe-* rules produce false positives
-      files: ["scripts/**"],
+      files: ["*.mjs"],
       rules: {
         "import/no-anonymous-default-export": "off",
         "import/no-default-export": "off",
@@ -243,7 +243,6 @@ export default defineConfig({
         "typescript/no-unsafe-member-access": "off",
         "typescript/no-unsafe-return": "off",
         "typescript/strict-boolean-expressions": "off",
-        "unicorn/filename-case": "off",
       },
     },
     {
@@ -274,7 +273,6 @@ export default defineConfig({
       ],
       rules: {
         "import/no-default-export": "off",
-        "unicorn/filename-case": "off",
       },
     },
   ],
