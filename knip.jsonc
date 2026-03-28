@@ -6,6 +6,10 @@
     "entry": ["src/lib/styles/globals.css"],
   },
   "vitest": {
-    "entry": ["vitest.globalSetup.ts", "vitest.setup.ts"],
+    "entry": [
+      "**/*.{test,spec}.{ts,tsx}",
+      "vitest.globalSetup.ts",
+      "vitest.setup.ts",
+    ],
   },
 }

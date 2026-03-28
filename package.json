@@ -13,7 +13,7 @@
     "lint:workflows": "actionlint -color && zizmor .github/",
     "fmt": "oxfmt --check .",
     "fmt:fix": "oxfmt --write .",
-    "knip": "knip --strict --cache",
+    "knip": "knip --strict",
     "test": "vitest run",
     "test:unit": "vitest run --project=unit",
     "test:update": "vitest run --update",
