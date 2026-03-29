@@ -38,7 +38,7 @@
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-error-boundary": "6.1.1",
-    "react-hook-form": "7.72.0",
+    "react-hook-form": "8.0.0-beta.1",
     "sonner": "2.0.7",
     "tailwind-merge": "3.5.0",
     "tailwind-variants": "3.2.2",
@@ -87,6 +87,18 @@
     "node": "24.14.1"
   },
   "packageManager": "pnpm@10.33.0",
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowAny": [
+        "react-hook-form"
+      ]
+    },
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "msw",
+      "sharp"
+    ]
+  },
   "msw": {
     "workerDirectory": "./public"
   }
