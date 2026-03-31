@@ -32,6 +32,33 @@ type Story = StoryObj<typeof ComponentName>;
 export const Default: Story = {};
 ```
 
+## MSW Story Pattern
+
+Use `parameters.msw.handlers` with auto-generated or custom handlers. Set `inline: false` when stories for the same endpoint return different responses (required for Docs page MSW isolation).
+
+```typescript
+const meta = {
+  component: PostList,
+  parameters: {
+    docs: { story: { inline: false } },
+    msw: { handlers },
+  },
+} satisfies Meta<typeof PostList>;
+
+export const ServerError: Story = {
+  parameters: {
+    docs: { story: { inline: false } },
+    msw: {
+      handlers: [
+        http.get("https://...", () =>
+          HttpResponse.json({ message: "Error" }, { status: 500 }),
+        ),
+      ],
+    },
+  },
+};
+```
+
 ## MCP Integration
 
 Use `storybook-mcp` tools: `list-all-documentation`, `get-documentation`, `get-documentation-for-story`, `get-storybook-story-instructions`, `preview-stories`, `run-story-tests`.

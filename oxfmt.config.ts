@@ -1,7 +1,12 @@
 import { defineConfig } from "oxfmt";
 
 export default defineConfig({
-  ignorePatterns: [".*/skills/**", "public/**", "src/api/openapi/**"],
+  ignorePatterns: [
+    ".*/skills/**",
+    "public/**",
+    "src/api/openapi/**",
+    "src/mocks/**",
+  ],
   printWidth: 80,
   experimentalSortImports: {
     groups: [

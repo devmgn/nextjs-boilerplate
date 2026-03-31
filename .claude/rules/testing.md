@@ -21,4 +21,15 @@ paths:
 
 ## API Mocking
 
-Import shared MSW server: `import { server } from "../../mocks/server"` then `server.use(http.get(...))`.
+Use shared MSW server with per-test handlers. `resetHandlers()` runs automatically in `afterEach`.
+
+```typescript
+import { HttpResponse, http } from "msw";
+import { server } from "../../mocks/server";
+
+server.use(
+  http.get(`${BASE_URL}/posts`, () => HttpResponse.json([...])),
+);
+```
+
+- Cast `request.json()` as `Record<string, unknown>` when spreading into response

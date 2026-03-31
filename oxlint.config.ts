@@ -42,6 +42,7 @@ export default defineConfig({
     "out/**",
     "public/**",
     "src/api/openapi/**",
+    "src/mocks/**",
     "storybook-static/**",
   ],
   categories: {
@@ -185,6 +186,8 @@ export default defineConfig({
         "react/rules-of-hooks": "off",
         "typescript/consistent-type-assertions": "off",
         "typescript/no-explicit-any": "off",
+        "typescript/no-unsafe-argument": "off",
+        "typescript/no-unsafe-assignment": "off",
 
         // eslint-plugin-storybook (jsPlugin)
         "storybook/await-interactions": "error",
@@ -222,6 +225,7 @@ export default defineConfig({
         "eslint/no-undef": "off",
         "typescript/consistent-type-assertions": "off",
         "typescript/no-explicit-any": "off",
+        "typescript/no-unsafe-argument": "off",
         "typescript/no-unsafe-assignment": "off",
         "typescript/no-unsafe-type-assertion": "off",
         "vitest/consistent-test-it": ["error", { fn: "it" }],

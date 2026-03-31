@@ -21,5 +21,6 @@ pnpm storybook                      # Storybook dev server
 pnpm build-storybook                # Storybook static build
 pnpm generate-api                   # Generate OpenAPI client
 pnpm generate-api:clean             # Clean + regenerate OpenAPI client
+pnpm generate-mock                  # Generate MSW handlers from OpenAPI spec
 pnpm analyze                        # Bundle size analysis (requires build)
 ```
