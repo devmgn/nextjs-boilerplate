@@ -18,7 +18,7 @@ paths:
 
 ## Files
 
-| File | Purpose | Managed |
-|------|---------|---------|
-| `handlers.ts`, `browser.ts`, `node.ts`, `native.ts` | Auto-generated from OpenAPI | Generated |
-| `server.ts` | Vitest shared instance (empty, use `server.use()` per test) | Manual |
+| File                                                | Purpose                                                     | Managed   |
+| --------------------------------------------------- | ----------------------------------------------------------- | --------- |
+| `handlers.ts`, `browser.ts`, `node.ts`, `native.ts` | Auto-generated from OpenAPI                                 | Generated |
+| `server.ts`                                         | Vitest shared instance (empty, use `server.use()` per test) | Manual    |
