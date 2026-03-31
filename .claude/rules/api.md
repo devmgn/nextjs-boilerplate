@@ -6,6 +6,7 @@ paths:
 # API Layer Rules
 
 - **Never manually edit** files in `src/api/openapi/` — regenerate with `pnpm generate-api`
+- **Never manually edit** files in `src/mocks/` (except `server.ts`) — regenerate with `pnpm generate-mock`
 
 ## TanStack Query Pattern
 
