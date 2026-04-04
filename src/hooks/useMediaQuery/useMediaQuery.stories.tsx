@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { useId, useState } from "react";
 import { useMediaQuery } from "./useMediaQuery";
 import { Input } from "../../components/Input";
+import { isValueOf } from "../../utils/isValueOf";
 
 const QUERIES = [
   "(min-width: 768px)",
@@ -17,8 +18,8 @@ const meta = {
     layout: "centered",
   },
   render: () => {
-    const [query, setQuery] = useState<string>(QUERIES[0]);
-    const [lastEvent, setLastEvent] = useState<string>("none");
+    const [query, setQuery] = useState<(typeof QUERIES)[number]>(QUERIES[0]);
+    const [lastEvent, setLastEvent] = useState("none");
     const queryId = useId();
     const resultId = useId();
     const eventId = useId();
@@ -35,7 +36,10 @@ const meta = {
             className="rounded border p-1"
             id={queryId}
             onChange={(e) => {
-              setQuery(e.target.value);
+              const { value } = e.target;
+              if (isValueOf(QUERIES, value)) {
+                setQuery(value);
+              }
             }}
             value={query}
           >
