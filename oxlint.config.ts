@@ -229,13 +229,15 @@ export default defineConfig({
         "typescript/no-unsafe-assignment": "off",
         "typescript/no-unsafe-type-assertion": "off",
         "vitest/consistent-test-it": ["error", { fn: "it" }],
-        "vitest/prefer-called-once": "off",
-        "vitest/prefer-to-be-falsy": "off",
-        "vitest/prefer-to-be-truthy": "off",
         "vitest/no-standalone-expect": [
           "error",
           { additionalTestBlockFunctions: ["it.for"] },
         ],
+        "vitest/prefer-called-once": "off",
+        "vitest/prefer-to-be-falsy": "off",
+        "vitest/prefer-to-be-truthy": "off",
+        "vitest/require-mock-type-parameters": "off",
+        "vitest/require-test-timeout": "off",
       },
     },
     {
