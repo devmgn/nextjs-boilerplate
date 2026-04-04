@@ -134,8 +134,18 @@ export default defineConfig({
     "unicorn/switch-case-braces": ["error", "avoid"],
 
     // ── eslint-plugin-vitest (built-in) ──
+    "vitest/consistent-test-it": ["error", { fn: "it" }],
     "vitest/no-importing-vitest-globals": "off",
+    "vitest/no-standalone-expect": [
+      "error",
+      { additionalTestBlockFunctions: ["it.for"] },
+    ],
+    "vitest/prefer-called-once": "off",
+    "vitest/prefer-to-be-falsy": "off",
+    "vitest/prefer-to-be-truthy": "off",
     "vitest/require-hook": "off",
+    "vitest/require-mock-type-parameters": "off",
+    "vitest/require-test-timeout": "off",
 
     // ── @tanstack/eslint-plugin-query (jsPlugin) ──
     "@tanstack/query/exhaustive-deps": "error",
@@ -228,14 +238,6 @@ export default defineConfig({
         "typescript/no-unsafe-argument": "off",
         "typescript/no-unsafe-assignment": "off",
         "typescript/no-unsafe-type-assertion": "off",
-        "vitest/consistent-test-it": ["error", { fn: "it" }],
-        "vitest/prefer-called-once": "off",
-        "vitest/prefer-to-be-falsy": "off",
-        "vitest/prefer-to-be-truthy": "off",
-        "vitest/no-standalone-expect": [
-          "error",
-          { additionalTestBlockFunctions: ["it.for"] },
-        ],
       },
     },
     {
