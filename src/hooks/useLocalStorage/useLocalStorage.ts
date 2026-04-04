@@ -95,7 +95,7 @@ export function useLocalStorage<T>(
     const current: T =
       currentRaw === undefined
         ? initialValue
-        : parseJSON<T>(currentRaw, initialValue);
+        : parseJSON(currentRaw, initialValue);
     const next = isFunction(updater) ? updater(current) : updater;
     const serialized = JSON.stringify(next);
     try {
