@@ -141,6 +141,7 @@ export default defineConfig({
       { additionalTestBlockFunctions: ["it.for"] },
     ],
     "vitest/prefer-called-once": "off",
+    "vitest/prefer-importing-vitest-globals": "off",
     "vitest/prefer-to-be-falsy": "off",
     "vitest/prefer-to-be-truthy": "off",
     "vitest/require-hook": "off",
