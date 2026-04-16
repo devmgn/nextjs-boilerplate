@@ -10,13 +10,19 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Read Node version from mise.toml
+      id: versions
+      shell: bash
+      run: |
+        echo "node=$(grep -E '^node\s*=' mise.toml | sed 's/.*=\s*"\(.*\)"/\1/')" >> "$GITHUB_OUTPUT"
+
     - name: Install pnpm
       uses: pnpm/action-setup@08c4be7e2e672a47d11bd04269e27e5f3e8529cb # v6
 
     - name: Setup Node.js
       uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
       with:
-        node-version-file: ".tool-versions"
+        node-version: ${{ steps.versions.outputs.node }}
         cache: "pnpm"
 
     - name: Install dependencies
