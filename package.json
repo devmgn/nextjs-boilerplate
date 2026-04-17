@@ -25,7 +25,7 @@
     "generate-api": "pnpm dlx @openapitools/openapi-generator-cli generate -i openapi.yml -g typescript-fetch -o ./src/api/openapi -c openapiconfig.json --openapi-normalizer SET_TAGS_FOR_ALL_OPERATIONS=default",
     "generate-api:clean": "rm -rf src/api/openapi && pnpm generate-api",
     "generate-mock": "msw-auto-mock openapi.yml -o ./src/mocks --typescript --base-url https://jsonplaceholder.typicode.com && sed -i '' 's|from \"@faker-js/faker\"|from \"@faker-js/faker/locale/ja\"|' ./src/mocks/handlers.ts",
-    "prepare": "msw init public --save"
+    "postinstall": "msw init public --save"
   },
   "dependencies": {
     "@hookform/resolvers": "5.2.2",
