@@ -158,9 +158,7 @@ export default defineConfig({
     "@tanstack/query/stable-query-client": "error",
 
     // ── react-compiler-rules (jsPlugin: eslint-plugin-react-hooks) ──
-    "react-compiler-rules/automatic-effect-dependencies": "error",
     "react-compiler-rules/capitalized-calls": "error",
-    "react-compiler-rules/component-hook-factories": "error",
     "react-compiler-rules/config": "error",
     "react-compiler-rules/error-boundaries": "error",
     "react-compiler-rules/gating": "error",
