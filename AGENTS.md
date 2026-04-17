@@ -7,7 +7,7 @@
 - **TanStack Query** with queryOptions helper
 - **React Hook Form + Zod v4** with @hookform/resolvers
 - **UI**: @radix-ui primitives, tailwind-variants, tailwind-merge
-- **Utilities**: es-toolkit (lodash alternative)
+- **Utilities**: custom debounce (`src/utils/debounce`)
 - **nuqs** for URL state management (NuqsAdapter in RootProvider)
 - **OxC** (Oxlint + Oxfmt) for linting and formatting
   - jsPlugins: @tanstack/eslint-plugin-query, eslint-plugin-react-hooks

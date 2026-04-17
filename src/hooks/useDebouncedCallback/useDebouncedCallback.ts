@@ -1,10 +1,9 @@
-import type { DebounceOptions } from "es-toolkit";
-import { debounce } from "es-toolkit";
+import type { DebounceOptions } from "../../utils/debounce";
 import { useEffect, useMemo } from "react";
+import { debounce } from "../../utils/debounce";
 
-// oxlint-disable-next-line typescript-eslint/no-explicit-any -- es-toolkit の debounce<F extends (...args: any[]) => void> に合わせる
-export function useDebouncedCallback<F extends (...args: any[]) => void>(
-  callback: F,
+export function useDebouncedCallback<Args extends unknown[]>(
+  callback: (...args: Args) => void,
   wait: number,
   options?: DebounceOptions,
 ) {
