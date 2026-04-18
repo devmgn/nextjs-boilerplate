@@ -3,7 +3,7 @@ export interface DebounceOptions {
   edges?: Array<"leading" | "trailing">;
   /**
    * 連続呼び出し中でも最低 `maxWait` ms 以内に必ず `func` が実行されることを保証する。
-   * `debounceMs` 未満の値は `debounceMs` にクランプされる。
+   * `wait` 未満の値は `wait` にクランプされる。
    */
   maxWait?: number;
 }
@@ -32,10 +32,10 @@ function assertNonNegativeFinite(name: string, value: number): void {
 
 export function debounce<Args extends unknown[]>(
   func: (...args: Args) => void,
-  debounceMs: number,
+  wait: number,
   options?: DebounceOptions,
 ): DebouncedFunction<Args> {
-  assertNonNegativeFinite("debounceMs", debounceMs);
+  assertNonNegativeFinite("wait", wait);
 
   const edges = options?.edges ?? ["trailing"];
   const hasLeading = edges.includes("leading");
@@ -45,14 +45,16 @@ export function debounce<Args extends unknown[]>(
   if (rawMaxWait !== undefined) {
     assertNonNegativeFinite("maxWait", rawMaxWait);
   }
-  // lodash 互換: maxWait < debounceMs は debounceMs にクランプ
+  // lodash 互換: maxWait < wait は wait にクランプ
   const maxWait =
-    rawMaxWait === undefined ? undefined : Math.max(rawMaxWait, debounceMs);
+    rawMaxWait === undefined ? undefined : Math.max(rawMaxWait, wait);
 
   let timerId: ReturnType<typeof setTimeout> | undefined = undefined;
   let lastArgs: Args | undefined = undefined;
   let lastThis: unknown = undefined;
-  let lastInvokeTime = 0;
+  // maxWait の経過判定に使う基準時刻。
+  // 新規バースト開始時と invoke 時に `Date.now()` で更新する。
+  let baselineTime: number | undefined = undefined;
   let isLeadingInvoked = false;
   let isAborted = options?.signal?.aborted ?? false;
 
@@ -64,7 +66,7 @@ export function debounce<Args extends unknown[]>(
       // 設定された lastArgs/lastThis を上書きしない
       lastArgs = undefined;
       lastThis = undefined;
-      lastInvokeTime = Date.now();
+      baselineTime = Date.now();
       Reflect.apply(func, thisArg, args);
     }
   }
@@ -76,7 +78,7 @@ export function debounce<Args extends unknown[]>(
     }
     lastArgs = undefined;
     lastThis = undefined;
-    lastInvokeTime = 0;
+    baselineTime = undefined;
     isLeadingInvoked = false;
   }
 
@@ -101,10 +103,10 @@ export function debounce<Args extends unknown[]>(
       clearTimeout(timerId);
     }
 
-    let delay = debounceMs;
+    let delay = wait;
     let maxWaitForced = false;
-    if (maxWait !== undefined && lastInvokeTime !== 0) {
-      const maxRemaining = maxWait - (Date.now() - lastInvokeTime);
+    if (maxWait !== undefined && baselineTime !== undefined) {
+      const maxRemaining = maxWait - (Date.now() - baselineTime);
       if (maxRemaining <= 0) {
         delay = 0;
         maxWaitForced = true;
@@ -142,9 +144,9 @@ export function debounce<Args extends unknown[]>(
 
       // 新しいバーストの開始: maxWait のベースラインを更新
       // (前回の invoke から時間が経った後の呼び出しが誤って maxWait 強制発火扱いに
-      // なるのを防ぐため、毎バーストで lastInvokeTime を再設定する)
+      // なるのを防ぐため、毎バーストで baselineTime を再設定する)
       if (timerId === undefined) {
-        lastInvokeTime = Date.now();
+        baselineTime = Date.now();
       }
 
       if (hasLeading && !isLeadingInvoked) {
