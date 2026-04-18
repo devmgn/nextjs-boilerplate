@@ -88,7 +88,6 @@ export default defineConfig({
     "import/unambiguous": "off",
 
     // ── eslint-plugin-jsdoc (built-in) ──
-    // TS ファイルではシグネチャに型があるため JSDoc の型は重複（ts(80004)）。
     "jsdoc/require-param": "off",
     "jsdoc/require-param-description": "off",
     "jsdoc/require-param-type": "off",
