@@ -1,4 +1,9 @@
 export interface DebounceOptions {
+  /**
+   * Abort 時に保留中の呼び出しをキャンセルし、以降の呼び出しを無効化する。
+   * debounced インスタンスより寿命の長い signal を渡す場合は、不要になった時点で
+   * `debounced.dispose()` を呼ぶと signal 上の abort リスナが解除される。
+   */
   signal?: AbortSignal;
   edges?: Array<"leading" | "trailing">;
   /**
@@ -20,6 +25,11 @@ export interface DebouncedFunction<Args extends unknown[]> {
   cancel: () => void;
   /** 保留中のコールバックを即時実行する。保留がなければ何もしない。 */
   flush: () => void;
+  /**
+   * 保留中のコールバックをキャンセルし、外部 `signal` に登録した abort リスナを解除して
+   * 以降すべての呼び出しを no-op 化する。コンポーネントのアンマウント時などに呼ぶ。
+   */
+  dispose: () => void;
 }
 
 function assertNonNegativeFinite(name: string, value: number): void {
@@ -67,7 +77,7 @@ export function debounce<Args extends unknown[]>(
       lastArgs = undefined;
       lastThis = undefined;
       baselineTime = Date.now();
-      Reflect.apply(func, thisArg, args);
+      func.apply(thisArg, args);
     }
   }
 
@@ -97,6 +107,10 @@ export function debounce<Args extends unknown[]>(
 
   function schedule() {
     if (isAborted) {
+      return;
+    }
+    // 保留中の引数もクールダウン解除予定も無ければ、タイマーを張る意味が無い
+    if (lastArgs === undefined && !isLeadingInvoked) {
       return;
     }
     if (timerId !== undefined) {
@@ -131,6 +145,15 @@ export function debounce<Args extends unknown[]>(
     }, delay);
   }
 
+  // dispose 時に signal listener を解除するための内部 controller
+  const teardown = new AbortController();
+
+  function dispose() {
+    cancel();
+    isAborted = true;
+    teardown.abort();
+  }
+
   const debounced: DebouncedFunction<Args> = Object.assign(
     function invokeDebounced(this: unknown, ...args: Args) {
       if (isAborted) {
@@ -161,7 +184,7 @@ export function debounce<Args extends unknown[]>(
 
       schedule();
     },
-    { schedule, cancel, flush },
+    { schedule, cancel, flush, dispose },
   );
 
   if (options?.signal && !isAborted) {
@@ -171,7 +194,7 @@ export function debounce<Args extends unknown[]>(
         cancel();
         isAborted = true;
       },
-      { once: true },
+      { once: true, signal: teardown.signal },
     );
   }
 

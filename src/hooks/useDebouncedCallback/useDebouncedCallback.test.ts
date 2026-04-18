@@ -237,4 +237,89 @@ describe(useDebouncedCallback, () => {
     rerender({ wait: 500 });
     expect(result.current).toBe(prev);
   });
+
+  it("毎レンダリングで新しいアロー関数を渡しても保留中のタイマーと引数が失われず、最新のコールバックで発火すること", () => {
+    const spy = vi.fn();
+    let current = 0;
+    const { result, rerender } = renderHook(
+      ({ value }) =>
+        useDebouncedCallback((arg: string) => {
+          spy(value, arg);
+        }, 500),
+      { initialProps: { value: current } },
+    );
+
+    // 最初の呼び出しでタイマー開始
+    const first = result.current;
+    act(() => {
+      first("args");
+    });
+
+    // value を更新して再レンダリング。ここで debounced が再生成されると
+    // タイマーが失われてしまう。
+    current = 1;
+    rerender({ value: current });
+
+    // 同一の debounced 関数が返り続けること
+    expect(result.current).toBe(first);
+
+    act(() => {
+      vi.advanceTimersByTime(500);
+    });
+
+    // 最新の callback (value=1) で、保持された引数 "args" で発火する
+    expect(spy).toHaveBeenCalledExactlyOnceWith(1, "args");
+  });
+
+  it("options.edges の配列参照が毎レンダリング変わっても、内容が同じなら同一 debounced 関数が返ること", () => {
+    const callback = vi.fn();
+    const { result, rerender } = renderHook(
+      ({ edges }) =>
+        useDebouncedCallback(callback, 500, {
+          edges,
+        }),
+      { initialProps: { edges: ["leading"] as Array<"leading" | "trailing"> } },
+    );
+
+    const prev = result.current;
+    // 内容は同じで新しい配列参照を渡す
+    rerender({
+      edges: ["leading"] as Array<"leading" | "trailing">,
+    });
+
+    expect(result.current).toBe(prev);
+  });
+
+  it("edges が undefined と ['trailing'] (default 相当) で同一 debounced を返すこと", () => {
+    const callback = vi.fn();
+    const { result, rerender } = renderHook(
+      ({ edges }: { edges: Array<"leading" | "trailing"> | undefined }) =>
+        useDebouncedCallback(callback, 500, { edges }),
+      {
+        initialProps: {
+          edges: undefined as Array<"leading" | "trailing"> | undefined,
+        },
+      },
+    );
+
+    const prev = result.current;
+    rerender({ edges: ["trailing"] });
+    expect(result.current).toBe(prev);
+  });
+
+  it("edges の順序が異なっても内容が同じなら同一 debounced を返すこと", () => {
+    const callback = vi.fn();
+    const { result, rerender } = renderHook(
+      ({ edges }) => useDebouncedCallback(callback, 500, { edges }),
+      {
+        initialProps: {
+          edges: ["leading", "trailing"] as Array<"leading" | "trailing">,
+        },
+      },
+    );
+
+    const prev = result.current;
+    rerender({ edges: ["trailing", "leading"] });
+    expect(result.current).toBe(prev);
+  });
 });

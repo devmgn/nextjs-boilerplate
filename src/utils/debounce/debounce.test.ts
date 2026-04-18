@@ -380,7 +380,7 @@ describe(debounce, () => {
     });
   });
 
-  describe("debounceMs: 0", () => {
+  describe("wait: 0", () => {
     it("タイマー発火時に実行されること", () => {
       const fn = vi.fn();
       const debounced = debounce(fn, 0);
@@ -625,75 +625,66 @@ describe(debounce, () => {
       expect(fn).toHaveBeenCalledTimes(1);
     });
 
-    it("保留中でない場合に flush しても何も起きないこと", () => {
-      const fn = vi.fn();
+    it.for<{
+      state: string;
+      setup: (
+        d: ReturnType<typeof debounce<[string]>>,
+        fn: ReturnType<typeof vi.fn>,
+      ) => number;
+    }>([
+      { state: "初期状態 (保留無し)", setup: () => 0 },
+      {
+        state: "flush 済み",
+        setup: (d) => {
+          d("data");
+          d.flush();
+          return 1;
+        },
+      },
+      {
+        state: "flush を2回連続で呼んだ状態",
+        setup: (d) => {
+          d("data");
+          d.flush();
+          d.flush();
+          return 1;
+        },
+      },
+      {
+        state: "cancel 済み",
+        setup: (d) => {
+          d("data");
+          d.cancel();
+          return 0;
+        },
+      },
+      {
+        state: "cancel 後に schedule 済み (stale args 排除)",
+        setup: (d) => {
+          d("stale");
+          d.cancel();
+          d.schedule();
+          return 0;
+        },
+      },
+      {
+        state: "サイクル自然完了後",
+        setup: (d) => {
+          d("data");
+          vi.advanceTimersByTime(100);
+          return 1;
+        },
+      },
+    ])("$state からの flush で追加の invoke が起きないこと", ({ setup }) => {
+      const fn = vi.fn<(x: string) => void>();
       const debounced = debounce(fn, 100);
-
-      debounced.flush();
-      expect(fn).not.toHaveBeenCalled();
-    });
-
-    it("flush を2回連続で呼んでも1回しか実行されないこと", () => {
-      const fn = vi.fn();
-      const debounced = debounce(fn, 100);
-
-      debounced("data");
-      debounced.flush();
-      debounced.flush();
-
-      expect(fn).toHaveBeenCalledTimes(1);
-    });
-
-    it("cancel 後に flush しても何も起きないこと", () => {
-      const fn = vi.fn();
-      const debounced = debounce(fn, 100);
-
-      debounced("data");
-      debounced.cancel();
-      debounced.flush();
-
-      expect(fn).not.toHaveBeenCalled();
-    });
-
-    it("cancel 後に schedule → flush しても実行されないこと", () => {
-      const fn = vi.fn();
-      const debounced = debounce(fn, 100);
-
-      debounced("stale");
-      debounced.cancel();
-
-      // cancel が lastArgs をクリアしていなければ、
-      // schedule → flush で stale な引数で実行されてしまう
-      debounced.schedule();
-      debounced.flush();
-
-      expect(fn).not.toHaveBeenCalled();
-    });
-
-    it("flush 後に cancel しても安全であること", () => {
-      const fn = vi.fn();
-      const debounced = debounce(fn, 100);
-
-      debounced("data");
-      debounced.flush();
-      expect(fn).toHaveBeenCalledTimes(1);
+      const expectedBefore = setup(debounced, fn);
+      expect(fn).toHaveBeenCalledTimes(expectedBefore);
 
       expect(() => {
-        debounced.cancel();
+        debounced.flush();
       }).not.toThrow();
-      expect(fn).toHaveBeenCalledTimes(1);
-    });
-
-    it("サイクル完了後に flush しても何も起きないこと", () => {
-      const fn = vi.fn();
-      const debounced = debounce(fn, 100);
-
-      debounced("data");
-      vi.advanceTimersByTime(100);
-      expect(fn).toHaveBeenCalledTimes(1);
-
-      debounced.flush();
-      expect(fn).toHaveBeenCalledTimes(1);
+      expect(fn).toHaveBeenCalledTimes(expectedBefore);
     });
 
     it("flush 後に新しいサイクルを開始できること", () => {
@@ -727,58 +718,53 @@ describe(debounce, () => {
       expect(fn).toHaveBeenCalledExactlyOnceWith("args");
     });
 
-    it("一度も呼び出さずに schedule しても何も実行されないこと", () => {
-      const fn = vi.fn();
-      const debounced = debounce(fn, 100);
+    it.for<{
+      state: string;
+      setup: (
+        d: ReturnType<typeof debounce<[string]>>,
+        fn: ReturnType<typeof vi.fn>,
+      ) => number;
+    }>([
+      { state: "初期状態 (保留無し)", setup: () => 0 },
+      {
+        state: "flush 済み",
+        setup: (d) => {
+          d("data");
+          d.flush();
+          return 1;
+        },
+      },
+      {
+        state: "cancel 済み",
+        setup: (d) => {
+          d("data");
+          d.cancel();
+          return 0;
+        },
+      },
+      {
+        state: "サイクル自然完了後",
+        setup: (d) => {
+          d("data");
+          vi.advanceTimersByTime(100);
+          return 1;
+        },
+      },
+    ])(
+      "$state からの schedule はタイマーを張らず invoke も発生しないこと",
+      ({ setup }) => {
+        const fn = vi.fn<(x: string) => void>();
+        const debounced = debounce(fn, 100);
+        const expectedBefore = setup(debounced, fn);
+        expect(fn).toHaveBeenCalledTimes(expectedBefore);
+        expect(vi.getTimerCount()).toBe(0);
 
-      debounced.schedule();
-      vi.advanceTimersByTime(100);
-
-      expect(fn).not.toHaveBeenCalled();
-    });
-
-    it("flush 後に schedule しても何も実行されないこと", () => {
-      const fn = vi.fn();
-      const debounced = debounce(fn, 100);
-
-      debounced("data");
-      debounced.flush();
-      expect(fn).toHaveBeenCalledTimes(1);
-
-      // flush が lastArgs をクリアしているので schedule → タイマー発火しても no-op
-      debounced.schedule();
-      vi.advanceTimersByTime(100);
-
-      expect(fn).toHaveBeenCalledTimes(1);
-    });
-
-    it("cancel 後に schedule しても何も実行されないこと", () => {
-      const fn = vi.fn();
-      const debounced = debounce(fn, 100);
-
-      debounced("data");
-      debounced.cancel();
-
-      debounced.schedule();
-      vi.advanceTimersByTime(100);
-
-      expect(fn).not.toHaveBeenCalled();
-    });
-
-    it("サイクル完了後に schedule しても何も実行されないこと", () => {
-      const fn = vi.fn();
-      const debounced = debounce(fn, 100);
-
-      debounced("data");
-      vi.advanceTimersByTime(100);
-      expect(fn).toHaveBeenCalledTimes(1);
-
-      // タイマー自然完了後は lastArgs が undefined なので schedule → 発火しても no-op
-      debounced.schedule();
-      vi.advanceTimersByTime(100);
-
-      expect(fn).toHaveBeenCalledTimes(1);
-    });
+        debounced.schedule();
+        expect(vi.getTimerCount()).toBe(0);
+        vi.advanceTimersByTime(100);
+        expect(fn).toHaveBeenCalledTimes(expectedBefore);
+      },
+    );
 
     it("schedule を連続で呼ぶと毎回タイマーがリセットされること", () => {
       const fn = vi.fn();
@@ -912,28 +898,23 @@ describe(debounce, () => {
   });
 
   describe("バリデーション", () => {
-    it("debounceMs が負数だと TypeError を投げること", () => {
-      expect(() => debounce(() => {}, -1)).toThrow(TypeError);
-    });
-
-    it("debounceMs が NaN だと TypeError を投げること", () => {
-      expect(() => debounce(() => {}, Number.NaN)).toThrow(TypeError);
-    });
-
-    it("debounceMs が Infinity だと TypeError を投げること", () => {
-      expect(() => debounce(() => {}, Number.POSITIVE_INFINITY)).toThrow(
-        TypeError,
-      );
-    });
-
-    it("maxWait が負数だと TypeError を投げること", () => {
-      expect(() => debounce(() => {}, 100, { maxWait: -1 })).toThrow(TypeError);
-    });
-
-    it("maxWait が NaN だと TypeError を投げること", () => {
-      expect(() => debounce(() => {}, 100, { maxWait: Number.NaN })).toThrow(
-        TypeError,
-      );
+    it.for<{ label: string; create: () => unknown }>([
+      { label: "wait が負数", create: () => debounce(() => {}, -1) },
+      { label: "wait が NaN", create: () => debounce(() => {}, Number.NaN) },
+      {
+        label: "wait が Infinity",
+        create: () => debounce(() => {}, Number.POSITIVE_INFINITY),
+      },
+      {
+        label: "maxWait が負数",
+        create: () => debounce(() => {}, 100, { maxWait: -1 }),
+      },
+      {
+        label: "maxWait が NaN",
+        create: () => debounce(() => {}, 100, { maxWait: Number.NaN }),
+      },
+    ])("$label だと TypeError を投げること", ({ create }) => {
+      expect(create).toThrow(TypeError);
     });
   });
 
@@ -982,9 +963,9 @@ describe(debounce, () => {
       expect(fn).toHaveBeenCalledExactlyOnceWith("d");
     });
 
-    it("maxWait が debounceMs 未満の場合は debounceMs にクランプされること", () => {
+    it("maxWait が wait 未満の場合は wait にクランプされること", () => {
       const fn = vi.fn();
-      // maxWait(30) < debounceMs(100) → maxWait は 100 にクランプ
+      // maxWait(30) < wait(100) → maxWait は 100 にクランプ
       const debounced = debounce(fn, 100, { maxWait: 30 });
 
       debounced();
@@ -1051,6 +1032,24 @@ describe(debounce, () => {
       vi.advanceTimersByTime(1);
       expect(fn).toHaveBeenCalledTimes(2);
       expect(fn).toHaveBeenLastCalledWith("b");
+    });
+
+    it("システム時刻が maxWait を超えて進んでも delay=0 にクランプされ invoke が走ること", () => {
+      const fn = vi.fn();
+      vi.setSystemTime(1000);
+      const debounced = debounce(fn, 50, { maxWait: 100 });
+
+      debounced("x"); // baseline=1000, timer は 50ms 後に発火予定
+
+      // システム時刻だけ進める (fake timer のキューは進まない)
+      vi.setSystemTime(2000);
+
+      // ここで schedule() が呼ばれると maxRemaining = 100 - (2000-1000) = -900 ≤ 0 のブランチに入り、
+      // delay=0, maxWaitForced=true で即時発火予約される
+      debounced("y");
+      vi.advanceTimersByTime(0);
+
+      expect(fn).toHaveBeenCalledExactlyOnceWith("y");
     });
 
     it("cancel で maxWait のベースライン (lastInvokeTime) がリセットされること", () => {
@@ -1157,6 +1156,68 @@ describe(debounce, () => {
       // 再帰で予約された trailing も同じ this で発火すべき
       vi.advanceTimersByTime(100);
       expect(spy).toHaveBeenNthCalledWith(2, 1, 2);
+    });
+  });
+
+  describe("dispose", () => {
+    it("dispose 後の呼び出しと flush/schedule/cancel が no-op になること", () => {
+      const fn = vi.fn();
+      const debounced = debounce(fn, 100);
+
+      debounced("a");
+      debounced.dispose();
+
+      debounced("b");
+      debounced.flush();
+      debounced.schedule();
+      debounced.cancel();
+      vi.advanceTimersByTime(100);
+
+      expect(fn).not.toHaveBeenCalled();
+    });
+
+    it("コールバック内で dispose を呼んでも例外にならず、以降の schedule が no-op になること", () => {
+      const fn = vi.fn<(x: string) => void>();
+      // eslint-disable-next-line prefer-const
+      let debounced: ReturnType<typeof debounce<[string]>>;
+      fn.mockImplementation(() => {
+        debounced.dispose();
+      });
+      debounced = debounce(fn, 100, { edges: ["leading", "trailing"] });
+
+      expect(() => {
+        debounced("a");
+      }).not.toThrow();
+      expect(fn).toHaveBeenCalledTimes(1);
+
+      // dispose 後は trailing も発火せず、以降の呼び出しも無視される
+      vi.advanceTimersByTime(100);
+      debounced("b");
+      vi.advanceTimersByTime(100);
+      expect(fn).toHaveBeenCalledTimes(1);
+    });
+
+    it("dispose が外部 signal の abort リスナを解除すること", () => {
+      const controller = new AbortController();
+      const addSpy = vi.spyOn(controller.signal, "addEventListener");
+      const fn = vi.fn();
+      const debounced = debounce(fn, 100, { signal: controller.signal });
+
+      // listener が登録された際の options を取得
+      expect(addSpy).toHaveBeenCalledTimes(1);
+      const [addCall] = addSpy.mock.calls;
+      const listenerOptions = addCall[2] as AddEventListenerOptions;
+      expect(listenerOptions.signal?.aborted).toBe(false);
+
+      debounced.dispose();
+
+      // dispose により teardown signal が abort され、abort リスナが解除される
+      expect(listenerOptions.signal?.aborted).toBe(true);
+
+      // 念のため: abort しても debounced は発火しない
+      controller.abort();
+      vi.advanceTimersByTime(100);
+      expect(fn).not.toHaveBeenCalled();
     });
   });
 });
