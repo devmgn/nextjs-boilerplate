@@ -1,5 +1,6 @@
+import babel from "@rolldown/plugin-babel";
 import { storybookTest } from "@storybook/addon-vitest/vitest-plugin";
-import react from "@vitejs/plugin-react";
+import react, { reactCompilerPreset } from "@vitejs/plugin-react";
 import { playwright } from "@vitest/browser-playwright";
 import { defineConfig } from "vitest/config";
 
@@ -26,7 +27,12 @@ export default defineConfig({
     projects: [
       {
         extends: true,
-        plugins: [react()],
+        plugins: [
+          react(),
+          // 本番 (Next.js) と同じ memoize 挙動をテストでも担保するため React Compiler を有効化する。
+          // @see https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#react-compiler
+          babel({ presets: [reactCompilerPreset()] }),
+        ],
         test: {
           name: "unit",
           globals: true,
