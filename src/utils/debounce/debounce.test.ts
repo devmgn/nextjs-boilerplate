@@ -1138,7 +1138,10 @@ describe(debounce, () => {
       const spy = vi.fn();
       const obj = {
         value: 1,
-        update: debounce(function update(this: { value: number }, step: number) {
+        update: debounce(function update(
+          this: { value: number },
+          step: number,
+        ) {
           spy(this.value, step);
           if (step === 1) {
             // trailing 実行中に再帰呼び出し
