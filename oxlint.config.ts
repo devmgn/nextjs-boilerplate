@@ -93,6 +93,7 @@ export default defineConfig({
     "jsdoc/require-param-type": "off",
     "jsdoc/require-returns": "off",
     "jsdoc/require-returns-description": "off",
+    "jsdoc/require-returns-type": "off",
 
     // ── eslint-plugin-node (built-in) ──
     "node/no-process-env": "off",
@@ -158,7 +159,6 @@ export default defineConfig({
     "@tanstack/query/stable-query-client": "error",
 
     // ── react-compiler-rules (jsPlugin: eslint-plugin-react-hooks) ──
-    "react-compiler-rules/automatic-effect-dependencies": "error",
     "react-compiler-rules/capitalized-calls": "error",
     "react-compiler-rules/component-hook-factories": "error",
     "react-compiler-rules/config": "error",
