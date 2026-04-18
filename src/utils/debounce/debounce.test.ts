@@ -1039,7 +1039,8 @@ describe(debounce, () => {
       vi.setSystemTime(1000);
       const debounced = debounce(fn, 50, { maxWait: 100 });
 
-      debounced("x"); // baseline=1000, timer は 50ms 後に発火予定
+      // baseline=1000, timer は 50ms 後に発火予定
+      debounced("x");
 
       // システム時刻だけ進める (fake timer のキューは進まない)
       vi.setSystemTime(2000);
