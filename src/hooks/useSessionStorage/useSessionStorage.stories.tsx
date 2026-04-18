@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { useId, useRef } from "react";
 import { expect, userEvent } from "storybook/test";
-import { useLocalStorage } from "./useLocalStorage";
+import { useSessionStorage } from "./useSessionStorage";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 
-function UseLocalStorageDemo() {
-  const [value, setValue, removeValue] = useLocalStorage("storybook-demo");
+function UseSessionStorageDemo() {
+  const [value, setValue, removeValue] = useSessionStorage("storybook-demo");
   const inputRef = useRef<HTMLInputElement>(null);
   const valueId = useId();
   const inputId = useId();
@@ -43,7 +43,7 @@ const meta = {
   parameters: {
     layout: "centered",
   },
-  render: () => <UseLocalStorageDemo />,
+  render: () => <UseSessionStorageDemo />,
 } satisfies Meta;
 
 export default meta;
@@ -52,7 +52,7 @@ type Story = StoryObj;
 export const Default: Story = {
   play: async ({ canvas }) => {
     const [currentValue, newValueInput] = canvas.getAllByRole("textbox");
-    await expect(currentValue).toHaveValue("initial");
+    await expect(currentValue).toHaveValue("null");
 
     await userEvent.clear(newValueInput);
     await userEvent.type(newValueInput, "saved-value");
@@ -62,6 +62,6 @@ export const Default: Story = {
     await expect(currentValue).toHaveValue("saved-value");
 
     await userEvent.click(removeButton);
-    await expect(currentValue).toHaveValue("initial");
+    await expect(currentValue).toHaveValue("null");
   },
 };

@@ -31,54 +31,49 @@ describe(useLocalStorage, () => {
   });
 
   describe("基本動作", () => {
-    it("初期値を返すこと", () => {
+    it("未設定なら null を返す", () => {
       const key = uniqueKey();
-      const { result } = renderHook(() => useLocalStorage(key, "default"));
-      expect(result.current[0]).toBe("default");
+      const { result } = renderHook(() => useLocalStorage(key));
+      expect(result.current[0]).toBeNull();
     });
 
-    it("localStorageの既存値を読み取ること", () => {
+    it("localStorageの既存値を読み取る", () => {
       const key = uniqueKey();
-      mockStorage.setItem(key, JSON.stringify("stored"));
-      const { result } = renderHook(() => useLocalStorage(key, "default"));
+      mockStorage.setItem(key, "stored");
+      const { result } = renderHook(() => useLocalStorage(key));
       expect(result.current[0]).toBe("stored");
     });
 
-    it("setValueで値を更新できること", () => {
+    it("setValueで値を更新できる", () => {
       const key = uniqueKey();
-      const { result } = renderHook(() => useLocalStorage(key, "default"));
+      const { result } = renderHook(() => useLocalStorage(key));
 
       act(() => {
         result.current[1]("updated");
       });
 
       expect(result.current[0]).toBe("updated");
-      expect(mockStorage.setItem).toHaveBeenCalledWith(
-        key,
-        JSON.stringify("updated"),
-      );
+      expect(mockStorage.setItem).toHaveBeenCalledWith(key, "updated");
     });
 
-    it("関数型更新をサポートすること", () => {
+    it("関数型更新をサポートする（prev は string | null）", () => {
       const key = uniqueKey();
-      const { result } = renderHook(() => useLocalStorage(key, 0));
+      const { result } = renderHook(() => useLocalStorage(key));
 
       act(() => {
-        result.current[1]((prev) => prev + 1);
+        result.current[1]((prev) => `${prev ?? ""}a`);
       });
-
-      expect(result.current[0]).toBe(1);
+      expect(result.current[0]).toBe("a");
 
       act(() => {
-        result.current[1]((prev) => prev + 10);
+        result.current[1]((prev) => `${prev ?? ""}b`);
       });
-
-      expect(result.current[0]).toBe(11);
+      expect(result.current[0]).toBe("ab");
     });
 
-    it("removeValueで値を削除して初期値に戻ること", () => {
+    it("removeValue 後は null に戻る", () => {
       const key = uniqueKey();
-      const { result } = renderHook(() => useLocalStorage(key, "default"));
+      const { result } = renderHook(() => useLocalStorage(key));
 
       act(() => {
         result.current[1]("stored");
@@ -89,92 +84,26 @@ describe(useLocalStorage, () => {
         result.current[2]();
       });
 
-      expect(result.current[0]).toBe("default");
+      expect(result.current[0]).toBeNull();
       expect(mockStorage.removeItem).toHaveBeenCalledWith(key);
     });
   });
 
-  describe("シリアライズ", () => {
-    it("オブジェクトを正しく保存・読み取りできること", () => {
-      const key = uniqueKey();
-      const obj = { name: "test", count: 42 };
-      const { result } = renderHook(() =>
-        useLocalStorage(key, { name: "", count: 0 }),
-      );
-
-      act(() => {
-        result.current[1](obj);
-      });
-
-      expect(result.current[0]).toStrictEqual(obj);
-    });
-
-    it("配列を正しく保存・読み取りできること", () => {
-      const key = uniqueKey();
-      const arr = [1, 2, 3];
-      const { result } = renderHook(() => useLocalStorage<number[]>(key, []));
-
-      act(() => {
-        result.current[1](arr);
-      });
-
-      expect(result.current[0]).toStrictEqual(arr);
-    });
-
-    it("数値を正しく処理すること", () => {
-      const key = uniqueKey();
-      const { result } = renderHook(() => useLocalStorage(key, 0));
-
-      act(() => {
-        result.current[1](42);
-      });
-
-      expect(result.current[0]).toBe(42);
-    });
-
-    it("nullを正しく処理すること", () => {
-      const key = uniqueKey();
-      const { result } = renderHook(() =>
-        useLocalStorage<string | null>(key, null),
-      );
-
-      expect(result.current[0]).toBeNull();
-
-      act(() => {
-        result.current[1]("value");
-      });
-      expect(result.current[0]).toBe("value");
-
-      act(() => {
-        result.current[1](null);
-      });
-      expect(result.current[0]).toBeNull();
-    });
-  });
-
   describe("エラーハンドリング", () => {
-    it("localStorage利用不可時に初期値を返すこと", () => {
+    it("localStorage 利用不可時に null を返す", () => {
       const key = uniqueKey();
       mockStorage.getItem.mockImplementation(() => {
         throw new Error("localStorage unavailable");
       });
 
-      const { result } = renderHook(() => useLocalStorage(key, "fallback"));
-      expect(result.current[0]).toBe("fallback");
+      const { result } = renderHook(() => useLocalStorage(key));
+      expect(result.current[0]).toBeNull();
     });
 
-    it("破損JSONの場合に初期値を返すこと", () => {
-      const key = uniqueKey();
-      mockStorage.setItem(key, "invalid-json{{{");
-
-      const { result } = renderHook(() => useLocalStorage(key, "fallback"));
-      expect(result.current[0]).toBe("fallback");
-    });
-
-    it("QuotaExceededError時にconsole.warnを出力し状態を変更しないこと", () => {
+    it("QuotaExceededError 時に console.warn を出力し状態を変更しない", () => {
       const key = uniqueKey();
       const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
-      const { result } = renderHook(() => useLocalStorage(key, "default"));
+      const { result } = renderHook(() => useLocalStorage(key));
 
       mockStorage.setItem.mockImplementation(() => {
         throw new DOMException("quota exceeded", "QuotaExceededError");
@@ -185,22 +114,23 @@ describe(useLocalStorage, () => {
       });
 
       expect(warnSpy).toHaveBeenCalledTimes(1);
-      expect(result.current[0]).toBe("default");
-      // localStorage に書き込まれていないことを確認
+      expect(result.current[0]).toBeNull();
       expect(mockStorage.getItem(key)).toBeNull();
     });
   });
 
   describe("タブ間同期", () => {
-    it("storageイベントで値が更新されること", () => {
+    it("storage イベントで値が更新される", () => {
       const key = uniqueKey();
-      const { result } = renderHook(() => useLocalStorage(key, "default"));
+      const { result } = renderHook(() => useLocalStorage(key));
 
       act(() => {
+        mockStorage.setItem(key, "from-other-tab");
         window.dispatchEvent(
           new StorageEvent("storage", {
             key,
-            newValue: JSON.stringify("from-other-tab"),
+            newValue: "from-other-tab",
+            storageArea: window.localStorage,
           }),
         );
       });
@@ -208,9 +138,9 @@ describe(useLocalStorage, () => {
       expect(result.current[0]).toBe("from-other-tab");
     });
 
-    it("storageイベントで削除を検知すること", () => {
+    it("storage イベントで削除を検知する", () => {
       const key = uniqueKey();
-      const { result } = renderHook(() => useLocalStorage(key, "default"));
+      const { result } = renderHook(() => useLocalStorage(key));
 
       act(() => {
         result.current[1]("stored");
@@ -223,39 +153,37 @@ describe(useLocalStorage, () => {
           new StorageEvent("storage", {
             key,
             newValue: null,
+            storageArea: window.localStorage,
           }),
         );
       });
 
-      expect(result.current[0]).toBe("default");
+      expect(result.current[0]).toBeNull();
     });
 
-    it("無関係なキーのstorageイベントを無視すること", () => {
+    it("無関係なキーの storage イベントを無視する", () => {
       const key = uniqueKey();
-      const { result } = renderHook(() => useLocalStorage(key, "default"));
+      const { result } = renderHook(() => useLocalStorage(key));
 
       act(() => {
         window.dispatchEvent(
           new StorageEvent("storage", {
             key: "other-key",
-            newValue: JSON.stringify("other-value"),
+            newValue: "other-value",
+            storageArea: window.localStorage,
           }),
         );
       });
 
-      expect(result.current[0]).toBe("default");
+      expect(result.current[0]).toBeNull();
     });
   });
 
   describe("同一タブ同期", () => {
-    it("同じキーの複数インスタンスが同期すること", () => {
+    it("同じキーの複数インスタンスが同期する", () => {
       const key = uniqueKey();
-      const { result: result1 } = renderHook(() =>
-        useLocalStorage(key, "default"),
-      );
-      const { result: result2 } = renderHook(() =>
-        useLocalStorage(key, "default"),
-      );
+      const { result: result1 } = renderHook(() => useLocalStorage(key));
+      const { result: result2 } = renderHook(() => useLocalStorage(key));
 
       act(() => {
         result1.current[1]("synced");
@@ -267,18 +195,29 @@ describe(useLocalStorage, () => {
   });
 
   describe("クリーンアップ", () => {
-    it("アンマウント時にリスナーが解除されること", () => {
+    it("アンマウント後は同タブの書き込みで再レンダーされない", () => {
       const key = uniqueKey();
-      const addSpy = vi.spyOn(window, "addEventListener");
-      const removeSpy = vi.spyOn(window, "removeEventListener");
+      const renderSpy = vi.fn();
+      const { unmount } = renderHook(() => {
+        renderSpy();
+        return useLocalStorage(key);
+      });
 
-      const { unmount } = renderHook(() => useLocalStorage(key, "default"));
-
-      expect(addSpy).toHaveBeenCalledWith("storage", expect.any(Function));
-
+      const renderCountBeforeUnmount = renderSpy.mock.calls.length;
       unmount();
 
-      expect(removeSpy).toHaveBeenCalledWith("storage", expect.any(Function));
+      act(() => {
+        window.localStorage.setItem(key, "after-unmount");
+        window.dispatchEvent(
+          new StorageEvent("storage", {
+            key,
+            newValue: "after-unmount",
+            storageArea: window.localStorage,
+          }),
+        );
+      });
+
+      expect(renderSpy).toHaveBeenCalledTimes(renderCountBeforeUnmount);
     });
   });
 });

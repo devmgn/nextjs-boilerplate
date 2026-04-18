@@ -10,6 +10,7 @@ import { useDisclosure } from "../../../hooks/useDisclosure";
 import { useIsComposing } from "../../../hooks/useIsComposing";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import { useMediaQuery } from "../../../hooks/useMediaQuery";
+import { useSessionStorage } from "../../../hooks/useSessionStorage";
 import { createCustomEvent } from "../../../utils/createCustomEvent";
 import { isKeyOf } from "../../../utils/isKeyOf";
 import { isValueOf } from "../../../utils/isValueOf";
@@ -21,7 +22,8 @@ export default function Page() {
     // noop
   }, 1000);
   useIsComposing();
-  useLocalStorage("dummy", "");
+  useLocalStorage("dummy");
+  useSessionStorage("dummy");
   useMediaQuery("(min-width: 768px)");
   // oxlint-disable-next-line typescript/no-unsafe-type-assertion
   createCustomEvent("" as keyof GlobalEventHandlersEventMap);
