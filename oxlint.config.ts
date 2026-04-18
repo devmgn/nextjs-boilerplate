@@ -93,6 +93,7 @@ export default defineConfig({
     "jsdoc/require-param-type": "off",
     "jsdoc/require-returns": "off",
     "jsdoc/require-returns-description": "off",
+    "jsdoc/require-returns-type": "off",
 
     // ── eslint-plugin-node (built-in) ──
     "node/no-process-env": "off",
