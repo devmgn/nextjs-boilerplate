@@ -52,7 +52,7 @@ type Story = StoryObj;
 export const Default: Story = {
   play: async ({ canvas }) => {
     const [currentValue, newValueInput] = canvas.getAllByRole("textbox");
-    await expect(currentValue).toHaveValue("initial");
+    await expect(currentValue).toHaveValue("null");
 
     await userEvent.clear(newValueInput);
     await userEvent.type(newValueInput, "saved-value");
@@ -62,6 +62,6 @@ export const Default: Story = {
     await expect(currentValue).toHaveValue("saved-value");
 
     await userEvent.click(removeButton);
-    await expect(currentValue).toHaveValue("initial");
+    await expect(currentValue).toHaveValue("null");
   },
 };
