@@ -159,6 +159,7 @@ export default defineConfig({
 
     // ── react-compiler-rules (jsPlugin: eslint-plugin-react-hooks) ──
     "react-compiler-rules/capitalized-calls": "error",
+    "react-compiler-rules/component-hook-factories": "error",
     "react-compiler-rules/config": "error",
     "react-compiler-rules/error-boundaries": "error",
     "react-compiler-rules/gating": "error",
