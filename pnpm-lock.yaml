@@ -784,8 +784,8 @@ packages:
       '@types/react': '>=16'
       react: '>=16'
 
-  '@mswjs/interceptors@0.41.3':
-    resolution: {integrity: sha512-cXu86tF4VQVfwz8W1SPbhoRyHJkti6mjH/XJIxp40jhO4j2k1m4KYrEykxqWPkFF3vrK4rgQppBh//AwyGSXPA==}
+  '@mswjs/interceptors@0.41.4':
+    resolution: {integrity: sha512-3B9EinUkrdOUGYzHRzRWSXunQ4YFGboJnyLNRwEJWEde+j8fNhPUHvrN1E3g1DU/iS/s8JQrMNVe+S7AHHVs0w==}
     engines: {node: '>=18'}
 
   '@napi-rs/wasm-runtime@1.1.4':
@@ -4354,7 +4354,7 @@ snapshots:
       '@types/react': 19.2.14
       react: 19.2.5
 
-  '@mswjs/interceptors@0.41.3':
+  '@mswjs/interceptors@0.41.4':
     dependencies:
       '@open-draft/deferred-promise': 2.2.0
       '@open-draft/logger': 0.3.0
@@ -6426,7 +6426,7 @@ snapshots:
   msw@2.13.4(@types/node@24.12.2)(typescript@6.0.3):
     dependencies:
       '@inquirer/confirm': 6.0.11(@types/node@24.12.2)
-      '@mswjs/interceptors': 0.41.3
+      '@mswjs/interceptors': 0.41.4
       '@open-draft/deferred-promise': 3.0.0
       '@types/statuses': 2.0.6
       cookie: 1.1.1
