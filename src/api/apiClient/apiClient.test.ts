@@ -120,9 +120,9 @@ describe("apiClient", () => {
         ),
       );
 
-      await expect(
-        apiClient.postsPostIdDelete({ postId: 1 }),
-      ).rejects.toThrow(ResponseError);
+      await expect(apiClient.postsPostIdDelete({ postId: 1 })).rejects.toThrow(
+        ResponseError,
+      );
     });
   });
 });

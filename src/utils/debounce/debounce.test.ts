@@ -1151,13 +1151,12 @@ describe(debounce, () => {
       };
 
       // 1 回目の trailing 実行中だけ再帰呼び出しする
-      callback.mockImplementationOnce(function recursingImpl(
-        this: { value: number },
-        step,
-      ) {
-        spy(this.value, step);
-        obj.update(2);
-      });
+      callback.mockImplementationOnce(
+        function recursingImpl(this: { value: number }, step) {
+          spy(this.value, step);
+          obj.update(2);
+        },
+      );
 
       obj.update(1);
       vi.advanceTimersByTime(100);
