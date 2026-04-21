@@ -2,6 +2,7 @@ import { QueryClient } from "@tanstack/react-query";
 import { HttpResponse, http } from "msw";
 import { getPostsQueryOptions } from "./post.queries";
 import { server } from "../../mocks/server";
+import { ResponseError } from "../openapi";
 
 const BASE_URL = "https://jsonplaceholder.typicode.com";
 
@@ -60,13 +61,13 @@ describe("getPostsQueryOptions", () => {
   it("queryKeyにリクエストパラメータが含まれること", () => {
     const options = getPostsQueryOptions({ userId: 1 });
 
-    expect(options.queryKey).toEqual(["getPosts", { userId: 1 }]);
+    expect(options.queryKey).toStrictEqual(["getPosts", { userId: 1 }]);
   });
 
   it("パラメータなしのqueryKeyが正しいこと", () => {
     const options = getPostsQueryOptions();
 
-    expect(options.queryKey).toEqual(["getPosts", {}]);
+    expect(options.queryKey).toStrictEqual(["getPosts", {}]);
   });
 
   it("APIエラー時に例外がスローされること", async () => {
@@ -81,7 +82,7 @@ describe("getPostsQueryOptions", () => {
 
     await expect(
       queryClient.fetchQuery(getPostsQueryOptions()),
-    ).rejects.toThrow();
+    ).rejects.toThrow(ResponseError);
   });
 
   it("空配列が返された場合に正しく処理されること", async () => {
@@ -89,6 +90,6 @@ describe("getPostsQueryOptions", () => {
 
     const result = await queryClient.fetchQuery(getPostsQueryOptions());
 
-    expect(result).toEqual([]);
+    expect(result).toStrictEqual([]);
   });
 });

@@ -30,12 +30,15 @@ describe(isFunction, () => {
     });
   });
 
+  // 型述語の narrowing 挙動そのものがテスト対象のため、各ブランチで expect する
   it("ユニオン型を関数成分で narrow する", () => {
     const union: string | (() => string) = returnX;
+    // oxlint-disable jest/no-conditional-in-test,jest/no-conditional-expect
     if (isFunction(union)) {
       expect(union()).toBe("x");
     } else {
       expect.unreachable();
     }
+    // oxlint-enable jest/no-conditional-in-test,jest/no-conditional-expect
   });
 });

@@ -56,18 +56,31 @@ describe(useLocalStorage, () => {
       expect(mockStorage.setItem).toHaveBeenCalledWith(key, "updated");
     });
 
-    it("関数型更新をサポートする（prev は string | null）", () => {
+    it("関数型更新 - 初回は prev として null が渡される", () => {
+      const key = uniqueKey();
+      const { result } = renderHook(() => useLocalStorage(key));
+      const updater = vi.fn<(prev: string | null) => string>(() => "a");
+
+      act(() => {
+        result.current[1](updater);
+      });
+
+      expect(updater).toHaveBeenCalledWith(null);
+      expect(result.current[0]).toBe("a");
+    });
+
+    it("関数型更新 - 2回目以降は prev として前回値が渡される", () => {
       const key = uniqueKey();
       const { result } = renderHook(() => useLocalStorage(key));
 
       act(() => {
-        result.current[1]((prev) => `${prev ?? ""}a`);
+        result.current[1]("a");
       });
-      expect(result.current[0]).toBe("a");
 
       act(() => {
-        result.current[1]((prev) => `${prev ?? ""}b`);
+        result.current[1]((prev) => `${prev}b`);
       });
+
       expect(result.current[0]).toBe("ab");
     });
 

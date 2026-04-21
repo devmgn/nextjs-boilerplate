@@ -1,6 +1,7 @@
 import { HttpResponse, http } from "msw";
 import { apiClient } from "./apiClient";
 import { server } from "../../mocks/server";
+import { ResponseError } from "../openapi";
 
 const BASE_URL = "https://jsonplaceholder.typicode.com";
 
@@ -70,7 +71,9 @@ describe("apiClient", () => {
         ),
       );
 
-      await expect(apiClient.postsPostIdGet({ postId: 999 })).rejects.toThrow();
+      await expect(apiClient.postsPostIdGet({ postId: 999 })).rejects.toThrow(
+        ResponseError,
+      );
     });
   });
 
@@ -117,9 +120,9 @@ describe("apiClient", () => {
         ),
       );
 
-      await expect(
-        apiClient.postsPostIdDelete({ postId: 1 }),
-      ).rejects.toThrow();
+      await expect(apiClient.postsPostIdDelete({ postId: 1 })).rejects.toThrow(
+        ResponseError,
+      );
     });
   });
 });

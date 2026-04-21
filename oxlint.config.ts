@@ -135,7 +135,11 @@ export default defineConfig({
     "unicorn/switch-case-braces": ["error", "avoid"],
 
     // ── eslint-plugin-vitest (built-in) ──
+    "jest/prefer-importing-jest-globals": "off",
+    "jest/prefer-ending-with-an-expect": "off",
+
     "vitest/consistent-test-it": ["error", { fn: "it" }],
+    "vitest/no-hooks": "off",
     "vitest/no-importing-vitest-globals": "off",
     "vitest/no-standalone-expect": [
       "error",
@@ -143,6 +147,7 @@ export default defineConfig({
     ],
     "vitest/prefer-called-once": "off",
     "vitest/prefer-importing-vitest-globals": "off",
+    "vitest/prefer-lowercase-title": "off",
     "vitest/prefer-to-be-falsy": "off",
     "vitest/prefer-to-be-truthy": "off",
     "vitest/require-hook": "off",

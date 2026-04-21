@@ -24,6 +24,9 @@ export default defineConfig({
     },
     testTimeout: 10_000,
     hookTimeout: 10_000,
+    restoreMocks: true,
+    unstubEnvs: true,
+    unstubGlobals: true,
     projects: [
       {
         extends: true,
@@ -39,9 +42,6 @@ export default defineConfig({
           environment: "happy-dom",
           globalSetup: "./vitest.globalSetup.ts",
           setupFiles: "./vitest.setup.ts",
-          restoreMocks: true,
-          unstubEnvs: true,
-          unstubGlobals: true,
         },
       },
       {
