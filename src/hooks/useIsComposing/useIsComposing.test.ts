@@ -37,17 +37,17 @@ describe(useIsComposing, () => {
         bubble: useIsComposing(false),
       }));
 
-      expect(result.current).toEqual({ capture: false, bubble: false });
+      expect(result.current).toStrictEqual({ capture: false, bubble: false });
 
       act(() => {
         dispatchComposition("compositionstart");
       });
-      expect(result.current).toEqual({ capture: true, bubble: true });
+      expect(result.current).toStrictEqual({ capture: true, bubble: true });
 
       act(() => {
         dispatchComposition("compositionend");
       });
-      expect(result.current).toEqual({ capture: false, bubble: false });
+      expect(result.current).toStrictEqual({ capture: false, bubble: false });
     });
   });
 

@@ -176,16 +176,16 @@ describe(debounce, () => {
 
     it("leading コールバック内から再帰呼び出ししても leading が二重発火しないこと", () => {
       const calls: string[] = [];
-      const debounced = debounce(
-        (x: string) => {
-          calls.push(x);
-          if (x === "a") {
-            debounced("re-entry");
-          }
-        },
-        100,
-        { edges: ["leading"] },
-      );
+      const callback = vi.fn<(x: string) => void>((x) => {
+        calls.push(x);
+      });
+      const debounced = debounce(callback, 100, { edges: ["leading"] });
+
+      // 1 回目の invoke だけ再帰呼び出しする
+      callback.mockImplementationOnce((x) => {
+        calls.push(x);
+        debounced("re-entry");
+      });
 
       debounced("a");
       // 再帰呼び出しは isLeadingInvoked ガードにより leading 発火せず
@@ -428,12 +428,15 @@ describe(debounce, () => {
   describe("再帰呼び出し", () => {
     it("trailing コールバック内から再帰呼び出しした引数が失われないこと", () => {
       const calls: string[] = [];
-      const debounced = debounce((x: string) => {
+      const callback = vi.fn<(x: string) => void>((x) => {
         calls.push(x);
-        if (x === "a") {
-          debounced("re-entry");
-        }
-      }, 100);
+      });
+      const debounced = debounce(callback, 100);
+
+      callback.mockImplementationOnce((x) => {
+        calls.push(x);
+        debounced("re-entry");
+      });
 
       debounced("a");
       vi.advanceTimersByTime(100);
@@ -446,16 +449,17 @@ describe(debounce, () => {
 
     it("leading+trailing コールバック内から再帰呼び出しした引数が trailing で実行されること", () => {
       const calls: string[] = [];
-      const debounced = debounce(
-        (x: string) => {
-          calls.push(x);
-          if (x === "a") {
-            debounced("re-entry");
-          }
-        },
-        100,
-        { edges: ["leading", "trailing"] },
-      );
+      const callback = vi.fn<(x: string) => void>((x) => {
+        calls.push(x);
+      });
+      const debounced = debounce(callback, 100, {
+        edges: ["leading", "trailing"],
+      });
+
+      callback.mockImplementationOnce((x) => {
+        calls.push(x);
+        debounced("re-entry");
+      });
 
       debounced("a");
       expect(calls).toStrictEqual(["a"]);
@@ -1136,19 +1140,24 @@ describe(debounce, () => {
 
     it("再帰呼び出し時に保存した this が失われないこと", () => {
       const spy = vi.fn();
+      const callback = vi.fn<(this: { value: number }, step: number) => void>(
+        function defaultImpl(this: { value: number }, step) {
+          spy(this.value, step);
+        },
+      );
       const obj = {
         value: 1,
-        update: debounce(function update(
-          this: { value: number },
-          step: number,
-        ) {
-          spy(this.value, step);
-          if (step === 1) {
-            // trailing 実行中に再帰呼び出し
-            obj.update(2);
-          }
-        }, 100),
+        update: debounce(callback, 100),
       };
+
+      // 1 回目の trailing 実行中だけ再帰呼び出しする
+      callback.mockImplementationOnce(function recursingImpl(
+        this: { value: number },
+        step,
+      ) {
+        spy(this.value, step);
+        obj.update(2);
+      });
 
       obj.update(1);
       vi.advanceTimersByTime(100);

@@ -110,13 +110,14 @@ describe(useWebStorage, () => {
   it("関数型更新はストアの最新値に基づいて解決される", () => {
     const store = createMockStore();
     const key = uniqueKey();
+    store.write(key, "");
     const { result } = renderHook(() => useWebStorage(store, key));
 
     act(() => {
-      result.current[1]((prev) => `${prev ?? ""}a`);
+      result.current[1]((prev) => `${prev}a`);
     });
     act(() => {
-      result.current[1]((prev) => `${prev ?? ""}b`);
+      result.current[1]((prev) => `${prev}b`);
     });
 
     expect(result.current[0]).toBe("ab");
@@ -130,7 +131,7 @@ describe(useWebStorage, () => {
 
     act(() => {
       store.write(key, "base");
-      result.current[1]((prev) => `${prev ?? ""}+1`);
+      result.current[1]((prev) => `${prev}+1`);
     });
 
     expect(result.current[0]).toBe("base+1");
@@ -145,7 +146,7 @@ describe(useWebStorage, () => {
     rerender();
     rerender();
 
-    expect(vi.mocked(store.subscribe).mock.calls.length).toBe(initialCalls);
+    expect(store.subscribe).toHaveBeenCalledTimes(initialCalls);
   });
 
   it("アンマウント時に購読が解除される", () => {
