@@ -3,6 +3,11 @@
 import { FaceIcon } from "@radix-ui/react-icons";
 import { Backdrop } from "../../../components/Backdrop";
 import { Card } from "../../../components/Card";
+import {
+  LoadingOverlay,
+  LoadingScreen,
+  loading,
+} from "../../../components/LoadingOverlay";
 import { Spinner } from "../../../components/Spinner";
 import { SvgIcon } from "../../../components/SvgIcon";
 import { useDebouncedCallback } from "../../../hooks/useDebouncedCallback";
@@ -32,6 +37,7 @@ export default function Page() {
   const _isKeyOf = isKeyOf({}, "");
   const _isValueOf = isValueOf({}, "");
   const _isArray = Array.isArray([]);
+  const _loading = loading;
 
   return (
     <>
@@ -39,6 +45,8 @@ export default function Page() {
       <Card />
       <Spinner />
       <Backdrop open />
+      <LoadingOverlay />
+      <LoadingScreen />
     </>
   );
 }
