@@ -2,7 +2,7 @@
   "$schema": "./node_modules/knip/schema-jsonc.json",
   "ignore": ["src/**/openapi/**", "src/mocks/**", "tools/**"],
   "ignoreBinaries": ["openapiconfig.json", "actionlint", "zizmor"],
-  "ignoreDependencies": ["postcss"],
+  "ignoreDependencies": ["postcss", "postcss-load-config"],
   "tailwind": {
     "entry": ["src/lib/styles/globals.css"],
   },
