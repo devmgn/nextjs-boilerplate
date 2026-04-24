@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Toaster } from "sonner";
+import { LoadingOverlay } from "../components/LoadingOverlay";
 import { ENV } from "../config/env";
 import { RootProvider } from "../providers/RootProvider";
 import "../lib/styles/globals.css";
@@ -24,6 +25,7 @@ export default function Layout(props: React.PropsWithChildren) {
       <body>
         <RootProvider>{children}</RootProvider>
         <Toaster richColors closeButton />
+        <LoadingOverlay />
       </body>
     </html>
   );
