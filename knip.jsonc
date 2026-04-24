@@ -1,8 +1,7 @@
 {
   "$schema": "./node_modules/knip/schema-jsonc.json",
-  "ignore": ["src/**/openapi/**", "src/mocks/**"],
+  "ignore": ["src/**/openapi/**", "src/mocks/**", "tools/**"],
   "ignoreBinaries": ["openapiconfig.json", "actionlint", "zizmor"],
-  "ignoreDependencies": ["estree"],
   "tailwind": {
     "entry": ["src/lib/styles/globals.css"],
   },
