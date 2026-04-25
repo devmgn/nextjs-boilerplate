@@ -93,19 +93,6 @@
     "node": ">=24"
   },
   "packageManager": "pnpm@10.33.1",
-  "pnpm": {
-    "peerDependencyRules": {
-      "allowAny": [
-        "react-hook-form"
-      ]
-    },
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "lefthook",
-      "msw",
-      "sharp"
-    ]
-  },
   "msw": {
     "workerDirectory": "public"
   }
