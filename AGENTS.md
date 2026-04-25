@@ -14,6 +14,8 @@
   - Suppress comments: `// oxlint-disable-next-line <rule>`
 - **Vitest** with 80% coverage requirement
 - **Storybook 10** with Vitest integration, a11y testing, MSW
+- **Lefthook** for git hooks (see `lefthook.yml`)
+  - Skip with `git commit --no-verify` or `LEFTHOOK=0 git ...`
 
 ## Key Patterns
 

@@ -1,0 +1,47 @@
+pre-commit:
+  jobs:
+    - name: protect-main
+      run: |
+        branch=$(git branch --show-current)
+        if [ "$branch" = "main" ]; then
+          echo "main ブランチへの直接コミットは禁止です。<type>/<description> 形式の feature ブランチを切ってください。"
+          echo "例: feat/add-login, fix/typo, chore/knip-optimize"
+          exit 1
+        fi
+    - name: oxlint
+      glob: "*.{ts,tsx,js,jsx,mjs,cjs}"
+      run: pnpm oxlint --fix {staged_files}
+      stage_fixed: true
+    - name: oxfmt
+      run: pnpm oxfmt --write {staged_files}
+      stage_fixed: true
+    - name: test
+      glob: "*.{ts,tsx}"
+      run: pnpm vitest related --run {staged_files}
+
+pre-push:
+  parallel: true
+  jobs:
+    - name: branch-name
+      run: |
+        branch=$(git branch --show-current)
+        case "$branch" in
+          ""|main) exit 0 ;;
+        esac
+        if ! echo "$branch" | grep -qE '^(feat|fix|chore|refactor|docs|style|test|perf|build|ci|revert)/[a-z0-9._/-]+$'; then
+          echo "ブランチ名は <type>/<description> 形式にしてください"
+          echo "例: feat/add-login, fix/typo, chore/knip-optimize"
+          exit 1
+        fi
+    - name: knip
+      run: pnpm knip
+    - name: lint-workflows
+      glob: ".github/workflows/*.{yml,yaml}"
+      run: pnpm lint:workflows
+
+post-merge:
+  jobs:
+    - name: install-on-lockfile-change
+      files: git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD
+      glob: "pnpm-lock.yaml"
+      run: pnpm install
