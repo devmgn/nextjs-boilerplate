@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "prepare": "lefthook install || true",
-    "postinstall": "test \"$(git hash-object apm.lock.yaml 2>/dev/null || echo lock-missing)\" = \"$(cat apm_modules/.lockhash 2>/dev/null || echo marker-missing)\" || (apm install -t claude && git hash-object apm.lock.yaml > apm_modules/.lockhash) || true",
+    "postinstall": "bash scripts/postinstall.sh",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
