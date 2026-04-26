@@ -45,3 +45,7 @@ post-merge:
       files: git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD
       glob: "pnpm-lock.yaml"
       run: pnpm install
+    - name: apm-install-on-change
+      files: git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD
+      glob: "apm.{yml,lock.yaml}"
+      run: apm install -t claude

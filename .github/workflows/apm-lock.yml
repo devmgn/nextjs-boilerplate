@@ -1,0 +1,54 @@
+name: Update APM lockfile
+
+on:
+  push:
+    branches:
+      - "renovate/**"
+    paths:
+      - "apm.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  Update-Lock:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          ref: ${{ github.ref }}
+          persist-credentials: false
+
+      - name: Install apm
+        run: |
+          curl -sSL https://aka.ms/apm-unix | sh
+          for dir in "$HOME/.local/bin" "$HOME/.apm/bin" "/usr/local/bin"; do
+            if [ -x "$dir/apm" ]; then echo "$dir" >> "$GITHUB_PATH"; break; fi
+          done
+
+      - name: Verify apm
+        run: apm --version
+
+      - name: Regenerate apm.lock.yaml
+        run: apm install -t claude
+
+      - name: Commit and push if lock changed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -z "$(git status --porcelain apm.lock.yaml)" ]; then
+            echo "apm.lock.yaml is already up to date."
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add apm.lock.yaml
+          git commit -m "chore: regenerate apm.lock.yaml"
+          git push "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:${GITHUB_REF_NAME}"
