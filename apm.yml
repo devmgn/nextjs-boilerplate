@@ -1,0 +1,13 @@
+name: nextjs-boilerplate
+version: 1.0.0
+description: APM project for nextjs-boilerplate
+author: JUNICHI IMAI
+dependencies:
+  apm:
+    - vercel-labs/agent-skills/skills/react-best-practices#ce3e64e468f8fa09a2d075d102771838061fdac0
+    - vercel-labs/agent-skills/skills/composition-patterns#ce3e64e468f8fa09a2d075d102771838061fdac0
+    - vercel-labs/agent-skills/skills/react-view-transitions#ce3e64e468f8fa09a2d075d102771838061fdac0
+    - vercel-labs/agent-skills/skills/web-design-guidelines#ce3e64e468f8fa09a2d075d102771838061fdac0
+    - antfu/skills/skills/vitest#c35a5588a5158b5b404a14fb10469b2b6dc1952b
+  mcp: []
+scripts: {}

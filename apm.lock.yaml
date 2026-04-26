@@ -1,0 +1,54 @@
+lockfile_version: "1"
+generated_at: "2026-04-26T02:47:17.659773+00:00"
+apm_version: 0.9.2
+dependencies:
+  - repo_url: antfu/skills
+    host: github.com
+    resolved_commit: c35a5588a5158b5b404a14fb10469b2b6dc1952b
+    resolved_ref: c35a5588a5158b5b404a14fb10469b2b6dc1952b
+    virtual_path: skills/vitest
+    is_virtual: true
+    package_type: claude_skill
+    deployed_files:
+      - .claude/skills/vitest
+    content_hash: sha256:cabca6b1defd712892d9e5d15658b69e0c59287628ba23c85e0a93d94b6597a8
+  - repo_url: vercel-labs/agent-skills
+    host: github.com
+    resolved_commit: ce3e64e468f8fa09a2d075d102771838061fdac0
+    resolved_ref: ce3e64e468f8fa09a2d075d102771838061fdac0
+    virtual_path: skills/composition-patterns
+    is_virtual: true
+    package_type: claude_skill
+    deployed_files:
+      - .claude/skills/composition-patterns
+    content_hash: sha256:5b3564ca435f4714d5e65023351e1999e4744818603a9cfb6a6f6a61b7d84918
+  - repo_url: vercel-labs/agent-skills
+    host: github.com
+    resolved_commit: ce3e64e468f8fa09a2d075d102771838061fdac0
+    resolved_ref: ce3e64e468f8fa09a2d075d102771838061fdac0
+    virtual_path: skills/react-best-practices
+    is_virtual: true
+    package_type: claude_skill
+    deployed_files:
+      - .claude/skills/react-best-practices
+    content_hash: sha256:74f142d28d360d78e8bac4f239a84c87f0ced9015729bc72b5458d82ff45b015
+  - repo_url: vercel-labs/agent-skills
+    host: github.com
+    resolved_commit: ce3e64e468f8fa09a2d075d102771838061fdac0
+    resolved_ref: ce3e64e468f8fa09a2d075d102771838061fdac0
+    virtual_path: skills/react-view-transitions
+    is_virtual: true
+    package_type: claude_skill
+    deployed_files:
+      - .claude/skills/react-view-transitions
+    content_hash: sha256:51719043c8f0077181524eaa0326e3f73080afb490571b81567c0f8df254d15f
+  - repo_url: vercel-labs/agent-skills
+    host: github.com
+    resolved_commit: ce3e64e468f8fa09a2d075d102771838061fdac0
+    resolved_ref: ce3e64e468f8fa09a2d075d102771838061fdac0
+    virtual_path: skills/web-design-guidelines
+    is_virtual: true
+    package_type: claude_skill
+    deployed_files:
+      - .claude/skills/web-design-guidelines
+    content_hash: sha256:a6a44d5498f7e8f68289902f3dedfc6f38ae0cee1e96527c80724cf27f727c2a
