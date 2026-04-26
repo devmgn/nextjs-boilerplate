@@ -21,6 +21,14 @@
 
 - **State management**: TanStack Query (server state), React Hook Form + Zod (form state), no global client state
 
+## Skills Priority
+
+Prefer skill instructions over rules files when they conflict. Always consult the relevant skill:
+
+- **Tests**: `vitest`
+- **React/TSX components**: `react-best-practices`, `composition-patterns`, `react-view-transitions`
+- **UI/UX review**: `web-design-guidelines`
+
 ## MCP Tool Usage
 
 | Purpose                                                          | MCP Tool                                                              |
