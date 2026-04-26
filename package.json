@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "prepare": "lefthook install || true",
-    "postinstall": "apm install -t claude || true",
+    "postinstall": "bash scripts/postinstall.sh",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
