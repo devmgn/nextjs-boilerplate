@@ -28,7 +28,7 @@ pre-push:
         case "$branch" in
           ""|main) exit 0 ;;
         esac
-        if ! echo "$branch" | grep -qE '^(feat|fix|chore|refactor|docs|style|test|perf|build|ci|revert)/[a-z0-9._/-]+$'; then
+        if ! echo "$branch" | grep -qE '^(feat|fix|chore|refactor|docs|style|test|perf|build|ci|revert|renovate)/[a-z0-9._/-]+$'; then
           echo "ブランチ名は <type>/<description> 形式にしてください"
           echo "例: feat/add-login, fix/typo, chore/knip-optimize"
           exit 1
