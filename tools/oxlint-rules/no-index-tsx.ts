@@ -1,12 +1,12 @@
-/** @type {import("eslint").Rule.RuleModule} */
-export default {
+import type { Rule } from "@oxlint/plugins";
+
+const rule: Rule = {
   create(context) {
     const { filename } = context;
     if (!filename.endsWith("/index.tsx") && !filename.endsWith("/index.jsx")) {
       return {};
     }
     return {
-      /** @param {import("eslint").Rule.Node & import("estree").Program} node */
       Program(node) {
         context.report({
           node,
@@ -17,3 +17,5 @@ export default {
     };
   },
 };
+
+export default rule;

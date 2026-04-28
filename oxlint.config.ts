@@ -26,7 +26,7 @@ export default defineConfig({
     "vitest",
   ],
   jsPlugins: [
-    "./tools/oxlint-rules/index.mjs",
+    "./tools/oxlint-rules/index.ts",
     "@tanstack/eslint-plugin-query",
     { name: "react-compiler-rules", specifier: "eslint-plugin-react-hooks" },
   ],
@@ -252,21 +252,6 @@ export default defineConfig({
       },
     },
     {
-      // Scripts — plain .mjs files lack TS type info, so no-unsafe-* rules produce false positives
-      files: ["*.mjs"],
-      rules: {
-        "import/no-anonymous-default-export": "off",
-        "import/no-default-export": "off",
-        "typescript/no-redundant-type-constituents": "off",
-        "typescript/no-unsafe-argument": "off",
-        "typescript/no-unsafe-assignment": "off",
-        "typescript/no-unsafe-call": "off",
-        "typescript/no-unsafe-member-access": "off",
-        "typescript/no-unsafe-return": "off",
-        "typescript/strict-boolean-expressions": "off",
-      },
-    },
-    {
       // Next.js special files + config files → allow default export, relax filename
       files: [
         ".storybook/main.ts",
@@ -292,6 +277,13 @@ export default defineConfig({
         "vitest.config.ts",
         "vitest.globalSetup.ts",
       ],
+      rules: {
+        "import/no-default-export": "off",
+      },
+    },
+    {
+      // Custom oxlint rule plugin entries — default exports are required by the plugin loader
+      files: ["tools/oxlint-rules/**/*.ts"],
       rules: {
         "import/no-default-export": "off",
       },
