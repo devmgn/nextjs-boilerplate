@@ -8,7 +8,7 @@ export default defineConfig({
     "src/mocks/**",
   ],
   printWidth: 80,
-  experimentalSortImports: {
+  sortImports: {
     groups: [
       "side_effect",
       "type",
@@ -23,6 +23,7 @@ export default defineConfig({
       "import",
       "side_effect_style",
     ],
+    ignoreCase: false,
     newlinesBetween: false,
   },
   jsdoc: {
