@@ -1,12 +1,11 @@
-/** @type {import("eslint").Rule.RuleModule} */
-export default {
+import type { ESTree, Rule } from "@oxlint/plugins";
+
+const rule: Rule = {
   meta: { fixable: "whitespace" },
   create(context) {
-    /** @type {import("estree").ImportDeclaration | null} */
-    let lastImport = null;
+    let lastImport: ESTree.ImportDeclaration | null = null;
 
     return {
-      /** @param {import("estree").ImportDeclaration} node */
       ImportDeclaration(node) {
         lastImport = node;
       },
@@ -26,11 +25,12 @@ export default {
         const nextTokenStart = tokenAfter.loc.start.line;
 
         if (nextTokenStart - lastImportEnd < 2) {
+          const target = lastImport;
           context.report({
-            node: lastImport,
+            node: target,
             message: "Expected empty line after the last import statement.",
             fix(fixer) {
-              return fixer.insertTextAfter(lastImport, "\n");
+              return fixer.insertTextAfter(target, "\n");
             },
           });
         }
@@ -38,3 +38,5 @@ export default {
     };
   },
 };
+
+export default rule;

@@ -1,8 +1,11 @@
 {
   "$schema": "./node_modules/knip/schema-jsonc.json",
-  "ignore": ["src/**/openapi/**", "src/mocks/**", "tools/**"],
+  "ignore": ["src/**/openapi/**", "src/mocks/**"],
   "ignoreBinaries": ["openapiconfig.json", "actionlint", "zizmor"],
   "ignoreDependencies": ["postcss", "postcss-load-config"],
+  "ignoreIssues": {
+    "tools/oxlint-rules/!(index).ts": ["files"],
+  },
   "tailwind": {
     "entry": ["src/lib/styles/globals.css"],
   },
