@@ -13,6 +13,7 @@ pre-commit:
       run: pnpm oxlint --fix {staged_files}
       stage_fixed: true
     - name: oxfmt
+      glob: "*"
       run: pnpm oxfmt --write {staged_files}
       stage_fixed: true
     - name: test
