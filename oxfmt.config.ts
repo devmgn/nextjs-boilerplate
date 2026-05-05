@@ -2,7 +2,8 @@ import { defineConfig } from "oxfmt";
 
 export default defineConfig({
   ignorePatterns: [
-    ".*/skills/**",
+    "*.lock.yaml",
+    ".claude/skills/**",
     "public/**",
     "src/api/openapi/**",
     "src/mocks/**",
