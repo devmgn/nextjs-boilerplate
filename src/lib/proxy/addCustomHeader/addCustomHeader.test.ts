@@ -7,7 +7,7 @@ describe(addCustomHeader, () => {
     addCustomHeader(response);
     const requestId = response.headers.get("x-request-id");
     // prettier-ignore
-    const uuidPattern = /^[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}$/;
+    const uuidPattern = /^[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}$/u;
     expect(requestId).toMatch(uuidPattern);
   });
 

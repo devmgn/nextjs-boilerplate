@@ -55,7 +55,7 @@ function getDepsArray(
 
 function guessIndent(context: Context, node: ESTree.Expression): string {
   const line = context.sourceCode.lines.at(node.loc.start.line - 1) ?? "";
-  const match = /^(\s*)/.exec(line);
+  const match = /^(\s*)/u.exec(line);
   return match ? match[1] : "";
 }
 

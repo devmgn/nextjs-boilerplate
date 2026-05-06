@@ -21,6 +21,6 @@ describe("ENV", () => {
     vi.stubEnv(key, undefined as unknown as string);
     vi.resetModules();
 
-    await expect(async () => import("./env")).rejects.toThrow(/invalid/);
+    await expect(async () => import("./env")).rejects.toThrow(/invalid/u);
   });
 });

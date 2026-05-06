@@ -13,7 +13,7 @@ describe(proxy, () => {
     const request = new NextRequest("https://example.com/");
     const response = proxy(request);
     // prettier-ignore
-    const uuidPattern = /^[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}$/;
+    const uuidPattern = /^[\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12}$/u;
     expect(response.headers.get("x-request-id")).toMatch(uuidPattern);
   });
 
