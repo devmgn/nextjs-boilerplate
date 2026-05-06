@@ -13,8 +13,8 @@ const preview: Preview = {
     },
     controls: {
       matchers: {
-        color: /(background|color)$/i,
-        date: /Date$/i,
+        color: /(background|color)$/iu,
+        date: /Date$/iu,
       },
     },
     a11y: {

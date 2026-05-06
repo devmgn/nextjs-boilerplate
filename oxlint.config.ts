@@ -3,6 +3,7 @@ import { defineConfig } from "oxlint";
 export default defineConfig({
   options: {
     reportUnusedDisableDirectives: "error",
+    respectEslintDisableDirectives: false,
     typeAware: true,
     typeCheck: true,
   },
@@ -137,11 +138,6 @@ export default defineConfig({
     "unicorn/switch-case-braces": ["error", "avoid"],
 
     // ── eslint-plugin-vitest (built-in) ──
-    "jest/no-hooks": "off",
-    "jest/prefer-importing-jest-globals": "off",
-    "jest/prefer-ending-with-an-expect": "off",
-    "jest/prefer-expect-assertions": "off",
-
     "vitest/consistent-test-it": ["error", { fn: "it" }],
     "vitest/no-hooks": "off",
     "vitest/no-importing-vitest-globals": "off",

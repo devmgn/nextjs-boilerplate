@@ -1187,7 +1187,7 @@ describe(debounce, () => {
 
     it("コールバック内で dispose を呼んでも例外にならず、以降の schedule が no-op になること", () => {
       const fn = vi.fn<(x: string) => void>();
-      // eslint-disable-next-line prefer-const
+      // oxlint-disable-next-line prefer-const
       let debounced: ReturnType<typeof debounce<[string]>>;
       fn.mockImplementation(() => {
         debounced.dispose();
