@@ -235,7 +235,7 @@ export default defineConfig({
     },
     {
       // Test files
-      files: ["**/*.test.*", "**/*.spec.*"],
+      files: ["**/*.test.*", "**/*.spec.*", "**/*.test-d.*"],
       rules: {
         "eslint/init-declarations": "off",
         "eslint/no-empty-function": "off",
