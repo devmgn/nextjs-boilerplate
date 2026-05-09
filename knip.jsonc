@@ -11,7 +11,7 @@
   },
   "vitest": {
     "entry": [
-      "**/*.{test,spec}.{ts,tsx}",
+      "**/*.{test,spec,test-d}.{ts,tsx}",
       "vitest.globalSetup.ts",
       "vitest.setup.ts",
     ],

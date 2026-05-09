@@ -10,6 +10,7 @@ export default defineConfig({
       include: ["src/**/*.{ts,tsx}"],
       exclude: [
         "**/*.d.ts",
+        "**/*.{test,spec,test-d}.{ts,tsx}",
         "src/**/*.stories.tsx",
         "src/{api,mocks}/**",
         "src/{instrumentation-client,instrumentation,middleware}.ts",
@@ -41,7 +42,10 @@ export default defineConfig({
           globals: true,
           environment: "happy-dom",
           globalSetup: "./vitest.globalSetup.ts",
-          setupFiles: "./vitest.setup.ts",
+          setupFiles: ["./vitest.setup.ts"],
+          typecheck: {
+            enabled: true,
+          },
         },
       },
       {
