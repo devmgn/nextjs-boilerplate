@@ -12,7 +12,7 @@ page.tsx, layout.tsx, loading.tsx, error.tsx, global-error.tsx, not-found.tsx, f
 
 ## Data Fetching
 
-- Server Component: `Hydrator` (`src/lib/Hydrator`) wrapping `queryOptions` for prefetching
+- Server Component: `getQueryClient` (`src/lib/getQueryClient`) + `prefetchQuery` + `HydrationBoundary` (`@tanstack/react-query`)
 - Client Component: `"use client"` + `useSuspenseQuery`
 
 ## Form Handling
