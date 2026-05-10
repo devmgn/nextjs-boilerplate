@@ -26,5 +26,8 @@ jobs:
       - name: Setup Project
         uses: ./.github/actions/setup
 
-      - name: Test
+      - name: Test (unit)
         run: pnpm test:unit
+
+      - name: Test (oxlint rules)
+        run: pnpm test:oxlint-rules

@@ -191,7 +191,19 @@ export default defineConfig({
     // ── custom rules (jsPlugin: ./tools/oxlint-rules/) ──
     "custom-rules/newline-after-import": "error",
     "custom-rules/no-index-tsx": "error",
-    "custom-rules/no-top-level-arrow": "error",
+    "custom-rules/no-restricted-syntax": [
+      "error",
+      {
+        selector:
+          "Program > VariableDeclaration > VariableDeclarator[init.type='ArrowFunctionExpression']",
+        message: "Use function declarations at the top level",
+      },
+      {
+        selector:
+          "Program > ExportNamedDeclaration > VariableDeclaration > VariableDeclarator[init.type='ArrowFunctionExpression']",
+        message: "Use function declarations for exported functions",
+      },
+    ],
     "custom-rules/sort-hook-deps": "error",
   },
   overrides: [
