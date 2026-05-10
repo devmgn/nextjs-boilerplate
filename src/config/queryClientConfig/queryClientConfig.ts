@@ -5,6 +5,7 @@ import {
   defaultShouldDehydrateQuery,
 } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { loading } from "../../components/LoadingOverlay";
 
 function handleCacheError(
   error: Error,
@@ -40,6 +41,18 @@ export const QUERY_CLIENT_CONFIG = {
     },
   }),
   mutationCache: new MutationCache({
+    onMutate: (_variables, mutation) => {
+      if (mutation.meta?.skipLoading === true) {
+        return;
+      }
+      loading.show();
+    },
+    onSettled: (_data, _error, _variables, _context, mutation) => {
+      if (mutation.meta?.skipLoading === true) {
+        return;
+      }
+      loading.hide();
+    },
     onError: (error, _variables, _context, mutation) => {
       handleCacheError(error, mutation.meta);
     },
