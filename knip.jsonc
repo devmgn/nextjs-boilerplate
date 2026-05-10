@@ -4,7 +4,7 @@
   "ignoreBinaries": ["openapiconfig.json", "actionlint", "zizmor"],
   "ignoreDependencies": ["postcss", "postcss-load-config"],
   "ignoreIssues": {
-    "tools/oxlint-rules/!(index).ts": ["files"],
+    "tools/oxlint-rules/*/*.ts": ["files"],
   },
   "tailwind": {
     "entry": ["src/lib/styles/globals.css"],

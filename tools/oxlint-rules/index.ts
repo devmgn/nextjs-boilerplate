@@ -1,15 +1,15 @@
 import type { Plugin } from "@oxlint/plugins";
-import newlineAfterImport from "./newline-after-import.ts";
-import noIndexTsx from "./no-index-tsx.ts";
-import noTopLevelArrow from "./no-top-level-arrow.ts";
-import sortHookDeps from "./sort-hook-deps.ts";
+import newlineAfterImport from "./newline-after-import/index.ts";
+import noIndexTsx from "./no-index-tsx/index.ts";
+import noRestrictedSyntax from "./no-restricted-syntax/index.ts";
+import sortHookDeps from "./sort-hook-deps/index.ts";
 
 const plugin: Plugin = {
   meta: { name: "custom-rules" },
   rules: {
     "newline-after-import": newlineAfterImport,
     "no-index-tsx": noIndexTsx,
-    "no-top-level-arrow": noTopLevelArrow,
+    "no-restricted-syntax": noRestrictedSyntax,
     "sort-hook-deps": sortHookDeps,
   },
 };

@@ -18,6 +18,7 @@
     "knip": "knip && knip --production",
     "test": "vitest run",
     "test:unit": "vitest run --project=unit",
+    "test:oxlint-rules": "vitest run --project=oxlint-rules",
     "test:update": "vitest run --update",
     "test:watch": "vitest watch",
     "test:coverage": "vitest run --coverage",

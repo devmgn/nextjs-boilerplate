@@ -39,6 +39,7 @@ export default defineConfig({
         ],
         test: {
           name: "unit",
+          include: ["src/**/*.{test,spec,test-d}.{ts,tsx}"],
           globals: true,
           environment: "happy-dom",
           globalSetup: "./vitest.globalSetup.ts",
@@ -46,6 +47,14 @@ export default defineConfig({
           typecheck: {
             enabled: true,
           },
+        },
+      },
+      {
+        extends: true,
+        test: {
+          name: "oxlint-rules",
+          include: ["tools/oxlint-rules/**/*.test.ts"],
+          environment: "node",
         },
       },
       {
