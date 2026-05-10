@@ -1,6 +1,7 @@
 import { QueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { QUERY_CLIENT_CONFIG } from "./queryClientConfig";
+import { loading } from "../../components/LoadingOverlay";
 
 // @ts-expect-error -- TypeScript 6 overload mismatch with vi.mock + dynamic import
 vi.mock(import("sonner"), () => ({
@@ -13,6 +14,7 @@ describe("QUERY_CLIENT_CONFIG", () => {
   beforeEach(() => {
     queryClient = new QueryClient(QUERY_CLIENT_CONFIG);
     vi.mocked(toast.error).mockClear();
+    loading.reset();
   });
 
   afterEach(() => {
@@ -45,6 +47,63 @@ describe("QUERY_CLIENT_CONFIG", () => {
         .catch(() => {});
 
       expect(toast.error).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("mutationCache loading", () => {
+    it("mutation 実行中に loading.show / hide が対称に呼ばれること", async () => {
+      const showSpy = vi.spyOn(loading, "show");
+      const hideSpy = vi.spyOn(loading, "hide");
+
+      await queryClient
+        .getMutationCache()
+        .build(queryClient, {
+          mutationFn: async () => {
+            await Promise.resolve();
+            return "ok";
+          },
+        })
+        .execute(undefined);
+
+      expect(showSpy).toHaveBeenCalledTimes(1);
+      expect(hideSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it("mutation 失敗時にも loading.hide が呼ばれること", async () => {
+      const showSpy = vi.spyOn(loading, "show");
+      const hideSpy = vi.spyOn(loading, "hide");
+
+      await queryClient
+        .getMutationCache()
+        .build(queryClient, {
+          mutationFn: async () => {
+            await Promise.reject(new Error("mutation failed"));
+          },
+        })
+        .execute(undefined)
+        .catch(() => {});
+
+      expect(showSpy).toHaveBeenCalledTimes(1);
+      expect(hideSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it("skipLoading: true のとき loading.show / hide が呼ばれないこと", async () => {
+      const showSpy = vi.spyOn(loading, "show");
+      const hideSpy = vi.spyOn(loading, "hide");
+
+      await queryClient
+        .getMutationCache()
+        .build(queryClient, {
+          mutationFn: async () => {
+            await Promise.resolve();
+            return "ok";
+          },
+          meta: { skipLoading: true },
+        })
+        .execute(undefined);
+
+      expect(showSpy).not.toHaveBeenCalled();
+      expect(hideSpy).not.toHaveBeenCalled();
     });
   });
 

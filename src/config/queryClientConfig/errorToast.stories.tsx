@@ -31,6 +31,7 @@ const meta = {
   tags: ["!manifest"],
   parameters: {
     layout: "centered",
+    docs: { story: { inline: false } },
   },
   argTypes: {
     skipToast: {

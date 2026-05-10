@@ -1,7 +1,6 @@
 "use client";
 
 import { FaceIcon } from "@radix-ui/react-icons";
-import { Backdrop } from "../../../components/Backdrop";
 import { Card } from "../../../components/Card";
 import {
   LoadingOverlay,
@@ -44,7 +43,6 @@ export default function Page() {
       <SvgIcon icon={FaceIcon} label="" />
       <Card />
       <Spinner />
-      <Backdrop open />
       <LoadingOverlay />
       <LoadingScreen />
     </>

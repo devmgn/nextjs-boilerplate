@@ -41,7 +41,6 @@ export function Spinner(props: SpinnerProps) {
 
   return (
     <svg
-      aria-label="Loading"
       className={base({ className })}
       height={finalSize}
       role="status"
