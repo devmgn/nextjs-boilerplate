@@ -40,32 +40,33 @@ export function Spinner(props: SpinnerProps) {
   const finalSize = typeof size === "number" ? size : SIZE_MAP[size];
 
   return (
-    <svg
-      className={base({ className })}
-      height={finalSize}
-      role="status"
-      viewBox="22 22 44 44"
-      width={finalSize}
-      {..._props}
-    >
-      <circle
-        className={circle({ className })}
-        cx="44"
-        cy="44"
-        fill="none"
-        r="20.2"
-        strokeWidth="3.6"
-      />
-      {showTrack && (
+    <output>
+      <svg
+        className={base({ className })}
+        height={finalSize}
+        viewBox="22 22 44 44"
+        width={finalSize}
+        {..._props}
+      >
         <circle
-          className={track({ className })}
+          className={circle({ className })}
           cx="44"
           cy="44"
           fill="none"
           r="20.2"
           strokeWidth="3.6"
         />
-      )}
-    </svg>
+        {showTrack && (
+          <circle
+            className={track({ className })}
+            cx="44"
+            cy="44"
+            fill="none"
+            r="20.2"
+            strokeWidth="3.6"
+          />
+        )}
+      </svg>
+    </output>
   );
 }
