@@ -34,18 +34,7 @@ export default defineConfig({
   settings: {
     vitest: { typecheck: true },
   },
-  ignorePatterns: [
-    ".next/**",
-    "build/**",
-    "coverage/**",
-    "next-env.d.ts",
-    "node_modules/**",
-    "out/**",
-    "public/**",
-    "src/api/openapi/**",
-    "src/mocks/**",
-    "storybook-static/**",
-  ],
+  ignorePatterns: ["public/**", "src/api/openapi/**", "src/mocks/**"],
   categories: {
     correctness: "error",
     nursery: "error",
