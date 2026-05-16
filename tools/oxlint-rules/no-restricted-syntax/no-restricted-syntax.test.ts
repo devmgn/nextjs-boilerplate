@@ -294,13 +294,14 @@ tester.run("custom-rules/no-restricted-syntax", noRestrictedSyntax, {
   ],
 });
 
-describe("custom-rules/no-restricted-syntax (config-time errors)", () => {
-  const fakeContext = (options: readonly unknown[]): Context =>
-    ({
-      options,
-      report: () => {},
-    }) as unknown as Context;
+function fakeContext(options: readonly unknown[]): Context {
+  return {
+    options,
+    report: () => {},
+  } as unknown as Context;
+}
 
+describe("custom-rules/no-restricted-syntax (config-time errors)", () => {
   const create = (options: readonly unknown[]) => {
     const rule = noRestrictedSyntax as { create: (c: Context) => unknown };
     return () => rule.create(fakeContext(options));
