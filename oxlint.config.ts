@@ -105,6 +105,10 @@ export default defineConfig({
     "react/jsx-props-no-spreading": "off",
     "react/only-export-components": "off",
     "react/react-in-jsx-scope": "off",
+    "react/no-unstable-nested-components": [
+      "error",
+      { propNamePattern: "{render,*Render}*" },
+    ],
 
     // ── eslint-plugin-typescript (built-in) ──
     "typescript/array-type": [
@@ -178,7 +182,6 @@ export default defineConfig({
     "react-compiler-rules/void-use-memo": "error",
 
     // ── custom rules (jsPlugin: ./tools/oxlint-rules/) ──
-    "custom-rules/newline-after-import": "error",
     "custom-rules/no-index-tsx": "error",
     "custom-rules/no-restricted-syntax": [
       "error",
