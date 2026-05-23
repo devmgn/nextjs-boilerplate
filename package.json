@@ -30,7 +30,7 @@
     "generate-mock": "msw-auto-mock openapi.yml -o ./src/mocks --typescript --base-url https://jsonplaceholder.typicode.com && sed -i '' 's|from \"@faker-js/faker\"|from \"@faker-js/faker/locale/ja\"|' ./src/mocks/handlers.ts"
   },
   "dependencies": {
-    "@hookform/resolvers": "5.2.2",
+    "@hookform/resolvers": "5.4.0",
     "@radix-ui/react-dialog": "1.1.15",
     "@radix-ui/react-icons": "1.3.2",
     "@radix-ui/react-slot": "1.2.4",
