@@ -1,33 +1,20 @@
-import { useReducer } from "react";
-
-type Action = "open" | "close" | "toggle";
-
-function reducer(state: boolean, action: Action) {
-  switch (action) {
-    case "open":
-      return true;
-    case "close":
-      return false;
-    case "toggle":
-      return !state;
-    default:
-      return state;
-  }
-}
+import { useToggle } from "../useToggle";
 
 /** モーダルなどのコンポーネントの開閉状態を管理するためのカスタムフック */
 export function useDisclosure(initialState = false) {
-  const [isOpen, dispatch] = useReducer(reducer, initialState);
-
+  const [isOpen, toggleOpen] = useToggle(initialState);
   const open = () => {
-    dispatch("open");
+    toggleOpen(true);
   };
   const close = () => {
-    dispatch("close");
+    toggleOpen(false);
   };
+  // toggle() のテストは存在するが、v8 カバレッジが React Compiler のメモ化と相互作用してアロー関数の閉じブロックを未到達ブランチと誤判定するため除外している
+  /* v8 ignore start */
   const toggle = () => {
-    dispatch("toggle");
+    toggleOpen();
   };
+  /* v8 ignore stop */
 
   return { isOpen, open, close, toggle };
 }

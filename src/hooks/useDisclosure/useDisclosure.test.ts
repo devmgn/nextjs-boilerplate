@@ -2,57 +2,96 @@ import { act, renderHook } from "@testing-library/react";
 import { useDisclosure } from "./useDisclosure";
 
 describe(useDisclosure, () => {
-  it("initialStateを指定しないとき、初期状態でisOpenはfalseとなること", () => {
-    const { result } = renderHook(() => useDisclosure());
-    expect(result.current.isOpen).toBe(false);
+  describe("初期化", () => {
+    it("引数を省略したとき、isOpen は false で初期化されること", () => {
+      const { result } = renderHook(() => useDisclosure());
+      expect(result.current.isOpen).toBe(false);
+    });
+
+    it("initialState に true を渡したとき、isOpen は true で初期化されること", () => {
+      const { result } = renderHook(() => useDisclosure(true));
+      expect(result.current.isOpen).toBe(true);
+    });
+
+    it("initialState に false を渡したとき、isOpen は false で初期化されること", () => {
+      const { result } = renderHook(() => useDisclosure(false));
+      expect(result.current.isOpen).toBe(false);
+    });
   });
 
-  it("initialStateをtrueに設定したとき、初期状態でisOpenはtrueとなること", () => {
-    const { result } = renderHook(() => useDisclosure(true));
-    expect(result.current.isOpen).toBe(true);
+  describe("open()", () => {
+    it("isOpen が false のとき、open() を呼ぶと true になること", () => {
+      const { result } = renderHook(() => useDisclosure(false));
+      act(() => {
+        result.current.open();
+      });
+      expect(result.current.isOpen).toBe(true);
+    });
+
+    it("isOpen が true のとき、open() を呼んでも true のままであること", () => {
+      const { result } = renderHook(() => useDisclosure(true));
+      act(() => {
+        result.current.open();
+      });
+      expect(result.current.isOpen).toBe(true);
+    });
   });
 
-  it("open関数を呼び出したとき、isOpenはtrueとなること", () => {
-    const { result } = renderHook(() => useDisclosure());
-    act(() => {
-      result.current.open();
+  describe("close()", () => {
+    it("isOpen が true のとき、close() を呼ぶと false になること", () => {
+      const { result } = renderHook(() => useDisclosure(true));
+      act(() => {
+        result.current.close();
+      });
+      expect(result.current.isOpen).toBe(false);
     });
-    expect(result.current.isOpen).toBe(true);
+
+    it("isOpen が false のとき、close() を呼んでも false のままであること", () => {
+      const { result } = renderHook(() => useDisclosure(false));
+      act(() => {
+        result.current.close();
+      });
+      expect(result.current.isOpen).toBe(false);
+    });
   });
 
-  it("すでにisOpenがtrueのとき、open関数を呼び出してもtrueのままであること", () => {
-    const { result } = renderHook(() => useDisclosure(true));
-    act(() => {
-      result.current.open();
+  describe("toggle()", () => {
+    it("isOpen が false のとき、toggle() を呼ぶと true になること", () => {
+      const { result } = renderHook(() => useDisclosure(false));
+      act(() => {
+        result.current.toggle();
+      });
+      expect(result.current.isOpen).toBe(true);
     });
-    expect(result.current.isOpen).toBe(true);
+
+    it("isOpen が true のとき、toggle() を呼ぶと false になること", () => {
+      const { result } = renderHook(() => useDisclosure(true));
+      act(() => {
+        result.current.toggle();
+      });
+      expect(result.current.isOpen).toBe(false);
+    });
   });
 
-  it("close関数を呼び出したとき、isOpenはfalseとなること", () => {
-    const { result } = renderHook(() => useDisclosure(true));
-    act(() => {
-      result.current.close();
+  describe("複合シナリオ", () => {
+    it("同一インスタンスで open → close → toggle を連続して呼んでも、状態が正しく追従すること", () => {
+      const { result } = renderHook(() => useDisclosure());
+      act(() => {
+        result.current.open();
+      });
+      expect(result.current.isOpen).toBe(true);
+      act(() => {
+        result.current.close();
+      });
+      expect(result.current.isOpen).toBe(false);
+      act(() => {
+        result.current.toggle();
+      });
+      expect(result.current.isOpen).toBe(true);
+      act(() => {
+        result.current.toggle();
+      });
+      expect(result.current.isOpen).toBe(false);
     });
-    expect(result.current.isOpen).toBe(false);
-  });
-
-  it("すでにisOpenがfalseのとき、close関数を呼び出してもfalseのままであること", () => {
-    const { result } = renderHook(() => useDisclosure());
-    act(() => {
-      result.current.close();
-    });
-    expect(result.current.isOpen).toBe(false);
-  });
-
-  it("toggle関数を呼び出したとき、isOpenの状態が反転すること", () => {
-    const { result } = renderHook(() => useDisclosure());
-    act(() => {
-      result.current.toggle();
-    });
-    expect(result.current.isOpen).toBe(true);
-    act(() => {
-      result.current.toggle();
-    });
-    expect(result.current.isOpen).toBe(false);
   });
 });
