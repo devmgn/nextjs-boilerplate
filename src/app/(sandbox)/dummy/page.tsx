@@ -15,6 +15,7 @@ import { useIsComposing } from "../../../hooks/useIsComposing";
 import { useLocalStorage } from "../../../hooks/useLocalStorage";
 import { useMediaQuery } from "../../../hooks/useMediaQuery";
 import { useSessionStorage } from "../../../hooks/useSessionStorage";
+import { useToggle } from "../../../hooks/useToggle";
 import { createCustomEvent } from "../../../utils/createCustomEvent";
 import { isKeyOf } from "../../../utils/isKeyOf";
 import { isValueOf } from "../../../utils/isValueOf";
@@ -29,6 +30,7 @@ export default function Page() {
   useLocalStorage("dummy");
   useSessionStorage("dummy");
   useMediaQuery("(min-width: 768px)");
+  useToggle();
   // oxlint-disable-next-line typescript/no-unsafe-type-assertion
   createCustomEvent("" as keyof GlobalEventHandlersEventMap);
   const _isServer = isServer;
