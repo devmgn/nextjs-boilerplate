@@ -3,7 +3,7 @@ import { Suspense, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { Toaster } from "sonner";
 import { Button } from "../src/components/Button";
-import { QUERY_CLIENT_CONFIG } from "../src/config/queryClientConfig";
+import { QUERY_CLIENT_CONFIG } from "../src/lib/getQueryClient/config/queryClientConfig";
 import "../src/lib/styles/globals.css";
 
 export function SbProvider({ children }: React.PropsWithChildren) {

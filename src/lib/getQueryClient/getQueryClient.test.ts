@@ -1,5 +1,5 @@
 import { QueryClient, environmentManager } from "@tanstack/react-query";
-import { QUERY_CLIENT_CONFIG } from "../../config/queryClientConfig";
+import { QUERY_CLIENT_CONFIG } from "./config/queryClientConfig";
 
 describe("getQueryClient", () => {
   beforeEach(() => {

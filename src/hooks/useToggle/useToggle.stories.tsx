@@ -3,7 +3,7 @@ import { useId } from "react";
 import { expect, userEvent } from "storybook/test";
 import { useToggle } from "./useToggle";
 import { Button } from "../../components/Button";
-import { Input } from "../../components/Input";
+import { Input } from "../../components/form/Input";
 
 const meta = {
   component: undefined,

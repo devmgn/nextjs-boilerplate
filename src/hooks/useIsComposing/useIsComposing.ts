@@ -1,5 +1,8 @@
 import { useSyncExternalStore } from "react";
-import { bubbleCompositionStore, captureCompositionStore } from "./utils";
+import {
+  bubbleCompositionStore,
+  captureCompositionStore,
+} from "./utils/compositionStore";
 
 /**
  * IME 変換中かどうかを返すフック。
