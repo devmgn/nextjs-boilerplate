@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { useEffect, useId, useRef, useState } from "react";
 import { useIsComposing } from "./useIsComposing";
-import { Input } from "../../components/Input";
+import { Input } from "../../components/form/Input";
 
 interface LogEntry {
   id: number;

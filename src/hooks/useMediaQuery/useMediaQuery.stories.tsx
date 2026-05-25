@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { useId, useState } from "react";
 import { useMediaQuery } from "./useMediaQuery";
-import { Input } from "../../components/Input";
-import { isValueOf } from "../../utils/isValueOf";
+import { Input } from "../../components/form/Input";
+import { isValueOf } from "../../utils/is/isValueOf";
 
 const QUERIES = [
   "(min-width: 768px)",

@@ -7,8 +7,8 @@ import { Form, createFormControl, useFormState } from "react-hook-form";
 import { post } from "./action";
 import { postSchema } from "./schema";
 import { Button } from "../../../components/Button";
-import { Field } from "../../../components/Field";
-import { Input } from "../../../components/Input";
+import { Field } from "../../../components/form/Field";
+import { Input } from "../../../components/form/Input";
 
 const form = createFormControl<PostSchema>({
   resolver: zodResolver(postSchema),

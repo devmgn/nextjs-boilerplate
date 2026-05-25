@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { NuqsAdapter } from "nuqs/adapters/react";
 import { Toaster } from "sonner";
 import { LoadingOverlay } from "../components/LoadingOverlay";
-import { ENV } from "../config/env";
+import { ENV } from "../env";
 import { WebVitalsReporter } from "../lib/WebVitalsReporter";
 import { AppErrorBoundary } from "../providers/AppErrorBoundary";
 import { QueryClientProvider } from "../providers/QueryClientProvider";

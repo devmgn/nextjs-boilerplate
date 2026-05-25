@@ -2,7 +2,7 @@
 
 import { useSyncExternalStore } from "react";
 import { LoadingView } from "./LoadingView";
-import { loadingStore } from "./utils";
+import { loadingStore } from "./utils/loadingStore";
 
 /**
  * `loading.show()` / `loading.hide()` などの imperative API に連動する全画面オーバーレイ。
