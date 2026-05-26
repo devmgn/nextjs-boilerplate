@@ -1,0 +1,49 @@
+name: ADR Check
+
+on:
+  push:
+    branches-ignore:
+      - main
+    paths:
+      - "docs/adr/**"
+      - ".github/workflows/adr-check.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  ADRCheck:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Check duplicate ADR numbers
+        run: |
+          dupes=$(ls docs/adr/ \
+            | grep -E '^[0-9]{4}-.*\.md$' \
+            | cut -d- -f1 \
+            | sort | uniq -d)
+          if [ -n "$dupes" ]; then
+            echo "::error::Duplicate ADR numbers found: $dupes"
+            exit 1
+          fi
+
+      - name: Check filename format
+        run: |
+          bad=$(ls docs/adr/ \
+            | grep -vE '^([0-9]{4}-[a-z0-9-]+\.md|README\.md)$' || true)
+          if [ -n "$bad" ]; then
+            echo "::error::Invalid ADR filename(s):"
+            echo "$bad"
+            echo "Expected: NNNN-kebab-case-slug.md"
+            exit 1
+          fi
