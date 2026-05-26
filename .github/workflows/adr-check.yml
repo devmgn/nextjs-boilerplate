@@ -1,0 +1,67 @@
+name: ADR Check
+
+on:
+  push:
+    branches-ignore:
+      - main
+    paths:
+      - "docs/adr/**"
+      - ".github/workflows/adr-check.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  ADRCheck:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Check duplicate ADR numbers
+        shell: bash
+        run: |
+          shopt -s nullglob
+          numbers=()
+          for f in docs/adr/[0-9][0-9][0-9][0-9]-*.md; do
+            base=${f##*/}
+            numbers+=("${base%%-*}")
+          done
+
+          if [ ${#numbers[@]} -eq 0 ]; then
+            exit 0
+          fi
+
+          dupes=$(printf '%s\n' "${numbers[@]}" | sort | uniq -d)
+          if [ -n "$dupes" ]; then
+            echo "::error::Duplicate ADR numbers found: $dupes"
+            exit 1
+          fi
+
+      - name: Check filename format
+        shell: bash
+        run: |
+          shopt -s nullglob
+          bad=()
+          for f in docs/adr/*; do
+            [ -f "$f" ] || continue
+            base=${f##*/}
+            if [[ ! "$base" =~ ^([0-9]{4}-[a-z0-9-]+\.md|README\.md)$ ]]; then
+              bad+=("$base")
+            fi
+          done
+
+          if [ ${#bad[@]} -gt 0 ]; then
+            echo "::error::Invalid ADR filename(s):"
+            printf '%s\n' "${bad[@]}"
+            echo "Expected: NNNN-kebab-case-slug.md"
+            exit 1
+          fi
