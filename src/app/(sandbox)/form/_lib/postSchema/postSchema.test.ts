@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { postSchema } from "./schema";
+import { postSchema } from "./postSchema";
 
 describe("postSchema", () => {
   it("全フィールドが妥当な値のとき、parse が成功すること", () => {

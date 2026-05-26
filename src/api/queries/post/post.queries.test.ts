@@ -1,8 +1,8 @@
 import { QueryClient } from "@tanstack/react-query";
 import { HttpResponse, http } from "msw";
 import { getPostsQueryOptions } from "./post.queries";
-import { server } from "../../mocks/server";
-import { ResponseError } from "../openapi";
+import { server } from "../../../mocks/server";
+import { ResponseError } from "../../openapi";
 
 const BASE_URL = "https://jsonplaceholder.typicode.com";
 

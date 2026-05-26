@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { HttpResponse, http } from "msw";
 import { PostList } from "./PostList";
-import { handlers } from "../../../../mocks/handlers";
+import { handlers } from "../../../../../mocks/handlers";
 
 const meta = {
   component: PostList,
