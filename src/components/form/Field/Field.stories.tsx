@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { expect } from "storybook/test";
 import { Field } from "./Field";
-import { Input } from "./Input";
+import { Input } from "../Input";
 
 const meta = {
   component: Field,

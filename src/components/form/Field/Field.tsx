@@ -1,5 +1,5 @@
 import { useId } from "react";
-import { Label } from "./Label";
+import { Label } from "../Label";
 
 interface FieldProps extends Omit<React.ComponentProps<"div">, "children"> {
   label?: string;
