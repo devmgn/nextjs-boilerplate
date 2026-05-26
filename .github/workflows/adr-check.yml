@@ -27,23 +27,41 @@ jobs:
           persist-credentials: false
 
       - name: Check duplicate ADR numbers
+        shell: bash
         run: |
-          dupes=$(ls docs/adr/ \
-            | grep -E '^[0-9]{4}-.*\.md$' \
-            | cut -d- -f1 \
-            | sort | uniq -d)
+          shopt -s nullglob
+          numbers=()
+          for f in docs/adr/[0-9][0-9][0-9][0-9]-*.md; do
+            base=${f##*/}
+            numbers+=("${base%%-*}")
+          done
+
+          if [ ${#numbers[@]} -eq 0 ]; then
+            exit 0
+          fi
+
+          dupes=$(printf '%s\n' "${numbers[@]}" | sort | uniq -d)
           if [ -n "$dupes" ]; then
             echo "::error::Duplicate ADR numbers found: $dupes"
             exit 1
           fi
 
       - name: Check filename format
+        shell: bash
         run: |
-          bad=$(ls docs/adr/ \
-            | grep -vE '^([0-9]{4}-[a-z0-9-]+\.md|README\.md)$' || true)
-          if [ -n "$bad" ]; then
+          shopt -s nullglob
+          bad=()
+          for f in docs/adr/*; do
+            [ -f "$f" ] || continue
+            base=${f##*/}
+            if [[ ! "$base" =~ ^([0-9]{4}-[a-z0-9-]+\.md|README\.md)$ ]]; then
+              bad+=("$base")
+            fi
+          done
+
+          if [ ${#bad[@]} -gt 0 ]; then
             echo "::error::Invalid ADR filename(s):"
-            echo "$bad"
+            printf '%s\n' "${bad[@]}"
             echo "Expected: NNNN-kebab-case-slug.md"
             exit 1
           fi
