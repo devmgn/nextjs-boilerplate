@@ -125,6 +125,7 @@ export default defineConfig({
       "error",
       { cases: { camelCase: true, kebabCase: true, pascalCase: true } },
     ],
+    "unicorn/import-style": ["error", { styles: { zod: { named: true } } }],
     "unicorn/no-null": "off",
     "unicorn/no-useless-undefined": "off",
     "unicorn/prefer-global-this": "off",
