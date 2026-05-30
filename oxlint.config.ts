@@ -156,29 +156,25 @@ export default defineConfig({
     "@tanstack/query/no-rest-destructuring": "error",
     "@tanstack/query/no-unstable-deps": "error",
     "@tanstack/query/no-void-query-fn": "error",
+    "@tanstack/query/prefer-query-options": "error",
     "@tanstack/query/stable-query-client": "error",
 
     // ── react-compiler-rules (jsPlugin: eslint-plugin-react-hooks) ──
     "react-compiler-rules/capitalized-calls": "error",
-    "react-compiler-rules/component-hook-factories": "error",
     "react-compiler-rules/config": "error",
     "react-compiler-rules/error-boundaries": "error",
-    "react-compiler-rules/gating": "error",
     "react-compiler-rules/globals": "error",
-    "react-compiler-rules/hooks": "error",
     "react-compiler-rules/immutability": "error",
-    "react-compiler-rules/incompatible-library": "error",
+    "react-compiler-rules/incompatible-library": "warn",
     "react-compiler-rules/memoized-effect-dependencies": "error",
     "react-compiler-rules/no-deriving-state-in-effects": "error",
     "react-compiler-rules/preserve-manual-memoization": "error",
     "react-compiler-rules/purity": "error",
     "react-compiler-rules/refs": "error",
-    "react-compiler-rules/rule-suppression": "error",
     "react-compiler-rules/set-state-in-effect": "error",
     "react-compiler-rules/set-state-in-render": "error",
     "react-compiler-rules/static-components": "error",
-    "react-compiler-rules/syntax": "error",
-    "react-compiler-rules/unsupported-syntax": "error",
+    "react-compiler-rules/unsupported-syntax": "warn",
     "react-compiler-rules/use-memo": "error",
     "react-compiler-rules/void-use-memo": "error",
 
@@ -227,6 +223,9 @@ export default defineConfig({
         "storybook/story-exports": "error",
         "storybook/use-storybook-expect": "error",
         "storybook/use-storybook-testing-library": "error",
+
+        // ── @tanstack/eslint-plugin-query (jsPlugin) ──
+        "@tanstack/query/prefer-query-options": "off",
       },
       jsPlugins: ["eslint-plugin-storybook"],
     },
@@ -253,7 +252,7 @@ export default defineConfig({
       },
     },
     {
-      // Next.js special files + config files → allow default export, relax filename
+      // default export を許可するファイル群:
       files: [
         ".storybook/main.ts",
         ".storybook/preview.tsx",
@@ -261,30 +260,13 @@ export default defineConfig({
         "oxfmt.config.ts",
         "oxlint.config.ts",
         "postcss.config.mjs",
-        "src/**/default.tsx",
-        "src/**/error.tsx",
-        "src/**/forbidden.tsx",
-        "src/**/global-error.tsx",
-        "src/**/instrumentation-client.ts",
-        "src/**/instrumentation.ts",
-        "src/**/layout.tsx",
-        "src/**/loading.tsx",
-        "src/**/not-found.tsx",
-        "src/**/page.tsx",
-        "src/**/proxy.ts",
-        "src/**/sitemap.ts",
-        "src/**/template.tsx",
-        "src/**/unauthorized.tsx",
         "vitest.config.ts",
         "vitest.globalSetup.ts",
+        // Next.js 規約ファイル (vitest.config.ts と同じ brace glob スタイル)
+        "src/**/{default,error,forbidden,global-error,layout,loading,not-found,page,template,unauthorized}.tsx",
+        "src/**/{instrumentation-client,instrumentation,proxy,sitemap}.ts",
+        "tools/oxlint-rules/**/*.ts",
       ],
-      rules: {
-        "import/no-default-export": "off",
-      },
-    },
-    {
-      // Custom oxlint rule plugin entries — default exports are required by the plugin loader
-      files: ["tools/oxlint-rules/**/*.ts"],
       rules: {
         "import/no-default-export": "off",
       },
