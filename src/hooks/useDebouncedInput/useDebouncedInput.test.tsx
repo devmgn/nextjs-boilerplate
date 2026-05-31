@@ -5,12 +5,19 @@ import { useDebouncedInput } from "./useDebouncedInput";
 function Probe({
   onValue,
   wait,
+  multiline = false,
 }: {
   onValue: (value: string) => void;
   wait: number;
+  multiline?: boolean;
 }) {
   const handlers = useDebouncedInput(onValue, wait);
-  return <input data-testid="input" {...handlers} />;
+  // input / textarea どちらにも同じ handlers をスプレッドできることを型でも保証する
+  return multiline ? (
+    <textarea data-testid="textarea" {...handlers} />
+  ) : (
+    <input data-testid="input" {...handlers} />
+  );
 }
 
 describe(useDebouncedInput, () => {
@@ -103,6 +110,21 @@ describe(useDebouncedInput, () => {
       vi.advanceTimersByTime(300);
     });
     expect(onValue).toHaveBeenCalledExactlyOnceWith("a");
+  });
+
+  it("textarea にもスプレッドでき debounce されること", () => {
+    const onValue = vi.fn();
+    const { getByTestId } = render(
+      <Probe multiline onValue={onValue} wait={300} />,
+    );
+
+    fireEvent.change(getByTestId("textarea"), {
+      target: { value: "multi\nline" },
+    });
+    act(() => {
+      vi.advanceTimersByTime(300);
+    });
+    expect(onValue).toHaveBeenCalledExactlyOnceWith("multi\nline");
   });
 
   it("wait を変更するとタイマーが作り直されること", () => {
