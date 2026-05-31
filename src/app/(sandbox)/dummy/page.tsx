@@ -12,6 +12,7 @@ import { SvgIcon } from "../../../components/SvgIcon";
 import { useLocalStorage } from "../../../hooks/storage/useLocalStorage";
 import { useSessionStorage } from "../../../hooks/storage/useSessionStorage";
 import { useDebouncedCallback } from "../../../hooks/useDebouncedCallback";
+import { useDebouncedInput } from "../../../hooks/useDebouncedInput";
 import { useDisclosure } from "../../../hooks/useDisclosure";
 import { useIsComposing } from "../../../hooks/useIsComposing";
 import { useMediaQuery } from "../../../hooks/useMediaQuery";
@@ -23,6 +24,9 @@ import { isDevelopment, isServer } from "../../../utils/runtime";
 export default function Page() {
   useDisclosure();
   useDebouncedCallback(() => {
+    // noop
+  }, 1000);
+  useDebouncedInput(() => {
     // noop
   }, 1000);
   useIsComposing();
