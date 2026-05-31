@@ -1,35 +1,9 @@
-export interface DebounceOptions {
-  /**
-   * Abort 時に保留中の呼び出しをキャンセルし、以降の呼び出しを無効化する。
-   * debounced インスタンスより寿命の長い signal を渡す場合は、不要になった時点で
-   * `debounced.dispose()` を呼ぶと signal 上の abort リスナが解除される。
-   */
-  signal?: AbortSignal;
-  edges?: Array<"leading" | "trailing">;
-  /**
-   * 連続呼び出し中でも最低 `maxWait` ms 以内に必ず `func` が実行されることを保証する。
-   * `wait` 未満の値は `wait` にクランプされる。
-   */
-  maxWait?: number;
-}
-
-/** @public */
-export interface DebouncedFunction<Args extends unknown[]> {
+interface DebouncedFunction<Args extends unknown[]> {
   (...args: Args): void;
-  /**
-   * 現在の lastArgs でタイマーを再スケジュールする。引数が未設定の場合はタイマー発火時に何も実行されない。leading
-   * のクールダウン状態はリセットしない。
-   */
-  schedule: () => void;
   /** 保留中のタイマーをクリアし、内部状態をリセットする。 */
   cancel: () => void;
   /** 保留中のコールバックを即時実行する。保留がなければ何もしない。 */
   flush: () => void;
-  /**
-   * 保留中のコールバックをキャンセルし、外部 `signal` に登録した abort リスナを解除して
-   * 以降すべての呼び出しを no-op 化する。コンポーネントのアンマウント時などに呼ぶ。
-   */
-  dispose: () => void;
 }
 
 function assertNonNegativeFinite(name: string, value: number): void {
@@ -43,160 +17,43 @@ function assertNonNegativeFinite(name: string, value: number): void {
 export function debounce<Args extends unknown[]>(
   func: (...args: Args) => void,
   wait: number,
-  options?: DebounceOptions,
 ): DebouncedFunction<Args> {
   assertNonNegativeFinite("wait", wait);
 
-  const edges = options?.edges ?? ["trailing"];
-  const hasLeading = edges.includes("leading");
-  const hasTrailing = edges.includes("trailing");
-
-  const rawMaxWait = options?.maxWait;
-  if (rawMaxWait !== undefined) {
-    assertNonNegativeFinite("maxWait", rawMaxWait);
-  }
-  // lodash 互換: maxWait < wait は wait にクランプ
-  const maxWait =
-    rawMaxWait === undefined ? undefined : Math.max(rawMaxWait, wait);
-
   let timerId: ReturnType<typeof setTimeout> | undefined = undefined;
   let lastArgs: Args | undefined = undefined;
-  let lastThis: unknown = undefined;
-  // maxWait の経過判定に使う基準時刻。
-  // 新規バースト開始時と invoke 時に `Date.now()` で更新する。
-  let baselineTime: number | undefined = undefined;
-  let isLeadingInvoked = false;
-  let isAborted = options?.signal?.aborted ?? false;
 
-  function invoke() {
-    if (lastArgs !== undefined) {
-      const args = lastArgs;
-      const thisArg = lastThis;
-      // 先に内部状態をクリアすることで、func 内からの再帰呼び出しで
-      // 設定された lastArgs/lastThis を上書きしない
-      lastArgs = undefined;
-      lastThis = undefined;
-      baselineTime = Date.now();
-      func.apply(thisArg, args);
-    }
+  // func 実行前に内部状態をクリアする。これにより:
+  // - 再帰: func 内から debounced() を呼んでも保持中の引数を上書きしない
+  // - 例外復旧: func が throw しても timerId/lastArgs はクリア済みで次サイクルが動く
+  function run(args: Args) {
+    timerId = undefined;
+    lastArgs = undefined;
+    func(...args);
   }
 
+  // clearTimeout は undefined を渡しても no-op なので、timerId の有無を分岐しない。
   function cancel() {
-    if (timerId !== undefined) {
-      clearTimeout(timerId);
-      timerId = undefined;
-    }
+    clearTimeout(timerId);
+    timerId = undefined;
     lastArgs = undefined;
-    lastThis = undefined;
-    baselineTime = undefined;
-    isLeadingInvoked = false;
   }
 
   function flush() {
-    if (isAborted || timerId === undefined) {
+    if (lastArgs === undefined) {
       return;
     }
     clearTimeout(timerId);
-    timerId = undefined;
-    try {
-      invoke();
-    } finally {
-      isLeadingInvoked = false;
-    }
+    run(lastArgs);
   }
 
-  function schedule() {
-    if (isAborted) {
-      return;
-    }
-    // 保留中の引数もクールダウン解除予定も無ければ、タイマーを張る意味が無い
-    if (lastArgs === undefined && !isLeadingInvoked) {
-      return;
-    }
-    if (timerId !== undefined) {
-      clearTimeout(timerId);
-    }
-
-    let delay = wait;
-    let maxWaitForced = false;
-    if (maxWait !== undefined && baselineTime !== undefined) {
-      const maxRemaining = maxWait - (Date.now() - baselineTime);
-      if (maxRemaining <= 0) {
-        delay = 0;
-        maxWaitForced = true;
-      } else if (maxRemaining < delay) {
-        delay = maxRemaining;
-      }
-    }
-
+  function debounced(...args: Args): void {
+    lastArgs = args;
+    clearTimeout(timerId);
     timerId = setTimeout(() => {
-      timerId = undefined;
-      try {
-        // maxWait の強制発火では hasTrailing=false でも invoke する
-        if (hasTrailing || maxWaitForced) {
-          invoke();
-        } else {
-          lastArgs = undefined;
-          lastThis = undefined;
-        }
-      } finally {
-        isLeadingInvoked = false;
-      }
-    }, delay);
+      run(args);
+    }, wait);
   }
 
-  // dispose 時に signal listener を解除するための内部 controller
-  const teardown = new AbortController();
-
-  function dispose() {
-    cancel();
-    isAborted = true;
-    teardown.abort();
-  }
-
-  const debounced: DebouncedFunction<Args> = Object.assign(
-    function invokeDebounced(this: unknown, ...args: Args) {
-      if (isAborted) {
-        return;
-      }
-
-      lastArgs = args;
-      // 呼び出し側の this を func 発火時まで保持する (ラッパーの本質)
-      // oxlint-disable-next-line no-this-alias, no-this-assignment
-      lastThis = this;
-
-      // 新しいバーストの開始: maxWait のベースラインを更新
-      // (前回の invoke から時間が経った後の呼び出しが誤って maxWait 強制発火扱いに
-      // なるのを防ぐため、毎バーストで baselineTime を再設定する)
-      if (timerId === undefined) {
-        baselineTime = Date.now();
-      }
-
-      if (hasLeading && !isLeadingInvoked) {
-        isLeadingInvoked = true;
-        try {
-          invoke();
-        } finally {
-          schedule();
-        }
-        return;
-      }
-
-      schedule();
-    },
-    { schedule, cancel, flush, dispose },
-  );
-
-  if (options?.signal && !isAborted) {
-    options.signal.addEventListener(
-      "abort",
-      () => {
-        cancel();
-        isAborted = true;
-      },
-      { once: true, signal: teardown.signal },
-    );
-  }
-
-  return debounced;
+  return Object.assign(debounced, { cancel, flush });
 }
