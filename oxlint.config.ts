@@ -64,6 +64,7 @@ export default defineConfig({
     "eslint/no-undefined": "off",
     "eslint/no-underscore-dangle": "off",
     "eslint/no-void": ["error", { allowAsStatement: true }],
+    "eslint/prefer-named-capture-group": "off",
     "eslint/require-await": "off",
     "eslint/sort-imports": ["error", { ignoreDeclarationSort: true }],
     "eslint/sort-keys": "off",
