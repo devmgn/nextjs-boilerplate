@@ -1,6 +1,6 @@
 lockfile_version: '1'
-generated_at: '2026-06-02T04:00:29.477158+00:00'
-apm_version: 0.16.1
+generated_at: '2026-06-11T09:36:14.274831+00:00'
+apm_version: 0.19.0
 dependencies:
 - repo_url: antfu/skills
   host: github.com
@@ -11,44 +11,283 @@ dependencies:
   package_type: claude_skill
   deployed_files:
   - .claude/skills/vitest
+  - .claude/skills/vitest/GENERATION.md
+  - .claude/skills/vitest/SKILL.md
+  - .claude/skills/vitest/references/advanced-environments.md
+  - .claude/skills/vitest/references/advanced-projects.md
+  - .claude/skills/vitest/references/advanced-type-testing.md
+  - .claude/skills/vitest/references/advanced-vi.md
+  - .claude/skills/vitest/references/core-cli.md
+  - .claude/skills/vitest/references/core-config.md
+  - .claude/skills/vitest/references/core-describe.md
+  - .claude/skills/vitest/references/core-expect.md
+  - .claude/skills/vitest/references/core-hooks.md
+  - .claude/skills/vitest/references/core-test-api.md
+  - .claude/skills/vitest/references/features-concurrency.md
+  - .claude/skills/vitest/references/features-context.md
+  - .claude/skills/vitest/references/features-coverage.md
+  - .claude/skills/vitest/references/features-filtering.md
+  - .claude/skills/vitest/references/features-mocking.md
+  - .claude/skills/vitest/references/features-snapshots.md
+  deployed_file_hashes:
+    .claude/skills/vitest/GENERATION.md: sha256:3cf85efaca1c200657437fce6f9215ad805d44c1a8e4a125353294e8b6238b97
+    .claude/skills/vitest/SKILL.md: sha256:87c8cf025987d1f1a0e9c0fd0b8605946a0ebd5478676471ce296d8f0adc0f07
+    .claude/skills/vitest/references/advanced-environments.md: sha256:b3b10adfef569023d922ce370c12f15d2dacf4c59d043ce015fb1c96f168b254
+    .claude/skills/vitest/references/advanced-projects.md: sha256:10efde418c9a4406d467a565d4ac9df60c39b16908895f38efba908d573621e1
+    .claude/skills/vitest/references/advanced-type-testing.md: sha256:370c55c10174ae6d8332605ecb1a7575944c8a072a85f43637c03dce00dd1c35
+    .claude/skills/vitest/references/advanced-vi.md: sha256:1d80b9c373f6d374093c937f46d731c663c684eb8e1533f82144275aee6dfe19
+    .claude/skills/vitest/references/core-cli.md: sha256:2ff72dc4754b8738d31a041e3f3e26ea83fd18e9795521adb5510e61e50951b6
+    .claude/skills/vitest/references/core-config.md: sha256:5fd3cf0983f203f14c4f4732dde0632c1d537241daa5cffea24f7e55712a6fb3
+    .claude/skills/vitest/references/core-describe.md: sha256:c5642ff6433fca69bbfbe9526acb2becd17d8cb2c99cebd1976d87e1def91b9c
+    .claude/skills/vitest/references/core-expect.md: sha256:d39b2bf31f67d66a5f036eae6a88844e7d427854b075c395b086a6c5086a2973
+    .claude/skills/vitest/references/core-hooks.md: sha256:d6489a5d762e2bf47b7a139e0265ff2e03ba13653cf14004e05a9be8512690b9
+    .claude/skills/vitest/references/core-test-api.md: sha256:ce3ecd0aa73560e2072c79ced9d0eee39d527c1c71ccabe4e9b665326b219247
+    .claude/skills/vitest/references/features-concurrency.md: sha256:f658bade9a9f5c61518f38f08b80fe0b3e7bcd3b6c5e7b4d5cb8ef721acd84aa
+    .claude/skills/vitest/references/features-context.md: sha256:ea7a77c4ebb677ff004659f0f0f50a135744934c1a8f39629ec462fb918c7dbe
+    .claude/skills/vitest/references/features-coverage.md: sha256:d65c2b5c33d0220c1f06bb7f95bf039a1cba25f3c5e4b13fd48d6b3d30a77818
+    .claude/skills/vitest/references/features-filtering.md: sha256:29fd70bd48726bab2ee58ebf740cf1dc23efc51276d049444a31910748cf6e55
+    .claude/skills/vitest/references/features-mocking.md: sha256:9d23a9d60dbbfa1183f5753c0cf5ea7fefcf7853e57abd491f9cb00f903d6a80
+    .claude/skills/vitest/references/features-snapshots.md: sha256:e7f650ca061cc14c90d68c2ab8325ee430b046277fbc959552e64665bdac9592
   content_hash: sha256:cabca6b1defd712892d9e5d15658b69e0c59287628ba23c85e0a93d94b6597a8
 - repo_url: vercel-labs/agent-skills
   host: github.com
-  resolved_commit: 4ec6f84b61cd3c931046c3e6e398f3ae7de372f7
-  resolved_ref: 4ec6f84b61cd3c931046c3e6e398f3ae7de372f7
+  resolved_commit: f8a72b9603728bb92a217a879b7e62e43ad76c81
+  resolved_ref: f8a72b9603728bb92a217a879b7e62e43ad76c81
   virtual_path: skills/composition-patterns
   is_virtual: true
   package_type: claude_skill
   deployed_files:
   - .claude/skills/composition-patterns
+  - .claude/skills/composition-patterns/AGENTS.md
+  - .claude/skills/composition-patterns/README.md
+  - .claude/skills/composition-patterns/SKILL.md
+  - .claude/skills/composition-patterns/metadata.json
+  - .claude/skills/composition-patterns/rules/_sections.md
+  - .claude/skills/composition-patterns/rules/_template.md
+  - .claude/skills/composition-patterns/rules/architecture-avoid-boolean-props.md
+  - .claude/skills/composition-patterns/rules/architecture-compound-components.md
+  - .claude/skills/composition-patterns/rules/patterns-children-over-render-props.md
+  - .claude/skills/composition-patterns/rules/patterns-explicit-variants.md
+  - .claude/skills/composition-patterns/rules/react19-no-forwardref.md
+  - .claude/skills/composition-patterns/rules/state-context-interface.md
+  - .claude/skills/composition-patterns/rules/state-decouple-implementation.md
+  - .claude/skills/composition-patterns/rules/state-lift-state.md
+  deployed_file_hashes:
+    .claude/skills/composition-patterns/AGENTS.md: sha256:89e3ddd58fcf99a53a50e25dfd21b8cde1be5f10b7df6bacd3dfa6796932f516
+    .claude/skills/composition-patterns/README.md: sha256:85915a43a6f0b4efe525e3cf6398dd866166da2025837c4460468a24a940da94
+    .claude/skills/composition-patterns/SKILL.md: sha256:e38e0eaa609316b10423a9a138ed95e35099accd3f735585295c8a8f165c28a3
+    .claude/skills/composition-patterns/metadata.json: sha256:49262ed5cb4186f31ee980cf8d990be0170c51efed4908d0464a1cff9905bd05
+    .claude/skills/composition-patterns/rules/_sections.md: sha256:a174213b87e6911e2b766995a2cbaf8d1534057076e82fb79fe3f0ecb38047df
+    .claude/skills/composition-patterns/rules/_template.md: sha256:587f7d16b0660eb61fee4a4d3d7df2b3077d6835de170602c7d6e60bee559131
+    .claude/skills/composition-patterns/rules/architecture-avoid-boolean-props.md: sha256:007555ebb020f4d552582a2c4db194db71a1fd33094012e5187bcfa4f8c392d5
+    .claude/skills/composition-patterns/rules/architecture-compound-components.md: sha256:f246af13dc269b521cf20eb8ad99a0cb645beac381c8c9b117262c34612c8457
+    .claude/skills/composition-patterns/rules/patterns-children-over-render-props.md: sha256:7c45a0d21b3c4126a32cba916ee31adeae195386ad1dbbe6634aedb7457aa0ad
+    .claude/skills/composition-patterns/rules/patterns-explicit-variants.md: sha256:8c19e596e61807549d01ce8c6954c6358199f97a8511c0c02c625ec0efda8c0e
+    .claude/skills/composition-patterns/rules/react19-no-forwardref.md: sha256:881830adb7534c4b2d70db426556646ad9837f5478f744f35641f635ada22227
+    .claude/skills/composition-patterns/rules/state-context-interface.md: sha256:09e73afbf9285fa416679cc864a287b9e8b821d0969272ab784295386d8c9bc3
+    .claude/skills/composition-patterns/rules/state-decouple-implementation.md: sha256:76a8c1eb29a70d8996ab3f71260345af2f7bc89deab815a421d6c87c6591a9c3
+    .claude/skills/composition-patterns/rules/state-lift-state.md: sha256:74c54038a6c554c748fe31cec673b80861b5d920b7553cf78cdf10d18b4b759b
   content_hash: sha256:5b3564ca435f4714d5e65023351e1999e4744818603a9cfb6a6f6a61b7d84918
 - repo_url: vercel-labs/agent-skills
   host: github.com
-  resolved_commit: 4ec6f84b61cd3c931046c3e6e398f3ae7de372f7
-  resolved_ref: 4ec6f84b61cd3c931046c3e6e398f3ae7de372f7
+  resolved_commit: f8a72b9603728bb92a217a879b7e62e43ad76c81
+  resolved_ref: f8a72b9603728bb92a217a879b7e62e43ad76c81
   virtual_path: skills/react-best-practices
   is_virtual: true
   package_type: claude_skill
   deployed_files:
   - .claude/skills/react-best-practices
+  - .claude/skills/react-best-practices/AGENTS.md
+  - .claude/skills/react-best-practices/README.md
+  - .claude/skills/react-best-practices/SKILL.md
+  - .claude/skills/react-best-practices/metadata.json
+  - .claude/skills/react-best-practices/rules/_sections.md
+  - .claude/skills/react-best-practices/rules/_template.md
+  - .claude/skills/react-best-practices/rules/advanced-effect-event-deps.md
+  - .claude/skills/react-best-practices/rules/advanced-event-handler-refs.md
+  - .claude/skills/react-best-practices/rules/advanced-init-once.md
+  - .claude/skills/react-best-practices/rules/advanced-use-latest.md
+  - .claude/skills/react-best-practices/rules/async-api-routes.md
+  - .claude/skills/react-best-practices/rules/async-cheap-condition-before-await.md
+  - .claude/skills/react-best-practices/rules/async-defer-await.md
+  - .claude/skills/react-best-practices/rules/async-dependencies.md
+  - .claude/skills/react-best-practices/rules/async-parallel.md
+  - .claude/skills/react-best-practices/rules/async-suspense-boundaries.md
+  - .claude/skills/react-best-practices/rules/bundle-analyzable-paths.md
+  - .claude/skills/react-best-practices/rules/bundle-barrel-imports.md
+  - .claude/skills/react-best-practices/rules/bundle-conditional.md
+  - .claude/skills/react-best-practices/rules/bundle-defer-third-party.md
+  - .claude/skills/react-best-practices/rules/bundle-dynamic-imports.md
+  - .claude/skills/react-best-practices/rules/bundle-preload.md
+  - .claude/skills/react-best-practices/rules/client-event-listeners.md
+  - .claude/skills/react-best-practices/rules/client-localstorage-schema.md
+  - .claude/skills/react-best-practices/rules/client-passive-event-listeners.md
+  - .claude/skills/react-best-practices/rules/client-swr-dedup.md
+  - .claude/skills/react-best-practices/rules/js-batch-dom-css.md
+  - .claude/skills/react-best-practices/rules/js-cache-function-results.md
+  - .claude/skills/react-best-practices/rules/js-cache-property-access.md
+  - .claude/skills/react-best-practices/rules/js-cache-storage.md
+  - .claude/skills/react-best-practices/rules/js-combine-iterations.md
+  - .claude/skills/react-best-practices/rules/js-early-exit.md
+  - .claude/skills/react-best-practices/rules/js-flatmap-filter.md
+  - .claude/skills/react-best-practices/rules/js-hoist-regexp.md
+  - .claude/skills/react-best-practices/rules/js-index-maps.md
+  - .claude/skills/react-best-practices/rules/js-length-check-first.md
+  - .claude/skills/react-best-practices/rules/js-min-max-loop.md
+  - .claude/skills/react-best-practices/rules/js-request-idle-callback.md
+  - .claude/skills/react-best-practices/rules/js-set-map-lookups.md
+  - .claude/skills/react-best-practices/rules/js-tosorted-immutable.md
+  - .claude/skills/react-best-practices/rules/rendering-activity.md
+  - .claude/skills/react-best-practices/rules/rendering-animate-svg-wrapper.md
+  - .claude/skills/react-best-practices/rules/rendering-conditional-render.md
+  - .claude/skills/react-best-practices/rules/rendering-content-visibility.md
+  - .claude/skills/react-best-practices/rules/rendering-hoist-jsx.md
+  - .claude/skills/react-best-practices/rules/rendering-hydration-no-flicker.md
+  - .claude/skills/react-best-practices/rules/rendering-hydration-suppress-warning.md
+  - .claude/skills/react-best-practices/rules/rendering-resource-hints.md
+  - .claude/skills/react-best-practices/rules/rendering-script-defer-async.md
+  - .claude/skills/react-best-practices/rules/rendering-svg-precision.md
+  - .claude/skills/react-best-practices/rules/rendering-usetransition-loading.md
+  - .claude/skills/react-best-practices/rules/rerender-defer-reads.md
+  - .claude/skills/react-best-practices/rules/rerender-dependencies.md
+  - .claude/skills/react-best-practices/rules/rerender-derived-state-no-effect.md
+  - .claude/skills/react-best-practices/rules/rerender-derived-state.md
+  - .claude/skills/react-best-practices/rules/rerender-functional-setstate.md
+  - .claude/skills/react-best-practices/rules/rerender-lazy-state-init.md
+  - .claude/skills/react-best-practices/rules/rerender-memo-with-default-value.md
+  - .claude/skills/react-best-practices/rules/rerender-memo.md
+  - .claude/skills/react-best-practices/rules/rerender-move-effect-to-event.md
+  - .claude/skills/react-best-practices/rules/rerender-no-inline-components.md
+  - .claude/skills/react-best-practices/rules/rerender-simple-expression-in-memo.md
+  - .claude/skills/react-best-practices/rules/rerender-split-combined-hooks.md
+  - .claude/skills/react-best-practices/rules/rerender-transitions.md
+  - .claude/skills/react-best-practices/rules/rerender-use-deferred-value.md
+  - .claude/skills/react-best-practices/rules/rerender-use-ref-transient-values.md
+  - .claude/skills/react-best-practices/rules/server-after-nonblocking.md
+  - .claude/skills/react-best-practices/rules/server-auth-actions.md
+  - .claude/skills/react-best-practices/rules/server-cache-lru.md
+  - .claude/skills/react-best-practices/rules/server-cache-react.md
+  - .claude/skills/react-best-practices/rules/server-dedup-props.md
+  - .claude/skills/react-best-practices/rules/server-hoist-static-io.md
+  - .claude/skills/react-best-practices/rules/server-no-shared-module-state.md
+  - .claude/skills/react-best-practices/rules/server-parallel-fetching.md
+  - .claude/skills/react-best-practices/rules/server-parallel-nested-fetching.md
+  - .claude/skills/react-best-practices/rules/server-serialization.md
+  deployed_file_hashes:
+    .claude/skills/react-best-practices/AGENTS.md: sha256:fc93e7421177bbf869cce892bc60a6c83a4517d974bc3bf65c4e2c1e58a6ccf6
+    .claude/skills/react-best-practices/README.md: sha256:9eafb2123d3b8b2aef41fba0db2648a3f4f49996f8c7c8bb2c86263befd8b48a
+    .claude/skills/react-best-practices/SKILL.md: sha256:71ed7794962fa6e803ee83030517b5b93a9f70fbfeb431ec4535c5480a8d8355
+    .claude/skills/react-best-practices/metadata.json: sha256:c4e18bac3290fbe1b471a605867d4df68b03144ea26b8befdbe8f9d8fd124354
+    .claude/skills/react-best-practices/rules/_sections.md: sha256:01c59969e4e867f0708c8f8ef9c6d87fab9a07d0586244f429ff84013db8a115
+    .claude/skills/react-best-practices/rules/_template.md: sha256:99df2a3ea088c6c22de2484ddc7e964d0e9923846f44c63380343ecc64455442
+    .claude/skills/react-best-practices/rules/advanced-effect-event-deps.md: sha256:55ed8f9f27a1bff803d6fa55828176207714b02123cbb97ddb8a90d88024a723
+    .claude/skills/react-best-practices/rules/advanced-event-handler-refs.md: sha256:a3097edeecfb2ff6851cd66ed8cdf0617c3c88180504bee824aa6e75a215bbbc
+    .claude/skills/react-best-practices/rules/advanced-init-once.md: sha256:3e4dc22173eb0e2b6dcf583e3babd862b8696328f8f59aee7c4d746c5bc05f6c
+    .claude/skills/react-best-practices/rules/advanced-use-latest.md: sha256:8a3f64dfe5a77d1564248faf17fe662ae75b55d497a243cb30b38eb07ccbbf9a
+    .claude/skills/react-best-practices/rules/async-api-routes.md: sha256:523338540d73427dc14c0cbb19f2741ebccdf8b105a7b2c1b33d2905cf237a42
+    .claude/skills/react-best-practices/rules/async-cheap-condition-before-await.md: sha256:03107c1f70a293cd58a8abc5474c5548e20ea4efdf01b6d45aae7ad0ac1cb32c
+    .claude/skills/react-best-practices/rules/async-defer-await.md: sha256:f3c142d090615abdcc99d31c123be37b31f0f1ed8d9ec9f7789a3bc6883ae0fb
+    .claude/skills/react-best-practices/rules/async-dependencies.md: sha256:16ef469f877e30c6b8e1e1b4bc3e527312fa3c6318cb785a4eca186ea236131a
+    .claude/skills/react-best-practices/rules/async-parallel.md: sha256:6d2f841896279e976dfcdc1ac89e70771ac188baadfd43c096b5706cb838b961
+    .claude/skills/react-best-practices/rules/async-suspense-boundaries.md: sha256:de05fedac2eb7ae563b887b5a424464ec3dfaf84e5b7797467ebe2a796ac8afc
+    .claude/skills/react-best-practices/rules/bundle-analyzable-paths.md: sha256:62090b5c815fd71bf1133dce754f51abc16a9456d0ccd025fd627de27726e92a
+    .claude/skills/react-best-practices/rules/bundle-barrel-imports.md: sha256:e648f6d54525f07a691357040ca5bff6ea3424788a91ff63812adb29622a671b
+    .claude/skills/react-best-practices/rules/bundle-conditional.md: sha256:09c8259c3efb04fc0abb8e412ccbda217c222ae8118516283e571c995fe3a7d4
+    .claude/skills/react-best-practices/rules/bundle-defer-third-party.md: sha256:3719fb47b191e8db4fe22686ec88448ad5af9e6838585425abbe103d0b642e37
+    .claude/skills/react-best-practices/rules/bundle-dynamic-imports.md: sha256:401817a7369f315fc5a68a1095742ff7d53d0461906880dc9d64a41495ee1986
+    .claude/skills/react-best-practices/rules/bundle-preload.md: sha256:d1f7cc28da7cd5ab249acd287edc5b761afcfb194e9cb62cd44c5f3543db2de2
+    .claude/skills/react-best-practices/rules/client-event-listeners.md: sha256:242a873349febc1ce685e85617994784dbab92c2eaa68aed7fed5a83e7680e93
+    .claude/skills/react-best-practices/rules/client-localstorage-schema.md: sha256:0fb7cdf9dc93fdf22f87e3669f953fb9d4ac9b0be42eec4a29fe9a2560610b88
+    .claude/skills/react-best-practices/rules/client-passive-event-listeners.md: sha256:1f35016f9053de69e884ee9be00654e37979c2ca85f5e57764dc2626ff7acb4b
+    .claude/skills/react-best-practices/rules/client-swr-dedup.md: sha256:644652c39c6cc00de8d1c77a7273612e868dc3f7edda30764164c12ec0f764a3
+    .claude/skills/react-best-practices/rules/js-batch-dom-css.md: sha256:480b891b9eaf96e929dc1e964274a4828e3a78009b7d00ccd965a0d425215959
+    .claude/skills/react-best-practices/rules/js-cache-function-results.md: sha256:3daaa11d24f4295cb6be8bc6f407f2ce83cc7b5bd1f0e68891ea8ab835721dc7
+    .claude/skills/react-best-practices/rules/js-cache-property-access.md: sha256:73e47431e74878a927061bf0ddc7cd91a7556cb35d2573f3421e82300d9ae311
+    .claude/skills/react-best-practices/rules/js-cache-storage.md: sha256:11b826b0433898c1ece2d3547010d8e77db9fb240185748c45db91493de9b6cc
+    .claude/skills/react-best-practices/rules/js-combine-iterations.md: sha256:71add08aeeb43091d4ff4c0b2842cce8b4bdef8ad3e732cc034bb5a84827e746
+    .claude/skills/react-best-practices/rules/js-early-exit.md: sha256:925ce5ce87f3347186ca62212f29cc6baa2b8c85a96d2720ad07c3d0abf781c0
+    .claude/skills/react-best-practices/rules/js-flatmap-filter.md: sha256:9e5b166a41914d975bef7635467f8fb32cd98b5c3126c0bc6f163490812fb5f0
+    .claude/skills/react-best-practices/rules/js-hoist-regexp.md: sha256:f9e9aef2f7c2307dd7310f283df85dcada45fc43e9bb941b0c3aa414dec21ec4
+    .claude/skills/react-best-practices/rules/js-index-maps.md: sha256:5df1bdc2cfabb2c98abd55d26762e5c18189535c2e686184f426082e62920391
+    .claude/skills/react-best-practices/rules/js-length-check-first.md: sha256:8b54a311c826b299272f29187fc58bc55772a04c4a72eeb29456ee96dc9fc624
+    .claude/skills/react-best-practices/rules/js-min-max-loop.md: sha256:87dfb67e2f39df6ad8bcfb5b78c5fb364d3c07554ad188a202408d99f3763421
+    .claude/skills/react-best-practices/rules/js-request-idle-callback.md: sha256:ee08f83905b4011abbc33d594033157d77561b5bbd9b36b04f0f409581ffec32
+    .claude/skills/react-best-practices/rules/js-set-map-lookups.md: sha256:a7fd781a6ba9ad49065961b6f9a90ef486bf6b648390e1a08704025f98e1642b
+    .claude/skills/react-best-practices/rules/js-tosorted-immutable.md: sha256:d0a5e1b0fec48a0a81397957e2f068e224329f7c42cb5feeed8aae6fa64025e8
+    .claude/skills/react-best-practices/rules/rendering-activity.md: sha256:1e5e7eaf3555e61d6a2e900089c676527d26259501db5594f59544b6c664f85a
+    .claude/skills/react-best-practices/rules/rendering-animate-svg-wrapper.md: sha256:9c6ae0ca7a51434e803887c64cded760956579a1452ccb80a461a03f9c937c77
+    .claude/skills/react-best-practices/rules/rendering-conditional-render.md: sha256:2ec2fa23c4148285144687050c52369adba3da2fbe3d486f8d3e0aad8f06f2bc
+    .claude/skills/react-best-practices/rules/rendering-content-visibility.md: sha256:64eee6d5b916fe74df33363994b27fc7f71bea3bcedc7ee04bda23107ca3e6e4
+    .claude/skills/react-best-practices/rules/rendering-hoist-jsx.md: sha256:93b229560fae92005ed9a2a829064607b39b2e984e92d221d05b2d41df2b7c0e
+    .claude/skills/react-best-practices/rules/rendering-hydration-no-flicker.md: sha256:dc7ab358c67c177bca6e6f360fbc935ebe4efa928c0ba3ebd3f9f3d9e2000ca3
+    .claude/skills/react-best-practices/rules/rendering-hydration-suppress-warning.md: sha256:915bacb934e2927d84b37a3f3d225a47b309ac8f9e494ed2bcb66ce07c5676a2
+    .claude/skills/react-best-practices/rules/rendering-resource-hints.md: sha256:351b1095d641717b930f1b2253282b7120af3023bc74e06c17675168d4286864
+    .claude/skills/react-best-practices/rules/rendering-script-defer-async.md: sha256:4cea07b7875ba7fc2c7465ff23b63a2bb334f90aaf2d9293d38d67b05fdb32ab
+    .claude/skills/react-best-practices/rules/rendering-svg-precision.md: sha256:ed468533f6e95f622859c884b122cf21f9f593ed6bb3d500a54de4b9f9bcb9fb
+    .claude/skills/react-best-practices/rules/rendering-usetransition-loading.md: sha256:3a1249c3f13026b6f54ab5712c388df219d6af01b12aa542749acd99a46f4bc1
+    .claude/skills/react-best-practices/rules/rerender-defer-reads.md: sha256:234050a77faf50cb306be10a9e15bd4421134ab5907e75f13e6d78e2bd262dc9
+    .claude/skills/react-best-practices/rules/rerender-dependencies.md: sha256:17eb5830956fb56486fd3cfc7431f5849d39751730c05ad9e77dd4f0c27169c5
+    .claude/skills/react-best-practices/rules/rerender-derived-state-no-effect.md: sha256:cb11ec76f50aa7b6847269f02d79b120c889a30d9ecd2c1d578f75144419c77a
+    .claude/skills/react-best-practices/rules/rerender-derived-state.md: sha256:1c326bb67b01fb084eb00c8911b0a7cff54681c2315b629f88e49b64eaa6481d
+    .claude/skills/react-best-practices/rules/rerender-functional-setstate.md: sha256:5e68df6b2ae8058e67f476ff1ac67bde159f5a9d18df439e46eabcdeb7b52e58
+    .claude/skills/react-best-practices/rules/rerender-lazy-state-init.md: sha256:4ae844740f266fc8cbf050701230286624a2440ec5be67b9a63d9edc3c580573
+    .claude/skills/react-best-practices/rules/rerender-memo-with-default-value.md: sha256:81c47476564ad8a79fc68fc442734255ca7d6829424359464503fda0a9f9a0dd
+    .claude/skills/react-best-practices/rules/rerender-memo.md: sha256:1f258990c2f27ff6256b3cc5c43300631bb3f0d81f749aed08d07fcdcc131dd1
+    .claude/skills/react-best-practices/rules/rerender-move-effect-to-event.md: sha256:abc2cbf167bee056743023351e96806a411d3398da8802093620aecf0721f029
+    .claude/skills/react-best-practices/rules/rerender-no-inline-components.md: sha256:1cc32907a770272524ba682eef9e7efdd8ad4533b6f89b718a1fcd7d1d0eb6a3
+    .claude/skills/react-best-practices/rules/rerender-simple-expression-in-memo.md: sha256:5bdcf2d1558ba5204e643c887b7b4060f89630969425651eb68e96427d97f800
+    .claude/skills/react-best-practices/rules/rerender-split-combined-hooks.md: sha256:6f45d703343484ef9acef9388397f3642966ae6a5a258899a0cf1f9977cfbf6c
+    .claude/skills/react-best-practices/rules/rerender-transitions.md: sha256:60f4033909a62df5e5b8c601494f9e50a562e2f8c1c2d81eac24f38142265f1c
+    .claude/skills/react-best-practices/rules/rerender-use-deferred-value.md: sha256:8c3579576a61a949884167745dcfaf1d5426ba305cc61fd0a79602d70fda4909
+    .claude/skills/react-best-practices/rules/rerender-use-ref-transient-values.md: sha256:f1a649af9d1d0b5c762f6c9c4c1c70c90d7df82aa10296ee87aadb78c1b76c54
+    .claude/skills/react-best-practices/rules/server-after-nonblocking.md: sha256:d0b8d24a3db9f0f65f9e2bddbf230b0e03a5f60e1229d93a4a18f5e7a991c7c2
+    .claude/skills/react-best-practices/rules/server-auth-actions.md: sha256:a2ca8aa102839251c7971ec784560fab943c20b36fe6f80365d4110c13260c23
+    .claude/skills/react-best-practices/rules/server-cache-lru.md: sha256:1924b64561841923b88a657085097a0aeba3e0ba2d5470b9f5c15cc10d6ae70f
+    .claude/skills/react-best-practices/rules/server-cache-react.md: sha256:fddeea6c870bb3da4134b61d54b7d09b83d2603f929b7547cd3dc1dc269edd5c
+    .claude/skills/react-best-practices/rules/server-dedup-props.md: sha256:c2747424cdac46be62f835f245a0aa887b0090b416d28e2ac8676702645eeb37
+    .claude/skills/react-best-practices/rules/server-hoist-static-io.md: sha256:5abea4dd882b13661bd5f7dfb93f9e547d5f08176c61c448ade91b210ed5d49f
+    .claude/skills/react-best-practices/rules/server-no-shared-module-state.md: sha256:4d869bf1cd2f1632e5ca4c0e64b1cf0e71c5f5a0f940bc8a22174d205e735ed7
+    .claude/skills/react-best-practices/rules/server-parallel-fetching.md: sha256:569a2e9fc04f9606686cd75c5894ef8781b502786a7fffe241396846c7733472
+    .claude/skills/react-best-practices/rules/server-parallel-nested-fetching.md: sha256:ad5d9656984d4a959997a2367bf59cc6632297b4634a1dd13a087939d83f30b3
+    .claude/skills/react-best-practices/rules/server-serialization.md: sha256:f4c7d68b29c82381baad059c4a7f09e868e71ec9c3115a26ad3ae7d24c0dfe1f
   content_hash: sha256:74f142d28d360d78e8bac4f239a84c87f0ced9015729bc72b5458d82ff45b015
 - repo_url: vercel-labs/agent-skills
   host: github.com
-  resolved_commit: 4ec6f84b61cd3c931046c3e6e398f3ae7de372f7
-  resolved_ref: 4ec6f84b61cd3c931046c3e6e398f3ae7de372f7
+  resolved_commit: f8a72b9603728bb92a217a879b7e62e43ad76c81
+  resolved_ref: f8a72b9603728bb92a217a879b7e62e43ad76c81
   virtual_path: skills/react-view-transitions
   is_virtual: true
   package_type: claude_skill
   deployed_files:
   - .claude/skills/react-view-transitions
+  - .claude/skills/react-view-transitions/AGENTS.md
+  - .claude/skills/react-view-transitions/README.md
+  - .claude/skills/react-view-transitions/SKILL.md
+  - .claude/skills/react-view-transitions/metadata.json
+  - .claude/skills/react-view-transitions/references/css-recipes.md
+  - .claude/skills/react-view-transitions/references/implementation.md
+  - .claude/skills/react-view-transitions/references/nextjs.md
+  - .claude/skills/react-view-transitions/references/patterns.md
+  deployed_file_hashes:
+    .claude/skills/react-view-transitions/AGENTS.md: sha256:847e68771417af6cffd9d3ecd4c9412dae1b2bda559912681e17d5d9aa8da435
+    .claude/skills/react-view-transitions/README.md: sha256:5679d93a30c29d0fcf27fd3f2545043166a9ac622c9c97e47ecfd6ff74efa0ba
+    .claude/skills/react-view-transitions/SKILL.md: sha256:8c4c0f8b5581ef473fbf388b2df7d13e02d418ab2150a912b9b7eafdf4b76a01
+    .claude/skills/react-view-transitions/metadata.json: sha256:b1a5ae09f3904dc83dab79f518d033bd98f1e2f55caabfdb5beeeaaf0ca5e4c2
+    .claude/skills/react-view-transitions/references/css-recipes.md: sha256:c75e195a3c80fe12be65a0ff439bb80bb06a5629a1850208c4cf220c60339102
+    .claude/skills/react-view-transitions/references/implementation.md: sha256:f6e3bca5becf7b08abc00ddc1ca3b7d139bcd02a92cd65e5424c20373bb99393
+    .claude/skills/react-view-transitions/references/nextjs.md: sha256:cd8116e3d2730d16e7271857b9c7da334faa3bd97b49f70f33c92cf92594bca5
+    .claude/skills/react-view-transitions/references/patterns.md: sha256:c2b4657b3dfe1524bf374dd94f851874a47afd4be62e6423a779ef9da87539e3
   content_hash: sha256:51719043c8f0077181524eaa0326e3f73080afb490571b81567c0f8df254d15f
 - repo_url: vercel-labs/agent-skills
   host: github.com
-  resolved_commit: 4ec6f84b61cd3c931046c3e6e398f3ae7de372f7
-  resolved_ref: 4ec6f84b61cd3c931046c3e6e398f3ae7de372f7
+  resolved_commit: f8a72b9603728bb92a217a879b7e62e43ad76c81
+  resolved_ref: f8a72b9603728bb92a217a879b7e62e43ad76c81
   virtual_path: skills/web-design-guidelines
   is_virtual: true
   package_type: claude_skill
   deployed_files:
   - .claude/skills/web-design-guidelines
+  - .claude/skills/web-design-guidelines/SKILL.md
+  deployed_file_hashes:
+    .claude/skills/web-design-guidelines/SKILL.md: sha256:f4647ca866a3accf763777f83e7682954f0187cd6bea7eea0399796652414e8f
   content_hash: sha256:a6a44d5498f7e8f68289902f3dedfc6f38ae0cee1e96527c80724cf27f727c2a
