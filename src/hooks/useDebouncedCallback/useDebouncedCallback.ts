@@ -21,7 +21,7 @@ export function useDebouncedCallback<Args extends unknown[]>(
       callbackRef.current(...args);
     };
     // ref は debounce のタイマーから非同期に読まれるだけで、レンダリング中には評価しない
-    // oxlint-disable-next-line react-compiler-rules/refs
+    // oxlint-disable-next-line react/react-compiler
     return debounce(invokeLatest, wait);
   }, [wait]);
 

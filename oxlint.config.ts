@@ -26,11 +26,7 @@ export default defineConfig({
     "unicorn",
     "vitest",
   ],
-  jsPlugins: [
-    "./tools/oxlint-rules/index.ts",
-    "@tanstack/eslint-plugin-query",
-    { name: "react-compiler-rules", specifier: "eslint-plugin-react-hooks" },
-  ],
+  jsPlugins: ["./tools/oxlint-rules/index.ts", "@tanstack/eslint-plugin-query"],
   settings: {
     vitest: { typecheck: true },
   },
@@ -103,6 +99,7 @@ export default defineConfig({
     "react/forbid-component-props": "off",
     "react/jsx-filename-extension": ["error", { extensions: [".tsx"] }],
     "react/jsx-max-depth": "off",
+    "react/jsx-no-literals": "off",
     "react/jsx-props-no-spreading": "off",
     "react/only-export-components": "off",
     "react/react-in-jsx-scope": "off",
@@ -159,25 +156,6 @@ export default defineConfig({
     "@tanstack/query/no-void-query-fn": "error",
     "@tanstack/query/prefer-query-options": "error",
     "@tanstack/query/stable-query-client": "error",
-
-    // ── react-compiler-rules (jsPlugin: eslint-plugin-react-hooks) ──
-    "react-compiler-rules/capitalized-calls": "error",
-    "react-compiler-rules/config": "error",
-    "react-compiler-rules/error-boundaries": "error",
-    "react-compiler-rules/globals": "error",
-    "react-compiler-rules/immutability": "error",
-    "react-compiler-rules/incompatible-library": "warn",
-    "react-compiler-rules/memoized-effect-dependencies": "error",
-    "react-compiler-rules/no-deriving-state-in-effects": "error",
-    "react-compiler-rules/preserve-manual-memoization": "error",
-    "react-compiler-rules/purity": "error",
-    "react-compiler-rules/refs": "error",
-    "react-compiler-rules/set-state-in-effect": "error",
-    "react-compiler-rules/set-state-in-render": "error",
-    "react-compiler-rules/static-components": "error",
-    "react-compiler-rules/unsupported-syntax": "warn",
-    "react-compiler-rules/use-memo": "error",
-    "react-compiler-rules/void-use-memo": "error",
 
     // ── custom rules (jsPlugin: ./tools/oxlint-rules/) ──
     "custom-rules/no-index-tsx": "error",
