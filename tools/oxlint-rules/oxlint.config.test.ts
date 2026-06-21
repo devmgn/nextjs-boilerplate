@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import oxlintConfig from "../../oxlint.config.ts";
 
-// 外部 jsPlugin（tanstack / storybook / react-hooks）は config にルールを手動列挙しているため、
+// 外部 jsPlugin（tanstack / storybook）は config にルールを手動列挙しているため、
 // プラグイン更新で増えた新ルールを取りこぼしうる（前方ドリフト）。それを検出して採用/除外の判断を促す。
 // 実在しないルール名は oxlint が config パース時に弾くため、後方ドリフトは扱わない。
 
@@ -11,28 +11,9 @@ interface PluginLike {
 type JsPluginEntry = string | { name?: string; specifier: string };
 
 // config に載せない外部ルールと、その理由。
-const IGNORED_RULES = new Set<string>([
-  // oxlint native の react ルールと重複
-  "react-compiler-rules/rules-of-hooks",
-  "react-compiler-rules/hooks",
-  "react-compiler-rules/exhaustive-deps",
-  // 依存検証（opt-in）。React Compiler 有効環境では不要
-  "react-compiler-rules/memo-dependencies",
-  "react-compiler-rules/exhaustive-effect-dependencies",
-  // コンパイラ内部診断でコード規則ではない
-  "react-compiler-rules/invariant",
-  "react-compiler-rules/todo",
-  // fbt（Meta の i18n）未使用
-  "react-compiler-rules/fbt",
-  // 削除済み（deprecated）
-  "react-compiler-rules/component-hook-factories",
-  // gating モード未使用
-  "react-compiler-rules/gating",
-  // 正当な suppression まで禁じるため不採用
-  "react-compiler-rules/rule-suppression",
-  // 構文診断系でノイズになりうる
-  "react-compiler-rules/syntax",
-]);
+// 現状は tanstack / storybook の全公開ルールを config に列挙済みのため空。
+// triage の結果「採用しない」と判断した外部ルールはここに理由付きで追加する。
+const IGNORED_RULES = new Set<string>();
 
 // プラグイン specifier → oxlint の前缀（eslint-plugin-x → x ／ @scope/eslint-plugin-x → @scope/x）。
 function stripEslintPluginPrefix(name: string): string {
