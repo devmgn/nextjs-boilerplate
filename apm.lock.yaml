@@ -1,11 +1,11 @@
 lockfile_version: '1'
-generated_at: '2026-06-11T09:36:14.274831+00:00'
-apm_version: 0.19.0
+generated_at: '2026-06-23T10:28:59.202986+00:00'
+apm_version: 0.21.0
 dependencies:
 - repo_url: antfu/skills
   host: github.com
-  resolved_commit: 50deaeb269d80d92db7a2c5a677290309ae307fc
-  resolved_ref: 50deaeb269d80d92db7a2c5a677290309ae307fc
+  resolved_commit: a74f281a27dadc02397bc1a174b0f2c97531b6ae
+  resolved_ref: a74f281a27dadc02397bc1a174b0f2c97531b6ae
   virtual_path: skills/vitest
   is_virtual: true
   package_type: claude_skill
@@ -23,32 +23,38 @@ dependencies:
   - .claude/skills/vitest/references/core-expect.md
   - .claude/skills/vitest/references/core-hooks.md
   - .claude/skills/vitest/references/core-test-api.md
+  - .claude/skills/vitest/references/features-benchmarking.md
   - .claude/skills/vitest/references/features-concurrency.md
   - .claude/skills/vitest/references/features-context.md
   - .claude/skills/vitest/references/features-coverage.md
   - .claude/skills/vitest/references/features-filtering.md
   - .claude/skills/vitest/references/features-mocking.md
+  - .claude/skills/vitest/references/features-reporters.md
   - .claude/skills/vitest/references/features-snapshots.md
+  - .claude/skills/vitest/references/features-test-tags.md
   deployed_file_hashes:
-    .claude/skills/vitest/GENERATION.md: sha256:3cf85efaca1c200657437fce6f9215ad805d44c1a8e4a125353294e8b6238b97
-    .claude/skills/vitest/SKILL.md: sha256:87c8cf025987d1f1a0e9c0fd0b8605946a0ebd5478676471ce296d8f0adc0f07
-    .claude/skills/vitest/references/advanced-environments.md: sha256:b3b10adfef569023d922ce370c12f15d2dacf4c59d043ce015fb1c96f168b254
-    .claude/skills/vitest/references/advanced-projects.md: sha256:10efde418c9a4406d467a565d4ac9df60c39b16908895f38efba908d573621e1
-    .claude/skills/vitest/references/advanced-type-testing.md: sha256:370c55c10174ae6d8332605ecb1a7575944c8a072a85f43637c03dce00dd1c35
-    .claude/skills/vitest/references/advanced-vi.md: sha256:1d80b9c373f6d374093c937f46d731c663c684eb8e1533f82144275aee6dfe19
-    .claude/skills/vitest/references/core-cli.md: sha256:2ff72dc4754b8738d31a041e3f3e26ea83fd18e9795521adb5510e61e50951b6
-    .claude/skills/vitest/references/core-config.md: sha256:5fd3cf0983f203f14c4f4732dde0632c1d537241daa5cffea24f7e55712a6fb3
-    .claude/skills/vitest/references/core-describe.md: sha256:c5642ff6433fca69bbfbe9526acb2becd17d8cb2c99cebd1976d87e1def91b9c
-    .claude/skills/vitest/references/core-expect.md: sha256:d39b2bf31f67d66a5f036eae6a88844e7d427854b075c395b086a6c5086a2973
-    .claude/skills/vitest/references/core-hooks.md: sha256:d6489a5d762e2bf47b7a139e0265ff2e03ba13653cf14004e05a9be8512690b9
-    .claude/skills/vitest/references/core-test-api.md: sha256:ce3ecd0aa73560e2072c79ced9d0eee39d527c1c71ccabe4e9b665326b219247
-    .claude/skills/vitest/references/features-concurrency.md: sha256:f658bade9a9f5c61518f38f08b80fe0b3e7bcd3b6c5e7b4d5cb8ef721acd84aa
-    .claude/skills/vitest/references/features-context.md: sha256:ea7a77c4ebb677ff004659f0f0f50a135744934c1a8f39629ec462fb918c7dbe
-    .claude/skills/vitest/references/features-coverage.md: sha256:d65c2b5c33d0220c1f06bb7f95bf039a1cba25f3c5e4b13fd48d6b3d30a77818
-    .claude/skills/vitest/references/features-filtering.md: sha256:29fd70bd48726bab2ee58ebf740cf1dc23efc51276d049444a31910748cf6e55
-    .claude/skills/vitest/references/features-mocking.md: sha256:9d23a9d60dbbfa1183f5753c0cf5ea7fefcf7853e57abd491f9cb00f903d6a80
-    .claude/skills/vitest/references/features-snapshots.md: sha256:e7f650ca061cc14c90d68c2ab8325ee430b046277fbc959552e64665bdac9592
-  content_hash: sha256:cabca6b1defd712892d9e5d15658b69e0c59287628ba23c85e0a93d94b6597a8
+    .claude/skills/vitest/GENERATION.md: sha256:6b70dab147d6c64822596d0d652aaf9a391349db2c1fcf42b15bc5333cf9ccbc
+    .claude/skills/vitest/SKILL.md: sha256:2da9b15c28b9be17d545751b0e0813de306331b3c4dccb748934f4fdd2298968
+    .claude/skills/vitest/references/advanced-environments.md: sha256:003d0e370404fede2836be3866cb59fef19c23717676c6d4cf29ddb188e1c2b9
+    .claude/skills/vitest/references/advanced-projects.md: sha256:95e10acf25259ce4bd02820a4d24418896e5b1c5cc115f192a552d6b6fd37f1f
+    .claude/skills/vitest/references/advanced-type-testing.md: sha256:88a5c36d3510200e1ebb5181520b4dcf87939d0d49ac58ead30588689340829c
+    .claude/skills/vitest/references/advanced-vi.md: sha256:7ae206ed071d257861ccbac8c784626f7f50d9f91b4bfa4845e4fc4f279259ab
+    .claude/skills/vitest/references/core-cli.md: sha256:89dfe61d15c6b0454e64063477a7ecdf0d3c72f8cec751deccde83d1dde148e6
+    .claude/skills/vitest/references/core-config.md: sha256:70b8c8315cc6ab6d4efac65c4168b49d94c02abd71df20a08e65c42043580de1
+    .claude/skills/vitest/references/core-describe.md: sha256:0c99cd75e7808b0abaaf06eb9ad3ba6046fff0054d1624c8983dfae87d1e0827
+    .claude/skills/vitest/references/core-expect.md: sha256:747d56075a84148cfac7e2c37a9e2e7aa33df4f3e84bba3432b86bfcb89a11e4
+    .claude/skills/vitest/references/core-hooks.md: sha256:2ff9b1700579a8e734ceb1ec783b01d0bd90837094f729bc65e63d5596a172d4
+    .claude/skills/vitest/references/core-test-api.md: sha256:e55dbe41e1cb79ff09a486a91aebb0534290946d8e619c056748ce59384f75c8
+    .claude/skills/vitest/references/features-benchmarking.md: sha256:2437b43b4bb84bfe698cc1d2cb81d7238a44a5759ecec218f00c6df70bda1f70
+    .claude/skills/vitest/references/features-concurrency.md: sha256:c4ee8b0994270ebd97fa903bb8430faea5a823896bbda1a965dbcf93fc48810a
+    .claude/skills/vitest/references/features-context.md: sha256:9cf4a1f51af7379055f30bc4b9dde72ce2d8d07037a24835d8803774bb456be8
+    .claude/skills/vitest/references/features-coverage.md: sha256:e4b4b5f563a07786e8553bfcbe638673a2107235bd36cfc476def356d4c0411e
+    .claude/skills/vitest/references/features-filtering.md: sha256:87cf40827574f359b140c18923d812232c77c54badf2f015a90fe626e685deaa
+    .claude/skills/vitest/references/features-mocking.md: sha256:cc30e6ff11301ff2c35e530a720a0e773d3b23ffa8d60c7c774ae51bb1bcbfe6
+    .claude/skills/vitest/references/features-reporters.md: sha256:7c4bfe49b25ad3410e7a4b007dc3943450d24d4f0a5f4af307a10b9201392bf7
+    .claude/skills/vitest/references/features-snapshots.md: sha256:906f5b111b747a7d1396eef82725c23a590e2ecd4c7d4889679a72f40adcc051
+    .claude/skills/vitest/references/features-test-tags.md: sha256:6e39db1a7b622b0f325a5cec0fca1e78aab4ed14b8e1a8dbe0eb396e7a0f642d
+  content_hash: sha256:0366ceee6aa68beeccff2640afc86d4466004cdaa92d0bb23b32931d888fd1d5
 - repo_url: vercel-labs/agent-skills
   host: github.com
   resolved_commit: f8a72b9603728bb92a217a879b7e62e43ad76c81
