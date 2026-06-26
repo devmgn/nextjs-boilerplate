@@ -1,19 +1,11 @@
 {
   "$schema": "./node_modules/knip/schema-jsonc.json",
-  "ignore": ["src/**/openapi/**", "src/mocks/**"],
+  "ignore": ["src/api/openapi/**", "src/mocks/**"],
   "ignoreBinaries": ["openapiconfig.json", "actionlint", "zizmor"],
-  "ignoreDependencies": ["postcss-load-config"],
   "ignoreIssues": {
     "tools/oxlint-rules/*/*.ts": ["files"],
   },
-  "tailwind": {
-    "entry": ["src/lib/styles/globals.css"],
-  },
   "vitest": {
-    "entry": [
-      "**/*.{test,spec,test-d}.{ts,tsx}",
-      "vitest.globalSetup.ts",
-      "vitest.setup.ts",
-    ],
+    "entry": ["vitest.globalSetup.ts", "vitest.setup.ts"],
   },
 }
