@@ -18,7 +18,7 @@ describe("ENV", () => {
     "NEXT_PUBLIC_APP_NAME",
     "NEXT_PUBLIC_DEFAULT_DESCRIPTION",
   ])("%s が未定義の場合エラーになること", async (key) => {
-    vi.stubEnv(key, undefined as unknown as string);
+    vi.stubEnv(key, undefined);
     vi.resetModules();
 
     await expect(async () => import("./env")).rejects.toThrow(/invalid/u);
