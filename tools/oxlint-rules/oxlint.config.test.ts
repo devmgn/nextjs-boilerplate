@@ -104,9 +104,9 @@ function collectConfiguredRuleNames(): Set<string> {
       names.add(name);
     }
   }
-  addAll(oxlintConfig.rules as Record<string, unknown> | undefined);
+  addAll(oxlintConfig.rules);
   for (const override of oxlintConfig.overrides) {
-    addAll(override.rules as Record<string, unknown> | undefined);
+    addAll(override.rules);
   }
   return names;
 }
