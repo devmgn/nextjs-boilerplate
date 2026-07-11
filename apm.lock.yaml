@@ -1,11 +1,13 @@
 lockfile_version: '1'
-generated_at: '2026-06-23T10:28:59.202986+00:00'
-apm_version: 0.21.0
+generated_at: '2026-07-11T01:37:01.284989+00:00'
+apm_version: 0.24.1
 dependencies:
 - repo_url: antfu/skills
+  name: skills
   host: github.com
   resolved_commit: a74f281a27dadc02397bc1a174b0f2c97531b6ae
   resolved_ref: a74f281a27dadc02397bc1a174b0f2c97531b6ae
+  version: unknown
   virtual_path: skills/vitest
   is_virtual: true
   package_type: claude_skill
@@ -56,9 +58,11 @@ dependencies:
     .claude/skills/vitest/references/features-test-tags.md: sha256:6e39db1a7b622b0f325a5cec0fca1e78aab4ed14b8e1a8dbe0eb396e7a0f642d
   content_hash: sha256:0366ceee6aa68beeccff2640afc86d4466004cdaa92d0bb23b32931d888fd1d5
 - repo_url: vercel-labs/agent-skills
+  name: agent-skills
   host: github.com
   resolved_commit: f8a72b9603728bb92a217a879b7e62e43ad76c81
   resolved_ref: f8a72b9603728bb92a217a879b7e62e43ad76c81
+  version: unknown
   virtual_path: skills/composition-patterns
   is_virtual: true
   package_type: claude_skill
@@ -95,9 +99,11 @@ dependencies:
     .claude/skills/composition-patterns/rules/state-lift-state.md: sha256:74c54038a6c554c748fe31cec673b80861b5d920b7553cf78cdf10d18b4b759b
   content_hash: sha256:5b3564ca435f4714d5e65023351e1999e4744818603a9cfb6a6f6a61b7d84918
 - repo_url: vercel-labs/agent-skills
+  name: agent-skills
   host: github.com
   resolved_commit: f8a72b9603728bb92a217a879b7e62e43ad76c81
   resolved_ref: f8a72b9603728bb92a217a879b7e62e43ad76c81
+  version: unknown
   virtual_path: skills/react-best-practices
   is_virtual: true
   package_type: claude_skill
@@ -258,9 +264,11 @@ dependencies:
     .claude/skills/react-best-practices/rules/server-serialization.md: sha256:f4c7d68b29c82381baad059c4a7f09e868e71ec9c3115a26ad3ae7d24c0dfe1f
   content_hash: sha256:74f142d28d360d78e8bac4f239a84c87f0ced9015729bc72b5458d82ff45b015
 - repo_url: vercel-labs/agent-skills
+  name: agent-skills
   host: github.com
   resolved_commit: f8a72b9603728bb92a217a879b7e62e43ad76c81
   resolved_ref: f8a72b9603728bb92a217a879b7e62e43ad76c81
+  version: unknown
   virtual_path: skills/react-view-transitions
   is_virtual: true
   package_type: claude_skill
@@ -285,9 +293,11 @@ dependencies:
     .claude/skills/react-view-transitions/references/patterns.md: sha256:c2b4657b3dfe1524bf374dd94f851874a47afd4be62e6423a779ef9da87539e3
   content_hash: sha256:51719043c8f0077181524eaa0326e3f73080afb490571b81567c0f8df254d15f
 - repo_url: vercel-labs/agent-skills
+  name: agent-skills
   host: github.com
   resolved_commit: f8a72b9603728bb92a217a879b7e62e43ad76c81
   resolved_ref: f8a72b9603728bb92a217a879b7e62e43ad76c81
+  version: unknown
   virtual_path: skills/web-design-guidelines
   is_virtual: true
   package_type: claude_skill

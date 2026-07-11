@@ -1,0 +1,41 @@
+name: Check APM lockfile
+
+on:
+  push:
+    branches-ignore:
+      - main
+    paths:
+      - "apm.yml"
+      - "apm.lock.yaml"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  Check-Lock:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+
+      - name: Setup mise (installs apm-cli pinned in mise.toml)
+        uses: jdx/mise-action@d16887ba50704baed7de72bd1e82e04391e4457a # v3.5.0
+
+      # Regenerate the lockfile and fail if it drifts from what is committed.
+      # `apm install` preserves `generated_at` when nothing changed, so a plain
+      # `git diff` is stable and only trips on real content drift.
+      - name: Verify apm.lock.yaml is up to date
+        run: |
+          apm install -t claude
+          if ! git diff --exit-code apm.lock.yaml; then
+            echo "::error file=apm.lock.yaml::apm.lock.yaml is out of date. Run 'apm install -t claude' locally and commit the result."
+            exit 1
+          fi
+          echo "apm.lock.yaml is up to date."
