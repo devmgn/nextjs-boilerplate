@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/knip/schema-jsonc.json",
   "ignore": ["src/api/openapi/**", "src/mocks/**"],
-  "ignoreBinaries": ["openapiconfig.json", "actionlint", "zizmor"],
+  "ignoreBinaries": ["openapiconfig.json", "actionlint", "zizmor", "apm"],
   "ignoreIssues": {
     "tools/oxlint-rules/*/*.ts": ["files"],
   },

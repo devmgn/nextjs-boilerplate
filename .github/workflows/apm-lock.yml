@@ -27,12 +27,8 @@ jobs:
           ref: ${{ github.ref }}
           persist-credentials: false
 
-      - name: Install apm
-        run: |
-          curl -sSL https://aka.ms/apm-unix | sh
-          for dir in "$HOME/.local/bin" "$HOME/.apm/bin" "/usr/local/bin"; do
-            if [ -x "$dir/apm" ]; then echo "$dir" >> "$GITHUB_PATH"; break; fi
-          done
+      - name: Setup mise (installs apm-cli pinned in mise.toml)
+        uses: jdx/mise-action@d16887ba50704baed7de72bd1e82e04391e4457a # v3.5.0
 
       - name: Verify apm
         run: apm --version
