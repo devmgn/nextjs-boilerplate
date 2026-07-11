@@ -28,7 +28,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup mise (installs apm-cli pinned in mise.toml)
-        uses: jdx/mise-action@d16887ba50704baed7de72bd1e82e04391e4457a # v3.5.0
+        uses: jdx/mise-action@e6a8b3978addb5a52f2b4cd9d91eafa7f0ab959d # v4.2.0
 
       - name: Verify apm
         run: apm --version
