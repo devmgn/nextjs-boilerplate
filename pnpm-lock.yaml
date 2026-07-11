@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@hookform/resolvers':
         specifier: 5.4.0
-        version: 5.4.0(react-hook-form@8.0.0-beta.2(react@19.2.7))
+        version: 5.4.0(react-hook-form@8.0.0-beta.3(react@19.2.7))
       '@radix-ui/react-dialog':
         specifier: 1.1.19
         version: 1.1.19(@types/react-dom@19.2.3(@types/react@19.2.17))(@types/react@19.2.17)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
@@ -42,8 +42,8 @@ importers:
         specifier: 6.1.2
         version: 6.1.2(react@19.2.7)
       react-hook-form:
-        specifier: 8.0.0-beta.2
-        version: 8.0.0-beta.2(react@19.2.7)
+        specifier: 8.0.0-beta.3
+        version: 8.0.0-beta.3(react@19.2.7)
       sonner:
         specifier: 2.0.7
         version: 2.0.7(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
@@ -3700,8 +3700,8 @@ packages:
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
 
-  react-hook-form@8.0.0-beta.2:
-    resolution: {integrity: sha512-DnxY4c+yjtiUBSjvR05upmK260IFTYGrY85KvI9cKsBf9ginEY2ydS1YUaDLkByw+CfzjQjR1Rwgd1wm9cKxgA==}
+  react-hook-form@8.0.0-beta.3:
+    resolution: {integrity: sha512-VyAKK5sXyAK1bkcExoa7ab6nZOd04T+gwv8F4y5xM9vXWw3GVFCJNJgTGt+FYW4jrZkglO12+yhDcQtVLEzZRg==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || ^19
@@ -4749,10 +4749,10 @@ snapshots:
 
   '@faker-js/faker@10.5.0': {}
 
-  '@hookform/resolvers@5.4.0(react-hook-form@8.0.0-beta.2(react@19.2.7))':
+  '@hookform/resolvers@5.4.0(react-hook-form@8.0.0-beta.3(react@19.2.7))':
     dependencies:
       '@standard-schema/utils': 0.3.0
-      react-hook-form: 8.0.0-beta.2(react@19.2.7)
+      react-hook-form: 8.0.0-beta.3(react@19.2.7)
 
   '@humanfs/core@0.19.2':
     dependencies:
@@ -7603,7 +7603,7 @@ snapshots:
     dependencies:
       react: 19.2.7
 
-  react-hook-form@8.0.0-beta.2(react@19.2.7):
+  react-hook-form@8.0.0-beta.3(react@19.2.7):
     dependencies:
       react: 19.2.7
 
