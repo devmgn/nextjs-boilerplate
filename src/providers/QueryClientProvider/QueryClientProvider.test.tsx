@@ -1,5 +1,5 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { render, screen } from "@testing-library/react";
+import { render, renderHook, screen } from "@testing-library/react";
 import { QueryClientProvider } from "./QueryClientProvider";
 import { getQueryClient } from "../../lib/getQueryClient";
 
@@ -28,19 +28,13 @@ describe(QueryClientProvider, () => {
 
   it("子コンポーネントからuseQueryClientでgetQueryClientと同一のインスタンスが取得できること", () => {
     const expected = getQueryClient();
-    let received: unknown;
 
-    function Probe() {
-      received = useQueryClient();
-      return null;
-    }
+    const { result } = renderHook(() => useQueryClient(), {
+      wrapper: ({ children }) => (
+        <QueryClientProvider>{children}</QueryClientProvider>
+      ),
+    });
 
-    render(
-      <QueryClientProvider>
-        <Probe />
-      </QueryClientProvider>,
-    );
-
-    expect(received).toBe(expected);
+    expect(result.current).toBe(expected);
   });
 });
