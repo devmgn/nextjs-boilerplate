@@ -62,21 +62,9 @@ function resolveExternalPlugin(
   };
 }
 
-// config だけから求まる外部 jsPlugin の前缀集合（読み込み結果の照合用）。
-function declaredExternalPrefixes(): Set<string> {
-  const prefixes = new Set<string>();
-  for (const entry of collectJsPluginEntries()) {
-    const resolved = resolveExternalPlugin(entry);
-    if (resolved !== undefined) {
-      prefixes.add(resolved.prefix);
-    }
-  }
-  return prefixes;
-}
-
-// 前缀 → プラグインが公開する全ルール名。
-async function buildExternalPlugins(): Promise<Record<string, string[]>> {
-  // 前缀で重複排除（overrides の storybook 等）してから並列に import する。
+// 前缀 → specifier（overrides の storybook 等は前缀で重複排除）。import せず sync に列挙する。
+// これを it.each のデータ源にすることで、top-level await なしに動的 import をテスト内へ遅延できる。
+function collectExternalPluginSpecifiers(): Map<string, string> {
   const byPrefix = new Map<string, string>();
   for (const entry of collectJsPluginEntries()) {
     const resolved = resolveExternalPlugin(entry);
@@ -84,16 +72,16 @@ async function buildExternalPlugins(): Promise<Record<string, string[]>> {
       byPrefix.set(resolved.prefix, resolved.specifier);
     }
   }
-  const loaded = await Promise.all(
-    [...byPrefix].map(async ([prefix, specifier]) => {
-      const mod = (await import(specifier)) as {
-        default?: PluginLike;
-      } & PluginLike;
-      const plugin = mod.default ?? mod;
-      return [prefix, Object.keys(plugin.rules ?? {})] as const;
-    }),
-  );
-  return Object.fromEntries(loaded);
+  return byPrefix;
+}
+
+// specifier のプラグインが公開する全ルール名。
+async function loadPluginRules(specifier: string): Promise<string[]> {
+  const mod = (await import(specifier)) as {
+    default?: PluginLike;
+  } & PluginLike;
+  const plugin = mod.default ?? mod;
+  return Object.keys(plugin.rules ?? {});
 }
 
 // top-level と overrides 両方の rules キーを集める（storybook は overrides にのみ現れる）。
@@ -121,21 +109,20 @@ function untriagedRules(
     .filter((key) => !configured.has(key) && !IGNORED_RULES.has(key));
 }
 
-const externalPlugins = await buildExternalPlugins();
+const externalPluginSpecifiers = collectExternalPluginSpecifiers();
 
 describe("oxlint config ↔ プラグイン整合性 (前方ドリフト検出)", () => {
   const configured = collectConfiguredRuleNames();
 
-  it("config 宣言の外部 jsPlugin を全て読み込めている", () => {
-    const declared = declaredExternalPrefixes();
+  it("config 宣言の外部 jsPlugin が 1 つ以上ある", () => {
     // 0 件だと it.each が空になり素通りするためのガード。
-    expect(declared.size).toBeGreaterThan(0);
-    expect(new Set(Object.keys(externalPlugins))).toStrictEqual(declared);
+    expect(externalPluginSpecifiers.size).toBeGreaterThan(0);
   });
 
-  it.each(Object.entries(externalPlugins))(
+  it.each([...externalPluginSpecifiers])(
     "%s の全公開ルールが設定済 or 許可リストにある",
-    (prefix, ruleNames) => {
+    async (prefix, specifier) => {
+      const ruleNames = await loadPluginRules(specifier);
       // import 形状の退行で空配列＝素通りになるのを防ぐ。
       expect(
         ruleNames.length,
