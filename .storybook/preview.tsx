@@ -1,9 +1,7 @@
 import type { Preview } from "@storybook/nextjs-vite";
 import locale from "axe-core/locales/ja.json";
-import { initialize, mswLoader } from "msw-storybook-addon";
+import { mswLoader } from "msw-storybook-addon/csf3";
 import { SbProvider } from "./SbProvider";
-
-initialize({ onUnhandledRequest: "bypass" });
 
 const preview: Preview = {
   tags: ["autodocs"],
@@ -26,7 +24,7 @@ const preview: Preview = {
       test: "todo",
     },
   },
-  loaders: [mswLoader],
+  loaders: [mswLoader()],
   decorators: [
     (Story) => (
       <SbProvider>
