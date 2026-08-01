@@ -9,7 +9,11 @@ const meta = {
     docs: {
       story: { inline: false, iframeHeight: 400 },
     },
-    msw: { handlers },
+  },
+  // meta の beforeEach は story の beforeEach より先に走るため、story 側の
+  // msw.use() が後勝ちで上書きする。
+  beforeEach({ msw }) {
+    msw.use(...handlers);
   },
 } satisfies Meta<typeof PostList>;
 
@@ -19,40 +23,34 @@ type Story = StoryObj<typeof PostList>;
 export const Default: Story = {};
 
 export const ServerError: Story = {
-  parameters: {
-    msw: {
-      handlers: [
-        http.get("https://jsonplaceholder.typicode.com/posts", () =>
-          HttpResponse.json(
-            { message: "Internal Server Error" },
-            { status: 500 },
-          ),
+  beforeEach({ msw }) {
+    msw.use(
+      http.get("https://jsonplaceholder.typicode.com/posts", () =>
+        HttpResponse.json(
+          { message: "Internal Server Error" },
+          { status: 500 },
         ),
-      ],
-    },
+      ),
+    );
   },
 };
 
 export const NetworkError: Story = {
-  parameters: {
-    msw: {
-      handlers: [
-        http.get("https://jsonplaceholder.typicode.com/posts", () =>
-          HttpResponse.error(),
-        ),
-      ],
-    },
+  beforeEach({ msw }) {
+    msw.use(
+      http.get("https://jsonplaceholder.typicode.com/posts", () =>
+        HttpResponse.error(),
+      ),
+    );
   },
 };
 
 export const Empty: Story = {
-  parameters: {
-    msw: {
-      handlers: [
-        http.get("https://jsonplaceholder.typicode.com/posts", () =>
-          HttpResponse.json([], { status: 200 }),
-        ),
-      ],
-    },
+  beforeEach({ msw }) {
+    msw.use(
+      http.get("https://jsonplaceholder.typicode.com/posts", () =>
+        HttpResponse.json([], { status: 200 }),
+      ),
+    );
   },
 };

@@ -19,7 +19,11 @@
       }
     ],
     "noErrorTruncation": true,
-    "types": ["vitest/globals", "@testing-library/jest-dom"]
+    "types": [
+      "vitest/globals",
+      "@testing-library/jest-dom",
+      "msw-storybook-addon/types"
+    ]
   },
   "include": [
     ".next/dev/types/**/*.ts",
