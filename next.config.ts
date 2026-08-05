@@ -1,14 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig = {
+  cacheComponents: true,
   compiler: {
     reactRemoveProperties: true,
   },
   experimental: {
     authInterrupts: true,
+    cachedNavigations: true,
     globalNotFound: true,
     inlineCss: true,
     optimizePackageImports: ["@radix-ui/react-icons"],
+    requestInsights: true,
     strictRouteTypes: true,
     turbopackPluginRuntimeStrategy: "workerThreads",
     // Turbopack 専用フラグ。Storybook / vitest は Turbopack を通さず next.config.ts を
@@ -17,6 +20,7 @@ const nextConfig = {
     typedEnv: true,
     useOffline: true,
   },
+  partialPrefetching: true,
   poweredByHeader: false,
   reactCompiler: true,
   typedRoutes: true,
