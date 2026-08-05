@@ -242,7 +242,7 @@ export default defineConfig({
         "vitest.config.ts",
         "vitest.globalSetup.ts",
         // Next.js 規約ファイル (vitest.config.ts と同じ brace glob スタイル)
-        "src/**/{default,error,forbidden,global-error,layout,loading,not-found,page,template,unauthorized}.tsx",
+        "src/**/{default,error,forbidden,global-error,global-not-found,layout,loading,not-found,page,template,unauthorized}.tsx",
         "src/**/{instrumentation-client,instrumentation,proxy,sitemap}.ts",
         "tools/oxlint-rules/**/*.ts",
       ],

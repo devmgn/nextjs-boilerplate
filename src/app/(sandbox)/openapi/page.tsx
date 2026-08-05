@@ -1,16 +1,11 @@
-import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
-import { PostList } from "./_components/PostList";
-import { getPostsQueryOptions } from "../../../api/queries/post";
-import { getQueryClient } from "../../../lib/getQueryClient";
+import { Suspense } from "react";
+import { PostListContainer } from "./_components/PostListContainer";
+import { Spinner } from "../../../components/Spinner";
 
 export default function Page() {
-  const queryClient = getQueryClient();
-
-  void queryClient.prefetchQuery(getPostsQueryOptions());
-
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <PostList />
-    </HydrationBoundary>
+    <Suspense fallback={<Spinner />}>
+      <PostListContainer />
+    </Suspense>
   );
 }
