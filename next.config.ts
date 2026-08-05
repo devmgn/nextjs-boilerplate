@@ -14,6 +14,7 @@ const nextConfig = {
     // Turbopack 専用フラグ。Storybook / vitest は Turbopack を通さず next.config.ts を
     // 読むため、無条件に true にすると Next 側の検証で throw する。
     turbopackRustReactCompiler: Boolean(process.env.TURBOPACK),
+    typedEnv: true,
     useOffline: true,
   },
   poweredByHeader: false,
