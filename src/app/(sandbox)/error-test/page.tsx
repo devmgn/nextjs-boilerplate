@@ -57,7 +57,12 @@ export default function ErrorTestPage() {
           <p className="mb-4 text-sm text-gray-600">
             非同期エラーはErrorBoundaryではキャッチされないため、try-catchで処理します。
           </p>
-          <Button disabled={isLoading} onClick={() => void handleAsyncError()}>
+          <Button
+            disabled={isLoading}
+            onClick={() => {
+              void handleAsyncError();
+            }}
+          >
             {isLoading ? "Loading..." : "Trigger Async Error"}
           </Button>
           {asyncError !== null && (
