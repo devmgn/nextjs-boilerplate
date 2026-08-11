@@ -1,4 +1,5 @@
 {/* @meta */}
+import { Fragment } from "react";
 import { Meta, ColorPalette, ColorItem } from "@storybook/addon-docs/blocks";
 
 <Meta title="Design Tokens/M3 Overview" />
@@ -311,23 +312,48 @@ M3 Type Scale は5カテゴリ x 3サイズの15段階で構成。Display/Headli
 
 `text-*` 1クラスで font-size + line-height + letter-spacing + font-weight が全て自動適用。
 
-| Class              | size | height | spacing | weight |
-| ------------------ | ---- | ------ | ------- | ------ |
-| `text-display-lg`  | 57px | 64px   | -0.25px | 400    |
-| `text-display-md`  | 45px | 52px   | 0px     | 400    |
-| `text-display-sm`  | 36px | 44px   | 0px     | 400    |
-| `text-headline-lg` | 32px | 40px   | 0px     | 400    |
-| `text-headline-md` | 28px | 36px   | 0px     | 400    |
-| `text-headline-sm` | 24px | 32px   | 0px     | 400    |
-| `text-title-lg`    | 22px | 28px   | 0px     | 500    |
-| `text-title-md`    | 16px | 24px   | 0.15px  | 500    |
-| `text-title-sm`    | 14px | 20px   | 0.1px   | 500    |
-| `text-body-lg`     | 16px | 24px   | 0.5px   | 400    |
-| `text-body-md`     | 14px | 20px   | 0.25px  | 400    |
-| `text-body-sm`     | 12px | 16px   | 0.4px   | 400    |
-| `text-label-lg`    | 14px | 20px   | 0.1px   | 500    |
-| `text-label-md`    | 12px | 16px   | 0.5px   | 500    |
-| `text-label-sm`    | 11px | 16px   | 0.5px   | 500    |
+{/* [class, size, height, spacing, weight] */}
+
+<table>
+  <thead>
+    <tr>
+      <th>Class</th>
+      <th>size</th>
+      <th>height</th>
+      <th>spacing</th>
+      <th>weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    {[
+      ["text-display-lg", "57px", "64px", "-0.25px", "400"],
+      ["text-display-md", "45px", "52px", "0px", "400"],
+      ["text-display-sm", "36px", "44px", "0px", "400"],
+      ["text-headline-lg", "32px", "40px", "0px", "400"],
+      ["text-headline-md", "28px", "36px", "0px", "400"],
+      ["text-headline-sm", "24px", "32px", "0px", "400"],
+      ["text-title-lg", "22px", "28px", "0px", "500"],
+      ["text-title-md", "16px", "24px", "0.15px", "500"],
+      ["text-title-sm", "14px", "20px", "0.1px", "500"],
+      ["text-body-lg", "16px", "24px", "0.5px", "400"],
+      ["text-body-md", "14px", "20px", "0.25px", "400"],
+      ["text-body-sm", "12px", "16px", "0.4px", "400"],
+      ["text-label-lg", "14px", "20px", "0.1px", "500"],
+      ["text-label-md", "12px", "16px", "0.5px", "500"],
+      ["text-label-sm", "11px", "16px", "0.5px", "500"],
+    ].map(([cls, size, height, spacing, weight]) => (
+      <tr key={cls}>
+        <td>
+          <code>{cls}</code>
+        </td>
+        <td>{size}</td>
+        <td>{height}</td>
+        <td>{spacing}</td>
+        <td>{weight}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
 
 ---
 
@@ -335,19 +361,53 @@ M3 Type Scale は5カテゴリ x 3サイズの15段階で構成。Display/Headli
 
 コンポーネントで使用しているセマンティックトークンとM3ロールの対応表。
 
-| Token                    | M3 Role                  | Tailwind Class                |
-| ------------------------ | ------------------------ | ----------------------------- |
-| `background`             | `surface`                | `bg-background`               |
-| `foreground`             | `on-surface`             | `text-foreground`             |
-| `primary`                | `primary`                | `bg-primary`                  |
-| `primary-foreground`     | `on-primary`             | `text-primary-foreground`     |
-| `secondary`              | `secondary-container`    | `bg-secondary`                |
-| `secondary-foreground`   | `on-secondary-container` | `text-secondary-foreground`   |
-| `destructive`            | `error`                  | `bg-destructive`              |
-| `destructive-foreground` | `on-error`               | `text-destructive-foreground` |
-| `card`                   | `surface-container-low`  | `bg-card`                     |
-| `accent`                 | `secondary-container`    | `bg-accent`                   |
-| `muted`                  | `surface-container`      | `bg-muted`                    |
-| `muted-foreground`       | `on-surface-variant`     | `text-muted-foreground`       |
-| `input` / `border`       | `outline-variant`        | `border-input`                |
-| `ring`                   | `primary`                | `ring-ring`                   |
+{/* [tokens, m3Role, tailwindClass] — tokens は " / " 区切りで複数指定可 */}
+
+<table>
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>M3 Role</th>
+      <th>Tailwind Class</th>
+    </tr>
+  </thead>
+  <tbody>
+    {[
+      ["background", "surface", "bg-background"],
+      ["foreground", "on-surface", "text-foreground"],
+      ["primary", "primary", "bg-primary"],
+      ["primary-foreground", "on-primary", "text-primary-foreground"],
+      ["secondary", "secondary-container", "bg-secondary"],
+      [
+        "secondary-foreground",
+        "on-secondary-container",
+        "text-secondary-foreground",
+      ],
+      ["destructive", "error", "bg-destructive"],
+      ["destructive-foreground", "on-error", "text-destructive-foreground"],
+      ["card", "surface-container-low", "bg-card"],
+      ["accent", "secondary-container", "bg-accent"],
+      ["muted", "surface-container", "bg-muted"],
+      ["muted-foreground", "on-surface-variant", "text-muted-foreground"],
+      ["input / border", "outline-variant", "border-input"],
+      ["ring", "primary", "ring-ring"],
+    ].map(([tokens, role, cls]) => (
+      <tr key={cls}>
+        <td>
+          {tokens.split(" / ").map((name, i) => (
+            <Fragment key={name}>
+              {i > 0 && " / "}
+              <code>{name}</code>
+            </Fragment>
+          ))}
+        </td>
+        <td>
+          <code>{role}</code>
+        </td>
+        <td>
+          <code>{cls}</code>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>
