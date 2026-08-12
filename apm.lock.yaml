@@ -1,6 +1,6 @@
 lockfile_version: '1'
-generated_at: '2026-07-24T22:12:19.931924+00:00'
-apm_version: 0.26.0
+generated_at: '2026-08-12T19:00:05.247921+00:00'
+apm_version: 0.28.0
 dependencies:
 - repo_url: antfu/skills
   name: vitest
@@ -60,8 +60,8 @@ dependencies:
 - repo_url: vercel-labs/agent-skills
   name: vercel-composition-patterns
   host: github.com
-  resolved_commit: 7c180d9044c9ae2b442b567aad4e42a28dd5ed62
-  resolved_ref: 7c180d9044c9ae2b442b567aad4e42a28dd5ed62
+  resolved_commit: b8caa260a420a73042e35521de4b5c8baf6446cc
+  resolved_ref: b8caa260a420a73042e35521de4b5c8baf6446cc
   version: unknown
   virtual_path: skills/composition-patterns
   is_virtual: true
@@ -101,8 +101,8 @@ dependencies:
 - repo_url: vercel-labs/agent-skills
   name: vercel-react-best-practices
   host: github.com
-  resolved_commit: 7c180d9044c9ae2b442b567aad4e42a28dd5ed62
-  resolved_ref: 7c180d9044c9ae2b442b567aad4e42a28dd5ed62
+  resolved_commit: b8caa260a420a73042e35521de4b5c8baf6446cc
+  resolved_ref: b8caa260a420a73042e35521de4b5c8baf6446cc
   version: unknown
   virtual_path: skills/react-best-practices
   is_virtual: true
@@ -266,8 +266,8 @@ dependencies:
 - repo_url: vercel-labs/agent-skills
   name: vercel-react-view-transitions
   host: github.com
-  resolved_commit: 7c180d9044c9ae2b442b567aad4e42a28dd5ed62
-  resolved_ref: 7c180d9044c9ae2b442b567aad4e42a28dd5ed62
+  resolved_commit: b8caa260a420a73042e35521de4b5c8baf6446cc
+  resolved_ref: b8caa260a420a73042e35521de4b5c8baf6446cc
   version: unknown
   virtual_path: skills/react-view-transitions
   is_virtual: true
@@ -284,19 +284,19 @@ dependencies:
   - .claude/skills/react-view-transitions/references/patterns.md
   deployed_file_hashes:
     .claude/skills/react-view-transitions/AGENTS.md: sha256:847e68771417af6cffd9d3ecd4c9412dae1b2bda559912681e17d5d9aa8da435
-    .claude/skills/react-view-transitions/README.md: sha256:32f645ec37e9eaaa34c874e29e99c7447814e0d0f60218628ae2976f1aa74651
-    .claude/skills/react-view-transitions/SKILL.md: sha256:8be50324a2c0c168cd104756a3ae92e28522e96d4ed2fc1a034f1cbf6b626983
+    .claude/skills/react-view-transitions/README.md: sha256:8e7fd66dd5747c98ce727174bcccfd0db9b5c34621b8011693d267bd384d0714
+    .claude/skills/react-view-transitions/SKILL.md: sha256:d596c05e53b96a3475a9ab303a7a23f13f1153cb169c1d1b3b882094f58570bc
     .claude/skills/react-view-transitions/metadata.json: sha256:b1a5ae09f3904dc83dab79f518d033bd98f1e2f55caabfdb5beeeaaf0ca5e4c2
     .claude/skills/react-view-transitions/references/css-recipes.md: sha256:41f880f3a62b53b46f1ccc540401e4bc19522dfbd1ecd65d18d0b72fec44e829
     .claude/skills/react-view-transitions/references/implementation.md: sha256:f36958ff58ed3b8b7da008df5a59e99a67f46b3a6f590274fdc44b89f017f05d
-    .claude/skills/react-view-transitions/references/nextjs.md: sha256:fccba72d7473cbca659242bd763ebc02201795e6f4d96d0680864a12bf53e028
+    .claude/skills/react-view-transitions/references/nextjs.md: sha256:1d595c3a9d5270d958db9f2924013ac0602d024d0473582b68c61363b06f7856
     .claude/skills/react-view-transitions/references/patterns.md: sha256:970f94c2afb086b8b3ffafd05d223ba71595f20ecd6db671b458db88b247e627
-  content_hash: sha256:b0f4f503dd4c42d0eb37eabe69a4b5327a0a21ed5bcb903d4109c2f6e9759486
+  content_hash: sha256:aa4cf8be5be552c0365780ff3a38dbe2e2a89a305299f26a753bcad653aa95e6
 - repo_url: vercel-labs/agent-skills
   name: web-design-guidelines
   host: github.com
-  resolved_commit: 7c180d9044c9ae2b442b567aad4e42a28dd5ed62
-  resolved_ref: 7c180d9044c9ae2b442b567aad4e42a28dd5ed62
+  resolved_commit: b8caa260a420a73042e35521de4b5c8baf6446cc
+  resolved_ref: b8caa260a420a73042e35521de4b5c8baf6446cc
   version: unknown
   virtual_path: skills/web-design-guidelines
   is_virtual: true
@@ -1162,7 +1162,7 @@ deployments:
   owners:
   - vercel-labs/agent-skills/skills/react-view-transitions
   active_owner: vercel-labs/agent-skills/skills/react-view-transitions
-  content_hash: sha256:32f645ec37e9eaaa34c874e29e99c7447814e0d0f60218628ae2976f1aa74651
+  content_hash: sha256:8e7fd66dd5747c98ce727174bcccfd0db9b5c34621b8011693d267bd384d0714
 - kind: project-relative
   target: claude
   value: .claude/skills/react-view-transitions/SKILL.md
@@ -1171,7 +1171,7 @@ deployments:
   owners:
   - vercel-labs/agent-skills/skills/react-view-transitions
   active_owner: vercel-labs/agent-skills/skills/react-view-transitions
-  content_hash: sha256:8be50324a2c0c168cd104756a3ae92e28522e96d4ed2fc1a034f1cbf6b626983
+  content_hash: sha256:d596c05e53b96a3475a9ab303a7a23f13f1153cb169c1d1b3b882094f58570bc
 - kind: project-relative
   target: claude
   value: .claude/skills/react-view-transitions/metadata.json
@@ -1207,7 +1207,7 @@ deployments:
   owners:
   - vercel-labs/agent-skills/skills/react-view-transitions
   active_owner: vercel-labs/agent-skills/skills/react-view-transitions
-  content_hash: sha256:fccba72d7473cbca659242bd763ebc02201795e6f4d96d0680864a12bf53e028
+  content_hash: sha256:1d595c3a9d5270d958db9f2924013ac0602d024d0473582b68c61363b06f7856
 - kind: project-relative
   target: claude
   value: .claude/skills/react-view-transitions/references/patterns.md
