@@ -3,6 +3,16 @@
 import { useState } from "react";
 import { Button } from "../../../components/Button";
 
+// throw を伴う失敗する API 呼び出しのシミュレーション。
+// React Compiler は try/catch 内の ThrowStatement を lower できないため、
+// コンポーネント外の通常関数に切り出して throw をここに閉じ込める。
+async function requestThatFails(): Promise<never> {
+  await new Promise((resolve) => {
+    setTimeout(resolve, 1000);
+  });
+  throw new Error("API request failed: 500 Internal Server Error");
+}
+
 export default function ErrorTestPage() {
   const [shouldError, setShouldError] = useState(false);
   const [asyncError, setAsyncError] = useState<Error | null>(null);
@@ -17,18 +27,15 @@ export default function ErrorTestPage() {
     setAsyncError(null);
 
     try {
-      // 実際のAPI呼び出しをシミュレート
-      await new Promise((resolve) => {
-        setTimeout(resolve, 1000);
-      });
-      throw new Error("API request failed: 500 Internal Server Error");
+      await requestThatFails();
     } catch (error) {
       // 非同期エラーはErrorBoundaryでキャッチされないため、
       // try-catchで明示的にハンドリングする必要がある
       setAsyncError(Error.isError(error) ? error : new Error("Unknown error"));
-    } finally {
-      setIsLoading(false);
     }
+    // catch が再 throw しないため finally と等価。
+    // React Compiler は finally 節を lower できないので try/catch の後ろに置く。
+    setIsLoading(false);
   };
 
   const handleRenderError = () => {
