@@ -16,7 +16,13 @@ export async function PostListContainer() {
 
   const queryClient = getQueryClient();
 
-  void queryClient.prefetchQuery(getPostsQueryOptions());
+  void (async () => {
+    try {
+      await queryClient.query(getPostsQueryOptions());
+    } catch {
+      // prefetch 失敗はクライアント側の useSuspenseQuery で再取得・エラー処理される
+    }
+  })();
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
