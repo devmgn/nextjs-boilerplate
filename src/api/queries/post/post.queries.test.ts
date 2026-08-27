@@ -28,7 +28,7 @@ describe("getPostsQueryOptions", () => {
       http.get(`${BASE_URL}/posts`, () => HttpResponse.json(mockPosts)),
     );
 
-    const result = await queryClient.fetchQuery(getPostsQueryOptions());
+    const result = await queryClient.query(getPostsQueryOptions());
 
     expect(result).toHaveLength(2);
     expect(result[0]).toMatchObject({
@@ -50,9 +50,7 @@ describe("getPostsQueryOptions", () => {
       }),
     );
 
-    const result = await queryClient.fetchQuery(
-      getPostsQueryOptions({ userId: 2 }),
-    );
+    const result = await queryClient.query(getPostsQueryOptions({ userId: 2 }));
 
     expect(result).toHaveLength(1);
     expect(result[0]?.userId).toBe(2);
@@ -80,15 +78,15 @@ describe("getPostsQueryOptions", () => {
       ),
     );
 
-    await expect(
-      queryClient.fetchQuery(getPostsQueryOptions()),
-    ).rejects.toThrow(ResponseError);
+    await expect(queryClient.query(getPostsQueryOptions())).rejects.toThrow(
+      ResponseError,
+    );
   });
 
   it("空配列が返された場合に正しく処理されること", async () => {
     server.use(http.get(`${BASE_URL}/posts`, () => HttpResponse.json([])));
 
-    const result = await queryClient.fetchQuery(getPostsQueryOptions());
+    const result = await queryClient.query(getPostsQueryOptions());
 
     expect(result).toStrictEqual([]);
   });
