@@ -24,6 +24,7 @@ export interface WebStorageStore {
 
 /**
  * ストアの種類を表す discriminator。
+ *
  * - `"localStorage"` → `window.localStorage`（他タブの `storage` イベントで同期）
  * - `"sessionStorage"` → `window.sessionStorage`（同一タブに閉じるため cross-tab 同期は不要）
  */
@@ -214,8 +215,9 @@ function createStore(storageType: StorageType): WebStorageStore {
 
   /**
    * `storage` イベントの購読セットアップ関数。
-   * - localStorage: 初回 subscribe 時に window リスナーを 1 度だけ install する
-   * - sessionStorage: 同一タブで完結するため何もしない（cross-tab 同期が無い）
+   *
+   * - LocalStorage: 初回 subscribe 時に window リスナーを 1 度だけ install する
+   * - SessionStorage: 同一タブで完結するため何もしない（cross-tab 同期が無い）
    *
    * ファクトリ時点で関数自体を分岐させることで、呼び出し側は `isLocal` を気にしない。
    */
