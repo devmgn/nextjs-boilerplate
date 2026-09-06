@@ -9,7 +9,7 @@ paths:
 ## Stack
 
 - **Storybook 10** with `@storybook/nextjs-vite` framework
-- Addons: a11y, docs, vitest, MCP (`@storybook/addon-mcp` with dev + docs toolsets)
+- Addons: a11y, docs, vitest, MCP (`@storybook/addon-mcp`)
 - MSW integration: `msw-storybook-addon` v3 — `loaders: [mswLoader()]` imported from `msw-storybook-addon/csf3` (CSF 3.0 path)
 - a11y test mode: `"todo"` (shown in test UI only)
 - Autodocs enabled via tags: `["autodocs"]`
@@ -68,9 +68,30 @@ Unhandled requests print `[MSW] Warning: intercepted a request without a matchin
 
 ## MCP Integration
 
-Use `storybook-mcp` tools: `list-all-documentation`, `get-documentation`, `get-documentation-for-story`, `get-storybook-story-instructions`, `preview-stories`, `run-story-tests`.
+`@storybook/addon-mcp` serves the MCP endpoint at `http://localhost:6006/mcp`, registered as `storybook-mcp` in `.mcp.json`. Tools are grouped into toolsets, toggled via `toolsets` in `.storybook/main.ts` (each defaults to `true`).
 
-**Never hallucinate component properties.** Always verify via `get-documentation` before using any property. Always run `get-storybook-story-instructions` before creating/updating stories. Check work with `run-story-tests`.
+| Toolset | Tool                               | Purpose                                                    |
+| ------- | ---------------------------------- | ---------------------------------------------------------- |
+| dev     | `stories-changed`                  | Stories affected by local file changes                     |
+| dev     | `stories-find-by-component`        | Map component source files to the stories that render them |
+| dev     | `get-storybook-story-instructions` | Story authoring and interaction test conventions           |
+| dev     | `stories-preview`                  | Render story previews / return preview URLs                |
+| dev     | `review-create`                    | Publish a curated review page                              |
+| docs    | `docs-list`                        | Component index and documentation entries                  |
+| docs    | `docs-show`                        | Component documentation with props and story samples       |
+| docs    | `docs-show-story`                  | A single story with its documentation                      |
+| test    | `test-run`                         | Run tests for the given stories, including a11y results    |
+
+`review-create` is registered for direct MCP clients only when `features.experimentalReview` is on; the `storybook ai` CLI channel gets it by default.
+
+The docs toolset needs a components manifest. `@storybook/nextjs-vite` emits one automatically, so the `features.componentsManifest` flag from the install docs is not required here.
+
+### Workflow
+
+1. **Never hallucinate component properties.** Resolve the component with `docs-list`, then verify every prop via `docs-show`. Never read props from source or type definitions.
+2. Run `get-storybook-story-instructions` before creating or updating stories.
+3. After changing anything that affects how the UI looks, surface it with `stories-preview`. A shared file has no stories of its own — preview the stories of the components that consume it.
+4. Validate with `test-run`. Typecheck and lint do not replace story tests.
 
 ## Key Points
 
