@@ -68,9 +68,11 @@ Unhandled requests print `[MSW] Warning: intercepted a request without a matchin
 
 ## MCP Integration
 
-Use `storybook-mcp` tools: `list-all-documentation`, `get-documentation`, `get-documentation-for-story`, `get-storybook-story-instructions`, `preview-stories`, `run-story-tests`.
+Use `storybook-mcp` tools: `docs-list`, `docs-show`, `docs-show-story`, `get-storybook-story-instructions`, `stories-preview`, `stories-changed`, `stories-find-by-component`, `test-run`.
 
-**Never hallucinate component properties.** Always verify via `get-documentation` before using any property. Always run `get-storybook-story-instructions` before creating/updating stories. Check work with `run-story-tests`.
+`review-create` is registered only when `features.experimentalReview` is on (direct MCP clients); the `storybook ai` CLI channel gets it by default.
+
+**Never hallucinate component properties.** Always verify via `docs-show` before using any property. Always run `get-storybook-story-instructions` before creating/updating stories. Check work with `test-run`.
 
 ## Key Points
 
