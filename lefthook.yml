@@ -10,11 +10,11 @@ pre-commit:
         fi
     - name: oxlint
       glob: "*.{ts,tsx,js,jsx,mjs,cjs}"
-      run: pnpm oxlint --fix {staged_files}
+      run: pnpm oxlint --fix --no-error-on-unmatched-pattern {staged_files}
       stage_fixed: true
     - name: oxfmt
       glob: "*"
-      run: pnpm oxfmt --write {staged_files}
+      run: pnpm oxfmt --write --no-error-on-unmatched-pattern {staged_files}
       stage_fixed: true
     - name: test
       glob: "*.{ts,tsx}"
