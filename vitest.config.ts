@@ -22,6 +22,7 @@ export default defineConfig({
         statements: 80,
       },
     },
+    fsModuleCache: true,
     testTimeout: 10_000,
     hookTimeout: 10_000,
     restoreMocks: true,
