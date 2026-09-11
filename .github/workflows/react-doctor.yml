@@ -1,0 +1,49 @@
+# React Doctor — security / performance / correctness / a11y / bundle-size /
+# architecture の問題を React コードベースから検出する。
+#
+# Docs: https://www.react.doctor/ci
+# Source: https://github.com/millionco/react-doctor
+
+name: React Doctor
+
+on:
+  # PR の変更ファイルを走査し、target branch の merge base と比較して
+  # 新規に混入した問題だけを sticky comment で報告する。
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  # main への push ごとに走査し、health score の推移と
+  # レビューをすり抜けた regression を追跡する。
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+  statuses: write
+
+jobs:
+  ReactDoctor:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      # fetch-depth: 0 は merge base 算出に必要。shallow checkout だと
+      # base と比較できず、変更ファイル内の既存問題まで報告してしまう。
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      # 既定は advisory（blocking: none）。sticky comment / inline review comment /
+      # commit status は出すが check は落とさない。signal を信頼できるようになったら
+      # blocking: error（error 検出で fail）または warning（全検出で fail）に上げる。
+      # 全オプション: https://www.react.doctor/ci
+      - name: Run React Doctor
+        uses: millionco/react-doctor@013f7373f91a3b9e68bd1dc7d4d354f4b041b117 # v2.2.9
