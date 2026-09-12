@@ -41,9 +41,12 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      # 既定は advisory（blocking: none）。sticky comment / inline review comment /
-      # commit status は出すが check は落とさない。signal を信頼できるようになったら
-      # blocking: error（error 検出で fail）または warning（全検出で fail）に上げる。
+      # blocking: error — error severity の検出で check を落とす。
+      # PR では merge base との差分のみを走査するため、既存の問題ではなく
+      # その PR が新たに混入させた error だけが fail 要因になる。
+      # warning は落とさない（誤検出の切り分けコストが高いものを含むため）。
       # 全オプション: https://www.react.doctor/ci
       - name: Run React Doctor
         uses: millionco/react-doctor@013f7373f91a3b9e68bd1dc7d4d354f4b041b117 # v2.2.9
+        with:
+          blocking: error
