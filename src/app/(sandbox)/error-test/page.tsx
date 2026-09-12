@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ErrorThrower } from "./_components/ErrorThrower";
 import { Button } from "../../../components/Button";
 
 // throw を伴う失敗する API 呼び出しのシミュレーション。
@@ -17,10 +18,6 @@ export default function ErrorTestPage() {
   const [shouldError, setShouldError] = useState(false);
   const [asyncError, setAsyncError] = useState<Error | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-
-  if (shouldError) {
-    throw new Error("This is a test error to demonstrate ErrorBoundary!");
-  }
 
   const handleAsyncError = async () => {
     setIsLoading(true);
@@ -55,6 +52,7 @@ export default function ErrorTestPage() {
             レンダリング中にエラーを発生させます。ErrorBoundaryがキャッチします。
           </p>
           <Button onClick={handleRenderError}>Trigger Render Error</Button>
+          {shouldError && <ErrorThrower />}
         </div>
 
         <div className="rounded-lg border border-gray-200 p-4">
