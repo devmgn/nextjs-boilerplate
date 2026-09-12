@@ -1,4 +1,10 @@
 minimumReleaseAge: 1440
+trustPolicy: no-downgrade
+trustPolicyExclude:
+  # semver@6.3.1 (2023 年公開、@babel/core / styled-jsx 経由の transitive dep) は
+  # 署名のみで provenance を持たない。同一ツリーの semver@7.x が provenance 付きのため
+  # no-downgrade に引っかかるが、乗っ取りではなく旧メジャー系列の legacy 公開が理由。
+  - semver@6.3.1
 allowBuilds:
   esbuild: true
   lefthook: true
