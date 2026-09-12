@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { selectReactDoctorRules } from "./reactDoctorRules.ts";
 import oxlintConfig from "../../oxlint.config.ts";
 
 // 外部 jsPlugin（tanstack / storybook）は config にルールを手動列挙しているため、
@@ -14,6 +15,11 @@ type JsPluginEntry = string | { name?: string; specifier: string };
 // 現状は tanstack / storybook の全公開ルールを config に列挙済みのため空。
 // triage の結果「採用しない」と判断した外部ルールはここに理由付きで追加する。
 const IGNORED_RULES = new Set<string>();
+
+// react-doctor は 900 超のルールを持ち、大半がこのリポジトリのスタック外か
+// ネイティブ oxlint と重複する。全件列挙ではなく reactDoctorRules.ts の算出結果と
+// 突き合わせる専用テストで担保するため、総当たり検査からは除外する。
+const GENERATED_RULE_PREFIXES = new Set(["react-doctor/"]);
 
 // プラグイン specifier → oxlint の前缀（eslint-plugin-x → x ／ @scope/eslint-plugin-x → @scope/x）。
 function stripEslintPluginPrefix(name: string): string {
@@ -68,7 +74,11 @@ function collectExternalPluginSpecifiers(): Map<string, string> {
   const byPrefix = new Map<string, string>();
   for (const entry of collectJsPluginEntries()) {
     const resolved = resolveExternalPlugin(entry);
-    if (resolved !== undefined && !byPrefix.has(resolved.prefix)) {
+    if (
+      resolved !== undefined &&
+      !byPrefix.has(resolved.prefix) &&
+      !GENERATED_RULE_PREFIXES.has(resolved.prefix)
+    ) {
       byPrefix.set(resolved.prefix, resolved.specifier);
     }
   }
@@ -136,4 +146,24 @@ describe("oxlint config ↔ プラグイン整合性 (前方ドリフト検出)"
       ).toStrictEqual([]);
     },
   );
+});
+
+describe("oxlint config ↔ react-doctor 生成結果", () => {
+  // config の react-doctor ルールは `pnpm generate-oxlint-rules` の出力。
+  // 手編集やプラグイン更新で乖離したら、再生成を促すために落とす。
+  it("config の react-doctor ルールが生成結果と一致する", () => {
+    const configured = Object.fromEntries(
+      Object.entries(oxlintConfig.rules).filter(([name]) =>
+        name.startsWith("react-doctor/"),
+      ),
+    );
+    const generated = selectReactDoctorRules();
+
+    // 選定ロジックの退行で空になり素通りするのを防ぐ。
+    expect(Object.keys(generated).length).toBeGreaterThan(0);
+    expect(
+      configured,
+      "`pnpm generate-oxlint-rules` を実行して oxlint.config.ts を更新してください",
+    ).toStrictEqual(generated);
+  });
 });
