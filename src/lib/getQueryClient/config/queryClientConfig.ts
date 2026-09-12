@@ -5,7 +5,7 @@ import {
   defaultShouldDehydrateQuery,
 } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { loading } from "../../../components/LoadingOverlay";
+import { loadingStore as loading } from "../../../components/LoadingOverlay/utils/loadingStore";
 
 function handleCacheError(
   error: Error,
