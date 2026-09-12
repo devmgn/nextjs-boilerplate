@@ -3,7 +3,9 @@
   "ignore": ["src/api/openapi/**", "src/mocks/**"],
   "ignoreBinaries": ["openapiconfig.json", "actionlint", "zizmor", "apm"],
   "ignoreIssues": {
-    "tools/oxlint-rules/*/*.ts": ["files"],
+    // knip は `./foo.ts` のような拡張子付き import を解決できず、この配下を未使用と誤検出する
+    // （allowImportingTsExtensions 前提のディレクトリ）。
+    "tools/oxlint-rules/**/*.ts": ["files"],
   },
   "vitest": {
     "entry": ["vitest.globalSetup.ts", "vitest.setup.ts"],
