@@ -23,8 +23,11 @@ jobs:
         with:
           persist-credentials: false
 
+      # zizmor は自リポジトリ参照に `$/` 構文を推奨するが、actionlint 1.7.12
+      # （現時点の最新）が未知の形式として弾くため `./` のまま据え置く。
+      # actionlint が対応したら ignore を外して `$/.github/actions/setup` へ移行する。
       - name: Setup Project
-        uses: ./.github/actions/setup
+        uses: ./.github/actions/setup # zizmor: ignore[self-repository]
 
       - name: Test (unit)
         run: pnpm test:unit
