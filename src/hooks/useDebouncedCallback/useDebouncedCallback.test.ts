@@ -166,4 +166,40 @@ describe(useDebouncedCallback, () => {
     // 最新の callback (value=1) で、保持された引数 "args" で発火する
     expect(spy).toHaveBeenCalledExactlyOnceWith(1, "args");
   });
+
+  it("flush が最後に渡された引数で実行されること", () => {
+    const callback = vi.fn();
+    const { result } = renderHook(() => useDebouncedCallback(callback, 500));
+
+    act(() => {
+      result.current("first");
+      result.current("second");
+      result.current.flush();
+    });
+
+    expect(callback).toHaveBeenCalledExactlyOnceWith("second");
+  });
+
+  it("flush 経路でも最新の callback が使われること", () => {
+    const spy = vi.fn();
+    const { result, rerender } = renderHook(
+      ({ value }) =>
+        useDebouncedCallback((arg: string) => {
+          spy(value, arg);
+        }, 500),
+      { initialProps: { value: 0 } },
+    );
+
+    act(() => {
+      result.current("args");
+    });
+
+    // callback を差し替えてから flush する
+    rerender({ value: 1 });
+    act(() => {
+      result.current.flush();
+    });
+
+    expect(spy).toHaveBeenCalledExactlyOnceWith(1, "args");
+  });
 });
