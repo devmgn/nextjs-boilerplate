@@ -168,7 +168,7 @@ importers:
     dependencies:
       '@hookform/resolvers':
         specifier: 5.9.1
-        version: 5.9.1(@standard-schema/spec@1.1.0)(ajv@8.20.0)(react-hook-form@8.0.0-beta.3(react@19.3.0))(valibot@1.5.0(typescript@7.0.2))(zod@4.6.1)
+        version: 5.9.1(@standard-schema/spec@1.1.0)(ajv@8.20.0)(react-hook-form@8.0.0-beta.3(react@19.3.0))(valibot@1.5.0(typescript@7.0.2))(zod@4.6.4)
       '@radix-ui/react-dialog':
         specifier: 1.1.23
         version: 1.1.23(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -212,8 +212,8 @@ importers:
         specifier: 3.3.1
         version: 3.3.1(tailwind-merge@3.6.0)(tailwindcss@4.3.3)
       zod:
-        specifier: 4.6.1
-        version: 4.6.1
+        specifier: 4.6.4
+        version: 4.6.4
     devDependencies:
       '@faker-js/faker':
         specifier: 10.6.0
@@ -289,7 +289,7 @@ importers:
         version: 2.15.0(@types/node@24.13.4)(typescript@7.0.2)
       msw-auto-mock:
         specifier: 0.32.1
-        version: 0.32.1(@faker-js/faker@10.6.0)(msw@2.15.0(@types/node@24.13.4)(typescript@7.0.2))(openapi-types@12.1.3)(typescript@7.0.2)(zod@4.6.1)
+        version: 0.32.1(@faker-js/faker@10.6.0)(msw@2.15.0(@types/node@24.13.4)(typescript@7.0.2))(openapi-types@12.1.3)(typescript@7.0.2)(zod@4.6.4)
       msw-storybook-addon:
         specifier: 3.0.0
         version: 3.0.0(msw@2.15.0(@types/node@24.13.4)(typescript@7.0.2))(storybook@10.6.0(@types/react@19.3.0)(prettier@3.3.2)(react@19.3.0))
@@ -4791,45 +4791,45 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  zod@4.6.1:
-    resolution: {integrity: sha512-341aRWQsve0rvronKNTqZpjmzdbUDlFuzHaI/XLg/Ej82qffDJRRfBTCuv7+9q/rMjB6LSLyEBnW4InJeMtt/Q==}
+  zod@4.6.4:
+    resolution: {integrity: sha512-AXSD6hvGdvRjajG/l1cC+d6IrhH+sjmPKtYeQdJIK8MFJl3LyClzS+o/YsVC+zQZPupAaeH5skwwm8YqYH7BqA==}
 
 snapshots:
 
   '@adobe/css-tools@4.5.0': {}
 
-  '@ai-sdk/anthropic@3.0.31(zod@4.6.1)':
+  '@ai-sdk/anthropic@3.0.31(zod@4.6.4)':
     dependencies:
       '@ai-sdk/provider': 3.0.6
-      '@ai-sdk/provider-utils': 4.0.11(zod@4.6.1)
-      zod: 4.6.1
+      '@ai-sdk/provider-utils': 4.0.11(zod@4.6.4)
+      zod: 4.6.4
 
-  '@ai-sdk/azure@3.0.24(zod@4.6.1)':
+  '@ai-sdk/azure@3.0.24(zod@4.6.4)':
     dependencies:
-      '@ai-sdk/openai': 3.0.23(zod@4.6.1)
+      '@ai-sdk/openai': 3.0.23(zod@4.6.4)
       '@ai-sdk/provider': 3.0.6
-      '@ai-sdk/provider-utils': 4.0.11(zod@4.6.1)
-      zod: 4.6.1
+      '@ai-sdk/provider-utils': 4.0.11(zod@4.6.4)
+      zod: 4.6.4
 
-  '@ai-sdk/gateway@3.0.29(zod@4.6.1)':
+  '@ai-sdk/gateway@3.0.29(zod@4.6.4)':
     dependencies:
       '@ai-sdk/provider': 3.0.6
-      '@ai-sdk/provider-utils': 4.0.11(zod@4.6.1)
+      '@ai-sdk/provider-utils': 4.0.11(zod@4.6.4)
       '@vercel/oidc': 3.1.0
-      zod: 4.6.1
+      zod: 4.6.4
 
-  '@ai-sdk/openai@3.0.23(zod@4.6.1)':
+  '@ai-sdk/openai@3.0.23(zod@4.6.4)':
     dependencies:
       '@ai-sdk/provider': 3.0.6
-      '@ai-sdk/provider-utils': 4.0.11(zod@4.6.1)
-      zod: 4.6.1
+      '@ai-sdk/provider-utils': 4.0.11(zod@4.6.4)
+      zod: 4.6.4
 
-  '@ai-sdk/provider-utils@4.0.11(zod@4.6.1)':
+  '@ai-sdk/provider-utils@4.0.11(zod@4.6.4)':
     dependencies:
       '@ai-sdk/provider': 3.0.6
       '@standard-schema/spec': 1.1.0
       eventsource-parser: 3.1.1
-      zod: 4.6.1
+      zod: 4.6.4
 
   '@ai-sdk/provider@3.0.6':
     dependencies:
@@ -5136,7 +5136,7 @@ snapshots:
 
   '@faker-js/faker@10.6.0': {}
 
-  '@hookform/resolvers@5.9.1(@standard-schema/spec@1.1.0)(ajv@8.20.0)(react-hook-form@8.0.0-beta.3(react@19.3.0))(valibot@1.5.0(typescript@7.0.2))(zod@4.6.1)':
+  '@hookform/resolvers@5.9.1(@standard-schema/spec@1.1.0)(ajv@8.20.0)(react-hook-form@8.0.0-beta.3(react@19.3.0))(valibot@1.5.0(typescript@7.0.2))(zod@4.6.4)':
     dependencies:
       '@standard-schema/utils': 0.3.0
       react-hook-form: 8.0.0-beta.3(react@19.3.0)
@@ -5144,7 +5144,7 @@ snapshots:
       '@standard-schema/spec': 1.1.0
       ajv: 8.20.0
       valibot: 1.5.0(typescript@7.0.2)
-      zod: 4.6.1
+      zod: 4.6.4
 
   '@humanfs/core@0.19.2':
     dependencies:
@@ -6702,13 +6702,13 @@ snapshots:
 
   acorn@8.18.0: {}
 
-  ai@6.0.62(zod@4.6.1):
+  ai@6.0.62(zod@4.6.4):
     dependencies:
-      '@ai-sdk/gateway': 3.0.29(zod@4.6.1)
+      '@ai-sdk/gateway': 3.0.29(zod@4.6.4)
       '@ai-sdk/provider': 3.0.6
-      '@ai-sdk/provider-utils': 4.0.11(zod@4.6.1)
+      '@ai-sdk/provider-utils': 4.0.11(zod@4.6.4)
       '@opentelemetry/api': 1.9.0
-      zod: 4.6.1
+      zod: 4.6.4
 
   ajv-draft-04@1.0.0(ajv@8.20.0):
     optionalDependencies:
@@ -7252,7 +7252,7 @@ snapshots:
       tinyglobby: 0.2.17
       unbash: 4.0.11
       yaml: 2.9.1
-      zod: 4.6.1
+      zod: 4.6.4
 
   lefthook-darwin-arm64@2.1.12:
     optional: true
@@ -7452,14 +7452,14 @@ snapshots:
 
   ms@2.1.3: {}
 
-  msw-auto-mock@0.32.1(@faker-js/faker@10.6.0)(msw@2.15.0(@types/node@24.13.4)(typescript@7.0.2))(openapi-types@12.1.3)(typescript@7.0.2)(zod@4.6.1):
+  msw-auto-mock@0.32.1(@faker-js/faker@10.6.0)(msw@2.15.0(@types/node@24.13.4)(typescript@7.0.2))(openapi-types@12.1.3)(typescript@7.0.2)(zod@4.6.4):
     dependencies:
-      '@ai-sdk/anthropic': 3.0.31(zod@4.6.1)
-      '@ai-sdk/azure': 3.0.24(zod@4.6.1)
-      '@ai-sdk/openai': 3.0.23(zod@4.6.1)
+      '@ai-sdk/anthropic': 3.0.31(zod@4.6.4)
+      '@ai-sdk/azure': 3.0.24(zod@4.6.4)
+      '@ai-sdk/openai': 3.0.23(zod@4.6.4)
       '@apidevtools/swagger-parser': 10.1.0(openapi-types@12.1.3)
       '@faker-js/faker': 10.6.0
-      ai: 6.0.62(zod@4.6.1)
+      ai: 6.0.62(zod@4.6.4)
       cac: 6.7.14
       cosmiconfig: 9.0.0(typescript@7.0.2)
       lodash: 4.17.23
@@ -8501,4 +8501,4 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  zod@4.6.1: {}
+  zod@4.6.4: {}
