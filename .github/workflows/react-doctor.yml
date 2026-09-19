@@ -30,7 +30,7 @@ permissions:
 
 jobs:
   ReactDoctor:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     steps:
       # fetch-depth: 0 は merge base 算出に必要。shallow checkout だと
