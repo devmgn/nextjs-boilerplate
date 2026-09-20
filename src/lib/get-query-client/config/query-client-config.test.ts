@@ -22,28 +22,28 @@ describe("QUERY_CLIENT_CONFIG", () => {
 
   describe("queryCache onError", () => {
     it("エラー時にtoast.errorが呼ばれること", async () => {
-      await queryClient
-        .query({
+      await expect(
+        queryClient.query({
           queryKey: ["test-error"],
           queryFn: async () => {
             await Promise.reject(new Error("fetch failed"));
           },
         })
-        .catch(() => {});
+      ).rejects.toThrow("fetch failed");
 
       expect(notifySpy).toHaveBeenCalledWith("fetch failed");
     });
 
     it("skipToast: trueのときtoast.errorが呼ばれないこと", async () => {
-      await queryClient
-        .query({
+      await expect(
+        queryClient.query({
           queryKey: ["test-skip"],
           queryFn: async () => {
             await Promise.reject(new Error("fetch failed"));
           },
           meta: { skipToast: true },
         })
-        .catch(() => {});
+      ).rejects.toThrow("fetch failed");
 
       expect(notifySpy).not.toHaveBeenCalled();
     });
@@ -72,15 +72,16 @@ describe("QUERY_CLIENT_CONFIG", () => {
       const showSpy = vi.spyOn(loading, "show");
       const hideSpy = vi.spyOn(loading, "hide");
 
-      await queryClient
-        .getMutationCache()
-        .build(queryClient, {
-          mutationFn: async () => {
-            await Promise.reject(new Error("mutation failed"));
-          },
-        })
-        .execute(undefined)
-        .catch(() => {});
+      await expect(
+        queryClient
+          .getMutationCache()
+          .build(queryClient, {
+            mutationFn: async () => {
+              await Promise.reject(new Error("mutation failed"));
+            },
+          })
+          .execute(undefined)
+      ).rejects.toThrow("mutation failed");
 
       expect(showSpy).toHaveBeenCalledOnce();
       expect(hideSpy).toHaveBeenCalledOnce();
@@ -108,30 +109,32 @@ describe("QUERY_CLIENT_CONFIG", () => {
 
   describe("mutationCache onError", () => {
     it("エラー時にtoast.errorが呼ばれること", async () => {
-      await queryClient
-        .getMutationCache()
-        .build(queryClient, {
-          mutationFn: async () => {
-            await Promise.reject(new Error("mutation failed"));
-          },
-        })
-        .execute(undefined)
-        .catch(() => {});
+      await expect(
+        queryClient
+          .getMutationCache()
+          .build(queryClient, {
+            mutationFn: async () => {
+              await Promise.reject(new Error("mutation failed"));
+            },
+          })
+          .execute(undefined)
+      ).rejects.toThrow("mutation failed");
 
       expect(notifySpy).toHaveBeenCalledWith("mutation failed");
     });
 
     it("skipToast: trueのときtoast.errorが呼ばれないこと", async () => {
-      await queryClient
-        .getMutationCache()
-        .build(queryClient, {
-          mutationFn: async () => {
-            await Promise.reject(new Error("mutation failed"));
-          },
-          meta: { skipToast: true },
-        })
-        .execute(undefined)
-        .catch(() => {});
+      await expect(
+        queryClient
+          .getMutationCache()
+          .build(queryClient, {
+            mutationFn: async () => {
+              await Promise.reject(new Error("mutation failed"));
+            },
+            meta: { skipToast: true },
+          })
+          .execute(undefined)
+      ).rejects.toThrow("mutation failed");
 
       expect(notifySpy).not.toHaveBeenCalled();
     });
