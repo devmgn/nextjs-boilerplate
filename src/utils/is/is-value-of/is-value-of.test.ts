@@ -10,14 +10,15 @@ const TEST_OBJECT = {
 
 const TEST_ARRAY = ["#FF0000", "#00FF00", "#0000FF", "#FFFFFF"] as const;
 
-const falsyCases = [
+const falsyCases: { value?: unknown }[] = [
   { value: "name" },
   { value: "age" },
   { value: 11 },
   { value: {} },
   { value: [] },
   { value: null },
-  { value: undefined },
+  // value を持たせないことで undefined を表す
+  {},
   { value: true },
   { value: false },
   { value: () => {} },

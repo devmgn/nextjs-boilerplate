@@ -18,12 +18,13 @@ describe(isFunction, () => {
   });
 
   describe("関数でない場合", () => {
-    it.for([
+    it.for<{ label: string; input?: unknown }>([
       { label: "string", input: "x" },
       { label: "number", input: 42 },
       { label: "boolean", input: true },
       { label: "null", input: null },
-      { label: "undefined", input: undefined },
+      // input を持たせないことで undefined を表す
+      { label: "undefined" },
       { label: "object", input: {} },
       { label: "array", input: [] },
     ])("$label → false", ({ input }) => {
