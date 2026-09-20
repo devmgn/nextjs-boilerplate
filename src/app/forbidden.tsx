@@ -1,3 +1,3 @@
 export default function Forbidden() {
-  return "Forbidden";
+  return <>Forbidden</>;
 }

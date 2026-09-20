@@ -105,6 +105,8 @@ const rule: Rule = {
     const hookMap = buildHookMap(context.options);
 
     return {
+      // AST ノード型名は oxlint のビジター API が決めるため改名不可
+      // oxlint-disable-next-line sonarjs/function-name
       CallExpression(node) {
         const depsArray = getDepsArray(node, hookMap);
         if (!depsArray || depsArray.elements.length < 2) {

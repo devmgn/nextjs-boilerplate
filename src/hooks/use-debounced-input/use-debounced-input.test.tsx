@@ -14,11 +14,10 @@ function Probe({
 }) {
   const handlers = useDebouncedInput(onValue, wait);
   // input / textarea どちらにも同じ handlers をスプレッドできることを型でも保証する
-  return multiline ? (
-    <textarea data-testid="textarea" {...handlers} />
-  ) : (
-    <input data-testid="input" {...handlers} />
-  );
+  if (multiline) {
+    return <textarea data-testid="textarea" {...handlers} />;
+  }
+  return <input data-testid="input" {...handlers} />;
 }
 
 describe(useDebouncedInput, () => {

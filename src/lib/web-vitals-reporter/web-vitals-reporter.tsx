@@ -17,6 +17,8 @@ const metricSchema = z.object({
   rating: z.string(),
 });
 
+// 副作用のみのコンポーネントで JSX を返さないため sonarjs が関数名とみなす
+// oxlint-disable-next-line sonarjs/function-name
 export function WebVitalsReporter() {
   useReportWebVitals((metric) => {
     const result = metricSchema.safeParse(metric);
