@@ -56,6 +56,23 @@ dependencies:
     .claude/skills/vitest/references/features-snapshots.md: sha256:906f5b111b747a7d1396eef82725c23a590e2ecd4c7d4889679a72f40adcc051
     .claude/skills/vitest/references/features-test-tags.md: sha256:6e39db1a7b622b0f325a5cec0fca1e78aab4ed14b8e1a8dbe0eb396e7a0f642d
   content_hash: sha256:0366ceee6aa68beeccff2640afc86d4466004cdaa92d0bb23b32931d888fd1d5
+- repo_url: haydenbleasel/ultracite
+  name: ultracite
+  host: github.com
+  resolved_commit: 100bf3e703663a0bfeed7f5da0ae115e47e303c6
+  resolved_ref: 100bf3e703663a0bfeed7f5da0ae115e47e303c6
+  version: unknown
+  virtual_path: skills/ultracite
+  is_virtual: true
+  package_type: claude_skill
+  deployed_files:
+  - .claude/skills/ultracite
+  - .claude/skills/ultracite/SKILL.md
+  - .claude/skills/ultracite/references/code-standards.md
+  deployed_file_hashes:
+    .claude/skills/ultracite/SKILL.md: sha256:2c7a136efbc3ffe14fe3a8969e73528b7cdf0ea8e65a2cd4143a991f8a954208
+    .claude/skills/ultracite/references/code-standards.md: sha256:ab1bcbe992d015a5b3b030695de98cbb7f94d4815d5d34dae18237d327fd3be2
+  content_hash: sha256:293d4d2d356090e7639ef50584fff9d706d543d43a0a8a25c6ce5687b924af27
 - repo_url: vercel-labs/agent-skills
   name: vercel-composition-patterns
   host: github.com
@@ -1227,6 +1244,33 @@ deployments:
   - vercel-labs/agent-skills/skills/react-view-transitions
   active_owner: vercel-labs/agent-skills/skills/react-view-transitions
   content_hash: sha256:aa6811d276dcf06dcc9aba90d1e11e1d0a29146604bf7c89a9e93a6fa8883c7a
+- kind: project-relative
+  target: claude
+  value: .claude/skills/ultracite
+  runtime: null
+  scope: project
+  owners:
+  - haydenbleasel/ultracite/skills/ultracite
+  active_owner: haydenbleasel/ultracite/skills/ultracite
+  content_hash: null
+- kind: project-relative
+  target: claude
+  value: .claude/skills/ultracite/SKILL.md
+  runtime: null
+  scope: project
+  owners:
+  - haydenbleasel/ultracite/skills/ultracite
+  active_owner: haydenbleasel/ultracite/skills/ultracite
+  content_hash: sha256:2c7a136efbc3ffe14fe3a8969e73528b7cdf0ea8e65a2cd4143a991f8a954208
+- kind: project-relative
+  target: claude
+  value: .claude/skills/ultracite/references/code-standards.md
+  runtime: null
+  scope: project
+  owners:
+  - haydenbleasel/ultracite/skills/ultracite
+  active_owner: haydenbleasel/ultracite/skills/ultracite
+  content_hash: sha256:ab1bcbe992d015a5b3b030695de98cbb7f94d4815d5d34dae18237d327fd3be2
 - kind: project-relative
   target: claude
   value: .claude/skills/vitest
