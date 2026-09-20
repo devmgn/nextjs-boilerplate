@@ -123,9 +123,9 @@ function getDepsArray(
 function guessIndent(context: Context, node: ESTree.Expression): string {
   /* v8 ignore next -- lines.at always returns a string for in-range indices */
   const line = context.sourceCode.lines.at(node.loc.start.line - 1) ?? "";
-  const match = /^(\s*)/u.exec(line);
-  /* v8 ignore next -- /^(\s*)/u always matches at line start */
-  return match ? match[1] : "";
+  const match = /^(?<indent>\s*)/u.exec(line);
+  /* v8 ignore next -- 行頭の \s* は必ずマッチする */
+  return match?.groups?.indent ?? "";
 }
 
 const rule: Rule = {
