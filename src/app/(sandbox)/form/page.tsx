@@ -27,7 +27,7 @@ export default function Page() {
 
   return (
     <Form
-      className="grid-template-cols-[auto] grid max-w-2xl gap-4"
+      className="grid max-w-2xl gap-4"
       control={control}
       onSubmit={({ data }) => {
         startTransition(() => {

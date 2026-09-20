@@ -5,11 +5,11 @@ const svgIcon = tv({
   base: "size-[1em] shrink-0 fill-current text-current",
   variants: {
     size: {
-      xs: "text-[12px]",
-      sm: "text-[16px]",
-      md: "text-[24px]",
-      lg: "text-[32px]",
-      xl: "text-[40px]",
+      xs: "text-icon-xs",
+      sm: "text-icon-sm",
+      md: "text-icon-md",
+      lg: "text-icon-lg",
+      xl: "text-icon-xl",
     },
   },
   defaultVariants: {

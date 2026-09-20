@@ -3,8 +3,8 @@ import { tv } from "tailwind-variants";
 
 const spinnerVariants = tv({
   slots: {
-    base: "inline-block animate-[spin_1.4s_linear_infinite]",
-    circle: "animate-[spinner-circle_1.4s_ease-in-out_infinite] stroke-current",
+    base: "inline-block animate-spinner-rotate",
+    circle: "animate-spinner-dash stroke-current",
     track: "stroke-current opacity-15",
   },
   variants: {

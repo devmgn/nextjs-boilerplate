@@ -54,7 +54,7 @@ const meta = {
           <label htmlFor={eventId}>Last onChange: </label>
           <Input id={eventId} readOnly value={lastEvent} />
         </div>
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-muted-foreground">
           Resize the browser window to see the media query result change.
         </p>
       </div>

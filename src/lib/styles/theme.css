@@ -159,11 +159,22 @@
   --text-label-sm--letter-spacing: 0.5px;
   --text-label-sm--font-weight: 500;
 
+  /* Icon sizes
+   * SvgIcon は size-[1em] と font-size でサイズを決めるため、
+   * line-height / letter-spacing を伴わない純粋なサイズトークンを置く */
+  --text-icon-xs: 12px;
+  --text-icon-sm: 16px;
+  --text-icon-md: 24px;
+  --text-icon-lg: 32px;
+  --text-icon-xl: 40px;
+
   /* ========================================
    * Animations
    * ======================================== */
   --animate-fade-in: fade-in 0.2s ease-in forwards;
   --animate-fade-out: fade-out 0.2s ease-out forwards;
+  --animate-spinner-rotate: spinner-rotate 1.4s linear infinite;
+  --animate-spinner-dash: spinner-circle 1.4s ease-in-out infinite;
 
   @keyframes fade-in {
     0% {
@@ -180,6 +191,12 @@
     }
     100% {
       opacity: 0;
+    }
+  }
+
+  @keyframes spinner-rotate {
+    to {
+      transform: rotate(360deg);
     }
   }
 

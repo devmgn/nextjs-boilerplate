@@ -19,7 +19,7 @@ export function SbProvider({ children }: React.PropsWithChildren) {
             <>
               <h1 className="text-2xl font-bold">Something went wrong:</h1>
               {Error.isError(error) && (
-                <p className="mt-4 text-red-600">{error.message}</p>
+                <p className="mt-4 text-destructive">{error.message}</p>
               )}
               <Button className="mt-4" onClick={resetErrorBoundary}>
                 Try again
