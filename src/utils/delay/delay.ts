@@ -5,8 +5,6 @@
  */
 export async function delay(ms: number): Promise<void> {
   const { promise, resolve } = Promise.withResolvers<undefined>();
-  setTimeout(() => {
-    resolve(undefined);
-  }, ms);
+  setTimeout(resolve, ms);
   await promise;
 }

@@ -62,6 +62,8 @@ describe("QUERY_CLIENT_CONFIG", () => {
             return "ok";
           },
         })
+        // Mutation.execute は variables が必須引数
+        // oxlint-disable-next-line unicorn/no-useless-undefined
         .execute(undefined);
 
       expect(showSpy).toHaveBeenCalledOnce();
@@ -80,6 +82,8 @@ describe("QUERY_CLIENT_CONFIG", () => {
               await Promise.reject(new Error("mutation failed"));
             },
           })
+          // Mutation.execute は variables が必須引数
+          // oxlint-disable-next-line unicorn/no-useless-undefined
           .execute(undefined)
       ).rejects.toThrow("mutation failed");
 
@@ -100,6 +104,8 @@ describe("QUERY_CLIENT_CONFIG", () => {
           },
           meta: { skipLoading: true },
         })
+        // Mutation.execute は variables が必須引数
+        // oxlint-disable-next-line unicorn/no-useless-undefined
         .execute(undefined);
 
       expect(showSpy).not.toHaveBeenCalled();
@@ -117,6 +123,8 @@ describe("QUERY_CLIENT_CONFIG", () => {
               await Promise.reject(new Error("mutation failed"));
             },
           })
+          // Mutation.execute は variables が必須引数
+          // oxlint-disable-next-line unicorn/no-useless-undefined
           .execute(undefined)
       ).rejects.toThrow("mutation failed");
 
@@ -133,6 +141,8 @@ describe("QUERY_CLIENT_CONFIG", () => {
             },
             meta: { skipToast: true },
           })
+          // Mutation.execute は variables が必須引数
+          // oxlint-disable-next-line unicorn/no-useless-undefined
           .execute(undefined)
       ).rejects.toThrow("mutation failed");
 

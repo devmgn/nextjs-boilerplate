@@ -47,6 +47,8 @@ describe("runtime", () => {
 
   describe("isServer", () => {
     it("window が undefined のとき、isServer が true となること", async () => {
+      // 第 2 引数の undefined が値の打ち消しを表す
+      // oxlint-disable-next-line unicorn/no-useless-undefined
       vi.stubGlobal("window", undefined);
       const { isServer } = await import("./runtime");
       expect(isServer).toBeTruthy();

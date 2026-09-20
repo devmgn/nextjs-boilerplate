@@ -55,9 +55,6 @@ export default defineConfig({
     // custom-rules/no-restricted-syntax が top-level の arrow を禁止しており、
     // expression を強制する func-style とは両立しない
     "eslint/func-style": "off",
-    // autofix が必須引数の `undefined` まで削り、型エラーと意味変化を生む。
-    // 例: vi.stubEnv(key, undefined)（env 変数の削除）→ vi.stubEnv(key)
-    "unicorn/no-useless-undefined": "off",
     "react/function-component-definition": [
       "error",
       { namedComponents: "function-declaration" },

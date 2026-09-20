@@ -19,6 +19,8 @@ describe("ENV", () => {
     "NEXT_PUBLIC_APP_NAME",
     "NEXT_PUBLIC_DEFAULT_DESCRIPTION",
   ])("%s が未定義の場合エラーになること", async (key) => {
+    // 第 2 引数の undefined が env 変数の削除を表す
+    // oxlint-disable-next-line unicorn/no-useless-undefined
     vi.stubEnv(key, undefined);
     vi.resetModules();
 

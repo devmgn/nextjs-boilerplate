@@ -231,10 +231,7 @@ function parseSelectorGroup(input: string): Step[][] {
     .map((branch) => parseBranch(branch));
 }
 
-export function compileOption(
-  selector: string,
-  message: string | undefined
-): Compiled[] {
+export function compileOption(selector: string, message?: string): Compiled[] {
   const finalMessage = message ?? `Using "${selector}" is restricted.`;
   return parseSelectorGroup(selector).map((chain) => {
     for (let i = 1; i < chain.length; i += 1) {

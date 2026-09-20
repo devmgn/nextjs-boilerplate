@@ -28,7 +28,7 @@ const rule: Rule = {
     const compiled: Compiled[] = [];
     for (const opt of context.options) {
       if (isStringOption(opt)) {
-        compiled.push(...compileOption(opt, undefined));
+        compiled.push(...compileOption(opt));
       } else if (isSelectorOption(opt)) {
         compiled.push(...compileOption(opt.selector, opt.message));
       }

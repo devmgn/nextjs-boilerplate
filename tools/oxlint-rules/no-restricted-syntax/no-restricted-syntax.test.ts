@@ -303,7 +303,7 @@ tester.run("custom-rules/no-restricted-syntax", noRestrictedSyntax, {
 // セレクタの構文エラーは compileOption の責務なので、コンパイラを直接叩く。
 function compile(selector: string) {
   return () => {
-    compileOption(selector, undefined);
+    compileOption(selector);
   };
 }
 
