@@ -1,8 +1,15 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { localStorageStore, sessionStorageStore } from "./web-storage-store";
 
+/** 差し込み前のプレースホルダ。 */
+const noop = () => {};
+
+let keySequence = 0;
+
+// テスト間でキーが衝突しないようにする。乱数ではなく連番にして再現性を保つ。
 function uniqueKey() {
-  return `test-${Math.random().toString(36).slice(2)}`;
+  keySequence += 1;
+  return `test-${keySequence}`;
 }
 
 /** 実ブラウザ同様 `storageArea` を必ず設定したうえで `storage` イベントを発火する。 */
@@ -308,7 +315,7 @@ describe("webStorageStore", () => {
         const l2 = vi.fn<() => void>();
         // l1 のクロージャは l2 の unsubscribe より先に組み立てられるため、
         // 参照を後から差し込めるよう no-op で初期化しておく。
-        let unsubscribeL2: () => void = () => {};
+        let unsubscribeL2: () => void = noop;
         const l1 = vi.fn<() => void>(() => {
           unsubscribeL2();
         });

@@ -2,6 +2,9 @@ import { describe, expect, it, vi } from "vitest";
 import { bubbleCompositionStore, captureCompositionStore } from ".";
 import { createCompositionStore } from "./composition-store";
 
+/** 差し込み前のプレースホルダ。 */
+const noop = () => {};
+
 function dispatchComposition(type: "compositionstart" | "compositionend") {
   document.dispatchEvent(new CompositionEvent(type));
 }
@@ -127,7 +130,7 @@ describe("compositionStore", () => {
 
     it("リスナー内で他のリスナーをunsubscribeしても他のリスナーは呼ばれる", () => {
       const l2 = vi.fn<() => void>();
-      let unsubscribeL2: () => void = () => {};
+      let unsubscribeL2: () => void = noop;
       const l1 = vi.fn<() => void>(() => {
         unsubscribeL2();
       });

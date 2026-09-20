@@ -2,6 +2,9 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { loadingStore } from ".";
 import { createLoadingStore } from "./loading-store";
 
+/** 差し込み前のプレースホルダ。 */
+const noop = () => {};
+
 describe("loadingStore (singleton)", () => {
   afterEach(() => {
     loadingStore.reset();
@@ -129,7 +132,7 @@ describe("createLoadingStore", () => {
     it("リスナー内で他のリスナーを unsubscribe しても他のリスナーは呼ばれる", () => {
       const store = createLoadingStore();
       const l2 = vi.fn<() => void>();
-      let unsubscribeL2: () => void = () => {};
+      let unsubscribeL2: () => void = noop;
       const l1 = vi.fn<() => void>(() => {
         unsubscribeL2();
       });

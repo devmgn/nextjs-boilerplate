@@ -50,8 +50,12 @@ function createMockStore(): MockStore {
   };
 }
 
+let keySequence = 0;
+
+// テスト間でキーが衝突しないようにする。乱数ではなく連番にして再現性を保つ。
 function uniqueKey() {
-  return `test-key-${Math.random().toString(36).slice(2)}`;
+  keySequence += 1;
+  return `test-key-${keySequence}`;
 }
 
 describe(useWebStorage, () => {
