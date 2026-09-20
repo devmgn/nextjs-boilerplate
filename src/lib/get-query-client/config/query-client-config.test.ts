@@ -161,38 +161,34 @@ describe("QUERY_CLIENT_CONFIG", () => {
   });
 
   describe("dehydrate", () => {
+    const { shouldDehydrateQuery } =
+      QUERY_CLIENT_CONFIG.defaultOptions.dehydrate;
+
+    // 手で組んだ部分オブジェクトを Query に見せかけるのではなく、
+    // キャッシュに実物を作って状態だけ動かす。
+    const buildQuery = (name: string) => {
+      // shouldDehydrateQuery の引数は queryKey が readonly unknown[] の Query。
+      const queryKey: readonly unknown[] = [name];
+      return queryClient.getQueryCache().build(queryClient, { queryKey });
+    };
+
     it("successステータスのクエリがdehydrate対象であること", () => {
-      const { shouldDehydrateQuery } =
-        QUERY_CLIENT_CONFIG.defaultOptions.dehydrate;
-      // SAFETY: shouldDehydrateQuery が参照するのは state.status のみで、
-      // Query の他フィールドは判定に関与しない。
-      const query = { state: { status: "success" } } as Parameters<
-        typeof shouldDehydrateQuery
-      >[0];
+      const query = buildQuery("dehydrate-success");
+      query.setState({ status: "success", data: "value" });
 
       expect(shouldDehydrateQuery(query)).toBeTruthy();
     });
 
     it("pendingステータスのクエリがdehydrate対象であること", () => {
-      const { shouldDehydrateQuery } =
-        QUERY_CLIENT_CONFIG.defaultOptions.dehydrate;
-      // SAFETY: shouldDehydrateQuery が参照するのは state.status のみで、
-      // Query の他フィールドは判定に関与しない。
-      const query = { state: { status: "pending" } } as Parameters<
-        typeof shouldDehydrateQuery
-      >[0];
+      const query = buildQuery("dehydrate-pending");
 
+      expect(query.state.status).toBe("pending");
       expect(shouldDehydrateQuery(query)).toBeTruthy();
     });
 
     it("errorステータスのクエリがdehydrate対象外であること", () => {
-      const { shouldDehydrateQuery } =
-        QUERY_CLIENT_CONFIG.defaultOptions.dehydrate;
-      // SAFETY: shouldDehydrateQuery が参照するのは state.status のみで、
-      // Query の他フィールドは判定に関与しない。
-      const query = { state: { status: "error" } } as Parameters<
-        typeof shouldDehydrateQuery
-      >[0];
+      const query = buildQuery("dehydrate-error");
+      query.setState({ status: "error", error: new Error("failed") });
 
       expect(shouldDehydrateQuery(query)).toBeFalsy();
     });
