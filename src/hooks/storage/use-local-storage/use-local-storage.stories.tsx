@@ -38,16 +38,15 @@ function UseLocalStorageDemo() {
 }
 
 const meta = {
-  component: undefined,
+  component: UseLocalStorageDemo,
   tags: ["!manifest"],
   parameters: {
     layout: "centered",
   },
-  render: () => <UseLocalStorageDemo />,
-} satisfies Meta;
+} satisfies Meta<typeof UseLocalStorageDemo>;
 
 export default meta;
-type Story = StoryObj;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   play: async ({ canvas }) => {

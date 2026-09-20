@@ -5,52 +5,95 @@ import { useToggle } from "./use-toggle";
 import { Button } from "../../components/button";
 import { Input } from "../../components/form/input";
 
+function BooleanToggleDemo() {
+  const [value, toggle] = useToggle();
+  const id = useId();
+
+  return (
+    <div className="flex flex-col gap-4">
+      <div className="flex gap-2">
+        <label htmlFor={id}>boolean value: </label>
+        <Input id={id} readOnly value={value.toString()} />
+      </div>
+      <Button
+        onClick={() => {
+          toggle();
+        }}
+      >
+        Toggle
+      </Button>
+      <Button
+        onClick={() => {
+          toggle(true);
+        }}
+      >
+        Toggle to true
+      </Button>
+      <Button
+        onClick={() => {
+          toggle(false);
+        }}
+      >
+        Toggle to false
+      </Button>
+    </div>
+  );
+}
+
+function ThemeToggleDemo() {
+  const [theme, toggle] = useToggle(["light", "dark", "system"]);
+  const id = useId();
+
+  return (
+    <div className="flex flex-col gap-4">
+      <div className="flex gap-2">
+        <label htmlFor={id}>theme: </label>
+        <Input id={id} readOnly value={theme} />
+      </div>
+      <Button
+        onClick={() => {
+          toggle();
+        }}
+      >
+        Next
+      </Button>
+      <Button
+        onClick={() => {
+          toggle("light");
+        }}
+      >
+        Toggle to light
+      </Button>
+      <Button
+        onClick={() => {
+          toggle("dark");
+        }}
+      >
+        Toggle to dark
+      </Button>
+      <Button
+        onClick={() => {
+          toggle("system");
+        }}
+      >
+        Toggle to system
+      </Button>
+    </div>
+  );
+}
+
 const meta = {
-  component: undefined,
+  component: BooleanToggleDemo,
   tags: ["!manifest"],
   parameters: {
     layout: "centered",
   },
-} satisfies Meta;
+} satisfies Meta<typeof BooleanToggleDemo>;
 
 export default meta;
-type Story = StoryObj;
+type Story = StoryObj<typeof meta>;
 
 export const BooleanMode: Story = {
-  render: () => {
-    const [value, toggle] = useToggle();
-    const id = useId();
-
-    return (
-      <div className="flex flex-col gap-4">
-        <div className="flex gap-2">
-          <label htmlFor={id}>boolean value: </label>
-          <Input id={id} readOnly value={value.toString()} />
-        </div>
-        <Button
-          onClick={() => {
-            toggle();
-          }}
-        >
-          Toggle
-        </Button>
-        <Button
-          onClick={() => {
-            toggle(true);
-          }}
-        >
-          Toggle to true
-        </Button>
-        <Button
-          onClick={() => {
-            toggle(false);
-          }}
-        >
-          Toggle to false
-        </Button>
-      </div>
-    );
-  },
   play: async ({ canvas }) => {
     const input = canvas.getByRole("textbox");
     await expect(input).toHaveValue("false");
@@ -66,47 +109,7 @@ export const BooleanMode: Story = {
 };
 
 export const ArrayMode: Story = {
-  render: () => {
-    const [theme, toggle] = useToggle(["light", "dark", "system"]);
-    const id = useId();
-
-    return (
-      <div className="flex flex-col gap-4">
-        <div className="flex gap-2">
-          <label htmlFor={id}>theme: </label>
-          <Input id={id} readOnly value={theme} />
-        </div>
-        <Button
-          onClick={() => {
-            toggle();
-          }}
-        >
-          Next
-        </Button>
-        <Button
-          onClick={() => {
-            toggle("light");
-          }}
-        >
-          Toggle to light
-        </Button>
-        <Button
-          onClick={() => {
-            toggle("dark");
-          }}
-        >
-          Toggle to dark
-        </Button>
-        <Button
-          onClick={() => {
-            toggle("system");
-          }}
-        >
-          Toggle to system
-        </Button>
-      </div>
-    );
-  },
+  render: () => <ThemeToggleDemo />,
   play: async ({ canvas }) => {
     const input = canvas.getByRole("textbox");
     await expect(input).toHaveValue("light");

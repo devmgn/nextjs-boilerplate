@@ -306,11 +306,11 @@ describe("webStorageStore", () => {
       it("リスナー内で他のリスナーをunsubscribeしても他のリスナーは呼ばれる", () => {
         const key = uniqueKey();
         const l2 = vi.fn<() => void>();
-        // l1 を先に subscribe しつつ l1 から l2 の unsubscribe (u2) を呼ぶため、
-        // 参照を箱渡しして const を維持する。
-        let unsubscribeL2: (() => void) | undefined;
+        // l1 のクロージャは l2 の unsubscribe より先に組み立てられるため、
+        // 参照を後から差し込めるよう no-op で初期化しておく。
+        let unsubscribeL2: () => void = () => {};
         const l1 = vi.fn<() => void>(() => {
-          unsubscribeL2?.();
+          unsubscribeL2();
         });
         const u1 = subscribe(key, l1);
         const u2 = subscribe(key, l2);

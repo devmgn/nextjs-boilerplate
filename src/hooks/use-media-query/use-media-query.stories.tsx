@@ -11,56 +11,57 @@ const QUERIES = [
   "(prefers-reduced-motion: reduce)",
 ] as const;
 
+function UseMediaQueryDemo() {
+  const [query, setQuery] = useState<(typeof QUERIES)[number]>(QUERIES[0]);
+  const [lastEvent, setLastEvent] = useState("none");
+  const queryId = useId();
+  const resultId = useId();
+  const eventId = useId();
+
+  const matches = useMediaQuery(query, (event) => {
+    setLastEvent(event.matches ? "matched" : "unmatched");
+  });
+
+  return (
+    <div className="flex flex-col gap-4">
+      <div className="grid grid-cols-[auto_1fr] items-center gap-2">
+        <label htmlFor={queryId}>Query: </label>
+        <select
+          className="rounded border p-1"
+          id={queryId}
+          onChange={(e) => {
+            const { value } = e.target;
+            if (isValueOf(QUERIES, value)) {
+              setQuery(value);
+            }
+          }}
+          value={query}
+        >
+          {QUERIES.map((q) => (
+            <option key={q} value={q}>
+              {q}
+            </option>
+          ))}
+        </select>
+        <label htmlFor={resultId}>Matches: </label>
+        <Input id={resultId} readOnly value={matches.toString()} />
+        <label htmlFor={eventId}>Last onChange: </label>
+        <Input id={eventId} readOnly value={lastEvent} />
+      </div>
+      <p className="text-sm text-muted-foreground">
+        Resize the browser window to see the media query result change.
+      </p>
+    </div>
+  );
+}
+
 const meta = {
-  component: undefined,
+  component: UseMediaQueryDemo,
   tags: ["!manifest"],
   parameters: {
     layout: "centered",
   },
-  render: () => {
-    const [query, setQuery] = useState<(typeof QUERIES)[number]>(QUERIES[0]);
-    const [lastEvent, setLastEvent] = useState("none");
-    const queryId = useId();
-    const resultId = useId();
-    const eventId = useId();
-
-    const matches = useMediaQuery(query, (event) => {
-      setLastEvent(event.matches ? "matched" : "unmatched");
-    });
-
-    return (
-      <div className="flex flex-col gap-4">
-        <div className="grid grid-cols-[auto_1fr] items-center gap-2">
-          <label htmlFor={queryId}>Query: </label>
-          <select
-            className="rounded border p-1"
-            id={queryId}
-            onChange={(e) => {
-              const { value } = e.target;
-              if (isValueOf(QUERIES, value)) {
-                setQuery(value);
-              }
-            }}
-            value={query}
-          >
-            {QUERIES.map((q) => (
-              <option key={q} value={q}>
-                {q}
-              </option>
-            ))}
-          </select>
-          <label htmlFor={resultId}>Matches: </label>
-          <Input id={resultId} readOnly value={matches.toString()} />
-          <label htmlFor={eventId}>Last onChange: </label>
-          <Input id={eventId} readOnly value={lastEvent} />
-        </div>
-        <p className="text-sm text-muted-foreground">
-          Resize the browser window to see the media query result change.
-        </p>
-      </div>
-    );
-  },
-} satisfies Meta<typeof useMediaQuery>;
+} satisfies Meta<typeof UseMediaQueryDemo>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

@@ -39,43 +39,43 @@ function DemoShell({
   );
 }
 
+function UseDebouncedCallbackDemo() {
+  const [delayTime, setDelayTime] = useState(250);
+  const [result, setResult] = useState("");
+
+  const onChange = useDebouncedCallback((value: string) => {
+    setResult(value);
+  }, delayTime);
+
+  return (
+    <DemoShell
+      delayTime={delayTime}
+      onDelayChange={setDelayTime}
+      result={result}
+    >
+      <Input
+        onChange={(e) => {
+          onChange(e.target.value);
+        }}
+        placeholder="input text"
+      />
+    </DemoShell>
+  );
+}
+
 const meta = {
-  component: undefined,
+  component: UseDebouncedCallbackDemo,
   tags: ["!manifest"],
   parameters: {
     layout: "centered",
   },
-} satisfies Meta<typeof useDebouncedCallback>;
+} satisfies Meta<typeof UseDebouncedCallbackDemo>;
 
 export default meta;
-type Story = StoryObj<typeof useDebouncedCallback>;
+type Story = StoryObj<typeof meta>;
 
 /** 入力が止まってから delay 経過後に result が更新される、純粋な debounce デモ。 */
-export const Default: Story = {
-  render: () => {
-    const [delayTime, setDelayTime] = useState(250);
-    const [result, setResult] = useState("");
-
-    const onChange = useDebouncedCallback((value: string) => {
-      setResult(value);
-    }, delayTime);
-
-    return (
-      <DemoShell
-        delayTime={delayTime}
-        onDelayChange={setDelayTime}
-        result={result}
-      >
-        <Input
-          onChange={(e) => {
-            onChange(e.target.value);
-          }}
-          placeholder="input text"
-        />
-      </DemoShell>
-    );
-  },
-};
+export const Default: Story = {};
 
 /** IME 対応デモ。変換中の中間入力は debounce に流さず、変換確定時 (compositionEnd) に flush で即時反映する。 */
 export const WithIme: Story = {

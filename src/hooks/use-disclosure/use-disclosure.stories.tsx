@@ -5,32 +5,33 @@ import { useDisclosure } from "./use-disclosure";
 import { Button } from "../../components/button";
 import { Input } from "../../components/form/input";
 
+function UseDisclosureDemo() {
+  const { isOpen, open, close, toggle } = useDisclosure();
+  const id = useId();
+
+  return (
+    <div className="flex flex-col gap-4">
+      <div className="flex gap-2">
+        <label htmlFor={id}>disclosure Result: </label>
+        <Input id={id} readOnly value={isOpen.toString()} />
+      </div>
+      <Button onClick={open}>Open</Button>
+      <Button onClick={close}>Close</Button>
+      <Button onClick={toggle}>Toggle</Button>
+    </div>
+  );
+}
+
 const meta = {
-  component: undefined,
+  component: UseDisclosureDemo,
   tags: ["!manifest"],
   parameters: {
     layout: "centered",
   },
-  render: () => {
-    const { isOpen, open, close, toggle } = useDisclosure();
-    const id = useId();
-
-    return (
-      <div className="flex flex-col gap-4">
-        <div className="flex gap-2">
-          <label htmlFor={id}>disclosure Result: </label>
-          <Input id={id} readOnly value={isOpen.toString()} />
-        </div>
-        <Button onClick={open}>Open</Button>
-        <Button onClick={close}>Close</Button>
-        <Button onClick={toggle}>Toggle</Button>
-      </div>
-    );
-  },
-} satisfies Meta<typeof useDisclosure>;
+} satisfies Meta<typeof UseDisclosureDemo>;
 
 export default meta;
-type Story = StoryObj<typeof useDisclosure>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
 

@@ -38,16 +38,15 @@ function UseSessionStorageDemo() {
 }
 
 const meta = {
-  component: undefined,
+  component: UseSessionStorageDemo,
   tags: ["!manifest"],
   parameters: {
     layout: "centered",
   },
-  render: () => <UseSessionStorageDemo />,
-} satisfies Meta;
+} satisfies Meta<typeof UseSessionStorageDemo>;
 
 export default meta;
-type Story = StoryObj;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   play: async ({ canvas }) => {
