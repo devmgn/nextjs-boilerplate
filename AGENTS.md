@@ -1,7 +1,7 @@
 ## Core Technology Stack
 
 - **Next.js 16** with App Router, React 19, Turbopack, React Compiler (see `next.config.ts`)
-  - Node.js 24, pnpm 10 (exact versions in package.json)
+  - Node.js 24, pnpm 12 (exact versions in package.json / mise.toml)
 - **TypeScript** with strict type checking
 - **Tailwind CSS v4** with @tailwindcss/postcss, **M3 Design Tokens** (see `.claude/rules/design-tokens.md`)
 - **TanStack Query** with queryOptions helper
@@ -9,9 +9,12 @@
 - **UI**: @radix-ui primitives, tailwind-variants, tailwind-merge
 - **Utilities**: custom debounce (`src/utils/debounce`)
 - **nuqs** for URL state management (NuqsAdapter in RootProvider)
-- **OxC** (Oxlint + Oxfmt) for linting and formatting
-  - jsPlugins: @tanstack/eslint-plugin-query, eslint-plugin-react-hooks
-  - Suppress comments: `// oxlint-disable-next-line <rule>`
+- **Ultracite** (Oxlint + Oxfmt preset) for linting and formatting — entry points are `pnpm check` / `pnpm fix`
+  - Presets (`oxlint.config.ts`): core, react, next, tanstack, vitest, anti-slop + js-plugins (github, sonarjs, react-doctor)
+  - jsPlugins: @tanstack/eslint-plugin-query, eslint-plugin-storybook (stories only), own rules in `tools/oxlint-rules/`
+  - Type-aware lint + type check enabled (oxlint-tsgolint); TS compiler diagnostics surface as lint errors, so there is no separate `tsc --noEmit` script
+  - Suppress comments: `// oxlint-disable-next-line <rule>` (`eslint-disable` is NOT honored; unused directives are errors)
+  - Ignore lists live in `tools/lint-ignore/` and are shared by `oxlint.config.ts` / `oxfmt.config.ts` / `knip.config.ts`
 - **Vitest** with 80% coverage requirement
 - **Storybook 10** with Vitest integration, a11y testing, MSW
 - **Lefthook** for git hooks (see `lefthook.yml`)
