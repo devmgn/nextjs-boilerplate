@@ -300,12 +300,15 @@ tester.run("custom-rules/no-restricted-syntax", noRestrictedSyntax, {
   ],
 });
 
-describe("custom-rules/no-restricted-syntax (config-time errors)", () => {
-  // セレクタの構文エラーは compileSelector の責務なので、Context を偽装せず
-  // コンパイラを直接叩く。
-  const compile = (selector: string) => () =>
+// セレクタの構文エラーは compileOption の責務なので、Context を偽装せず
+// コンパイラを直接叩く。
+function compile(selector: string) {
+  return () => {
     compileOption(selector, undefined);
+  };
+}
 
+describe("custom-rules/no-restricted-syntax (config-time errors)", () => {
   it("throws when `:exit` appears on a non-rightmost compound", () => {
     expect(compile("Foo:exit > Bar")).toThrow(/`:exit` is only allowed/u);
   });

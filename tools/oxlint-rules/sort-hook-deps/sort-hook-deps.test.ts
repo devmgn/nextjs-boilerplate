@@ -1,6 +1,8 @@
 import { RuleTester } from "oxlint/plugins-dev";
-import { describe, it } from "vitest";
+import { describe, expect, it } from "vitest";
 import sortHookDeps from "./sort-hook-deps.ts";
+import oxlintConfig from "../../../oxlint.config.ts";
+import plugin from "../index.ts";
 
 // RuleTester の DescribeFn は戻り値 void を期待するが、vitest の describe は
 // suite を返すため、戻り値を捨てて渡す。
@@ -182,4 +184,16 @@ tester.run("custom-rules/sort-hook-deps", sortHookDeps, {
       errors: 1,
     },
   ],
+});
+
+// RuleTester は挙動だけを見る。実装したルールがプラグインに登録され、
+// config で有効になっているかはここで確かめる。
+describe("custom-rules/sort-hook-deps (配線)", () => {
+  it("プラグインに登録されていること", () => {
+    expect(plugin.rules?.["sort-hook-deps"]).toBe(sortHookDeps);
+  });
+
+  it("oxlint.config.ts で有効になっていること", () => {
+    expect(oxlintConfig.rules["custom-rules/sort-hook-deps"]).toBe("error");
+  });
 });

@@ -10,7 +10,9 @@ export interface AstNode {
 }
 
 /** AST ノードを任意キーで読むためのビュー。値は AstValue に限る。 */
-type AstRecord = { readonly [key: string]: AstValue };
+interface AstRecord {
+  readonly [key: string]: AstValue;
+}
 
 /** AST ノードが保持しうる値。セレクタの属性比較が扱う範囲。 */
 type AstValue =

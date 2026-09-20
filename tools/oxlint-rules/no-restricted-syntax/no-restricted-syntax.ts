@@ -1,4 +1,4 @@
-import type { AstNode, Compiled } from "./utils/selector-matcher/index.ts";
+import type { Compiled } from "./utils/selector-matcher/index.ts";
 import type { Rule, Visitor } from "@oxlint/plugins";
 import { compileOption, matchChain } from "./utils/selector-matcher/index.ts";
 
