@@ -8,6 +8,7 @@ import react from "ultracite/oxlint/react";
 import tanstack from "ultracite/oxlint/tanstack";
 import tanstackJsPlugins from "ultracite/oxlint/tanstack/js-plugins";
 import vitest from "ultracite/oxlint/vitest";
+import { generatedSources, staticAssets } from "./tools/lint-ignore/index.ts";
 
 const jsPlugins = selectJsPlugins(["github", "sonarjs", "react-doctor"]);
 
@@ -25,9 +26,8 @@ export default defineConfig({
   ],
   ignorePatterns: [
     ...(core.ignorePatterns ?? []),
-    "public/**",
-    "src/api/openapi/**",
-    "src/mocks/**",
+    ...staticAssets,
+    ...generatedSources,
   ],
   jsPlugins: [
     ...(jsPlugins.jsPlugins ?? []),

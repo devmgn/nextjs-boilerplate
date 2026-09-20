@@ -1,14 +1,14 @@
 import { defineConfig } from "oxfmt";
 import ultracite from "ultracite/oxfmt";
+import { generatedSources, staticAssets } from "./tools/lint-ignore/index.ts";
 
 export default defineConfig({
   ...ultracite,
   ignorePatterns: [
     ...(ultracite.ignorePatterns ?? []),
     "*.lock.yaml",
-    "public/**",
-    "src/api/openapi/**",
-    "src/mocks/**",
+    ...staticAssets,
+    ...generatedSources,
   ],
   sortImports: {
     groups: [
