@@ -41,7 +41,7 @@ interface Step {
   // Combinator that links this step to the previous one in source-reading order.
   // After reversing into a parent-walk chain (chain[0] = rightmost), chain[i].combinator
   // describes how chain[i] (closer to leaf) relates to chain[i+1] (closer to root).
-  combinator?: Combinator;
+  combinator?: Combinator | null;
   // True when the compound ends with `:exit`. Only meaningful on chain[0] (the matched node).
   isExit?: boolean;
 }
@@ -159,7 +159,7 @@ function parseCompound(input: string): Step {
 
 function parseBranch(input: string): Step[] {
   const ltr: Step[] = [];
-  let pending: Combinator | undefined = undefined;
+  let pending: Combinator | null = null;
   let buf = "";
   let depth = 0;
   let i = 0;
@@ -172,7 +172,7 @@ function parseBranch(input: string): Step[] {
     }
     const step = parseCompound(text);
     step.combinator = pending;
-    pending = undefined;
+    pending = null;
     ltr.push(step);
   };
 
