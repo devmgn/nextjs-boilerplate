@@ -26,11 +26,8 @@ export const ServerError: Story = {
   beforeEach({ msw }) {
     msw.use(
       http.get("https://jsonplaceholder.typicode.com/posts", () =>
-        HttpResponse.json(
-          { message: "Internal Server Error" },
-          { status: 500 },
-        ),
-      ),
+        HttpResponse.json({ message: "Internal Server Error" }, { status: 500 })
+      )
     );
   },
 };
@@ -39,8 +36,8 @@ export const NetworkError: Story = {
   beforeEach({ msw }) {
     msw.use(
       http.get("https://jsonplaceholder.typicode.com/posts", () =>
-        HttpResponse.error(),
-      ),
+        HttpResponse.error()
+      )
     );
   },
 };
@@ -49,8 +46,8 @@ export const Empty: Story = {
   beforeEach({ msw }) {
     msw.use(
       http.get("https://jsonplaceholder.typicode.com/posts", () =>
-        HttpResponse.json([], { status: 200 }),
-      ),
+        HttpResponse.json([], { status: 200 })
+      )
     );
   },
 };

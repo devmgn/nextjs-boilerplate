@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { describe, expect, it } from "vitest";
 import { addCustomHeader } from "./addCustomHeader";
 
 describe(addCustomHeader, () => {
@@ -17,7 +18,7 @@ describe(addCustomHeader, () => {
     addCustomHeader(response1);
     addCustomHeader(response2);
     expect(response1.headers.get("x-request-id")).not.toBe(
-      response2.headers.get("x-request-id"),
+      response2.headers.get("x-request-id")
     );
   });
 });

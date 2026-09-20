@@ -1,3 +1,4 @@
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { loadingStore } from ".";
 import { createLoadingStore } from "./loadingStore";
 
@@ -7,24 +8,24 @@ describe("loadingStore (singleton)", () => {
   });
 
   it("初期状態では getSnapshot / getServerSnapshot ともに false", () => {
-    expect(loadingStore.getSnapshot()).toBe(false);
-    expect(loadingStore.getServerSnapshot()).toBe(false);
+    expect(loadingStore.getSnapshot()).toBeFalsy();
+    expect(loadingStore.getServerSnapshot()).toBeFalsy();
   });
 
   it("show() で true、hide() で false に戻る", () => {
     loadingStore.show();
-    expect(loadingStore.getSnapshot()).toBe(true);
+    expect(loadingStore.getSnapshot()).toBeTruthy();
 
     loadingStore.hide();
-    expect(loadingStore.getSnapshot()).toBe(false);
+    expect(loadingStore.getSnapshot()).toBeFalsy();
   });
 
   it("show 中でも getServerSnapshot は常に false (SSR 契約)", () => {
     // SSR では loading UI を描画せず、クライアントの useEffect で
     // subscribe が走った後に getSnapshot が採用される前提を固定する。
     loadingStore.show();
-    expect(loadingStore.getSnapshot()).toBe(true);
-    expect(loadingStore.getServerSnapshot()).toBe(false);
+    expect(loadingStore.getSnapshot()).toBeTruthy();
+    expect(loadingStore.getServerSnapshot()).toBeFalsy();
   });
 });
 
@@ -37,13 +38,13 @@ describe("createLoadingStore", () => {
       store.show();
 
       store.hide();
-      expect(store.getSnapshot()).toBe(true);
+      expect(store.getSnapshot()).toBeTruthy();
 
       store.hide();
-      expect(store.getSnapshot()).toBe(true);
+      expect(store.getSnapshot()).toBeTruthy();
 
       store.hide();
-      expect(store.getSnapshot()).toBe(false);
+      expect(store.getSnapshot()).toBeFalsy();
     });
 
     it("過剰な hide() は clamp され listener を呼ばない", () => {
@@ -54,7 +55,7 @@ describe("createLoadingStore", () => {
       store.hide();
       store.hide();
 
-      expect(store.getSnapshot()).toBe(false);
+      expect(store.getSnapshot()).toBeFalsy();
       expect(listener).not.toHaveBeenCalled();
       unsubscribe();
     });
@@ -66,10 +67,10 @@ describe("createLoadingStore", () => {
       store.show();
       store.show();
       store.show();
-      expect(store.getSnapshot()).toBe(true);
+      expect(store.getSnapshot()).toBeTruthy();
 
       store.reset();
-      expect(store.getSnapshot()).toBe(false);
+      expect(store.getSnapshot()).toBeFalsy();
     });
 
     it("空状態での reset() は listener を呼ばない", () => {
@@ -91,7 +92,7 @@ describe("createLoadingStore", () => {
       const unsubscribe = store.subscribe(listener);
 
       store.show();
-      expect(listener).toHaveBeenCalledTimes(1);
+      expect(listener).toHaveBeenCalledOnce();
 
       store.hide();
       expect(listener).toHaveBeenCalledTimes(2);
@@ -118,8 +119,8 @@ describe("createLoadingStore", () => {
 
       store.show();
 
-      expect(l1).toHaveBeenCalledTimes(1);
-      expect(l2).toHaveBeenCalledTimes(1);
+      expect(l1).toHaveBeenCalledOnce();
+      expect(l2).toHaveBeenCalledOnce();
 
       u1();
       u2();
@@ -138,8 +139,8 @@ describe("createLoadingStore", () => {
 
       store.show();
 
-      expect(l1).toHaveBeenCalledTimes(1);
-      expect(l2).toHaveBeenCalledTimes(1);
+      expect(l1).toHaveBeenCalledOnce();
+      expect(l2).toHaveBeenCalledOnce();
 
       u1();
       u2();
@@ -157,9 +158,9 @@ describe("createLoadingStore", () => {
 
       store.show();
 
-      expect(bad).toHaveBeenCalledTimes(1);
-      expect(good).toHaveBeenCalledTimes(1);
-      expect(errorSpy).toHaveBeenCalledTimes(1);
+      expect(bad).toHaveBeenCalledOnce();
+      expect(good).toHaveBeenCalledOnce();
+      expect(errorSpy).toHaveBeenCalledOnce();
 
       u1();
       u2();
@@ -203,11 +204,11 @@ describe("createLoadingStore", () => {
       const uEarly = store.subscribe(early);
 
       store.show();
-      expect(early).toHaveBeenCalledTimes(1);
+      expect(early).toHaveBeenCalledOnce();
       expect(late).not.toHaveBeenCalled();
 
       store.hide();
-      expect(late).toHaveBeenCalledTimes(1);
+      expect(late).toHaveBeenCalledOnce();
 
       uEarly();
       lateUnsub?.();
@@ -250,13 +251,13 @@ describe("createLoadingStore", () => {
       const result = await store.promise(Promise.resolve("ok"));
 
       expect(result).toBe("ok");
-      expect(store.getSnapshot()).toBe(false);
+      expect(store.getSnapshot()).toBeFalsy();
     });
 
     it("渡した時点で表示される", () => {
       const store = createLoadingStore();
       const pending = store.promise(new Promise<void>(() => {}));
-      expect(store.getSnapshot()).toBe(true);
+      expect(store.getSnapshot()).toBeTruthy();
       expect(pending).toBeInstanceOf(Promise);
     });
 
@@ -265,7 +266,7 @@ describe("createLoadingStore", () => {
       const error = new Error("nope");
 
       await expect(store.promise(Promise.reject(error))).rejects.toBe(error);
-      expect(store.getSnapshot()).toBe(false);
+      expect(store.getSnapshot()).toBeFalsy();
     });
 
     it("並行 promise で参照カウントが正しい", async () => {
@@ -275,23 +276,23 @@ describe("createLoadingStore", () => {
       const a = store.promise(
         new Promise<void>((resolve) => {
           resolveA = resolve;
-        }),
+        })
       );
       const b = store.promise(
         new Promise<void>((resolve) => {
           resolveB = resolve;
-        }),
+        })
       );
 
-      expect(store.getSnapshot()).toBe(true);
+      expect(store.getSnapshot()).toBeTruthy();
 
       resolveA();
       await a;
-      expect(store.getSnapshot()).toBe(true);
+      expect(store.getSnapshot()).toBeTruthy();
 
       resolveB();
       await b;
-      expect(store.getSnapshot()).toBe(false);
+      expect(store.getSnapshot()).toBeFalsy();
     });
 
     it("並行 promise が両方 reject でも count は 0 に戻る", async () => {
@@ -303,7 +304,7 @@ describe("createLoadingStore", () => {
 
       await expect(a).rejects.toBe(e1);
       await expect(b).rejects.toBe(e2);
-      expect(store.getSnapshot()).toBe(false);
+      expect(store.getSnapshot()).toBeFalsy();
     });
 
     it("resolve と reject が混在しても count は 0 に戻る", async () => {
@@ -314,7 +315,7 @@ describe("createLoadingStore", () => {
 
       await expect(ok).resolves.toBe(1);
       await expect(ng).rejects.toBe(err);
-      expect(store.getSnapshot()).toBe(false);
+      expect(store.getSnapshot()).toBeFalsy();
     });
   });
 
@@ -329,9 +330,9 @@ describe("createLoadingStore", () => {
 
       a.show();
 
-      expect(a.getSnapshot()).toBe(true);
-      expect(b.getSnapshot()).toBe(false);
-      expect(listenerA).toHaveBeenCalledTimes(1);
+      expect(a.getSnapshot()).toBeTruthy();
+      expect(b.getSnapshot()).toBeFalsy();
+      expect(listenerA).toHaveBeenCalledOnce();
       expect(listenerB).not.toHaveBeenCalled();
 
       uA();

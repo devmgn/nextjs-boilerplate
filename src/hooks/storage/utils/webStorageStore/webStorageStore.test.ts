@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { localStorageStore, sessionStorageStore } from "./webStorageStore";
 
 function uniqueKey() {
@@ -6,13 +7,13 @@ function uniqueKey() {
 
 /** 実ブラウザ同様 `storageArea` を必ず設定したうえで `storage` イベントを発火する。 */
 function dispatchLocalStorageEvent(
-  init: Omit<StorageEventInit, "storageArea">,
+  init: Omit<StorageEventInit, "storageArea">
 ) {
   window.dispatchEvent(
     new StorageEvent("storage", {
       storageArea: window.localStorage,
       ...init,
-    }),
+    })
   );
 }
 
@@ -66,7 +67,7 @@ describe("webStorageStore", () => {
       });
 
       it("成功時にtrueを返す", () => {
-        expect(write(uniqueKey(), "hello")).toBe(true);
+        expect(write(uniqueKey(), "hello")).toBeTruthy();
       });
 
       it("QuotaExceededError時にfalseを返しwarnを出す", () => {
@@ -76,8 +77,8 @@ describe("webStorageStore", () => {
             throw new DOMException("quota", "QuotaExceededError");
           },
         });
-        expect(write(uniqueKey(), "hello")).toBe(false);
-        expect(warnSpy).toHaveBeenCalledTimes(1);
+        expect(write(uniqueKey(), "hello")).toBeFalsy();
+        expect(warnSpy).toHaveBeenCalledOnce();
       });
 
       it("失敗時は購読者に通知しない", () => {
@@ -107,7 +108,7 @@ describe("webStorageStore", () => {
       });
 
       it("成功時にtrueを返す", () => {
-        expect(remove(uniqueKey())).toBe(true);
+        expect(remove(uniqueKey())).toBeTruthy();
       });
 
       it("ストレージが例外を投げた時にfalseを返す", () => {
@@ -117,7 +118,7 @@ describe("webStorageStore", () => {
             throw new Error("unavailable");
           },
         });
-        expect(remove(uniqueKey())).toBe(false);
+        expect(remove(uniqueKey())).toBeFalsy();
       });
 
       it("失敗時は購読者に通知しない", () => {
@@ -161,14 +162,14 @@ describe("webStorageStore", () => {
 
         clear();
 
-        expect(l1).toHaveBeenCalledTimes(1);
-        expect(l2).toHaveBeenCalledTimes(1);
+        expect(l1).toHaveBeenCalledOnce();
+        expect(l2).toHaveBeenCalledOnce();
         u1();
         u2();
       });
 
       it("成功時にtrueを返す", () => {
-        expect(clear()).toBe(true);
+        expect(clear()).toBeTruthy();
       });
 
       it("ストレージが例外を投げた時にfalseを返し通知をスキップする", () => {
@@ -182,7 +183,7 @@ describe("webStorageStore", () => {
         const listener = vi.fn();
         const unsubscribe = subscribe(key, listener);
 
-        expect(clear()).toBe(false);
+        expect(clear()).toBeFalsy();
         expect(listener).not.toHaveBeenCalled();
 
         unsubscribe();
@@ -197,7 +198,7 @@ describe("webStorageStore", () => {
 
         write(key, "hello");
 
-        expect(listener).toHaveBeenCalledTimes(1);
+        expect(listener).toHaveBeenCalledOnce();
         unsubscribe();
       });
 
@@ -209,7 +210,7 @@ describe("webStorageStore", () => {
 
         remove(key);
 
-        expect(listener).toHaveBeenCalledTimes(1);
+        expect(listener).toHaveBeenCalledOnce();
         unsubscribe();
       });
 
@@ -247,8 +248,8 @@ describe("webStorageStore", () => {
 
         write(key, "x");
 
-        expect(bad).toHaveBeenCalledTimes(1);
-        expect(good).toHaveBeenCalledTimes(1);
+        expect(bad).toHaveBeenCalledOnce();
+        expect(good).toHaveBeenCalledOnce();
         u1();
         u2();
       });
@@ -266,8 +267,8 @@ describe("webStorageStore", () => {
 
         clear();
 
-        expect(bad).toHaveBeenCalledTimes(1);
-        expect(good).toHaveBeenCalledTimes(1);
+        expect(bad).toHaveBeenCalledOnce();
+        expect(good).toHaveBeenCalledOnce();
         u1();
         u2();
       });
@@ -280,7 +281,7 @@ describe("webStorageStore", () => {
 
         write(key, "x");
 
-        expect(listener).toHaveBeenCalledTimes(1);
+        expect(listener).toHaveBeenCalledOnce();
         u1();
         u2();
       });
@@ -296,7 +297,7 @@ describe("webStorageStore", () => {
 
         write(key, "x");
 
-        expect(firstListener).toHaveBeenCalledTimes(1);
+        expect(firstListener).toHaveBeenCalledOnce();
         expect(lateListener).not.toHaveBeenCalled();
         u1();
         lateUnsubscribe?.();
@@ -317,8 +318,8 @@ describe("webStorageStore", () => {
 
         write(key, "x");
 
-        expect(l1).toHaveBeenCalledTimes(1);
-        expect(l2).toHaveBeenCalledTimes(1);
+        expect(l1).toHaveBeenCalledOnce();
+        expect(l2).toHaveBeenCalledOnce();
         u1();
         u2();
       });
@@ -335,7 +336,7 @@ describe("webStorageStore", () => {
         write(key, "x");
 
         expect(l1).not.toHaveBeenCalled();
-        expect(l2).toHaveBeenCalledTimes(1);
+        expect(l2).toHaveBeenCalledOnce();
         u2();
       });
     });
@@ -355,7 +356,7 @@ describe("webStorageStore", () => {
 
       dispatchLocalStorageEvent({ key, newValue: "from-other-tab" });
 
-      expect(listener).toHaveBeenCalledTimes(1);
+      expect(listener).toHaveBeenCalledOnce();
       unsubscribe();
     });
 
@@ -377,7 +378,7 @@ describe("webStorageStore", () => {
 
       dispatchLocalStorageEvent({ key: null, newValue: null });
 
-      expect(listener).toHaveBeenCalledTimes(1);
+      expect(listener).toHaveBeenCalledOnce();
       unsubscribe();
     });
 
@@ -389,7 +390,7 @@ describe("webStorageStore", () => {
 
       dispatchLocalStorageEvent({ key, newValue: "x" });
 
-      expect(listener).toHaveBeenCalledTimes(1);
+      expect(listener).toHaveBeenCalledOnce();
       u1();
       u2();
     });
@@ -415,7 +416,7 @@ describe("webStorageStore", () => {
           key,
           newValue: "x",
           storageArea: window.sessionStorage,
-        }),
+        })
       );
 
       expect(listener).not.toHaveBeenCalled();
@@ -512,9 +513,9 @@ describe("webStorageStore", () => {
 
       localStorageStore.write(key, "x");
 
-      expect(l1).toHaveBeenCalledTimes(1);
-      expect(l2).toHaveBeenCalledTimes(1);
-      expect(l3).toHaveBeenCalledTimes(1);
+      expect(l1).toHaveBeenCalledOnce();
+      expect(l2).toHaveBeenCalledOnce();
+      expect(l3).toHaveBeenCalledOnce();
       u1();
       u2();
       u3();

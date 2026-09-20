@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { describe, expect, it, vi } from "vitest";
 import { config, proxy } from "./proxy";
 
 describe(proxy, () => {
@@ -28,11 +29,11 @@ describe(proxy, () => {
       expect.objectContaining({
         url: "https://example.com/page",
         method: "GET",
-      }),
+      })
     );
     expect(consoleSpy).toHaveBeenCalledWith(
       "[RESPONSE]",
-      expect.objectContaining({ status: 200 }),
+      expect.objectContaining({ status: 200 })
     );
     consoleSpy.mockRestore();
   });

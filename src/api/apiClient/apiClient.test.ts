@@ -1,4 +1,5 @@
 import { HttpResponse, http } from "msw";
+import { describe, expect, it } from "vitest";
 import { apiClient } from "./apiClient";
 import { server } from "../../mocks/server";
 import { ResponseError } from "../openapi";
@@ -10,7 +11,7 @@ describe("apiClient", () => {
     it("投稿一覧を取得できること", async () => {
       const mockPosts = [{ userId: 1, id: 1, title: "タイトル", body: "本文" }];
       server.use(
-        http.get(`${BASE_URL}/posts`, () => HttpResponse.json(mockPosts)),
+        http.get(`${BASE_URL}/posts`, () => HttpResponse.json(mockPosts))
       );
 
       const result = await apiClient.listPosts();
@@ -26,7 +27,7 @@ describe("apiClient", () => {
           expect(url.searchParams.get("userId")).toBe("1");
           expect(url.searchParams.get("title")).toBe("検索");
           return HttpResponse.json([]);
-        }),
+        })
       );
 
       await apiClient.listPosts({ userId: 1, title: "検索" });
@@ -40,7 +41,7 @@ describe("apiClient", () => {
         http.post(`${BASE_URL}/posts`, async ({ request }) => {
           const body = (await request.json()) as Record<string, unknown>;
           return HttpResponse.json({ ...body, id: 101 }, { status: 201 });
-        }),
+        })
       );
 
       const result = await apiClient.postsPost({ post: newPost });
@@ -56,7 +57,7 @@ describe("apiClient", () => {
         http.get(`${BASE_URL}/posts/:postId`, ({ params }) => {
           expect(params.postId).toBe("42");
           return HttpResponse.json(mockPost);
-        }),
+        })
       );
 
       const result = await apiClient.postsPostIdGet({ postId: 42 });
@@ -67,12 +68,12 @@ describe("apiClient", () => {
     it("404の場合に例外がスローされること", async () => {
       server.use(
         http.get(`${BASE_URL}/posts/:postId`, () =>
-          HttpResponse.json({ message: "Not Found" }, { status: 404 }),
-        ),
+          HttpResponse.json({ message: "Not Found" }, { status: 404 })
+        )
       );
 
       await expect(apiClient.postsPostIdGet({ postId: 999 })).rejects.toThrow(
-        ResponseError,
+        ResponseError
       );
     });
   });
@@ -84,7 +85,7 @@ describe("apiClient", () => {
           const body = (await request.json()) as Record<string, unknown>;
           expect(params.postId).toBe("1");
           return HttpResponse.json({ ...body, id: 1 });
-        }),
+        })
       );
 
       const result = await apiClient.postsPostIdPatch({
@@ -102,11 +103,11 @@ describe("apiClient", () => {
         http.delete(`${BASE_URL}/posts/:postId`, ({ params }) => {
           expect(params.postId).toBe("1");
           return new HttpResponse(null, { status: 200 });
-        }),
+        })
       );
 
       await expect(
-        apiClient.postsPostIdDelete({ postId: 1 }),
+        apiClient.postsPostIdDelete({ postId: 1 })
       ).resolves.toBeUndefined();
     });
 
@@ -115,13 +116,13 @@ describe("apiClient", () => {
         http.delete(`${BASE_URL}/posts/:postId`, () =>
           HttpResponse.json(
             { message: "Internal Server Error" },
-            { status: 500 },
-          ),
-        ),
+            { status: 500 }
+          )
+        )
       );
 
       await expect(apiClient.postsPostIdDelete({ postId: 1 })).rejects.toThrow(
-        ResponseError,
+        ResponseError
       );
     });
   });

@@ -1,3 +1,4 @@
+import { describe, expectTypeOf, it } from "vitest";
 import { useToggle } from "./useToggle";
 
 // オーバーロードの解決結果は「実際に呼び出す式」からしか得られないため、型検証用の

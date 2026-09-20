@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from "vitest";
 import { ENV } from "./env";
 
 describe("ENV", () => {
@@ -10,7 +11,7 @@ describe("ENV", () => {
   });
 
   it("ENVがreadonlyであること", () => {
-    expect(Object.isFrozen(ENV)).toBe(true);
+    expect(Object.isFrozen(ENV)).toBeTruthy();
   });
 
   it.each([
@@ -21,6 +22,6 @@ describe("ENV", () => {
     vi.stubEnv(key, undefined);
     vi.resetModules();
 
-    await expect(async () => import("./env")).rejects.toThrow(/invalid/u);
+    await expect(async () => await import("./env")).rejects.toThrow(/invalid/u);
   });
 });

@@ -70,7 +70,7 @@ function getHookName(callee: ESTree.Expression | ESTree.Super): string | null {
 
 function getDepsArray(
   node: ESTree.CallExpression,
-  hooks: ReadonlyMap<string, number>,
+  hooks: ReadonlyMap<string, number>
 ): ESTree.ArrayExpression | null {
   const calleeName = getHookName(node.callee);
   if (calleeName === null) {
@@ -151,7 +151,7 @@ const rule: Rule = {
             pairs.sort((a, b) =>
               a.key.localeCompare(b.key, undefined, {
                 sensitivity: "base",
-              }),
+              })
             );
 
             const sorted = pairs.map((p) => p.text);
@@ -173,13 +173,13 @@ const rule: Rule = {
             if (isMultiline) {
               return fixer.replaceTextRange(
                 [rangeStart, rangeEnd],
-                sorted.join(`,\n${guessIndent(context, firstElement)}`),
+                sorted.join(`,\n${guessIndent(context, firstElement)}`)
               );
             }
 
             return fixer.replaceTextRange(
               [rangeStart, rangeEnd],
-              sorted.join(", "),
+              sorted.join(", ")
             );
           },
         });

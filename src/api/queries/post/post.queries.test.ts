@@ -1,5 +1,6 @@
 import { QueryClient } from "@tanstack/react-query";
 import { HttpResponse, http } from "msw";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { getPostsQueryOptions } from "./post.queries";
 import { server } from "../../../mocks/server";
 import { ResponseError } from "../../openapi";
@@ -25,7 +26,7 @@ describe("getPostsQueryOptions", () => {
       { userId: 1, id: 2, title: "タイトル2", body: "本文2" },
     ];
     server.use(
-      http.get(`${BASE_URL}/posts`, () => HttpResponse.json(mockPosts)),
+      http.get(`${BASE_URL}/posts`, () => HttpResponse.json(mockPosts))
     );
 
     const result = await queryClient.query(getPostsQueryOptions());
@@ -47,7 +48,7 @@ describe("getPostsQueryOptions", () => {
         const url = new URL(request.url);
         expect(url.searchParams.get("userId")).toBe("2");
         return HttpResponse.json(mockPosts);
-      }),
+      })
     );
 
     const result = await queryClient.query(getPostsQueryOptions({ userId: 2 }));
@@ -71,15 +72,12 @@ describe("getPostsQueryOptions", () => {
   it("APIエラー時に例外がスローされること", async () => {
     server.use(
       http.get(`${BASE_URL}/posts`, () =>
-        HttpResponse.json(
-          { message: "Internal Server Error" },
-          { status: 500 },
-        ),
-      ),
+        HttpResponse.json({ message: "Internal Server Error" }, { status: 500 })
+      )
     );
 
     await expect(queryClient.query(getPostsQueryOptions())).rejects.toThrow(
-      ResponseError,
+      ResponseError
     );
   });
 

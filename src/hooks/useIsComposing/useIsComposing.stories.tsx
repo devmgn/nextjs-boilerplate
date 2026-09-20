@@ -59,7 +59,7 @@ const meta = {
       const append = (
         label: string,
         event: LogEntry["event"],
-        accent: LogEntry["accent"],
+        accent: LogEntry["accent"]
       ) => {
         counterRef.current += 1;
         const id = counterRef.current;
@@ -78,7 +78,7 @@ const meta = {
           listener: () => {
             append(label, event, accent);
           },
-        })),
+        }))
       );
 
       for (const { event, listener, capture } of handlers) {

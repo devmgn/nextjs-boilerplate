@@ -9,7 +9,7 @@ import type { FlatObject } from "../../../types/typeHelpers";
  */
 export function isKeyOf<T extends FlatObject>(
   obj: T,
-  key: PropertyKey,
+  key: PropertyKey
 ): key is keyof T {
   return Object.hasOwn(obj, key);
 }

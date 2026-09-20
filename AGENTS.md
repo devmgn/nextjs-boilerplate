@@ -31,12 +31,12 @@ Prefer skill instructions over rules files when they conflict. Always consult th
 
 ## MCP Tool Usage
 
-| Purpose                                                          | MCP Tool                                                              |
-| ---------------------------------------------------------------- | --------------------------------------------------------------------- |
-| **Next.js official docs**                                        | `next-devtools` (`nextjs_docs`, `nextjs_index`, `nextjs_call`)        |
-| **Other libraries** (React, TanStack Query, Zod, Tailwind, etc.) | `context7` (`resolve-library-id` → `query-docs`)                      |
-| **Vitest docs**                                                  | `WebFetch` → `https://vitest.dev/llms-full.txt`                       |
-| **Storybook UI dev** (stories, component docs)                   | `storybook-mcp` (see `.claude/rules/storybook.md` for full tool list) |
+| Purpose | MCP Tool |
+| --- | --- |
+| **Next.js official docs** | `next-devtools` (`nextjs_docs`, `nextjs_index`, `nextjs_call`) |
+| **Other libraries** (React, TanStack Query, Zod, Tailwind, etc.) | `context7` (`resolve-library-id` → `query-docs`) |
+| **Vitest docs** | `WebFetch` → `https://vitest.dev/llms-full.txt` |
+| **Storybook UI dev** (stories, component docs) | `storybook-mcp` (see `.claude/rules/storybook.md` for full tool list) |
 
 <!-- BEGIN:nextjs-agent-rules -->
 

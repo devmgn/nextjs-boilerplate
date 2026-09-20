@@ -1,5 +1,6 @@
 import type { WebStorageStore } from "../utils/webStorageStore";
 import { act, renderHook } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 import { useWebStorage } from "./useWebStorage";
 
 /**
@@ -160,7 +161,7 @@ describe(useWebStorage, () => {
 
     unmount();
 
-    expect(unsubscribe).toHaveBeenCalledTimes(1);
+    expect(unsubscribe).toHaveBeenCalledOnce();
     expect(store.__listeners.size).toBe(0);
   });
 });

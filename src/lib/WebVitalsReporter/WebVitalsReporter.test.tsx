@@ -1,4 +1,5 @@
 import { render } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 import { WebVitalsReporter } from "./WebVitalsReporter";
 
 const { mockUseReportWebVitals } = vi.hoisted(() => ({
@@ -43,7 +44,7 @@ describe(WebVitalsReporter, () => {
     expect(consoleSpy).toHaveBeenCalledWith(
       expect.stringContaining("[Web Vitals]: LCP: 2500 / Rating: good"),
       expect.any(String),
-      expect.objectContaining({ name: "LCP", value: 2500 }),
+      expect.objectContaining({ name: "LCP", value: 2500 })
     );
 
     consoleSpy.mockRestore();

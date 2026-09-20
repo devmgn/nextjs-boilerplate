@@ -3,7 +3,7 @@ import { useSyncExternalStore } from "react";
 /** メディアクエリの一致状態を監視するカスタムフック */
 export function useMediaQuery(
   query: string,
-  onChange?: (event: MediaQueryListEvent) => void,
+  onChange?: (event: MediaQueryListEvent) => void
 ): boolean {
   return useSyncExternalStore(
     (onStoreChange) => {
@@ -18,6 +18,6 @@ export function useMediaQuery(
       };
     },
     () => window.matchMedia(query).matches,
-    () => false,
+    () => false
   );
 }

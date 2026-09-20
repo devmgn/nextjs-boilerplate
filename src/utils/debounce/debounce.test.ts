@@ -1,3 +1,4 @@
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { debounce } from "./debounce";
 
 describe(debounce, () => {
@@ -15,7 +16,7 @@ describe(debounce, () => {
       expect(fn).not.toHaveBeenCalled();
 
       vi.advanceTimersByTime(100);
-      expect(fn).toHaveBeenCalledTimes(1);
+      expect(fn).toHaveBeenCalledOnce();
     });
 
     it("最後の呼び出しの引数で実行されること", () => {
@@ -44,7 +45,7 @@ describe(debounce, () => {
       expect(fn).not.toHaveBeenCalled();
 
       vi.advanceTimersByTime(20);
-      expect(fn).toHaveBeenCalledTimes(1);
+      expect(fn).toHaveBeenCalledOnce();
     });
 
     it("複数の引数が正しく渡されること", () => {
@@ -139,7 +140,7 @@ describe(debounce, () => {
       debounced.flush();
       vi.advanceTimersByTime(100);
 
-      expect(fn).toHaveBeenCalledTimes(1);
+      expect(fn).toHaveBeenCalledOnce();
     });
 
     it("flush 後に新しいサイクルを開始できること", () => {
@@ -148,7 +149,7 @@ describe(debounce, () => {
 
       debounced("first");
       debounced.flush();
-      expect(fn).toHaveBeenCalledTimes(1);
+      expect(fn).toHaveBeenCalledOnce();
 
       debounced("second");
       vi.advanceTimersByTime(100);
@@ -160,7 +161,7 @@ describe(debounce, () => {
       state: string;
       setup: (
         d: ReturnType<typeof debounce<[string]>>,
-        fn: ReturnType<typeof vi.fn>,
+        fn: ReturnType<typeof vi.fn>
       ) => number;
     }>([
       { state: "初期状態 (保留無し)", setup: () => 0 },
@@ -308,7 +309,7 @@ describe(debounce, () => {
 
       fn.mockImplementationOnce(() => {
         // 1 回目の実行中に自分自身を cancel しても安全であることを確認する
-        expect(fn).toHaveBeenCalledTimes(1);
+        expect(fn).toHaveBeenCalledOnce();
         debounced.cancel();
       });
 

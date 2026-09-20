@@ -1,5 +1,6 @@
 import { renderHook } from "@testing-library/react";
 import { act } from "react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { useDebouncedCallback } from "./useDebouncedCallback";
 
 describe(useDebouncedCallback, () => {
@@ -22,7 +23,7 @@ describe(useDebouncedCallback, () => {
     act(() => {
       vi.advanceTimersByTime(500);
     });
-    expect(callback).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenCalledOnce();
   });
 
   it("flush を呼び出すと即時実行されること", () => {
@@ -35,13 +36,13 @@ describe(useDebouncedCallback, () => {
       // flush で即実行
       result.current.flush();
     });
-    expect(callback).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenCalledOnce();
 
     // その後タイマーを進めても追加で呼ばれない
     act(() => {
       vi.advanceTimersByTime(500);
     });
-    expect(callback).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenCalledOnce();
   });
 
   it("cancel を呼び出すと保留中の実行がキャンセルされること", () => {
@@ -61,7 +62,7 @@ describe(useDebouncedCallback, () => {
   it("コンポーネントのアンマウント時に保留中の実行がキャンセルされること", () => {
     const callback = vi.fn();
     const { result, unmount } = renderHook(() =>
-      useDebouncedCallback(callback, 500),
+      useDebouncedCallback(callback, 500)
     );
 
     // 保留中の実行がある状態でアンマウント
@@ -95,7 +96,7 @@ describe(useDebouncedCallback, () => {
     const callback = vi.fn();
     const { result, rerender } = renderHook(
       ({ wait }) => useDebouncedCallback(callback, wait),
-      { initialProps: { wait: 500 } },
+      { initialProps: { wait: 500 } }
     );
 
     // 旧 wait (500ms) で呼び出し
@@ -119,14 +120,14 @@ describe(useDebouncedCallback, () => {
     act(() => {
       vi.advanceTimersByTime(1000);
     });
-    expect(callback).toHaveBeenCalledTimes(1);
+    expect(callback).toHaveBeenCalledOnce();
   });
 
   it("依存が変化しない再レンダリングで同一の debounced 関数が返されること", () => {
     const callback = vi.fn();
     const { result, rerender } = renderHook(
       ({ wait }) => useDebouncedCallback(callback, wait),
-      { initialProps: { wait: 500 } },
+      { initialProps: { wait: 500 } }
     );
 
     const prev = result.current;
@@ -142,7 +143,7 @@ describe(useDebouncedCallback, () => {
         useDebouncedCallback((arg: string) => {
           spy(value, arg);
         }, 500),
-      { initialProps: { value: current } },
+      { initialProps: { value: current } }
     );
 
     // 最初の呼び出しでタイマー開始
@@ -187,7 +188,7 @@ describe(useDebouncedCallback, () => {
         useDebouncedCallback((arg: string) => {
           spy(value, arg);
         }, 500),
-      { initialProps: { value: 0 } },
+      { initialProps: { value: 0 } }
     );
 
     act(() => {

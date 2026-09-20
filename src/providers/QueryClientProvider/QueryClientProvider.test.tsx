@@ -1,5 +1,6 @@
 import { useQueryClient } from "@tanstack/react-query";
 import { render, renderHook, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
 import { QueryClientProvider } from "./QueryClientProvider";
 import { getQueryClient } from "../../lib/getQueryClient";
 
@@ -12,7 +13,7 @@ describe(QueryClientProvider, () => {
     render(
       <QueryClientProvider>
         <span data-testid="child">hello</span>
-      </QueryClientProvider>,
+      </QueryClientProvider>
     );
     expect(screen.getByTestId("child")).toHaveTextContent("hello");
   });
@@ -21,7 +22,7 @@ describe(QueryClientProvider, () => {
     render(
       <QueryClientProvider>
         <span />
-      </QueryClientProvider>,
+      </QueryClientProvider>
     );
     expect(screen.getByTestId("devtools")).toBeInTheDocument();
   });

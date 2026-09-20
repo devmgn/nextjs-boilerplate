@@ -1,4 +1,5 @@
 import { QueryClient, environmentManager } from "@tanstack/react-query";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { QUERY_CLIENT_CONFIG } from "./config/queryClientConfig";
 
 describe("getQueryClient", () => {
@@ -28,7 +29,7 @@ describe("getQueryClient", () => {
     it("QUERY_CLIENT_CONFIGのstaleTimeが適用されていること", async () => {
       const { getQueryClient } = await import("./getQueryClient");
       expect(getQueryClient().getDefaultOptions().queries?.staleTime).toBe(
-        QUERY_CLIENT_CONFIG.defaultOptions.queries.staleTime,
+        QUERY_CLIENT_CONFIG.defaultOptions.queries.staleTime
       );
     });
   });
@@ -51,7 +52,7 @@ describe("getQueryClient", () => {
     it("QUERY_CLIENT_CONFIGのstaleTimeが適用されていること", async () => {
       const { getQueryClient } = await import("./getQueryClient");
       expect(getQueryClient().getDefaultOptions().queries?.staleTime).toBe(
-        QUERY_CLIENT_CONFIG.defaultOptions.queries.staleTime,
+        QUERY_CLIENT_CONFIG.defaultOptions.queries.staleTime
       );
     });
   });

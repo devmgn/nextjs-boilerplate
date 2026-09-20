@@ -14,20 +14,20 @@
 - **汎用**: プロジェクト外に持ち出せる汎用 UI / ロジック（`components/`, `hooks/`, `utils/`）
 - **アプリ固有**: このアプリの設定・統合・グルー（`lib/`, `providers/`, `mocks/`, `proxy.ts`, `env.ts`）
 
-| ディレクトリ / ファイル     | 軸         | 役割                                                                         |
-| --------------------------- | ---------- | ---------------------------------------------------------------------------- |
-| `app/`                      | -          | Next.js App Router                                                           |
-| `api/`                      | 契約層     | OpenAPI 生成物 + その薄いコンシューマー拡張（apiClient / queryOptions など） |
-| `types/`                    | 契約層     | 型ヘルパー・グローバル型拡張（.d.ts 含む）                                   |
-| `components/`               | 汎用       | 汎用 UI コンポーネント                                                       |
-| `hooks/`                    | 汎用       | 汎用 React hooks                                                             |
-| `utils/`                    | 汎用       | プロジェクト外に持ち出せる汎用ロジック                                       |
-| `lib/`                      | アプリ固有 | このアプリ固有の設定・統合・グルー                                           |
-| `providers/`                | アプリ固有 | アプリ全体に被せる Context Provider                                          |
-| `mocks/`                    | アプリ固有 | MSW handlers・各環境エントリ                                                 |
-| `env.ts`                    | アプリ固有 | 環境変数の型付き定義                                                         |
-| `proxy.ts`                  | アプリ固有 | Next.js middleware 相当                                                      |
-| `instrumentation-client.ts` | アプリ固有 | Next.js instrumentation hook                                                 |
+| ディレクトリ / ファイル | 軸 | 役割 |
+| --- | --- | --- |
+| `app/` | - | Next.js App Router |
+| `api/` | 契約層 | OpenAPI 生成物 + その薄いコンシューマー拡張（apiClient / queryOptions など） |
+| `types/` | 契約層 | 型ヘルパー・グローバル型拡張（.d.ts 含む） |
+| `components/` | 汎用 | 汎用 UI コンポーネント |
+| `hooks/` | 汎用 | 汎用 React hooks |
+| `utils/` | 汎用 | プロジェクト外に持ち出せる汎用ロジック |
+| `lib/` | アプリ固有 | このアプリ固有の設定・統合・グルー |
+| `providers/` | アプリ固有 | アプリ全体に被せる Context Provider |
+| `mocks/` | アプリ固有 | MSW handlers・各環境エントリ |
+| `env.ts` | アプリ固有 | 環境変数の型付き定義 |
+| `proxy.ts` | アプリ固有 | Next.js middleware 相当 |
+| `instrumentation-client.ts` | アプリ固有 | Next.js instrumentation hook |
 
 ## `utils/` vs `lib/`
 

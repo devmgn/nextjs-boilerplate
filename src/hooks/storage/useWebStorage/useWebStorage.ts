@@ -25,7 +25,7 @@ import { isFunction } from "../../../utils/is/isFunction";
  */
 export function useWebStorage(
   store: WebStorageStore,
-  key: string,
+  key: string
 ): [
   value: string | null,
   setValue: (value: string | ((prev: string | null) => string)) => boolean,
@@ -34,7 +34,7 @@ export function useWebStorage(
   const value = useSyncExternalStore(
     (onStoreChange) => store.subscribe(key, onStoreChange),
     () => store.read(key),
-    () => null,
+    () => null
   );
 
   const setValue = (updater: string | ((prev: string | null) => string)) => {

@@ -1,5 +1,6 @@
 import { act, renderHook } from "@testing-library/react";
 import { StrictMode } from "react";
+import { describe, expect, it, vi } from "vitest";
 import { useIsComposing } from "./useIsComposing";
 
 function dispatchComposition(type: "compositionstart" | "compositionend") {
@@ -7,10 +8,10 @@ function dispatchComposition(type: "compositionstart" | "compositionend") {
 }
 
 function countCaptureCompositionStart(
-  calls: Array<Parameters<typeof document.addEventListener>>,
+  calls: Parameters<typeof document.addEventListener>[]
 ): number {
   return calls.filter(
-    ([type, , options]) => type === "compositionstart" && options === true,
+    ([type, , options]) => type === "compositionstart" && options === true
   ).length;
 }
 
@@ -18,17 +19,17 @@ describe(useIsComposing, () => {
   describe("基本動作", () => {
     it("compositionstart で true、compositionend で false に再レンダーされること", () => {
       const { result } = renderHook(() => useIsComposing());
-      expect(result.current).toBe(false);
+      expect(result.current).toBeFalsy();
 
       act(() => {
         dispatchComposition("compositionstart");
       });
-      expect(result.current).toBe(true);
+      expect(result.current).toBeTruthy();
 
       act(() => {
         dispatchComposition("compositionend");
       });
-      expect(result.current).toBe(false);
+      expect(result.current).toBeFalsy();
     });
 
     it("同一コンポーネント内で capture と bubble の値を同時に取得できること", () => {
@@ -65,41 +66,41 @@ describe(useIsComposing, () => {
         expect(spy).toHaveBeenCalledWith(
           "compositionstart",
           expect.any(Function),
-          capture,
+          capture
         );
         expect(spy).toHaveBeenCalledWith(
           "compositionend",
           expect.any(Function),
-          capture,
+          capture
         );
-      },
+      }
     );
 
     it("capture が変更されたとき、新しいストアの値を返すこと", () => {
       const { result, rerender } = renderHook(
         ({ capture }) => useIsComposing(capture),
-        { initialProps: { capture: true as boolean } },
+        { initialProps: { capture: true as boolean } }
       );
 
       act(() => {
         dispatchComposition("compositionstart");
       });
-      expect(result.current).toBe(true);
+      expect(result.current).toBeTruthy();
 
       // capture→bubble に切り替わると、capture ストアは最後の購読者が抜けて composing がリセットされ、
       // 新たに購読する bubble ストアも初期値 false なので結果は false になる
       rerender({ capture: false });
-      expect(result.current).toBe(false);
+      expect(result.current).toBeFalsy();
 
       act(() => {
         dispatchComposition("compositionstart");
       });
-      expect(result.current).toBe(true);
+      expect(result.current).toBeTruthy();
 
       act(() => {
         dispatchComposition("compositionend");
       });
-      expect(result.current).toBe(false);
+      expect(result.current).toBeFalsy();
     });
 
     it("capture 変更時に旧フェーズのリスナーを除去し新フェーズのリスナーを登録すること", () => {
@@ -108,7 +109,7 @@ describe(useIsComposing, () => {
 
       const { rerender, unmount } = renderHook(
         ({ capture }) => useIsComposing(capture),
-        { initialProps: { capture: true as boolean } },
+        { initialProps: { capture: true as boolean } }
       );
 
       addSpy.mockClear();
@@ -119,22 +120,22 @@ describe(useIsComposing, () => {
       expect(removeSpy).toHaveBeenCalledWith(
         "compositionstart",
         expect.any(Function),
-        true,
+        true
       );
       expect(removeSpy).toHaveBeenCalledWith(
         "compositionend",
         expect.any(Function),
-        true,
+        true
       );
       expect(addSpy).toHaveBeenCalledWith(
         "compositionstart",
         expect.any(Function),
-        false,
+        false
       );
       expect(addSpy).toHaveBeenCalledWith(
         "compositionend",
         expect.any(Function),
-        false,
+        false
       );
 
       unmount();
@@ -151,18 +152,18 @@ describe(useIsComposing, () => {
       expect(removeSpy).toHaveBeenCalledWith(
         "compositionstart",
         expect.any(Function),
-        true,
+        true
       );
       expect(removeSpy).toHaveBeenCalledWith(
         "compositionend",
         expect.any(Function),
-        true,
+        true
       );
 
       act(() => {
         dispatchComposition("compositionstart");
       });
-      expect(result.current).toBe(false);
+      expect(result.current).toBeFalsy();
     });
 
     it("composing 中にアンマウントしても、再マウント後は false から始まること", () => {
@@ -174,7 +175,7 @@ describe(useIsComposing, () => {
       act(() => {
         dispatchComposition("compositionstart");
       });
-      expect(r1.current).toBe(true);
+      expect(r1.current).toBeTruthy();
 
       unmount();
 
@@ -184,7 +185,7 @@ describe(useIsComposing, () => {
       });
 
       const { result: r2 } = renderHook(() => useIsComposing());
-      expect(r2.current).toBe(false);
+      expect(r2.current).toBeFalsy();
     });
 
     it("StrictMode 下でも正しく動作しリスナーリークが起きないこと", () => {
@@ -198,25 +199,25 @@ describe(useIsComposing, () => {
       // mount→unmount→再mount を経ても capture リスナーは純増 1 の状態
       expect(
         countCaptureCompositionStart(addSpy.mock.calls) -
-          countCaptureCompositionStart(removeSpy.mock.calls),
+          countCaptureCompositionStart(removeSpy.mock.calls)
       ).toBe(1);
 
       act(() => {
         dispatchComposition("compositionstart");
       });
-      expect(result.current).toBe(true);
+      expect(result.current).toBeTruthy();
 
       act(() => {
         dispatchComposition("compositionend");
       });
-      expect(result.current).toBe(false);
+      expect(result.current).toBeFalsy();
 
       unmount();
 
       // unmount 後は純増 0 (リスナーリークなし)
       expect(
         countCaptureCompositionStart(addSpy.mock.calls) -
-          countCaptureCompositionStart(removeSpy.mock.calls),
+          countCaptureCompositionStart(removeSpy.mock.calls)
       ).toBe(0);
     });
   });
@@ -232,19 +233,19 @@ describe(useIsComposing, () => {
 
         act(() => {
           input.dispatchEvent(
-            new CompositionEvent("compositionstart", { bubbles: true }),
+            new CompositionEvent("compositionstart", { bubbles: true })
           );
         });
-        expect(capture.current).toBe(true);
-        expect(bubble.current).toBe(true);
+        expect(capture.current).toBeTruthy();
+        expect(bubble.current).toBeTruthy();
 
         act(() => {
           input.dispatchEvent(
-            new CompositionEvent("compositionend", { bubbles: true }),
+            new CompositionEvent("compositionend", { bubbles: true })
           );
         });
-        expect(capture.current).toBe(false);
-        expect(bubble.current).toBe(false);
+        expect(capture.current).toBeFalsy();
+        expect(bubble.current).toBeFalsy();
       } finally {
         input.remove();
       }

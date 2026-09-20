@@ -55,8 +55,8 @@ export const ServerError: Story = {
   beforeEach({ msw }) {
     msw.use(
       http.get("https://...", () =>
-        HttpResponse.json({ message: "Error" }, { status: 500 }),
-      ),
+        HttpResponse.json({ message: "Error" }, { status: 500 })
+      )
     );
   },
 };
@@ -70,17 +70,17 @@ Unhandled requests print `[MSW] Warning: intercepted a request without a matchin
 
 `@storybook/addon-mcp` serves the MCP endpoint at `http://localhost:6006/mcp`, registered as `storybook-mcp` in `.mcp.json`. Tools are grouped into toolsets, toggled via `toolsets` in `.storybook/main.ts` (each defaults to `true`).
 
-| Toolset | Tool                               | Purpose                                                    |
-| ------- | ---------------------------------- | ---------------------------------------------------------- |
-| dev     | `stories-changed`                  | Stories affected by local file changes                     |
-| dev     | `stories-find-by-component`        | Map component source files to the stories that render them |
-| dev     | `get-storybook-story-instructions` | Story authoring and interaction test conventions           |
-| dev     | `stories-preview`                  | Render story previews / return preview URLs                |
-| dev     | `review-create`                    | Publish a curated review page                              |
-| docs    | `docs-list`                        | Component index and documentation entries                  |
-| docs    | `docs-show`                        | Component documentation with props and story samples       |
-| docs    | `docs-show-story`                  | A single story with its documentation                      |
-| test    | `test-run`                         | Run tests for the given stories, including a11y results    |
+| Toolset | Tool | Purpose |
+| --- | --- | --- |
+| dev | `stories-changed` | Stories affected by local file changes |
+| dev | `stories-find-by-component` | Map component source files to the stories that render them |
+| dev | `get-storybook-story-instructions` | Story authoring and interaction test conventions |
+| dev | `stories-preview` | Render story previews / return preview URLs |
+| dev | `review-create` | Publish a curated review page |
+| docs | `docs-list` | Component index and documentation entries |
+| docs | `docs-show` | Component documentation with props and story samples |
+| docs | `docs-show-story` | A single story with its documentation |
+| test | `test-run` | Run tests for the given stories, including a11y results |
 
 `review-create` is registered for direct MCP clients only when `features.experimentalReview` is on; the `storybook ai` CLI channel gets it by default.
 

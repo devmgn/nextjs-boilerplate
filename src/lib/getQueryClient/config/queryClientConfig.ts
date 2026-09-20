@@ -9,7 +9,7 @@ import { loadingStore as loading } from "../../../components/LoadingOverlay/util
 
 function handleCacheError(
   error: Error,
-  meta: { skipToast?: boolean } | undefined,
+  meta: { skipToast?: boolean } | undefined
 ) {
   if (meta?.skipToast === true) {
     return;

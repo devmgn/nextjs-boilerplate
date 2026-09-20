@@ -1,5 +1,6 @@
 import { fireEvent, render } from "@testing-library/react";
 import { act } from "react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { useDebouncedInput } from "./useDebouncedInput";
 
 function Probe({
@@ -99,7 +100,7 @@ describe(useDebouncedInput, () => {
   it("依存が変わらない再レンダリングでも保留中のタイマーが失われないこと", () => {
     const onValue = vi.fn();
     const { getByTestId, rerender } = render(
-      <Probe onValue={onValue} wait={300} />,
+      <Probe onValue={onValue} wait={300} />
     );
 
     fireEvent.change(getByTestId("input"), { target: { value: "a" } });
@@ -115,7 +116,7 @@ describe(useDebouncedInput, () => {
   it("textarea にもスプレッドでき debounce されること", () => {
     const onValue = vi.fn();
     const { getByTestId } = render(
-      <Probe multiline onValue={onValue} wait={300} />,
+      <Probe multiline onValue={onValue} wait={300} />
     );
 
     fireEvent.change(getByTestId("textarea"), {
@@ -130,7 +131,7 @@ describe(useDebouncedInput, () => {
   it("wait を変更するとタイマーが作り直されること", () => {
     const onValue = vi.fn();
     const { getByTestId, rerender } = render(
-      <Probe onValue={onValue} wait={300} />,
+      <Probe onValue={onValue} wait={300} />
     );
 
     fireEvent.change(getByTestId("input"), { target: { value: "a" } });

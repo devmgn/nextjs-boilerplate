@@ -1,4 +1,5 @@
 import type { Expand, FlatObject, Primitive } from "./typeHelpers";
+import { describe, expectTypeOf, it } from "vitest";
 
 describe("typeHelpers", () => {
   describe("Expand", () => {

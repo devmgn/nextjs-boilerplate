@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { isKeyOf } from "./isKeyOf";
 
 const TEST_OBJECT = {

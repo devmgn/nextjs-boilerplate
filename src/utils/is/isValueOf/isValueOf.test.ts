@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { isValueOf } from "./isValueOf";
 
 const TEST_OBJECT = {
@@ -32,13 +33,13 @@ describe(isValueOf, () => {
         { value: "#0000FF" },
         { value: "#FFFFFF" },
       ])("value: $value → true", ({ value }) => {
-        expect(isValueOf(TEST_OBJECT, value)).toBe(true);
+        expect(isValueOf(TEST_OBJECT, value)).toBeTruthy();
       });
     });
 
     describe("値が存在しない場合", () => {
       it.for(falsyCases)("value: $value → false", ({ value }) => {
-        expect(isValueOf(TEST_OBJECT, value)).toBe(false);
+        expect(isValueOf(TEST_OBJECT, value)).toBeFalsy();
       });
     });
   });
@@ -51,13 +52,13 @@ describe(isValueOf, () => {
         { value: "#0000FF" },
         { value: "#FFFFFF" },
       ])("value: $value → true", ({ value }) => {
-        expect(isValueOf(TEST_ARRAY, value)).toBe(true);
+        expect(isValueOf(TEST_ARRAY, value)).toBeTruthy();
       });
     });
 
     describe("値が存在しない場合", () => {
       it.for(falsyCases)("value: $value → false", ({ value }) => {
-        expect(isValueOf(TEST_ARRAY, value)).toBe(false);
+        expect(isValueOf(TEST_ARRAY, value)).toBeFalsy();
       });
     });
   });

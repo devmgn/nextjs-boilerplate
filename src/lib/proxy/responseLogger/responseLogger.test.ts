@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { describe, expect, it, vi } from "vitest";
 import { responseLogger } from "./responseLogger";
 
 describe(responseLogger, () => {

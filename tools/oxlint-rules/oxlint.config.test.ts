@@ -1,8 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { selectReactDoctorRules } from "./reactDoctorRules.ts";
 import oxlintConfig from "../../oxlint.config.ts";
 
-// 外部 jsPlugin（tanstack / storybook）は config にルールを手動列挙しているため、
+// 自前でルールを手動列挙している外部 jsPlugin（tanstack / storybook）は、
 // プラグイン更新で増えた新ルールを取りこぼしうる（前方ドリフト）。それを検出して採用/除外の判断を促す。
 // 実在しないルール名は oxlint が config パース時に弾くため、後方ドリフトは扱わない。
 
@@ -16,10 +15,15 @@ type JsPluginEntry = string | { name?: string; specifier: string };
 // triage の結果「採用しない」と判断した外部ルールはここに理由付きで追加する。
 const IGNORED_RULES = new Set<string>();
 
-// react-doctor は 900 超のルールを持ち、大半がこのリポジトリのスタック外か
-// ネイティブ oxlint と重複する。全件列挙ではなく reactDoctorRules.ts の算出結果と
-// 突き合わせる専用テストで担保するため、総当たり検査からは除外する。
-const GENERATED_RULE_PREFIXES = new Set(["react-doctor/"]);
+// ultracite の preset がルール選定を持つプラグイン。採否は ultracite 側の責務で、
+// ここで検査すると「ultracite が新ルールを triage したか」を問うことになり、
+// ultracite を上げるたびに落ちる。追随したいときは ultracite のバージョンを上げる。
+const ULTRACITE_MANAGED_PREFIXES = new Set([
+  "github/",
+  "react-doctor/",
+  "shadcn/",
+  "sonarjs/",
+]);
 
 // プラグイン specifier → oxlint の前缀（eslint-plugin-x → x ／ @scope/eslint-plugin-x → @scope/x）。
 function stripEslintPluginPrefix(name: string): string {
@@ -55,7 +59,7 @@ function collectJsPluginEntries(): JsPluginEntry[] {
 
 // entry → { 前缀, specifier }。相対パス（自作プラグイン）は除外。
 function resolveExternalPlugin(
-  entry: JsPluginEntry,
+  entry: JsPluginEntry
 ): { prefix: string; specifier: string } | undefined {
   const specifier = typeof entry === "string" ? entry : entry.specifier;
   if (specifier.startsWith(".")) {
@@ -77,7 +81,7 @@ function collectExternalPluginSpecifiers(): Map<string, string> {
     if (
       resolved !== undefined &&
       !byPrefix.has(resolved.prefix) &&
-      !GENERATED_RULE_PREFIXES.has(resolved.prefix)
+      !ULTRACITE_MANAGED_PREFIXES.has(resolved.prefix)
     ) {
       byPrefix.set(resolved.prefix, resolved.specifier);
     }
@@ -112,7 +116,7 @@ function collectConfiguredRuleNames(): Set<string> {
 function untriagedRules(
   prefix: string,
   ruleNames: readonly string[],
-  configured: ReadonlySet<string>,
+  configured: ReadonlySet<string>
 ): string[] {
   return ruleNames
     .map((name) => `${prefix}${name}`)
@@ -136,34 +140,14 @@ describe("oxlint config ↔ プラグイン整合性 (前方ドリフト検出)"
       // import 形状の退行で空配列＝素通りになるのを防ぐ。
       expect(
         ruleNames.length,
-        `${prefix} のルールが読めていない（プラグインの import 形状が変わった可能性）`,
+        `${prefix} のルールが読めていない（プラグインの import 形状が変わった可能性）`
       ).toBeGreaterThan(0);
 
       const untriaged = untriagedRules(prefix, ruleNames, configured);
       expect(
         untriaged,
-        `未 triage の新ルール（config 追加 or 許可リスト登録が必要）: ${untriaged.join(", ")}`,
+        `未 triage の新ルール（config 追加 or 許可リスト登録が必要）: ${untriaged.join(", ")}`
       ).toStrictEqual([]);
-    },
+    }
   );
-});
-
-describe("oxlint config ↔ react-doctor 生成結果", () => {
-  // config の react-doctor ルールは `pnpm generate-oxlint-rules` の出力。
-  // 手編集やプラグイン更新で乖離したら、再生成を促すために落とす。
-  it("config の react-doctor ルールが生成結果と一致する", () => {
-    const configured = Object.fromEntries(
-      Object.entries(oxlintConfig.rules).filter(([name]) =>
-        name.startsWith("react-doctor/"),
-      ),
-    );
-    const generated = selectReactDoctorRules();
-
-    // 選定ロジックの退行で空になり素通りするのを防ぐ。
-    expect(Object.keys(generated).length).toBeGreaterThan(0);
-    expect(
-      configured,
-      "`pnpm generate-oxlint-rules` を実行して oxlint.config.ts を更新してください",
-    ).toStrictEqual(generated);
-  });
 });

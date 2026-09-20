@@ -9,14 +9,14 @@ interface DebouncedFunction<Args extends unknown[]> {
 function assertNonNegativeFinite(name: string, value: number): void {
   if (!Number.isFinite(value) || value < 0) {
     throw new TypeError(
-      `debounce: \`${name}\` must be a finite non-negative number, got ${value}.`,
+      `debounce: \`${name}\` must be a finite non-negative number, got ${value}.`
     );
   }
 }
 
 export function debounce<Args extends unknown[]>(
   func: (...args: Args) => void,
-  wait: number,
+  wait: number
 ): DebouncedFunction<Args> {
   assertNonNegativeFinite("wait", wait);
 

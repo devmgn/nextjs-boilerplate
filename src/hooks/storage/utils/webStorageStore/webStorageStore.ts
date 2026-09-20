@@ -103,7 +103,7 @@ function createStore(storageType: StorageType): WebStorageStore {
    * `notify` と同じ理由でスナップショットを取ってからイテレートする。
    */
   function notifyAll(): void {
-    const snapshot: Array<() => void> = [];
+    const snapshot: (() => void)[] = [];
     for (const keyListeners of listeners.values()) {
       for (const listener of keyListeners) {
         snapshot.push(listener);

@@ -29,7 +29,7 @@ export function WebVitalsReporter() {
     console.info(
       `%c [Web Vitals]: ${name}: ${value} / Rating: ${rating}`,
       style,
-      metric,
+      metric
     );
   });
 

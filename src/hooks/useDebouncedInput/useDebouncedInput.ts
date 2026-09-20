@@ -12,7 +12,7 @@ type InputElement = HTMLInputElement | HTMLTextAreaElement;
  */
 export function useDebouncedInput(
   onValue: (value: string) => void,
-  wait: number,
+  wait: number
 ) {
   const debounced = useDebouncedCallback(onValue, wait);
   const isComposingRef = useRef(false);

@@ -1,5 +1,6 @@
 import { QueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { QUERY_CLIENT_CONFIG } from "./queryClientConfig";
 import { loading } from "../../../components/LoadingOverlay";
 
@@ -65,8 +66,8 @@ describe("QUERY_CLIENT_CONFIG", () => {
         })
         .execute(undefined);
 
-      expect(showSpy).toHaveBeenCalledTimes(1);
-      expect(hideSpy).toHaveBeenCalledTimes(1);
+      expect(showSpy).toHaveBeenCalledOnce();
+      expect(hideSpy).toHaveBeenCalledOnce();
     });
 
     it("mutation 失敗時にも loading.hide が呼ばれること", async () => {
@@ -83,8 +84,8 @@ describe("QUERY_CLIENT_CONFIG", () => {
         .execute(undefined)
         .catch(() => {});
 
-      expect(showSpy).toHaveBeenCalledTimes(1);
-      expect(hideSpy).toHaveBeenCalledTimes(1);
+      expect(showSpy).toHaveBeenCalledOnce();
+      expect(hideSpy).toHaveBeenCalledOnce();
     });
 
     it("skipLoading: true のとき loading.show / hide が呼ばれないこと", async () => {
@@ -140,11 +141,11 @@ describe("QUERY_CLIENT_CONFIG", () => {
 
   describe("defaultOptions", () => {
     it("queriesのretryがfalseであること", () => {
-      expect(QUERY_CLIENT_CONFIG.defaultOptions.queries.retry).toBe(false);
+      expect(QUERY_CLIENT_CONFIG.defaultOptions.queries.retry).toBeFalsy();
     });
 
     it("mutationsのretryがfalseであること", () => {
-      expect(QUERY_CLIENT_CONFIG.defaultOptions.mutations.retry).toBe(false);
+      expect(QUERY_CLIENT_CONFIG.defaultOptions.mutations.retry).toBeFalsy();
     });
 
     it("staleTimeが60秒であること", () => {
@@ -153,8 +154,8 @@ describe("QUERY_CLIENT_CONFIG", () => {
 
     it("refetchOnWindowFocusがfalseであること", () => {
       expect(
-        QUERY_CLIENT_CONFIG.defaultOptions.queries.refetchOnWindowFocus,
-      ).toBe(false);
+        QUERY_CLIENT_CONFIG.defaultOptions.queries.refetchOnWindowFocus
+      ).toBeFalsy();
     });
   });
 
@@ -166,7 +167,7 @@ describe("QUERY_CLIENT_CONFIG", () => {
         typeof shouldDehydrateQuery
       >[0];
 
-      expect(shouldDehydrateQuery(query)).toBe(true);
+      expect(shouldDehydrateQuery(query)).toBeTruthy();
     });
 
     it("pendingステータスのクエリがdehydrate対象であること", () => {
@@ -176,7 +177,7 @@ describe("QUERY_CLIENT_CONFIG", () => {
         typeof shouldDehydrateQuery
       >[0];
 
-      expect(shouldDehydrateQuery(query)).toBe(true);
+      expect(shouldDehydrateQuery(query)).toBeTruthy();
     });
 
     it("errorステータスのクエリがdehydrate対象外であること", () => {
@@ -186,7 +187,7 @@ describe("QUERY_CLIENT_CONFIG", () => {
         typeof shouldDehydrateQuery
       >[0];
 
-      expect(shouldDehydrateQuery(query)).toBe(false);
+      expect(shouldDehydrateQuery(query)).toBeFalsy();
     });
   });
 });

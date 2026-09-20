@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 import { isFunction } from "./isFunction";
 
 function noop() {}
@@ -12,7 +13,7 @@ describe(isFunction, () => {
       { label: "function declaration", input: noop },
       { label: "built-in function", input: Math.max },
     ])("$label → true", ({ input }) => {
-      expect(isFunction(input)).toBe(true);
+      expect(isFunction(input)).toBeTruthy();
     });
   });
 
@@ -26,7 +27,7 @@ describe(isFunction, () => {
       { label: "object", input: {} },
       { label: "array", input: [] },
     ])("$label → false", ({ input }) => {
-      expect(isFunction(input)).toBe(false);
+      expect(isFunction(input)).toBeFalsy();
     });
   });
 

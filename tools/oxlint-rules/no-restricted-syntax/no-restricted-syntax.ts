@@ -200,14 +200,14 @@ function parseSelectorGroup(input: string): Step[][] {
 
 function compileOption(
   selector: string,
-  message: string | undefined,
+  message: string | undefined
 ): Compiled[] {
   const finalMessage = message ?? `Using "${selector}" is restricted.`;
   return parseSelectorGroup(selector).map((chain) => {
     for (let i = 1; i < chain.length; i += 1) {
       if (chain[i].isExit === true) {
         throw new Error(
-          `\`:exit\` is only allowed on the rightmost compound: ${selector}`,
+          `\`:exit\` is only allowed on the rightmost compound: ${selector}`
         );
       }
     }

@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from "vitest";
 import { bubbleCompositionStore, captureCompositionStore } from ".";
 import { createCompositionStore } from "./compositionStore";
 
@@ -19,17 +20,17 @@ describe("compositionStore", () => {
     },
   ])("$name", ({ store, capture }) => {
     it("初期値はfalse", () => {
-      expect(store.getSnapshot()).toBe(false);
+      expect(store.getSnapshot()).toBeFalsy();
     });
 
     it("compositionstartでtrue、compositionendでfalseになる", () => {
       const unsubscribe = store.subscribe(() => {});
 
       dispatchComposition("compositionstart");
-      expect(store.getSnapshot()).toBe(true);
+      expect(store.getSnapshot()).toBeTruthy();
 
       dispatchComposition("compositionend");
-      expect(store.getSnapshot()).toBe(false);
+      expect(store.getSnapshot()).toBeFalsy();
 
       unsubscribe();
     });
@@ -39,7 +40,7 @@ describe("compositionStore", () => {
       const unsubscribe = store.subscribe(listener);
 
       dispatchComposition("compositionstart");
-      expect(listener).toHaveBeenCalledTimes(1);
+      expect(listener).toHaveBeenCalledOnce();
 
       dispatchComposition("compositionend");
       expect(listener).toHaveBeenCalledTimes(2);
@@ -64,12 +65,12 @@ describe("compositionStore", () => {
       expect(addSpy).toHaveBeenCalledWith(
         "compositionstart",
         expect.any(Function),
-        capture,
+        capture
       );
       expect(addSpy).toHaveBeenCalledWith(
         "compositionend",
         expect.any(Function),
-        capture,
+        capture
       );
 
       unsubscribe();
@@ -84,12 +85,12 @@ describe("compositionStore", () => {
       expect(removeSpy).toHaveBeenCalledWith(
         "compositionstart",
         expect.any(Function),
-        capture,
+        capture
       );
       expect(removeSpy).toHaveBeenCalledWith(
         "compositionend",
         expect.any(Function),
-        capture,
+        capture
       );
     });
 
@@ -105,7 +106,7 @@ describe("compositionStore", () => {
       expect(removeSpy).toHaveBeenCalledWith(
         "compositionstart",
         expect.any(Function),
-        capture,
+        capture
       );
     });
 
@@ -117,8 +118,8 @@ describe("compositionStore", () => {
 
       dispatchComposition("compositionstart");
 
-      expect(l1).toHaveBeenCalledTimes(1);
-      expect(l2).toHaveBeenCalledTimes(1);
+      expect(l1).toHaveBeenCalledOnce();
+      expect(l2).toHaveBeenCalledOnce();
 
       u1();
       u2();
@@ -136,8 +137,8 @@ describe("compositionStore", () => {
 
       dispatchComposition("compositionstart");
 
-      expect(l1).toHaveBeenCalledTimes(1);
-      expect(l2).toHaveBeenCalledTimes(1);
+      expect(l1).toHaveBeenCalledOnce();
+      expect(l2).toHaveBeenCalledOnce();
 
       u1();
       u2();
@@ -154,9 +155,9 @@ describe("compositionStore", () => {
 
       dispatchComposition("compositionstart");
 
-      expect(bad).toHaveBeenCalledTimes(1);
-      expect(good).toHaveBeenCalledTimes(1);
-      expect(errorSpy).toHaveBeenCalledTimes(1);
+      expect(bad).toHaveBeenCalledOnce();
+      expect(good).toHaveBeenCalledOnce();
+      expect(errorSpy).toHaveBeenCalledOnce();
 
       u1();
       u2();
@@ -168,14 +169,14 @@ describe("compositionStore", () => {
       // 古い true を返さないことを保証する。
       const u1 = store.subscribe(() => {});
       dispatchComposition("compositionstart");
-      expect(store.getSnapshot()).toBe(true);
+      expect(store.getSnapshot()).toBeTruthy();
 
       u1();
       // 購読者が居ない間に IME が終了しても listener は呼ばれない
       dispatchComposition("compositionend");
 
       const u2 = store.subscribe(() => {});
-      expect(store.getSnapshot()).toBe(false);
+      expect(store.getSnapshot()).toBeFalsy();
 
       u2();
     });
@@ -191,8 +192,8 @@ describe("compositionStore", () => {
       dispatchComposition("compositionstart");
 
       // 同じ document イベントだが、capture/bubble 両方のフェーズで購読されるため両者に届く
-      expect(captureListener).toHaveBeenCalledTimes(1);
-      expect(bubbleListener).toHaveBeenCalledTimes(1);
+      expect(captureListener).toHaveBeenCalledOnce();
+      expect(bubbleListener).toHaveBeenCalledOnce();
 
       u1();
       u2();
@@ -209,7 +210,7 @@ describe("compositionStore", () => {
       dispatchComposition("compositionstart");
 
       expect(captureListener).not.toHaveBeenCalled();
-      expect(bubbleListener).toHaveBeenCalledTimes(1);
+      expect(bubbleListener).toHaveBeenCalledOnce();
 
       u2();
     });
@@ -230,9 +231,9 @@ describe("compositionStore", () => {
       dispatchComposition("compositionstart");
 
       expect(listenerA).not.toHaveBeenCalled();
-      expect(listenerB).toHaveBeenCalledTimes(1);
-      expect(a.getSnapshot()).toBe(false);
-      expect(b.getSnapshot()).toBe(true);
+      expect(listenerB).toHaveBeenCalledOnce();
+      expect(a.getSnapshot()).toBeFalsy();
+      expect(b.getSnapshot()).toBeTruthy();
 
       uB();
     });
@@ -246,12 +247,12 @@ describe("compositionStore", () => {
       expect(addSpy).toHaveBeenCalledWith(
         "compositionstart",
         expect.any(Function),
-        false,
+        false
       );
       expect(addSpy).toHaveBeenCalledWith(
         "compositionend",
         expect.any(Function),
-        false,
+        false
       );
 
       unsubscribe();
@@ -284,14 +285,14 @@ describe("compositionStore", () => {
 
       // 2 回目のセッションはまだ有効なのでイベントが届く
       dispatchComposition("compositionstart");
-      expect(listener).toHaveBeenCalledTimes(1);
+      expect(listener).toHaveBeenCalledOnce();
 
       // 最後の unsubscribe で document リスナー除去
       u2();
       expect(removeSpy).toHaveBeenCalledWith(
         "compositionstart",
         expect.any(Function),
-        true,
+        true
       );
     });
 

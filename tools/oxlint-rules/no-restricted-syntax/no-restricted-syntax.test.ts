@@ -309,25 +309,25 @@ describe("custom-rules/no-restricted-syntax (config-time errors)", () => {
 
   it("throws when `:exit` appears on a non-rightmost compound", () => {
     expect(create([{ selector: "Foo:exit > Bar", message: "x" }])).toThrow(
-      /`:exit` is only allowed/u,
+      /`:exit` is only allowed/u
     );
   });
 
   it("throws on unclosed [", () => {
     expect(create([{ selector: "Foo[bar=1", message: "x" }])).toThrow(
-      /Unclosed \[/u,
+      /Unclosed \[/u
     );
   });
 
   it("throws when a compound has no type name", () => {
     expect(create([{ selector: "[name='x']", message: "x" }])).toThrow(
-      /missing type name/u,
+      /missing type name/u
     );
   });
 
   it("throws when a compound has trailing chars after ]", () => {
     expect(create([{ selector: "Foo[a=1]bar", message: "x" }])).toThrow(
-      /Invalid selector compound/u,
+      /Invalid selector compound/u
     );
   });
 });

@@ -1,4 +1,5 @@
 import { act, renderHook } from "@testing-library/react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { useMediaQuery } from "./useMediaQuery";
 
 const QUERY = "(min-width: 768px)";
@@ -9,13 +10,13 @@ function createMockMediaQueryList(matches: boolean) {
     matches,
     addEventListener(
       _event: string,
-      handler: (event: MediaQueryListEvent) => void,
+      handler: (event: MediaQueryListEvent) => void
     ) {
       listener = handler;
     },
     removeEventListener(
       _event: string,
-      handler: (event: MediaQueryListEvent) => void,
+      handler: (event: MediaQueryListEvent) => void
     ) {
       if (listener === handler) {
         listener = null;
@@ -47,13 +48,13 @@ describe(useMediaQuery, () => {
 
   it("クエリが一致しないとき、falseを返すこと", () => {
     const { result } = renderHook(() => useMediaQuery(QUERY));
-    expect(result.current).toBe(false);
+    expect(result.current).toBeFalsy();
   });
 
   it("クエリが一致するとき、trueを返すこと", () => {
     mockMql.matches = true;
     const { result } = renderHook(() => useMediaQuery(QUERY));
-    expect(result.current).toBe(true);
+    expect(result.current).toBeTruthy();
   });
 
   it("matchMediaに正しいクエリ文字列が渡されること", () => {
@@ -63,17 +64,17 @@ describe(useMediaQuery, () => {
 
   it("メディアクエリの変更を検知して値が更新されること", () => {
     const { result } = renderHook(() => useMediaQuery(QUERY));
-    expect(result.current).toBe(false);
+    expect(result.current).toBeFalsy();
 
     act(() => {
       mockMql.fire(true);
     });
-    expect(result.current).toBe(true);
+    expect(result.current).toBeTruthy();
 
     act(() => {
       mockMql.fire(false);
     });
-    expect(result.current).toBe(false);
+    expect(result.current).toBeFalsy();
   });
 
   it("メディアクエリの変更時にonChangeコールバックがイベントと共に呼ばれること", () => {
@@ -83,9 +84,8 @@ describe(useMediaQuery, () => {
     act(() => {
       mockMql.fire(true);
     });
-    expect(onChange).toHaveBeenCalledTimes(1);
-    expect(onChange).toHaveBeenCalledWith(
-      expect.objectContaining({ matches: true }),
+    expect(onChange).toHaveBeenCalledExactlyOnceWith(
+      expect.objectContaining({ matches: true })
     );
   });
 
@@ -97,7 +97,7 @@ describe(useMediaQuery, () => {
         mockMql.fire(true);
       });
     }).not.toThrow();
-    expect(result.current).toBe(true);
+    expect(result.current).toBeTruthy();
   });
 
   it("queryが変わったときにリスナーが再登録されること", () => {
@@ -106,20 +106,20 @@ describe(useMediaQuery, () => {
     const { rerender } = renderHook(({ query }) => useMediaQuery(query), {
       initialProps: { query: QUERY },
     });
-    expect(mockMql.hasListener).toBe(true);
+    expect(mockMql.hasListener).toBeTruthy();
 
     matchMediaSpy.mockReturnValue(newMql);
     rerender({ query: "(min-width: 1024px)" });
 
-    expect(mockMql.hasListener).toBe(false);
-    expect(newMql.hasListener).toBe(true);
+    expect(mockMql.hasListener).toBeFalsy();
+    expect(newMql.hasListener).toBeTruthy();
   });
 
   it("アンマウント時にイベントリスナーが解除されること", () => {
     const { unmount } = renderHook(() => useMediaQuery(QUERY));
-    expect(mockMql.hasListener).toBe(true);
+    expect(mockMql.hasListener).toBeTruthy();
 
     unmount();
-    expect(mockMql.hasListener).toBe(false);
+    expect(mockMql.hasListener).toBeFalsy();
   });
 });

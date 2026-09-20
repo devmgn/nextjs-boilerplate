@@ -1,4 +1,5 @@
 import { act, renderHook } from "@testing-library/react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { useLocalStorage } from "./useLocalStorage";
 
 function createMockStorage() {
@@ -126,7 +127,7 @@ describe(useLocalStorage, () => {
         result.current[1]("large-value");
       });
 
-      expect(warnSpy).toHaveBeenCalledTimes(1);
+      expect(warnSpy).toHaveBeenCalledOnce();
       expect(result.current[0]).toBeNull();
       expect(mockStorage.getItem(key)).toBeNull();
     });
@@ -144,7 +145,7 @@ describe(useLocalStorage, () => {
             key,
             newValue: "from-other-tab",
             storageArea: window.localStorage,
-          }),
+          })
         );
       });
 
@@ -167,7 +168,7 @@ describe(useLocalStorage, () => {
             key,
             newValue: null,
             storageArea: window.localStorage,
-          }),
+          })
         );
       });
 
@@ -184,7 +185,7 @@ describe(useLocalStorage, () => {
             key: "other-key",
             newValue: "other-value",
             storageArea: window.localStorage,
-          }),
+          })
         );
       });
 
@@ -226,7 +227,7 @@ describe(useLocalStorage, () => {
             key,
             newValue: "after-unmount",
             storageArea: window.localStorage,
-          }),
+          })
         );
       });
 

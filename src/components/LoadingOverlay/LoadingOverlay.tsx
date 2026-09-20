@@ -12,7 +12,7 @@ export function LoadingOverlay() {
   const open = useSyncExternalStore(
     loadingStore.subscribe,
     loadingStore.getSnapshot,
-    loadingStore.getServerSnapshot,
+    loadingStore.getServerSnapshot
   );
 
   return <LoadingView open={open} />;

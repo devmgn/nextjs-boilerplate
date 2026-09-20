@@ -9,7 +9,7 @@ import type { FlatObject, Primitive } from "../../../types/typeHelpers";
  */
 export function isValueOf<T extends FlatObject | readonly Primitive[]>(
   collection: T,
-  value: unknown,
+  value: unknown
 ): value is T[keyof T] {
   const values = Array.isArray(collection)
     ? collection

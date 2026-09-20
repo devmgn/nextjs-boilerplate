@@ -1,3 +1,5 @@
+import { beforeEach, describe, expect, it, vi } from "vitest";
+
 describe("runtime", () => {
   beforeEach(() => {
     vi.resetModules();
@@ -7,19 +9,19 @@ describe("runtime", () => {
     it('NODE_ENVが"development"のとき、trueとなること', async () => {
       vi.stubEnv("NODE_ENV", "development");
       const { isDevelopment } = await import("./runtime");
-      expect(isDevelopment).toBe(true);
+      expect(isDevelopment).toBeTruthy();
     });
 
     it('NODE_ENVが"development"以外のとき、falseとなること', async () => {
       vi.stubEnv("NODE_ENV", "production");
       const { isDevelopment } = await import("./runtime");
-      expect(isDevelopment).toBe(false);
+      expect(isDevelopment).toBeFalsy();
     });
 
     it("NODE_ENVが未定義のとき、falseとなること", async () => {
       vi.stubEnv("NODE_ENV", "");
       const { isDevelopment } = await import("./runtime");
-      expect(isDevelopment).toBe(false);
+      expect(isDevelopment).toBeFalsy();
     });
   });
 
@@ -27,19 +29,19 @@ describe("runtime", () => {
     it('NODE_ENVが"production"のとき、trueとなること', async () => {
       vi.stubEnv("NODE_ENV", "production");
       const { isProduction } = await import("./runtime");
-      expect(isProduction).toBe(true);
+      expect(isProduction).toBeTruthy();
     });
 
     it('NODE_ENVが"production"以外のとき、falseとなること', async () => {
       vi.stubEnv("NODE_ENV", "development");
       const { isProduction } = await import("./runtime");
-      expect(isProduction).toBe(false);
+      expect(isProduction).toBeFalsy();
     });
 
     it("NODE_ENVが未定義のとき、falseとなること", async () => {
       vi.stubEnv("NODE_ENV", "");
       const { isProduction } = await import("./runtime");
-      expect(isProduction).toBe(false);
+      expect(isProduction).toBeFalsy();
     });
   });
 
@@ -47,13 +49,13 @@ describe("runtime", () => {
     it("window が undefined のとき、isServer が true となること", async () => {
       vi.stubGlobal("window", undefined);
       const { isServer } = await import("./runtime");
-      expect(isServer).toBe(true);
+      expect(isServer).toBeTruthy();
     });
 
     it("window が定義されているとき、isServer が false となること", async () => {
       vi.stubGlobal("window", {});
       const { isServer } = await import("./runtime");
-      expect(isServer).toBe(false);
+      expect(isServer).toBeFalsy();
     });
   });
 });

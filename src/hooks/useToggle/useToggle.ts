@@ -12,16 +12,16 @@ type ToggleFn<T> = (next?: T) => void;
  *   toggle("dark"); // 特定値へセット
  */
 export function useToggle(
-  initialValue?: boolean,
+  initialValue?: boolean
 ): readonly [boolean, ToggleFn<boolean>];
 export function useToggle<const T>(
   values: readonly T[],
-  initialValue?: T,
+  initialValue?: T
 ): readonly [T, ToggleFn<T>];
 
 export function useToggle(
   valuesOrInitial?: boolean | readonly unknown[],
-  initialValue?: unknown,
+  initialValue?: unknown
 ): readonly [unknown, ToggleFn<never>] {
   const values: readonly unknown[] | null = Array.isArray(valuesOrInitial)
     ? valuesOrInitial

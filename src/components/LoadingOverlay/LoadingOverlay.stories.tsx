@@ -113,7 +113,7 @@ export const PromiseResolved: Story = {
         setTimeout(() => {
           resolve("done");
         }, 80);
-      }),
+      })
     );
 
     await waitFor(() => getSpinner());

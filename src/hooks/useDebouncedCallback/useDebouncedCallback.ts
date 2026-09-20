@@ -10,7 +10,7 @@ import { debounce } from "../../utils/debounce";
  */
 function createDebouncedRunner<Args extends unknown[]>(
   callback: (...args: Args) => void,
-  wait: number,
+  wait: number
 ) {
   let latestCallback = callback;
 
@@ -47,10 +47,10 @@ function createDebouncedRunner<Args extends unknown[]>(
  */
 export function useDebouncedCallback<Args extends unknown[]>(
   callback: (...args: Args) => void,
-  wait: number,
+  wait: number
 ) {
   const [runner, setRunner] = useState(() =>
-    createDebouncedRunner(callback, wait),
+    createDebouncedRunner(callback, wait)
   );
 
   // wait 変化時の作り直し。React の「props の変化に応じて state を調整する」パターン。
@@ -62,11 +62,11 @@ export function useDebouncedCallback<Args extends unknown[]>(
     runner.setCallback(callback);
   }, [callback, runner]);
 
-  useEffect(() => {
-    return () => {
+  useEffect(() => 
+    () => {
       runner.cancel();
-    };
-  }, [runner]);
+    }
+  , [runner]);
 
   return runner.invoke;
 }

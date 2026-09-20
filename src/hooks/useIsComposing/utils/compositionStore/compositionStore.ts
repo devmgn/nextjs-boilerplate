@@ -48,7 +48,7 @@ export function createCompositionStore(capture: boolean): CompositionStore {
       document.addEventListener(
         "compositionstart",
         onCompositionStart,
-        capture,
+        capture
       );
       document.addEventListener("compositionend", onCompositionEnd, capture);
     }
@@ -73,12 +73,12 @@ export function createCompositionStore(capture: boolean): CompositionStore {
         document.removeEventListener(
           "compositionstart",
           onCompositionStart,
-          capture,
+          capture
         );
         document.removeEventListener(
           "compositionend",
           onCompositionEnd,
-          capture,
+          capture
         );
       }
     };

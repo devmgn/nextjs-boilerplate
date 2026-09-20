@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { describe, expect, it } from "vitest";
 import { postSchema } from "./postSchema";
 
 describe("postSchema", () => {
@@ -9,7 +10,7 @@ describe("postSchema", () => {
       title: "Title",
       body: "Body",
     });
-    expect(result.success).toBe(true);
+    expect(result.success).toBeTruthy();
   });
 
   it("title が空文字のとき、parse が失敗すること", () => {
@@ -19,7 +20,7 @@ describe("postSchema", () => {
       title: "",
       body: "Body",
     });
-    expect(result.success).toBe(false);
+    expect(result.success).toBeFalsy();
   });
 
   it("body が空文字のとき、parse が失敗すること", () => {
@@ -29,7 +30,7 @@ describe("postSchema", () => {
       title: "Title",
       body: "",
     });
-    expect(result.success).toBe(false);
+    expect(result.success).toBeFalsy();
   });
 
   it("userId が文字列のとき、parse が失敗すること", () => {
@@ -39,7 +40,7 @@ describe("postSchema", () => {
       title: "Title",
       body: "Body",
     });
-    expect(result.success).toBe(false);
+    expect(result.success).toBeFalsy();
   });
 });
 
@@ -61,7 +62,7 @@ describe("postSchema + zodResolver", () => {
     const result = await resolver(
       { userId: 1, id: 1, title: "", body: "" },
       undefined,
-      ctx,
+      ctx
     );
     expect(result.values).toStrictEqual({});
     expect(result.errors).toHaveProperty("title");

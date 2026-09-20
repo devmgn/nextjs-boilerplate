@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { AppErrorBoundary } from "./AppErrorBoundary";
 
 function Thrower({ shouldThrow }: { shouldThrow: boolean }) {
@@ -17,7 +18,7 @@ describe(AppErrorBoundary, () => {
     render(
       <AppErrorBoundary>
         <Thrower shouldThrow={false} />
-      </AppErrorBoundary>,
+      </AppErrorBoundary>
     );
 
     expect(screen.getByTestId("ok")).toHaveTextContent("ok");
@@ -27,14 +28,14 @@ describe(AppErrorBoundary, () => {
     render(
       <AppErrorBoundary>
         <Thrower shouldThrow />
-      </AppErrorBoundary>,
+      </AppErrorBoundary>
     );
 
     expect(
-      screen.getByRole("heading", { name: "Something went wrong!" }),
+      screen.getByRole("heading", { name: "Something went wrong!" })
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: "Try again" }),
+      screen.getByRole("button", { name: "Try again" })
     ).toBeInTheDocument();
   });
 
@@ -42,17 +43,17 @@ describe(AppErrorBoundary, () => {
     const { rerender } = render(
       <AppErrorBoundary>
         <Thrower shouldThrow />
-      </AppErrorBoundary>,
+      </AppErrorBoundary>
     );
 
     expect(
-      screen.getByRole("heading", { name: "Something went wrong!" }),
+      screen.getByRole("heading", { name: "Something went wrong!" })
     ).toBeInTheDocument();
 
     rerender(
       <AppErrorBoundary>
         <Thrower shouldThrow={false} />
-      </AppErrorBoundary>,
+      </AppErrorBoundary>
     );
 
     fireEvent.click(screen.getByRole("button", { name: "Try again" }));
