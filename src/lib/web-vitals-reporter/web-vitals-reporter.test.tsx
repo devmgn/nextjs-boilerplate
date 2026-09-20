@@ -1,9 +1,10 @@
+import type { useReportWebVitals } from "next/web-vitals";
 import { render } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { WebVitalsReporter } from "./web-vitals-reporter";
 
 const { mockUseReportWebVitals } = vi.hoisted(() => ({
-  mockUseReportWebVitals: vi.fn<(report: (metric: unknown) => void) => void>(),
+  mockUseReportWebVitals: vi.fn<typeof useReportWebVitals>(),
 }));
 
 vi.mock(import("next/web-vitals"), () => ({
@@ -13,9 +14,7 @@ vi.mock(import("next/web-vitals"), () => ({
 function renderAndGetReporter() {
   render(<WebVitalsReporter />);
   const [[reportMetric]] = mockUseReportWebVitals.mock.calls;
-  // SAFETY: useReportWebVitals に渡るのはメトリクスを受け取る関数である、と
-  // 同ファイルの toHaveBeenCalledWith(expect.any(Function)) で確認している。
-  return reportMetric as (metric: Record<string, unknown>) => void;
+  return reportMetric;
 }
 
 describe(WebVitalsReporter, () => {
