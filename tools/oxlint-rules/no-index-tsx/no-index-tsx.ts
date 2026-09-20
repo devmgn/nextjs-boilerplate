@@ -7,6 +7,8 @@ const rule: Rule = {
       return {};
     }
     return {
+      // AST ノード型名は oxlint のビジター API が決めるため改名不可
+      // oxlint-disable-next-line sonarjs/function-name
       Program(node) {
         context.report({
           node,

@@ -1,4 +1,5 @@
 import type { Context, ESTree, Rule } from "@oxlint/plugins";
+import type { JsonObject, JsonValue } from "oxlint/plugins-dev";
 
 /**
  * Enforces alphabetical sorting of dependency arrays in React hooks.
@@ -19,31 +20,59 @@ const DEFAULT_HOOKS: ReadonlyMap<string, number> = new Map([
   ["useImperativeHandle", 2],
 ]);
 
-function isPlainObject(value: unknown): value is Record<string, unknown> {
+/** `additionalHooks` にオブジェクト形式で渡すフック指定。 */
+type HookSpec = JsonObject & {
+  readonly name: string;
+  readonly depsIndex: number;
+};
+
+/** このルールが受け取るオプション。設定ファイル由来なので値は JSON の範囲。 */
+type SortHookDepsOption = JsonObject & {
+  readonly additionalHooks?: readonly JsonValue[];
+};
+
+function isOptionObject(value: JsonValue): value is SortHookDepsOption {
   return value !== null && typeof value === "object" && !Array.isArray(value);
 }
 
-function buildHookMap(options: readonly unknown[]): Map<string, number> {
+/** フック名のみを渡す短縮形。deps は第 2 引数とみなす。 */
+function isHookName(item: JsonValue): item is string {
+  return typeof item === "string" && item.length > 0;
+}
+
+function isHookSpec(item: JsonValue): item is HookSpec {
+  if (item === null || typeof item !== "object") {
+    return false;
+  }
+  if (!("name" in item) || !("depsIndex" in item)) {
+    return false;
+  }
+  const { name, depsIndex } = item;
+  if (typeof name !== "string" || name.length === 0) {
+    return false;
+  }
+  return (
+    typeof depsIndex === "number" &&
+    Number.isInteger(depsIndex) &&
+    depsIndex >= 0
+  );
+}
+
+/** オプション配列の先頭から additionalHooks を取り出す。未指定なら空配列。 */
+function readAdditionalHooks(
+  options: Context["options"]
+): readonly JsonValue[] {
+  const opt = options.find(isOptionObject);
+  return opt?.additionalHooks ?? [];
+}
+
+function buildHookMap(options: Context["options"]): Map<string, number> {
   const map = new Map(DEFAULT_HOOKS);
-  const [opt] = options;
-  if (!isPlainObject(opt)) {
-    return map;
-  }
-  const { additionalHooks } = opt;
-  if (!Array.isArray(additionalHooks)) {
-    return map;
-  }
+  const additionalHooks = readAdditionalHooks(options);
   for (const item of additionalHooks) {
-    if (typeof item === "string" && item.length > 0) {
+    if (isHookName(item)) {
       map.set(item, 1);
-    } else if (
-      isPlainObject(item) &&
-      typeof item.name === "string" &&
-      item.name.length > 0 &&
-      typeof item.depsIndex === "number" &&
-      Number.isInteger(item.depsIndex) &&
-      item.depsIndex >= 0
-    ) {
+    } else if (isHookSpec(item)) {
       map.set(item.name, item.depsIndex);
     }
   }
@@ -70,7 +99,7 @@ function getHookName(callee: ESTree.Expression | ESTree.Super): string | null {
 
 function getDepsArray(
   node: ESTree.CallExpression,
-  hooks: ReadonlyMap<string, number>,
+  hooks: ReadonlyMap<string, number>
 ): ESTree.ArrayExpression | null {
   const calleeName = getHookName(node.callee);
   if (calleeName === null) {
@@ -94,9 +123,9 @@ function getDepsArray(
 function guessIndent(context: Context, node: ESTree.Expression): string {
   /* v8 ignore next -- lines.at always returns a string for in-range indices */
   const line = context.sourceCode.lines.at(node.loc.start.line - 1) ?? "";
-  const match = /^(\s*)/u.exec(line);
-  /* v8 ignore next -- /^(\s*)/u always matches at line start */
-  return match ? match[1] : "";
+  const match = /^(?<indent>\s*)/u.exec(line);
+  /* v8 ignore next -- 行頭の \s* は必ずマッチする */
+  return match?.groups?.indent ?? "";
 }
 
 const rule: Rule = {
@@ -105,6 +134,8 @@ const rule: Rule = {
     const hookMap = buildHookMap(context.options);
 
     return {
+      // AST ノード型名は oxlint のビジター API が決めるため改名不可
+      // oxlint-disable-next-line sonarjs/function-name
       CallExpression(node) {
         const depsArray = getDepsArray(node, hookMap);
         if (!depsArray || depsArray.elements.length < 2) {
@@ -151,7 +182,7 @@ const rule: Rule = {
             pairs.sort((a, b) =>
               a.key.localeCompare(b.key, undefined, {
                 sensitivity: "base",
-              }),
+              })
             );
 
             const sorted = pairs.map((p) => p.text);
@@ -173,13 +204,13 @@ const rule: Rule = {
             if (isMultiline) {
               return fixer.replaceTextRange(
                 [rangeStart, rangeEnd],
-                sorted.join(`,\n${guessIndent(context, firstElement)}`),
+                sorted.join(`,\n${guessIndent(context, firstElement)}`)
               );
             }
 
             return fixer.replaceTextRange(
               [rangeStart, rangeEnd],
-              sorted.join(", "),
+              sorted.join(", ")
             );
           },
         });

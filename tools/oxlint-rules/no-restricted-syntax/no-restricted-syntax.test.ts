@@ -1,9 +1,15 @@
-import type { Context } from "@oxlint/plugins";
 import { RuleTester } from "oxlint/plugins-dev";
 import { describe, expect, it } from "vitest";
 import noRestrictedSyntax from "./no-restricted-syntax.ts";
+import { compileOption } from "./utils/selector-matcher/index.ts";
 
-RuleTester.describe = describe;
+// RuleTester の DescribeFn は戻り値 void を期待するが、vitest の describe は
+// suite を返すため、戻り値を捨てて渡す。
+RuleTester.describe = (text, fn) => {
+  describe(text, () => {
+    fn();
+  });
+};
 RuleTester.it = it;
 RuleTester.itOnly = it.only;
 
@@ -294,40 +300,27 @@ tester.run("custom-rules/no-restricted-syntax", noRestrictedSyntax, {
   ],
 });
 
-function fakeContext(options: readonly unknown[]): Context {
-  return {
-    options,
-    report: () => {},
-  } as unknown as Context;
+// セレクタの構文エラーは compileOption の責務なので、コンパイラを直接叩く。
+function compile(selector: string) {
+  return () => {
+    compileOption(selector);
+  };
 }
 
 describe("custom-rules/no-restricted-syntax (config-time errors)", () => {
-  const create = (options: readonly unknown[]) => {
-    const rule = noRestrictedSyntax as { create: (c: Context) => unknown };
-    return () => rule.create(fakeContext(options));
-  };
-
   it("throws when `:exit` appears on a non-rightmost compound", () => {
-    expect(create([{ selector: "Foo:exit > Bar", message: "x" }])).toThrow(
-      /`:exit` is only allowed/u,
-    );
+    expect(compile("Foo:exit > Bar")).toThrow(/`:exit` is only allowed/u);
   });
 
   it("throws on unclosed [", () => {
-    expect(create([{ selector: "Foo[bar=1", message: "x" }])).toThrow(
-      /Unclosed \[/u,
-    );
+    expect(compile("Foo[bar=1")).toThrow(/Unclosed \[/u);
   });
 
   it("throws when a compound has no type name", () => {
-    expect(create([{ selector: "[name='x']", message: "x" }])).toThrow(
-      /missing type name/u,
-    );
+    expect(compile("[name='x']")).toThrow(/missing type name/u);
   });
 
   it("throws when a compound has trailing chars after ]", () => {
-    expect(create([{ selector: "Foo[a=1]bar", message: "x" }])).toThrow(
-      /Invalid selector compound/u,
-    );
+    expect(compile("Foo[a=1]bar")).toThrow(/Invalid selector compound/u);
   });
 });

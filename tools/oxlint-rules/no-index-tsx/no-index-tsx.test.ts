@@ -1,8 +1,16 @@
 import { RuleTester } from "oxlint/plugins-dev";
-import { describe, it } from "vitest";
+import { describe, expect, it } from "vitest";
 import noIndexTsx from "./no-index-tsx.ts";
+import oxlintConfig from "../../../oxlint.config.ts";
+import plugin from "../index.ts";
 
-RuleTester.describe = describe;
+// RuleTester の DescribeFn は戻り値 void を期待するが、vitest の describe は
+// suite を返すため、戻り値を捨てて渡す。
+RuleTester.describe = (text, fn) => {
+  describe(text, () => {
+    fn();
+  });
+};
 RuleTester.it = it;
 RuleTester.itOnly = it.only;
 
@@ -58,4 +66,16 @@ tester.run("custom-rules/no-index-tsx", noIndexTsx, {
       errors: 1,
     },
   ],
+});
+
+// RuleTester は挙動だけを見る。実装したルールがプラグインに登録され、
+// config で有効になっているかはここで確かめる。
+describe("custom-rules/no-index-tsx (配線)", () => {
+  it("プラグインに登録されていること", () => {
+    expect(plugin.rules?.["no-index-tsx"]).toBe(noIndexTsx);
+  });
+
+  it("oxlint.config.ts で有効になっていること", () => {
+    expect(oxlintConfig.rules["custom-rules/no-index-tsx"]).toBe("error");
+  });
 });

@@ -1,1 +1,0 @@
-export { responseLogger } from "./responseLogger";

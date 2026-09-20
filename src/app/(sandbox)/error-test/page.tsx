@@ -1,16 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { ErrorThrower } from "./_components/ErrorThrower";
-import { Button } from "../../../components/Button";
+import { ErrorThrower } from "./_components/error-thrower";
+import { Button } from "../../../components/button";
+import { delay } from "../../../utils/delay";
 
 // throw を伴う失敗する API 呼び出しのシミュレーション。
 // React Compiler は try/catch 内の ThrowStatement を lower できないため、
 // コンポーネント外の通常関数に切り出して throw をここに閉じ込める。
 async function requestThatFails(): Promise<never> {
-  await new Promise((resolve) => {
-    setTimeout(resolve, 1000);
-  });
+  await delay(1000);
   throw new Error("API request failed: 500 Internal Server Error");
 }
 
@@ -44,22 +43,22 @@ export default function ErrorTestPage() {
       <h1 className="text-2xl font-bold">ErrorBoundary Test Page</h1>
 
       <div className="space-y-4">
-        <div className="rounded-lg border border-gray-200 p-4">
+        <div className="rounded-lg border border-border p-4">
           <h2 className="mb-2 text-lg font-semibold">
             Render Error (Caught by ErrorBoundary)
           </h2>
-          <p className="mb-4 text-sm text-gray-600">
+          <p className="mb-4 text-sm text-muted-foreground">
             レンダリング中にエラーを発生させます。ErrorBoundaryがキャッチします。
           </p>
           <Button onClick={handleRenderError}>Trigger Render Error</Button>
           {shouldError && <ErrorThrower />}
         </div>
 
-        <div className="rounded-lg border border-gray-200 p-4">
+        <div className="rounded-lg border border-border p-4">
           <h2 className="mb-2 text-lg font-semibold">
             Async Error (Manual Handling)
           </h2>
-          <p className="mb-4 text-sm text-gray-600">
+          <p className="mb-4 text-sm text-muted-foreground">
             非同期エラーはErrorBoundaryではキャッチされないため、try-catchで処理します。
           </p>
           <Button
@@ -71,9 +70,11 @@ export default function ErrorTestPage() {
             {isLoading ? "Loading..." : "Trigger Async Error"}
           </Button>
           {asyncError !== null && (
-            <div className="mt-4 rounded border border-red-200 bg-red-50 p-3">
-              <p className="font-medium text-red-800">Error caught:</p>
-              <p className="text-sm text-red-600">{asyncError.message}</p>
+            <div className="mt-4 rounded border border-m3-error-container bg-m3-error-container p-3">
+              <p className="font-medium text-m3-on-error-container">
+                Error caught:
+              </p>
+              <p className="text-sm text-destructive">{asyncError.message}</p>
               <Button
                 className="mt-2"
                 onClick={() => {
@@ -87,7 +88,7 @@ export default function ErrorTestPage() {
         </div>
       </div>
 
-      <div className="mt-8 rounded bg-blue-50 p-4">
+      <div className="mt-8 rounded bg-m3-secondary-container p-4">
         <h3 className="font-medium">ErrorBoundaryの仕組み:</h3>
         <ul className="mt-2 list-inside list-disc space-y-1 text-sm">
           <li>
@@ -100,7 +101,7 @@ export default function ErrorTestPage() {
           </li>
           <li>
             非同期エラーは
-            <code className="rounded bg-gray-100 px-1">try-catch</code>で処理
+            <code className="rounded bg-muted px-1">try-catch</code>で処理
           </li>
         </ul>
       </div>

@@ -1,8 +1,8 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { addCustomHeader } from "./lib/proxy/addCustomHeader";
-import { requestLogger } from "./lib/proxy/requestLogger";
-import { responseLogger } from "./lib/proxy/responseLogger";
+import { addCustomHeader } from "./lib/proxy/add-custom-header";
+import { requestLogger } from "./lib/proxy/request-logger";
+import { responseLogger } from "./lib/proxy/response-logger";
 
 export function proxy(request: NextRequest) {
   const response = NextResponse.next({

@@ -37,7 +37,7 @@ export default defineConfig({
           include: ["src/**/*.{test,spec,test-d}.{ts,tsx}"],
           globals: true,
           environment: "happy-dom",
-          globalSetup: "./vitest.globalSetup.ts",
+          globalSetup: "./vitest.global-setup.ts",
           setupFiles: ["./vitest.setup.ts"],
           typecheck: {
             enabled: true,
