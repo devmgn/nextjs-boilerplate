@@ -35,7 +35,10 @@ export const TypeTest: Story = {
 };
 
 export const FocusTest: Story = {
-  args: { onFocus: fn(), onBlur: fn() },
+  args: {
+    onFocus: fn<React.FocusEventHandler<HTMLInputElement>>(),
+    onBlur: fn<React.FocusEventHandler<HTMLInputElement>>(),
+  },
   play: async ({ args, canvas }) => {
     const input = canvas.getByRole("textbox");
     await userEvent.click(input);

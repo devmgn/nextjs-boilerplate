@@ -231,9 +231,15 @@ describe("createLoadingStore", () => {
     it("複数 listener は subscribe 順に呼ばれる", () => {
       const store = createLoadingStore();
       const order: number[] = [];
-      const u1 = store.subscribe(() => order.push(1));
-      const u2 = store.subscribe(() => order.push(2));
-      const u3 = store.subscribe(() => order.push(3));
+      const u1 = store.subscribe(() => {
+        order.push(1);
+      });
+      const u2 = store.subscribe(() => {
+        order.push(2);
+      });
+      const u3 = store.subscribe(() => {
+        order.push(3);
+      });
 
       store.show();
 

@@ -31,7 +31,13 @@ function UseLocalStorageDemo() {
         >
           Save
         </Button>
-        <Button onClick={removeValue}>Remove</Button>
+        <Button
+          onClick={() => {
+            removeValue();
+          }}
+        >
+          Remove
+        </Button>
       </div>
     </div>
   );

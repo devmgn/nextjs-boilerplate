@@ -6,7 +6,7 @@ const meta = {
   component: Button,
   args: {
     children: "Button",
-    onClick: fn(),
+    onClick: fn<React.MouseEventHandler<HTMLButtonElement>>(),
   },
   argTypes: {
     variant: {

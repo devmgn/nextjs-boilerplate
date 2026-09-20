@@ -9,7 +9,7 @@ const meta = {
     icon: FaceIcon,
     label: "Face icon",
     size: "md",
-    onClick: fn(),
+    onClick: fn<React.MouseEventHandler<SVGSVGElement>>(),
   },
   argTypes: {
     size: {

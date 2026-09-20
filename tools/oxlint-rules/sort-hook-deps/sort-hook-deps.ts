@@ -1,4 +1,5 @@
 import type { Context, ESTree, Rule } from "@oxlint/plugins";
+import type { JsonObject, JsonValue } from "oxlint/plugins-dev";
 
 /**
  * Enforces alphabetical sorting of dependency arrays in React hooks.
@@ -20,26 +21,26 @@ const DEFAULT_HOOKS: ReadonlyMap<string, number> = new Map([
 ]);
 
 /** `additionalHooks` にオブジェクト形式で渡すフック指定。 */
-interface HookSpec {
+type HookSpec = JsonObject & {
   readonly name: string;
   readonly depsIndex: number;
-}
+};
 
-/** このルールが受け取るオプション。 */
-interface SortHookDepsOption {
-  readonly additionalHooks?: readonly unknown[];
-}
+/** このルールが受け取るオプション。設定ファイル由来なので値は JSON の範囲。 */
+type SortHookDepsOption = JsonObject & {
+  readonly additionalHooks?: readonly JsonValue[];
+};
 
-function isOptionObject(value: unknown): value is SortHookDepsOption {
+function isOptionObject(value: JsonValue): value is SortHookDepsOption {
   return value !== null && typeof value === "object" && !Array.isArray(value);
 }
 
 /** フック名のみを渡す短縮形。deps は第 2 引数とみなす。 */
-function isHookName(item: unknown): item is string {
+function isHookName(item: JsonValue): item is string {
   return typeof item === "string" && item.length > 0;
 }
 
-function isHookSpec(item: unknown): item is HookSpec {
+function isHookSpec(item: JsonValue): item is HookSpec {
   if (item === null || typeof item !== "object") {
     return false;
   }
@@ -47,9 +48,10 @@ function isHookSpec(item: unknown): item is HookSpec {
     return false;
   }
   const { name, depsIndex } = item;
+  if (typeof name !== "string" || name.length === 0) {
+    return false;
+  }
   return (
-    typeof name === "string" &&
-    name.length > 0 &&
     typeof depsIndex === "number" &&
     Number.isInteger(depsIndex) &&
     depsIndex >= 0
@@ -57,15 +59,11 @@ function isHookSpec(item: unknown): item is HookSpec {
 }
 
 /** オプション配列の先頭から additionalHooks を取り出す。未指定なら空配列。 */
-function readAdditionalHooks(options: Context["options"]): readonly unknown[] {
-  for (const opt of options) {
-    if (!isOptionObject(opt)) {
-      return [];
-    }
-    const { additionalHooks } = opt;
-    return Array.isArray(additionalHooks) ? additionalHooks : [];
-  }
-  return [];
+function readAdditionalHooks(
+  options: Context["options"]
+): readonly JsonValue[] {
+  const opt = options.find(isOptionObject);
+  return opt?.additionalHooks ?? [];
 }
 
 function buildHookMap(options: Context["options"]): Map<string, number> {

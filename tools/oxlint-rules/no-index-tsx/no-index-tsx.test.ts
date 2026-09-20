@@ -2,7 +2,13 @@ import { RuleTester } from "oxlint/plugins-dev";
 import { describe, it } from "vitest";
 import noIndexTsx from "./no-index-tsx.ts";
 
-RuleTester.describe = describe;
+// RuleTester の DescribeFn は戻り値 void を期待するが、vitest の describe は
+// suite を返すため、戻り値を捨てて渡す。
+RuleTester.describe = (text, fn) => {
+  describe(text, () => {
+    fn();
+  });
+};
 RuleTester.it = it;
 RuleTester.itOnly = it.only;
 
