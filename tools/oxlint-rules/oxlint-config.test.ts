@@ -18,11 +18,6 @@ interface PluginLike {
 }
 type JsPluginEntry = string | { name?: string; specifier: string };
 
-// config に載せない外部ルールと、その理由。
-// 現状は tanstack / storybook の全公開ルールを config に列挙済みのため空。
-// triage の結果「採用しない」と判断した外部ルールはここに理由付きで追加する。
-const IGNORED_RULES = new Set<string>();
-
 // ultracite の preset がルール選定を持つプラグイン。採否は ultracite 側の責務で、
 // ここで検査すると「ultracite が新ルールを triage したか」を問うことになり、
 // ultracite を上げるたびに落ちる。追随したいときは ultracite のバージョンを上げる。
@@ -145,7 +140,7 @@ function untriagedRules(
 ): string[] {
   return ruleNames
     .map((name) => `${prefix}${name}`)
-    .filter((key) => !configured.has(key) && !IGNORED_RULES.has(key));
+    .filter((key) => !configured.has(key));
 }
 
 const externalPluginSpecifiers = collectExternalPluginSpecifiers();

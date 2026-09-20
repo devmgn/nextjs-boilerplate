@@ -7,10 +7,6 @@ const validMetric = {
   name: "LCP",
   value: 2500,
   rating: "good",
-  id: "v3-123",
-  delta: 2500,
-  entries: [],
-  navigationType: "navigate",
 } satisfies IncomingMetric;
 
 describe(reportWebVital, () => {

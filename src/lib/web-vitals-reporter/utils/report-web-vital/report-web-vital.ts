@@ -1,4 +1,3 @@
-import type { useReportWebVitals } from "next/web-vitals";
 import { z } from "zod";
 
 const style = `
@@ -9,18 +8,16 @@ const style = `
   color: #FFF;
 `;
 
-// useReportWebVitals が計測値として渡す型。
-type WebVitalMetric = Parameters<Parameters<typeof useReportWebVitals>[0]>[0];
-
-// 受け口。実行時には Next の型より欠けた値が届きうるため Partial で受け、
-// 関数内で検証する。
-type IncomingMetric = Partial<WebVitalMetric>;
-
 const metricSchema = z.object({
   name: z.string(),
   value: z.number(),
   rating: z.string(),
 });
+
+// 受け口。実行時には欠けた値が届きうるため Partial で受け、関数内で検証する。
+// next/web-vitals の Metric は未インストールの web-vitals 由来で解決できないため、
+// 検証スキーマ側を契約とする。
+type IncomingMetric = Partial<z.input<typeof metricSchema>>;
 
 /** 計測値を検証してコンソールへ出す。スキーマに合わない値は黙って捨てる。 */
 export function reportWebVital(metric: IncomingMetric): void {

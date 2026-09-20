@@ -5,6 +5,6 @@ import { WebVitalsReporter } from "./web-vitals-reporter";
 describe(WebVitalsReporter, () => {
   it("nullをレンダリングすること", () => {
     const { container } = render(<WebVitalsReporter />);
-    expect(container.innerHTML).toBe("");
+    expect(container).toBeEmptyDOMElement();
   });
 });

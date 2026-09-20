@@ -32,13 +32,11 @@ describe(isFunction, () => {
     });
   });
 
-  // 型述語の narrowing 挙動そのものがテスト対象のため、各ブランチで expect する
-  it("ユニオン型を関数成分で narrow する", () => {
+  // narrowing そのものは型の挙動なので is-function.test-d.ts で検証する。
+  // ここでは実行時に true を返すことだけを見る。
+  it("ユニオン型の関数成分を true と判定する", () => {
     const union: string | (() => string) = returnX;
-    if (isFunction(union)) {
-      expect(union()).toBe("x");
-    } else {
-      expect.unreachable();
-    }
+
+    expect(isFunction(union)).toBeTruthy();
   });
 });

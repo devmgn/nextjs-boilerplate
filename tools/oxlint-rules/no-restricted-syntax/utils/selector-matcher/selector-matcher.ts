@@ -4,7 +4,7 @@ type Combinator = "child" | "descendant";
  * Oxlint のビジターから渡る AST ノード。全ノード型を列挙する代わりに、
  * セレクタが参照する範囲（type / parent / 任意の子プロパティ）だけを表明する。
  */
-export interface AstNode {
+interface AstNode {
   readonly type: string;
   readonly parent?: AstNode | null;
 }
