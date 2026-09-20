@@ -1,6 +1,9 @@
 import { describe, expectTypeOf, it } from "vitest";
 import { useToggle } from "./use-toggle";
 
+/** 配列引数の検証で使う値の集合。 */
+type Theme = "light" | "dark" | "system";
+
 // オーバーロードの解決結果は「実際に呼び出す式」からしか得られないため、型検証用の
 // ラッパーからも useToggle を呼ぶ。フックを呼ぶ関数はカスタムフックそのものなので
 // `use` プレフィックスを付けて Rules of Hooks を満たす。
@@ -19,15 +22,13 @@ function useBooleanArg() {
 
 function useArrayArg() {
   const [value, toggle] = useToggle(["light", "dark", "system"]);
-  expectTypeOf(value).toEqualTypeOf<"light" | "dark" | "system">();
-  expectTypeOf(toggle)
-    .parameter(0)
-    .toEqualTypeOf<"light" | "dark" | "system" | undefined>();
+  expectTypeOf(value).toEqualTypeOf<Theme>();
+  expectTypeOf(toggle).parameter(0).toEqualTypeOf<Theme | undefined>();
 }
 
 function useArrayWithInitial() {
   const [value] = useToggle(["light", "dark", "system"], "dark");
-  expectTypeOf(value).toEqualTypeOf<"light" | "dark" | "system">();
+  expectTypeOf(value).toEqualTypeOf<Theme>();
 }
 
 describe("useToggle 型推論", () => {

@@ -17,6 +17,8 @@ const meta = {
   },
 } satisfies Meta<typeof PostList>;
 
+const POSTS_URL = "https://jsonplaceholder.typicode.com/posts";
+
 export default meta;
 type Story = StoryObj<typeof PostList>;
 
@@ -25,7 +27,7 @@ export const Default: Story = {};
 export const ServerError: Story = {
   beforeEach({ msw }) {
     msw.use(
-      http.get("https://jsonplaceholder.typicode.com/posts", () =>
+      http.get(POSTS_URL, () =>
         HttpResponse.json({ message: "Internal Server Error" }, { status: 500 })
       )
     );
@@ -34,20 +36,12 @@ export const ServerError: Story = {
 
 export const NetworkError: Story = {
   beforeEach({ msw }) {
-    msw.use(
-      http.get("https://jsonplaceholder.typicode.com/posts", () =>
-        HttpResponse.error()
-      )
-    );
+    msw.use(http.get(POSTS_URL, () => HttpResponse.error()));
   },
 };
 
 export const Empty: Story = {
   beforeEach({ msw }) {
-    msw.use(
-      http.get("https://jsonplaceholder.typicode.com/posts", () =>
-        HttpResponse.json([], { status: 200 })
-      )
-    );
+    msw.use(http.get(POSTS_URL, () => HttpResponse.json([], { status: 200 })));
   },
 };

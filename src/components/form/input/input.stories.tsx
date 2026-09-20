@@ -18,7 +18,7 @@ export const WithValue: Story = {
   args: { defaultValue: "サンプルテキスト" },
 };
 
-export const Error: Story = {
+export const ErrorState: Story = {
   args: { isError: true, defaultValue: "エラー状態" },
 };
 
