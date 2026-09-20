@@ -24,13 +24,13 @@ function createMockMediaQueryList(matches: boolean) {
     },
     fire(newMatches: boolean) {
       this.matches = newMatches;
-      // SAFETY: useMediaQuery のリスナーが読むのは event.matches だけ。
-      // MediaQueryListEvent の他メンバーは参照されない。
-      const event = {
+      const event: Pick<MediaQueryListEvent, "matches" | "media"> = {
         matches: newMatches,
         media: "",
-      } as unknown as MediaQueryListEvent;
-      listener?.(event);
+      };
+      // SAFETY: useMediaQuery のリスナーが読むのは event.matches だけ。
+      // MediaQueryListEvent の他メンバーは参照されない。
+      listener?.(event as MediaQueryListEvent);
     },
     get hasListener() {
       return listener !== null;

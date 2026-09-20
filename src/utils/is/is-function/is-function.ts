@@ -1,4 +1,6 @@
-type AnyFunction = (...args: never[]) => unknown;
+// 戻り値は問わない。TypeScript では値を返す関数も void 戻りの型へ代入できるため、
+// void にしておけば「あらゆる関数」を表せる。
+type AnyFunction = (...args: never[]) => void;
 
 /**
  * 値が関数かを判定する型述語。ユニオン型 `T` のうち関数成分のみを narrow するので、

@@ -365,12 +365,24 @@ describe(debounce, () => {
   });
 
   describe("バリデーション", () => {
-    it.for<{ label: string; create: () => unknown }>([
-      { label: "wait が負数", create: () => debounce(() => {}, -1) },
-      { label: "wait が NaN", create: () => debounce(() => {}, Number.NaN) },
+    it.for<{ label: string; create: () => void }>([
+      {
+        label: "wait が負数",
+        create: () => {
+          debounce(() => {}, -1);
+        },
+      },
+      {
+        label: "wait が NaN",
+        create: () => {
+          debounce(() => {}, Number.NaN);
+        },
+      },
       {
         label: "wait が Infinity",
-        create: () => debounce(() => {}, Number.POSITIVE_INFINITY),
+        create: () => {
+          debounce(() => {}, Number.POSITIVE_INFINITY);
+        },
       },
     ])("$label だと TypeError を投げること", ({ create }) => {
       expect(create).toThrow(TypeError);
