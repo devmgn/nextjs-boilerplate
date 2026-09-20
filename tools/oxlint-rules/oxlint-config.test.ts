@@ -105,15 +105,22 @@ function collectExternalPluginSpecifiers(): Map<string, string> {
   return byPrefix;
 }
 
+function isPluginLike(value: unknown): value is PluginLike {
+  return typeof value === "object" && value !== null;
+}
+
+function hasDefaultExport(value: unknown): value is { default: PluginLike } {
+  return (
+    isPluginLike(value) && "default" in value && isPluginLike(value.default)
+  );
+}
+
 // specifier のプラグインが公開する全ルール名。
+// default export か名前空間のどちらかに rules を持つ規約に従う。
 async function loadPluginRules(specifier: string): Promise<string[]> {
-  // SAFETY: specifier は config が宣言したプラグインのみ。
-  // default export か名前空間のどちらかに rules を持つ規約に従う。
-  const mod = (await import(specifier)) as {
-    default?: PluginLike;
-  } & PluginLike;
-  const plugin = mod.default ?? mod;
-  return Object.keys(plugin.rules ?? {});
+  const mod: unknown = await import(specifier);
+  const plugin = hasDefaultExport(mod) ? mod.default : mod;
+  return isPluginLike(plugin) ? Object.keys(plugin.rules ?? {}) : [];
 }
 
 // top-level と overrides 両方の rules キーを集める（storybook は overrides にのみ現れる）。

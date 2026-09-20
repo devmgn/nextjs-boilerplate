@@ -39,10 +39,8 @@ describe("apiClient", () => {
     it("投稿を作成できること", async () => {
       const newPost = { userId: 1, title: "新規投稿", body: "内容" };
       server.use(
-        http.post(`${BASE_URL}/posts`, async ({ request }) => {
-          // SAFETY: このハンドラに届くのはテスト内で apiClient が送る JSON のみ。
-          // エコーバックするだけで中身の型には依存しない。
-          const body = (await request.json()) as Post;
+        http.post<never, Post>(`${BASE_URL}/posts`, async ({ request }) => {
+          const body = await request.json();
           return HttpResponse.json({ ...body, id: 101 }, { status: 201 });
         })
       );
@@ -84,13 +82,14 @@ describe("apiClient", () => {
   describe("postsPostIdPatch", () => {
     it("投稿を更新できること", async () => {
       server.use(
-        http.patch(`${BASE_URL}/posts/:postId`, async ({ params, request }) => {
-          // SAFETY: このハンドラに届くのはテスト内で apiClient が送る JSON のみ。
-          // エコーバックするだけで中身の型には依存しない。
-          const body = (await request.json()) as Post;
-          expect(params.postId).toBe("1");
-          return HttpResponse.json({ ...body, id: 1 });
-        })
+        http.patch<{ postId: string }, Post>(
+          `${BASE_URL}/posts/:postId`,
+          async ({ params, request }) => {
+            const body = await request.json();
+            expect(params.postId).toBe("1");
+            return HttpResponse.json({ ...body, id: 1 });
+          }
+        )
       );
 
       const result = await apiClient.postsPostIdPatch({

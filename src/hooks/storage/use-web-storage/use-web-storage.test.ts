@@ -1,4 +1,5 @@
 import type { WebStorageStore } from "../utils/web-storage-store";
+import type { Mock } from "vitest";
 import { act, renderHook } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { useWebStorage } from "./use-web-storage";
@@ -38,7 +39,7 @@ function createMockStore(): MockStore {
       notify();
       return true;
     }),
-    subscribe: vi.fn<(key: string, listener: () => void) => () => void>(
+    subscribe: vi.fn<(key: string, listener: () => void) => Mock<() => void>>(
       (_key: string, l: () => void) => {
         listeners.add(l);
         return vi.fn<() => void>(() => {
@@ -160,10 +161,11 @@ describe(useWebStorage, () => {
     const { unmount } = renderHook(() => useWebStorage(store, key));
 
     expect(store.__listeners.size).toBe(1);
-    // SAFETY: 直前の expect で subscribe が 1 回呼ばれたことを確認済み。
-    // モックの subscribe は vi.fn を返す実装なので results[0].value はその型。
-    const unsubscribe = vi.mocked(store.subscribe).mock.results[0]
-      ?.value as ReturnType<typeof vi.fn>;
+    const [subscribeResult] = vi.mocked(store.subscribe).mock.results;
+    if (subscribeResult?.type !== "return") {
+      throw new Error("subscribe が値を返していない");
+    }
+    const unsubscribe = subscribeResult.value;
 
     unmount();
 
