@@ -34,7 +34,14 @@ export default defineConfig({
     "./tools/oxlint-rules/index.ts",
     "@tanstack/eslint-plugin-query",
   ],
-  settings: { ...jsPluginSettings, vitest: { typecheck: true } },
+  settings: {
+    ...jsPluginSettings,
+    vitest: { typecheck: true },
+    // 自前ラッパーを素の要素として扱わせる。未設定だとラッパー経由の違反は検出されない。
+    "jsx-a11y": {
+      components: { Button: "button", Input: "input", Label: "label" },
+    },
+  },
   options: {
     reportUnusedDisableDirectives: "error",
     respectEslintDisableDirectives: false,
