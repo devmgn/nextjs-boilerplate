@@ -34,13 +34,9 @@ export default function Page() {
   useSessionStorage("dummy");
   useMediaQuery("(min-width: 768px)");
   useToggle();
-  const _isServer = isServer;
-  const _isDevelopment = isDevelopment;
-  const _isKeyOf = isKeyOf({}, "");
-  const _isValueOf = isValueOf({}, "");
-  const _isArray = Array.isArray([]);
-  const _loading = loading;
-
+  // 値系は捨て変数に入れるのではなく描画して参照する。
+  // このページは共有モジュールが生きていることを確かめる置き場なので、
+  // 目視でも確認できる方が役に立つ。
   return (
     <>
       <SvgIcon icon={FaceIcon} label="" />
@@ -48,6 +44,18 @@ export default function Page() {
       <Spinner />
       <LoadingOverlay />
       <LoadingScreen />
+      <dl>
+        <dt>isServer</dt>
+        <dd>{String(isServer)}</dd>
+        <dt>isDevelopment</dt>
+        <dd>{String(isDevelopment)}</dd>
+        <dt>isKeyOf</dt>
+        <dd>{String(isKeyOf({}, ""))}</dd>
+        <dt>isValueOf</dt>
+        <dd>{String(isValueOf({}, ""))}</dd>
+        <dt>loading</dt>
+        <dd>{String(loading.getSnapshot())}</dd>
+      </dl>
     </>
   );
 }
