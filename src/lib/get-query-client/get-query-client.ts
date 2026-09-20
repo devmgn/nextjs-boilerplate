@@ -5,7 +5,6 @@ function makeQueryClient() {
   return new QueryClient(QUERY_CLIENT_CONFIG);
 }
 
-// oxlint-disable-next-line init-declarations
 let browserQueryClient: QueryClient | undefined;
 
 export function getQueryClient() {

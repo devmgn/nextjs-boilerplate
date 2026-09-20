@@ -27,6 +27,7 @@ export function WebVitalsReporter() {
     }
 
     const { name, value, rating } = result.data;
+    // Web Vitals の計測結果は info で出す
     // oxlint-disable-next-line no-console
     console.info(
       `%c [Web Vitals]: ${name}: ${value} / Rating: ${rating}`,
