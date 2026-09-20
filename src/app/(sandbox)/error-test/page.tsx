@@ -3,14 +3,13 @@
 import { useState } from "react";
 import { ErrorThrower } from "./_components/error-thrower";
 import { Button } from "../../../components/button";
+import { delay } from "../../../utils/delay";
 
 // throw を伴う失敗する API 呼び出しのシミュレーション。
 // React Compiler は try/catch 内の ThrowStatement を lower できないため、
 // コンポーネント外の通常関数に切り出して throw をここに閉じ込める。
 async function requestThatFails(): Promise<never> {
-  await new Promise((resolve) => {
-    setTimeout(resolve, 1000);
-  });
+  await delay(1000);
   throw new Error("API request failed: 500 Internal Server Error");
 }
 

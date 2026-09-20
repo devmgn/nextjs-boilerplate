@@ -262,7 +262,7 @@ describe("createLoadingStore", () => {
 
     it("渡した時点で表示される", () => {
       const store = createLoadingStore();
-      const pending = store.promise(new Promise<void>(() => {}));
+      const pending = store.promise(Promise.withResolvers<undefined>().promise);
       expect(store.getSnapshot()).toBeTruthy();
       expect(pending).toBeInstanceOf(Promise);
     });
@@ -277,26 +277,18 @@ describe("createLoadingStore", () => {
 
     it("並行 promise で参照カウントが正しい", async () => {
       const store = createLoadingStore();
-      let resolveA!: () => void;
-      let resolveB!: () => void;
-      const a = store.promise(
-        new Promise<void>((resolve) => {
-          resolveA = resolve;
-        })
-      );
-      const b = store.promise(
-        new Promise<void>((resolve) => {
-          resolveB = resolve;
-        })
-      );
+      const taskA = Promise.withResolvers<undefined>();
+      const taskB = Promise.withResolvers<undefined>();
+      const a = store.promise(taskA.promise);
+      const b = store.promise(taskB.promise);
 
       expect(store.getSnapshot()).toBeTruthy();
 
-      resolveA();
+      taskA.resolve(undefined);
       await a;
       expect(store.getSnapshot()).toBeTruthy();
 
-      resolveB();
+      taskB.resolve(undefined);
       await b;
       expect(store.getSnapshot()).toBeFalsy();
     });

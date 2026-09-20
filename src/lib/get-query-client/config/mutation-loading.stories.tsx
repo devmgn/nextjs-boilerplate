@@ -3,14 +3,13 @@ import { useMutation } from "@tanstack/react-query";
 import { expect, screen, waitFor } from "storybook/test";
 import { Button } from "../../../components/button";
 import { LoadingOverlay, loading } from "../../../components/loading-overlay";
+import { delay } from "../../../utils/delay";
 
 function MutationLoadingDemo(props: { skipLoading?: boolean }) {
   const { skipLoading } = props;
   const { mutate, isPending } = useMutation({
     mutationFn: async () => {
-      await new Promise((resolve) => {
-        setTimeout(resolve, 500);
-      });
+      await delay(500);
       return "ok";
     },
     meta: skipLoading === true ? { skipLoading: true } : undefined,

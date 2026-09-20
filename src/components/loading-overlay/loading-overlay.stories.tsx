@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { expect, screen, waitFor } from "storybook/test";
 import { LoadingOverlay, LoadingScreen, loading } from ".";
+import { delay } from "../../utils/delay";
 import { Button } from "../button";
 
 const meta = {
@@ -109,11 +110,10 @@ export const PromiseResolved: Story = {
   play: async () => {
     loading.reset();
     const task = loading.promise(
-      new Promise<string>((resolve) => {
-        setTimeout(() => {
-          resolve("done");
-        }, 80);
-      })
+      (async () => {
+        await delay(80);
+        return "done";
+      })()
     );
 
     await waitFor(() => getSpinner());
