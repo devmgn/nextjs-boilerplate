@@ -164,8 +164,7 @@ describe("QUERY_CLIENT_CONFIG", () => {
     const { shouldDehydrateQuery } =
       QUERY_CLIENT_CONFIG.defaultOptions.dehydrate;
 
-    // 手で組んだ部分オブジェクトを Query に見せかけるのではなく、
-    // キャッシュに実物を作って状態だけ動かす。
+    // 判定対象はキャッシュに作った実物の Query。状態だけ setState で動かす。
     const buildQuery = (name: string) => {
       // shouldDehydrateQuery の引数は queryKey が readonly unknown[] の Query。
       const queryKey: readonly unknown[] = [name];

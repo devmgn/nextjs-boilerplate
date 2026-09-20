@@ -49,13 +49,10 @@ export default defineConfig({
     typeCheck: true,
   },
   rules: {
-    // ── 自前ポリシー ──
-    // ultracite は console を全面的に許可するが、console.log は残したくない。
-    // warn / error は意図的な出力として許可する
+    // console.log は禁止。warn / error は意図的な出力として許可する
     "eslint/no-console": ["error", { allow: ["error", "warn"] }],
 
-    // ── ultracite との衝突解消 ──
-    // custom-rules/no-restricted-syntax が top-level の arrow を禁止しているため、
+    // custom-rules/no-restricted-syntax が top-level の arrow を禁止しており、
     // expression を強制する func-style とは両立しない
     "eslint/func-style": "off",
     // autofix が必須引数の `undefined` まで削り、型エラーと意味変化を生む。

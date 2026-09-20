@@ -21,7 +21,7 @@ function createMockStorage() {
 
 let keySequence = 0;
 
-// テスト間でキーが衝突しないようにする。乱数ではなく連番にして再現性を保つ。
+// テスト間でキーが衝突しないようにする連番。
 function uniqueKey() {
   keySequence += 1;
   return `test-key-${keySequence}`;

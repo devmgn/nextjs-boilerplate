@@ -7,8 +7,7 @@ import { Button } from "../src/components/button";
 import { QUERY_CLIENT_CONFIG } from "../src/lib/get-query-client/config/query-client-config";
 import "../src/lib/styles/globals.css";
 
-// レンダーのたびに再生成しないよう、fallback は外に出して
-// FallbackComponent で渡す。
+// fallback をインライン定義するとレンダーのたびに別コンポーネント扱いになる。
 function ErrorFallback(props: FallbackProps) {
   const { error, resetErrorBoundary } = props;
 

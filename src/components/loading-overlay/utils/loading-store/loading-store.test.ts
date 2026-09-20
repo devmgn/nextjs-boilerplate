@@ -2,10 +2,8 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { loadingStore } from ".";
 import { createLoadingStore } from "./loading-store";
 
-/** 差し込み前のプレースホルダ。 */
-function noop(): void {
-  // 差し込み前は何もしない
-}
+/** 参照を差し込むまでのプレースホルダ。 */
+function noop(): void {}
 
 describe("loadingStore (singleton)", () => {
   afterEach(() => {

@@ -2,10 +2,8 @@ import { describe, expect, it, vi } from "vitest";
 import { bubbleCompositionStore, captureCompositionStore } from ".";
 import { createCompositionStore } from "./composition-store";
 
-/** 差し込み前のプレースホルダ。 */
-function noop(): void {
-  // 差し込み前は何もしない
-}
+/** 参照を差し込むまでのプレースホルダ。 */
+function noop(): void {}
 
 function dispatchComposition(type: "compositionstart" | "compositionend") {
   document.dispatchEvent(new CompositionEvent(type));

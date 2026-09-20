@@ -1,14 +1,12 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { localStorageStore, sessionStorageStore } from "./web-storage-store";
 
-/** 差し込み前のプレースホルダ。 */
-function noop(): void {
-  // 差し込み前は何もしない
-}
+/** 参照を差し込むまでのプレースホルダ。 */
+function noop(): void {}
 
 let keySequence = 0;
 
-// テスト間でキーが衝突しないようにする。乱数ではなく連番にして再現性を保つ。
+// テスト間でキーが衝突しないようにする連番。
 function uniqueKey() {
   keySequence += 1;
   return `test-${keySequence}`;

@@ -46,8 +46,7 @@ export const WithDisabledInput: Story = {
 };
 
 export const WithoutLabel: Story = {
-  // label を渡さないケース。meta.args の label を undefined で打ち消すのではなく、
-  // 渡さないことで表す。
+  // label を渡さないケース。
   render: () => (
     <Field
       render={(props) => <Input {...props} aria-label="ラベルなし入力" />}

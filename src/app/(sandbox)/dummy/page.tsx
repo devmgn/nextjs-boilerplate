@@ -34,9 +34,7 @@ export default function Page() {
   useSessionStorage("dummy");
   useMediaQuery("(min-width: 768px)");
   useToggle();
-  // 値系は捨て変数に入れるのではなく描画して参照する。
-  // このページは共有モジュールが生きていることを確かめる置き場なので、
-  // 目視でも確認できる方が役に立つ。
+  // 共有モジュールが生きていることを確かめるページ。値系は描画して参照する。
   return (
     <>
       <SvgIcon icon={FaceIcon} label="" />

@@ -1,5 +1,4 @@
-// 戻り値は問わない。TypeScript では値を返す関数も void 戻りの型へ代入できるため、
-// void にしておけば「あらゆる関数」を表せる。
+// 値を返す関数も void 戻りの型へ代入できるため、void で「あらゆる関数」を表す。
 type AnyFunction = (...args: never[]) => void;
 
 /**

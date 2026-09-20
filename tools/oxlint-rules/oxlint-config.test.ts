@@ -18,9 +18,7 @@ interface PluginLike {
 }
 type JsPluginEntry = string | { name?: string; specifier: string };
 
-// ultracite の preset がルール選定を持つプラグイン。採否は ultracite 側の責務で、
-// ここで検査すると「ultracite が新ルールを triage したか」を問うことになり、
-// ultracite を上げるたびに落ちる。追随したいときは ultracite のバージョンを上げる。
+// ルール選定を ultracite の preset が持つプラグイン。採否は ultracite 側の責務。
 const ULTRACITE_MANAGED_PREFIXES = new Set([
   "github/",
   "react-doctor/",
