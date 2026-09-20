@@ -3,7 +3,9 @@ import { loadingStore } from ".";
 import { createLoadingStore } from "./loading-store";
 
 /** 差し込み前のプレースホルダ。 */
-const noop = () => {};
+function noop(): void {
+  // 差し込み前は何もしない
+}
 
 describe("loadingStore (singleton)", () => {
   afterEach(() => {

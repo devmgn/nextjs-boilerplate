@@ -3,7 +3,9 @@ import { bubbleCompositionStore, captureCompositionStore } from ".";
 import { createCompositionStore } from "./composition-store";
 
 /** 差し込み前のプレースホルダ。 */
-const noop = () => {};
+function noop(): void {
+  // 差し込み前は何もしない
+}
 
 function dispatchComposition(type: "compositionstart" | "compositionend") {
   document.dispatchEvent(new CompositionEvent(type));

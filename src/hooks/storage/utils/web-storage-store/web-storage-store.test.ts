@@ -2,7 +2,9 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { localStorageStore, sessionStorageStore } from "./web-storage-store";
 
 /** 差し込み前のプレースホルダ。 */
-const noop = () => {};
+function noop(): void {
+  // 差し込み前は何もしない
+}
 
 let keySequence = 0;
 
