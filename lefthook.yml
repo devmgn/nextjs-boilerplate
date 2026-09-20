@@ -1,14 +1,8 @@
 pre-commit:
   jobs:
-    - run: pnpm dlx ultracite fix
-      glob:
-        - "**/*.js"
-        - "**/*.jsx"
-        - "**/*.ts"
-        - "**/*.tsx"
-        - "**/*.json"
-        - "**/*.jsonc"
-        - "**/*.css"
+    - name: ultracite
+      glob: "*.{js,jsx,ts,tsx,json,jsonc,css}"
+      run: pnpm ultracite fix {staged_files}
       stage_fixed: true
     - name: protect-main
       run: |
@@ -18,14 +12,6 @@ pre-commit:
           echo "例: feat/add-login, fix/typo, chore/knip-optimize"
           exit 1
         fi
-    - name: oxlint
-      glob: "*.{ts,tsx,js,jsx,mjs,cjs}"
-      run: pnpm oxlint --fix --no-error-on-unmatched-pattern {staged_files}
-      stage_fixed: true
-    - name: oxfmt
-      glob: "*"
-      run: pnpm oxfmt --write --no-error-on-unmatched-pattern {staged_files}
-      stage_fixed: true
     - name: test
       glob: "*.{ts,tsx}"
       run: pnpm vitest related --run {staged_files}
