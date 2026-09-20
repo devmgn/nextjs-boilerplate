@@ -36,7 +36,7 @@ describe("compositionStore", () => {
     });
 
     it("subscribe中のリスナーが同期的に呼ばれる", () => {
-      const listener = vi.fn();
+      const listener = vi.fn<() => void>();
       const unsubscribe = store.subscribe(listener);
 
       dispatchComposition("compositionstart");
@@ -49,7 +49,7 @@ describe("compositionStore", () => {
     });
 
     it("unsubscribe後はリスナーが呼ばれない", () => {
-      const listener = vi.fn();
+      const listener = vi.fn<() => void>();
       const unsubscribe = store.subscribe(listener);
       unsubscribe();
 
@@ -111,8 +111,8 @@ describe("compositionStore", () => {
     });
 
     it("複数リスナーが全員呼ばれる", () => {
-      const l1 = vi.fn();
-      const l2 = vi.fn();
+      const l1 = vi.fn<() => void>();
+      const l2 = vi.fn<() => void>();
       const u1 = store.subscribe(l1);
       const u2 = store.subscribe(l2);
 
@@ -126,9 +126,9 @@ describe("compositionStore", () => {
     });
 
     it("リスナー内で他のリスナーをunsubscribeしても他のリスナーは呼ばれる", () => {
-      const l2 = vi.fn();
+      const l2 = vi.fn<() => void>();
       const ref: { u2?: () => void } = {};
-      const l1 = vi.fn(() => {
+      const l1 = vi.fn<() => void>(() => {
         ref.u2?.();
       });
       const u1 = store.subscribe(l1);
@@ -146,10 +146,10 @@ describe("compositionStore", () => {
 
     it("あるリスナーがthrowしても他のリスナーは呼ばれる", () => {
       const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
-      const bad = vi.fn(() => {
+      const bad = vi.fn<() => void>(() => {
         throw new Error("boom");
       });
-      const good = vi.fn();
+      const good = vi.fn<() => void>();
       const u1 = store.subscribe(bad);
       const u2 = store.subscribe(good);
 
@@ -184,8 +184,8 @@ describe("compositionStore", () => {
 
   describe("ストア間の独立性", () => {
     it("captureとbubbleは独立してリスナーを管理する", () => {
-      const captureListener = vi.fn();
-      const bubbleListener = vi.fn();
+      const captureListener = vi.fn<() => void>();
+      const bubbleListener = vi.fn<() => void>();
       const u1 = captureCompositionStore.subscribe(captureListener);
       const u2 = bubbleCompositionStore.subscribe(bubbleListener);
 
@@ -200,8 +200,8 @@ describe("compositionStore", () => {
     });
 
     it("一方のストアのunsubscribeは他方に影響しない", () => {
-      const captureListener = vi.fn();
-      const bubbleListener = vi.fn();
+      const captureListener = vi.fn<() => void>();
+      const bubbleListener = vi.fn<() => void>();
       const u1 = captureCompositionStore.subscribe(captureListener);
       const u2 = bubbleCompositionStore.subscribe(bubbleListener);
 
@@ -220,8 +220,8 @@ describe("compositionStore", () => {
     it("同じ capture 値でも独立したインスタンスを返す", () => {
       const a = createCompositionStore(true);
       const b = createCompositionStore(true);
-      const listenerA = vi.fn();
-      const listenerB = vi.fn();
+      const listenerA = vi.fn<() => void>();
+      const listenerB = vi.fn<() => void>();
 
       const uA = a.subscribe(listenerA);
       const uB = b.subscribe(listenerB);
@@ -274,7 +274,7 @@ describe("compositionStore", () => {
     it("同一 listener を多重 subscribe しても各セッションが独立して扱われる", () => {
       const store = createCompositionStore(true);
       const removeSpy = vi.spyOn(document, "removeEventListener");
-      const listener = vi.fn();
+      const listener = vi.fn<() => void>();
 
       const u1 = store.subscribe(listener);
       const u2 = store.subscribe(listener);
@@ -298,7 +298,7 @@ describe("compositionStore", () => {
 
     it("同一 listener を多重 subscribe した場合、各セッションに対して通知される", () => {
       const store = createCompositionStore(true);
-      const listener = vi.fn();
+      const listener = vi.fn<() => void>();
 
       const u1 = store.subscribe(listener);
       const u2 = store.subscribe(listener);

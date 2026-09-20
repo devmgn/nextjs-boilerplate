@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 import { WebVitalsReporter } from "./web-vitals-reporter";
 
 const { mockUseReportWebVitals } = vi.hoisted(() => ({
-  mockUseReportWebVitals: vi.fn(),
+  mockUseReportWebVitals: vi.fn<(report: (metric: unknown) => void) => void>(),
 }));
 
 vi.mock(import("next/web-vitals"), () => ({

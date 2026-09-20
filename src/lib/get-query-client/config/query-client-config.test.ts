@@ -4,9 +4,11 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { QUERY_CLIENT_CONFIG } from "./query-client-config";
 import { loading } from "../../../components/loading-overlay";
 
-// @ts-expect-error -- TypeScript 6 overload mismatch with vi.mock + dynamic import
-vi.mock(import("sonner"), () => ({
-  toast: { error: vi.fn() },
+// sonner の toast は callable な交差型のため、error だけの部分モックは
+// vi.mock(import("sonner"), ...) の shape 検証を満たせない。
+// 元は vi.fn() が any 相当で素通りしていただけなので、string 指定に切り替える。
+vi.mock("sonner", () => ({
+  toast: { error: vi.fn<typeof toast.error>() },
 }));
 
 describe("QUERY_CLIENT_CONFIG", () => {

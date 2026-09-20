@@ -25,7 +25,7 @@ describe(useDebouncedInput, () => {
   afterEach(() => vi.useRealTimers());
 
   it("入力値が debounce されて onValue に渡ること", () => {
-    const onValue = vi.fn();
+    const onValue = vi.fn<(value: string) => void>();
     const { getByTestId } = render(<Probe onValue={onValue} wait={300} />);
 
     fireEvent.change(getByTestId("input"), { target: { value: "a" } });
@@ -38,7 +38,7 @@ describe(useDebouncedInput, () => {
   });
 
   it("連続入力では最後の値で1回だけ実行されること", () => {
-    const onValue = vi.fn();
+    const onValue = vi.fn<(value: string) => void>();
     const { getByTestId } = render(<Probe onValue={onValue} wait={300} />);
     const input = getByTestId("input");
 
@@ -53,7 +53,7 @@ describe(useDebouncedInput, () => {
   });
 
   it("IME 変換中 (compositionStart 後) の入力は debounce に流れないこと", () => {
-    const onValue = vi.fn();
+    const onValue = vi.fn<(value: string) => void>();
     const { getByTestId } = render(<Probe onValue={onValue} wait={300} />);
     const input = getByTestId("input");
 
@@ -67,7 +67,7 @@ describe(useDebouncedInput, () => {
   });
 
   it("変換確定 (compositionEnd) で確定値が即時に反映されること", () => {
-    const onValue = vi.fn();
+    const onValue = vi.fn<(value: string) => void>();
     const { getByTestId } = render(<Probe onValue={onValue} wait={300} />);
     const input = getByTestId("input");
 
@@ -80,7 +80,7 @@ describe(useDebouncedInput, () => {
   });
 
   it("変換確定後の通常入力は再び debounce されること", () => {
-    const onValue = vi.fn();
+    const onValue = vi.fn<(value: string) => void>();
     const { getByTestId } = render(<Probe onValue={onValue} wait={300} />);
     const input = getByTestId("input");
 
@@ -97,7 +97,7 @@ describe(useDebouncedInput, () => {
   });
 
   it("依存が変わらない再レンダリングでも保留中のタイマーが失われないこと", () => {
-    const onValue = vi.fn();
+    const onValue = vi.fn<(value: string) => void>();
     const { getByTestId, rerender } = render(
       <Probe onValue={onValue} wait={300} />
     );
@@ -113,7 +113,7 @@ describe(useDebouncedInput, () => {
   });
 
   it("textarea にもスプレッドでき debounce されること", () => {
-    const onValue = vi.fn();
+    const onValue = vi.fn<(value: string) => void>();
     const { getByTestId } = render(
       <Probe multiline onValue={onValue} wait={300} />
     );
@@ -128,7 +128,7 @@ describe(useDebouncedInput, () => {
   });
 
   it("wait を変更するとタイマーが作り直されること", () => {
-    const onValue = vi.fn();
+    const onValue = vi.fn<(value: string) => void>();
     const { getByTestId, rerender } = render(
       <Probe onValue={onValue} wait={300} />
     );

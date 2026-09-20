@@ -84,7 +84,7 @@ describe("webStorageStore", () => {
       it("失敗時は購読者に通知しない", () => {
         silenceWarn();
         const key = uniqueKey();
-        const listener = vi.fn();
+        const listener = vi.fn<() => void>();
         const unsubscribe = subscribe(key, listener);
         vi.stubGlobal(storageKey, {
           setItem: () => {
@@ -124,7 +124,7 @@ describe("webStorageStore", () => {
       it("失敗時は購読者に通知しない", () => {
         silenceWarn();
         const key = uniqueKey();
-        const listener = vi.fn();
+        const listener = vi.fn<() => void>();
         const unsubscribe = subscribe(key, listener);
         vi.stubGlobal(storageKey, {
           removeItem: () => {
@@ -155,8 +155,8 @@ describe("webStorageStore", () => {
       it("全購読者へ通知する", () => {
         const k1 = uniqueKey();
         const k2 = uniqueKey();
-        const l1 = vi.fn();
-        const l2 = vi.fn();
+        const l1 = vi.fn<() => void>();
+        const l2 = vi.fn<() => void>();
         const u1 = subscribe(k1, l1);
         const u2 = subscribe(k2, l2);
 
@@ -180,7 +180,7 @@ describe("webStorageStore", () => {
           },
         });
         const key = uniqueKey();
-        const listener = vi.fn();
+        const listener = vi.fn<() => void>();
         const unsubscribe = subscribe(key, listener);
 
         expect(clear()).toBeFalsy();
@@ -193,7 +193,7 @@ describe("webStorageStore", () => {
     describe(subscribe, () => {
       it("同じキーへのwriteでリスナーが呼ばれる", () => {
         const key = uniqueKey();
-        const listener = vi.fn();
+        const listener = vi.fn<() => void>();
         const unsubscribe = subscribe(key, listener);
 
         write(key, "hello");
@@ -205,7 +205,7 @@ describe("webStorageStore", () => {
       it("同じキーへのremoveでリスナーが呼ばれる", () => {
         const key = uniqueKey();
         write(key, "hello");
-        const listener = vi.fn();
+        const listener = vi.fn<() => void>();
         const unsubscribe = subscribe(key, listener);
 
         remove(key);
@@ -216,7 +216,7 @@ describe("webStorageStore", () => {
 
       it("unsubscribe後はリスナーが呼ばれない", () => {
         const key = uniqueKey();
-        const listener = vi.fn();
+        const listener = vi.fn<() => void>();
         const unsubscribe = subscribe(key, listener);
 
         unsubscribe();
@@ -227,7 +227,7 @@ describe("webStorageStore", () => {
 
       it("異なるキーへのwriteでリスナーが呼ばれない", () => {
         const key = uniqueKey();
-        const listener = vi.fn();
+        const listener = vi.fn<() => void>();
         const unsubscribe = subscribe(key, listener);
 
         write(uniqueKey(), "hello");
@@ -239,10 +239,10 @@ describe("webStorageStore", () => {
       it("あるリスナーがthrowしても他のリスナーは呼ばれる", () => {
         silenceError();
         const key = uniqueKey();
-        const bad = vi.fn(() => {
+        const bad = vi.fn<() => void>(() => {
           throw new Error("boom");
         });
-        const good = vi.fn();
+        const good = vi.fn<() => void>();
         const u1 = subscribe(key, bad);
         const u2 = subscribe(key, good);
 
@@ -258,10 +258,10 @@ describe("webStorageStore", () => {
         silenceError();
         const k1 = uniqueKey();
         const k2 = uniqueKey();
-        const bad = vi.fn(() => {
+        const bad = vi.fn<() => void>(() => {
           throw new Error("boom");
         });
-        const good = vi.fn();
+        const good = vi.fn<() => void>();
         const u1 = subscribe(k1, bad);
         const u2 = subscribe(k2, good);
 
@@ -275,7 +275,7 @@ describe("webStorageStore", () => {
 
       it("同一リスナーを重複subscribeしてもwriteで一度しか呼ばれない", () => {
         const key = uniqueKey();
-        const listener = vi.fn();
+        const listener = vi.fn<() => void>();
         const u1 = subscribe(key, listener);
         const u2 = subscribe(key, listener);
 
@@ -288,9 +288,9 @@ describe("webStorageStore", () => {
 
       it("リスナー内で同キーにsubscribeしても今回のnotifyでは呼ばれない", () => {
         const key = uniqueKey();
-        const lateListener = vi.fn();
+        const lateListener = vi.fn<() => void>();
         let lateUnsubscribe: (() => void) | undefined;
-        const firstListener = vi.fn(() => {
+        const firstListener = vi.fn<() => void>(() => {
           lateUnsubscribe = subscribe(key, lateListener);
         });
         const u1 = subscribe(key, firstListener);
@@ -305,11 +305,11 @@ describe("webStorageStore", () => {
 
       it("リスナー内で他のリスナーをunsubscribeしても他のリスナーは呼ばれる", () => {
         const key = uniqueKey();
-        const l2 = vi.fn();
+        const l2 = vi.fn<() => void>();
         // l1 を先に subscribe しつつ l1 から l2 の unsubscribe (u2) を呼ぶため、
         // 参照を箱渡しして const を維持する。
         const ref: { u2?: () => void } = {};
-        const l1 = vi.fn(() => {
+        const l1 = vi.fn<() => void>(() => {
           ref.u2?.();
         });
         const u1 = subscribe(key, l1);
@@ -326,8 +326,8 @@ describe("webStorageStore", () => {
 
       it("unsubscribeを複数回呼んでも後続のsubscribeが壊れない", () => {
         const key = uniqueKey();
-        const l1 = vi.fn();
-        const l2 = vi.fn();
+        const l1 = vi.fn<() => void>();
+        const l2 = vi.fn<() => void>();
         const u1 = subscribe(key, l1);
         u1();
         const u2 = subscribe(key, l2);
@@ -351,7 +351,7 @@ describe("webStorageStore", () => {
 
     it("同じキーのstorageイベントでリスナーが呼ばれる", () => {
       const key = uniqueKey();
-      const listener = vi.fn();
+      const listener = vi.fn<() => void>();
       const unsubscribe = subscribe(key, listener);
 
       dispatchLocalStorageEvent({ key, newValue: "from-other-tab" });
@@ -362,7 +362,7 @@ describe("webStorageStore", () => {
 
     it("異なるキーのstorageイベントでは呼ばれない", () => {
       const key = uniqueKey();
-      const listener = vi.fn();
+      const listener = vi.fn<() => void>();
       const unsubscribe = subscribe(key, listener);
 
       dispatchLocalStorageEvent({ key: "other-key", newValue: "x" });
@@ -373,7 +373,7 @@ describe("webStorageStore", () => {
 
     it("他タブのclearに伴うstorageイベント（key=null）でリスナーが呼ばれる", () => {
       const key = uniqueKey();
-      const listener = vi.fn();
+      const listener = vi.fn<() => void>();
       const unsubscribe = subscribe(key, listener);
 
       dispatchLocalStorageEvent({ key: null, newValue: null });
@@ -384,7 +384,7 @@ describe("webStorageStore", () => {
 
     it("同一リスナーを重複subscribeしてもstorageイベントで一度しか呼ばれない", () => {
       const key = uniqueKey();
-      const listener = vi.fn();
+      const listener = vi.fn<() => void>();
       const u1 = subscribe(key, listener);
       const u2 = subscribe(key, listener);
 
@@ -397,7 +397,7 @@ describe("webStorageStore", () => {
 
     it("unsubscribeでstorageイベントの購読も解除される", () => {
       const key = uniqueKey();
-      const listener = vi.fn();
+      const listener = vi.fn<() => void>();
       const unsubscribe = subscribe(key, listener);
       unsubscribe();
 
@@ -408,7 +408,7 @@ describe("webStorageStore", () => {
 
     it("storageAreaがsessionStorageのイベントは無視する", () => {
       const key = uniqueKey();
-      const listener = vi.fn();
+      const listener = vi.fn<() => void>();
       const unsubscribe = subscribe(key, listener);
 
       window.dispatchEvent(
@@ -431,7 +431,7 @@ describe("webStorageStore", () => {
 
     it("他タブ由来のstorageイベントには反応しない", () => {
       const key = uniqueKey();
-      const listener = vi.fn();
+      const listener = vi.fn<() => void>();
       const unsubscribe = sessionStorageStore.subscribe(key, listener);
 
       window.dispatchEvent(new StorageEvent("storage", { key, newValue: "x" }));
@@ -449,7 +449,7 @@ describe("webStorageStore", () => {
 
     it("localStorageStore.writeはsessionStorageStoreの購読者に通知しない", () => {
       const key = uniqueKey();
-      const sessionListener = vi.fn();
+      const sessionListener = vi.fn<() => void>();
       const unsubscribe = sessionStorageStore.subscribe(key, sessionListener);
 
       localStorageStore.write(key, "x");
@@ -460,7 +460,7 @@ describe("webStorageStore", () => {
 
     it("sessionStorageStore.writeはlocalStorageStoreの購読者に通知しない", () => {
       const key = uniqueKey();
-      const localListener = vi.fn();
+      const localListener = vi.fn<() => void>();
       const unsubscribe = localStorageStore.subscribe(key, localListener);
 
       sessionStorageStore.write(key, "x");
@@ -504,9 +504,9 @@ describe("webStorageStore", () => {
 
     it("同じキーの複数リスナーが全員呼ばれる", () => {
       const key = uniqueKey();
-      const l1 = vi.fn();
-      const l2 = vi.fn();
-      const l3 = vi.fn();
+      const l1 = vi.fn<() => void>();
+      const l2 = vi.fn<() => void>();
+      const l3 = vi.fn<() => void>();
       const u1 = localStorageStore.subscribe(key, l1);
       const u2 = localStorageStore.subscribe(key, l2);
       const u3 = localStorageStore.subscribe(key, l3);

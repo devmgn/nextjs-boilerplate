@@ -5,11 +5,15 @@ import { useSessionStorage } from "./use-session-storage";
 function createMockStorage() {
   const store = new Map<string, string>();
   return {
-    getItem: vi.fn((key: string) => store.get(key) ?? null),
-    setItem: vi.fn((key: string, value: string) => {
-      store.set(key, value);
-    }),
-    removeItem: vi.fn((key: string) => {
+    getItem: vi.fn<(key: string) => string | null>(
+      (key: string) => store.get(key) ?? null
+    ),
+    setItem: vi.fn<(key: string, value: string) => void>(
+      (key: string, value: string) => {
+        store.set(key, value);
+      }
+    ),
+    removeItem: vi.fn<(key: string) => void>((key: string) => {
       store.delete(key);
     }),
   };

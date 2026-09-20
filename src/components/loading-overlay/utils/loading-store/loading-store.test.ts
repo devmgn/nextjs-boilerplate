@@ -49,7 +49,7 @@ describe("createLoadingStore", () => {
 
     it("過剰な hide() は clamp され listener を呼ばない", () => {
       const store = createLoadingStore();
-      const listener = vi.fn();
+      const listener = vi.fn<() => void>();
       const unsubscribe = store.subscribe(listener);
 
       store.hide();
@@ -75,7 +75,7 @@ describe("createLoadingStore", () => {
 
     it("空状態での reset() は listener を呼ばない", () => {
       const store = createLoadingStore();
-      const listener = vi.fn();
+      const listener = vi.fn<() => void>();
       const unsubscribe = store.subscribe(listener);
 
       store.reset();
@@ -88,7 +88,7 @@ describe("createLoadingStore", () => {
   describe("subscribe / listener", () => {
     it("subscribe 中のリスナーは show / hide で同期的に呼ばれる", () => {
       const store = createLoadingStore();
-      const listener = vi.fn();
+      const listener = vi.fn<() => void>();
       const unsubscribe = store.subscribe(listener);
 
       store.show();
@@ -102,7 +102,7 @@ describe("createLoadingStore", () => {
 
     it("unsubscribe 後のリスナーは呼ばれない", () => {
       const store = createLoadingStore();
-      const listener = vi.fn();
+      const listener = vi.fn<() => void>();
       const unsubscribe = store.subscribe(listener);
       unsubscribe();
 
@@ -112,8 +112,8 @@ describe("createLoadingStore", () => {
 
     it("複数リスナーが全員呼ばれる", () => {
       const store = createLoadingStore();
-      const l1 = vi.fn();
-      const l2 = vi.fn();
+      const l1 = vi.fn<() => void>();
+      const l2 = vi.fn<() => void>();
       const u1 = store.subscribe(l1);
       const u2 = store.subscribe(l2);
 
@@ -128,9 +128,9 @@ describe("createLoadingStore", () => {
 
     it("リスナー内で他のリスナーを unsubscribe しても他のリスナーは呼ばれる", () => {
       const store = createLoadingStore();
-      const l2 = vi.fn();
+      const l2 = vi.fn<() => void>();
       const ref: { u2?: () => void } = {};
-      const l1 = vi.fn(() => {
+      const l1 = vi.fn<() => void>(() => {
         ref.u2?.();
       });
       const u1 = store.subscribe(l1);
@@ -149,10 +149,10 @@ describe("createLoadingStore", () => {
     it("あるリスナーが throw しても他のリスナーは呼ばれる", () => {
       const store = createLoadingStore();
       const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
-      const bad = vi.fn(() => {
+      const bad = vi.fn<() => void>(() => {
         throw new Error("boom");
       });
-      const good = vi.fn();
+      const good = vi.fn<() => void>();
       const u1 = store.subscribe(bad);
       const u2 = store.subscribe(good);
 
@@ -168,7 +168,7 @@ describe("createLoadingStore", () => {
 
     it("同一 listener を多重 subscribe した場合、各セッションに対して通知される", () => {
       const store = createLoadingStore();
-      const listener = vi.fn();
+      const listener = vi.fn<() => void>();
       const u1 = store.subscribe(listener);
       const u2 = store.subscribe(listener);
 
@@ -182,7 +182,7 @@ describe("createLoadingStore", () => {
 
     it("unsubscribe の多重呼び出しは冪等", () => {
       const store = createLoadingStore();
-      const listener = vi.fn();
+      const listener = vi.fn<() => void>();
       const unsubscribe = store.subscribe(listener);
 
       unsubscribe();
@@ -196,9 +196,9 @@ describe("createLoadingStore", () => {
       // notify() 内で [...listeners] スナップショットを取る挙動の回帰テスト。
       // 通知の途中で subscribe された listener は、そのイテレーションでは拾われない。
       const store = createLoadingStore();
-      const late = vi.fn();
+      const late = vi.fn<() => void>();
       let lateUnsub: (() => void) | undefined;
-      const early = vi.fn(() => {
+      const early = vi.fn<() => void>(() => {
         lateUnsub = store.subscribe(late);
       });
       const uEarly = store.subscribe(early);
@@ -323,8 +323,8 @@ describe("createLoadingStore", () => {
     it("createLoadingStore() を 2 つ作ってもカウンタ・listener が混ざらない", () => {
       const a = createLoadingStore();
       const b = createLoadingStore();
-      const listenerA = vi.fn();
-      const listenerB = vi.fn();
+      const listenerA = vi.fn<() => void>();
+      const listenerB = vi.fn<() => void>();
       const uA = a.subscribe(listenerA);
       const uB = b.subscribe(listenerB);
 

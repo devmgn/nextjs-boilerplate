@@ -7,7 +7,7 @@ describe(debounce, () => {
 
   describe("基本動作 (trailing)", () => {
     it("待機時間後に1回だけ実行されること", () => {
-      const fn = vi.fn();
+      const fn = vi.fn<() => void>();
       const debounced = debounce(fn, 100);
 
       debounced();
@@ -20,7 +20,7 @@ describe(debounce, () => {
     });
 
     it("最後の呼び出しの引数で実行されること", () => {
-      const fn = vi.fn();
+      const fn = vi.fn<(x: string) => void>();
       const debounced = debounce(fn, 100);
 
       debounced("a");
@@ -32,7 +32,7 @@ describe(debounce, () => {
     });
 
     it("待機中に再呼び出しするとタイマーがリセットされること", () => {
-      const fn = vi.fn();
+      const fn = vi.fn<() => void>();
       const debounced = debounce(fn, 100);
 
       // 100ms 待機を 80ms + 80ms でまたぐがタイマーリセットで未発火、残り 20ms で発火
@@ -49,7 +49,7 @@ describe(debounce, () => {
     });
 
     it("複数の引数が正しく渡されること", () => {
-      const fn = vi.fn();
+      const fn = vi.fn<(a: number, b: string, c: { three: number }) => void>();
       const debounced = debounce(fn, 100);
 
       debounced(1, "two", { three: 3 });
@@ -59,7 +59,7 @@ describe(debounce, () => {
     });
 
     it("連続するバーストが独立して処理されること", () => {
-      const fn = vi.fn();
+      const fn = vi.fn<(x: string) => void>();
       const debounced = debounce(fn, 100);
 
       debounced("first");
@@ -75,7 +75,7 @@ describe(debounce, () => {
 
   describe("wait: 0", () => {
     it("タイマー発火時に実行されること", () => {
-      const fn = vi.fn();
+      const fn = vi.fn<(x: string) => void>();
       const debounced = debounce(fn, 0);
 
       debounced("zero");
@@ -88,7 +88,7 @@ describe(debounce, () => {
 
   describe("cancel", () => {
     it("保留中の実行がキャンセルされること", () => {
-      const fn = vi.fn();
+      const fn = vi.fn<() => void>();
       const debounced = debounce(fn, 100);
 
       debounced();
@@ -99,7 +99,7 @@ describe(debounce, () => {
     });
 
     it("cancel 後に再び呼び出せること", () => {
-      const fn = vi.fn();
+      const fn = vi.fn<(x: string) => void>();
       const debounced = debounce(fn, 100);
 
       debounced("a");
@@ -112,7 +112,7 @@ describe(debounce, () => {
     });
 
     it("保留中でない場合に cancel しても安全であること", () => {
-      const fn = vi.fn();
+      const fn = vi.fn<() => void>();
       const debounced = debounce(fn, 100);
 
       expect(() => {
@@ -123,7 +123,7 @@ describe(debounce, () => {
 
   describe("flush", () => {
     it("保留中の関数が即座に実行されること", () => {
-      const fn = vi.fn();
+      const fn = vi.fn<(x: string) => void>();
       const debounced = debounce(fn, 100);
 
       debounced("flushed");
@@ -133,7 +133,7 @@ describe(debounce, () => {
     });
 
     it("flush 後にタイマーで重複実行されないこと", () => {
-      const fn = vi.fn();
+      const fn = vi.fn<() => void>();
       const debounced = debounce(fn, 100);
 
       debounced();
@@ -144,7 +144,7 @@ describe(debounce, () => {
     });
 
     it("flush 後に新しいサイクルを開始できること", () => {
-      const fn = vi.fn();
+      const fn = vi.fn<(x: string) => void>();
       const debounced = debounce(fn, 100);
 
       debounced("first");
@@ -237,7 +237,7 @@ describe(debounce, () => {
 
   describe("例外復旧", () => {
     it("コールバックが例外を投げても次のサイクルが動作すること", () => {
-      const fn = vi.fn().mockImplementationOnce(() => {
+      const fn = vi.fn<(x: string) => void>().mockImplementationOnce(() => {
         throw new Error("boom");
       });
       const debounced = debounce(fn, 100);
@@ -256,7 +256,7 @@ describe(debounce, () => {
 
   describe("エッジケース", () => {
     it("多数回呼び出した後に flush すると最新の引数で実行されること", () => {
-      const fn = vi.fn();
+      const fn = vi.fn<(x: string) => void>();
       const debounced = debounce(fn, 100);
 
       debounced("a");
@@ -268,7 +268,7 @@ describe(debounce, () => {
     });
 
     it("wait:0 で連続呼び出ししても trailing で最後の引数1回だけ実行されること", () => {
-      const fn = vi.fn();
+      const fn = vi.fn<(x: string) => void>();
       const debounced = debounce(fn, 0);
 
       debounced("a");
@@ -326,7 +326,7 @@ describe(debounce, () => {
     });
 
     it("flush 中にコールバックが例外を投げても次のサイクルが動作すること", () => {
-      const fn = vi.fn().mockImplementationOnce(() => {
+      const fn = vi.fn<(x: string) => void>().mockImplementationOnce(() => {
         throw new Error("boom");
       });
       const debounced = debounce(fn, 100);
@@ -344,7 +344,7 @@ describe(debounce, () => {
     });
 
     it("cancel 後に flush しても何も実行されないこと", () => {
-      const fn = vi.fn();
+      const fn = vi.fn<(x: string) => void>();
       const debounced = debounce(fn, 100);
 
       debounced("a");

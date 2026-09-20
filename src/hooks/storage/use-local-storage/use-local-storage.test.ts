@@ -5,11 +5,15 @@ import { useLocalStorage } from "./use-local-storage";
 function createMockStorage() {
   const store = new Map<string, string>();
   return {
-    getItem: vi.fn((key: string) => store.get(key) ?? null),
-    setItem: vi.fn((key: string, value: string) => {
-      store.set(key, value);
-    }),
-    removeItem: vi.fn((key: string) => {
+    getItem: vi.fn<(key: string) => string | null>(
+      (key: string) => store.get(key) ?? null
+    ),
+    setItem: vi.fn<(key: string, value: string) => void>(
+      (key: string, value: string) => {
+        store.set(key, value);
+      }
+    ),
+    removeItem: vi.fn<(key: string) => void>((key: string) => {
       store.delete(key);
     }),
   };
@@ -211,7 +215,7 @@ describe(useLocalStorage, () => {
   describe("クリーンアップ", () => {
     it("アンマウント後は同タブの書き込みで再レンダーされない", () => {
       const key = uniqueKey();
-      const renderSpy = vi.fn();
+      const renderSpy = vi.fn<() => void>();
       const { unmount } = renderHook(() => {
         renderSpy();
         return useLocalStorage(key);

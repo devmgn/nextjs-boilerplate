@@ -20,28 +20,32 @@ function createMockStore(): MockStore {
   };
   return {
     __listeners: listeners,
-    read: vi.fn(() => value),
-    write: vi.fn((_key: string, v: string) => {
-      value = v;
-      notify();
-      return true;
-    }),
-    remove: vi.fn(() => {
+    read: vi.fn<(key: string) => string | null>(() => value),
+    write: vi.fn<(key: string, value: string) => boolean>(
+      (_key: string, v: string) => {
+        value = v;
+        notify();
+        return true;
+      }
+    ),
+    remove: vi.fn<(key: string) => boolean>(() => {
       value = null;
       notify();
       return true;
     }),
-    clear: vi.fn(() => {
+    clear: vi.fn<() => boolean>(() => {
       value = null;
       notify();
       return true;
     }),
-    subscribe: vi.fn((_key: string, l: () => void) => {
-      listeners.add(l);
-      return vi.fn(() => {
-        listeners.delete(l);
-      });
-    }),
+    subscribe: vi.fn<(key: string, listener: () => void) => () => void>(
+      (_key: string, l: () => void) => {
+        listeners.add(l);
+        return vi.fn<() => void>(() => {
+          listeners.delete(l);
+        });
+      }
+    ),
   };
 }
 

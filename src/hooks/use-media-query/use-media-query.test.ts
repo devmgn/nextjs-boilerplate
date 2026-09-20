@@ -42,7 +42,9 @@ describe(useMediaQuery, () => {
 
   beforeEach(() => {
     mockMql = createMockMediaQueryList(false);
-    matchMediaSpy = vi.fn().mockReturnValue(mockMql);
+    matchMediaSpy = vi
+      .fn<(query: string) => ReturnType<typeof createMockMediaQueryList>>()
+      .mockReturnValue(mockMql);
     vi.stubGlobal("matchMedia", matchMediaSpy);
   });
 
@@ -78,7 +80,7 @@ describe(useMediaQuery, () => {
   });
 
   it("メディアクエリの変更時にonChangeコールバックがイベントと共に呼ばれること", () => {
-    const onChange = vi.fn();
+    const onChange = vi.fn<(event: MediaQueryListEvent) => void>();
     renderHook(() => useMediaQuery(QUERY, onChange));
 
     act(() => {
