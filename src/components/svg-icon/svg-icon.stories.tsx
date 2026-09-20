@@ -41,7 +41,9 @@ export const ExtraLarge: Story = {
 };
 
 export const Decorative: Story = {
-  args: { label: undefined },
+  // label を渡さないと装飾扱い（aria-hidden）になることを見せる。
+  // meta.args の label を undefined で打ち消すのではなく、渡さないことで表す。
+  render: (args) => <SvgIcon icon={args.icon} size={args.size} />,
   play: async ({ canvasElement }) => {
     const icon = canvasElement.querySelector("svg");
     await expect(icon).toHaveAttribute("aria-hidden", "true");

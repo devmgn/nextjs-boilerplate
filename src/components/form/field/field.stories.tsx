@@ -46,10 +46,13 @@ export const WithDisabledInput: Story = {
 };
 
 export const WithoutLabel: Story = {
-  args: {
-    label: undefined,
-    render: (props) => <Input {...props} aria-label="ラベルなし入力" />,
-  },
+  // label を渡さないケース。meta.args の label を undefined で打ち消すのではなく、
+  // 渡さないことで表す。
+  render: () => (
+    <Field
+      render={(props) => <Input {...props} aria-label="ラベルなし入力" />}
+    />
+  ),
   play: async ({ canvas }) => {
     const input = canvas.getByRole("textbox");
     await expect(input).not.toHaveAttribute("id");
