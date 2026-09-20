@@ -5,7 +5,6 @@ import { jsPluginSettings, selectJsPlugins } from "ultracite/oxlint/js-plugins";
 import next from "ultracite/oxlint/next";
 import nextJsPlugins from "ultracite/oxlint/next/js-plugins";
 import react from "ultracite/oxlint/react";
-import shadcn from "ultracite/oxlint/shadcn";
 import tanstack from "ultracite/oxlint/tanstack";
 import tanstackJsPlugins from "ultracite/oxlint/tanstack/js-plugins";
 import vitest from "ultracite/oxlint/vitest";
@@ -21,7 +20,6 @@ export default defineConfig({
     vitest,
     nextJsPlugins,
     tanstackJsPlugins,
-    shadcn,
     antiSlop,
     jsPlugins,
   ],
@@ -33,7 +31,6 @@ export default defineConfig({
   ],
   jsPlugins: [
     ...(jsPlugins.jsPlugins ?? []),
-    ...(shadcn.jsPlugins ?? []),
     "./tools/oxlint-rules/index.ts",
     "@tanstack/eslint-plugin-query",
   ],

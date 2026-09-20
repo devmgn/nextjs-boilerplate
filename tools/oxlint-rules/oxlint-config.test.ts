@@ -24,7 +24,6 @@ type JsPluginEntry = string | { name?: string; specifier: string };
 const ULTRACITE_MANAGED_PREFIXES = new Set([
   "github/",
   "react-doctor/",
-  "shadcn/",
   "sonarjs/",
 ]);
 
