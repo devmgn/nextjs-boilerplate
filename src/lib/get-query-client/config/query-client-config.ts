@@ -4,8 +4,8 @@ import {
   QueryCache,
   defaultShouldDehydrateQuery,
 } from "@tanstack/react-query";
-import { toast } from "sonner";
 import { loadingStore as loading } from "../../../components/loading-overlay/utils/loading-store";
+import { errorNotifier } from "../../error-notifier";
 
 function handleCacheError(
   error: Error,
@@ -14,7 +14,7 @@ function handleCacheError(
   if (meta?.skipToast === true) {
     return;
   }
-  toast.error(error.message);
+  errorNotifier.notify(error.message);
 }
 
 export const QUERY_CLIENT_CONFIG = {

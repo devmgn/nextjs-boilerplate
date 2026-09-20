@@ -1,26 +1,22 @@
+import type { MockInstance } from "vitest";
 import { QueryClient } from "@tanstack/react-query";
-import { toast } from "sonner";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { QUERY_CLIENT_CONFIG } from "./query-client-config";
 import { loading } from "../../../components/loading-overlay";
-
-// sonner の toast は callable な交差型のため、error だけの部分モックは
-// vi.mock(import("sonner"), ...) の shape 検証を満たせない。
-// 元は vi.fn() が any 相当で素通りしていただけなので、string 指定に切り替える。
-vi.mock("sonner", () => ({
-  toast: { error: vi.fn<typeof toast.error>() },
-}));
+import { errorNotifier } from "../../error-notifier";
 
 describe("QUERY_CLIENT_CONFIG", () => {
   let queryClient: QueryClient;
+  let notifySpy: MockInstance<(message: string) => void>;
 
   beforeEach(() => {
     queryClient = new QueryClient(QUERY_CLIENT_CONFIG);
-    vi.mocked(toast.error).mockClear();
+    notifySpy = vi.spyOn(errorNotifier, "notify").mockImplementation(() => {});
     loading.reset();
   });
 
   afterEach(() => {
+    notifySpy.mockRestore();
     queryClient.clear();
   });
 
@@ -35,7 +31,7 @@ describe("QUERY_CLIENT_CONFIG", () => {
         })
         .catch(() => {});
 
-      expect(toast.error).toHaveBeenCalledWith("fetch failed");
+      expect(notifySpy).toHaveBeenCalledWith("fetch failed");
     });
 
     it("skipToast: trueのときtoast.errorが呼ばれないこと", async () => {
@@ -49,7 +45,7 @@ describe("QUERY_CLIENT_CONFIG", () => {
         })
         .catch(() => {});
 
-      expect(toast.error).not.toHaveBeenCalled();
+      expect(notifySpy).not.toHaveBeenCalled();
     });
   });
 
@@ -122,7 +118,7 @@ describe("QUERY_CLIENT_CONFIG", () => {
         .execute(undefined)
         .catch(() => {});
 
-      expect(toast.error).toHaveBeenCalledWith("mutation failed");
+      expect(notifySpy).toHaveBeenCalledWith("mutation failed");
     });
 
     it("skipToast: trueのときtoast.errorが呼ばれないこと", async () => {
@@ -137,7 +133,7 @@ describe("QUERY_CLIENT_CONFIG", () => {
         .execute(undefined)
         .catch(() => {});
 
-      expect(toast.error).not.toHaveBeenCalled();
+      expect(notifySpy).not.toHaveBeenCalled();
     });
   });
 
