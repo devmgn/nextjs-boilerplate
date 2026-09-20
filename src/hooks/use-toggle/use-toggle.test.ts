@@ -139,6 +139,8 @@ describe(useToggle, () => {
     it("配列に含まれない値を initialValue に渡したとき、エラーを投げること", () => {
       vi.spyOn(console, "error").mockImplementation(() => {});
       expect(() =>
+        // SAFETY: values に含まれない値を渡したときの実行時エラーを検証するため、
+        // 意図的に型を偽装している。
         renderHook(() => useToggle(["light", "dark"], "system" as "light"))
       ).toThrow(/initialValue must be one of the values/u);
     });

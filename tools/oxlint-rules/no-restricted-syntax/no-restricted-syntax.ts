@@ -2,7 +2,38 @@ import type { Rule, Visitor } from "@oxlint/plugins";
 
 type Combinator = "child" | "descendant";
 
-type AttrMatcher = (node: unknown) => boolean;
+/**
+ * Oxlint のビジターから渡る AST ノード。全ノード型を列挙する代わりに、
+ * セレクタが参照する範囲（type / parent / 任意の子プロパティ）だけを表明する。
+ */
+interface AstNode {
+  readonly type: string;
+  readonly parent?: AstNode | null;
+}
+
+/** AST ノードを任意キーで読むためのビュー。値は AstValue に限る。 */
+type AstRecord = { readonly [key: string]: AstValue };
+
+/** AST ノードが保持しうる値。セレクタの属性比較が扱う範囲。 */
+type AstValue =
+  | string
+  | number
+  | boolean
+  | null
+  | undefined
+  | AstNode
+  | readonly AstValue[];
+
+/** セレクタのリテラル（`[a="x"]` の右辺）が取りうる値。 */
+type LiteralValue = string | number | boolean | null;
+
+/** `no-restricted-syntax` が受け取るオブジェクト形式のオプション。 */
+interface SelectorOption {
+  readonly selector: string;
+  readonly message?: string;
+}
+
+type AttrMatcher = (node: AstNode) => boolean;
 
 interface Step {
   type: string;
@@ -20,30 +51,36 @@ interface Compiled {
   message: string;
 }
 
-function isObjectRecord(value: unknown): value is Record<string, unknown> {
-  return value !== null && typeof value === "object";
+function isAstNode(value: AstValue): value is AstNode {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
-function getByPath(node: unknown, path: string[]): unknown {
-  let cur: unknown = node;
+function isStringValue(value: AstValue): value is string {
+  return typeof value === "string";
+}
+
+/** 任意キーで読めるオブジェクトかを判定する。値は AstValue として扱う。 */
+function isAstRecord(value: AstValue): value is AstNode & AstRecord {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+/** AST ノードの任意プロパティを読む。 */
+function readProperty(node: AstNode, key: string): AstValue {
+  return isAstRecord(node) ? node[key] : undefined;
+}
+
+function getByPath(node: AstNode, path: string[]): AstValue {
+  let cur: AstValue = node;
   for (const k of path) {
-    if (!isObjectRecord(cur)) {
+    if (!isAstNode(cur)) {
       return undefined;
     }
-    cur = cur[k];
+    cur = readProperty(cur, k);
   }
   return cur;
 }
 
-function getParent(node: unknown): unknown {
-  /* v8 ignore next 3 -- defensive guard; matchFrom always passes object nodes */
-  if (!isObjectRecord(node)) {
-    return undefined;
-  }
-  return node.parent;
-}
-
-function parseLiteral(raw: string): unknown {
+function parseLiteral(raw: string): LiteralValue {
   if (
     (raw.startsWith("'") && raw.endsWith("'")) ||
     (raw.startsWith('"') && raw.endsWith('"'))
@@ -81,7 +118,7 @@ function parseAttr(expr: string): AttrMatcher {
     const re = new RegExp(pattern, flags);
     return (node) => {
       const v = getByPath(node, path);
-      return typeof v === "string" && re.test(v);
+      return isStringValue(v) && re.test(v);
     };
   }
 
@@ -215,9 +252,9 @@ function compileOption(
   });
 }
 
-function matchStep(node: unknown, step: Step): boolean {
+function matchStep(node: AstValue, step: Step): boolean {
   /* v8 ignore next 3 -- defensive guard; AST nodes are always objects */
-  if (!isObjectRecord(node)) {
+  if (!isAstNode(node)) {
     return false;
   }
   if (node.type !== step.type) {
@@ -231,7 +268,7 @@ function matchStep(node: unknown, step: Step): boolean {
   return true;
 }
 
-function matchFrom(node: unknown, chain: Step[], i: number): boolean {
+function matchFrom(node: AstNode, chain: Step[], i: number): boolean {
   if (i >= chain.length) {
     return true;
   }
@@ -244,7 +281,7 @@ function matchFrom(node: unknown, chain: Step[], i: number): boolean {
 
   /* v8 ignore next -- combinator is always set on non-leftmost chain steps */
   const comb: Combinator = chain[i - 1].combinator ?? "descendant";
-  const parent = getParent(node);
+  const { parent } = node;
 
   if (comb === "child") {
     if (parent === undefined || parent === null) {
@@ -256,18 +293,32 @@ function matchFrom(node: unknown, chain: Step[], i: number): boolean {
     return matchFrom(parent, chain, i + 1);
   }
 
-  let anc: unknown = parent;
+  let anc: AstNode | null | undefined = parent;
   while (anc !== undefined && anc !== null) {
     if (matchStep(anc, chain[i]) && matchFrom(anc, chain, i + 1)) {
       return true;
     }
-    anc = getParent(anc);
+    anc = anc.parent;
   }
   return false;
 }
 
-function matchChain(node: unknown, chain: Step[]): boolean {
+function matchChain(node: AstNode, chain: Step[]): boolean {
   return matchFrom(node, chain, 0);
+}
+
+function isStringOption(opt: unknown): opt is string {
+  return typeof opt === "string";
+}
+
+function isSelectorOption(opt: unknown): opt is SelectorOption {
+  if (typeof opt !== "object" || opt === null || !("selector" in opt)) {
+    return false;
+  }
+  if (typeof opt.selector !== "string") {
+    return false;
+  }
+  return !("message" in opt) || typeof opt.message === "string";
 }
 
 const rule: Rule = {
@@ -275,12 +326,10 @@ const rule: Rule = {
   create(context) {
     const compiled: Compiled[] = [];
     for (const opt of context.options) {
-      if (typeof opt === "string") {
+      if (isStringOption(opt)) {
         compiled.push(...compileOption(opt, undefined));
-      } else if (isObjectRecord(opt) && typeof opt.selector === "string") {
-        const message =
-          typeof opt.message === "string" ? opt.message : undefined;
-        compiled.push(...compileOption(opt.selector, message));
+      } else if (isSelectorOption(opt)) {
+        compiled.push(...compileOption(opt.selector, opt.message));
       }
     }
 

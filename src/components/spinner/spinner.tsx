@@ -1,5 +1,6 @@
 import type { VariantProps } from "tailwind-variants";
 import { tv } from "tailwind-variants";
+import { isKeyOf } from "../../utils/is/is-key-of";
 
 const spinnerVariants = tv({
   slots: {
@@ -37,7 +38,7 @@ const { base, circle, track } = spinnerVariants();
 export function Spinner(props: SpinnerProps) {
   const { className, showTrack = true, size = SIZE_MAP.md, ..._props } = props;
 
-  const finalSize = typeof size === "number" ? size : SIZE_MAP[size];
+  const finalSize = isKeyOf(SIZE_MAP, size) ? SIZE_MAP[size] : size;
 
   return (
     <output>

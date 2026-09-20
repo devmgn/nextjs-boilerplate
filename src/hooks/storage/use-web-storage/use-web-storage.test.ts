@@ -160,6 +160,8 @@ describe(useWebStorage, () => {
     const { unmount } = renderHook(() => useWebStorage(store, key));
 
     expect(store.__listeners.size).toBe(1);
+    // SAFETY: 直前の expect で subscribe が 1 回呼ばれたことを確認済み。
+    // モックの subscribe は vi.fn を返す実装なので results[0].value はその型。
     const unsubscribe = vi.mocked(store.subscribe).mock.results[0]
       ?.value as ReturnType<typeof vi.fn>;
 

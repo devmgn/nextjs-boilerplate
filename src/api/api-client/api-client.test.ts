@@ -1,3 +1,4 @@
+import type { Post } from "../openapi";
 import { HttpResponse, http } from "msw";
 import { describe, expect, it } from "vitest";
 import { apiClient } from "./api-client";
@@ -39,7 +40,9 @@ describe("apiClient", () => {
       const newPost = { userId: 1, title: "新規投稿", body: "内容" };
       server.use(
         http.post(`${BASE_URL}/posts`, async ({ request }) => {
-          const body = (await request.json()) as Record<string, unknown>;
+          // SAFETY: このハンドラに届くのはテスト内で apiClient が送る JSON のみ。
+          // エコーバックするだけで中身の型には依存しない。
+          const body = (await request.json()) as Post;
           return HttpResponse.json({ ...body, id: 101 }, { status: 201 });
         })
       );
@@ -82,7 +85,9 @@ describe("apiClient", () => {
     it("投稿を更新できること", async () => {
       server.use(
         http.patch(`${BASE_URL}/posts/:postId`, async ({ params, request }) => {
-          const body = (await request.json()) as Record<string, unknown>;
+          // SAFETY: このハンドラに届くのはテスト内で apiClient が送る JSON のみ。
+          // エコーバックするだけで中身の型には依存しない。
+          const body = (await request.json()) as Post;
           expect(params.postId).toBe("1");
           return HttpResponse.json({ ...body, id: 1 });
         })

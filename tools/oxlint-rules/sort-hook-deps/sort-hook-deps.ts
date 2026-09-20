@@ -19,31 +19,62 @@ const DEFAULT_HOOKS: ReadonlyMap<string, number> = new Map([
   ["useImperativeHandle", 2],
 ]);
 
-function isPlainObject(value: unknown): value is Record<string, unknown> {
+/** `additionalHooks` にオブジェクト形式で渡すフック指定。 */
+interface HookSpec {
+  readonly name: string;
+  readonly depsIndex: number;
+}
+
+/** このルールが受け取るオプション。 */
+interface SortHookDepsOption {
+  readonly additionalHooks?: readonly unknown[];
+}
+
+function isOptionObject(value: unknown): value is SortHookDepsOption {
   return value !== null && typeof value === "object" && !Array.isArray(value);
 }
 
-function buildHookMap(options: readonly unknown[]): Map<string, number> {
+/** フック名のみを渡す短縮形。deps は第 2 引数とみなす。 */
+function isHookName(item: unknown): item is string {
+  return typeof item === "string" && item.length > 0;
+}
+
+function isHookSpec(item: unknown): item is HookSpec {
+  if (item === null || typeof item !== "object") {
+    return false;
+  }
+  if (!("name" in item) || !("depsIndex" in item)) {
+    return false;
+  }
+  const { name, depsIndex } = item;
+  return (
+    typeof name === "string" &&
+    name.length > 0 &&
+    typeof depsIndex === "number" &&
+    Number.isInteger(depsIndex) &&
+    depsIndex >= 0
+  );
+}
+
+/** オプション配列の先頭から additionalHooks を取り出す。未指定なら空配列。 */
+function readAdditionalHooks(options: Context["options"]): readonly unknown[] {
+  for (const opt of options) {
+    if (!isOptionObject(opt)) {
+      return [];
+    }
+    const { additionalHooks } = opt;
+    return Array.isArray(additionalHooks) ? additionalHooks : [];
+  }
+  return [];
+}
+
+function buildHookMap(options: Context["options"]): Map<string, number> {
   const map = new Map(DEFAULT_HOOKS);
-  const [opt] = options;
-  if (!isPlainObject(opt)) {
-    return map;
-  }
-  const { additionalHooks } = opt;
-  if (!Array.isArray(additionalHooks)) {
-    return map;
-  }
+  const additionalHooks = readAdditionalHooks(options);
   for (const item of additionalHooks) {
-    if (typeof item === "string" && item.length > 0) {
+    if (isHookName(item)) {
       map.set(item, 1);
-    } else if (
-      isPlainObject(item) &&
-      typeof item.name === "string" &&
-      item.name.length > 0 &&
-      typeof item.depsIndex === "number" &&
-      Number.isInteger(item.depsIndex) &&
-      item.depsIndex >= 0
-    ) {
+    } else if (isHookSpec(item)) {
       map.set(item.name, item.depsIndex);
     }
   }

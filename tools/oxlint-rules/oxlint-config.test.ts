@@ -5,8 +5,16 @@ import oxlintConfig from "../../oxlint.config.ts";
 // プラグイン更新で増えた新ルールを取りこぼしうる（前方ドリフト）。それを検出して採用/除外の判断を促す。
 // 実在しないルール名は oxlint が config パース時に弾くため、後方ドリフトは扱わない。
 
+/** プラグインが公開する 1 ルール。ここではキー名しか使わないため create の有無だけ表明する。 */
+interface PluginRule {
+  readonly create?: unknown;
+}
+
+/** プラグインが公開するルール表。 */
+type RuleTable = Readonly<Record<string, PluginRule>>;
+
 interface PluginLike {
-  rules?: Record<string, unknown>;
+  rules?: RuleTable;
 }
 type JsPluginEntry = string | { name?: string; specifier: string };
 
@@ -45,10 +53,13 @@ function normalizePluginPrefix(specifier: string): string {
 
 // config の jsPlugins（top-level + overrides）を集める。
 function collectJsPluginEntries(): JsPluginEntry[] {
+  // SAFETY: oxlint の型では jsPlugins が緩いユニオンだが、
+  // 本 config が入れるのは string か { name, specifier } のみ。
   const entries: JsPluginEntry[] = [
     ...(oxlintConfig.jsPlugins as JsPluginEntry[]),
   ];
   for (const override of oxlintConfig.overrides) {
+    // SAFETY: 上と同じ。override の jsPlugins も同じ形しか入れていない。
     const overridePlugins = override.jsPlugins as JsPluginEntry[] | undefined;
     if (overridePlugins !== undefined) {
       entries.push(...overridePlugins);
@@ -57,15 +68,20 @@ function collectJsPluginEntries(): JsPluginEntry[] {
   return entries;
 }
 
+/** JsPlugins の要素が specifier 文字列の短縮形かを判定する。 */
+function isStringEntry(entry: JsPluginEntry): entry is string {
+  return typeof entry === "string";
+}
+
 // entry → { 前缀, specifier }。相対パス（自作プラグイン）は除外。
 function resolveExternalPlugin(
   entry: JsPluginEntry
 ): { prefix: string; specifier: string } | undefined {
-  const specifier = typeof entry === "string" ? entry : entry.specifier;
+  const specifier = isStringEntry(entry) ? entry : entry.specifier;
   if (specifier.startsWith(".")) {
     return undefined;
   }
-  const explicitName = typeof entry === "string" ? undefined : entry.name;
+  const explicitName = isStringEntry(entry) ? undefined : entry.name;
   return {
     prefix: `${explicitName ?? normalizePluginPrefix(specifier)}/`,
     specifier,
@@ -91,6 +107,8 @@ function collectExternalPluginSpecifiers(): Map<string, string> {
 
 // specifier のプラグインが公開する全ルール名。
 async function loadPluginRules(specifier: string): Promise<string[]> {
+  // SAFETY: specifier は config が宣言したプラグインのみ。
+  // default export か名前空間のどちらかに rules を持つ規約に従う。
   const mod = (await import(specifier)) as {
     default?: PluginLike;
   } & PluginLike;
@@ -101,14 +119,14 @@ async function loadPluginRules(specifier: string): Promise<string[]> {
 // top-level と overrides 両方の rules キーを集める（storybook は overrides にのみ現れる）。
 function collectConfiguredRuleNames(): Set<string> {
   const names = new Set<string>();
-  function addAll(rules: Record<string, unknown> | undefined): void {
-    for (const name of Object.keys(rules ?? {})) {
+  function addAll(ruleNames: readonly string[]): void {
+    for (const name of ruleNames) {
       names.add(name);
     }
   }
-  addAll(oxlintConfig.rules);
+  addAll(Object.keys(oxlintConfig.rules ?? {}));
   for (const override of oxlintConfig.overrides) {
-    addAll(override.rules);
+    addAll(Object.keys(override.rules ?? {}));
   }
   return names;
 }

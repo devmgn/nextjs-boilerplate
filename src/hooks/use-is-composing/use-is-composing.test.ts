@@ -77,9 +77,9 @@ describe(useIsComposing, () => {
     );
 
     it("capture が変更されたとき、新しいストアの値を返すこと", () => {
-      const { result, rerender } = renderHook(
+      const { result, rerender } = renderHook<boolean, { capture: boolean }>(
         ({ capture }) => useIsComposing(capture),
-        { initialProps: { capture: true as boolean } }
+        { initialProps: { capture: true } }
       );
 
       act(() => {
@@ -107,9 +107,9 @@ describe(useIsComposing, () => {
       const addSpy = vi.spyOn(document, "addEventListener");
       const removeSpy = vi.spyOn(document, "removeEventListener");
 
-      const { rerender, unmount } = renderHook(
+      const { rerender, unmount } = renderHook<boolean, { capture: boolean }>(
         ({ capture }) => useIsComposing(capture),
-        { initialProps: { capture: true as boolean } }
+        { initialProps: { capture: true } }
       );
 
       addSpy.mockClear();

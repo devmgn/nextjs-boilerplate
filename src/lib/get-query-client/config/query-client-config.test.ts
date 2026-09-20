@@ -165,6 +165,8 @@ describe("QUERY_CLIENT_CONFIG", () => {
     it("successステータスのクエリがdehydrate対象であること", () => {
       const { shouldDehydrateQuery } =
         QUERY_CLIENT_CONFIG.defaultOptions.dehydrate;
+      // SAFETY: shouldDehydrateQuery が参照するのは state.status のみで、
+      // Query の他フィールドは判定に関与しない。
       const query = { state: { status: "success" } } as Parameters<
         typeof shouldDehydrateQuery
       >[0];
@@ -175,6 +177,8 @@ describe("QUERY_CLIENT_CONFIG", () => {
     it("pendingステータスのクエリがdehydrate対象であること", () => {
       const { shouldDehydrateQuery } =
         QUERY_CLIENT_CONFIG.defaultOptions.dehydrate;
+      // SAFETY: shouldDehydrateQuery が参照するのは state.status のみで、
+      // Query の他フィールドは判定に関与しない。
       const query = { state: { status: "pending" } } as Parameters<
         typeof shouldDehydrateQuery
       >[0];
@@ -185,6 +189,8 @@ describe("QUERY_CLIENT_CONFIG", () => {
     it("errorステータスのクエリがdehydrate対象外であること", () => {
       const { shouldDehydrateQuery } =
         QUERY_CLIENT_CONFIG.defaultOptions.dehydrate;
+      // SAFETY: shouldDehydrateQuery が参照するのは state.status のみで、
+      // Query の他フィールドは判定に関与しない。
       const query = { state: { status: "error" } } as Parameters<
         typeof shouldDehydrateQuery
       >[0];

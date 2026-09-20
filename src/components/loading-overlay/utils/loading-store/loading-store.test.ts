@@ -129,13 +129,13 @@ describe("createLoadingStore", () => {
     it("リスナー内で他のリスナーを unsubscribe しても他のリスナーは呼ばれる", () => {
       const store = createLoadingStore();
       const l2 = vi.fn<() => void>();
-      const ref: { u2?: () => void } = {};
+      let unsubscribeL2: (() => void) | undefined;
       const l1 = vi.fn<() => void>(() => {
-        ref.u2?.();
+        unsubscribeL2?.();
       });
       const u1 = store.subscribe(l1);
       const u2 = store.subscribe(l2);
-      ref.u2 = u2;
+      unsubscribeL2 = u2;
 
       store.show();
 

@@ -308,13 +308,13 @@ describe("webStorageStore", () => {
         const l2 = vi.fn<() => void>();
         // l1 を先に subscribe しつつ l1 から l2 の unsubscribe (u2) を呼ぶため、
         // 参照を箱渡しして const を維持する。
-        const ref: { u2?: () => void } = {};
+        let unsubscribeL2: (() => void) | undefined;
         const l1 = vi.fn<() => void>(() => {
-          ref.u2?.();
+          unsubscribeL2?.();
         });
         const u1 = subscribe(key, l1);
         const u2 = subscribe(key, l2);
-        ref.u2 = u2;
+        unsubscribeL2 = u2;
 
         write(key, "x");
 

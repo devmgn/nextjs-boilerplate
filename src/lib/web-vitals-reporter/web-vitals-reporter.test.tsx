@@ -13,6 +13,8 @@ vi.mock(import("next/web-vitals"), () => ({
 function renderAndGetReporter() {
   render(<WebVitalsReporter />);
   const [[reportMetric]] = mockUseReportWebVitals.mock.calls;
+  // SAFETY: useReportWebVitals に渡るのはメトリクスを受け取る関数である、と
+  // 同ファイルの toHaveBeenCalledWith(expect.any(Function)) で確認している。
   return reportMetric as (metric: Record<string, unknown>) => void;
 }
 

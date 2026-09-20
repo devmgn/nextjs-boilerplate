@@ -24,6 +24,8 @@ function createMockMediaQueryList(matches: boolean) {
     },
     fire(newMatches: boolean) {
       this.matches = newMatches;
+      // SAFETY: useMediaQuery のリスナーが読むのは event.matches だけ。
+      // MediaQueryListEvent の他メンバーは参照されない。
       const event = {
         matches: newMatches,
         media: "",

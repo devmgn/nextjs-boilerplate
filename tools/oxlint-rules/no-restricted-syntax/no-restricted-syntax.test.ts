@@ -294,17 +294,24 @@ tester.run("custom-rules/no-restricted-syntax", noRestrictedSyntax, {
   ],
 });
 
-function fakeContext(options: readonly unknown[]): Context {
-  return {
+function fakeContext(options: Context["options"]): Context {
+  const partial: Pick<Context, "options" | "report"> = {
     options,
     report: () => {},
-  } as unknown as Context;
+  };
+  // SAFETY: このルールが create() 内で参照するのは options と report だけで、
+  // Context の他メンバーには触れない。テスト内に閉じた偽装オブジェクト。
+  return partial as Context;
 }
 
 describe("custom-rules/no-restricted-syntax (config-time errors)", () => {
-  const create = (options: readonly unknown[]) => {
-    const rule = noRestrictedSyntax as { create: (c: Context) => unknown };
-    return () => rule.create(fakeContext(options));
+  const create = (options: Context["options"]) => () => {
+    const { create: createRule } = noRestrictedSyntax;
+    /* v8 ignore next 3 -- このルールは create を必ず持つ */
+    if (createRule === undefined) {
+      throw new Error("noRestrictedSyntax.create is missing");
+    }
+    return createRule(fakeContext(options));
   };
 
   it("throws when `:exit` appears on a non-rightmost compound", () => {
