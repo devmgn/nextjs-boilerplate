@@ -1,7 +1,7 @@
 import type { Preview } from "@storybook/nextjs-vite";
 import locale from "axe-core/locales/ja.json";
 import { mswLoader } from "msw-storybook-addon/csf3";
-import { SbProvider } from "./SbProvider";
+import { SbProvider } from "./sb-provider";
 
 const preview: Preview = {
   tags: ["autodocs"],

@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ErrorThrower } from "./_components/ErrorThrower";
-import { Button } from "../../../components/Button";
+import { ErrorThrower } from "./_components/error-thrower";
+import { Button } from "../../../components/button";
 
 // throw を伴う失敗する API 呼び出しのシミュレーション。
 // React Compiler は try/catch 内の ThrowStatement を lower できないため、

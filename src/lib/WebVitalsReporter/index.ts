@@ -1,1 +1,0 @@
-export { WebVitalsReporter } from "./WebVitalsReporter";

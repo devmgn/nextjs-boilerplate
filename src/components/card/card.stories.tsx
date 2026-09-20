@@ -1,0 +1,15 @@
+import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { Card } from "./card";
+
+const meta = {
+  component: Card,
+  args: {
+    children: "カードコンテンツ",
+    style: { padding: "1rem" },
+  },
+} satisfies Meta<typeof Card>;
+
+export default meta;
+type Story = StoryObj<typeof Card>;
+
+export const Default: Story = {};

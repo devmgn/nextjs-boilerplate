@@ -1,1 +1,0 @@
-export { ErrorThrower } from "./ErrorThrower";

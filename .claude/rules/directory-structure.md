@@ -41,24 +41,39 @@
 - 他プロジェクトに `cp -r` してそのまま動くか？ → 動くなら `utils/`、動かないなら `lib/`
 - アプリ固有の設定値・エンドポイント・トークン名・ロガー実装に依存しているか？ → していれば `lib/`
 
-## ディレクトリ命名規則
+## ファイル / ディレクトリ命名規則
 
-ディレクトリの**役割**で命名を選ぶ。
+**役割を問わず、すべて kebab-case で統一する。** ディレクトリ名・ファイル名の両方が対象。
 
-| 役割               | 単一語     | 複合語         |
-| ------------------ | ---------- | -------------- |
-| コンポーネント単体 | PascalCase | PascalCase     |
-| 機能 entrypoint    | 小文字     | キャメルケース |
-| グルーピング       | 小文字     | ケバブケース   |
+| 対象 | 例 |
+| --- | --- |
+| コンポーネント | `components/loading-overlay/loading-overlay.tsx` |
+| 機能 entrypoint | `hooks/use-media-query/use-media-query.ts` |
+| グルーピング | `utils/is/is-key-of/` |
+| 付随ファイル | `button.stories.tsx` / `button.test.tsx` / `use-toggle.test-d.ts` |
 
-判定:
+export する識別子の命名は従来どおり（コンポーネントは PascalCase、hook は `useXxx`、関数は camelCase）。**ファイル名と識別子名は一致させなくてよい。**
+
+```
+components/loading-overlay/loading-overlay.tsx   →  export function LoadingOverlay()
+hooks/use-media-query/use-media-query.ts         →  export function useMediaQuery()
+```
+
+`oxlint` の `unicorn/filename-case` と `github/filenames-match-regex` が強制する。前者は camelCase も PascalCase も弾き、後者は先頭大文字とドット区切り 2 つ以上を弾く。
+
+例外は生成物とフレームワーク規約ファイルのみ:
+
+- `src/api/openapi/**`（OpenAPI 生成物。`ignorePatterns` で除外）
+- Next.js 規約ファイル（`page.tsx` / `layout.tsx` など。元々小文字）
+
+`index.ts` の有無による役割の区別は残る:
 
 - そのディレクトリが `index.ts` から関数/オブジェクト/Provider を公開している → **機能 entrypoint**
 - 複数の機能を束ねる中継で `index.ts` を持たない → **グルーピング**
 
 ## 1機能1ディレクトリ
 
-機能 entrypoint・コンポーネント単体・グルーピング配下のすべての機能（コンポーネント / hook / 関数 / queries / mutations …）は **1機能 = 1ディレクトリ + `index.ts`** で構成する。フラットファイル配置（`form/Field.tsx` のように単発ファイルを直接置く形）は許容しない。
+機能 entrypoint・コンポーネント単体・グルーピング配下のすべての機能（コンポーネント / hook / 関数 / queries / mutations …）は **1機能 = 1ディレクトリ + `index.ts`** で構成する。フラットファイル配置（`form/field.tsx` のように単発ファイルを直接置く形）は許容しない。
 
 理由: 育ったときの「ファイル → ディレクトリ昇格」リファクタを撲滅し、判断を迷わせない。関連の強い実装群のみ系統サブディレクトリで束ねる。グルーピングディレクトリ直下に `index.ts` (barrel) は置かない。
 
@@ -68,49 +83,49 @@ utils/
     debounce.ts
     index.ts
   is/                        # グルーピング（index.ts なし）
-    isFunction/
-      isFunction.ts
+    is-function/
+      is-function.ts
       index.ts
-    isKeyOf/
-    isValueOf/
+    is-key-of/
+    is-value-of/
 
 lib/
-  getQueryClient/            # 機能 entrypoint
-    getQueryClient.ts
+  get-query-client/          # 機能 entrypoint
+    get-query-client.ts
     index.ts
     config/                  # グルーピング
-      queryClientConfig.ts
+      query-client-config.ts
   proxy/                     # グルーピング
-    addCustomHeader/
-    requestLogger/
-    responseLogger/
+    add-custom-header/
+    request-logger/
+    response-logger/
 
 components/
-  Card/                      # コンポーネント単体
-    Card.tsx
+  card/                      # コンポーネント単体
+    card.tsx
     index.ts
   form/                      # グルーピング（index.ts なし）
-    Field/
-      Field.tsx
-      Field.stories.tsx
+    field/
+      field.tsx
+      field.stories.tsx
       index.ts
-    Input/
-      Input.tsx
-      Input.stories.tsx
+    input/
+      input.tsx
+      input.stories.tsx
       index.ts
-    Label/
-      Label.tsx
-      Label.stories.tsx
+    label/
+      label.tsx
+      label.stories.tsx
       index.ts
 
 hooks/
-  useDebouncedCallback/      # 機能 entrypoint
+  use-debounced-callback/    # 機能 entrypoint
   storage/                   # グルーピング
-    useLocalStorage/
-    useSessionStorage/
-    useWebStorage/
+    use-local-storage/
+    use-session-storage/
+    use-web-storage/
     utils/                   # 系統内ローカル utils
-      webStorageStore/
+      web-storage-store/
 ```
 
 ## コンポーネント / フック内部のローカル `utils/`
@@ -119,12 +134,12 @@ hooks/
 
 ```
 components/
-  LoadingOverlay/
-    LoadingOverlay.tsx
+  loading-overlay/
+    loading-overlay.tsx
     index.ts
     utils/                   # グルーピング（index.ts なし）
-      loadingStore/          # 機能 entrypoint
-        loadingStore.ts      # factory
+      loading-store/         # 機能 entrypoint
+        loading-store.ts     # factory
         index.ts             # instance 生成
 ```
 
@@ -136,30 +151,30 @@ components/
 app/
   posts/
     _components/
-      PostCard/
-        PostCard.tsx
+      post-card/
+        post-card.tsx
         index.ts
     _hooks/
-      usePostForm/
-        usePostForm.ts
+      use-post-form/
+        use-post-form.ts
         index.ts
     _lib/
-      postValidator/
-        postValidator.ts
+      post-validator/
+        post-validator.ts
         index.ts
     _actions/
-      createPost/
-        createPost.ts          # "use server"
+      create-post/
+        create-post.ts         # "use server"
         index.ts
     page.tsx
   (settings)/
     _providers/
-      SettingsProvider/
-        SettingsProvider.tsx
+      settings-provider/
+        settings-provider.tsx
         index.ts
     _components/
-      SettingsNav/
-        SettingsNav.tsx
+      settings-nav/
+        settings-nav.tsx
         index.ts
     account/
       page.tsx

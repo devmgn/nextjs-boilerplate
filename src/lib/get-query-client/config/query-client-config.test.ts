@@ -1,0 +1,193 @@
+import { QueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { QUERY_CLIENT_CONFIG } from "./query-client-config";
+import { loading } from "../../../components/loading-overlay";
+
+// @ts-expect-error -- TypeScript 6 overload mismatch with vi.mock + dynamic import
+vi.mock(import("sonner"), () => ({
+  toast: { error: vi.fn() },
+}));
+
+describe("QUERY_CLIENT_CONFIG", () => {
+  let queryClient: QueryClient;
+
+  beforeEach(() => {
+    queryClient = new QueryClient(QUERY_CLIENT_CONFIG);
+    vi.mocked(toast.error).mockClear();
+    loading.reset();
+  });
+
+  afterEach(() => {
+    queryClient.clear();
+  });
+
+  describe("queryCache onError", () => {
+    it("エラー時にtoast.errorが呼ばれること", async () => {
+      await queryClient
+        .query({
+          queryKey: ["test-error"],
+          queryFn: async () => {
+            await Promise.reject(new Error("fetch failed"));
+          },
+        })
+        .catch(() => {});
+
+      expect(toast.error).toHaveBeenCalledWith("fetch failed");
+    });
+
+    it("skipToast: trueのときtoast.errorが呼ばれないこと", async () => {
+      await queryClient
+        .query({
+          queryKey: ["test-skip"],
+          queryFn: async () => {
+            await Promise.reject(new Error("fetch failed"));
+          },
+          meta: { skipToast: true },
+        })
+        .catch(() => {});
+
+      expect(toast.error).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("mutationCache loading", () => {
+    it("mutation 実行中に loading.show / hide が対称に呼ばれること", async () => {
+      const showSpy = vi.spyOn(loading, "show");
+      const hideSpy = vi.spyOn(loading, "hide");
+
+      await queryClient
+        .getMutationCache()
+        .build(queryClient, {
+          mutationFn: async () => {
+            await Promise.resolve();
+            return "ok";
+          },
+        })
+        .execute(undefined);
+
+      expect(showSpy).toHaveBeenCalledOnce();
+      expect(hideSpy).toHaveBeenCalledOnce();
+    });
+
+    it("mutation 失敗時にも loading.hide が呼ばれること", async () => {
+      const showSpy = vi.spyOn(loading, "show");
+      const hideSpy = vi.spyOn(loading, "hide");
+
+      await queryClient
+        .getMutationCache()
+        .build(queryClient, {
+          mutationFn: async () => {
+            await Promise.reject(new Error("mutation failed"));
+          },
+        })
+        .execute(undefined)
+        .catch(() => {});
+
+      expect(showSpy).toHaveBeenCalledOnce();
+      expect(hideSpy).toHaveBeenCalledOnce();
+    });
+
+    it("skipLoading: true のとき loading.show / hide が呼ばれないこと", async () => {
+      const showSpy = vi.spyOn(loading, "show");
+      const hideSpy = vi.spyOn(loading, "hide");
+
+      await queryClient
+        .getMutationCache()
+        .build(queryClient, {
+          mutationFn: async () => {
+            await Promise.resolve();
+            return "ok";
+          },
+          meta: { skipLoading: true },
+        })
+        .execute(undefined);
+
+      expect(showSpy).not.toHaveBeenCalled();
+      expect(hideSpy).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("mutationCache onError", () => {
+    it("エラー時にtoast.errorが呼ばれること", async () => {
+      await queryClient
+        .getMutationCache()
+        .build(queryClient, {
+          mutationFn: async () => {
+            await Promise.reject(new Error("mutation failed"));
+          },
+        })
+        .execute(undefined)
+        .catch(() => {});
+
+      expect(toast.error).toHaveBeenCalledWith("mutation failed");
+    });
+
+    it("skipToast: trueのときtoast.errorが呼ばれないこと", async () => {
+      await queryClient
+        .getMutationCache()
+        .build(queryClient, {
+          mutationFn: async () => {
+            await Promise.reject(new Error("mutation failed"));
+          },
+          meta: { skipToast: true },
+        })
+        .execute(undefined)
+        .catch(() => {});
+
+      expect(toast.error).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("defaultOptions", () => {
+    it("queriesのretryがfalseであること", () => {
+      expect(QUERY_CLIENT_CONFIG.defaultOptions.queries.retry).toBeFalsy();
+    });
+
+    it("mutationsのretryがfalseであること", () => {
+      expect(QUERY_CLIENT_CONFIG.defaultOptions.mutations.retry).toBeFalsy();
+    });
+
+    it("staleTimeが60秒であること", () => {
+      expect(QUERY_CLIENT_CONFIG.defaultOptions.queries.staleTime).toBe(60_000);
+    });
+
+    it("refetchOnWindowFocusがfalseであること", () => {
+      expect(
+        QUERY_CLIENT_CONFIG.defaultOptions.queries.refetchOnWindowFocus
+      ).toBeFalsy();
+    });
+  });
+
+  describe("dehydrate", () => {
+    it("successステータスのクエリがdehydrate対象であること", () => {
+      const { shouldDehydrateQuery } =
+        QUERY_CLIENT_CONFIG.defaultOptions.dehydrate;
+      const query = { state: { status: "success" } } as Parameters<
+        typeof shouldDehydrateQuery
+      >[0];
+
+      expect(shouldDehydrateQuery(query)).toBeTruthy();
+    });
+
+    it("pendingステータスのクエリがdehydrate対象であること", () => {
+      const { shouldDehydrateQuery } =
+        QUERY_CLIENT_CONFIG.defaultOptions.dehydrate;
+      const query = { state: { status: "pending" } } as Parameters<
+        typeof shouldDehydrateQuery
+      >[0];
+
+      expect(shouldDehydrateQuery(query)).toBeTruthy();
+    });
+
+    it("errorステータスのクエリがdehydrate対象外であること", () => {
+      const { shouldDehydrateQuery } =
+        QUERY_CLIENT_CONFIG.defaultOptions.dehydrate;
+      const query = { state: { status: "error" } } as Parameters<
+        typeof shouldDehydrateQuery
+      >[0];
+
+      expect(shouldDehydrateQuery(query)).toBeFalsy();
+    });
+  });
+});

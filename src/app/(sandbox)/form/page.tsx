@@ -1,14 +1,14 @@
 "use client";
 
-import type { PostSchema } from "./_lib/postSchema";
+import type { PostSchema } from "./_lib/post-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { startTransition, useActionState } from "react";
 import { Form, createFormControl, useFormState } from "react-hook-form";
 import { post } from "./_actions/post";
-import { postSchema } from "./_lib/postSchema";
-import { Button } from "../../../components/Button";
-import { Field } from "../../../components/form/Field";
-import { Input } from "../../../components/form/Input";
+import { postSchema } from "./_lib/post-schema";
+import { Button } from "../../../components/button";
+import { Field } from "../../../components/form/field";
+import { Input } from "../../../components/form/input";
 
 const form = createFormControl<PostSchema>({
   resolver: zodResolver(postSchema),

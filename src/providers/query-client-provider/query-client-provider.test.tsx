@@ -1,0 +1,41 @@
+import { useQueryClient } from "@tanstack/react-query";
+import { render, renderHook, screen } from "@testing-library/react";
+import { describe, expect, it, vi } from "vitest";
+import { QueryClientProvider } from "./query-client-provider";
+import { getQueryClient } from "../../lib/get-query-client";
+
+vi.mock(import("@tanstack/react-query-devtools"), () => ({
+  ReactQueryDevtools: () => <div data-testid="devtools" />,
+}));
+
+describe(QueryClientProvider, () => {
+  it("childrenをレンダリングすること", () => {
+    render(
+      <QueryClientProvider>
+        <span data-testid="child">hello</span>
+      </QueryClientProvider>
+    );
+    expect(screen.getByTestId("child")).toHaveTextContent("hello");
+  });
+
+  it("ReactQueryDevtoolsをレンダリングすること", () => {
+    render(
+      <QueryClientProvider>
+        <span />
+      </QueryClientProvider>
+    );
+    expect(screen.getByTestId("devtools")).toBeInTheDocument();
+  });
+
+  it("子コンポーネントからuseQueryClientでgetQueryClientと同一のインスタンスが取得できること", () => {
+    const expected = getQueryClient();
+
+    const { result } = renderHook(() => useQueryClient(), {
+      wrapper: ({ children }) => (
+        <QueryClientProvider>{children}</QueryClientProvider>
+      ),
+    });
+
+    expect(result.current).toBe(expected);
+  });
+});

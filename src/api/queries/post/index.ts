@@ -1,1 +1,1 @@
-export { getPostsQueryOptions } from "./post.queries";
+export { getPostsQueryOptions } from "./post-queries";

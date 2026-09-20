@@ -8,6 +8,6 @@
     "tools/oxlint-rules/**/*.ts": ["files"],
   },
   "vitest": {
-    "entry": ["vitest.globalSetup.ts", "vitest.setup.ts"],
+    "entry": ["vitest.global-setup.ts", "vitest.setup.ts"],
   },
 }
