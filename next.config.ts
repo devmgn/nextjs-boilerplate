@@ -23,6 +23,14 @@ const nextConfig = {
   partialPrefetching: true,
   poweredByHeader: false,
   reactCompiler: true,
+  turbopack: {
+    rules: {
+      "*.css": {
+        loaders: ["@tailwindcss/turbopack"],
+        as: "*.css",
+      },
+    },
+  },
   typedRoutes: true,
 } satisfies NextConfig;
 
