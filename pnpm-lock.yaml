@@ -196,9 +196,6 @@ importers:
       react-dom:
         specifier: 19.3.0
         version: 19.3.0(react@19.3.0)
-      react-error-boundary:
-        specifier: 6.1.5
-        version: 6.1.5(@types/react@19.3.0)(react@19.3.0)
       react-hook-form:
         specifier: 8.0.0-beta.3
         version: 8.0.0-beta.3(react@19.3.0)
@@ -320,6 +317,9 @@ importers:
       playwright:
         specifier: 1.63.0
         version: 1.63.0
+      react-error-boundary:
+        specifier: 6.1.5
+        version: 6.1.5(@types/react@19.3.0)(react@19.3.0)
       storybook:
         specifier: 10.6.0
         version: 10.6.0(@types/react@19.3.0)(prettier@3.3.2)(react@19.3.0)

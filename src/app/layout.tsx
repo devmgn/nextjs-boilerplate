@@ -4,7 +4,6 @@ import { Toaster } from "sonner";
 import { LoadingOverlay } from "../components/loading-overlay/loading-overlay";
 import { ENV } from "../env";
 import { WebVitalsReporter } from "../lib/web-vitals-reporter";
-import { AppErrorBoundary } from "../providers/app-error-boundary";
 import { QueryClientProvider } from "../providers/query-client-provider";
 import { isProduction } from "../utils/runtime";
 import "../lib/styles/globals.css";
@@ -27,11 +26,9 @@ export default function Layout(props: React.PropsWithChildren) {
   return (
     <html lang="ja">
       <body>
-        <AppErrorBoundary>
-          <NuqsAdapter>
-            <QueryClientProvider>{children}</QueryClientProvider>
-          </NuqsAdapter>
-        </AppErrorBoundary>
+        <NuqsAdapter>
+          <QueryClientProvider>{children}</QueryClientProvider>
+        </NuqsAdapter>
         <Toaster richColors closeButton />
         <LoadingOverlay />
         {!isProduction && <WebVitalsReporter />}
