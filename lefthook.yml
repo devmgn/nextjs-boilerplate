@@ -2,7 +2,7 @@ pre-commit:
   jobs:
     - name: ultracite
       glob: "*.{js,jsx,ts,tsx,json,jsonc,css}"
-      run: pnpm ultracite fix {staged_files}
+      run: pnpm ultracite fix --no-error-on-unmatched-pattern {staged_files}
       stage_fixed: true
     - name: protect-main
       run: |
@@ -30,8 +30,8 @@ pre-push:
           echo "例: feat/add-login, fix/typo, chore/fallow-optimize"
           exit 1
         fi
-    - name: fallow
-      run: pnpm fallow
+    - name: lint-dead-code
+      run: pnpm lint:dead-code
     - name: lint-workflows
       glob: ".github/workflows/*.{yml,yaml}"
       run: pnpm lint:workflows

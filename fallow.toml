@@ -35,6 +35,11 @@ mixed-client-server-barrel = "error"
 misplaced-directive = "error"
 require-suppression-reason = "error"
 policy-violation = "off"
+css-token-drift = "off"
+css-duplicate-block = "off"
+css-selector-complexity = "off"
+css-dead-surface = "off"
+css-broken-reference = "off"
 
 # 先にマッチした zone に属する。テスト・stories を本体の zone より先に切り出す
 [[boundaries.zones]]
@@ -163,6 +168,3 @@ allow = ["api", "types", "utils"]
 # src/ 配下は必ずいずれかの zone に属させ、未分類のトップレベル追加を防ぐ
 requireAllFiles = true
 allowUnmatched = ["tools/**", ".storybook/**", "*.ts"]
-
-[typeAware]
-enabled = true
