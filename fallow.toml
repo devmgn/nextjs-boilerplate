@@ -1,0 +1,170 @@
+#:schema ./node_modules/fallow/schema.json
+
+# Storybook plugin は stories の *.mdx を entry にしない
+entry = ["src/**/*.mdx"]
+
+# ignorePatterns はグラフからも除外し、生成物経由の依存を未使用にする
+ignoreFindings = ["src/api/openapi/**", "src/mocks/**", "tools/lint-ignore/**"]
+
+ignoreDependencies = [
+  # 他パッケージが実行時に解決する
+  "tailwind-merge",
+  "eslint-plugin-github",
+  "eslint-plugin-sonarjs",
+  "oxc-transform-react",
+  # 設定ファイル内で文字列として参照される
+  "@tailwindcss/turbopack",
+  "eslint-plugin-storybook",
+]
+
+[rules]
+unused-dev-dependencies = "error"
+unused-optional-dependencies = "error"
+unused-component-props = "error"
+unused-server-actions = "error"
+type-only-dependencies = "error"
+test-only-dependencies = "error"
+dev-dependencies-in-production = "error"
+re-export-cycle = "error"
+stale-suppressions = "error"
+unused-catalog-entries = "error"
+empty-catalog-groups = "error"
+unused-dependency-overrides = "error"
+invalid-client-export = "error"
+mixed-client-server-barrel = "error"
+misplaced-directive = "error"
+require-suppression-reason = "error"
+policy-violation = "off"
+css-token-drift = "off"
+css-duplicate-block = "off"
+css-selector-complexity = "off"
+css-dead-surface = "off"
+css-broken-reference = "off"
+
+# 先にマッチした zone に属する。テスト・stories を本体の zone より先に切り出す
+[[boundaries.zones]]
+# テスト・型テスト・stories
+name = "dev"
+patterns = [
+  "src/**/*.{test,spec,test-d}.{ts,tsx}",
+  "src/**/*.stories.{ts,tsx}",
+  "src/**/*.mdx",
+]
+
+# 以降は .claude/rules/directory-structure.md の 3 軸
+[[boundaries.zones]]
+# App Router。直下の各ルート / route group が別 zone になり相互 import を禁じる（1 階層のみ）
+name = "app"
+patterns = ["src/app/**"]
+autoDiscover = ["src/app"]
+
+[[boundaries.zones]]
+# 契約層: OpenAPI 生成物とそのコンシューマー拡張
+name = "api"
+patterns = ["src/api/**"]
+
+[[boundaries.zones]]
+# 契約層: 型ヘルパー・グローバル型拡張
+name = "types"
+patterns = ["src/types/**"]
+
+[[boundaries.zones]]
+# 汎用: UI コンポーネント
+name = "components"
+patterns = ["src/components/**"]
+
+[[boundaries.zones]]
+# 汎用: React hooks
+name = "hooks"
+patterns = ["src/hooks/**"]
+
+[[boundaries.zones]]
+# 汎用: プロジェクト外に持ち出せるロジック
+name = "utils"
+patterns = ["src/utils/**"]
+
+[[boundaries.zones]]
+# アプリ固有: 設定・統合・グルー
+name = "lib"
+patterns = [
+  "src/lib/**",
+  "src/env.ts",
+  "src/proxy.ts",
+  "src/instrumentation-client.ts",
+]
+
+[[boundaries.zones]]
+# アプリ固有: アプリ全体に被せる Context Provider
+name = "providers"
+patterns = ["src/providers/**"]
+
+[[boundaries.zones]]
+# アプリ固有: MSW handlers（生成物）
+name = "mocks"
+patterns = ["src/mocks/**"]
+
+# allow に無い zone への import を禁じる。dev はどこからも参照させない
+[[boundaries.rules]]
+# テスト・stories は全 zone を組み合わせてよい
+from = "dev"
+allow = [
+  "app",
+  "api",
+  "types",
+  "components",
+  "hooks",
+  "utils",
+  "lib",
+  "providers",
+  "mocks",
+]
+
+[[boundaries.rules]]
+# ルートは共有層をすべて使ってよい
+from = "app"
+allow = ["api", "types", "components", "hooks", "utils", "lib", "providers"]
+
+[[boundaries.rules]]
+# 契約層はアプリ固有の設定に依存しない
+from = "api"
+allow = ["types", "utils"]
+
+[[boundaries.rules]]
+# 型ヘルパーは自己完結させる
+from = "types"
+allow = []
+
+[[boundaries.rules]]
+# 汎用 UI は汎用 hooks / utils まで
+from = "components"
+allow = ["types", "hooks", "utils"]
+
+[[boundaries.rules]]
+# 汎用 hooks は UI に依存しない
+from = "hooks"
+allow = ["types", "utils"]
+
+[[boundaries.rules]]
+# 最下層。型以外に依存しない
+from = "utils"
+allow = ["types"]
+
+[[boundaries.rules]]
+# アプリ固有のグルーは契約層と汎用層を束ねる
+from = "lib"
+allow = ["api", "types", "components", "hooks", "utils"]
+
+[[boundaries.rules]]
+# Provider は lib の設定を読み込んで被せる
+from = "providers"
+allow = ["api", "types", "components", "hooks", "utils", "lib"]
+
+[[boundaries.rules]]
+# MSW handlers は API 定義から組み立てる
+from = "mocks"
+allow = ["api", "types", "utils"]
+
+[boundaries.coverage]
+# src/ 配下は必ずいずれかの zone に属させ、未分類のトップレベル追加を防ぐ
+requireAllFiles = true
+allowUnmatched = ["tools/**", ".storybook/**", "*.ts"]
