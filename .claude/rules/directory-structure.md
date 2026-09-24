@@ -29,6 +29,8 @@
 | `proxy.ts` | アプリ固有 | Next.js middleware 相当 |
 | `instrumentation-client.ts` | アプリ固有 | Next.js instrumentation hook |
 
+ディレクトリ間の import 方向（汎用 → アプリ固有を参照しない等）は `fallow.toml` の `boundaries` が強制する。
+
 ## `utils/` vs `lib/`
 
 **移植性 / プロジェクト固有性**で振り分ける。

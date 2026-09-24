@@ -11,6 +11,10 @@
     "storybook-mcp": {
       "type": "http",
       "url": "http://localhost:6006/mcp"
+    },
+    "fallow": {
+      "command": "npx",
+      "args": ["fallow-mcp"]
     }
   }
 }

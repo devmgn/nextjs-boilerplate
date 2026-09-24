@@ -2,8 +2,6 @@
  * 交差型を展開しそのメンバーを明示的にするユーティリティ型
  *
  * デバッグ用途で利用
- *
- * @public
  */
 export type Expand<T> = T extends object
   ? T extends infer O
