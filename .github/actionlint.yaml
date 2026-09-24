@@ -1,0 +1,5 @@
+self-hosted-runner:
+  labels:
+    # actionlint v1.7.12 が ubuntu-26.04 を未知ラベルとして弾くための回避策。
+    # 上流 (rhysd/actionlint#682) が対応したリリースに上げたら削除する
+    - ubuntu-26.04
