@@ -9,7 +9,7 @@ pre-commit:
         branch=$(git branch --show-current)
         if [ "$branch" = "main" ]; then
           echo "main ブランチへの直接コミットは禁止です。<type>/<description> 形式の feature ブランチを切ってください。"
-          echo "例: feat/add-login, fix/typo, chore/knip-optimize"
+          echo "例: feat/add-login, fix/typo, chore/fallow-optimize"
           exit 1
         fi
     - name: test
@@ -27,11 +27,11 @@ pre-push:
         esac
         if ! echo "$branch" | grep -qE '^(feat|fix|chore|refactor|docs|style|test|perf|build|ci|revert|renovate)/[a-z0-9._/-]+$'; then
           echo "ブランチ名は <type>/<description> 形式にしてください"
-          echo "例: feat/add-login, fix/typo, chore/knip-optimize"
+          echo "例: feat/add-login, fix/typo, chore/fallow-optimize"
           exit 1
         fi
-    - name: knip
-      run: pnpm knip
+    - name: fallow
+      run: pnpm fallow
     - name: lint-workflows
       glob: ".github/workflows/*.{yml,yaml}"
       run: pnpm lint:workflows

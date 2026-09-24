@@ -14,7 +14,7 @@
   - jsPlugins: @tanstack/eslint-plugin-query, eslint-plugin-storybook (stories only), own rules in `tools/oxlint-rules/`
   - Type-aware lint + type check enabled (oxlint-tsgolint); TS compiler diagnostics surface as lint errors, so there is no separate `tsc --noEmit` script
   - Suppress comments: `// oxlint-disable-next-line <rule>` (`eslint-disable` is NOT honored; unused directives are errors)
-  - Ignore lists live in `tools/lint-ignore/` and are shared by `oxlint.config.ts` / `oxfmt.config.ts` / `knip.config.ts`
+  - Ignore lists live in `tools/lint-ignore/` and are shared by `oxlint.config.ts` / `oxfmt.config.ts` (`fallow.toml` cannot import them, so sync manually)
 - **Vitest** with 80% coverage requirement
 - **Storybook 10** with Vitest integration, a11y testing, MSW
 - **Lefthook** for git hooks (see `lefthook.yml`)

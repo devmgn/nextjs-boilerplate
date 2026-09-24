@@ -8,9 +8,9 @@ description: Development, lint, test, and build commands
 pnpm dev                            # Dev server (Turbopack)
 pnpm build                          # Production build
 pnpm start                          # Start production server
-pnpm check                          # All checks (ultracite check = Oxfmt + Oxlint, then Knip)
+pnpm check                          # All checks (ultracite check = Oxfmt + Oxlint, then fallow)
 pnpm fix                            # Auto-fix lint + format (ultracite fix)
-pnpm knip                           # Dead code detection (knip + knip --production)
+pnpm fallow                         # Dead code detection (fallow dead-code + --production)
 pnpm lint:workflows                 # GitHub Actions lint (actionlint + zizmor)
 pnpm test                           # Run all tests
 pnpm test:unit                      # Unit tests only (typecheck included)

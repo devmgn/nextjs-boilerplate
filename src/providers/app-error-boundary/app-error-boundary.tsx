@@ -2,6 +2,7 @@
 
 import type { FallbackProps } from "react-error-boundary";
 import { ErrorBoundary } from "react-error-boundary";
+// fallow-ignore-next-line boundary-violation -- ルートの error.tsx を境界の fallback として共有する
 import ErrorPage from "../../app/error";
 
 // fallback をインライン定義するとレンダーのたびに別コンポーネント扱いになり、
