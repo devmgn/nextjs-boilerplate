@@ -1,28 +1,8 @@
-import type { FallbackProps } from "react-error-boundary";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Suspense, useState } from "react";
-import { ErrorBoundary } from "react-error-boundary";
 import { Toaster } from "sonner";
-import { Button } from "../src/components/button";
 import { QUERY_CLIENT_CONFIG } from "../src/lib/get-query-client/config/query-client-config";
 import "../src/lib/styles/globals.css";
-
-// fallback をインライン定義するとレンダーのたびに別コンポーネント扱いになる。
-function ErrorFallback(props: FallbackProps) {
-  const { error, resetErrorBoundary } = props;
-
-  return (
-    <>
-      <h1 className="text-2xl font-bold">Something went wrong:</h1>
-      {Error.isError(error) && (
-        <p className="mt-4 text-destructive">{error.message}</p>
-      )}
-      <Button className="mt-4" onClick={resetErrorBoundary}>
-        Try again
-      </Button>
-    </>
-  );
-}
 
 export function SbProvider({ children }: React.PropsWithChildren) {
   // oxlint-disable-next-line react/hook-use-state
@@ -30,9 +10,7 @@ export function SbProvider({ children }: React.PropsWithChildren) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <Suspense fallback="loading...">{children}</Suspense>
-      </ErrorBoundary>
+      <Suspense fallback="loading...">{children}</Suspense>
       <Toaster richColors closeButton />
     </QueryClientProvider>
   );
