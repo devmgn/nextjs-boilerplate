@@ -1,11 +1,10 @@
 lockfile_version: '1'
-apm_version: 0.31.0
+apm_version: 0.32.0
 dependencies:
 - repo_url: antfu/skills
   name: vitest
   host: github.com
   resolved_commit: e98e476e315f068f72d53bd3afb34fdd4d5851c3
-  resolved_ref: e98e476e315f068f72d53bd3afb34fdd4d5851c3
   version: unknown
   virtual_path: skills/vitest
   is_virtual: true
@@ -60,7 +59,6 @@ dependencies:
   name: ultracite
   host: github.com
   resolved_commit: 100bf3e703663a0bfeed7f5da0ae115e47e303c6
-  resolved_ref: 100bf3e703663a0bfeed7f5da0ae115e47e303c6
   version: unknown
   virtual_path: skills/ultracite
   is_virtual: true
@@ -77,7 +75,6 @@ dependencies:
   name: vercel-composition-patterns
   host: github.com
   resolved_commit: 063bee94c3f4df8453406c830b0a7df0f2860278
-  resolved_ref: 063bee94c3f4df8453406c830b0a7df0f2860278
   version: unknown
   virtual_path: skills/composition-patterns
   is_virtual: true
@@ -118,7 +115,6 @@ dependencies:
   name: vercel-react-best-practices
   host: github.com
   resolved_commit: 063bee94c3f4df8453406c830b0a7df0f2860278
-  resolved_ref: 063bee94c3f4df8453406c830b0a7df0f2860278
   version: unknown
   virtual_path: skills/react-best-practices
   is_virtual: true
@@ -283,7 +279,6 @@ dependencies:
   name: vercel-react-view-transitions
   host: github.com
   resolved_commit: 063bee94c3f4df8453406c830b0a7df0f2860278
-  resolved_ref: 063bee94c3f4df8453406c830b0a7df0f2860278
   version: unknown
   virtual_path: skills/react-view-transitions
   is_virtual: true
@@ -314,7 +309,6 @@ dependencies:
   name: web-design-guidelines
   host: github.com
   resolved_commit: 063bee94c3f4df8453406c830b0a7df0f2860278
-  resolved_ref: 063bee94c3f4df8453406c830b0a7df0f2860278
   version: unknown
   virtual_path: skills/web-design-guidelines
   is_virtual: true
