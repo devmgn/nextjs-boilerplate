@@ -5,6 +5,13 @@ import { QUERY_CLIENT_CONFIG } from "./query-client-config";
 import { loading } from "../../../components/loading-overlay";
 import { errorNotifier } from "../../error-notifier";
 
+// 判定対象はキャッシュに作った実物の Query。状態だけ setState で動かす。
+function buildQuery(queryClient: QueryClient, name: string) {
+  // shouldDehydrateQuery の引数は queryKey が readonly unknown[] の Query。
+  const queryKey: readonly unknown[] = [name];
+  return queryClient.getQueryCache().build(queryClient, { queryKey });
+}
+
 describe("QUERY_CLIENT_CONFIG", () => {
   let queryClient: QueryClient;
   let notifySpy: MockInstance<(message: string) => void>;
@@ -174,29 +181,22 @@ describe("QUERY_CLIENT_CONFIG", () => {
     const { shouldDehydrateQuery } =
       QUERY_CLIENT_CONFIG.defaultOptions.dehydrate;
 
-    // 判定対象はキャッシュに作った実物の Query。状態だけ setState で動かす。
-    const buildQuery = (name: string) => {
-      // shouldDehydrateQuery の引数は queryKey が readonly unknown[] の Query。
-      const queryKey: readonly unknown[] = [name];
-      return queryClient.getQueryCache().build(queryClient, { queryKey });
-    };
-
     it("successステータスのクエリがdehydrate対象であること", () => {
-      const query = buildQuery("dehydrate-success");
+      const query = buildQuery(queryClient, "dehydrate-success");
       query.setState({ status: "success", data: "value" });
 
       expect(shouldDehydrateQuery(query)).toBeTruthy();
     });
 
     it("pendingステータスのクエリがdehydrate対象であること", () => {
-      const query = buildQuery("dehydrate-pending");
+      const query = buildQuery(queryClient, "dehydrate-pending");
 
       expect(query.state.status).toBe("pending");
       expect(shouldDehydrateQuery(query)).toBeTruthy();
     });
 
     it("errorステータスのクエリがdehydrate対象外であること", () => {
-      const query = buildQuery("dehydrate-error");
+      const query = buildQuery(queryClient, "dehydrate-error");
       query.setState({ status: "error", error: new Error("failed") });
 
       expect(shouldDehydrateQuery(query)).toBeFalsy();
