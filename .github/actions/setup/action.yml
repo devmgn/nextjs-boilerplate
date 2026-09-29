@@ -27,6 +27,8 @@ runs:
 
     - name: Install dependencies
       shell: bash
+      env:
+        PNPM_CONFIG_TRUST_LOCKFILE: "false"
       run: pnpm install --frozen-lockfile --prefer-offline
 
     - name: Setup environment
