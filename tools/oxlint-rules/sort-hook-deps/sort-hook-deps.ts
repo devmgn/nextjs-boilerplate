@@ -1,4 +1,4 @@
-import type { Context, ESTree, Rule } from "@oxlint/plugins";
+import type { Context, ESTree, FixFn, Fixer, Rule } from "@oxlint/plugins";
 import type { JsonObject, JsonValue } from "oxlint/plugins-dev";
 
 /**
@@ -128,6 +128,96 @@ function guessIndent(context: Context, node: ESTree.Expression): string {
   return match?.groups?.indent ?? "";
 }
 
+function compareKeys(a: string, b: string): number {
+  return a.localeCompare(b, undefined, { sensitivity: "base" });
+}
+
+/** 穴あき要素やスプレッドを含む配列は並べ替え対象外として null を返す。 */
+function collectElements(
+  depsArray: ESTree.ArrayExpression
+): ESTree.Expression[] | null {
+  const elements: ESTree.Expression[] = [];
+  for (const el of depsArray.elements) {
+    if (!el || el.type === "SpreadElement") {
+      return null;
+    }
+    elements.push(el);
+  }
+  return elements;
+}
+
+function isSortedKeys(sortKeys: readonly string[]): boolean {
+  return sortKeys.every((key, i) => {
+    if (i === 0) {
+      return true;
+    }
+    /* v8 ignore next -- i >= 1 and sortKeys length >= 2 → always defined */
+    const previous = sortKeys.at(i - 1) ?? "";
+    return compareKeys(key, previous) >= 0;
+  });
+}
+
+function applySortFix(
+  fixer: Fixer,
+  context: Context,
+  elements: readonly ESTree.Expression[]
+): ReturnType<FixFn> {
+  const pairs = elements.map((el) => ({
+    key: getSortKey(context, el),
+    text: context.sourceCode.getText(el),
+  }));
+  pairs.sort((a, b) => compareKeys(a.key, b.key));
+
+  const sorted = pairs.map((p) => p.text);
+
+  const [firstElement] = elements;
+  const lastElement = elements.at(-1);
+  /* v8 ignore next 3 -- elements.length >= 2 guaranteed above */
+  if (lastElement === undefined) {
+    return null;
+  }
+  const [rangeStart] = firstElement.range;
+  const [, rangeEnd] = lastElement.range;
+
+  const originalText = context.sourceCode.getText().slice(rangeStart, rangeEnd);
+  const separator = originalText.includes("\n")
+    ? `,\n${guessIndent(context, firstElement)}`
+    : ", ";
+
+  return fixer.replaceTextRange([rangeStart, rangeEnd], sorted.join(separator));
+}
+
+function checkCallExpression(
+  context: Context,
+  hookMap: ReadonlyMap<string, number>,
+  node: ESTree.CallExpression
+): void {
+  const depsArray = getDepsArray(node, hookMap);
+  if (!depsArray || depsArray.elements.length < 2) {
+    return;
+  }
+
+  const elements = collectElements(depsArray);
+  if (elements === null) {
+    return;
+  }
+
+  const sortKeys = elements.map((el) => getSortKey(context, el));
+  if (isSortedKeys(sortKeys)) {
+    return;
+  }
+
+  const hookName = getHookName(node.callee);
+
+  context.report({
+    node: depsArray,
+    message: `Dependencies of ${hookName} hook are not sorted alphabetically.`,
+    fix(fixer) {
+      return applySortFix(fixer, context, elements);
+    },
+  });
+}
+
 const rule: Rule = {
   meta: { fixable: "code", schema: false },
   create(context) {
@@ -137,83 +227,7 @@ const rule: Rule = {
       // AST ノード型名は oxlint のビジター API が決めるため改名不可
       // oxlint-disable-next-line sonarjs/function-name
       CallExpression(node) {
-        const depsArray = getDepsArray(node, hookMap);
-        if (!depsArray || depsArray.elements.length < 2) {
-          return;
-        }
-
-        const elements: ESTree.Expression[] = [];
-        for (const el of depsArray.elements) {
-          if (!el || el.type === "SpreadElement") {
-            return;
-          }
-          elements.push(el);
-        }
-
-        const sortKeys = elements.map((el) => getSortKey(context, el));
-
-        const isSorted = sortKeys.every((key, i) => {
-          if (i === 0) {
-            return true;
-          }
-          /* v8 ignore next -- i >= 1 and sortKeys length >= 2 → always defined */
-          const previous = sortKeys.at(i - 1) ?? "";
-          return (
-            key.localeCompare(previous, undefined, {
-              sensitivity: "base",
-            }) >= 0
-          );
-        });
-
-        if (isSorted) {
-          return;
-        }
-
-        const hookName = getHookName(node.callee);
-
-        context.report({
-          node: depsArray,
-          message: `Dependencies of ${hookName} hook are not sorted alphabetically.`,
-          fix(fixer) {
-            const pairs = elements.map((el) => ({
-              key: getSortKey(context, el),
-              text: context.sourceCode.getText(el),
-            }));
-            pairs.sort((a, b) =>
-              a.key.localeCompare(b.key, undefined, {
-                sensitivity: "base",
-              })
-            );
-
-            const sorted = pairs.map((p) => p.text);
-
-            const [firstElement] = elements;
-            const lastElement = elements.at(-1);
-            /* v8 ignore next 3 -- elements.length >= 2 guaranteed above */
-            if (lastElement === undefined) {
-              return null;
-            }
-            const [rangeStart] = firstElement.range;
-            const [, rangeEnd] = lastElement.range;
-
-            const originalText = context.sourceCode
-              .getText()
-              .slice(rangeStart, rangeEnd);
-            const isMultiline = originalText.includes("\n");
-
-            if (isMultiline) {
-              return fixer.replaceTextRange(
-                [rangeStart, rangeEnd],
-                sorted.join(`,\n${guessIndent(context, firstElement)}`)
-              );
-            }
-
-            return fixer.replaceTextRange(
-              [rangeStart, rangeEnd],
-              sorted.join(", ")
-            );
-          },
-        });
+        checkCallExpression(context, hookMap, node);
       },
     };
   },

@@ -76,26 +76,31 @@ function getByPath(node: AstNode, path: string[]): AstValue {
   return cur;
 }
 
+const QUOTES = ["'", '"'] as const;
+
+const KEYWORD_LITERALS: ReadonlyMap<string, LiteralValue> = new Map([
+  ["true", true],
+  ["false", false],
+  ["null", null],
+]);
+
+function isQuoted(raw: string): boolean {
+  return QUOTES.some((q) => raw.startsWith(q) && raw.endsWith(q));
+}
+
+function parseNumberOrString(raw: string): number | string {
+  return raw.length > 0 && !Number.isNaN(Number(raw)) ? Number(raw) : raw;
+}
+
 function parseLiteral(raw: string): LiteralValue {
-  if (
-    (raw.startsWith("'") && raw.endsWith("'")) ||
-    (raw.startsWith('"') && raw.endsWith('"'))
-  ) {
+  if (isQuoted(raw)) {
     return raw.slice(1, -1);
   }
-  if (raw === "true") {
-    return true;
+  const keyword = KEYWORD_LITERALS.get(raw);
+  if (keyword !== undefined) {
+    return keyword;
   }
-  if (raw === "false") {
-    return false;
-  }
-  if (raw === "null") {
-    return null;
-  }
-  if (raw.length > 0 && !Number.isNaN(Number(raw))) {
-    return Number(raw);
-  }
-  return raw;
+  return parseNumberOrString(raw);
 }
 
 function parseAttr(expr: string): AttrMatcher {
@@ -153,56 +158,77 @@ function parseCompound(input: string): Step {
   return { type: typeName.trim(), attrs, isExit };
 }
 
-function parseBranch(input: string): Step[] {
-  const ltr: Step[] = [];
-  let pending: Combinator | null = null;
+const COMBINATOR_CHARS: ReadonlySet<string> = new Set([" ", "\t", ">"]);
+
+const BRACKET_DEPTH_DELTA: ReadonlyMap<string, number> = new Map([
+  ["[", 1],
+  ["]", -1],
+]);
+
+interface CompoundToken {
+  text: string;
+  // 直前に読んだ結合子。先頭の compound では null。
+  combinator: Combinator | null;
+}
+
+interface CombinatorRead {
+  combinator: Combinator;
+  next: number;
+}
+
+function isCombinatorChar(c: string | undefined): boolean {
+  return c !== undefined && COMBINATOR_CHARS.has(c);
+}
+
+/** Start から連続する結合子文字を読み切り、結合子種別と次の位置を返す。 */
+function readCombinator(input: string, start: number): CombinatorRead {
+  let combinator: Combinator = "descendant";
+  let i = start;
+  while (isCombinatorChar(input[i])) {
+    if (input[i] === ">") {
+      combinator = "child";
+    }
+    i += 1;
+  }
+  return { combinator, next: i };
+}
+
+/** ブラケット外の結合子で区切り、compound 文字列と直前の結合子の組に分解する。 */
+function tokenizeBranch(input: string): CompoundToken[] {
+  const tokens: CompoundToken[] = [];
+  let combinator: Combinator | null = null;
   let buf = "";
   let depth = 0;
   let i = 0;
 
-  const flushCompound = () => {
+  const flush = () => {
     const text = buf.trim();
     buf = "";
-    if (text.length === 0) {
-      return;
+    if (text.length > 0) {
+      tokens.push({ text, combinator });
     }
-    const step = parseCompound(text);
-    step.combinator = pending;
-    pending = null;
-    ltr.push(step);
   };
 
   while (i < input.length) {
     const c = input[i];
-    if (c === "[") {
-      depth += 1;
-      buf += c;
-      i += 1;
-    } else if (c === "]") {
-      depth -= 1;
-      buf += c;
-      i += 1;
-    } else if (depth === 0 && (c === " " || c === "\t" || c === ">")) {
-      flushCompound();
-      let comb: Combinator = "descendant";
-      while (
-        i < input.length &&
-        (input[i] === " " || input[i] === "\t" || input[i] === ">")
-      ) {
-        if (input[i] === ">") {
-          comb = "child";
-        }
-        i += 1;
-      }
-      pending = comb;
+    if (depth === 0 && isCombinatorChar(c)) {
+      flush();
+      ({ combinator, next: i } = readCombinator(input, i));
     } else {
+      depth += BRACKET_DEPTH_DELTA.get(c) ?? 0;
       buf += c;
       i += 1;
     }
   }
-  flushCompound();
+  flush();
 
-  return ltr.toReversed();
+  return tokens;
+}
+
+function parseBranch(input: string): Step[] {
+  return tokenizeBranch(input)
+    .map(({ text, combinator }) => ({ ...parseCompound(text), combinator }))
+    .toReversed();
 }
 
 function splitTopLevel(s: string, sep: string): string[] {
@@ -261,39 +287,41 @@ function matchStep(node: AstValue, step: Step): boolean {
   return true;
 }
 
+function parentOf(node: AstNode): AstNode[] {
+  const { parent } = node;
+  return parent === undefined || parent === null ? [] : [parent];
+}
+
+function ancestorsOf(node: AstNode): AstNode[] {
+  const ancestors: AstNode[] = [];
+  let anc: AstNode | null | undefined = node.parent;
+  while (anc !== undefined && anc !== null) {
+    ancestors.push(anc);
+    anc = anc.parent;
+  }
+  return ancestors;
+}
+
+/** 結合子ごとに、次のステップの照合候補となるノード（近い順）を返す。 */
+const COMBINATOR_CANDIDATES: Record<Combinator, (node: AstNode) => AstNode[]> =
+  {
+    child: parentOf,
+    descendant: ancestorsOf,
+  };
+
 function matchFrom(node: AstNode, chain: Step[], i: number): boolean {
   if (i >= chain.length) {
     return true;
   }
   if (i === 0) {
-    if (!matchStep(node, chain[0])) {
-      return false;
-    }
-    return matchFrom(node, chain, 1);
+    return matchStep(node, chain[0]) && matchFrom(node, chain, 1);
   }
-
   /* v8 ignore next -- combinator is always set on non-leftmost chain steps */
   const comb: Combinator = chain[i - 1].combinator ?? "descendant";
-  const { parent } = node;
-
-  if (comb === "child") {
-    if (parent === undefined || parent === null) {
-      return false;
-    }
-    if (!matchStep(parent, chain[i])) {
-      return false;
-    }
-    return matchFrom(parent, chain, i + 1);
-  }
-
-  let anc: AstNode | null | undefined = parent;
-  while (anc !== undefined && anc !== null) {
-    if (matchStep(anc, chain[i]) && matchFrom(anc, chain, i + 1)) {
-      return true;
-    }
-    anc = anc.parent;
-  }
-  return false;
+  return COMBINATOR_CANDIDATES[comb](node).some(
+    (candidate) =>
+      matchStep(candidate, chain[i]) && matchFrom(candidate, chain, i + 1)
+  );
 }
 
 export function matchChain(node: AstNode, chain: Step[]): boolean {
