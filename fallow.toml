@@ -41,6 +41,28 @@ css-selector-complexity = "off"
 css-dead-surface = "off"
 css-broken-reference = "off"
 
+[duplicates]
+# ignoreFindings は dead-code にしか効かない
+ignore = [
+  "src/api/openapi/**",
+  "src/mocks/**",
+  # demo コードは読みやすさを優先し、重複・長さを許容する
+  "src/**/*.stories.tsx",
+  "src/app/(sandbox)/**",
+]
+
+[health]
+ignore = [
+  "src/api/openapi/**",
+  "src/mocks/**",
+  # demo コードは読みやすさを優先し、重複・長さを許容する
+  "src/**/*.stories.tsx",
+  "src/app/(sandbox)/**",
+  # describe ブロックが 1 関数として数えられ、ケース数に比例して large function になる
+  "src/**/*.{test,spec,test-d}.{ts,tsx}",
+  "tools/**/*.test.ts",
+]
+
 # 先にマッチした zone に属する。テスト・stories を本体の zone より先に切り出す
 [[boundaries.zones]]
 # テスト・型テスト・stories
