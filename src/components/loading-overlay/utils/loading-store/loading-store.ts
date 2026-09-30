@@ -4,6 +4,8 @@
  * 呼び出し側から参照カウントで表示制御するための show / hide / promise / reset を公開する。
  */
 
+import { createListenerSet } from "../../../../utils/listener-set";
+
 interface LoadingStore {
   /** 現在表示中かどうか (count > 0)。`useSyncExternalStore` の getSnapshot として渡す想定。 */
   getSnapshot: () => boolean;
@@ -34,26 +36,9 @@ interface LoadingStore {
   reset: () => void;
 }
 
-/** Listener の throw が他セッションへの通知を止めないよう握りつぶす。 */
-function invoke(listener: () => void): void {
-  try {
-    listener();
-  } catch (error) {
-    console.error("loadingStore listener threw:", error);
-  }
-}
-
 export function createLoadingStore(): LoadingStore {
-  const listeners = new Set<() => void>();
+  const { subscribe, notify } = createListenerSet("loadingStore");
   let count = 0;
-
-  const notify = (): void => {
-    // リスナー内で subscribe/unsubscribe が起きても安全なようスナップショットを取る
-    const snapshot = [...listeners];
-    for (const sessionListener of snapshot) {
-      sessionListener();
-    }
-  };
 
   const show = (): void => {
     count += 1;
@@ -83,24 +68,6 @@ export function createLoadingStore(): LoadingStore {
     } finally {
       hide();
     }
-  };
-
-  const subscribe = (listener: () => void): (() => void) => {
-    // 同一 listener 参照を多重 subscribe しても Set の重複排除で潰されないよう、
-    // セッションごとに一意のラッパーを登録する
-    const sessionListener = (): void => {
-      invoke(listener);
-    };
-    listeners.add(sessionListener);
-
-    let unsubscribed = false;
-    return () => {
-      if (unsubscribed) {
-        return;
-      }
-      unsubscribed = true;
-      listeners.delete(sessionListener);
-    };
   };
 
   return {
