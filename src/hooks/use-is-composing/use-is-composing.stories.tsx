@@ -67,15 +67,24 @@ function UseIsComposingDemo() {
       { capture: false, accent: "bubble", label: "📤 document (bubble)" },
     ] as const;
 
-    const handlers = phases.flatMap(({ capture, accent, label }) =>
-      (["compositionstart", "compositionend"] as const).map((event) => ({
-        event,
-        capture,
-        listener: () => {
-          append(label, event, accent);
-        },
-      }))
-    );
+    const events = ["compositionstart", "compositionend"] as const;
+
+    const handlers: {
+      event: LogEntry["event"];
+      capture: boolean;
+      listener: () => void;
+    }[] = [];
+    for (const { capture, accent, label } of phases) {
+      for (const event of events) {
+        handlers.push({
+          event,
+          capture,
+          listener: () => {
+            append(label, event, accent);
+          },
+        });
+      }
+    }
 
     for (const { event, listener, capture } of handlers) {
       document.addEventListener(event, listener, capture);
