@@ -327,8 +327,8 @@ importers:
         specifier: 7.0.2
         version: 7.0.2
       ultracite:
-        specifier: 7.12.0
-        version: 7.12.0(eslint@9.39.5(jiti@2.7.0)(supports-color@7.2.0))(oxfmt@0.71.0)(oxlint@1.86.0(oxlint-tsgolint@7.0.2003))(prettier@3.9.9)
+        specifier: 7.12.2
+        version: 7.12.2(eslint@9.39.5(jiti@2.7.0)(supports-color@7.2.0))(oxfmt@0.71.0)(oxlint@1.86.0(oxlint-tsgolint@7.0.2003))(prettier@3.9.9)
       vite:
         specifier: 8.3.1
         version: 8.3.1(@types/node@24.19.0)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)
@@ -5372,14 +5372,14 @@ packages:
   ufo@1.6.4:
     resolution: {integrity: sha512-JFNbkD1Svwe0KvGi8GOeLcP4kAWQ609twvCdcHxq1oSL8svv39ZuSvajcD8B+5D0eL4+s1Is2D/O6KN3qcTeRA==}
 
-  ultracite@7.12.0:
-    resolution: {integrity: sha512-thOrO9IMaEcGjQrwp44W5UNm9muLIY/vVD83hVPhQ5wZncSAQB+qWq6U78QgVAoWaD3mDpkZDvfwF+JLSQtZzg==}
+  ultracite@7.12.2:
+    resolution: {integrity: sha512-0FQE7EuVFnX1FjtlIBklkfBTiZ5bJxknXSxcsjKos5Y73FlkasubWH7uVLS8jgOAI204B7xaIq+buE3vUybuwQ==}
     hasBin: true
     peerDependencies:
       '@biomejs/biome': ^2.5.0
       eslint: ^10.0.0
-      oxfmt: '>=0.40.0'
-      oxlint: ^1.79.0
+      oxfmt: '>=0.59.0'
+      oxlint: ^1.82.0
       prettier: ^3.0.0
       stylelint: ^17.0.0
     peerDependenciesMeta:
@@ -10390,7 +10390,7 @@ snapshots:
 
   ufo@1.6.4: {}
 
-  ultracite@7.12.0(eslint@9.39.5(jiti@2.7.0)(supports-color@7.2.0))(oxfmt@0.71.0)(oxlint@1.86.0(oxlint-tsgolint@7.0.2003))(prettier@3.9.9):
+  ultracite@7.12.2(eslint@9.39.5(jiti@2.7.0)(supports-color@7.2.0))(oxfmt@0.71.0)(oxlint@1.86.0(oxlint-tsgolint@7.0.2003))(prettier@3.9.9):
     dependencies:
       '@clack/prompts': 1.8.1
       cli-truncate: 6.1.1
