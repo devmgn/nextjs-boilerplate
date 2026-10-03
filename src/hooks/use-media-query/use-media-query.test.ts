@@ -1,3 +1,4 @@
+import type { Mock } from "vitest";
 import { act, renderHook } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { useMediaQuery } from "./use-media-query";
@@ -38,7 +39,9 @@ function createMockMediaQueryList(matches: boolean) {
 
 describe(useMediaQuery, () => {
   let mockMql: ReturnType<typeof createMockMediaQueryList>;
-  let matchMediaSpy: ReturnType<typeof vi.fn>;
+  let matchMediaSpy: Mock<
+    (query: string) => ReturnType<typeof createMockMediaQueryList>
+  >;
 
   beforeEach(() => {
     mockMql = createMockMediaQueryList(false);
@@ -110,7 +113,7 @@ describe(useMediaQuery, () => {
     });
     expect(mockMql.hasListener).toBeTruthy();
 
-    matchMediaSpy.mockReturnValue(newMql);
+    vi.when(matchMediaSpy).calledWith("(min-width: 1024px)").thenReturn(newMql);
     rerender({ query: "(min-width: 1024px)" });
 
     expect(mockMql.hasListener).toBeFalsy();
