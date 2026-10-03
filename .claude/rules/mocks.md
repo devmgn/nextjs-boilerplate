@@ -14,11 +14,12 @@ paths:
 
 - `pnpm generate-mock` generates `src/mocks/handlers.ts` from `openapi.yml`
 - Auto-patches to `@faker-js/faker/locale/ja` (Japanese data, deterministic via `faker.seed(1)`)
+- Deletes the generated `native.ts` (`msw/native` was removed in msw v3)
 - **Never manually edit** generated files — re-run `pnpm generate-mock` after spec changes
 
 ## Files
 
 | File | Purpose | Managed |
 | --- | --- | --- |
-| `handlers.ts`, `browser.ts`, `node.ts`, `native.ts` | Auto-generated from OpenAPI | Generated |
+| `handlers.ts`, `browser.ts`, `node.ts` | Auto-generated from OpenAPI | Generated |
 | `server.ts` | Vitest shared instance (empty, use `server.use()` per test) | Manual |
