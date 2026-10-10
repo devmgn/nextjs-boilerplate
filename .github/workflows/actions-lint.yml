@@ -5,6 +5,7 @@ on:
     paths:
       - ".github/**"
       - "mise.toml"
+      - "mise.lock"
   workflow_dispatch:
 
 concurrency:
