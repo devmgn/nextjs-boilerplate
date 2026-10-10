@@ -1,9 +1,6 @@
 pre-commit:
+  piped: true
   jobs:
-    - name: ultracite
-      glob: "*.{js,jsx,ts,tsx,json,jsonc,css}"
-      run: pnpm ultracite fix --no-error-on-unmatched-pattern {staged_files}
-      stage_fixed: true
     - name: protect-main
       run: |
         branch=$(git branch --show-current)
@@ -12,6 +9,10 @@ pre-commit:
           echo "例: feat/add-login, fix/typo, chore/fallow-optimize"
           exit 1
         fi
+    - name: ultracite
+      glob: "*.{js,jsx,ts,tsx,json,jsonc,css,md,mdx,yml,yaml,toml}"
+      run: pnpm ultracite fix --no-error-on-unmatched-pattern {staged_files}
+      stage_fixed: true
     - name: test
       glob: "*.{ts,tsx}"
       run: pnpm vitest related --run {staged_files}
@@ -33,12 +34,25 @@ pre-push:
     - name: lint-dead-code
       run: pnpm lint:dead-code
     - name: lint-workflows
-      glob: ".github/**/*.{yml,yaml}"
-      run: pnpm lint:workflows
+      glob:
+        - ".github/**"
+        - "mise.toml"
+        - "mise.lock"
+      run: mise run lint:workflows
 
 post-merge:
   jobs:
-    - name: install-on-lockfile-change
-      files: git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD
-      glob: "pnpm-lock.yaml"
-      run: pnpm install
+    - name: install
+      run: mise exec -- pnpm install --frozen-lockfile --prefer-offline
+
+post-checkout:
+  jobs:
+    - name: install
+      skip:
+        - rebase
+      run: '[ "{3}" = 0 ] || mise exec -- pnpm install --frozen-lockfile --prefer-offline'
+
+post-rewrite:
+  jobs:
+    - name: install
+      run: '[ "{1}" = amend ] || mise exec -- pnpm install --frozen-lockfile --prefer-offline'
