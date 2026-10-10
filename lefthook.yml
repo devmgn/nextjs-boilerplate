@@ -33,7 +33,7 @@ pre-push:
     - name: lint-dead-code
       run: pnpm lint:dead-code
     - name: lint-workflows
-      glob: ".github/workflows/*.{yml,yaml}"
+      glob: ".github/**/*.{yml,yaml}"
       run: pnpm lint:workflows
 
 post-merge:
@@ -42,7 +42,3 @@ post-merge:
       files: git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD
       glob: "pnpm-lock.yaml"
       run: pnpm install
-    - name: apm-install-on-change
-      files: git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD
-      glob: "apm.{yml,lock.yaml}"
-      run: apm install -t claude
