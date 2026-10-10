@@ -1,1 +1,5 @@
-export { generatedSources, staticAssets } from "./lint-ignore.ts";
+export {
+  generatedSources,
+  staticAssets,
+  vendoredSources,
+} from "./lint-ignore.ts";
