@@ -26,7 +26,7 @@
     "generate-api:clean": "rm -rf src/api/openapi && pnpm generate-api",
     "generate-mock": "d=$(mktemp -d) && msw-auto-mock openapi.yml -o \"$d\" --typescript --base-url https://jsonplaceholder.typicode.com && mv \"$d/handlers.ts\" ./src/mocks/handlers.ts && rm -rf \"$d\" && sed -i '' 's|from \"@faker-js/faker\"|from \"@faker-js/faker/locale/ja\"|' ./src/mocks/handlers.ts",
     "doctor": "npx react-doctor@latest",
-    "skills:update": "pnpm dlx skills add vercel-labs/agent-skills --skill vercel-react-best-practices --skill vercel-composition-patterns --skill vercel-react-view-transitions --skill web-design-guidelines -a claude-code -y"
+    "skills:update": "pnpm dlx skills add vercel-labs/agent-skills --skill vercel-react-best-practices --skill vercel-composition-patterns --skill vercel-react-view-transitions --skill web-design-guidelines -a claude-code -y && pnpm dlx skills add millionco/react-doctor --skill react-doctor --skill improve-react -a claude-code -y"
   },
   "dependencies": {
     "@hookform/resolvers": "5.9.1",
