@@ -8,7 +8,11 @@ import react from "ultracite/oxlint/react";
 import tanstack from "ultracite/oxlint/tanstack";
 import tanstackJsPlugins from "ultracite/oxlint/tanstack/js-plugins";
 import vitest from "ultracite/oxlint/vitest";
-import { generatedSources, staticAssets } from "./tools/lint-ignore/index.ts";
+import {
+  generatedSources,
+  staticAssets,
+  vendoredSources,
+} from "./tools/lint-ignore/index.ts";
 
 const jsPlugins = selectJsPlugins(["github", "sonarjs", "react-doctor"]);
 
@@ -28,6 +32,7 @@ export default defineConfig({
     ...(core.ignorePatterns ?? []),
     ...staticAssets,
     ...generatedSources,
+    ...vendoredSources,
   ],
   jsPlugins: [
     ...jsPlugins.jsPlugins,
