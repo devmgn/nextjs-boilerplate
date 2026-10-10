@@ -12,7 +12,7 @@ pnpm check                          # All checks (ultracite check = Oxfmt + Oxli
 pnpm fix                            # Auto-fix lint + format (ultracite fix)
 pnpm lint:dead-code                 # Dead code detection (fallow dead-code + --production)
 pnpm lint:fallow                    # Full fallow scan: dead-code + dupes + health + security (advisory, not in check)
-pnpm lint:workflows                 # GitHub Actions lint (actionlint + zizmor)
+mise run lint:workflows             # GitHub Actions lint (actionlint + zizmor)
 pnpm test                           # Run all tests
 pnpm test:unit                      # Unit tests only (typecheck included)
 pnpm test:oxlint-rules              # Tests for the custom oxlint rules in tools/

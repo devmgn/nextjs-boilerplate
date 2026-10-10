@@ -15,7 +15,10 @@ Next.js 16 + React 19 のボイラープレート。App Router、React Compiler�
 
 ## Getting Started
 
+[mise](https://mise.jdx.dev/) が必要です（Node.js / pnpm / actionlint / zizmor のバージョン管理と git hooks で使用）。
+
 ```bash
+mise install
 pnpm install
 pnpm dev
 ```

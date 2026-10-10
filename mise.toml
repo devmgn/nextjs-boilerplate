@@ -3,3 +3,16 @@
 actionlint = "1.7.12"
 node = "24.21.0"
 pnpm = "12.9.1"
+
+[tasks."lint:workflows"]
+description = "GitHub Actions lint (actionlint + zizmor)"
+# depends だと並列実行になり、片方が失敗するともう片方が中断されるため順次実行する
+run = [{ task = "lint:actionlint" }, { task = "lint:zizmor" }]
+
+[tasks."lint:actionlint"]
+description = "Lint GitHub Actions workflows with actionlint"
+run = "actionlint -color"
+
+[tasks."lint:zizmor"]
+description = "Audit GitHub Actions security with zizmor"
+run = "zizmor .github/"

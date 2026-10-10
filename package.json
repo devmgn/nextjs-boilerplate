@@ -10,7 +10,6 @@
     "start": "next start",
     "check": "ultracite check && pnpm lint:dead-code",
     "fix": "ultracite fix",
-    "lint:workflows": "actionlint -color && zizmor .github/",
     "lint:dead-code": "fallow dead-code && fallow dead-code --production",
     "lint:fallow": "fallow dead-code && fallow dupes && fallow health --report-only && fallow security",
     "test": "vitest run",
