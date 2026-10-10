@@ -30,7 +30,7 @@ export default defineConfig({
     ...generatedSources,
   ],
   jsPlugins: [
-    ...(jsPlugins.jsPlugins ?? []),
+    ...jsPlugins.jsPlugins,
     "./tools/oxlint-rules/index.ts",
     "@tanstack/eslint-plugin-query",
   ],
