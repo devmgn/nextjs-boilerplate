@@ -5,7 +5,6 @@
   "scripts": {
     "prepare": "lefthook install || true",
     "postinstall": "msw init",
-    "apm": "apm install -t claude",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

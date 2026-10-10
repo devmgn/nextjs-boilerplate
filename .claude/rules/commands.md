@@ -27,7 +27,6 @@ pnpm generate-api:clean             # Clean + regenerate OpenAPI client
 pnpm generate-mock                  # Generate MSW handlers from OpenAPI spec
 pnpm analyze                        # Bundle analysis via Turbopack (no build artifacts; serves a UI)
 pnpm doctor                         # React Doctor scan (security / perf / a11y / architecture)
-pnpm apm                            # Sync Claude Code agent assets (apm install -t claude)
 ```
 
 ## Lint / Format (Ultracite)

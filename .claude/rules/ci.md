@@ -6,8 +6,8 @@ paths:
 # CI/CD Rules
 
 - `main` + feature branches. Workflows trigger on `push` with `branches-ignore: main`, except **actions-lint.yml** (every branch)
-- **lint.yml**: `pnpm check` — **test.yml**: `pnpm test:unit` + `pnpm test:oxlint-rules` — **build.yml**: `pnpm build` + upload `.next/`
-- Path-scoped: **actions-lint.yml** (`.github/**`), **adr-check.yml** (`docs/adr/**`)
-- Shared setup: ubuntu-24.04, 10min timeout, `pnpm/action-setup@v6`, Node.js from `mise.toml`, copies `.env.development` to `.env.local`
-- `upload-artifact` requires `include-hidden-files: true` for `.next/`
+- **ci.yml**: jobs `Build` (`pnpm build`) / `Lint` (`pnpm check`) / `Test` (`pnpm test:unit` + `pnpm test:oxlint-rules`). Job IDs double as required status check names — do not rename
+- Path-scoped: **actions-lint.yml** (`.github/**`, `mise.toml`, `mise.lock`), **adr-check.yml** (`docs/adr/**`)
+- Shared setup (`.github/actions/setup`): `pnpm/action-setup`, `setup-node` with `node-version-file: mise.toml`, copies `.env.development` to `.env.local`
+- actionlint / zizmor are installed by `jdx/mise-action` from `mise.toml` (`--locked` via `mise.lock`), matching the versions lefthook runs locally
 - Action versions pinned by commit SHA
