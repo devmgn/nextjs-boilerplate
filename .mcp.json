@@ -4,17 +4,21 @@
       "args": ["-y", "@upstash/context7-mcp@latest"],
       "command": "npx"
     },
+    "fallow": {
+      "args": ["fallow-mcp"],
+      "command": "npx"
+    },
     "next-devtools": {
       "args": ["-y", "next-devtools-mcp@latest"],
+      "command": "npx"
+    },
+    "playwright": {
+      "args": ["-y", "@playwright/mcp@latest"],
       "command": "npx"
     },
     "storybook-mcp": {
       "type": "http",
       "url": "http://localhost:6006/mcp"
-    },
-    "fallow": {
-      "command": "npx",
-      "args": ["fallow-mcp"]
     }
   }
 }
