@@ -1,9 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "allowImportingTsExtensions": true,
-    "types": ["node"],
-    "strictNullChecks": true
+    "types": ["node"]
   },
   "include": ["./**/*.ts"]
 }

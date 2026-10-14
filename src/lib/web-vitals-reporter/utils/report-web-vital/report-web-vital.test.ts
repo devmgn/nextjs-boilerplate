@@ -20,8 +20,6 @@ describe(reportWebVital, () => {
       expect.any(String),
       expect.objectContaining({ name: "LCP", value: 2500 })
     );
-
-    consoleSpy.mockRestore();
   });
 
   it("不正なmetricを受け取ったとき、console.infoが呼ばれないこと", () => {
@@ -30,7 +28,5 @@ describe(reportWebVital, () => {
     reportWebVital({});
 
     expect(consoleSpy).not.toHaveBeenCalled();
-
-    consoleSpy.mockRestore();
   });
 });

@@ -232,12 +232,6 @@ storybook-static/
 
 # End of https://www.toptal.com/developers/gitignore/api/node,macos,nextjs,storybookjs,visualstudiocode
 
-# actionlint
-scripts/actionlint
-
-# next-agents-md
-.next-docs/
-
 # MSW (copied by the root "postinstall" script: `msw init` → package.json "msw.workerDirectory")
 /public/mockServiceWorker.js
 

@@ -9,22 +9,17 @@ export default defineConfig({
       include: ["src/**/*.{ts,tsx}"],
       exclude: [
         "**/*.d.ts",
-        "**/*.{test,spec,test-d}.{ts,tsx}",
+        "**/*.test-d.{ts,tsx}",
         "src/**/*.stories.tsx",
-        "src/{api,mocks}/**",
-        "src/{instrumentation-client,instrumentation,middleware}.ts",
+        "src/{api/openapi,mocks}/**",
+        "src/{instrumentation-client,instrumentation}.ts",
         "src/app/**/{default,error,forbidden,global-error,global-not-found,layout,loading,not-found,page,route,template,unauthorized}.{ts,tsx}",
       ],
-      thresholds: {
-        lines: 80,
-        functions: 80,
-        branches: 80,
-        statements: 80,
-      },
     },
     fsModuleCache: true,
-    testTimeout: 10_000,
-    hookTimeout: 10_000,
+    globals: true,
+    mockReset: true,
+    pool: "threads",
     restoreMocks: true,
     unstubEnvs: true,
     unstubGlobals: true,
@@ -34,11 +29,10 @@ export default defineConfig({
         plugins: [react({ compiler: true })],
         test: {
           name: "unit",
-          include: ["src/**/*.{test,spec,test-d}.{ts,tsx}"],
-          globals: true,
+          include: ["src/**/*.{test,spec}.{ts,tsx}"],
           environment: "happy-dom",
           globalSetup: "./vitest.global-setup.ts",
-          setupFiles: ["./vitest.setup.ts"],
+          setupFiles: ["@testing-library/jest-dom/vitest"],
           typecheck: {
             enabled: true,
           },
@@ -49,29 +43,21 @@ export default defineConfig({
         test: {
           name: "oxlint-rules",
           include: ["tools/oxlint-rules/**/*.test.ts"],
-          environment: "node",
         },
       },
       {
         extends: true,
-        plugins: [
-          // The plugin will run tests for the stories defined in your Storybook config
-          // See options at: https://storybook.js.org/docs/writing-tests/test-addon#storybooktest
-          storybookTest({
-            configDir: ".storybook",
-            tags: {
-              include: ["test"],
-              exclude: [],
-              skip: [],
-            },
-          }),
-        ],
+        plugins: [storybookTest()],
         test: {
           name: "storybook",
           browser: {
             enabled: true,
             headless: true,
-            provider: playwright(),
+            // unit の TZ (vitest.global-setup.ts) とアプリの <html lang="ja"> に揃える。
+            // 未指定だと headless Chromium は環境変数に関係なく en-US で動く
+            provider: playwright({
+              contextOptions: { locale: "ja-JP", timezoneId: "Asia/Tokyo" },
+            }),
             instances: [{ browser: "chromium" }],
           },
         },

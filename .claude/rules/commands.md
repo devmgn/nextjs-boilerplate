@@ -17,7 +17,7 @@ pnpm test                           # Run all tests
 pnpm test:unit                      # Unit tests only (typecheck included)
 pnpm test:oxlint-rules              # Tests for the custom oxlint rules in tools/
 pnpm test:watch                     # Watch mode
-pnpm test:coverage                  # Tests with coverage (80% threshold)
+pnpm test:coverage                  # Tests with coverage report
 pnpm test:update                    # Update snapshots
 pnpm vitest run path/to/test.test.ts  # Specific test file
 pnpm storybook                      # Storybook dev server

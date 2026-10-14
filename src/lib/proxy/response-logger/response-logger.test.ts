@@ -13,7 +13,6 @@ describe(responseLogger, () => {
       status: 200,
       type: "application/json",
     });
-    consoleSpy.mockRestore();
   });
 
   it("content-typeがない場合はnullを出力すること", () => {
@@ -26,6 +25,5 @@ describe(responseLogger, () => {
       status: 200,
       type: null,
     });
-    consoleSpy.mockRestore();
   });
 });

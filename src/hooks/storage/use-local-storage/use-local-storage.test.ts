@@ -1,5 +1,5 @@
 import { act, renderHook } from "@testing-library/react";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { useLocalStorage } from "./use-local-storage";
 
 function createMockStorage() {
@@ -33,10 +33,6 @@ describe(useLocalStorage, () => {
   beforeEach(() => {
     mockStorage = createMockStorage();
     vi.stubGlobal("localStorage", mockStorage);
-  });
-
-  afterEach(() => {
-    vi.restoreAllMocks();
   });
 
   describe("基本動作", () => {

@@ -1,21 +1,18 @@
 #:schema ./node_modules/fallow/schema.json
 
-# Storybook plugin は stories の *.mdx を entry にしない
-entry = ["src/**/*.mdx"]
+# Storybook plugin は stories の *.mdx を、Vitest plugin は typecheck.include の型テストを entry にしない
+entry = ["src/**/*.mdx", "src/**/*.test-d.{ts,tsx}"]
 
 # ignorePatterns はグラフからも除外し、生成物経由の依存を未使用にする
-ignoreFindings = ["src/api/openapi/**", "src/mocks/**", "tools/lint-ignore/**"]
+ignoreFindings = ["src/api/openapi/**", "tools/lint-ignore/**"]
 
 ignoreDependencies = [
   # 他パッケージが実行時に解決する
-  "tailwind-merge",
   "eslint-plugin-github",
   "eslint-plugin-sonarjs",
   "oxlint-plugin-react-doctor",
-  "oxc-transform-react",
   # 設定ファイル内で文字列として参照される
   "@tailwindcss/turbopack",
-  "eslint-plugin-storybook",
 ]
 
 [rules]

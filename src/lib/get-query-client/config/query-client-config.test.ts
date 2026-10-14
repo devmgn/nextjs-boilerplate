@@ -23,7 +23,6 @@ describe("QUERY_CLIENT_CONFIG", () => {
   });
 
   afterEach(() => {
-    notifySpy.mockRestore();
     queryClient.clear();
   });
 

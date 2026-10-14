@@ -9,7 +9,5 @@ describe("errorNotifier.notify", () => {
     errorNotifier.notify("boom");
 
     expect(toastSpy).toHaveBeenCalledWith("boom");
-
-    toastSpy.mockRestore();
   });
 });
