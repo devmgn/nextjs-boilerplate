@@ -4,11 +4,15 @@
  * `fallow.toml` も同様。
  */
 
-/** `pnpm generate-api` / `pnpm generate-mock` の生成物。 */
-export const generatedSources = ["src/api/openapi/**", "src/mocks/**"];
+/** `pnpm generate-api` / `pnpm generate-mock` / `mise lock` の生成物。 */
+export const generatedSources = [
+  "src/api/openapi/**",
+  "src/mocks/**",
+  ".mise/locks/**",
+];
 
 /** 配信アセット。msw の `mockServiceWorker.js` を含む。 */
 export const staticAssets = ["public/**"];
 
-/** `npx skills` が取り込む外部スキル。整形すると上流との差分になり `npx skills update` で戻る。 */
+/** `mise run skills:update` が取り込む外部スキル。整形すると上流との差分になり、次の更新で戻る。 */
 export const vendoredSources = [".claude/skills/**"];
