@@ -10,10 +10,8 @@ const nextConfig = {
     cachedNavigations: true,
     globalNotFound: true,
     inlineCss: true,
-    optimizePackageImports: ["@radix-ui/react-icons"],
     requestInsights: true,
     strictRouteTypes: true,
-    turbopackPluginRuntimeStrategy: "workerThreads",
     // Turbopack 専用フラグ。Storybook / vitest は Turbopack を通さず next.config.ts を
     // 読むため、無条件に true にすると Next 側の検証で throw する。
     turbopackRustReactCompiler: Boolean(process.env.TURBOPACK),

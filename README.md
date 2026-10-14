@@ -31,6 +31,6 @@ pnpm build            # Production build
 pnpm check            # All checks (Oxlint + Oxfmt + fallow)
 pnpm fix              # Auto-fix lint + format
 pnpm test             # Run tests
-pnpm test:coverage    # Tests with coverage (80% threshold)
+pnpm test:coverage    # Tests with coverage report
 pnpm storybook        # Storybook dev server
 ```

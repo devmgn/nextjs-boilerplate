@@ -35,7 +35,6 @@ describe(proxy, () => {
       "[RESPONSE]",
       expect.objectContaining({ status: 200 })
     );
-    consoleSpy.mockRestore();
   });
 });
 

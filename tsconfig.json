@@ -22,11 +22,7 @@
       }
     ],
     "noErrorTruncation": true,
-    "types": [
-      "vitest/globals",
-      "@testing-library/jest-dom",
-      "msw-storybook-addon/types"
-    ]
+    "types": ["@testing-library/jest-dom/vitest", "msw-storybook-addon/types"]
   },
   "include": [
     ".next/dev/types/**/*.ts",
@@ -37,14 +33,11 @@
     "next.config.ts",
     "oxfmt.config.ts",
     "oxlint.config.ts",
-    "postcss.config.mjs",
     "src/**/*.ts",
     "src/**/*.tsx",
     "tools/lint-ignore/**/*.ts",
     "vitest.config.ts",
-    "vitest.global-setup.ts",
-    "vitest.setup.ts",
-    "vitest-shims.d.ts"
+    "vitest.global-setup.ts"
   ],
   "exclude": ["node_modules", "src/api/openapi"]
 }

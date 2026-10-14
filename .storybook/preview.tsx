@@ -6,9 +6,6 @@ import { SbProvider } from "./sb-provider";
 const preview: Preview = {
   tags: ["autodocs"],
   parameters: {
-    globals: {
-      locale: "ja",
-    },
     controls: {
       matchers: {
         color: /(?:background|color)$/iu,

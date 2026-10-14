@@ -15,7 +15,6 @@ describe(requestLogger, () => {
       url: "https://example.com/test",
       method: "GET",
     });
-    consoleSpy.mockRestore();
   });
 
   it("POSTリクエストのメソッドを正しく出力すること", () => {
@@ -30,6 +29,5 @@ describe(requestLogger, () => {
       url: "https://example.com/api/data",
       method: "POST",
     });
-    consoleSpy.mockRestore();
   });
 });
