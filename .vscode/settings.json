@@ -22,11 +22,14 @@
 
   // ── Search / Files ──
   "search.exclude": {
+    ".mise/locks": true,
     ".next": true,
     "build": true,
     "coverage": true,
+    "mise.lock": true,
     "node_modules": true,
     "out": true,
+    "pnpm-lock.yaml": true,
     "storybook-static": true
   },
 
@@ -34,6 +37,7 @@
   "cSpell.words": ["fileoverview", "tanstack"],
   "cSpell.ignorePaths": [
     ".claude/skills",
+    ".mise/locks",
     ".next",
     ".vscode",
     "build",

@@ -1,0 +1,106 @@
+name: Skills Update
+
+on:
+  schedule:
+    # 毎週月曜 09:00 JST
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}
+  # push と CI 起動の間で中断されないよう、後続の run は待たせる
+  cancel-in-progress: false
+
+permissions: {}
+
+# skills-lock.json はバージョンではなくハッシュしか持たないため Renovate では追従できない。
+# `mise run skills:update` で取り直し、差分があれば PR を作る。
+#
+# 第三者コード（skills CLI と取得するスキル）を実行するジョブには書き込み権限を渡さない。
+# 差分を patch として受け渡し、書き込み権限のあるジョブは適用と PR 作成だけを行う。
+jobs:
+  Update:
+    runs-on: ubuntu-26.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install skills CLI
+        uses: jdx/mise-action@2d8d4cafcbd33be2ea37d2b6f5ad595363d1f1ca # v5.1.1
+        with:
+          install_args: node npm:skills
+
+      # 未指定だと mise.toml の全ツールを入れにいくため、mise-action で入れたものだけで動かす
+      - name: Update skills
+        run: mise run --skip-tools skills:update
+
+      - name: Create patch
+        run: |
+          git add -A -- skills-lock.json .claude/skills
+          git diff --cached --binary > "$RUNNER_TEMP/skills.patch"
+
+      - name: Upload patch
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: skills-patch
+          path: ${{ runner.temp }}/skills.patch
+          retention-days: 1
+          if-no-files-found: error
+
+  PullRequest:
+    needs: Update
+    runs-on: ubuntu-26.04
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      pull-requests: write
+      # GITHUB_TOKEN による push は CI を起動しないため、workflow_dispatch で明示的に起動する
+      actions: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Download patch
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: skills-patch
+          path: ${{ runner.temp }}
+
+      # 空の patch でも create-pull-request に渡し、上流が main と同じに戻った場合は PR を閉じさせる
+      - name: Apply patch
+        run: |
+          if [ -s "$RUNNER_TEMP/skills.patch" ]; then
+            git apply --include='skills-lock.json' --include='.claude/skills/*' "$RUNNER_TEMP/skills.patch"
+          fi
+
+      - name: Create pull request
+        id: cpr
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          token: ${{ github.token }}
+          branch: chore/update-agent-skills
+          delete-branch: true
+          add-paths: |
+            skills-lock.json
+            .claude/skills/**
+          commit-message: "chore: update agent skills"
+          title: "chore: update agent skills"
+          body: |
+            Automated update via `mise run skills:update`.
+
+            Review the upstream changes to the vendored skills before merging.
+
+      - name: Trigger CI
+        if: steps.cpr.outputs.pull-request-operation == 'created' || steps.cpr.outputs.pull-request-operation == 'updated'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          BRANCH: ${{ steps.cpr.outputs.pull-request-branch }}
+        run: gh workflow run ci.yml --ref "$BRANCH"
