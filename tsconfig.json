@@ -37,7 +37,8 @@
     "src/**/*.tsx",
     "tools/lint-ignore/**/*.ts",
     "vitest.config.ts",
-    "vitest.global-setup.ts"
+    "vitest.global-setup.ts",
+    "vitest.setup.ts"
   ],
   "exclude": ["node_modules", "src/api/openapi"]
 }

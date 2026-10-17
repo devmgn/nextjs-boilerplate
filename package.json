@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "prepare": "lefthook install || true",
-    "postinstall": "msw init",
+    "postinstall": "msw init && orval",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -21,9 +21,7 @@
     "analyze": "next experimental-analyze",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "generate-api": "pnpm dlx @openapitools/openapi-generator-cli generate -i openapi.yml -g typescript-fetch -o ./src/api/openapi -c openapiconfig.json --openapi-normalizer SET_TAGS_FOR_ALL_OPERATIONS=default",
-    "generate-api:clean": "rm -rf src/api/openapi && pnpm generate-api",
-    "generate-mock": "d=$(mktemp -d) && msw-auto-mock openapi.yml -o \"$d\" --typescript --base-url https://jsonplaceholder.typicode.com && mv \"$d/handlers.ts\" ./src/mocks/handlers.ts && rm -rf \"$d\" && sed -i '' 's|from \"@faker-js/faker\"|from \"@faker-js/faker/locale/ja\"|' ./src/mocks/handlers.ts",
+    "generate-api": "orval",
     "doctor": "npx react-doctor@latest"
   },
   "dependencies": {
@@ -71,8 +69,8 @@
     "happy-dom": "20.14.6",
     "lefthook": "2.2.1",
     "msw": "3.0.3",
-    "msw-auto-mock": "0.32.1",
     "msw-storybook-addon": "3.0.3",
+    "orval": "8.43.0",
     "oxc-transform-react": "0.153.0",
     "oxfmt": "0.72.0",
     "oxlint": "1.87.0",

@@ -32,7 +32,7 @@ export default defineConfig({
           include: ["src/**/*.{test,spec}.{ts,tsx}"],
           environment: "happy-dom",
           globalSetup: "./vitest.global-setup.ts",
-          setupFiles: ["@testing-library/jest-dom/vitest"],
+          setupFiles: ["@testing-library/jest-dom/vitest", "./vitest.setup.ts"],
           typecheck: {
             enabled: true,
           },

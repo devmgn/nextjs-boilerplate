@@ -1,7 +1,13 @@
 #:schema ./node_modules/fallow/schema.json
 
 # Storybook plugin は stories の *.mdx を、Vitest plugin は typecheck.include の型テストを entry にしない
-entry = ["src/**/*.mdx", "src/**/*.test-d.{ts,tsx}"]
+# orval.config.ts は orval CLI が読み、api-client は生成物（グラフ外）から mutator として参照される
+entry = [
+  "src/**/*.mdx",
+  "src/**/*.test-d.{ts,tsx}",
+  "orval.config.ts",
+  "src/api/api-client/index.ts",
+]
 
 # ignorePatterns はグラフからも除外し、生成物経由の依存を未使用にする
 ignoreFindings = ["src/api/openapi/**", "tools/lint-ignore/**"]
@@ -43,7 +49,6 @@ css-broken-reference = "off"
 # ignoreFindings は dead-code にしか効かない
 ignore = [
   "src/api/openapi/**",
-  "src/mocks/**",
   # demo コードは読みやすさを優先し、重複・長さを許容する
   "src/**/*.stories.tsx",
   "src/app/(sandbox)/**",
@@ -52,7 +57,6 @@ ignore = [
 [health]
 ignore = [
   "src/api/openapi/**",
-  "src/mocks/**",
   # demo コードは読みやすさを優先し、重複・長さを許容する
   "src/**/*.stories.tsx",
   "src/app/(sandbox)/**",
@@ -79,7 +83,7 @@ patterns = ["src/app/**"]
 autoDiscover = ["src/app"]
 
 [[boundaries.zones]]
-# 契約層: OpenAPI 生成物とそのコンシューマー拡張
+# 契約層: OpenAPI 生成物（Orval）と mutator（api-client）
 name = "api"
 patterns = ["src/api/**"]
 
@@ -119,7 +123,7 @@ name = "providers"
 patterns = ["src/providers/**"]
 
 [[boundaries.zones]]
-# アプリ固有: MSW handlers（生成物）
+# アプリ固有: MSW の Vitest 用 server
 name = "mocks"
 patterns = ["src/mocks/**"]
 
@@ -180,7 +184,7 @@ from = "providers"
 allow = ["api", "types", "components", "hooks", "utils", "lib"]
 
 [[boundaries.rules]]
-# MSW handlers は API 定義から組み立てる
+# MSW server は API 定義のモックを参照できる
 from = "mocks"
 allow = ["api", "types", "utils"]
 

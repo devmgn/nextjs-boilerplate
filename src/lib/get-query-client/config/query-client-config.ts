@@ -17,44 +17,52 @@ function handleCacheError(
   errorNotifier.notify(error.message);
 }
 
-export const QUERY_CLIENT_CONFIG = {
-  defaultOptions: {
-    queries: {
-      retry: false,
-      refetchOnWindowFocus: false,
-      // With SSR, we usually want to set some default staleTime
-      // above 0 to avoid refetching immediately on the client
-      staleTime: 60 * 1000,
+/**
+ * QueryClient の設定を作る。
+ * QueryCache / MutationCache はインスタンスごとにキャッシュを持つため、呼び出しごとに新しく作る。
+ * 定数で共有すると、サーバー側でリクエストごとに作る QueryClient 同士がキャッシュを共有してしまう。
+ */
+export function createQueryClientConfig() {
+  return {
+    defaultOptions: {
+      queries: {
+        retry: false,
+        refetchOnWindowFocus: false,
+        // With SSR, we usually want to set some default staleTime
+        // above 0 to avoid refetching immediately on the client
+        staleTime: 60 * 1000,
+      },
+      mutations: {
+        retry: false,
+      },
+      dehydrate: {
+        // include pending queries in dehydration
+        shouldDehydrateQuery: (query) =>
+          defaultShouldDehydrateQuery(query) ||
+          query.state.status === "pending",
+      },
     },
-    mutations: {
-      retry: false,
-    },
-    dehydrate: {
-      // include pending queries in dehydration
-      shouldDehydrateQuery: (query) =>
-        defaultShouldDehydrateQuery(query) || query.state.status === "pending",
-    },
-  },
-  queryCache: new QueryCache({
-    onError: (error, query) => {
-      handleCacheError(error, query.meta);
-    },
-  }),
-  mutationCache: new MutationCache({
-    onMutate: (_variables, mutation) => {
-      if (mutation.meta?.skipLoading === true) {
-        return;
-      }
-      loading.show();
-    },
-    onSettled: (_data, _error, _variables, _context, mutation) => {
-      if (mutation.meta?.skipLoading === true) {
-        return;
-      }
-      loading.hide();
-    },
-    onError: (error, _variables, _context, mutation) => {
-      handleCacheError(error, mutation.meta);
-    },
-  }),
-} as const satisfies QueryClientConfig;
+    queryCache: new QueryCache({
+      onError: (error, query) => {
+        handleCacheError(error, query.meta);
+      },
+    }),
+    mutationCache: new MutationCache({
+      onMutate: (_variables, mutation) => {
+        if (mutation.meta?.skipLoading === true) {
+          return;
+        }
+        loading.show();
+      },
+      onSettled: (_data, _error, _variables, _context, mutation) => {
+        if (mutation.meta?.skipLoading === true) {
+          return;
+        }
+        loading.hide();
+      },
+      onError: (error, _variables, _context, mutation) => {
+        handleCacheError(error, mutation.meta);
+      },
+    }),
+  } as const satisfies QueryClientConfig;
+}

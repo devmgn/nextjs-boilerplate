@@ -1,8 +1,8 @@
 import { QueryClient, environmentManager } from "@tanstack/react-query";
-import { QUERY_CLIENT_CONFIG } from "./config/query-client-config";
+import { createQueryClientConfig } from "./config/query-client-config";
 
 function makeQueryClient() {
-  return new QueryClient(QUERY_CLIENT_CONFIG);
+  return new QueryClient(createQueryClientConfig());
 }
 
 let browserQueryClient: QueryClient | undefined;

@@ -1,6 +1,10 @@
-import { QueryClient, environmentManager } from "@tanstack/react-query";
+import {
+  QueryClient,
+  environmentManager,
+  queryOptions,
+} from "@tanstack/react-query";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { QUERY_CLIENT_CONFIG } from "./config/query-client-config";
+import { createQueryClientConfig } from "./config/query-client-config";
 
 describe("getQueryClient", () => {
   beforeEach(() => {
@@ -26,10 +30,21 @@ describe("getQueryClient", () => {
       expect(getQueryClient()).not.toBe(getQueryClient());
     });
 
-    it("QUERY_CLIENT_CONFIGのstaleTimeが適用されていること", async () => {
+    it("リクエスト間でキャッシュを共有しないこと", async () => {
+      const { getQueryClient } = await import("./get-query-client");
+      const { queryKey } = queryOptions({
+        queryKey: ["user"],
+        queryFn: () => "alice",
+      });
+      getQueryClient().setQueryData(queryKey, "alice");
+
+      expect(getQueryClient().getQueryData(queryKey)).toBeUndefined();
+    });
+
+    it("設定のstaleTimeが適用されていること", async () => {
       const { getQueryClient } = await import("./get-query-client");
       expect(getQueryClient().getDefaultOptions().queries?.staleTime).toBe(
-        QUERY_CLIENT_CONFIG.defaultOptions.queries.staleTime
+        createQueryClientConfig().defaultOptions.queries.staleTime
       );
     });
   });
@@ -49,10 +64,10 @@ describe("getQueryClient", () => {
       expect(getQueryClient()).toBe(getQueryClient());
     });
 
-    it("QUERY_CLIENT_CONFIGのstaleTimeが適用されていること", async () => {
+    it("設定のstaleTimeが適用されていること", async () => {
       const { getQueryClient } = await import("./get-query-client");
       expect(getQueryClient().getDefaultOptions().queries?.staleTime).toBe(
-        QUERY_CLIENT_CONFIG.defaultOptions.queries.staleTime
+        createQueryClientConfig().defaultOptions.queries.staleTime
       );
     });
   });

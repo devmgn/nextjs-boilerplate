@@ -42,20 +42,22 @@ Set `inline: false` when stories for the same endpoint return different response
 
 ```typescript
 const meta = {
-  component: PostList,
+  component: ArticleList,
   parameters: {
     docs: { story: { inline: false } },
   },
   beforeEach({ msw }) {
-    msw.use(...handlers);
+    msw.use(createFixtureHandler(fixtures)); // see mocks.md
   },
-} satisfies Meta<typeof PostList>;
+} satisfies Meta<typeof ArticleList>;
 
 export const ServerError: Story = {
   beforeEach({ msw }) {
     msw.use(
-      http.get("https://...", () =>
-        HttpResponse.json({ message: "Error" }, { status: 500 })
+      createFixtureHandler(
+        fixtures.extend({
+          "GET /api/articles": respond(500, { errors: { body: ["Error"] } }),
+        })
       )
     );
   },
@@ -63,6 +65,8 @@ export const ServerError: Story = {
 ```
 
 Execution order is `loaders` → `beforeEach` (project → meta → story), and the worker is reset at the start of each loader run. So a story's `msw.use()` always overrides the meta-level handlers.
+
+A story without a `play` function passes even if it renders the wrong data, so assert on the rendered result. Scope queries to the component (e.g. `within(canvas.getByRole("list", { name: "Articles" }))`): toasts from earlier stories stay in the DOM.
 
 Unhandled requests print `[MSW] Warning: intercepted a request without a matching request handler`. Storybook's internal requests (`@vite`, `sb-common-assets`, …) are excluded by the addon's default setup, so any warning is a real mock gap. Watch for it: a story without a play function still passes even when its mock never matched.
 

@@ -1,1 +1,1 @@
-export { apiClient } from "./api-client";
+export { ApiError, apiClient, isApiError, type ErrorType } from "./api-client";

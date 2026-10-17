@@ -31,4 +31,5 @@ env = { DO_NOT_TRACK = "1" }
 run = [
   "{{vars.skills_add}} vercel-labs/agent-skills --skill {{vars.vercel_skills}}",
   "{{vars.skills_add}} millionco/react-doctor --skill {{vars.react_doctor_skills}}",
+  "{{vars.skills_add}} orval-labs/orval --skill orval",
 ]
