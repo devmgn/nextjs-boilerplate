@@ -1,5 +1,11 @@
-import type { Context, ESTree, FixFn, Fixer, Rule } from "@oxlint/plugins";
-import type { JsonObject, JsonValue } from "oxlint/plugins-dev";
+import type {
+  Context,
+  ESTree,
+  FixFn,
+  Fixer,
+  Options,
+  Rule,
+} from "@oxlint/plugins";
 
 /**
  * Enforces alphabetical sorting of dependency arrays in React hooks.
@@ -19,6 +25,12 @@ const DEFAULT_HOOKS: ReadonlyMap<string, number> = new Map([
   ["useInsertionEffect", 1],
   ["useImperativeHandle", 2],
 ]);
+
+/** ルールオプションの要素型。oxlint は JSON 型そのものを export しないため Options から導出する。 */
+type JsonValue = Options[number];
+interface JsonObject {
+  [key: string]: JsonValue;
+}
 
 /** `additionalHooks` にオブジェクト形式で渡すフック指定。 */
 type HookSpec = JsonObject & {
