@@ -1,4 +1,5 @@
 import type { Preview } from "@storybook/nextjs-vite";
+import { faker } from "@faker-js/faker/locale/ja";
 import locale from "axe-core/locales/ja.json";
 import { mswLoader } from "msw-storybook-addon/csf3";
 import { SbProvider } from "./sb-provider";
@@ -22,6 +23,9 @@ const preview: Preview = {
     },
   },
   loaders: [mswLoader()],
+  beforeEach() {
+    faker.seed(1);
+  },
   decorators: [
     (Story) => (
       <SbProvider>

@@ -22,9 +22,7 @@ pnpm test:update                    # Update snapshots
 pnpm vitest run path/to/test.test.ts  # Specific test file
 pnpm storybook                      # Storybook dev server
 pnpm build-storybook                # Storybook static build
-pnpm generate-api                   # Generate OpenAPI client
-pnpm generate-api:clean             # Clean + regenerate OpenAPI client
-pnpm generate-mock                  # Generate MSW handlers from OpenAPI spec
+pnpm generate-api                   # Generate OpenAPI client + MSW mocks (Orval)
 pnpm analyze                        # Bundle analysis via Turbopack (no build artifacts; serves a UI)
 pnpm doctor                         # React Doctor scan (security / perf / a11y / architecture)
 mise run skills:update              # Re-fetch the GitHub-sourced skills (skills-lock.json) into .claude/skills (review the diff, then commit)

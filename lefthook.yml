@@ -40,10 +40,15 @@ pre-push:
         - "mise.lock"
       run: mise run lint:workflows
 
+# 依存に変更がないと pnpm install は postinstall を飛ばすため、gitignore 済みの生成物は別途作り直す。
+# 毎回だと遅いので、spec / orval 設定 / mutator が変わったとき（または生成物がないとき）だけ実行する。
+# git diff が失敗した場合（初回 clone で比較元がない等）も再生成する。
 post-merge:
   jobs:
     - name: install
       run: mise exec -- pnpm install --frozen-lockfile --prefer-offline
+    - name: generate-api
+      run: "[ -d src/api/openapi ] && git diff --quiet ORIG_HEAD HEAD -- openapi orval.config.ts src/api/api-client || mise exec -- pnpm generate-api"
 
 post-checkout:
   jobs:
@@ -51,8 +56,14 @@ post-checkout:
       skip:
         - rebase
       run: '[ "{3}" = 0 ] || mise exec -- pnpm install --frozen-lockfile --prefer-offline'
+    - name: generate-api
+      skip:
+        - rebase
+      run: '[ "{3}" = 0 ] || { [ -d src/api/openapi ] && git diff --quiet {1} {2} -- openapi orval.config.ts src/api/api-client; } || mise exec -- pnpm generate-api'
 
 post-rewrite:
   jobs:
     - name: install
       run: '[ "{1}" = amend ] || mise exec -- pnpm install --frozen-lockfile --prefer-offline'
+    - name: generate-api
+      run: '[ "{1}" = amend ] || { [ -d src/api/openapi ] && git diff --quiet ORIG_HEAD HEAD -- openapi orval.config.ts src/api/api-client; } || mise exec -- pnpm generate-api'

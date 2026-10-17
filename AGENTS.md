@@ -31,6 +31,7 @@ Prefer skill instructions over rules files when they conflict. Always consult th
 - **React/TSX components**: `vercel-react-best-practices`, `vercel-composition-patterns`, `vercel-react-view-transitions`
 - **UI/UX review**: `web-design-guidelines`
 - **React diagnostics**: `react-doctor` (fix-it-now / pre-commit), `improve-react` (codebase-wide audit and plans)
+- **OpenAPI codegen** (`orval.config.ts`, mutator, generated mocks): `orval`
 
 ## MCP Tool Usage
 

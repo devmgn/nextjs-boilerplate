@@ -1,7 +1,7 @@
 import type { MockInstance } from "vitest";
-import { QueryClient } from "@tanstack/react-query";
+import { QueryClient, queryOptions } from "@tanstack/react-query";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { QUERY_CLIENT_CONFIG } from "./query-client-config";
+import { createQueryClientConfig } from "./query-client-config";
 import { loading } from "../../../components/loading-overlay";
 import { errorNotifier } from "../../error-notifier";
 
@@ -12,12 +12,14 @@ function buildQuery(queryClient: QueryClient, name: string) {
   return queryClient.getQueryCache().build(queryClient, { queryKey });
 }
 
-describe("QUERY_CLIENT_CONFIG", () => {
+describe("createQueryClientConfig", () => {
+  const config = createQueryClientConfig();
+
   let queryClient: QueryClient;
   let notifySpy: MockInstance<(message: string) => void>;
 
   beforeEach(() => {
-    queryClient = new QueryClient(QUERY_CLIENT_CONFIG);
+    queryClient = new QueryClient(createQueryClientConfig());
     notifySpy = vi.spyOn(errorNotifier, "notify").mockImplementation(() => {});
     loading.reset();
   });
@@ -156,29 +158,47 @@ describe("QUERY_CLIENT_CONFIG", () => {
     });
   });
 
+  describe("キャッシュの独立性", () => {
+    it("呼び出すたびに新しい QueryCache / MutationCache を作ること", () => {
+      const a = createQueryClientConfig();
+      const b = createQueryClientConfig();
+
+      expect(a.queryCache).not.toBe(b.queryCache);
+      expect(a.mutationCache).not.toBe(b.mutationCache);
+    });
+
+    it("別の QueryClient にキャッシュが漏れないこと", () => {
+      const other = new QueryClient(createQueryClientConfig());
+      const { queryKey } = queryOptions({
+        queryKey: ["isolated"],
+        queryFn: () => "value",
+      });
+      queryClient.setQueryData(queryKey, "value");
+
+      expect(other.getQueryData(queryKey)).toBeUndefined();
+    });
+  });
+
   describe("defaultOptions", () => {
     it("queriesのretryがfalseであること", () => {
-      expect(QUERY_CLIENT_CONFIG.defaultOptions.queries.retry).toBeFalsy();
+      expect(config.defaultOptions.queries.retry).toBeFalsy();
     });
 
     it("mutationsのretryがfalseであること", () => {
-      expect(QUERY_CLIENT_CONFIG.defaultOptions.mutations.retry).toBeFalsy();
+      expect(config.defaultOptions.mutations.retry).toBeFalsy();
     });
 
     it("staleTimeが60秒であること", () => {
-      expect(QUERY_CLIENT_CONFIG.defaultOptions.queries.staleTime).toBe(60_000);
+      expect(config.defaultOptions.queries.staleTime).toBe(60_000);
     });
 
     it("refetchOnWindowFocusがfalseであること", () => {
-      expect(
-        QUERY_CLIENT_CONFIG.defaultOptions.queries.refetchOnWindowFocus
-      ).toBeFalsy();
+      expect(config.defaultOptions.queries.refetchOnWindowFocus).toBeFalsy();
     });
   });
 
   describe("dehydrate", () => {
-    const { shouldDehydrateQuery } =
-      QUERY_CLIENT_CONFIG.defaultOptions.dehydrate;
+    const { shouldDehydrateQuery } = config.defaultOptions.dehydrate;
 
     it("successステータスのクエリがdehydrate対象であること", () => {
       const query = buildQuery(queryClient, "dehydrate-success");

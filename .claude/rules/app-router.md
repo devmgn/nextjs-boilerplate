@@ -11,8 +11,9 @@ Only Next.js special files may use default export: page.tsx, layout.tsx, loading
 
 ## Data Fetching
 
-- Server Component: `getQueryClient` (`src/lib/getQueryClient`) + `prefetchQuery` + `HydrationBoundary` (`@tanstack/react-query`)
-- Client Component: `"use client"` + `useSuspenseQuery`
+- Server Component: `getQueryClient` (`src/lib/get-query-client`) + `get<Operation>SuspenseQueryOptions` (prefetch) + `HydrationBoundary` (`@tanstack/react-query`)
+- Client Component: `"use client"` + the generated suspense hook (`useGetArticlesSuspense`, ...). Pass the same params as the prefetch so both use the same query key (see `api.md`)
+- Build every `QueryClient` with `createQueryClientConfig()`, never a shared config object: `QueryCache` / `MutationCache` hold the cache, so sharing them leaks data between server requests (and between stories)
 
 ### Cache Components 下での制約
 
@@ -21,14 +22,16 @@ Only Next.js special files may use default export: page.tsx, layout.tsx, loading
 prefetch + `HydrationBoundary` は専用のコンポーネントに切り出し、`await connection()`（`next/server`）でリクエスト時レンダリングを宣言して、呼び出し側の `page.tsx` で `<Suspense>` で包む。参考実装: `src/app/(sandbox)/openapi/`
 
 ```tsx
-// _components/PostListContainer/PostListContainer.tsx
-export async function PostListContainer() {
+// _components/article-list-container/article-list-container.tsx
+const params: GetArticlesParams = { limit: 10 };
+
+export async function ArticleListContainer() {
   await connection();
   const queryClient = getQueryClient();
-  void queryClient.prefetchQuery(getPostsQueryOptions());
+  void queryClient.prefetchQuery(getGetArticlesSuspenseQueryOptions(params));
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <PostList />
+      <ArticleList params={params} />
     </HydrationBoundary>
   );
 }
@@ -37,7 +40,7 @@ export async function PostListContainer() {
 export default function Page() {
   return (
     <Suspense fallback={<Spinner />}>
-      <PostListContainer />
+      <ArticleListContainer />
     </Suspense>
   );
 }
@@ -57,6 +60,8 @@ export default function Page() {
 
 - React Hook Form: `createFormControl` + `Form` + `zodResolver`
 - Server Actions: `"use server"` + `useActionState` + `startTransition`
+- Server Actions are public POST endpoints: re-validate input with the same Zod schema (`safeParse`) before using it
+- Return a state object for expected failures instead of throwing: `ApiError` → a fixed message per status (never `error.body`), fetch network failure (`TypeError`) → a network error message. Re-throw anything else so real bugs reach the error boundary. Reference: `src/app/(sandbox)/form/_actions/create-article/`
 
 ## Proxy
 
