@@ -19,7 +19,7 @@ paths:
 ```typescript
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { expect, fn, userEvent } from "storybook/test";
-import { ComponentName } from "./ComponentName";
+import { ComponentName } from "./component-name";
 
 const meta = {
   component: ComponentName,

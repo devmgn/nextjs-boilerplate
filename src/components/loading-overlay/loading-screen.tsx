@@ -1,10 +1,10 @@
 import { LoadingView } from "./loading-view";
 
 /**
- * マウントされている間は常に表示される宣言的な全画面ローディング。
- * Next.js App Router の `loading.tsx`（Suspense fallback）用途を想定。
+ * Declarative full-screen loading that is always visible while mounted.
+ * Intended for Next.js App Router `loading.tsx` (Suspense fallback).
  *
- * @returns 常に表示状態の全画面ローディング。
+ * @returns An always-visible full-screen loading indicator.
  */
 export function LoadingScreen() {
   return <LoadingView open />;

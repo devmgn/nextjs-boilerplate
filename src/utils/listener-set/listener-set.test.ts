@@ -1,12 +1,12 @@
 import { describe, expect, it, vi } from "vitest";
 import { createListenerSet } from "./listener-set";
 
-/** 参照を差し込むまでのプレースホルダ。 */
+/** Placeholder until the reference is injected. */
 function noop(): void {}
 
 describe(createListenerSet, () => {
   describe("notify", () => {
-    it("subscribe 中の listener が同期的に呼ばれる", () => {
+    it("calls subscribed listeners synchronously", () => {
       const set = createListenerSet("test");
       const listener = vi.fn<() => void>();
       const unsubscribe = set.subscribe(listener);
@@ -17,7 +17,7 @@ describe(createListenerSet, () => {
       unsubscribe();
     });
 
-    it("複数 listener は subscribe 順に呼ばれる", () => {
+    it("calls multiple listeners in subscription order", () => {
       const set = createListenerSet("test");
       const order: number[] = [];
 
@@ -36,7 +36,7 @@ describe(createListenerSet, () => {
       u2();
     });
 
-    it("同一 listener を多重 subscribe した場合、各セッションに対して通知される", () => {
+    it("notifies each session when the same listener is subscribed multiple times", () => {
       const set = createListenerSet("test");
       const listener = vi.fn<() => void>();
       const u1 = set.subscribe(listener);
@@ -52,7 +52,7 @@ describe(createListenerSet, () => {
       u2();
     });
 
-    it("listener 内で他の listener を unsubscribe しても当該通知では呼ばれる", () => {
+    it("still calls a listener in the current notification even if another listener unsubscribes it", () => {
       const set = createListenerSet("test");
       const l2 = vi.fn<() => void>();
       let unsubscribeL2: () => void = noop;
@@ -69,7 +69,7 @@ describe(createListenerSet, () => {
       u1();
     });
 
-    it("通知中に subscribe された listener は当該通知では呼ばれず、次回から呼ばれる", () => {
+    it("does not call a listener subscribed during a notification until the next one", () => {
       const set = createListenerSet("test");
       const late = vi.fn<() => void>();
       let lateUnsub: () => void = noop;
@@ -89,7 +89,7 @@ describe(createListenerSet, () => {
       lateUnsub();
     });
 
-    it("listener が throw してもラベル付きで console.error に記録し、他の listener は呼ばれる", () => {
+    it("logs a throwing listener to console.error with the label and still calls the others", () => {
       const set = createListenerSet("myStore");
       const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
       const error = new Error("boom");
@@ -114,7 +114,7 @@ describe(createListenerSet, () => {
   });
 
   describe("unsubscribe", () => {
-    it("unsubscribe 後の listener は呼ばれない", () => {
+    it("does not call a listener after unsubscribe", () => {
       const set = createListenerSet("test");
       const listener = vi.fn<() => void>();
       set.subscribe(listener)();
@@ -123,7 +123,7 @@ describe(createListenerSet, () => {
       expect(listener).not.toHaveBeenCalled();
     });
 
-    it("多重呼び出しは冪等で、他セッションを巻き込まない", () => {
+    it("is idempotent on repeated calls and does not affect other sessions", () => {
       const set = createListenerSet("test");
       const listener = vi.fn<() => void>();
       const u1 = set.subscribe(listener);
@@ -138,8 +138,8 @@ describe(createListenerSet, () => {
     });
   });
 
-  describe("ライフサイクルフック", () => {
-    it("onFirstSubscribe は購読者 0 → 1 のときだけ呼ばれる", () => {
+  describe("lifecycle hooks", () => {
+    it("calls onFirstSubscribe only when subscribers go from 0 to 1", () => {
       const onFirstSubscribe = vi.fn<() => void>();
       const set = createListenerSet("test", { onFirstSubscribe });
 
@@ -154,7 +154,7 @@ describe(createListenerSet, () => {
       u3();
     });
 
-    it("onLastUnsubscribe は購読者 1 → 0 のときだけ呼ばれる", () => {
+    it("calls onLastUnsubscribe only when subscribers go from 1 to 0", () => {
       const onLastUnsubscribe = vi.fn<() => void>();
       const set = createListenerSet("test", { onLastUnsubscribe });
       const u1 = set.subscribe(noop);
@@ -167,7 +167,7 @@ describe(createListenerSet, () => {
       expect(onLastUnsubscribe).toHaveBeenCalledOnce();
     });
 
-    it("unsubscribe の多重呼び出しで onLastUnsubscribe は再度呼ばれない", () => {
+    it("does not call onLastUnsubscribe again on repeated unsubscribe", () => {
       const onLastUnsubscribe = vi.fn<() => void>();
       const set = createListenerSet("test", { onLastUnsubscribe });
       const unsubscribe = set.subscribe(noop);
@@ -179,7 +179,7 @@ describe(createListenerSet, () => {
     });
   });
 
-  it("インスタンス間で listener が混ざらない", () => {
+  it("keeps listeners separate between instances", () => {
     const a = createListenerSet("a");
     const b = createListenerSet("b");
     const listenerB = vi.fn<() => void>();

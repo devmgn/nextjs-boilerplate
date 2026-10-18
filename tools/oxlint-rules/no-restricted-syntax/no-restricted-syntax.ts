@@ -2,7 +2,7 @@ import type { Compiled } from "./utils/selector-matcher/index.ts";
 import type { Rule, Visitor } from "@oxlint/plugins";
 import { compileOption, matchChain } from "./utils/selector-matcher/index.ts";
 
-/** `no-restricted-syntax` が受け取るオブジェクト形式のオプション。 */
+/** Object-form option accepted by `no-restricted-syntax`. */
 interface SelectorOption {
   readonly selector: string;
   readonly message?: string;

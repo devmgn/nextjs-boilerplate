@@ -14,7 +14,7 @@ export default defineConfig({
       baseUrl: { getBaseUrlFromSpecification: true },
       clean: true,
       mock: {
-        // fixtures（エンドポイントごとに seed 固定のモック + 型付きの上書き）を出す。indexMockFiles が前提
+        // Emit fixtures (per-endpoint mocks with a fixed seed + typed overrides). Requires indexMockFiles
         indexMockFiles: true,
         fixtures: true,
         generators: [

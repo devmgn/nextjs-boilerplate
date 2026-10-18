@@ -2,22 +2,22 @@ name: Skills Update
 
 on:
   schedule:
-    # 毎週月曜 09:00 JST
+    # Every Monday at 09:00 JST
     - cron: "0 0 * * 1"
   workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}
-  # push と CI 起動の間で中断されないよう、後続の run は待たせる
+  # Queue later runs so this one is not cancelled between the push and the CI trigger
   cancel-in-progress: false
 
 permissions: {}
 
-# skills-lock.json はバージョンではなくハッシュしか持たないため Renovate では追従できない。
-# `mise run skills:update` で取り直し、差分があれば PR を作る。
+# skills-lock.json holds only hashes, not versions, so Renovate cannot track it.
+# Re-fetch with `mise run skills:update` and open a PR if there is a diff.
 #
-# 第三者コード（skills CLI と取得するスキル）を実行するジョブには書き込み権限を渡さない。
-# 差分を patch として受け渡し、書き込み権限のあるジョブは適用と PR 作成だけを行う。
+# Do not give write permissions to the job that runs third-party code (the skills CLI and fetched skills).
+# Hand the diff over as a patch; the job with write permissions only applies it and opens the PR.
 jobs:
   Update:
     runs-on: ubuntu-26.04
@@ -35,7 +35,7 @@ jobs:
         with:
           install_args: node npm:skills
 
-      # 未指定だと mise.toml の全ツールを入れにいくため、mise-action で入れたものだけで動かす
+      # If unset, it tries to install every tool in mise.toml, so run with only what mise-action installed
       - name: Update skills
         run: mise run --skip-tools skills:update
 
@@ -59,7 +59,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
-      # GITHUB_TOKEN による push は CI を起動しないため、workflow_dispatch で明示的に起動する
+      # Pushes made with GITHUB_TOKEN do not trigger CI, so trigger it explicitly via workflow_dispatch
       actions: write
     steps:
       - name: Checkout
@@ -73,7 +73,7 @@ jobs:
           name: skills-patch
           path: ${{ runner.temp }}
 
-      # 空の patch でも create-pull-request に渡し、上流が main と同じに戻った場合は PR を閉じさせる
+      # Pass even an empty patch to create-pull-request so it closes the PR when upstream matches main again
       - name: Apply patch
         run: |
           if [ -s "$RUNNER_TEMP/skills.patch" ]; then

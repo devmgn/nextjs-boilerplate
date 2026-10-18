@@ -1,7 +1,7 @@
 /**
- * 交差型を展開しそのメンバーを明示的にするユーティリティ型
+ * Utility type that expands an intersection type to make its members explicit
  *
- * デバッグ用途で利用
+ * Intended for debugging
  */
 export type Expand<T> = T extends object
   ? T extends infer O
@@ -9,7 +9,7 @@ export type Expand<T> = T extends object
     : never
   : T;
 
-/** JavaScriptのプリミティブ型の union */
+/** Union of JavaScript primitive types */
 export type Primitive =
   | null
   | undefined
@@ -19,5 +19,5 @@ export type Primitive =
   | symbol
   | bigint;
 
-/** プリミティブ値のみをプロパティ値に持つ、1階層のオブジェクト */
+/** Single-level object whose property values are all primitives */
 export type FlatObject = Record<PropertyKey, Primitive>;

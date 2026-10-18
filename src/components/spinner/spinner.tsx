@@ -36,10 +36,11 @@ interface SpinnerProps
 const { base, circle, track } = spinnerVariants();
 
 /**
- * サイズ設定可能な SVG ベースのローディングスピナー。トラックサークルのオプション付き。
+ * Sizable SVG-based loading spinner with an optional track circle.
  *
- * @param props - サイズ (プリセット名または px)・トラック表示有無と SVG 属性。
- * @returns `output` 要素で包んだスピナー。
+ * @param props - Size (preset name or px), whether to show the track, and SVG
+ *   attributes.
+ * @returns The spinner wrapped in an `output` element.
  */
 export function Spinner(props: SpinnerProps) {
   const { className, showTrack = true, size = SIZE_MAP.md, ..._props } = props;

@@ -1,11 +1,12 @@
 import type { FlatObject } from "../../../types/type-helpers";
 
 /**
- * 対象の列挙型オブジェクトに指定されたキーが存在するかを判定するカスタムタイプガード関数
+ * Custom type guard that checks whether the given key exists in the target
+ * enum-like object
  *
- * @param obj - チェック対象のオブジェクト
- * @param key - 存在を確認するキー
- * @returns キーがオブジェクトに存在する場合はtrue、そうでない場合はfalse
+ * @param obj - The object to check
+ * @param key - The key to look for
+ * @returns True if the key exists in the object, false otherwise
  */
 export function isKeyOf<T extends FlatObject>(
   obj: T,

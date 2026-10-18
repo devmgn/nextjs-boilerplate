@@ -4,15 +4,18 @@ import type { GetArticlesParams } from "../../../../../api/openapi/model/get-art
 import { useGetArticlesSuspense } from "../../../../../api/openapi/articles/articles";
 
 interface Props {
-  /** Prefetch 側と同じ値を渡し、同じ query key のキャッシュを読む */
+  /**
+   * Pass the same value as the prefetch to read the cache under the same query
+   * key
+   */
   params: GetArticlesParams;
 }
 
 /**
- * Prefetch 済みのキャッシュから記事一覧を読み出して表示する。
+ * Reads the article list from the prefetched cache and renders it.
  *
- * @param props - 一覧取得のクエリパラメータ
- * @returns 記事件数と記事のリスト
+ * @param props - Query parameters for fetching the list
+ * @returns The article count and the list of articles
  */
 export function ArticleList({ params }: Props) {
   const { data } = useGetArticlesSuspense(params);

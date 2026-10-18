@@ -3,25 +3,25 @@ import { describe, expect, it } from "vitest";
 import { useDisclosure } from "./use-disclosure";
 
 describe(useDisclosure, () => {
-  describe("初期化", () => {
-    it("引数を省略したとき、isOpen は false で初期化されること", () => {
+  describe("initialization", () => {
+    it("initializes isOpen to false when the argument is omitted", () => {
       const { result } = renderHook(() => useDisclosure());
       expect(result.current.isOpen).toBeFalsy();
     });
 
-    it("initialState に true を渡したとき、isOpen は true で初期化されること", () => {
+    it("initializes isOpen to true when initialState is true", () => {
       const { result } = renderHook(() => useDisclosure(true));
       expect(result.current.isOpen).toBeTruthy();
     });
 
-    it("initialState に false を渡したとき、isOpen は false で初期化されること", () => {
+    it("initializes isOpen to false when initialState is false", () => {
       const { result } = renderHook(() => useDisclosure(false));
       expect(result.current.isOpen).toBeFalsy();
     });
   });
 
   describe("open()", () => {
-    it("isOpen が false のとき、open() を呼ぶと true になること", () => {
+    it("open() sets isOpen to true when it is false", () => {
       const { result } = renderHook(() => useDisclosure(false));
       act(() => {
         result.current.open();
@@ -29,7 +29,7 @@ describe(useDisclosure, () => {
       expect(result.current.isOpen).toBeTruthy();
     });
 
-    it("isOpen が true のとき、open() を呼んでも true のままであること", () => {
+    it("open() keeps isOpen true when it is already true", () => {
       const { result } = renderHook(() => useDisclosure(true));
       act(() => {
         result.current.open();
@@ -39,7 +39,7 @@ describe(useDisclosure, () => {
   });
 
   describe("close()", () => {
-    it("isOpen が true のとき、close() を呼ぶと false になること", () => {
+    it("close() sets isOpen to false when it is true", () => {
       const { result } = renderHook(() => useDisclosure(true));
       act(() => {
         result.current.close();
@@ -47,7 +47,7 @@ describe(useDisclosure, () => {
       expect(result.current.isOpen).toBeFalsy();
     });
 
-    it("isOpen が false のとき、close() を呼んでも false のままであること", () => {
+    it("close() keeps isOpen false when it is already false", () => {
       const { result } = renderHook(() => useDisclosure(false));
       act(() => {
         result.current.close();
@@ -57,7 +57,7 @@ describe(useDisclosure, () => {
   });
 
   describe("toggle()", () => {
-    it("isOpen が false のとき、toggle() を呼ぶと true になること", () => {
+    it("toggle() sets isOpen to true when it is false", () => {
       const { result } = renderHook(() => useDisclosure(false));
       act(() => {
         result.current.toggle();
@@ -65,7 +65,7 @@ describe(useDisclosure, () => {
       expect(result.current.isOpen).toBeTruthy();
     });
 
-    it("isOpen が true のとき、toggle() を呼ぶと false になること", () => {
+    it("toggle() sets isOpen to false when it is true", () => {
       const { result } = renderHook(() => useDisclosure(true));
       act(() => {
         result.current.toggle();
@@ -74,8 +74,8 @@ describe(useDisclosure, () => {
     });
   });
 
-  describe("複合シナリオ", () => {
-    it("同一インスタンスで open → close → toggle を連続して呼んでも、状態が正しく追従すること", () => {
+  describe("combined scenarios", () => {
+    it("tracks state correctly through open, close, then toggle on the same instance", () => {
       const { result } = renderHook(() => useDisclosure());
       act(() => {
         result.current.open();

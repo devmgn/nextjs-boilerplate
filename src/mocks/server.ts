@@ -2,8 +2,8 @@ import { HttpResponse, http } from "msw";
 import { setupServer } from "msw/node";
 import { afterAll, afterEach, beforeAll } from "vitest";
 
-// happy-dom の fetch はクロスオリジン時に CORS preflight を送り、msw v3 はそれも捕捉する。
-// 初期ハンドラは resetHandlers() 後も残るため、ここで一括許可する。
+// happy-dom's fetch sends a CORS preflight for cross-origin requests, and msw v3 intercepts it too.
+// Initial handlers survive resetHandlers(), so allow them all here.
 const corsPreflightHandler = http.options(
   "*",
   () =>

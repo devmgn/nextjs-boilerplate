@@ -3,8 +3,8 @@ import { describe, expect, it } from "vitest";
 import noRestrictedSyntax from "./no-restricted-syntax.ts";
 import { compileOption } from "./utils/selector-matcher/index.ts";
 
-// RuleTester の DescribeFn は戻り値 void を期待するが、vitest の describe は
-// suite を返すため、戻り値を捨てて渡す。
+// RuleTester's DescribeFn expects a void return, but vitest's describe returns
+// a suite, so pass a wrapper that discards the return value.
 RuleTester.describe = (text, fn) => {
   describe(text, () => {
     fn();
@@ -302,7 +302,7 @@ tester.run("custom-rules/no-restricted-syntax", noRestrictedSyntax, {
   ],
 });
 
-// セレクタの構文エラーは compileOption の責務なので、コンパイラを直接叩く。
+// Selector syntax errors are compileOption's responsibility, so call the compiler directly.
 function compile(selector: string) {
   return () => {
     compileOption(selector);

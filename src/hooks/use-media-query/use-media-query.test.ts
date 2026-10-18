@@ -55,23 +55,23 @@ describe(useMediaQuery, () => {
     vi.stubGlobal("matchMedia", matchMediaSpy);
   });
 
-  it("クエリが一致しないとき、falseを返すこと", () => {
+  it("returns false when the query does not match", () => {
     const { result } = renderHook(() => useMediaQuery(QUERY));
     expect(result.current).toBeFalsy();
   });
 
-  it("クエリが一致するとき、trueを返すこと", () => {
+  it("returns true when the query matches", () => {
     mockMql.matches = true;
     const { result } = renderHook(() => useMediaQuery(QUERY));
     expect(result.current).toBeTruthy();
   });
 
-  it("matchMediaに正しいクエリ文字列が渡されること", () => {
+  it("passes the query string to matchMedia", () => {
     renderHook(() => useMediaQuery(QUERY));
     expect(matchMediaSpy).toHaveBeenCalledWith(QUERY);
   });
 
-  it("メディアクエリの変更を検知して値が更新されること", () => {
+  it("updates the value when the media query changes", () => {
     const { result } = renderHook(() => useMediaQuery(QUERY));
     expect(result.current).toBeFalsy();
 
@@ -86,7 +86,7 @@ describe(useMediaQuery, () => {
     expect(result.current).toBeFalsy();
   });
 
-  it("メディアクエリの変更時にonChangeコールバックがイベントと共に呼ばれること", () => {
+  it("calls onChange with the event when the media query changes", () => {
     const onChange = vi.fn<(event: MediaQueryListEvent) => void>();
     renderHook(() => useMediaQuery(QUERY, onChange));
 
@@ -98,7 +98,7 @@ describe(useMediaQuery, () => {
     );
   });
 
-  it("onChangeが未指定でもエラーにならないこと", () => {
+  it("does not throw when onChange is omitted", () => {
     const { result } = renderHook(() => useMediaQuery(QUERY));
 
     expect(() => {
@@ -109,7 +109,7 @@ describe(useMediaQuery, () => {
     expect(result.current).toBeTruthy();
   });
 
-  it("queryが変わったときにリスナーが再登録されること", () => {
+  it("re-registers the listener when query changes", () => {
     const newMql = createMockMediaQueryList(true);
 
     const { rerender } = renderHook(({ query }) => useMediaQuery(query), {
@@ -125,7 +125,7 @@ describe(useMediaQuery, () => {
     expect(newMql.hasListener).toBeTruthy();
   });
 
-  it("アンマウント時にイベントリスナーが解除されること", () => {
+  it("removes the event listener on unmount", () => {
     const { unmount } = renderHook(() => useMediaQuery(QUERY));
     expect(mockMql.hasListener).toBeTruthy();
 

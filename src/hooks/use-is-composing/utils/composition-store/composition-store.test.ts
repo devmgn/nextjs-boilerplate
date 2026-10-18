@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import { bubbleCompositionStore, captureCompositionStore } from ".";
 import { createCompositionStore } from "./composition-store";
 
-/** 参照を差し込むまでのプレースホルダ。 */
+/** Placeholder until the reference is assigned. */
 function noop(): void {}
 
 function dispatchComposition(type: "compositionstart" | "compositionend") {
@@ -22,11 +22,11 @@ describe("compositionStore", () => {
       capture: false,
     },
   ])("$name", ({ store, capture }) => {
-    it("初期値はfalse", () => {
+    it("starts as false", () => {
       expect(store.getSnapshot()).toBeFalsy();
     });
 
-    it("compositionstartでtrue、compositionendでfalseになる", () => {
+    it("becomes true on compositionstart and false on compositionend", () => {
       const unsubscribe = store.subscribe(() => {});
 
       dispatchComposition("compositionstart");
@@ -38,7 +38,7 @@ describe("compositionStore", () => {
       unsubscribe();
     });
 
-    it("subscribe中のリスナーが同期的に呼ばれる", () => {
+    it("calls subscribed listeners synchronously", () => {
       const listener = vi.fn<() => void>();
       const unsubscribe = store.subscribe(listener);
 
@@ -51,7 +51,7 @@ describe("compositionStore", () => {
       unsubscribe();
     });
 
-    it("unsubscribe後はリスナーが呼ばれない", () => {
+    it("does not call the listener after unsubscribe", () => {
       const listener = vi.fn<() => void>();
       const unsubscribe = store.subscribe(listener);
       unsubscribe();
@@ -60,7 +60,7 @@ describe("compositionStore", () => {
       expect(listener).not.toHaveBeenCalled();
     });
 
-    it("初回subscribeでdocumentリスナーを登録する", () => {
+    it("registers document listeners on the first subscribe", () => {
       const addSpy = vi.spyOn(document, "addEventListener");
 
       const unsubscribe = store.subscribe(() => {});
@@ -79,7 +79,7 @@ describe("compositionStore", () => {
       unsubscribe();
     });
 
-    it("最後のunsubscribeでdocumentリスナーを除去する", () => {
+    it("removes document listeners on the last unsubscribe", () => {
       const removeSpy = vi.spyOn(document, "removeEventListener");
       const unsubscribe = store.subscribe(() => {});
 
@@ -97,7 +97,7 @@ describe("compositionStore", () => {
       );
     });
 
-    it("購読者が複数いる間は最後の1件まで除去しない", () => {
+    it("does not remove listeners until the last of multiple subscribers leaves", () => {
       const removeSpy = vi.spyOn(document, "removeEventListener");
       const u1 = store.subscribe(() => {});
       const u2 = store.subscribe(() => {});
@@ -113,7 +113,7 @@ describe("compositionStore", () => {
       );
     });
 
-    it("複数リスナーが全員呼ばれる", () => {
+    it("calls every listener", () => {
       const l1 = vi.fn<() => void>();
       const l2 = vi.fn<() => void>();
       const u1 = store.subscribe(l1);
@@ -128,7 +128,7 @@ describe("compositionStore", () => {
       u2();
     });
 
-    it("リスナー内で他のリスナーをunsubscribeしても他のリスナーは呼ばれる", () => {
+    it("calls other listeners even if a listener unsubscribes another", () => {
       const l2 = vi.fn<() => void>();
       let unsubscribeL2: () => void = noop;
 
@@ -149,7 +149,7 @@ describe("compositionStore", () => {
       u2();
     });
 
-    it("あるリスナーがthrowしても他のリスナーは呼ばれる", () => {
+    it("calls other listeners even if one throws", () => {
       const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
 
       const bad = vi.fn<() => void>(() => {
@@ -170,16 +170,16 @@ describe("compositionStore", () => {
       u2();
     });
 
-    it("composing中にunsubscribeしても次のsubscribeはfalseから始まる", () => {
-      // 最後の unsubscribe で composing を false にリセットする挙動の回帰テスト。
-      // 購読の切れ目で compositionend を取りこぼしても、次の subscribe 時の getSnapshot が
-      // 古い true を返さないことを保証する。
+    it("starts from false on the next subscribe even if unsubscribed while composing", () => {
+      // Regression test for resetting composing to false on the last unsubscribe.
+      // Ensures getSnapshot on the next subscribe doesn't return a stale true even if
+      // compositionend was missed while unsubscribed.
       const u1 = store.subscribe(() => {});
       dispatchComposition("compositionstart");
       expect(store.getSnapshot()).toBeTruthy();
 
       u1();
-      // 購読者が居ない間に IME が終了しても listener は呼ばれない
+      // The listener is not called when IME composition ends with no subscribers
       dispatchComposition("compositionend");
 
       const u2 = store.subscribe(() => {});
@@ -189,8 +189,8 @@ describe("compositionStore", () => {
     });
   });
 
-  describe("ストア間の独立性", () => {
-    it("captureとbubbleは独立してリスナーを管理する", () => {
+  describe("store independence", () => {
+    it("capture and bubble manage listeners independently", () => {
       const captureListener = vi.fn<() => void>();
       const bubbleListener = vi.fn<() => void>();
       const u1 = captureCompositionStore.subscribe(captureListener);
@@ -198,7 +198,7 @@ describe("compositionStore", () => {
 
       dispatchComposition("compositionstart");
 
-      // 同じ document イベントだが、capture/bubble 両方のフェーズで購読されるため両者に届く
+      // Same document event, but it reaches both because they subscribe in the capture and bubble phases
       expect(captureListener).toHaveBeenCalledOnce();
       expect(bubbleListener).toHaveBeenCalledOnce();
 
@@ -206,7 +206,7 @@ describe("compositionStore", () => {
       u2();
     });
 
-    it("一方のストアのunsubscribeは他方に影響しない", () => {
+    it("unsubscribing from one store does not affect the other", () => {
       const captureListener = vi.fn<() => void>();
       const bubbleListener = vi.fn<() => void>();
       const u1 = captureCompositionStore.subscribe(captureListener);
@@ -223,8 +223,8 @@ describe("compositionStore", () => {
     });
   });
 
-  describe("createCompositionStore (ファクトリ)", () => {
-    it("同じ capture 値でも独立したインスタンスを返す", () => {
+  describe("createCompositionStore (factory)", () => {
+    it("returns independent instances for the same capture value", () => {
       const a = createCompositionStore(true);
       const b = createCompositionStore(true);
       const listenerA = vi.fn<() => void>();
@@ -245,7 +245,7 @@ describe("compositionStore", () => {
       uB();
     });
 
-    it("capture 引数が addEventListener の第3引数にそのまま渡される", () => {
+    it("passes the capture argument as-is to the third argument of addEventListener", () => {
       const addSpy = vi.spyOn(document, "addEventListener");
       const store = createCompositionStore(false);
 
@@ -265,7 +265,7 @@ describe("compositionStore", () => {
       unsubscribe();
     });
 
-    it("同一インスタンスに対する unsubscribe の多重呼び出しは冪等", () => {
+    it("repeated unsubscribe calls on the same instance are idempotent", () => {
       const store = createCompositionStore(true);
       const removeSpy = vi.spyOn(document, "removeEventListener");
 
@@ -273,12 +273,12 @@ describe("compositionStore", () => {
       unsubscribe();
       unsubscribe();
 
-      // removeEventListener は最初の unsubscribe の1回のみ
-      // compositionstart + compositionend で計 2 回
+      // removeEventListener runs only on the first unsubscribe:
+      // 2 calls total, for compositionstart + compositionend
       expect(removeSpy).toHaveBeenCalledTimes(2);
     });
 
-    it("同一 listener を多重 subscribe しても各セッションが独立して扱われる", () => {
+    it("treats each session independently when the same listener subscribes multiple times", () => {
       const store = createCompositionStore(true);
       const removeSpy = vi.spyOn(document, "removeEventListener");
       const listener = vi.fn<() => void>();
@@ -286,15 +286,15 @@ describe("compositionStore", () => {
       const u1 = store.subscribe(listener);
       const u2 = store.subscribe(listener);
 
-      // 1 回目の unsubscribe では document リスナーは外れない
+      // The first unsubscribe does not remove the document listeners
       u1();
       expect(removeSpy).not.toHaveBeenCalled();
 
-      // 2 回目のセッションはまだ有効なのでイベントが届く
+      // The second session is still active, so events arrive
       dispatchComposition("compositionstart");
       expect(listener).toHaveBeenCalledOnce();
 
-      // 最後の unsubscribe で document リスナー除去
+      // The last unsubscribe removes the document listeners
       u2();
       expect(removeSpy).toHaveBeenCalledWith(
         "compositionstart",
@@ -303,7 +303,7 @@ describe("compositionStore", () => {
       );
     });
 
-    it("同一 listener を多重 subscribe した場合、各セッションに対して通知される", () => {
+    it("notifies each session when the same listener subscribes multiple times", () => {
       const store = createCompositionStore(true);
       const listener = vi.fn<() => void>();
 
@@ -312,7 +312,7 @@ describe("compositionStore", () => {
 
       dispatchComposition("compositionstart");
 
-      // 2 セッション分通知されるので計 2 回呼ばれる
+      // Notified once per session, so called 2 times total
       expect(listener).toHaveBeenCalledTimes(2);
 
       u1();

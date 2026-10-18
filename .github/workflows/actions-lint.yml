@@ -36,5 +36,5 @@ jobs:
       - name: zizmor
         run: zizmor .github/
         env:
-          # online audits（impostor-commit など）に使う
+          # Used for online audits (impostor-commit, etc.)
           GH_TOKEN: ${{ github.token }}

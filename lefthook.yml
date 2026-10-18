@@ -5,8 +5,8 @@ pre-commit:
       run: |
         branch=$(git branch --show-current)
         if [ "$branch" = "main" ]; then
-          echo "main ブランチへの直接コミットは禁止です。<type>/<description> 形式の feature ブランチを切ってください。"
-          echo "例: feat/add-login, fix/typo, chore/fallow-optimize"
+          echo "Committing directly to main is not allowed. Create a feature branch named <type>/<description>."
+          echo "e.g. feat/add-login, fix/typo, chore/fallow-optimize"
           exit 1
         fi
     - name: ultracite
@@ -27,8 +27,8 @@ pre-push:
           ""|main) exit 0 ;;
         esac
         if ! echo "$branch" | grep -qE '^(feat|fix|chore|refactor|docs|style|test|perf|build|ci|revert|renovate)/[a-z0-9._/-]+$'; then
-          echo "ブランチ名は <type>/<description> 形式にしてください"
-          echo "例: feat/add-login, fix/typo, chore/fallow-optimize"
+          echo "Branch names must follow the <type>/<description> format"
+          echo "e.g. feat/add-login, fix/typo, chore/fallow-optimize"
           exit 1
         fi
     - name: lint-dead-code
@@ -40,9 +40,9 @@ pre-push:
         - "mise.lock"
       run: mise run lint:workflows
 
-# 依存に変更がないと pnpm install は postinstall を飛ばすため、gitignore 済みの生成物は別途作り直す。
-# 毎回だと遅いので、spec / orval 設定 / mutator が変わったとき（または生成物がないとき）だけ実行する。
-# git diff が失敗した場合（初回 clone で比較元がない等）も再生成する。
+# pnpm install skips postinstall when dependencies are unchanged, so regenerate the gitignored output separately.
+# Running it every time is slow, so only run when the spec / orval config / mutator changed (or the output is missing).
+# Also regenerate when git diff fails (e.g. no base to compare against on a fresh clone).
 post-merge:
   jobs:
     - name: install

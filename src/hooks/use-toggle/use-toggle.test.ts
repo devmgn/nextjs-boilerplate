@@ -3,24 +3,24 @@ import { describe, expect, it, vi } from "vitest";
 import { useToggle } from "./use-toggle";
 
 describe(useToggle, () => {
-  describe("boolean モード", () => {
-    it("引数なしで呼んだとき、初期値は false となること", () => {
+  describe("boolean mode", () => {
+    it("defaults to false with no arguments", () => {
       const { result } = renderHook(() => useToggle());
       const [value] = result.current;
       expect(value).toBeFalsy();
     });
 
-    it("初期値に true を指定したとき、初期値は true となること", () => {
+    it("starts as true when the initial value is true", () => {
       const { result } = renderHook(() => useToggle(true));
       expect(result.current[0]).toBeTruthy();
     });
 
-    it("初期値に false を明示的に指定したとき、初期値は false となること", () => {
+    it("starts as false when the initial value is explicitly false", () => {
       const { result } = renderHook(() => useToggle(false));
       expect(result.current[0]).toBeFalsy();
     });
 
-    it("toggle() を呼ぶと値が反転すること", () => {
+    it("toggle() inverts the value", () => {
       const { result } = renderHook(() => useToggle());
       act(() => {
         result.current[1]();
@@ -32,7 +32,7 @@ describe(useToggle, () => {
       expect(result.current[0]).toBeFalsy();
     });
 
-    it("toggle(value) に値を渡すと、その値が直接セットされること", () => {
+    it("toggle(value) sets the value directly", () => {
       const { result } = renderHook(() => useToggle());
       act(() => {
         result.current[1](true);
@@ -49,8 +49,8 @@ describe(useToggle, () => {
     });
   });
 
-  describe("配列モード", () => {
-    it("配列を渡したとき、初期値は先頭要素となること", () => {
+  describe("array mode", () => {
+    it("starts with the first element when an array is passed", () => {
       const { result } = renderHook(() =>
         useToggle(["light", "dark", "system"])
       );
@@ -58,7 +58,7 @@ describe(useToggle, () => {
       expect(result.current[0]).toBe("light");
     });
 
-    it("第2引数で初期値を指定したとき、その値が初期値となること", () => {
+    it("starts with the value given as the second argument", () => {
       const { result } = renderHook(() =>
         useToggle(["light", "dark", "system"], "dark")
       );
@@ -70,7 +70,7 @@ describe(useToggle, () => {
       expect(result.current[0]).toBe("system");
     });
 
-    it("toggle(value) に値を渡すと、その値が直接セットされること", () => {
+    it("toggle(value) sets the value directly", () => {
       const { result } = renderHook(() =>
         useToggle(["light", "dark", "system"])
       );
@@ -85,7 +85,7 @@ describe(useToggle, () => {
       expect(result.current[0]).toBe("system");
     });
 
-    it("toggle(value) を同じ値で複数回呼んでも、その値のままであること", () => {
+    it("keeps the value when toggle(value) is called repeatedly with the same value", () => {
       const { result } = renderHook(() =>
         useToggle(["light", "dark", "system"])
       );
@@ -100,7 +100,7 @@ describe(useToggle, () => {
       expect(result.current[0]).toBe("dark");
     });
 
-    it("toggle(value) でセットした後、toggle() を呼ぶと、その値の次の要素へ進むこと", () => {
+    it("toggle() advances to the element after the one set by toggle(value)", () => {
       const { result } = renderHook(() =>
         useToggle(["light", "dark", "system"])
       );
@@ -114,7 +114,7 @@ describe(useToggle, () => {
       expect(result.current[0]).toBe("system");
     });
 
-    it("toggle() を呼ぶと次の要素に進み、末尾なら先頭へ循環すること", () => {
+    it("toggle() advances to the next element and wraps around from the last", () => {
       const { result } = renderHook(() =>
         useToggle(["light", "dark", "system"])
       );
@@ -134,15 +134,15 @@ describe(useToggle, () => {
     });
   });
 
-  describe("不正な引数", () => {
-    it("空配列を渡したとき、エラーを投げること", () => {
+  describe("invalid arguments", () => {
+    it("throws when an empty array is passed", () => {
       vi.spyOn(console, "error").mockImplementation(() => {});
       expect(() => renderHook(() => useToggle([]))).toThrow(
         /must be a non-empty array/u
       );
     });
 
-    it("配列に含まれない値を initialValue に渡したとき、エラーを投げること", () => {
+    it("throws when initialValue is not in the array", () => {
       vi.spyOn(console, "error").mockImplementation(() => {});
       expect(() =>
         renderHook(() => useToggle<string>(["light", "dark"], "system"))

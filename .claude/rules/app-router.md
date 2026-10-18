@@ -5,9 +5,11 @@ paths:
 
 # Next.js App Router Rules
 
-## Default Exports
+## Convention Files
 
-Only Next.js special files may use default export: page.tsx, layout.tsx, loading.tsx, error.tsx, global-error.tsx, not-found.tsx, global-not-found.tsx, forbidden.tsx, unauthorized.tsx, template.tsx, default.tsx, route.tsx, sitemap.ts
+Next.js convention files are the only files that sit flat in a route directory (everything else follows `directory-structure.md`) and the only non-story files allowed a default export:
+
+`page.tsx`, `layout.tsx`, `template.tsx`, `default.tsx`, `loading.tsx`, `error.tsx`, `global-error.tsx`, `not-found.tsx`, `global-not-found.tsx`, `forbidden.tsx`, `unauthorized.tsx`, `route.ts`, `sitemap.ts`
 
 ## Data Fetching
 
@@ -15,11 +17,11 @@ Only Next.js special files may use default export: page.tsx, layout.tsx, loading
 - Client Component: `"use client"` + the generated suspense hook (`useGetArticlesSuspense`, ...). Pass the same params as the prefetch so both use the same query key (see `api.md`)
 - Build every `QueryClient` with `createQueryClientConfig()`, never a shared config object: `QueryCache` / `MutationCache` hold the cache, so sharing them leaks data between server requests (and between stories)
 
-### Cache Components 下での制約
+### Under Cache Components
 
-`cacheComponents: true` が有効なので、`dehydrate()` を prerender 経路で呼ぶと `dataUpdatedAt: Date.now()` が不安定値として弾かれる（`blocking-prerender-current-time`）。
+`cacheComponents: true` is enabled, so calling `dehydrate()` during prerendering fails: `dataUpdatedAt: Date.now()` is rejected as a non-deterministic value (`blocking-prerender-current-time`).
 
-prefetch + `HydrationBoundary` は専用のコンポーネントに切り出し、`await connection()`（`next/server`）でリクエスト時レンダリングを宣言して、呼び出し側の `page.tsx` で `<Suspense>` で包む。参考実装: `src/app/(sandbox)/openapi/`
+Move the prefetch + `HydrationBoundary` into a dedicated component, opt it into request-time rendering with `await connection()` (`next/server`), and wrap it in `<Suspense>` in the calling `page.tsx`. Reference: `src/app/(sandbox)/openapi/`
 
 ```tsx
 // _components/article-list-container/article-list-container.tsx
@@ -46,15 +48,15 @@ export default function Page() {
 }
 ```
 
-## Root Layout をバイパスするファイル
+## Files That Bypass the Root Layout
 
-`global-error.tsx` / `global-not-found.tsx` は root layout を経由しないため、`<html>` / `<body>` と `../lib/styles/globals.css` を自前で用意する。
+`global-error.tsx` and `global-not-found.tsx` are not rendered inside the root layout, so they provide their own `<html>` / `<body>` and import `../lib/styles/globals.css`.
 
-|  | 発火条件 | Component 種別 | metadata |
+|  | Rendered when | Component | metadata |
 | --- | --- | --- | --- |
-| `global-error.tsx` | root layout / template の未捕捉エラー | Client 必須 | 不可（`<title>` で代替） |
-| `global-not-found.tsx` | どのルートにもマッチしない URL | Server 可 | 可 |
-| `not-found.tsx` | `notFound()` 呼び出し | Server 可 | 可（root layout 内で描画される） |
+| `global-error.tsx` | An uncaught error in the root layout / template | Client only | Not supported (use `<title>`) |
+| `global-not-found.tsx` | A URL matches no route | Server OK | Supported |
+| `not-found.tsx` | `notFound()` is called | Server OK | Supported (rendered inside the root layout) |
 
 ## Form Handling
 
@@ -65,4 +67,4 @@ export default function Page() {
 
 ## Proxy
 
-`src/proxy.ts` (NOT `middleware.ts`) — Next.js Proxy convention
+`src/proxy.ts` (NOT `middleware.ts`) — the Next.js 16 Proxy convention. Its helpers live in `src/lib/proxy/`

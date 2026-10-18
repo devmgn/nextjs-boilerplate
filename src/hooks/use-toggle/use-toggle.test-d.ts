@@ -1,13 +1,13 @@
 import { describe, expectTypeOf, it } from "vitest";
 import { useToggle } from "./use-toggle";
 
-/** 配列引数の検証で使う値の集合。 */
+/** Set of values used to test the array argument. */
 type Theme = "light" | "dark" | "system";
 
-// オーバーロードの解決結果は「実際に呼び出す式」からしか得られないため、型検証用の
-// ラッパーからも useToggle を呼ぶ。フックを呼ぶ関数はカスタムフックそのものなので
-// `use` プレフィックスを付けて Rules of Hooks を満たす。
-// いずれも実行時には評価せず、tsc による型検査だけを目的とする。
+// Overload resolution can only be observed from an actual call expression, so these
+// type-test wrappers also call useToggle. A function that calls a hook is itself a custom hook,
+// so they use the `use` prefix to satisfy the Rules of Hooks.
+// None of them run at runtime; they exist only for tsc type checking.
 
 function useNoArg() {
   const [value, toggle] = useToggle();
@@ -31,20 +31,20 @@ function useArrayWithInitial() {
   expectTypeOf(value).toEqualTypeOf<Theme>();
 }
 
-describe("useToggle 型推論", () => {
-  it("引数なしのとき、値は boolean となる", () => {
+describe("useToggle type inference", () => {
+  it("value is boolean with no arguments", () => {
     expectTypeOf(useNoArg).toBeFunction();
   });
 
-  it("boolean を渡したとき、値は boolean となる", () => {
+  it("value is boolean when a boolean is passed", () => {
     expectTypeOf(useBooleanArg).toBeFunction();
   });
 
-  it("配列リテラルを渡したとき、値はその要素のユニオン型に推論される", () => {
+  it("value is inferred as the union of elements when an array literal is passed", () => {
     expectTypeOf(useArrayArg).toBeFunction();
   });
 
-  it("配列と初期値を渡したとき、値の型は要素のユニオン型となる", () => {
+  it("value is the union of elements when an array and initial value are passed", () => {
     expectTypeOf(useArrayWithInitial).toBeFunction();
   });
 });

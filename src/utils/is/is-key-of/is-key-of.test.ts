@@ -9,7 +9,7 @@ const TEST_OBJECT = {
 } as const;
 
 describe(isKeyOf, () => {
-  describe("キーが存在する場合", () => {
+  describe("when the key exists", () => {
     it.for([
       { value: "red", expected: true },
       { value: "green", expected: true },
@@ -20,7 +20,7 @@ describe(isKeyOf, () => {
     });
   });
 
-  describe("キーが存在しない場合", () => {
+  describe("when the key does not exist", () => {
     it.for([
       { value: "NAME", expected: false },
       { value: "AGE", expected: false },

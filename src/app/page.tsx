@@ -1,7 +1,7 @@
 /**
- * トップページ。
+ * Top page.
  *
- * @returns 空の main 要素
+ * @returns An empty main element
  */
 export default function Page() {
   return <main />;

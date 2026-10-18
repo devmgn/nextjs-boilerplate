@@ -2,13 +2,15 @@ import { useWebStorage } from "../use-web-storage";
 import { sessionStorageStore } from "../utils/web-storage-store";
 
 /**
- * SessionStorage フック。`useWebStorage` に `sessionStorageStore` を束縛したラッパー。
+ * SessionStorage hook. A wrapper that binds `sessionStorageStore` to
+ * `useWebStorage`.
  *
- * SessionStorage は同一タブに閉じる Web Storage 仕様に従い、他タブとは同期しない。ストレージ
- * 未設定・取得失敗・SSR 時は `null` を返す。
+ * Per the Web Storage spec, sessionStorage is scoped to a single tab and does
+ * not sync with other tabs. Returns `null` when the key is unset, the read
+ * fails, or during SSR.
  *
- * @param key - ストレージキー。
- * @returns `useWebStorage` と同じ 3 要素タプル。
+ * @param key - Storage key.
+ * @returns The same 3-element tuple as `useWebStorage`.
  */
 export function useSessionStorage(key: string) {
   return useWebStorage(sessionStorageStore, key);

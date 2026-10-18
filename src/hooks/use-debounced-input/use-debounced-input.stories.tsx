@@ -45,5 +45,8 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** IME 対応の debounced 入力。変換中の中間入力は流さず、確定時に即時反映する。 */
+/**
+ * IME-aware debounced input. Intermediate input during composition is not
+ * forwarded; it applies immediately on commit.
+ */
 export const Default: Story = {};

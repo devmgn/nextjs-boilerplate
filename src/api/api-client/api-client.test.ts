@@ -3,12 +3,12 @@ import { describe, expect, it, vi } from "vitest";
 import { ApiError, apiClient, isApiError } from "./api-client";
 import { server } from "../../mocks/server";
 
-// 生成コード（spec）に依存させず、mutator 単体の振る舞いだけを検証する
+// Tests only the mutator's own behavior, without depending on the generated code (spec)
 const URL = "https://api.example.test/resource";
 
 describe("apiClient", () => {
-  describe("成功応答", () => {
-    it("JSON の本文を parse して返すこと", async () => {
+  describe("successful responses", () => {
+    it("parses and returns the JSON body", async () => {
       server.use(http.get(URL, () => HttpResponse.json({ id: 1, name: "a" })));
 
       await expect(apiClient(URL)).resolves.toStrictEqual({
@@ -17,7 +17,7 @@ describe("apiClient", () => {
       });
     });
 
-    it("204 の場合に undefined を返すこと", async () => {
+    it("returns undefined for 204", async () => {
       server.use(
         http.delete(URL, () => new HttpResponse(null, { status: 204 }))
       );
@@ -27,7 +27,7 @@ describe("apiClient", () => {
       ).resolves.toBeUndefined();
     });
 
-    it("本文が空の場合に undefined を返すこと", async () => {
+    it("returns undefined when the body is empty", async () => {
       server.use(
         http.delete(URL, () => new HttpResponse(null, { status: 200 }))
       );
@@ -37,7 +37,7 @@ describe("apiClient", () => {
       ).resolves.toBeUndefined();
     });
 
-    it("2xx でも JSON として読めない場合に ApiError をスローすること", async () => {
+    it("throws ApiError for a 2xx response that cannot be read as JSON", async () => {
       server.use(
         http.get(URL, () => HttpResponse.html("<html>proxy error</html>"))
       );
@@ -50,9 +50,9 @@ describe("apiClient", () => {
     });
   });
 
-  describe("エラー応答", () => {
+  describe("error responses", () => {
     it.each([400, 404, 500])(
-      "%i の場合に status と本文を持つ ApiError をスローすること",
+      "throws ApiError with status and body for %i",
       async (status) => {
         server.use(
           http.get(URL, () =>
@@ -70,9 +70,9 @@ describe("apiClient", () => {
     );
   });
 
-  describe("エラー応答の本文が読めない場合", () => {
-    it("status を保ったまま本文を空として ApiError をスローすること", async () => {
-      // 本文の受信途中で接続が切れた状況は MSW では作れないため、fetch を直接差し替える
+  describe("when the error response body cannot be read", () => {
+    it("throws ApiError with the status kept and an empty body", async () => {
+      // MSW cannot simulate a connection dropping mid-body, so replace fetch directly
       const brokenBody = new ReadableStream({
         start(controller) {
           controller.error(new TypeError("terminated"));
@@ -91,8 +91,8 @@ describe("apiClient", () => {
     });
   });
 
-  describe("リクエスト", () => {
-    it("RequestInit の method・headers・body をそのまま渡すこと", async () => {
+  describe("requests", () => {
+    it("passes RequestInit method, headers, and body through as-is", async () => {
       server.use(
         http.post(URL, async ({ request }) => {
           expect(request.headers.get("Content-Type")).toBe("application/json");
@@ -110,7 +110,7 @@ describe("apiClient", () => {
       ).resolves.toStrictEqual({ title: "t" });
     });
 
-    it("signal で中断できること", async () => {
+    it("can be aborted with a signal", async () => {
       server.use(http.get(URL, () => HttpResponse.json({})));
       const controller = new AbortController();
       controller.abort();
@@ -123,13 +123,13 @@ describe("apiClient", () => {
 });
 
 describe("isApiError", () => {
-  it("ApiError のインスタンスを true と判定すること", () => {
+  it("returns true for an ApiError instance", () => {
     const error = new ApiError(new Response(null, { status: 404 }), "");
 
     expect(isApiError(error)).toBeTruthy();
   });
 
-  it("別の ApiError クラス由来でも name・status・body が揃えば true と判定すること", () => {
+  it("returns true for another ApiError class when name, status, and body are present", () => {
     const error = Object.assign(new Error("x"), {
       name: "ApiError",
       status: 500,
@@ -140,14 +140,14 @@ describe("isApiError", () => {
   });
 
   it.each([
-    ["通常の Error", new Error("x")],
+    ["a plain Error", new Error("x")],
     [
-      "name だけ一致する Error",
+      "an Error matching only name",
       Object.assign(new Error("x"), { name: "ApiError" }),
     ],
-    ["Error でないオブジェクト", { name: "ApiError", status: 500, body: "" }],
+    ["a non-Error object", { name: "ApiError", status: 500, body: "" }],
     ["null", null],
-  ])("%s を false と判定すること", (_label, value) => {
+  ])("returns false for %s", (_label, value) => {
     expect(isApiError(value)).toBeFalsy();
   });
 });

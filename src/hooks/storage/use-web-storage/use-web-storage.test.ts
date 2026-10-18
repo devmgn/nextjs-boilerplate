@@ -5,9 +5,11 @@ import { describe, expect, it, vi } from "vitest";
 import { useWebStorage } from "./use-web-storage";
 
 /**
- * テスト用のインメモリ `WebStorageStore`。`useWebStorage` が渡されたストアへ正しく委譲しているかを
- * 確認するため、localStorage / sessionStorage を経由せず素の関数でストア契約を満たす。
- * `__listeners` は購読解除の副作用をテストから直接観測するために公開する。
+ * In-memory `WebStorageStore` for tests. To verify that `useWebStorage`
+ * delegates correctly to the given store, it satisfies the store contract with
+ * plain functions instead of going through localStorage / sessionStorage.
+ * `__listeners` is exposed so tests can directly observe the side effects of
+ * unsubscribing.
  */
 type MockStore = WebStorageStore & { __listeners: Set<() => void> };
 
@@ -58,7 +60,7 @@ function createMockStore(): MockStore {
 
 let keySequence = 0;
 
-// テスト間でキーが衝突しないようにする連番。
+// Sequence number to avoid key collisions between tests.
 function uniqueKey() {
   keySequence += 1;
 
@@ -66,13 +68,13 @@ function uniqueKey() {
 }
 
 describe(useWebStorage, () => {
-  it("ストア未設定なら null を返す", () => {
+  it("returns null when unset in the store", () => {
     const store = createMockStore();
     const { result } = renderHook(() => useWebStorage(store, uniqueKey()));
     expect(result.current[0]).toBeNull();
   });
 
-  it("渡されたストアの read で既存値を取得する", () => {
+  it("gets an existing value via the given store's read", () => {
     const store = createMockStore();
     const key = uniqueKey();
     store.write(key, "stored");
@@ -81,7 +83,7 @@ describe(useWebStorage, () => {
     expect(store.read).toHaveBeenCalledWith(key);
   });
 
-  it("setValue は渡されたストアの write に委譲する", () => {
+  it("setValue delegates to the given store's write", () => {
     const store = createMockStore();
     const key = uniqueKey();
     const { result } = renderHook(() => useWebStorage(store, key));
@@ -94,7 +96,7 @@ describe(useWebStorage, () => {
     expect(result.current[0]).toBe("updated");
   });
 
-  it("removeValue は渡されたストアの remove に委譲する", () => {
+  it("removeValue delegates to the given store's remove", () => {
     const store = createMockStore();
     const key = uniqueKey();
     const { result } = renderHook(() => useWebStorage(store, key));
@@ -110,7 +112,7 @@ describe(useWebStorage, () => {
     expect(result.current[0]).toBeNull();
   });
 
-  it("ストアの subscribe 経由で外部変更を受信して再レンダーする", () => {
+  it("re-renders on external changes received via the store's subscribe", () => {
     const store = createMockStore();
     const key = uniqueKey();
     const { result } = renderHook(() => useWebStorage(store, key));
@@ -124,7 +126,7 @@ describe(useWebStorage, () => {
     expect(result.current[0]).toBe("external");
   });
 
-  it("関数型更新はストアの最新値に基づいて解決される", () => {
+  it("resolves functional updates against the store's latest value", () => {
     const store = createMockStore();
     const key = uniqueKey();
     store.write(key, "");
@@ -141,7 +143,7 @@ describe(useWebStorage, () => {
     expect(store.write).toHaveBeenLastCalledWith(key, "ab");
   });
 
-  it("関数型更新の prev は外部書き込み後のストア最新値を見る", () => {
+  it("functional update prev sees the latest store value after an external write", () => {
     const store = createMockStore();
     const key = uniqueKey();
     const { result } = renderHook(() => useWebStorage(store, key));
@@ -154,7 +156,7 @@ describe(useWebStorage, () => {
     expect(result.current[0]).toBe("base+1");
   });
 
-  it("再レンダーで subscribe が重複呼び出しされない", () => {
+  it("does not call subscribe again on re-render", () => {
     const store = createMockStore();
     const key = uniqueKey();
     const { rerender } = renderHook(() => useWebStorage(store, key));
@@ -166,7 +168,7 @@ describe(useWebStorage, () => {
     expect(store.subscribe).toHaveBeenCalledTimes(initialCalls);
   });
 
-  it("アンマウント時に購読が解除される", () => {
+  it("unsubscribes on unmount", () => {
     const store = createMockStore();
     const key = uniqueKey();
     const { unmount } = renderHook(() => useWebStorage(store, key));
@@ -175,7 +177,7 @@ describe(useWebStorage, () => {
     const [subscribeResult] = vi.mocked(store.subscribe).mock.results;
 
     if (subscribeResult?.type !== "return") {
-      throw new Error("subscribe が値を返していない");
+      throw new Error("subscribe did not return a value");
     }
 
     const unsubscribe = subscribeResult.value;

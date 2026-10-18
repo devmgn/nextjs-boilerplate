@@ -3,25 +3,31 @@ import { useSyncExternalStore } from "react";
 import { isFunction } from "../../../utils/is/is-function";
 
 /**
- * Web Storage（localStorage / sessionStorage）を React 状態に同期させる汎用フック。
+ * Generic hook that syncs Web Storage (localStorage / sessionStorage) with
+ * React state.
  *
- * 渡されたストアに読み書き・購読を委譲するため、同一タブの複数インスタンス間で値が自動同期する
- * （localStorage ストアの場合は他タブの `storage` イベントにも反応する）。値は文字列のまま扱い、
- * 構造化データを保存したい場合は呼び出し側でシリアライズ/デシリアライズする。
+ * Reads, writes, and subscriptions are delegated to the given store, so values
+ * stay in sync across multiple instances in the same tab (a localStorage store
+ * also reacts to `storage` events from other tabs). Values are kept as strings;
+ * serialize/deserialize on the caller side to store structured data.
  *
- * ストレージが未設定・取得失敗・SSR のいずれの場合も `null` を返す（Web Storage ネイティブの
- * `getItem` と揃える）。
+ * Returns `null` when the key is unset, the read fails, or during SSR (matching
+ * the native Web Storage `getItem`).
  *
- * 通常は `useLocalStorage` / `useSessionStorage` を使い、カスタムストアを挿したいときのみ直接呼ぶ。
+ * Normally use `useLocalStorage` / `useSessionStorage`; call this directly only
+ * to plug in a custom store.
  *
- * @param store - 読み書きと購読を担う {@link WebStorageStore}。
- * @param key - ストレージキー。
- * @returns 3 要素タプル:
+ * @param store - {@link WebStorageStore} that handles reads, writes, and
+ *   subscriptions.
+ * @param key - Storage key.
+ * @returns A 3-element tuple:
  *
- *   - `value`: 現在の値。未設定・取得失敗・SSR 時は `null`。
- *   - `setValue`: 値を書き込む。`React.useState` と同様に関数型更新も可能で、`prev` にはストアの
- *     最新値が渡される。戻り値はストアへの書き込み成否（`QuotaExceededError` 等で失敗時は `false`）。
- *   - `removeValue`: 値を削除する。戻り値はストアでの削除成否。
+ *   - `value`: The current value. `null` when unset, the read fails, or during
+ *     SSR.
+ *   - `setValue`: Writes a value. Like `React.useState`, accepts a functional
+ *     update; `prev` receives the store's latest value. Returns whether the
+ *     write succeeded (`false` on failures such as `QuotaExceededError`).
+ *   - `removeValue`: Removes the value. Returns whether the removal succeeded.
  */
 export function useWebStorage(
   store: WebStorageStore,

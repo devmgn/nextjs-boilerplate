@@ -10,7 +10,7 @@ describe(delay, () => {
     vi.useRealTimers();
   });
 
-  it("指定時間が経過するまで解決しないこと", async () => {
+  it("does not resolve until the given time has elapsed", async () => {
     const onResolved = vi.fn<() => void>();
 
     const pending = (async () => {

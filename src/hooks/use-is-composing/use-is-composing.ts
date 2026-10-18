@@ -5,10 +5,11 @@ import {
 } from "./utils/composition-store";
 
 /**
- * IME 変換中かどうかを返すフック。
+ * Hook that returns whether IME composition is in progress.
  *
- * @param capture - キャプチャフェーズで composition イベントを購読するかどうか
- * @returns IME 変換中なら `true`
+ * @param capture - Whether to subscribe to composition events in the capture
+ *   phase
+ * @returns `true` while IME composition is in progress
  */
 export function useIsComposing(capture = true): boolean {
   const store = capture ? captureCompositionStore : bubbleCompositionStore;

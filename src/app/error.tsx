@@ -6,10 +6,11 @@ interface ErrorProps {
 }
 
 /**
- * ルートセグメントで throw された未捕捉エラーを表示し、再試行させるエラー画面。
+ * Error page that shows uncaught errors thrown in a route segment and lets the
+ * user retry.
  *
- * @param props - Next.js が渡すエラーと再レンダリング用の `reset`
- * @returns エラーメッセージと再試行ボタン
+ * @param props - The error passed by Next.js and `reset` to re-render
+ * @returns The error message and a retry button
  */
 export default function ErrorPage(props: ErrorProps) {
   const { reset } = props;

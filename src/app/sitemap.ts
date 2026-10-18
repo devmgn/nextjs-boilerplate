@@ -2,9 +2,9 @@ import type { MetadataRoute } from "next";
 import { ENV } from "../env";
 
 /**
- * サイトマップ（`/sitemap.xml`）を生成する。
+ * Generates the sitemap (`/sitemap.xml`).
  *
- * @returns サイトのトップ URL を含むサイトマップのエントリー
+ * @returns Sitemap entries including the site's top URL
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

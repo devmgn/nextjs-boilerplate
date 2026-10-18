@@ -1,20 +1,20 @@
 ## Core Technology Stack
 
 - **Next.js 16** with App Router, React 19, Turbopack, React Compiler (see `next.config.ts`)
-  - Node.js 24, pnpm 12 (exact versions in package.json / mise.toml)
+  - Node.js 24, pnpm 12 (exact versions in `package.json` / `mise.toml`)
 - **TypeScript** with strict type checking
-- **Tailwind CSS v4** with @tailwindcss/postcss, **M3 Design Tokens** (see `.claude/rules/design-tokens.md`)
-- **TanStack Query** with queryOptions helper
-- **React Hook Form + Zod v4** with @hookform/resolvers
-- **UI**: @radix-ui primitives, tailwind-variants, tailwind-merge
-- **Utilities**: custom debounce (`src/utils/debounce`)
-- **nuqs** for URL state management (NuqsAdapter in RootProvider)
+- **Tailwind CSS v4** with `@tailwindcss/postcss`, **M3 Design Tokens** (see `.claude/rules/design-tokens.md`)
+- **TanStack Query** with Orval-generated hooks and query options (see `.claude/rules/api.md`)
+- **React Hook Form + Zod v4** with `@hookform/resolvers`
+- **UI**: Radix UI primitives, tailwind-variants, tailwind-merge
+- **nuqs** for URL state (`NuqsAdapter` in `src/app/layout.tsx`)
 - **Ultracite** (Oxlint + Oxfmt preset) for linting and formatting — entry points are `pnpm check` / `pnpm fix`
   - Presets (`oxlint.config.ts`): core, react, next, tanstack, vitest, storybook, anti-slop + js-plugins (github, jsdoc-js, sonarjs, tsdoc, react-doctor)
-  - jsPlugins: @tanstack/eslint-plugin-query, eslint-plugin-storybook (stories only), own rules in `tools/oxlint-rules/`
+  - jsPlugins: `@tanstack/eslint-plugin-query`, `eslint-plugin-storybook` (stories only), own rules in `tools/oxlint-rules/`
   - Type-aware lint + type check enabled (oxlint-tsgolint); TS compiler diagnostics surface as lint errors, so there is no separate `tsc --noEmit` script
   - Suppress comments: `// oxlint-disable-next-line <rule>` (`eslint-disable` is NOT honored; unused directives are errors)
   - Ignore lists live in `tools/lint-ignore/` and are shared by `oxlint.config.ts` / `oxfmt.config.ts` (`fallow.toml` cannot import them, so sync manually)
+- **fallow** for dead code and import boundaries (`fallow.toml`)
 - **Vitest** (coverage reported, no threshold enforced)
 - **Storybook 10** with Vitest integration, a11y testing, MSW
 - **Lefthook** for git hooks (see `lefthook.yml`)
@@ -22,7 +22,27 @@
 
 ## Key Patterns
 
-- **State management**: TanStack Query (server state), React Hook Form + Zod (form state), no global client state
+- **State management**: TanStack Query (server state), React Hook Form + Zod (form state), nuqs (URL state), no global client state
+- **Language**: write docs, code comments, test titles, and commit messages in English. User-facing UI copy is out of scope (`<html lang="ja">`)
+
+## Project Rules
+
+Topic-specific rules live in `.claude/rules/` (path-scoped ones load automatically in Claude Code; other agents should read the relevant file before editing):
+
+| File | Covers |
+| --- | --- |
+| `commands.md` | Dev / lint / test / build commands |
+| `directory-structure.md` | `src/` layout, naming, one feature per directory, colocation under `app/` |
+| `app-router.md` | Convention files, data fetching, Cache Components, forms, Proxy |
+| `api.md` | Orval codegen, `ApiError`, TanStack Query usage |
+| `components.md` | Component conventions, tailwind-variants |
+| `design-tokens.md` | M3 token usage |
+| `tsdoc.md` | Doc comment requirements and TSDoc syntax |
+| `testing.md` | Vitest setup and API mocking in tests |
+| `mocks.md` | MSW setup and Orval fixtures |
+| `storybook.md` | Story patterns, MSW in stories, Storybook MCP |
+| `ci.md` | GitHub Actions workflows |
+| `git-pr.md` | Branches, commits, PRs |
 
 ## Skills Priority
 

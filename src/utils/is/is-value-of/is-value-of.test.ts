@@ -17,7 +17,7 @@ const falsyCases: { value?: unknown }[] = [
   { value: {} },
   { value: [] },
   { value: null },
-  // value を持たせないことで undefined を表す
+  // Omitting value represents undefined
   {},
   { value: true },
   { value: false },
@@ -26,8 +26,8 @@ const falsyCases: { value?: unknown }[] = [
 ];
 
 describe(isValueOf, () => {
-  describe("オブジェクト", () => {
-    describe("値が存在する場合", () => {
+  describe("object", () => {
+    describe("when the value exists", () => {
       it.for([
         { value: "#FF0000" },
         { value: "#00FF00" },
@@ -38,15 +38,15 @@ describe(isValueOf, () => {
       });
     });
 
-    describe("値が存在しない場合", () => {
+    describe("when the value does not exist", () => {
       it.for(falsyCases)("value: $value → false", ({ value }) => {
         expect(isValueOf(TEST_OBJECT, value)).toBeFalsy();
       });
     });
   });
 
-  describe("配列", () => {
-    describe("値が存在する場合", () => {
+  describe("array", () => {
+    describe("when the value exists", () => {
       it.for([
         { value: "#FF0000" },
         { value: "#00FF00" },
@@ -57,7 +57,7 @@ describe(isValueOf, () => {
       });
     });
 
-    describe("値が存在しない場合", () => {
+    describe("when the value does not exist", () => {
       it.for(falsyCases)("value: $value → false", ({ value }) => {
         expect(isValueOf(TEST_ARRAY, value)).toBeFalsy();
       });

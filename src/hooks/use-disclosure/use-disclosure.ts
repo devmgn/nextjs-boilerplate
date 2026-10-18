@@ -1,10 +1,11 @@
 import { useToggle } from "../use-toggle";
 
 /**
- * モーダルなどのコンポーネントの開閉状態を管理するためのカスタムフック
+ * Custom hook that manages the open/closed state of components such as modals
  *
- * @param initialState - 初期の開閉状態
- * @returns 開閉状態 `isOpen` と、それを操作する `open` / `close` / `toggle`
+ * @param initialState - Initial open state
+ * @returns The open state `isOpen` and `open` / `close` / `toggle` to control
+ *   it
  */
 export function useDisclosure(initialState = false) {
   const [isOpen, toggleOpen] = useToggle(initialState);
@@ -17,7 +18,7 @@ export function useDisclosure(initialState = false) {
     toggleOpen(false);
   };
 
-  // toggle() のテストは存在するが、v8 カバレッジが React Compiler のメモ化と相互作用してアロー関数の閉じブロックを未到達ブランチと誤判定するため除外している
+  // toggle() is tested, but excluded because v8 coverage interacts with React Compiler memoization and misreports the arrow function's closing block as an unreached branch
   /* v8 ignore start */
   const toggle = () => {
     toggleOpen();

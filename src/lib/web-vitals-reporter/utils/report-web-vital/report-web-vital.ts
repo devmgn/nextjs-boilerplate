@@ -14,15 +14,16 @@ const metricSchema = z.object({
   rating: z.string(),
 });
 
-// 受け口。実行時には欠けた値が届きうるため Partial で受け、関数内で検証する。
-// next/web-vitals の Metric は未インストールの web-vitals 由来で解決できないため、
-// 検証スキーマ側を契約とする。
+// Input type. Values may be missing at runtime, so accept Partial and validate inside the function.
+// next/web-vitals' Metric comes from the uninstalled web-vitals package and cannot be resolved,
+// so the validation schema serves as the contract.
 type IncomingMetric = Partial<z.input<typeof metricSchema>>;
 
 /**
- * 計測値を検証してコンソールへ出す。スキーマに合わない値は黙って捨てる。
+ * Validates a measurement and logs it to the console. Values that don't match
+ * the schema are silently dropped.
  *
- * @param metric - `useReportWebVitals` から渡される計測値
+ * @param metric - The measurement passed from `useReportWebVitals`
  */
 export function reportWebVital(metric: IncomingMetric): void {
   const result = metricSchema.safeParse(metric);
@@ -32,7 +33,7 @@ export function reportWebVital(metric: IncomingMetric): void {
   }
 
   const { name, value, rating } = result.data;
-  // Web Vitals の計測結果は info で出す
+  // Log Web Vitals measurements at info level
   // oxlint-disable-next-line no-console
   console.info(
     `%c [Web Vitals]: ${name}: ${value} / Rating: ${rating}`,

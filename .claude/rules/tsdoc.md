@@ -16,12 +16,13 @@ Oxlint enforces doc comments through Ultracite's `jsdoc-js` and `tsdoc` js-plugi
 
 ```ts
 /**
- * 最後の呼び出しから `wait` ミリ秒経過するまで `func` の実行を遅延させる。
+ * Delays invoking `func` until `wait` milliseconds have passed since the last
+ * call.
  *
- * @typeParam Args - `func` の引数の型
- * @param func - 遅延実行する関数
- * @param wait - 遅延時間 (ミリ秒)
- * @returns `cancel` / `flush` を持つ debounce 済み関数
+ * @typeParam Args - Argument types of `func`
+ * @param func - The function to debounce
+ * @param wait - Delay in milliseconds
+ * @returns The debounced function, with `cancel` / `flush`
  */
 ```
 
@@ -29,7 +30,7 @@ Oxlint enforces doc comments through Ultracite's `jsdoc-js` and `tsdoc` js-plugi
 - No `{type}` annotations on `@param` / `@returns`; TypeScript already has the types
 - `@typeParam`, not `@template`
 - Other TSDoc tags: `@remarks`, `@defaultValue`, `@example`, `@see`, `@deprecated`, `@privateRemarks`
-- Write descriptions in Japanese, matching the existing comments. Describe meaning and behavior, not the types
+- Write descriptions in English. Describe meaning and behavior, not the types
 
 ## Escaping
 

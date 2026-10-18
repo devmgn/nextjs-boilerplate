@@ -1,6 +1,7 @@
 /**
- * `document` の composition イベントを購読し、IME 変換中状態を共有するストア。
- * `useSyncExternalStore` にそのまま渡せる `subscribe` / `getSnapshot` を返す。
+ * Store that subscribes to `document` composition events and shares the IME
+ * composition state. Exposes `subscribe` / `getSnapshot` that can be passed
+ * directly to `useSyncExternalStore`.
  */
 
 import { createListenerSet } from "../../../../utils/listener-set";
@@ -11,11 +12,13 @@ interface CompositionStore {
 }
 
 /**
- * Document に composition イベントのリスナーを install し、remove する関数を返す。
+ * Installs composition event listeners on the document and returns a function
+ * that removes them.
  *
- * @param capture - キャプチャフェーズで購読するかどうか
- * @param onChange - 変換開始 / 確定のたびに変換中かどうかを受け取るコールバック
- * @returns Install したリスナーを remove する関数
+ * @param capture - Whether to subscribe in the capture phase
+ * @param onChange - Callback that receives whether composition is in progress
+ *   each time it starts / commits
+ * @returns Function that removes the installed listeners
  */
 function listenComposition(
   capture: boolean,
@@ -43,11 +46,13 @@ function listenComposition(
 }
 
 /**
- * 初回 subscribe で document リスナーを install、最後の subscriber が抜けた
- * タイミングで remove する参照カウント方式のストアを生成する。
+ * Creates a reference-counted store that installs document listeners on the
+ * first subscribe and removes them when the last subscriber leaves.
  *
- * @param capture - キャプチャフェーズで composition イベントを購読するかどうか
- * @returns `useSyncExternalStore` に渡せる `subscribe` / `getSnapshot`
+ * @param capture - Whether to subscribe to composition events in the capture
+ *   phase
+ * @returns `subscribe` / `getSnapshot` that can be passed to
+ *   `useSyncExternalStore`
  */
 export function createCompositionStore(capture: boolean): CompositionStore {
   let composing = false;
@@ -61,8 +66,8 @@ export function createCompositionStore(capture: boolean): CompositionStore {
       });
     },
     onLastUnsubscribe: () => {
-      // 購読切れ目の compositionend を取りこぼしても次回 subscribe 時に
-      // 古い true を引きずらないよう、ここでフラグを初期化する
+      // Reset the flag here so a compositionend missed while unsubscribed
+      // doesn't leave a stale true on the next subscribe
       composing = false;
       unlisten?.();
       unlisten = null;

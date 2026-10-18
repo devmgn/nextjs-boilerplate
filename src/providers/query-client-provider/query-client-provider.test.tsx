@@ -4,11 +4,11 @@ import { describe, expect, it } from "vitest";
 import { QueryClientProvider } from "./query-client-provider";
 import { getQueryClient } from "../../lib/get-query-client";
 
-// ReactQueryDevtools は本番・テスト環境では何も描画しないため、
-// レンダリングを検証するテストは置かない。
+// ReactQueryDevtools renders nothing in production and test environments,
+// so there is no test for its rendering.
 
 describe(QueryClientProvider, () => {
-  it("childrenをレンダリングすること", () => {
+  it("renders children", () => {
     render(
       <QueryClientProvider>
         <span data-testid="child">hello</span>
@@ -17,7 +17,7 @@ describe(QueryClientProvider, () => {
     expect(screen.getByTestId("child")).toHaveTextContent("hello");
   });
 
-  it("子コンポーネントからuseQueryClientでgetQueryClientと同一のインスタンスが取得できること", () => {
+  it("exposes the same instance as getQueryClient via useQueryClient", () => {
     const expected = getQueryClient();
 
     const { result } = renderHook(() => useQueryClient(), {

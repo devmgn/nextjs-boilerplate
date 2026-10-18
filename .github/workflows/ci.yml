@@ -13,11 +13,11 @@ concurrency:
 permissions:
   contents: read
 
-# ジョブ ID は必須ステータスチェック名を兼ねるため変更しない。
+# Job IDs double as required status check names, so do not change them.
 #
-# zizmor は自リポジトリ参照に `$/` 構文を推奨するが、actionlint 1.7.12
-# （現時点の最新）が未知の形式として弾くため `./` のまま据え置く。
-# actionlint が対応したら ignore を外して `$/.github/actions/setup` へ移行する。
+# zizmor recommends the `$/` syntax for same-repo references, but actionlint 1.7.12
+# (the latest at the time of writing) rejects it as an unknown format, so keep `./`.
+# Once actionlint supports it, drop the ignore and migrate to `$/.github/actions/setup`.
 jobs:
   Build:
     runs-on: ubuntu-26.04

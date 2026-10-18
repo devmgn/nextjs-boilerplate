@@ -9,10 +9,10 @@ interface LabelProps
   extends React.ComponentProps<"label">, VariantProps<typeof labelVariants> {}
 
 /**
- * 統一されたタイポグラフィのフォームラベル要素。
+ * Form label element with consistent typography.
  *
- * @param props - `label` 要素の属性。
- * @returns スタイル適用済みの `label` 要素。
+ * @param props - Attributes of the `label` element.
+ * @returns The styled `label` element.
  */
 export function Label(props: LabelProps) {
   const { className, htmlFor, ..._props } = props;

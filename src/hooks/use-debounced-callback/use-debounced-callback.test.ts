@@ -7,11 +7,11 @@ describe(useDebouncedCallback, () => {
   beforeEach(() => vi.useFakeTimers());
   afterEach(() => vi.useRealTimers());
 
-  it("callback の実行が指定時間遅延されること", () => {
+  it("delays the callback by the given time", () => {
     const callback = vi.fn<() => void>();
     const { result } = renderHook(() => useDebouncedCallback(callback, 500));
 
-    // 複数回呼んでも直ちに実行されない
+    // Not run immediately even when called multiple times
     act(() => {
       result.current();
       result.current();
@@ -19,39 +19,39 @@ describe(useDebouncedCallback, () => {
     });
     expect(callback).not.toHaveBeenCalled();
 
-    // 500ms 後に実行される（複数回呼んでも最後の1回のみ）
+    // Runs after 500ms (only the last of multiple calls)
     act(() => {
       vi.advanceTimersByTime(500);
     });
     expect(callback).toHaveBeenCalledOnce();
   });
 
-  it("flush を呼び出すと即時実行されること", () => {
+  it("runs immediately when flush is called", () => {
     const callback = vi.fn<() => void>();
     const { result } = renderHook(() => useDebouncedCallback(callback, 500));
 
     act(() => {
       result.current();
       result.current();
-      // flush で即実行
+      // flush runs it immediately
       result.current.flush();
     });
     expect(callback).toHaveBeenCalledOnce();
 
-    // その後タイマーを進めても追加で呼ばれない
+    // Not called again when timers advance afterwards
     act(() => {
       vi.advanceTimersByTime(500);
     });
     expect(callback).toHaveBeenCalledOnce();
   });
 
-  it("cancel を呼び出すと保留中の実行がキャンセルされること", () => {
+  it("cancels the pending call when cancel is called", () => {
     const callback = vi.fn<() => void>();
     const { result } = renderHook(() => useDebouncedCallback(callback, 500));
 
     act(() => {
       result.current();
-      // cancel で保留中の実行をキャンセル
+      // cancel discards the pending call
       result.current.cancel();
       vi.advanceTimersByTime(500);
     });
@@ -59,14 +59,14 @@ describe(useDebouncedCallback, () => {
     expect(callback).not.toHaveBeenCalled();
   });
 
-  it("コンポーネントのアンマウント時に保留中の実行がキャンセルされること", () => {
+  it("cancels the pending call on unmount", () => {
     const callback = vi.fn<() => void>();
 
     const { result, unmount } = renderHook(() =>
       useDebouncedCallback(callback, 500)
     );
 
-    // 保留中の実行がある状態でアンマウント
+    // Unmount while a call is pending
     act(() => {
       result.current();
     });
@@ -78,7 +78,7 @@ describe(useDebouncedCallback, () => {
     expect(callback).not.toHaveBeenCalled();
   });
 
-  it("コールバック関数に引数が正しく渡されること", () => {
+  it("passes arguments to the callback", () => {
     const callback = vi.fn<(a: string, b: number) => void>();
     const { result } = renderHook(() => useDebouncedCallback(callback, 500));
 
@@ -93,7 +93,7 @@ describe(useDebouncedCallback, () => {
     expect(callback).toHaveBeenCalledExactlyOnceWith("test", 123);
   });
 
-  it("wait が変更されると新しい debounced 関数が生成されること", () => {
+  it("creates a new debounced function when wait changes", () => {
     const callback = vi.fn<() => void>();
 
     const { result, rerender } = renderHook(
@@ -101,21 +101,21 @@ describe(useDebouncedCallback, () => {
       { initialProps: { wait: 500 } }
     );
 
-    // 旧 wait (500ms) で呼び出し
+    // Call with the old wait (500ms)
     act(() => {
       result.current();
     });
 
-    // wait を変更して再レンダリング → 保留中の実行はクリーンアップされる
+    // Re-render with a new wait: the pending call is cleaned up
     rerender({ wait: 1000 });
 
-    // 旧タイマー (500ms) が発火しないことを確認
+    // Verify the old timer (500ms) does not fire
     act(() => {
       vi.advanceTimersByTime(500);
     });
     expect(callback).not.toHaveBeenCalled();
 
-    // 新しい wait (1000ms) で動作すること
+    // Works with the new wait (1000ms)
     act(() => {
       result.current();
     });
@@ -125,7 +125,7 @@ describe(useDebouncedCallback, () => {
     expect(callback).toHaveBeenCalledOnce();
   });
 
-  it("依存が変化しない再レンダリングで同一の debounced 関数が返されること", () => {
+  it("returns the same debounced function on re-render with unchanged deps", () => {
     const callback = vi.fn<() => void>();
 
     const { result, rerender } = renderHook(
@@ -138,7 +138,7 @@ describe(useDebouncedCallback, () => {
     expect(result.current).toBe(prev);
   });
 
-  it("毎レンダリングで新しいアロー関数を渡しても保留中のタイマーと引数が失われず、最新のコールバックで発火すること", () => {
+  it("keeps the pending timer and arguments and fires the latest callback when a new arrow function is passed every render", () => {
     const spy = vi.fn<(value: number, arg: string) => void>();
     let current = 0;
 
@@ -150,29 +150,29 @@ describe(useDebouncedCallback, () => {
       { initialProps: { value: current } }
     );
 
-    // 最初の呼び出しでタイマー開始
+    // The first call starts the timer
     const first = result.current;
     act(() => {
       first("args");
     });
 
-    // value を更新して再レンダリング。ここで debounced が再生成されると
-    // タイマーが失われてしまう。
+    // Re-render with an updated value. If debounced were recreated here,
+    // the timer would be lost.
     current = 1;
     rerender({ value: current });
 
-    // 同一の debounced 関数が返り続けること
+    // The same debounced function keeps being returned
     expect(result.current).toBe(first);
 
     act(() => {
       vi.advanceTimersByTime(500);
     });
 
-    // 最新の callback (value=1) で、保持された引数 "args" で発火する
+    // Fires with the latest callback (value=1) and the retained argument "args"
     expect(spy).toHaveBeenCalledExactlyOnceWith(1, "args");
   });
 
-  it("flush が最後に渡された引数で実行されること", () => {
+  it("flush runs with the last passed arguments", () => {
     const callback = vi.fn<(x: string) => void>();
     const { result } = renderHook(() => useDebouncedCallback(callback, 500));
 
@@ -185,7 +185,7 @@ describe(useDebouncedCallback, () => {
     expect(callback).toHaveBeenCalledExactlyOnceWith("second");
   });
 
-  it("flush 経路でも最新の callback が使われること", () => {
+  it("uses the latest callback via flush as well", () => {
     const spy = vi.fn<(value: number, arg: string) => void>();
 
     const { result, rerender } = renderHook(
@@ -200,7 +200,7 @@ describe(useDebouncedCallback, () => {
       result.current("args");
     });
 
-    // callback を差し替えてから flush する
+    // Swap the callback, then flush
     rerender({ value: 1 });
     act(() => {
       result.current.flush();

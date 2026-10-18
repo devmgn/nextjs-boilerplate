@@ -12,7 +12,7 @@ react_doctor_skills = "react-doctor improve-react"
 
 [tasks."lint:workflows"]
 description = "GitHub Actions lint (actionlint + zizmor)"
-# depends だと並列実行になり、片方が失敗するともう片方が中断されるため順次実行する
+# Run sequentially: depends runs tasks in parallel, and one failing aborts the other
 run = [{ task = "lint:actionlint" }, { task = "lint:zizmor" }]
 
 [tasks."lint:actionlint"]
@@ -25,9 +25,9 @@ run = "zizmor .github/"
 
 [tasks."skills:update"]
 description = "Re-fetch the GitHub-sourced skills (skills-lock.json) into .claude/skills"
-# skills.sh へのテレメトリ送信を止める
+# Disable telemetry to skills.sh
 env = { DO_NOT_TRACK = "1" }
-# --skill は可変長なので最後に置く
+# --skill is variadic, so keep it last
 run = [
   "{{vars.skills_add}} vercel-labs/agent-skills --skill {{vars.vercel_skills}}",
   "{{vars.skills_add}} millionco/react-doctor --skill {{vars.react_doctor_skills}}",

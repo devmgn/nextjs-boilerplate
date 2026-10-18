@@ -21,9 +21,10 @@ const form = createFormControl<ArticleSchema>({
 });
 
 /**
- * React Hook Form と server action で記事を作成するフォームのサンドボックスページ。
+ * Sandbox page with a form that creates an article via React Hook Form and a
+ * server action.
  *
- * @returns 記事作成フォームと送信結果
+ * @returns The article form and the submission result
  */
 export default function Page() {
   const [state, formAction, isPending] = useActionState(createArticle, null);

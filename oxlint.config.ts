@@ -51,7 +51,7 @@ export default defineConfig({
   settings: {
     ...jsPluginSettings,
     vitest: { typecheck: true },
-    // 自前ラッパーを素の要素として扱わせる。未設定だとラッパー経由の違反は検出されない。
+    // Treat our own wrappers as their native elements. Without this, violations through wrappers go undetected.
     "jsx-a11y": {
       components: { Button: "button", Input: "input", Label: "label" },
     },
@@ -63,11 +63,11 @@ export default defineConfig({
     typeCheck: true,
   },
   rules: {
-    // console.log は禁止。warn / error は意図的な出力として許可する
+    // Forbid console.log. Allow warn / error as intentional output
     "eslint/no-console": ["error", { allow: ["error", "warn"] }],
 
-    // custom-rules/no-restricted-syntax が top-level の arrow を禁止しており、
-    // expression を強制する func-style とは両立しない
+    // custom-rules/no-restricted-syntax forbids top-level arrows, which conflicts
+    // with func-style enforcing expressions
     "eslint/func-style": "off",
     "react/function-component-definition": [
       "error",

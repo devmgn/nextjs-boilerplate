@@ -4,10 +4,12 @@ import { useDebouncedCallback } from "./use-debounced-callback";
 import { Input } from "../../components/form/input";
 
 /**
- * Result 表示と delay 入力の共通シェル。各 story はここにテキスト入力を差し込む。
+ * Shared shell for the result display and delay input. Each story plugs its
+ * text input into it.
  *
- * @param props - 表示する result、delay とその変更ハンドラ、差し込むテキスト入力
- * @returns デモ用のレイアウト
+ * @param props - Result to display, delay and its change handler, and the text
+ *   input to plug in
+ * @returns Demo layout
  */
 function DemoShell({
   result,
@@ -80,10 +82,13 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** 入力が止まってから delay 経過後に result が更新される、純粋な debounce デモ。 */
+/** Plain debounce demo: result updates once delay has elapsed after input stops. */
 export const Default: Story = {};
 
-/** IME 対応デモ。変換中の中間入力は debounce に流さず、変換確定時 (compositionEnd) に flush で即時反映する。 */
+/**
+ * IME-aware demo. Intermediate input during composition is not forwarded to
+ * debounce; on commit (compositionEnd) it is flushed immediately.
+ */
 export const WithIme: Story = {
   render: () => {
     const [delayTime, setDelayTime] = useState(250);
@@ -101,7 +106,7 @@ export const WithIme: Story = {
       >
         <Input
           onChange={(e) => {
-            // 発火時点の正確な変換状態を nativeEvent から読む（render スナップショットは1テンポ古い）
+            // Read the accurate composition state at fire time from nativeEvent (the render snapshot is one step behind)
             const { nativeEvent } = e;
 
             if (nativeEvent instanceof InputEvent && nativeEvent.isComposing) {
@@ -111,7 +116,7 @@ export const WithIme: Story = {
             onChange(e.target.value);
           }}
           onCompositionEnd={(e) => {
-            // 変換確定時は即時反映
+            // Apply immediately on commit
             onChange(e.currentTarget.value);
             onChange.flush();
           }}

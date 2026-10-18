@@ -1,10 +1,10 @@
 /**
- * レンダリング中に throw して ErrorBoundary の捕捉を実演するためのコンポーネント。
+ * Component that throws during render to demonstrate ErrorBoundary catching it.
  *
- * 呼び出し側は throw を書かずに済み、
- * `{shouldError && <ErrorThrower />}` と JSX 上で状態を表現できる。
+ * Callers need not write a throw themselves and can express the state in JSX as
+ * `{shouldError && <ErrorThrower />}`.
  */
-// throw のみ（戻り値 never）で JSX を返さないため sonarjs が関数名とみなす
+// It only throws (returns never) and never returns JSX, so sonarjs treats it as a function name
 // oxlint-disable-next-line sonarjs/function-name
 export function ErrorThrower(): never {
   throw new Error("This is a test error to demonstrate ErrorBoundary!");

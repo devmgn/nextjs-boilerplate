@@ -9,7 +9,7 @@ import {
 } from "../../../../../api/openapi/index.fixtures";
 import { createFixtureHandler } from "../../../../../mocks/fixture-handler";
 
-// 記事一覧の既定応答。上書きしない項目は route ごとに seed 固定の faker データになる
+// Default article list response. Fields not overridden get seeded faker data per route
 const fixtures = defineFixtures({ "GET /api/articles": {} });
 
 const meta = {
@@ -20,8 +20,8 @@ const meta = {
       story: { inline: false, iframeHeight: 400 },
     },
   },
-  // meta の beforeEach は story の beforeEach より先に走るため、story 側の
-  // msw.use() が後勝ちで上書きする。
+  // The meta beforeEach runs before the story beforeEach, so the story's
+  // msw.use() wins and overrides it.
   beforeEach({ msw }) {
     msw.use(createFixtureHandler(fixtures));
   },
@@ -36,7 +36,7 @@ export const Default: Story = {
     await expect(
       await canvas.findByRole("heading", { name: /^Articles \(\d+\)$/u })
     ).toBeInTheDocument();
-    // 通知（sonner）の <li> と区別するため、記事一覧のリストの中だけを数える
+    // Count only within the article list to exclude the toast (sonner) <li> elements
     const list = canvas.getByRole("list", { name: "Articles" });
     await expect(within(list).getAllByRole("listitem").length).toBeGreaterThan(
       0
@@ -58,7 +58,7 @@ export const ServerError: Story = {
   },
 };
 
-// 通信エラーは spec の応答ではないため fixtures では表せず、素の handler で作る
+// Network errors are not spec responses and can't be expressed with fixtures, so use a raw handler
 export const NetworkError: Story = {
   beforeEach({ msw }) {
     msw.use(http.get(getGetArticlesUrl(), () => HttpResponse.error()));

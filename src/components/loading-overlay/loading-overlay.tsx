@@ -5,10 +5,10 @@ import { LoadingView } from "./loading-view";
 import { loadingStore } from "./utils/loading-store";
 
 /**
- * `loading.show()` / `loading.hide()` などの imperative API に連動する全画面オーバーレイ。
- * ルートレイアウトに 1 つだけマウントして利用する。
+ * Full-screen overlay driven by the imperative API (`loading.show()` /
+ * `loading.hide()`, etc.). Mount exactly one in the root layout.
  *
- * @returns ストアの表示状態に連動する全画面ローディング。
+ * @returns Full-screen loading that follows the store's visibility state.
  */
 export function LoadingOverlay() {
   const open = useSyncExternalStore(

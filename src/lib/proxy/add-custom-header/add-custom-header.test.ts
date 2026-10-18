@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { addCustomHeader } from "./add-custom-header";
 
 describe(addCustomHeader, () => {
-  it("レスポンスにx-request-idヘッダーを設定すること", () => {
+  it("sets the x-request-id header on the response", () => {
     const response = NextResponse.next();
     addCustomHeader(response);
     const requestId = response.headers.get("x-request-id");
@@ -12,7 +12,7 @@ describe(addCustomHeader, () => {
     expect(requestId).toMatch(uuidPattern);
   });
 
-  it("呼び出しごとに異なるUUIDを生成すること", () => {
+  it("generates a different UUID on each call", () => {
     const response1 = NextResponse.next();
     const response2 = NextResponse.next();
     addCustomHeader(response1);

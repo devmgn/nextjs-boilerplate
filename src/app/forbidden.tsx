@@ -1,7 +1,7 @@
 /**
- * `forbidden()` 呼び出し時に表示する 403 画面。
+ * 403 page shown when `forbidden()` is called.
  *
- * @returns 403 メッセージ
+ * @returns The 403 message
  */
 export default function Forbidden() {
   return <>Forbidden</>;

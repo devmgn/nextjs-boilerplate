@@ -1,45 +1,54 @@
 /**
- * 全画面 LoadingOverlay の表示状態を保持する外部ストア。
- * `useSyncExternalStore` にそのまま渡せる `subscribe` / `getSnapshot` と、
- * 呼び出し側から参照カウントで表示制御するための show / hide / promise / reset を公開する。
+ * External store holding the visibility state of the full-screen
+ * LoadingOverlay. Exposes `subscribe` / `getSnapshot`, which can be passed
+ * straight to `useSyncExternalStore`, and show / hide / promise / reset for
+ * callers to control visibility via reference counting.
  */
 
 import { createListenerSet } from "../../../../utils/listener-set";
 
 interface LoadingStore {
-  /** 現在表示中かどうか (`count > 0`)。`useSyncExternalStore` の getSnapshot として渡す想定。 */
+  /**
+   * Whether it is currently visible (`count > 0`). Meant to be passed as
+   * getSnapshot to `useSyncExternalStore`.
+   */
   getSnapshot: () => boolean;
-  /** SSR では常に非表示。ハイドレーション時に useSyncExternalStore が差し替える。 */
+  /** Always hidden during SSR. useSyncExternalStore swaps it out on hydration. */
   getServerSnapshot: () => boolean;
   /**
-   * Listener を登録。同一 listener 参照でもセッション毎に独立して扱う。
-   * 返り値の unsubscribe は冪等で、複数回呼んでも副作用はない。
+   * Registers a listener. Each subscription is independent, even for the same
+   * listener reference. The returned unsubscribe is idempotent; calling it
+   * multiple times has no side effects.
    */
   subscribe: (listener: () => void) => () => void;
 
   /**
-   * カウンタを +1 して listener に通知する。
-   * boolean 状態 (`count > 0`) の境界に限らず、呼ばれるたびに通知する契約。
+   * Increments the counter and notifies listeners. Contract: notifies on every
+   * call, not only when the boolean state (`count > 0`) flips.
    */
   show: () => void;
   /**
-   * カウンタを -1 して listener に通知する。
-   * count === 0 の場合は no-op (listener を呼ばない)。
+   * Decrements the counter and notifies listeners.
+   * No-op when count === 0 (listeners are not called).
    */
   hide: () => void;
   /**
-   * `show()` してから promise を await、settle 時 (resolve / reject 双方) に `hide()` する。
-   * 返り値は元の promise と同じ settle 結果を透過する。
+   * Calls `show()`, awaits the promise, and calls `hide()` once it settles
+   * (resolve or reject). The return value passes through the original promise's
+   * settled result.
    */
   promise: <T>(promise: Promise<T>) => Promise<T>;
-  /** カウンタを即 0 にして listener に通知する。count === 0 の場合は no-op。 */
+  /**
+   * Resets the counter to 0 immediately and notifies listeners. No-op when
+   * count === 0.
+   */
   reset: () => void;
 }
 
 /**
- * 参照カウント方式のローディング表示ストアを生成する。
+ * Creates a reference-counted loading visibility store.
  *
- * @returns 初期状態 (非表示) のローディングストア。
+ * @returns A loading store in its initial (hidden) state.
  */
 export function createLoadingStore(): LoadingStore {
   const { subscribe, notify } = createListenerSet("loadingStore");

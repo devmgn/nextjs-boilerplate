@@ -5,10 +5,11 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { getQueryClient } from "../../lib/get-query-client";
 
 /**
- * TanStack Query の QueryClient を配下へ提供する Provider。Devtools も併せて描画する。
+ * Provider that supplies the TanStack Query QueryClient to descendants. Also
+ * renders the Devtools.
  *
- * @param props - QueryClient を提供する子要素
- * @returns QueryClient を提供する Provider 要素
+ * @param props - Children to receive the QueryClient
+ * @returns The Provider element supplying the QueryClient
  */
 export function QueryClientProvider(props: React.PropsWithChildren) {
   const { children } = props;

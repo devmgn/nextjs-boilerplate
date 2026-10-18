@@ -22,7 +22,7 @@ function createMockStorage() {
 
 let keySequence = 0;
 
-// テスト間でキーが衝突しないようにする連番。
+// Sequence number to avoid key collisions between tests.
 function uniqueKey() {
   keySequence += 1;
 
@@ -40,7 +40,7 @@ describe(useSessionStorage, () => {
     vi.stubGlobal("localStorage", localMock);
   });
 
-  it("setValue は sessionStorage に書き込み localStorage には触らない", () => {
+  it("setValue writes to sessionStorage without touching localStorage", () => {
     const key = uniqueKey();
     const { result } = renderHook(() => useSessionStorage(key));
 
@@ -53,14 +53,14 @@ describe(useSessionStorage, () => {
     expect(localMock.setItem).not.toHaveBeenCalled();
   });
 
-  it("sessionStorage の既存値を読み取る", () => {
+  it("reads an existing value from sessionStorage", () => {
     const key = uniqueKey();
     sessionMock.setItem(key, "stored");
     const { result } = renderHook(() => useSessionStorage(key));
     expect(result.current[0]).toBe("stored");
   });
 
-  it("removeValue は sessionStorage のみから削除する", () => {
+  it("removeValue removes only from sessionStorage", () => {
     const key = uniqueKey();
     const { result } = renderHook(() => useSessionStorage(key));
 
