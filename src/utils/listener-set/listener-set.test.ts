@@ -20,9 +20,11 @@ describe(createListenerSet, () => {
     it("複数 listener は subscribe 順に呼ばれる", () => {
       const set = createListenerSet("test");
       const order: number[] = [];
+
       const u1 = set.subscribe(() => {
         order.push(1);
       });
+
       const u2 = set.subscribe(() => {
         order.push(2);
       });
@@ -54,9 +56,11 @@ describe(createListenerSet, () => {
       const set = createListenerSet("test");
       const l2 = vi.fn<() => void>();
       let unsubscribeL2: () => void = noop;
+
       const u1 = set.subscribe(() => {
         unsubscribeL2();
       });
+
       unsubscribeL2 = set.subscribe(l2);
 
       set.notify();
@@ -69,6 +73,7 @@ describe(createListenerSet, () => {
       const set = createListenerSet("test");
       const late = vi.fn<() => void>();
       let lateUnsub: () => void = noop;
+
       const uEarly = set.subscribe(() => {
         lateUnsub();
         lateUnsub = set.subscribe(late);
@@ -89,9 +94,11 @@ describe(createListenerSet, () => {
       const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
       const error = new Error("boom");
       const good = vi.fn<() => void>();
+
       const u1 = set.subscribe(() => {
         throw error;
       });
+
       const u2 = set.subscribe(good);
 
       set.notify();

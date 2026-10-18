@@ -23,6 +23,7 @@ function createDebouncedRunner<Args extends unknown[]>(
   function invoke(...args: Args) {
     debounced(args);
   }
+
   invoke.cancel = debounced.cancel;
   invoke.flush = debounced.flush;
 

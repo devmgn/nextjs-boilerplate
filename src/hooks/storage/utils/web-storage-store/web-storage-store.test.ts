@@ -9,6 +9,7 @@ let keySequence = 0;
 // テスト間でキーが衝突しないようにする連番。
 function uniqueKey() {
   keySequence += 1;
+
   return `test-${keySequence}`;
 }
 
@@ -246,9 +247,11 @@ describe("webStorageStore", () => {
       it("あるリスナーがthrowしても他のリスナーは呼ばれる", () => {
         silenceError();
         const key = uniqueKey();
+
         const bad = vi.fn<() => void>(() => {
           throw new Error("boom");
         });
+
         const good = vi.fn<() => void>();
         const u1 = subscribe(key, bad);
         const u2 = subscribe(key, good);
@@ -265,9 +268,11 @@ describe("webStorageStore", () => {
         silenceError();
         const k1 = uniqueKey();
         const k2 = uniqueKey();
+
         const bad = vi.fn<() => void>(() => {
           throw new Error("boom");
         });
+
         const good = vi.fn<() => void>();
         const u1 = subscribe(k1, bad);
         const u2 = subscribe(k2, good);
@@ -297,9 +302,11 @@ describe("webStorageStore", () => {
         const key = uniqueKey();
         const lateListener = vi.fn<() => void>();
         let lateUnsubscribe: (() => void) | undefined;
+
         const firstListener = vi.fn<() => void>(() => {
           lateUnsubscribe = subscribe(key, lateListener);
         });
+
         const u1 = subscribe(key, firstListener);
 
         write(key, "x");
@@ -316,9 +323,11 @@ describe("webStorageStore", () => {
         // l1 のクロージャは l2 の unsubscribe より先に組み立てられるため、
         // 参照を後から差し込めるよう no-op で初期化しておく。
         let unsubscribeL2: () => void = noop;
+
         const l1 = vi.fn<() => void>(() => {
           unsubscribeL2();
         });
+
         const u1 = subscribe(key, l1);
         const u2 = subscribe(key, l2);
         unsubscribeL2 = u2;

@@ -28,6 +28,7 @@ const DEFAULT_HOOKS: ReadonlyMap<string, number> = new Map([
 
 /** ルールオプションの要素型。oxlint は JSON 型そのものを export しないため Options から導出する。 */
 type JsonValue = Options[number];
+
 interface JsonObject {
   [key: string]: JsonValue;
 }
@@ -56,13 +57,17 @@ function isHookSpec(item: JsonValue): item is HookSpec {
   if (item === null || typeof item !== "object") {
     return false;
   }
+
   if (!("name" in item) || !("depsIndex" in item)) {
     return false;
   }
+
   const { name, depsIndex } = item;
+
   if (typeof name !== "string" || name.length === 0) {
     return false;
   }
+
   return (
     typeof depsIndex === "number" &&
     Number.isInteger(depsIndex) &&
@@ -75,12 +80,14 @@ function readAdditionalHooks(
   options: Context["options"]
 ): readonly JsonValue[] {
   const opt = options.find(isOptionObject);
+
   return opt?.additionalHooks ?? [];
 }
 
 function buildHookMap(options: Context["options"]): Map<string, number> {
   const map = new Map(DEFAULT_HOOKS);
   const additionalHooks = readAdditionalHooks(options);
+
   for (const item of additionalHooks) {
     if (isHookName(item)) {
       map.set(item, 1);
@@ -88,6 +95,7 @@ function buildHookMap(options: Context["options"]): Map<string, number> {
       map.set(item.name, item.depsIndex);
     }
   }
+
   return map;
 }
 
@@ -99,6 +107,7 @@ function getHookName(callee: ESTree.Expression | ESTree.Super): string | null {
   if (callee.type === "Identifier") {
     return callee.name;
   }
+
   if (
     callee.type === "MemberExpression" &&
     !callee.computed &&
@@ -106,6 +115,7 @@ function getHookName(callee: ESTree.Expression | ESTree.Super): string | null {
   ) {
     return callee.property.name;
   }
+
   return null;
 }
 
@@ -114,21 +124,27 @@ function getDepsArray(
   hooks: ReadonlyMap<string, number>
 ): ESTree.ArrayExpression | null {
   const calleeName = getHookName(node.callee);
+
   if (calleeName === null) {
     return null;
   }
+
   const depsIndex = hooks.get(calleeName);
+
   if (depsIndex === undefined) {
     return null;
   }
+
   if (node.arguments.length <= depsIndex) {
     return null;
   }
+
   const depsArg = node.arguments[depsIndex];
 
   if (depsArg.type === "ArrayExpression") {
     return depsArg;
   }
+
   return null;
 }
 
@@ -136,6 +152,7 @@ function guessIndent(context: Context, node: ESTree.Expression): string {
   /* v8 ignore next -- lines.at always returns a string for in-range indices */
   const line = context.sourceCode.lines.at(node.loc.start.line - 1) ?? "";
   const match = /^(?<indent>\s*)/u.exec(line);
+
   /* v8 ignore next -- 行頭の \s* は必ずマッチする */
   return match?.groups?.indent ?? "";
 }
@@ -149,12 +166,15 @@ function collectElements(
   depsArray: ESTree.ArrayExpression
 ): ESTree.Expression[] | null {
   const elements: ESTree.Expression[] = [];
+
   for (const el of depsArray.elements) {
     if (!el || el.type === "SpreadElement") {
       return null;
     }
+
     elements.push(el);
   }
+
   return elements;
 }
 
@@ -163,8 +183,10 @@ function isSortedKeys(sortKeys: readonly string[]): boolean {
     if (i === 0) {
       return true;
     }
+
     /* v8 ignore next -- i >= 1 and sortKeys length >= 2 → always defined */
     const previous = sortKeys.at(i - 1) ?? "";
+
     return compareKeys(key, previous) >= 0;
   });
 }
@@ -178,20 +200,24 @@ function applySortFix(
     key: getSortKey(context, el),
     text: context.sourceCode.getText(el),
   }));
+
   pairs.sort((a, b) => compareKeys(a.key, b.key));
 
   const sorted = pairs.map((p) => p.text);
 
   const [firstElement] = elements;
   const lastElement = elements.at(-1);
+
   /* v8 ignore next 3 -- elements.length >= 2 guaranteed above */
   if (lastElement === undefined) {
     return null;
   }
+
   const [rangeStart] = firstElement.range;
   const [, rangeEnd] = lastElement.range;
 
   const originalText = context.sourceCode.getText().slice(rangeStart, rangeEnd);
+
   const separator = originalText.includes("\n")
     ? `,\n${guessIndent(context, firstElement)}`
     : ", ";
@@ -205,16 +231,19 @@ function checkCallExpression(
   node: ESTree.CallExpression
 ): void {
   const depsArray = getDepsArray(node, hookMap);
+
   if (!depsArray || depsArray.elements.length < 2) {
     return;
   }
 
   const elements = collectElements(depsArray);
+
   if (elements === null) {
     return;
   }
 
   const sortKeys = elements.map((el) => getSortKey(context, el));
+
   if (isSortedKeys(sortKeys)) {
     return;
   }

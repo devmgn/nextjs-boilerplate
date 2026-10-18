@@ -61,6 +61,7 @@ describe(useDebouncedCallback, () => {
 
   it("コンポーネントのアンマウント時に保留中の実行がキャンセルされること", () => {
     const callback = vi.fn<() => void>();
+
     const { result, unmount } = renderHook(() =>
       useDebouncedCallback(callback, 500)
     );
@@ -94,6 +95,7 @@ describe(useDebouncedCallback, () => {
 
   it("wait が変更されると新しい debounced 関数が生成されること", () => {
     const callback = vi.fn<() => void>();
+
     const { result, rerender } = renderHook(
       ({ wait }) => useDebouncedCallback(callback, wait),
       { initialProps: { wait: 500 } }
@@ -125,6 +127,7 @@ describe(useDebouncedCallback, () => {
 
   it("依存が変化しない再レンダリングで同一の debounced 関数が返されること", () => {
     const callback = vi.fn<() => void>();
+
     const { result, rerender } = renderHook(
       ({ wait }) => useDebouncedCallback(callback, wait),
       { initialProps: { wait: 500 } }
@@ -138,6 +141,7 @@ describe(useDebouncedCallback, () => {
   it("毎レンダリングで新しいアロー関数を渡しても保留中のタイマーと引数が失われず、最新のコールバックで発火すること", () => {
     const spy = vi.fn<(value: number, arg: string) => void>();
     let current = 0;
+
     const { result, rerender } = renderHook(
       ({ value }) =>
         useDebouncedCallback((arg: string) => {
@@ -183,6 +187,7 @@ describe(useDebouncedCallback, () => {
 
   it("flush 経路でも最新の callback が使われること", () => {
     const spy = vi.fn<(value: number, arg: string) => void>();
+
     const { result, rerender } = renderHook(
       ({ value }) =>
         useDebouncedCallback((arg: string) => {

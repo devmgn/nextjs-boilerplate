@@ -7,6 +7,7 @@ const QUERY = "(min-width: 768px)";
 
 function createMockMediaQueryList(matches: boolean) {
   let listener: ((event: MediaQueryListEvent) => void) | null = null;
+
   return {
     matches,
     addEventListener(
@@ -25,10 +26,12 @@ function createMockMediaQueryList(matches: boolean) {
     },
     fire(newMatches: boolean) {
       this.matches = newMatches;
+
       const event = new MediaQueryListEvent("change", {
         matches: newMatches,
         media: "",
       });
+
       listener?.(event);
     },
     get hasListener() {
@@ -39,6 +42,7 @@ function createMockMediaQueryList(matches: boolean) {
 
 describe(useMediaQuery, () => {
   let mockMql: ReturnType<typeof createMockMediaQueryList>;
+
   let matchMediaSpy: Mock<
     (query: string) => ReturnType<typeof createMockMediaQueryList>
   >;
@@ -111,6 +115,7 @@ describe(useMediaQuery, () => {
     const { rerender } = renderHook(({ query }) => useMediaQuery(query), {
       initialProps: { query: QUERY },
     });
+
     expect(mockMql.hasListener).toBeTruthy();
 
     vi.when(matchMediaSpy).calledWith("(min-width: 1024px)").thenReturn(newMql);

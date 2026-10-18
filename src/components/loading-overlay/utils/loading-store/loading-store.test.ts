@@ -133,9 +133,11 @@ describe("createLoadingStore", () => {
       const store = createLoadingStore();
       const l2 = vi.fn<() => void>();
       let unsubscribeL2: () => void = noop;
+
       const l1 = vi.fn<() => void>(() => {
         unsubscribeL2();
       });
+
       const u1 = store.subscribe(l1);
       const u2 = store.subscribe(l2);
       unsubscribeL2 = u2;
@@ -152,9 +154,11 @@ describe("createLoadingStore", () => {
     it("あるリスナーが throw しても他のリスナーは呼ばれる", () => {
       const store = createLoadingStore();
       const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
       const bad = vi.fn<() => void>(() => {
         throw new Error("boom");
       });
+
       const good = vi.fn<() => void>();
       const u1 = store.subscribe(bad);
       const u2 = store.subscribe(good);
@@ -201,9 +205,11 @@ describe("createLoadingStore", () => {
       const store = createLoadingStore();
       const late = vi.fn<() => void>();
       let lateUnsub: (() => void) | undefined;
+
       const early = vi.fn<() => void>(() => {
         lateUnsub = store.subscribe(late);
       });
+
       const uEarly = store.subscribe(early);
 
       store.show();
@@ -220,6 +226,7 @@ describe("createLoadingStore", () => {
     it("listener 内で show / hide を呼んでも再入が安全で、観測される snapshot は最新状態", () => {
       const store = createLoadingStore();
       const log: boolean[] = [];
+
       const unsub = store.subscribe(() => {
         log.push(store.getSnapshot());
       });
@@ -234,12 +241,15 @@ describe("createLoadingStore", () => {
     it("複数 listener は subscribe 順に呼ばれる", () => {
       const store = createLoadingStore();
       const order: number[] = [];
+
       const u1 = store.subscribe(() => {
         order.push(1);
       });
+
       const u2 = store.subscribe(() => {
         order.push(2);
       });
+
       const u3 = store.subscribe(() => {
         order.push(3);
       });

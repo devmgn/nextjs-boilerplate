@@ -13,10 +13,12 @@ function Probe({
   multiline?: boolean;
 }) {
   const handlers = useDebouncedInput(onValue, wait);
+
   // input / textarea どちらにも同じ handlers をスプレッドできることを型でも保証する
   if (multiline) {
     return <textarea data-testid="textarea" {...handlers} />;
   }
+
   return <input data-testid="input" {...handlers} />;
 }
 
@@ -98,6 +100,7 @@ describe(useDebouncedInput, () => {
 
   it("依存が変わらない再レンダリングでも保留中のタイマーが失われないこと", () => {
     const onValue = vi.fn<(value: string) => void>();
+
     const { getByTestId, rerender } = render(
       <Probe onValue={onValue} wait={300} />
     );
@@ -114,6 +117,7 @@ describe(useDebouncedInput, () => {
 
   it("textarea にもスプレッドでき debounce されること", () => {
     const onValue = vi.fn<(value: string) => void>();
+
     const { getByTestId } = render(
       <Probe multiline onValue={onValue} wait={300} />
     );
@@ -129,6 +133,7 @@ describe(useDebouncedInput, () => {
 
   it("wait を変更するとタイマーが作り直されること", () => {
     const onValue = vi.fn<(value: string) => void>();
+
     const { getByTestId, rerender } = render(
       <Probe onValue={onValue} wait={300} />
     );

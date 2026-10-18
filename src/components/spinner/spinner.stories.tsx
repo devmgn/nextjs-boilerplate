@@ -9,6 +9,7 @@ const meta = {
 } satisfies Meta<typeof Spinner>;
 
 export default meta;
+
 type Story = StoryObj<typeof Spinner>;
 
 export const PresetSizes: Story = {

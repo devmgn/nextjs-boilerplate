@@ -10,6 +10,7 @@ const meta = {
 } satisfies Meta<typeof Card>;
 
 export default meta;
+
 type Story = StoryObj<typeof Card>;
 
 export const Default: Story = {};

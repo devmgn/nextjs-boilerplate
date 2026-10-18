@@ -16,9 +16,11 @@ function isSelectorOption(opt: unknown): opt is SelectorOption {
   if (typeof opt !== "object" || opt === null || !("selector" in opt)) {
     return false;
   }
+
   if (typeof opt.selector !== "string") {
     return false;
   }
+
   return !("message" in opt) || typeof opt.message === "string";
 }
 
@@ -26,6 +28,7 @@ const rule: Rule = {
   meta: { schema: false },
   create(context) {
     const compiled: Compiled[] = [];
+
     for (const opt of context.options) {
       if (isStringOption(opt)) {
         compiled.push(...compileOption(opt));
@@ -35,10 +38,12 @@ const rule: Rule = {
     }
 
     const byKey = new Map<string, Compiled[]>();
+
     for (const c of compiled) {
       const [head] = c.chain;
       const key = head.isExit === true ? `${head.type}:exit` : head.type;
       const list = byKey.get(key);
+
       if (list === undefined) {
         byKey.set(key, [c]);
       } else {
@@ -47,6 +52,7 @@ const rule: Rule = {
     }
 
     const visitors: Visitor = {};
+
     for (const [key, configs] of byKey) {
       visitors[key] = (node) => {
         for (const cfg of configs) {
@@ -56,6 +62,7 @@ const rule: Rule = {
         }
       };
     }
+
     return visitors;
   },
 };

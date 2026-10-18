@@ -12,6 +12,7 @@ const meta = {
 } satisfies Meta<typeof Field>;
 
 export default meta;
+
 type Story = StoryObj<typeof Field>;
 
 export const Default: Story = {

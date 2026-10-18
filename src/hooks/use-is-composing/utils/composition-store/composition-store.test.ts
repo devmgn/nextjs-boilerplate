@@ -131,9 +131,11 @@ describe("compositionStore", () => {
     it("リスナー内で他のリスナーをunsubscribeしても他のリスナーは呼ばれる", () => {
       const l2 = vi.fn<() => void>();
       let unsubscribeL2: () => void = noop;
+
       const l1 = vi.fn<() => void>(() => {
         unsubscribeL2();
       });
+
       const u1 = store.subscribe(l1);
       const u2 = store.subscribe(l2);
       unsubscribeL2 = u2;
@@ -149,9 +151,11 @@ describe("compositionStore", () => {
 
     it("あるリスナーがthrowしても他のリスナーは呼ばれる", () => {
       const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
       const bad = vi.fn<() => void>(() => {
         throw new Error("boom");
       });
+
       const good = vi.fn<() => void>();
       const u1 = store.subscribe(bad);
       const u2 = store.subscribe(good);

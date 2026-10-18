@@ -13,9 +13,11 @@ function toErrorMessage(status: number): string {
     case 401: {
       return "Login required";
     }
+
     case 422: {
       return "Validation failed";
     }
+
     default: {
       return `Request failed (${status})`;
     }
@@ -30,9 +32,11 @@ export async function createArticle(
 ): Promise<CreateArticleState> {
   // server action は直接 POST できる公開エンドポイントなので、クライアントの検証に頼らず再検証する
   const parsed = articleSchema.safeParse(data);
+
   if (!parsed.success) {
     return { ok: false, message: "Invalid input" };
   }
+
   const { title, description, body, tags } = parsed.data;
 
   const tagList = tags
@@ -49,16 +53,19 @@ export async function createArticle(
         tagList,
       },
     });
+
     return { ok: true, message: `Created: ${article.slug}` };
   } catch (error) {
     if (isApiError(error)) {
       return { ok: false, message: toErrorMessage(error.status) };
     }
+
     // fetch は通信失敗（DNS・接続断・CORS など）を TypeError で reject する。
     // それ以外は想定外のバグなので握りつぶさず error boundary に上げる
     if (error instanceof TypeError) {
       return { ok: false, message: "Network error" };
     }
+
     throw error;
   }
 }
