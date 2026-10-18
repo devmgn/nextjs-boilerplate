@@ -17,10 +17,10 @@ interface InputProps
   extends React.ComponentProps<"input">, VariantProps<typeof inputVariants> {}
 
 /**
- * エラー状態をサポートするスタイル付きテキスト入力。
+ * Styled text input with error state support.
  *
- * @param props - `input` 要素の属性とエラー状態。
- * @returns スタイル適用済みの `input` 要素。
+ * @param props - Attributes of the `input` element and the error state.
+ * @returns The styled `input` element.
  */
 export function Input(props: InputProps) {
   const { className, isError, ..._props } = props;

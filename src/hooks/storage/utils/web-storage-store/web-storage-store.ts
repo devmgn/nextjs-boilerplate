@@ -1,56 +1,75 @@
 /**
- * Web Storage API（localStorage / sessionStorage）に対する薄いラッパーと、同タブ内購読機構。
+ * Thin wrapper around the Web Storage API (localStorage / sessionStorage) plus
+ * a same-tab subscription mechanism.
  *
- * ネイティブの `storage` イベントは他タブからしか発火しないため、同一タブ内で行われた
- * `write` / `remove` / `clear` を購読者へ届ける経路として、キー単位の購読者 Set を自前で保持する。
+ * The native `storage` event only fires from other tabs, so this module keeps
+ * its own per-key subscriber Sets to deliver `write` / `remove` / `clear` calls
+ * made in the same tab to subscribers.
  */
 
 /**
- * Web Storage への読み書きと変更購読を束ねたストア。
- * `localStorageStore` / `sessionStorageStore` が実装する共通インターフェース。
+ * Store that bundles Web Storage reads/writes and change subscriptions.
+ * Common interface implemented by `localStorageStore` / `sessionStorageStore`.
  */
 export interface WebStorageStore {
-  /** 指定キーの値を読む。未設定または取得不可（SSR／プライベートブラウジング等）時は `null`。 */
+  /**
+   * Reads the value for a key. Returns `null` when unset or unavailable (SSR,
+   * private browsing, etc.).
+   */
   read: (key: string) => string | null;
-  /** 指定キーに値を書き、購読者へ通知する。失敗時は `false` を返し通知はスキップする。 */
+  /**
+   * Writes a value for a key and notifies subscribers. On failure, returns
+   * `false` and skips notification.
+   */
   write: (key: string, value: string) => boolean;
-  /** 指定キーを削除し、購読者へ通知する。失敗時は `false` を返し通知はスキップする。 */
+  /**
+   * Removes a key and notifies subscribers. On failure, returns `false` and
+   * skips notification.
+   */
   remove: (key: string) => boolean;
-  /** 全キーを削除し、全購読者へ通知する。失敗時は `false` を返し通知はスキップする。 */
+  /**
+   * Removes all keys and notifies all subscribers. On failure, returns `false`
+   * and skips notification.
+   */
   clear: () => boolean;
-  /** 指定キーの変更を購読する。戻り値を呼ぶと解除される（複数回呼んでも冪等）。 */
+  /**
+   * Subscribes to changes of a key. Call the returned function to unsubscribe
+   * (idempotent).
+   */
   subscribe: (key: string, listener: () => void) => () => void;
 }
 
 /**
- * ストアの種類を表す discriminator。
+ * Discriminator for the store type.
  *
- * - `"localStorage"` → `window.localStorage`（他タブの `storage` イベントで同期）
- * - `"sessionStorage"` → `window.sessionStorage`（同一タブに閉じるため cross-tab 同期は不要）
+ * - `"localStorage"`: `window.localStorage` (synced via `storage` events from
+ *   other tabs)
+ * - `"sessionStorage"`: `window.sessionStorage` (scoped to a single tab, so no
+ *   cross-tab sync is needed)
  */
 type StorageType = "localStorage" | "sessionStorage";
 
-/** キー単位の購読者レジストリ。 */
+/** Per-key subscriber registry. */
 interface KeyedListeners {
-  /** 指定キーの全購読者を同期的に呼ぶ。 */
+  /** Synchronously calls every subscriber of a key. */
   notify: (key: string) => void;
-  /** 登録中の全キーの全購読者を同期的に呼ぶ。 */
+  /** Synchronously calls every subscriber of every registered key. */
   notifyAll: () => void;
-  /** 指定キーを購読する。戻り値の解除関数は冪等。 */
+  /** Subscribes to a key. The returned unsubscribe function is idempotent. */
   subscribe: (key: string, listener: () => void) => () => void;
 }
 
-/** 何もしない関数。session store の storage listener セットアップとして使う。 */
+/** No-op function. Used as the storage listener setup for the session store. */
 function noop(): void {
-  // 意図的な no-op
+  // Intentional no-op
 }
 
 /**
- * ストレージを遅延取得する。毎回 `window` から引くことで、`vi.stubGlobal` 等による
- * テスト時の差し替えにも追随する。
+ * Resolves the storage lazily. Reading from `window` every time keeps up with
+ * replacements in tests (e.g. via `vi.stubGlobal`).
  *
- * @param storageType - 取得するストレージ種別
- * @returns 対象の `Storage` インスタンス
+ * @param storageType - Storage type to resolve
+ * @returns The target `Storage` instance
  */
 function getStorage(storageType: StorageType): Storage {
   return storageType === "localStorage"
@@ -59,12 +78,13 @@ function getStorage(storageType: StorageType): Storage {
 }
 
 /**
- * 指定キーの生文字列を返す。未設定またはストレージ利用不可（SSR／プライベートブラウジング等）な
- * 場合は `null` を返し、例外は外へ伝搬させない。
+ * Returns the raw string for a key. Returns `null` when unset or when storage
+ * is unavailable (SSR, private browsing, etc.), without propagating
+ * exceptions.
  *
- * @param storageType - 読み出すストレージ種別
- * @param key - 読み出すキー
- * @returns 保存されている文字列。取得できない場合は `null`
+ * @param storageType - Storage type to read from
+ * @param key - Key to read
+ * @returns The stored string, or `null` if it cannot be read
  */
 function readItem(storageType: StorageType, key: string): string | null {
   try {
@@ -75,14 +95,15 @@ function readItem(storageType: StorageType, key: string): string | null {
 }
 
 /**
- * ストレージへの変更操作を実行する。`QuotaExceededError` などで失敗した場合は warn を出して
- * `false` を返す。呼び出し側は `true` のときだけ購読者へ通知する
- * （保存されていない値で購読者を起こさないため）。
+ * Runs a mutation against the storage. On failure (e.g. `QuotaExceededError`),
+ * logs a warning and returns `false`. Callers notify subscribers only when it
+ * returns `true` (so subscribers are not woken up for a value that was never
+ * saved).
  *
- * @param storageType - 操作対象のストレージ種別
- * @param mutation - ストレージに対して実行する変更操作
- * @param failureMessage - 失敗時に warn へ出すメッセージ
- * @returns 変更操作に成功したかどうか
+ * @param storageType - Storage type to mutate
+ * @param mutation - Mutation to run against the storage
+ * @param failureMessage - Message to warn with on failure
+ * @returns Whether the mutation succeeded
  */
 function tryMutate(
   storageType: StorageType,
@@ -101,15 +122,16 @@ function tryMutate(
 }
 
 /**
- * キー → 購読者 Set のレジストリを生成する。
+ * Creates a registry mapping keys to subscriber Sets.
  *
- * リスナーは 1 件ずつ呼び出し、例外が出ても他のリスナーをブロックしないよう握りつぶして
- * `console.error` に記録する（React 経由では通常 throw しないが防御用）。
- * リスナー内で `subscribe` / `unsubscribe` や再入的な `write` が起こる可能性があるため、
- * 通知前にスナップショットを取って Set 変更の影響を受けないようにする。
+ * Listeners are called one at a time; exceptions are swallowed and logged via
+ * `console.error` so they don't block other listeners (listeners called through
+ * React normally don't throw; this is defensive). Since a listener may
+ * `subscribe` / `unsubscribe` or re-entrantly `write`, a snapshot is taken
+ * before notifying so Set mutations don't affect the iteration.
  *
- * @param label - `console.error` に付けるストア名
- * @returns キー単位の購読者レジストリ
+ * @param label - Store name to prefix `console.error` output with
+ * @returns Per-key subscriber registry
  */
 function createKeyedListeners(label: string): KeyedListeners {
   const listeners = new Map<string, Set<() => void>>();
@@ -124,7 +146,7 @@ function createKeyedListeners(label: string): KeyedListeners {
     }
   };
 
-  // 未登録キーに対しては空の Set を作らないので、レジストリに残滓が残らない
+  // No empty Set is created for unregistered keys, so the registry leaves nothing behind
   const notify = (key: string): void => {
     invokeAll([...(listeners.get(key) ?? [])]);
   };
@@ -150,7 +172,7 @@ function createKeyedListeners(label: string): KeyedListeners {
       unsubscribed = true;
       keyListeners.delete(listener);
 
-      // 別の subscribe が Map の Set を差し替えている可能性があるため、自分の Set に限って削除する
+      // Another subscribe may have replaced the Set in the Map, so only delete the entry if it is still our Set
       if (keyListeners.size === 0 && listeners.get(key) === keyListeners) {
         listeners.delete(key);
       }
@@ -161,13 +183,14 @@ function createKeyedListeners(label: string): KeyedListeners {
 }
 
 /**
- * 他タブ由来の `storage` イベントをレジストリへディスパッチする window リスナーを
- * 1 回だけ設置するためのセットアップ関数を返す。
- * クロージャに `installed` フラグを持ち、何度呼んでも window リスナーが重複しないようにする。
+ * Returns a setup function that installs, exactly once, a window listener
+ * dispatching `storage` events from other tabs to the registry. An `installed`
+ * flag in the closure prevents duplicate window listeners no matter how often
+ * it is called.
  *
- * @param storageType - `storage` イベントを受け付けるストレージ種別
- * @param registry - イベントの通知先となる購読者レジストリ
- * @returns Window リスナーを設置するセットアップ関数
+ * @param storageType - Storage type whose `storage` events are accepted
+ * @param registry - Subscriber registry to notify on events
+ * @returns Setup function that installs the window listener
  */
 function createStorageEventBridge(
   storageType: StorageType,
@@ -181,14 +204,14 @@ function createStorageEventBridge(
     }
 
     window.addEventListener("storage", (event) => {
-      // ブラウザ由来の storage イベントでは `storageArea` が必ず設定される。
-      // 異なる Storage（sessionStorage 等）由来のイベントは弾く。
+      // Browser-originated storage events always set `storageArea`.
+      // Ignore events from a different Storage (e.g. sessionStorage).
       if (event.storageArea !== getStorage(storageType)) {
         return;
       }
 
       if (event.key === null) {
-        // 他タブの `clear()` は key=null で飛んでくる
+        // `clear()` in another tab arrives with key=null
         registry.notifyAll();
 
         return;
@@ -201,34 +224,36 @@ function createStorageEventBridge(
 }
 
 /**
- * `storageType` に応じた Web Storage ストアを生成するファクトリ。
+ * Factory that creates a Web Storage store for the given `storageType`.
  *
- * レジストリはこのクロージャ内に閉じ込めるため、local/session 間でキー名が衝突しても
- * 互いに干渉しない（ストア間の独立性はテストで担保）。
+ * The registry is confined to this closure, so local and session stores don't
+ * interfere even when key names collide (store independence is covered by
+ * tests).
  *
- * `window.localStorage.clear()` を直接呼ぶと同タブには通知が届かないため、アプリ側では
- * 必ず `clear` を経由する。
+ * Calling `window.localStorage.clear()` directly does not notify the same tab,
+ * so the app must always go through `clear`.
  *
- * @param storageType - 使用するストレージ種別（{@link StorageType}）
- * @returns 指定ストレージを対象とする Web Storage ストア
+ * @param storageType - Storage type to use ({@link StorageType})
+ * @returns Web Storage store targeting the given storage
  */
 function createStore(storageType: StorageType): WebStorageStore {
   const registry = createKeyedListeners(storageType);
 
-  // LocalStorage のみ初回 subscribe 時に他タブ同期を install する。
-  // SessionStorage は同一タブで完結するため cross-tab 同期が無い
+  // Only localStorage installs cross-tab sync, on the first subscribe.
+  // sessionStorage is scoped to a single tab, so it has no cross-tab sync
   const ensureStorageListener: () => void =
     storageType === "localStorage"
       ? createStorageEventBridge(storageType, registry)
       : noop;
 
   /**
-   * 変更操作に成功したときだけ購読者へ通知する。`key` が `null` なら全キーの購読者へ通知する。
+   * Notifies subscribers only when the mutation succeeds. If `key` is `null`,
+   * notifies subscribers of all keys.
    *
-   * @param mutation - ストレージに対して実行する変更操作
-   * @param failureMessage - 失敗時に warn へ出すメッセージ
-   * @param key - 通知対象のキー。`null` なら全キー
-   * @returns 変更操作に成功したかどうか
+   * @param mutation - Mutation to run against the storage
+   * @param failureMessage - Message to warn with on failure
+   * @param key - Key to notify, or `null` for all keys
+   * @returns Whether the mutation succeeded
    */
   const mutateAndNotify = (
     mutation: (storage: Storage) => void,
@@ -283,14 +308,14 @@ function createStore(storageType: StorageType): WebStorageStore {
 }
 
 /**
- * `window.localStorage` を対象とするストア。
- * 他タブの変更も `storage` イベント経由で購読者へ届く。
+ * Store targeting `window.localStorage`.
+ * Changes from other tabs also reach subscribers via the `storage` event.
  */
 export const localStorageStore: WebStorageStore = createStore("localStorage");
 
 /**
- * `window.sessionStorage` を対象とするストア。
- * 同一タブに閉じる Web Storage 仕様に従い、他タブとの同期は行わない。
+ * Store targeting `window.sessionStorage`. Per the Web Storage spec, session
+ * storage is scoped to a single tab, so it does not sync with other tabs.
  */
 export const sessionStorageStore: WebStorageStore =
   createStore("sessionStorage");

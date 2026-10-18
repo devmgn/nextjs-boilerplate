@@ -1,7 +1,7 @@
 /**
- * `notFound()` 呼び出し時に root layout 内で表示する 404 画面。
+ * 404 page rendered inside the root layout when `notFound()` is called.
  *
- * @returns 404 メッセージ
+ * @returns The 404 message
  */
 export default function NotFound() {
   return <>NotFound</>;

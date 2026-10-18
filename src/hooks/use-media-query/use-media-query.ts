@@ -1,11 +1,11 @@
 import { useSyncExternalStore } from "react";
 
 /**
- * メディアクエリの一致状態を監視するカスタムフック
+ * Custom hook that watches whether a media query matches
  *
- * @param query - 監視するメディアクエリ文字列
- * @param onChange - 一致状態が変化したときに呼ばれるコールバック
- * @returns メディアクエリに一致しているかどうか。サーバー側では `false`
+ * @param query - Media query string to watch
+ * @param onChange - Callback called when the match state changes
+ * @returns Whether the media query matches. `false` on the server
  */
 export function useMediaQuery(
   query: string,

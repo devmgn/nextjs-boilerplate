@@ -1,7 +1,7 @@
 #:schema ./node_modules/fallow/schema.json
 
-# Storybook plugin は stories の *.mdx を、Vitest plugin は typecheck.include の型テストを entry にしない
-# orval.config.ts は orval CLI が読み、api-client は生成物（グラフ外）から mutator として参照される
+# The Storybook plugin does not treat stories' *.mdx as entries, nor does the Vitest plugin treat typecheck.include type tests as entries
+# orval.config.ts is read by the orval CLI; api-client is referenced as the mutator from generated code (outside the graph)
 entry = [
   "src/**/*.mdx",
   "src/**/*.test-d.{ts,tsx}",
@@ -9,17 +9,17 @@ entry = [
   "src/api/api-client/index.ts",
 ]
 
-# ignorePatterns はグラフからも除外し、生成物経由の依存を未使用にする
+# ignorePatterns also removes files from the graph, so dependencies used only via generated code appear unused
 ignoreFindings = ["src/api/openapi/**", "tools/lint-ignore/**"]
 
 ignoreDependencies = [
-  # 他パッケージが実行時に解決する
+  # Resolved by other packages at runtime
   "eslint-plugin-github",
   "eslint-plugin-jsdoc",
   "eslint-plugin-sonarjs",
   "eslint-plugin-tsdoc",
   "oxlint-plugin-react-doctor",
-  # 設定ファイル内で文字列として参照される
+  # Referenced as strings in config files
   "@tailwindcss/turbopack",
 ]
 
@@ -48,10 +48,10 @@ css-dead-surface = "off"
 css-broken-reference = "off"
 
 [duplicates]
-# ignoreFindings は dead-code にしか効かない
+# ignoreFindings only applies to dead-code
 ignore = [
   "src/api/openapi/**",
-  # demo コードは読みやすさを優先し、重複・長さを許容する
+  # Demo code favors readability, so duplication and length are allowed
   "src/**/*.stories.tsx",
   "src/app/(sandbox)/**",
 ]
@@ -59,17 +59,17 @@ ignore = [
 [health]
 ignore = [
   "src/api/openapi/**",
-  # demo コードは読みやすさを優先し、重複・長さを許容する
+  # Demo code favors readability, so duplication and length are allowed
   "src/**/*.stories.tsx",
   "src/app/(sandbox)/**",
-  # describe ブロックが 1 関数として数えられ、ケース数に比例して large function になる
+  # A describe block counts as one function and grows into a large function in proportion to its cases
   "src/**/*.{test,spec,test-d}.{ts,tsx}",
   "tools/**/*.test.ts",
 ]
 
-# 先にマッチした zone に属する。テスト・stories を本体の zone より先に切り出す
+# A file belongs to the first matching zone. Carve out tests and stories before the main zones
 [[boundaries.zones]]
-# テスト・型テスト・stories
+# Tests, type tests, and stories
 name = "dev"
 patterns = [
   "src/**/*.{test,spec,test-d}.{ts,tsx}",
@@ -77,40 +77,40 @@ patterns = [
   "src/**/*.mdx",
 ]
 
-# 以降は .claude/rules/directory-structure.md の 3 軸
+# The zones below follow the 3 layers in .claude/rules/directory-structure.md
 [[boundaries.zones]]
-# App Router。直下の各ルート / route group が別 zone になり相互 import を禁じる（1 階層のみ）
+# App Router. Each top-level route / route group becomes its own zone, and cross-imports are forbidden (one level only)
 name = "app"
 patterns = ["src/app/**"]
 autoDiscover = ["src/app"]
 
 [[boundaries.zones]]
-# 契約層: OpenAPI 生成物（Orval）と mutator（api-client）
+# Contract layer: OpenAPI generated code (Orval) and its mutator (api-client)
 name = "api"
 patterns = ["src/api/**"]
 
 [[boundaries.zones]]
-# 契約層: 型ヘルパー・グローバル型拡張
+# Contract layer: type helpers and global type augmentations
 name = "types"
 patterns = ["src/types/**"]
 
 [[boundaries.zones]]
-# 汎用: UI コンポーネント
+# Generic: UI components
 name = "components"
 patterns = ["src/components/**"]
 
 [[boundaries.zones]]
-# 汎用: React hooks
+# Generic: React hooks
 name = "hooks"
 patterns = ["src/hooks/**"]
 
 [[boundaries.zones]]
-# 汎用: プロジェクト外に持ち出せるロジック
+# Generic: logic portable outside the project
 name = "utils"
 patterns = ["src/utils/**"]
 
 [[boundaries.zones]]
-# アプリ固有: 設定・統合・グルー
+# App-specific: configuration, integrations, and glue
 name = "lib"
 patterns = [
   "src/lib/**",
@@ -120,18 +120,18 @@ patterns = [
 ]
 
 [[boundaries.zones]]
-# アプリ固有: アプリ全体に被せる Context Provider
+# App-specific: Context Providers wrapping the whole app
 name = "providers"
 patterns = ["src/providers/**"]
 
 [[boundaries.zones]]
-# アプリ固有: MSW の Vitest 用 server
+# App-specific: MSW server for Vitest
 name = "mocks"
 patterns = ["src/mocks/**"]
 
-# allow に無い zone への import を禁じる。dev はどこからも参照させない
+# Forbid imports into zones not listed in allow. Nothing may import from dev
 [[boundaries.rules]]
-# テスト・stories は全 zone を組み合わせてよい
+# Tests and stories may combine all zones
 from = "dev"
 allow = [
   "app",
@@ -146,51 +146,51 @@ allow = [
 ]
 
 [[boundaries.rules]]
-# ルートは共有層をすべて使ってよい
+# Routes may use all shared layers
 from = "app"
 allow = ["api", "types", "components", "hooks", "utils", "lib", "providers"]
 
 [[boundaries.rules]]
-# 契約層はアプリ固有の設定に依存しない
+# The contract layer does not depend on app-specific configuration
 from = "api"
 allow = ["types", "utils"]
 
 [[boundaries.rules]]
-# 型ヘルパーは自己完結させる
+# Type helpers are self-contained
 from = "types"
 allow = []
 
 [[boundaries.rules]]
-# 汎用 UI は汎用 hooks / utils まで
+# Generic UI may use only generic hooks / utils
 from = "components"
 allow = ["types", "hooks", "utils"]
 
 [[boundaries.rules]]
-# 汎用 hooks は UI に依存しない
+# Generic hooks do not depend on UI
 from = "hooks"
 allow = ["types", "utils"]
 
 [[boundaries.rules]]
-# 最下層。型以外に依存しない
+# Bottom layer. Depends on nothing but types
 from = "utils"
 allow = ["types"]
 
 [[boundaries.rules]]
-# アプリ固有のグルーは契約層と汎用層を束ねる
+# App-specific glue ties together the contract and generic layers
 from = "lib"
 allow = ["api", "types", "components", "hooks", "utils"]
 
 [[boundaries.rules]]
-# Provider は lib の設定を読み込んで被せる
+# Providers load configuration from lib and wrap the app with it
 from = "providers"
 allow = ["api", "types", "components", "hooks", "utils", "lib"]
 
 [[boundaries.rules]]
-# MSW server は API 定義のモックを参照できる
+# The MSW server may reference mocks from the API definitions
 from = "mocks"
 allow = ["api", "types", "utils"]
 
 [boundaries.coverage]
-# src/ 配下は必ずいずれかの zone に属させ、未分類のトップレベル追加を防ぐ
+# Everything under src/ must belong to a zone, preventing unclassified top-level additions
 requireAllFiles = true
 allowUnmatched = ["tools/**", ".storybook/**", "*.ts"]

@@ -28,10 +28,10 @@ interface SvgIconProps
 }
 
 /**
- * サイズプリセットとアクセシブルなラベリング付き SVG アイコンラッパー。
+ * SVG icon wrapper with size presets and accessible labeling.
  *
- * @param props - 描画するアイコンコンポーネント・ラベル・サイズと SVG 属性。
- * @returns スタイルと ARIA 属性を適用したアイコン要素。
+ * @param props - The icon component to render, label, size, and SVG attributes.
+ * @returns The icon element with styles and ARIA attributes applied.
  */
 export function SvgIcon(props: SvgIconProps) {
   const { icon: Icon, label, className, size, ..._props } = props;

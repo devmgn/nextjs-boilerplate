@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import { ENV } from "./env";
 
 describe("ENV", () => {
-  it("有効な環境変数でENVが生成されること", () => {
+  it("creates ENV from valid environment variables", () => {
     expect(ENV).toStrictEqual({
       SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
       APP_NAME: process.env.NEXT_PUBLIC_APP_NAME,
@@ -10,7 +10,7 @@ describe("ENV", () => {
     });
   });
 
-  it("ENVがreadonlyであること", () => {
+  it("makes ENV readonly", () => {
     expect(Object.isFrozen(ENV)).toBeTruthy();
   });
 
@@ -18,8 +18,8 @@ describe("ENV", () => {
     "NEXT_PUBLIC_SITE_URL",
     "NEXT_PUBLIC_APP_NAME",
     "NEXT_PUBLIC_DEFAULT_DESCRIPTION",
-  ])("%s が未定義の場合エラーになること", async (key) => {
-    // 第 2 引数の undefined が env 変数の削除を表す
+  ])("throws when %s is undefined", async (key) => {
+    // Passing undefined as the second argument removes the env variable
     // oxlint-disable-next-line unicorn/no-useless-undefined
     vi.stubEnv(key, undefined);
     vi.resetModules();

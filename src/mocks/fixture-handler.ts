@@ -3,14 +3,16 @@ import { HttpResponse, http } from "msw";
 import { resolveFixture } from "../api/openapi/index.fixtures";
 
 /**
- * Orval 生成の fixtures（`defineFixtures`）を MSW の handler にする。
- * fixture に一致しないリクエストは何も返さず、後続の handler（なければ未処理扱い）に回す。
+ * Turns Orval-generated fixtures (`defineFixtures`) into an MSW handler.
+ * Requests that match no fixture return nothing and fall through to the next
+ * handler (or are treated as unhandled if there is none).
  *
- * @param fixtures - `defineFixtures` で定義した fixture の集合
- * @returns すべてのリクエストを受け、fixture に一致すれば応答を返す MSW handler
+ * @param fixtures - The set of fixtures defined with `defineFixtures`
+ * @returns An MSW handler that receives every request and responds when it
+ *   matches a fixture
  */
 export function createFixtureHandler(fixtures: FixtureSet) {
-  // MSW は undefined を「この handler では扱わない」として次へ回すため、応答と undefined を返し分ける
+  // MSW treats undefined as "not handled by this handler" and moves on, so return either a response or undefined
   /* oxlint-disable typescript/consistent-return, sonarjs/no-inconsistent-returns */
   return http.all("*", async ({ request }) => {
     const isJson = (request.headers.get("Content-Type") ?? "").includes(
@@ -32,7 +34,7 @@ export function createFixtureHandler(fixtures: FixtureSet) {
 
     const init = { status: result.status, headers: result.headers };
 
-    // 204 など本文なしの応答（spec 上 body のない route）
+    // Responses without a body such as 204 (routes with no body in the spec)
     if (result.body === undefined) {
       return new HttpResponse(null, init);
     }

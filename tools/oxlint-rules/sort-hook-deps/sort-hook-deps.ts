@@ -26,20 +26,26 @@ const DEFAULT_HOOKS: ReadonlyMap<string, number> = new Map([
   ["useImperativeHandle", 2],
 ]);
 
-/** ルールオプションの要素型。oxlint は JSON 型そのものを export しないため Options から導出する。 */
+/**
+ * Element type of the rule options. Derived from Options because oxlint does
+ * not export the JSON type itself.
+ */
 type JsonValue = Options[number];
 
 interface JsonObject {
   [key: string]: JsonValue;
 }
 
-/** `additionalHooks` にオブジェクト形式で渡すフック指定。 */
+/** Object-form hook spec passed to `additionalHooks`. */
 type HookSpec = JsonObject & {
   readonly name: string;
   readonly depsIndex: number;
 };
 
-/** このルールが受け取るオプション。設定ファイル由来なので値は JSON の範囲。 */
+/**
+ * Options accepted by this rule. They come from the config file, so values are
+ * limited to JSON.
+ */
 type SortHookDepsOption = JsonObject & {
   readonly additionalHooks?: readonly JsonValue[];
 };
@@ -49,10 +55,11 @@ function isOptionObject(value: JsonValue): value is SortHookDepsOption {
 }
 
 /**
- * フック名のみを渡す短縮形。deps は第 2 引数とみなす。
+ * Shorthand passing only the hook name. deps is assumed to be the second
+ * argument.
  *
- * @param item - AdditionalHooks の要素
- * @returns 空でないフック名文字列なら true
+ * @param item - An additionalHooks entry
+ * @returns True if it is a non-empty hook name string
  */
 function isHookName(item: JsonValue): item is string {
   return typeof item === "string" && item.length > 0;
@@ -81,10 +88,11 @@ function isHookSpec(item: JsonValue): item is HookSpec {
 }
 
 /**
- * オプション配列の先頭から additionalHooks を取り出す。未指定なら空配列。
+ * Extracts additionalHooks from the first element of the options array. Returns
+ * an empty array if unset.
  *
- * @param options - ルールに渡されたオプション配列
- * @returns AdditionalHooks の要素
+ * @param options - The options array passed to the rule
+ * @returns The additionalHooks entries
  */
 function readAdditionalHooks(
   options: Context["options"]
@@ -163,7 +171,7 @@ function guessIndent(context: Context, node: ESTree.Expression): string {
   const line = context.sourceCode.lines.at(node.loc.start.line - 1) ?? "";
   const match = /^(?<indent>\s*)/u.exec(line);
 
-  /* v8 ignore next -- 行頭の \s* は必ずマッチする */
+  /* v8 ignore next -- a leading \s* always matches */
   return match?.groups?.indent ?? "";
 }
 
@@ -172,10 +180,10 @@ function compareKeys(a: string, b: string): number {
 }
 
 /**
- * 穴あき要素やスプレッドを含む配列は並べ替え対象外として null を返す。
+ * Returns null for arrays with holes or spreads, since they are not sortable.
  *
- * @param depsArray - 依存配列のノード
- * @returns 並べ替え対象の要素。対象外なら null
+ * @param depsArray - The dependency array node
+ * @returns The elements to sort, or null if not sortable
  */
 function collectElements(
   depsArray: ESTree.ArrayExpression
@@ -280,7 +288,7 @@ const rule: Rule = {
     const hookMap = buildHookMap(context.options);
 
     return {
-      // AST ノード型名は oxlint のビジター API が決めるため改名不可
+      // AST node type names are dictated by oxlint's visitor API and cannot be renamed
       // oxlint-disable-next-line sonarjs/function-name
       CallExpression(node) {
         checkCallExpression(context, hookMap, node);

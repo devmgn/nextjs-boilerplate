@@ -5,18 +5,18 @@ import { ErrorThrower } from "./_components/error-thrower";
 import { Button } from "../../../components/button";
 import { delay } from "../../../utils/delay";
 
-// throw を伴う失敗する API 呼び出しのシミュレーション。
-// React Compiler は try/catch 内の ThrowStatement を lower できないため、
-// コンポーネント外の通常関数に切り出して throw をここに閉じ込める。
+// Simulates a failing API call that throws.
+// React Compiler cannot lower a ThrowStatement inside try/catch, so the throw
+// is isolated in a plain function outside the component.
 async function requestThatFails(): Promise<never> {
   await delay(1000);
   throw new Error("API request failed: 500 Internal Server Error");
 }
 
 /**
- * レンダリング中のエラーと非同期エラーの扱いを確かめるサンドボックスページ。
+ * Sandbox page for checking how render-time and async errors are handled.
  *
- * @returns 各エラーを発生させるボタンと結果表示
+ * @returns Buttons that trigger each error, plus the result display
  */
 export default function ErrorTestPage() {
   const [shouldError, setShouldError] = useState(false);
@@ -30,13 +30,13 @@ export default function ErrorTestPage() {
     try {
       await requestThatFails();
     } catch (error) {
-      // 非同期エラーはErrorBoundaryでキャッチされないため、
-      // try-catchで明示的にハンドリングする必要がある
+      // Async errors are not caught by ErrorBoundary,
+      // so they must be handled explicitly with try-catch
       setAsyncError(Error.isError(error) ? error : new Error("Unknown error"));
     }
 
-    // catch が再 throw しないため finally と等価。
-    // React Compiler は finally 節を lower できないので try/catch の後ろに置く。
+    // Equivalent to finally since catch never rethrows.
+    // React Compiler cannot lower finally clauses, so this sits after the try/catch.
     setIsLoading(false);
   };
 

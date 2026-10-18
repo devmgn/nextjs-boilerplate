@@ -1,13 +1,13 @@
 import type { NextRequest } from "next/server";
 
 /**
- * リクエストの URL とメソッドをコンソールへ出す開発用ロガー。
+ * Development logger that prints the request URL and method to the console.
  *
- * @param request - ログ出力するリクエスト
+ * @param request - The request to log
  */
 export function requestLogger(request: NextRequest) {
   const { url, method } = request;
-  // 開発用の proxy ログ。ここだけ console.log を許可する
+  // Development proxy log. console.log is allowed only here
   // oxlint-disable-next-line no-console
   console.log("[REQUEST]", { url, method });
 }

@@ -1,5 +1,5 @@
 export type {
-  // fallow-ignore-next-line unused-type -- デバッグ用途で公開する
+  // fallow-ignore-next-line unused-type -- exported for debugging
   Expand,
   FlatObject,
   Primitive,

@@ -6,19 +6,19 @@ describe("runtime", () => {
   });
 
   describe("isDevelopment", () => {
-    it('NODE_ENVが"development"のとき、trueとなること', async () => {
+    it('is true when NODE_ENV is "development"', async () => {
       vi.stubEnv("NODE_ENV", "development");
       const { isDevelopment } = await import("./runtime");
       expect(isDevelopment).toBeTruthy();
     });
 
-    it('NODE_ENVが"development"以外のとき、falseとなること', async () => {
+    it('is false when NODE_ENV is not "development"', async () => {
       vi.stubEnv("NODE_ENV", "production");
       const { isDevelopment } = await import("./runtime");
       expect(isDevelopment).toBeFalsy();
     });
 
-    it("NODE_ENVが未定義のとき、falseとなること", async () => {
+    it("is false when NODE_ENV is undefined", async () => {
       vi.stubEnv("NODE_ENV", "");
       const { isDevelopment } = await import("./runtime");
       expect(isDevelopment).toBeFalsy();
@@ -26,19 +26,19 @@ describe("runtime", () => {
   });
 
   describe("isProduction", () => {
-    it('NODE_ENVが"production"のとき、trueとなること', async () => {
+    it('is true when NODE_ENV is "production"', async () => {
       vi.stubEnv("NODE_ENV", "production");
       const { isProduction } = await import("./runtime");
       expect(isProduction).toBeTruthy();
     });
 
-    it('NODE_ENVが"production"以外のとき、falseとなること', async () => {
+    it('is false when NODE_ENV is not "production"', async () => {
       vi.stubEnv("NODE_ENV", "development");
       const { isProduction } = await import("./runtime");
       expect(isProduction).toBeFalsy();
     });
 
-    it("NODE_ENVが未定義のとき、falseとなること", async () => {
+    it("is false when NODE_ENV is undefined", async () => {
       vi.stubEnv("NODE_ENV", "");
       const { isProduction } = await import("./runtime");
       expect(isProduction).toBeFalsy();
@@ -46,15 +46,15 @@ describe("runtime", () => {
   });
 
   describe("isServer", () => {
-    it("window が undefined のとき、isServer が true となること", async () => {
-      // 第 2 引数の undefined が値の打ち消しを表す
+    it("isServer is true when window is undefined", async () => {
+      // Passing undefined as the second argument unsets the value
       // oxlint-disable-next-line unicorn/no-useless-undefined
       vi.stubGlobal("window", undefined);
       const { isServer } = await import("./runtime");
       expect(isServer).toBeTruthy();
     });
 
-    it("window が定義されているとき、isServer が false となること", async () => {
+    it("isServer is false when window is defined", async () => {
       vi.stubGlobal("window", {});
       const { isServer } = await import("./runtime");
       expect(isServer).toBeFalsy();

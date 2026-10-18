@@ -47,7 +47,7 @@ export const WithDisabledInput: Story = {
 };
 
 export const WithoutLabel: Story = {
-  // label を渡さないケース。
+  // Case without a label.
   render: () => (
     <Field
       render={(props) => <Input {...props} aria-label="ラベルなし入力" />}

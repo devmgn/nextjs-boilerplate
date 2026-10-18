@@ -1,13 +1,13 @@
 import { describe, expectTypeOf, it } from "vitest";
 import { isFunction } from "./is-function";
 
-// 初期化子から型を絞り込ませないため、宣言された戻り値型で union を作る。
+// Build the union from a declared return type so the initializer does not narrow it.
 function makeUnion(): string | (() => string) {
   return "x";
 }
 
 describe(isFunction, () => {
-  it("ユニオンを関数成分と非関数成分に narrow すること", () => {
+  it("narrows a union into its function and non-function members", () => {
     const union = makeUnion();
 
     if (isFunction(union)) {

@@ -9,7 +9,7 @@ const rule: Rule = {
     }
 
     return {
-      // AST ノード型名は oxlint のビジター API が決めるため改名不可
+      // AST node type names are dictated by oxlint's visitor API and cannot be renamed
       // oxlint-disable-next-line sonarjs/function-name
       Program(node) {
         context.report({

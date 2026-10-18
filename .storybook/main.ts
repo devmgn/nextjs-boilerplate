@@ -26,14 +26,14 @@ const config: StorybookConfig = {
     disableTelemetry: true,
   },
   typescript: {
-    // Storybook 既定の babel ベース docgen。精度の高い `react-docgen-typescript` は
-    // `ts.sys` など TypeScript の JS API を直接触るため、ネイティブ実装で JS API を
-    // 持たない typescript@7 では `build-storybook` が
-    // `TypeError: Cannot read properties of undefined (reading 'fileExists')` で落ちる。
-    // upstream は TS 7.1 の programmatic API (microsoft/typescript-go#2824, milestone
-    // Post-7.0) を待っている状態なので、それが着地するまでこちらを使う。
-    // 代償として `React.ComponentProps<"div">` や `VariantProps<typeof variants>` の
-    // 展開ができず、Docs の props テーブルの網羅性が落ちる。
+    // Storybook's default babel-based docgen. The more accurate `react-docgen-typescript`
+    // touches TypeScript's JS API (e.g. `ts.sys`) directly, so with typescript@7, a native
+    // implementation without a JS API, `build-storybook` crashes with
+    // `TypeError: Cannot read properties of undefined (reading 'fileExists')`.
+    // Upstream is waiting on the TS 7.1 programmatic API (microsoft/typescript-go#2824,
+    // milestone Post-7.0), so use this until that lands.
+    // The trade-off: `React.ComponentProps<"div">` and `VariantProps<typeof variants>`
+    // cannot be expanded, so the Docs props table is less complete.
     reactDocgen: "react-docgen",
   },
   staticDirs: ["../public"],

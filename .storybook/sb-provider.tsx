@@ -5,10 +5,11 @@ import { createQueryClientConfig } from "../src/lib/get-query-client/config/quer
 import "../src/lib/styles/globals.css";
 
 /**
- * Storybook の各 story を TanStack Query・Suspense・Toaster で包むプロバイダー。
+ * Provider that wraps each Storybook story with TanStack Query, Suspense, and
+ * Toaster.
  *
- * @param props - 包む対象の story
- * @returns プロバイダーで包んだ story
+ * @param props - The story to wrap
+ * @returns The story wrapped in the providers
  */
 export function SbProvider({ children }: React.PropsWithChildren) {
   // oxlint-disable-next-line react/hook-use-state

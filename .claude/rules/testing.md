@@ -23,7 +23,7 @@ paths:
 
 ## API Mocking
 
-Use shared MSW server with per-test handlers. `resetHandlers()` runs automatically in `afterEach`.
+Use the shared MSW server with per-test handlers; `resetHandlers()` runs automatically in `afterEach`. Mock spec-described responses with Orval fixtures and override only the fields the test asserts on (see `mocks.md` for the fixture API and when to fall back to a plain `http.*` handler).
 
 ```typescript
 import { defineFixtures } from "../../api/openapi/index.fixtures";
@@ -37,8 +37,7 @@ server.use(
 );
 ```
 
-- Cast `request.json()` as `Record<string, unknown>` when spreading into response
-- Mock spec-described responses with Orval fixtures (`defineFixtures` + `createFixtureHandler`, see `mocks.md`) and override only the fields the test asserts on. Use a plain `http.*` handler, with the URL from the generated `get<Operation>Url()`, only for responses outside the spec (network errors, HTML error pages)
 - To assert on the request, use a fixture function: `"POST /api/articles": ({ body }) => { received = body; return { article: { slug: "x" } }; }`
+- In a plain `http.*` handler, cast `request.json()` as `Record<string, unknown>` when spreading it into the response
 - Server Action tests: add `// @vitest-environment node` at the top. Server Actions run on Node.js, and happy-dom's `fetch` rejects network failures with a different error than Node's `TypeError`
 - Situations MSW + happy-dom cannot produce (e.g. a response body that fails mid-stream) can be tested with `vi.spyOn(globalThis, "fetch")`

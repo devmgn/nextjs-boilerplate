@@ -10,7 +10,7 @@ const validMetric = {
 } satisfies IncomingMetric;
 
 describe(reportWebVital, () => {
-  it("有効なmetricを受け取ったとき、console.infoが呼ばれること", () => {
+  it("calls console.info for a valid metric", () => {
     const consoleSpy = vi.spyOn(console, "info").mockImplementation(() => {});
 
     reportWebVital(validMetric);
@@ -22,7 +22,7 @@ describe(reportWebVital, () => {
     );
   });
 
-  it("不正なmetricを受け取ったとき、console.infoが呼ばれないこと", () => {
+  it("does not call console.info for an invalid metric", () => {
     const consoleSpy = vi.spyOn(console, "info").mockImplementation(() => {});
 
     reportWebVital({});

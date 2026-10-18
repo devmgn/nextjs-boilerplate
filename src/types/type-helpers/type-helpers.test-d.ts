@@ -3,7 +3,7 @@ import { describe, expectTypeOf, it } from "vitest";
 
 describe("typeHelpers", () => {
   describe("Expand", () => {
-    it("Expand: プリミティブ型はそのまま返す", () => {
+    it("Expand: returns primitive types as-is", () => {
       expectTypeOf<Expand<string>>().toEqualTypeOf<string>();
       expectTypeOf<Expand<number>>().toEqualTypeOf<number>();
       expectTypeOf<Expand<boolean>>().toEqualTypeOf<boolean>();
@@ -11,7 +11,7 @@ describe("typeHelpers", () => {
       expectTypeOf<Expand<undefined>>().toEqualTypeOf<undefined>();
     });
 
-    it("Expand: フラットな交差型を展開する", () => {
+    it("Expand: expands a flat intersection type", () => {
       type Input = { a: string } & { b: number };
 
       interface Expected {
@@ -22,7 +22,7 @@ describe("typeHelpers", () => {
       expectTypeOf<Expand<Input>>().toEqualTypeOf<Expected>();
     });
 
-    it("Expand: ネストされた交差型を再帰的に展開する", () => {
+    it("Expand: recursively expands nested intersection types", () => {
       interface Input {
         nested: { a: string } & { b: number };
       }
@@ -36,7 +36,7 @@ describe("typeHelpers", () => {
   });
 
   describe("Primitive", () => {
-    it("Primitive: すべてのプリミティブ値を受け入れる", () => {
+    it("Primitive: accepts all primitive values", () => {
       expectTypeOf<null>().toExtend<Primitive>();
       expectTypeOf<undefined>().toExtend<Primitive>();
       expectTypeOf<string>().toExtend<Primitive>();
@@ -46,7 +46,7 @@ describe("typeHelpers", () => {
       expectTypeOf<bigint>().toExtend<Primitive>();
     });
 
-    it("Primitive: オブジェクト型は含まない", () => {
+    it("Primitive: excludes object types", () => {
       expectTypeOf<{ a: string }>().not.toExtend<Primitive>();
       expectTypeOf<string[]>().not.toExtend<Primitive>();
     });
@@ -54,7 +54,7 @@ describe("typeHelpers", () => {
 
   describe("FlatObject", () => {
     // FlatObject
-    it("FlatObject: プリミティブ値のみのオブジェクトを受け入れる", () => {
+    it("FlatObject: accepts objects with only primitive values", () => {
       expectTypeOf<{
         a: string;
         b: number;
@@ -62,7 +62,7 @@ describe("typeHelpers", () => {
       }>().toExtend<FlatObject>();
     });
 
-    it("FlatObject: ネストされたオブジェクトは受け入れない", () => {
+    it("FlatObject: rejects nested objects", () => {
       expectTypeOf<{ a: { nested: string } }>().not.toExtend<FlatObject>();
     });
   });

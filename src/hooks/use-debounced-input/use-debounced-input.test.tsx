@@ -14,7 +14,7 @@ function Probe({
 }) {
   const handlers = useDebouncedInput(onValue, wait);
 
-  // input / textarea どちらにも同じ handlers をスプレッドできることを型でも保証する
+  // Also guarantee at the type level that the same handlers can be spread onto both input and textarea
   if (multiline) {
     return <textarea data-testid="textarea" {...handlers} />;
   }
@@ -26,7 +26,7 @@ describe(useDebouncedInput, () => {
   beforeEach(() => vi.useFakeTimers());
   afterEach(() => vi.useRealTimers());
 
-  it("入力値が debounce されて onValue に渡ること", () => {
+  it("debounces the input value and passes it to onValue", () => {
     const onValue = vi.fn<(value: string) => void>();
     const { getByTestId } = render(<Probe onValue={onValue} wait={300} />);
 
@@ -39,7 +39,7 @@ describe(useDebouncedInput, () => {
     expect(onValue).toHaveBeenCalledExactlyOnceWith("a");
   });
 
-  it("連続入力では最後の値で1回だけ実行されること", () => {
+  it("runs once with the last value on rapid input", () => {
     const onValue = vi.fn<(value: string) => void>();
     const { getByTestId } = render(<Probe onValue={onValue} wait={300} />);
     const input = getByTestId("input");
@@ -54,7 +54,7 @@ describe(useDebouncedInput, () => {
     expect(onValue).toHaveBeenCalledExactlyOnceWith("abc");
   });
 
-  it("IME 変換中 (compositionStart 後) の入力は debounce に流れないこと", () => {
+  it("does not forward input during IME composition (after compositionStart) to debounce", () => {
     const onValue = vi.fn<(value: string) => void>();
     const { getByTestId } = render(<Probe onValue={onValue} wait={300} />);
     const input = getByTestId("input");
@@ -68,7 +68,7 @@ describe(useDebouncedInput, () => {
     expect(onValue).not.toHaveBeenCalled();
   });
 
-  it("変換確定 (compositionEnd) で確定値が即時に反映されること", () => {
+  it("applies the committed value immediately on compositionEnd", () => {
     const onValue = vi.fn<(value: string) => void>();
     const { getByTestId } = render(<Probe onValue={onValue} wait={300} />);
     const input = getByTestId("input");
@@ -77,11 +77,11 @@ describe(useDebouncedInput, () => {
     fireEvent.change(input, { target: { value: "ねこ" } });
     fireEvent.compositionEnd(input, { target: { value: "猫" } });
 
-    // flush によりタイマー待ちなしで即時実行される
+    // flush runs it immediately without waiting for the timer
     expect(onValue).toHaveBeenCalledExactlyOnceWith("猫");
   });
 
-  it("変換確定後の通常入力は再び debounce されること", () => {
+  it("debounces normal input again after composition is committed", () => {
     const onValue = vi.fn<(value: string) => void>();
     const { getByTestId } = render(<Probe onValue={onValue} wait={300} />);
     const input = getByTestId("input");
@@ -98,7 +98,7 @@ describe(useDebouncedInput, () => {
     expect(onValue).toHaveBeenNthCalledWith(2, "猫です");
   });
 
-  it("依存が変わらない再レンダリングでも保留中のタイマーが失われないこと", () => {
+  it("keeps the pending timer on re-render with unchanged deps", () => {
     const onValue = vi.fn<(value: string) => void>();
 
     const { getByTestId, rerender } = render(
@@ -106,7 +106,7 @@ describe(useDebouncedInput, () => {
     );
 
     fireEvent.change(getByTestId("input"), { target: { value: "a" } });
-    // 同一 deps で再レンダリング（メモ化のキャッシュヒット経路）
+    // Re-render with the same deps (memoization cache-hit path)
     rerender(<Probe onValue={onValue} wait={300} />);
 
     act(() => {
@@ -115,7 +115,7 @@ describe(useDebouncedInput, () => {
     expect(onValue).toHaveBeenCalledExactlyOnceWith("a");
   });
 
-  it("textarea にもスプレッドでき debounce されること", () => {
+  it("can be spread onto a textarea and debounces", () => {
     const onValue = vi.fn<(value: string) => void>();
 
     const { getByTestId } = render(
@@ -131,7 +131,7 @@ describe(useDebouncedInput, () => {
     expect(onValue).toHaveBeenCalledExactlyOnceWith("multi\nline");
   });
 
-  it("wait を変更するとタイマーが作り直されること", () => {
+  it("recreates the timer when wait changes", () => {
     const onValue = vi.fn<(value: string) => void>();
 
     const { getByTestId, rerender } = render(
@@ -139,7 +139,7 @@ describe(useDebouncedInput, () => {
     );
 
     fireEvent.change(getByTestId("input"), { target: { value: "a" } });
-    // wait 変更（メモ化のキャッシュミス経路）→ 旧タイマーは破棄される
+    // Change wait (memoization cache-miss path): the old timer is discarded
     rerender(<Probe onValue={onValue} wait={500} />);
 
     act(() => {

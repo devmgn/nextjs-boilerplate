@@ -1,12 +1,12 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { localStorageStore, sessionStorageStore } from "./web-storage-store";
 
-/** 参照を差し込むまでのプレースホルダ。 */
+/** Placeholder until the reference is assigned. */
 function noop(): void {}
 
 let keySequence = 0;
 
-// テスト間でキーが衝突しないようにする連番。
+// Sequence number to avoid key collisions between tests.
 function uniqueKey() {
   keySequence += 1;
 
@@ -14,9 +14,10 @@ function uniqueKey() {
 }
 
 /**
- * 実ブラウザ同様 `storageArea` を必ず設定したうえで `storage` イベントを発火する。
+ * Dispatches a `storage` event, always setting `storageArea` as real browsers
+ * do.
  *
- * @param init - `storageArea` 以外のイベント初期化値
+ * @param init - Event init values other than `storageArea`
  */
 function dispatchLocalStorageEvent(
   init: Omit<StorageEventInit, "storageArea">
@@ -57,11 +58,11 @@ describe("webStorageStore", () => {
     });
 
     describe(read, () => {
-      it("未設定のキーはnullを返す", () => {
+      it("returns null for an unset key", () => {
         expect(read(uniqueKey())).toBeNull();
       });
 
-      it("ストレージが例外を投げてもnullを返す", () => {
+      it("returns null even if the storage throws", () => {
         vi.stubGlobal(storageKey, {
           getItem: () => {
             throw new Error("unavailable");
@@ -72,17 +73,17 @@ describe("webStorageStore", () => {
     });
 
     describe(write, () => {
-      it("書き込んだ値がreadで取得できる", () => {
+      it("reads back the written value", () => {
         const key = uniqueKey();
         write(key, "hello");
         expect(read(key)).toBe("hello");
       });
 
-      it("成功時にtrueを返す", () => {
+      it("returns true on success", () => {
         expect(write(uniqueKey(), "hello")).toBeTruthy();
       });
 
-      it("QuotaExceededError時にfalseを返しwarnを出す", () => {
+      it("returns false and warns on QuotaExceededError", () => {
         const warnSpy = silenceWarn();
         vi.stubGlobal(storageKey, {
           setItem: () => {
@@ -93,7 +94,7 @@ describe("webStorageStore", () => {
         expect(warnSpy).toHaveBeenCalledOnce();
       });
 
-      it("失敗時は購読者に通知しない", () => {
+      it("does not notify subscribers on failure", () => {
         silenceWarn();
         const key = uniqueKey();
         const listener = vi.fn<() => void>();
@@ -112,18 +113,18 @@ describe("webStorageStore", () => {
     });
 
     describe(remove, () => {
-      it("書き込んだ値を削除する", () => {
+      it("removes the written value", () => {
         const key = uniqueKey();
         write(key, "hello");
         remove(key);
         expect(read(key)).toBeNull();
       });
 
-      it("成功時にtrueを返す", () => {
+      it("returns true on success", () => {
         expect(remove(uniqueKey())).toBeTruthy();
       });
 
-      it("ストレージが例外を投げた時にfalseを返す", () => {
+      it("returns false when the storage throws", () => {
         silenceWarn();
         vi.stubGlobal(storageKey, {
           removeItem: () => {
@@ -133,7 +134,7 @@ describe("webStorageStore", () => {
         expect(remove(uniqueKey())).toBeFalsy();
       });
 
-      it("失敗時は購読者に通知しない", () => {
+      it("does not notify subscribers on failure", () => {
         silenceWarn();
         const key = uniqueKey();
         const listener = vi.fn<() => void>();
@@ -152,7 +153,7 @@ describe("webStorageStore", () => {
     });
 
     describe(clear, () => {
-      it("全キーを削除する", () => {
+      it("removes all keys", () => {
         const k1 = uniqueKey();
         const k2 = uniqueKey();
         write(k1, "a");
@@ -164,7 +165,7 @@ describe("webStorageStore", () => {
         expect(read(k2)).toBeNull();
       });
 
-      it("全購読者へ通知する", () => {
+      it("notifies all subscribers", () => {
         const k1 = uniqueKey();
         const k2 = uniqueKey();
         const l1 = vi.fn<() => void>();
@@ -180,11 +181,11 @@ describe("webStorageStore", () => {
         u2();
       });
 
-      it("成功時にtrueを返す", () => {
+      it("returns true on success", () => {
         expect(clear()).toBeTruthy();
       });
 
-      it("ストレージが例外を投げた時にfalseを返し通知をスキップする", () => {
+      it("returns false and skips notification when the storage throws", () => {
         silenceWarn();
         vi.stubGlobal(storageKey, {
           clear: () => {
@@ -203,7 +204,7 @@ describe("webStorageStore", () => {
     });
 
     describe(subscribe, () => {
-      it("同じキーへのwriteでリスナーが呼ばれる", () => {
+      it("calls the listener on write to the same key", () => {
         const key = uniqueKey();
         const listener = vi.fn<() => void>();
         const unsubscribe = subscribe(key, listener);
@@ -214,7 +215,7 @@ describe("webStorageStore", () => {
         unsubscribe();
       });
 
-      it("同じキーへのremoveでリスナーが呼ばれる", () => {
+      it("calls the listener on remove of the same key", () => {
         const key = uniqueKey();
         write(key, "hello");
         const listener = vi.fn<() => void>();
@@ -226,7 +227,7 @@ describe("webStorageStore", () => {
         unsubscribe();
       });
 
-      it("unsubscribe後はリスナーが呼ばれない", () => {
+      it("does not call the listener after unsubscribe", () => {
         const key = uniqueKey();
         const listener = vi.fn<() => void>();
         const unsubscribe = subscribe(key, listener);
@@ -237,7 +238,7 @@ describe("webStorageStore", () => {
         expect(listener).not.toHaveBeenCalled();
       });
 
-      it("異なるキーへのwriteでリスナーが呼ばれない", () => {
+      it("does not call the listener on write to a different key", () => {
         const key = uniqueKey();
         const listener = vi.fn<() => void>();
         const unsubscribe = subscribe(key, listener);
@@ -248,7 +249,7 @@ describe("webStorageStore", () => {
         unsubscribe();
       });
 
-      it("あるリスナーがthrowしても他のリスナーは呼ばれる", () => {
+      it("calls other listeners even if one throws", () => {
         silenceError();
         const key = uniqueKey();
 
@@ -268,7 +269,7 @@ describe("webStorageStore", () => {
         u2();
       });
 
-      it("clearでもthrowしたリスナーが他をブロックしない", () => {
+      it("a throwing listener does not block others on clear", () => {
         silenceError();
         const k1 = uniqueKey();
         const k2 = uniqueKey();
@@ -289,7 +290,7 @@ describe("webStorageStore", () => {
         u2();
       });
 
-      it("同一リスナーを重複subscribeしてもwriteで一度しか呼ばれない", () => {
+      it("calls a listener subscribed twice only once on write", () => {
         const key = uniqueKey();
         const listener = vi.fn<() => void>();
         const u1 = subscribe(key, listener);
@@ -302,7 +303,7 @@ describe("webStorageStore", () => {
         u2();
       });
 
-      it("リスナー内で同キーにsubscribeしても今回のnotifyでは呼ばれない", () => {
+      it("a listener subscribed to the same key inside a listener is not called in the current notify", () => {
         const key = uniqueKey();
         const lateListener = vi.fn<() => void>();
         let lateUnsubscribe: (() => void) | undefined;
@@ -321,11 +322,11 @@ describe("webStorageStore", () => {
         lateUnsubscribe?.();
       });
 
-      it("リスナー内で他のリスナーをunsubscribeしても他のリスナーは呼ばれる", () => {
+      it("calls other listeners even if a listener unsubscribes another", () => {
         const key = uniqueKey();
         const l2 = vi.fn<() => void>();
-        // l1 のクロージャは l2 の unsubscribe より先に組み立てられるため、
-        // 参照を後から差し込めるよう no-op で初期化しておく。
+        // l1's closure is built before l2's unsubscribe exists,
+        // so initialize it with a no-op and assign the reference later.
         let unsubscribeL2: () => void = noop;
 
         const l1 = vi.fn<() => void>(() => {
@@ -344,7 +345,7 @@ describe("webStorageStore", () => {
         u2();
       });
 
-      it("unsubscribeを複数回呼んでも後続のsubscribeが壊れない", () => {
+      it("calling unsubscribe multiple times does not break later subscribes", () => {
         const key = uniqueKey();
         const l1 = vi.fn<() => void>();
         const l2 = vi.fn<() => void>();
@@ -362,14 +363,14 @@ describe("webStorageStore", () => {
     });
   });
 
-  describe("localStorageStore 他タブ連携", () => {
+  describe("localStorageStore cross-tab sync", () => {
     const { subscribe } = localStorageStore;
 
     beforeEach(() => {
       localStorage.clear();
     });
 
-    it("同じキーのstorageイベントでリスナーが呼ばれる", () => {
+    it("calls the listener on a storage event for the same key", () => {
       const key = uniqueKey();
       const listener = vi.fn<() => void>();
       const unsubscribe = subscribe(key, listener);
@@ -380,7 +381,7 @@ describe("webStorageStore", () => {
       unsubscribe();
     });
 
-    it("異なるキーのstorageイベントでは呼ばれない", () => {
+    it("does not call the listener on a storage event for a different key", () => {
       const key = uniqueKey();
       const listener = vi.fn<() => void>();
       const unsubscribe = subscribe(key, listener);
@@ -391,7 +392,7 @@ describe("webStorageStore", () => {
       unsubscribe();
     });
 
-    it("他タブのclearに伴うstorageイベント（key=null）でリスナーが呼ばれる", () => {
+    it("calls the listener on a storage event from clear in another tab (key=null)", () => {
       const key = uniqueKey();
       const listener = vi.fn<() => void>();
       const unsubscribe = subscribe(key, listener);
@@ -402,7 +403,7 @@ describe("webStorageStore", () => {
       unsubscribe();
     });
 
-    it("同一リスナーを重複subscribeしてもstorageイベントで一度しか呼ばれない", () => {
+    it("calls a listener subscribed twice only once on a storage event", () => {
       const key = uniqueKey();
       const listener = vi.fn<() => void>();
       const u1 = subscribe(key, listener);
@@ -415,7 +416,7 @@ describe("webStorageStore", () => {
       u2();
     });
 
-    it("unsubscribeでstorageイベントの購読も解除される", () => {
+    it("unsubscribe also stops storage event notifications", () => {
       const key = uniqueKey();
       const listener = vi.fn<() => void>();
       const unsubscribe = subscribe(key, listener);
@@ -426,7 +427,7 @@ describe("webStorageStore", () => {
       expect(listener).not.toHaveBeenCalled();
     });
 
-    it("storageAreaがsessionStorageのイベントは無視する", () => {
+    it("ignores events whose storageArea is sessionStorage", () => {
       const key = uniqueKey();
       const listener = vi.fn<() => void>();
       const unsubscribe = subscribe(key, listener);
@@ -444,12 +445,12 @@ describe("webStorageStore", () => {
     });
   });
 
-  describe("sessionStorageStore 単一タブ", () => {
+  describe("sessionStorageStore single tab", () => {
     beforeEach(() => {
       sessionStorage.clear();
     });
 
-    it("他タブ由来のstorageイベントには反応しない", () => {
+    it("does not react to storage events from other tabs", () => {
       const key = uniqueKey();
       const listener = vi.fn<() => void>();
       const unsubscribe = sessionStorageStore.subscribe(key, listener);
@@ -461,13 +462,13 @@ describe("webStorageStore", () => {
     });
   });
 
-  describe("ストア間の独立性", () => {
+  describe("store independence", () => {
     beforeEach(() => {
       localStorage.clear();
       sessionStorage.clear();
     });
 
-    it("localStorageStore.writeはsessionStorageStoreの購読者に通知しない", () => {
+    it("localStorageStore.write does not notify sessionStorageStore subscribers", () => {
       const key = uniqueKey();
       const sessionListener = vi.fn<() => void>();
       const unsubscribe = sessionStorageStore.subscribe(key, sessionListener);
@@ -478,7 +479,7 @@ describe("webStorageStore", () => {
       unsubscribe();
     });
 
-    it("sessionStorageStore.writeはlocalStorageStoreの購読者に通知しない", () => {
+    it("sessionStorageStore.write does not notify localStorageStore subscribers", () => {
       const key = uniqueKey();
       const localListener = vi.fn<() => void>();
       const unsubscribe = localStorageStore.subscribe(key, localListener);
@@ -489,7 +490,7 @@ describe("webStorageStore", () => {
       unsubscribe();
     });
 
-    it("同じキーでも両ストアは独立した値を保持する", () => {
+    it("both stores hold independent values for the same key", () => {
       const key = uniqueKey();
       localStorageStore.write(key, "local-value");
       sessionStorageStore.write(key, "session-value");
@@ -498,7 +499,7 @@ describe("webStorageStore", () => {
       expect(sessionStorageStore.read(key)).toBe("session-value");
     });
 
-    it("localStorageStore.clearはsessionStorageStoreに影響しない", () => {
+    it("localStorageStore.clear does not affect sessionStorageStore", () => {
       const key = uniqueKey();
       sessionStorageStore.write(key, "keep");
 
@@ -507,7 +508,7 @@ describe("webStorageStore", () => {
       expect(sessionStorageStore.read(key)).toBe("keep");
     });
 
-    it("sessionStorageStore.clearはlocalStorageStoreに影響しない", () => {
+    it("sessionStorageStore.clear does not affect localStorageStore", () => {
       const key = uniqueKey();
       localStorageStore.write(key, "keep");
 
@@ -517,12 +518,12 @@ describe("webStorageStore", () => {
     });
   });
 
-  describe("複数購読者", () => {
+  describe("multiple subscribers", () => {
     beforeEach(() => {
       localStorage.clear();
     });
 
-    it("同じキーの複数リスナーが全員呼ばれる", () => {
+    it("calls every listener for the same key", () => {
       const key = uniqueKey();
       const l1 = vi.fn<() => void>();
       const l2 = vi.fn<() => void>();

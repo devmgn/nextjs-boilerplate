@@ -1,5 +1,5 @@
 // @vitest-environment node
-// server action は Node.js で動くため、fetch の失敗時の挙動（TypeError）も Node.js に合わせる
+// Server actions run on Node.js, so fetch failure behavior (TypeError) follows Node.js too
 import { HttpResponse, http } from "msw";
 import { describe, expect, it } from "vitest";
 import { createArticle } from "./create-article";
@@ -19,7 +19,7 @@ const input = {
 };
 
 describe("createArticle", () => {
-  it("タグを配列に変換して送信し、成功時に slug を返すこと", async () => {
+  it("sends tags as an array and returns the slug on success", async () => {
     let received: unknown;
     server.use(
       createFixtureHandler(
@@ -47,7 +47,7 @@ describe("createArticle", () => {
     });
   });
 
-  it("401 の場合にログインが必要な旨の失敗状態を返すこと", async () => {
+  it("returns a login-required failure on 401", async () => {
     server.use(
       createFixtureHandler(
         defineFixtures({
@@ -64,8 +64,8 @@ describe("createArticle", () => {
     });
   });
 
-  // spec にない応答（HTML のエラーページ・通信エラー）は fixtures で表せないため素の handler で作る
-  it("上流の応答本文を画面向けのメッセージに含めないこと", async () => {
+  // Responses outside the spec (HTML error pages, network errors) can't be expressed with fixtures, so use raw handlers
+  it("does not include the upstream response body in the UI message", async () => {
     server.use(
       http.post(getCreateArticleUrl(), () =>
         HttpResponse.html("<html>internal stack trace</html>", { status: 502 })
@@ -78,7 +78,7 @@ describe("createArticle", () => {
     });
   });
 
-  it("通信エラーの場合に失敗状態を返すこと", async () => {
+  it("returns a failure on network errors", async () => {
     server.use(http.post(getCreateArticleUrl(), () => HttpResponse.error()));
 
     await expect(createArticle(null, input)).resolves.toStrictEqual({
@@ -88,14 +88,17 @@ describe("createArticle", () => {
   });
 
   it.each([
-    ["title が空", { ...input, title: "" }],
-    ["tags が欠けている", { title: "T", description: "D", body: "B" }],
-  ])("%s 場合に API を呼ばず失敗状態を返すこと", async (_label, data) => {
-    // API が呼ばれたら MSW の onUnhandledFrame でテストが落ちる
-    // SAFETY: 検証を通らない値を意図的に渡す
-    // oxlint-disable-next-line typescript/no-unsafe-type-assertion
-    const state = await createArticle(null, data as typeof input);
+    ["title is empty", { ...input, title: "" }],
+    ["tags is missing", { title: "T", description: "D", body: "B" }],
+  ])(
+    "returns a failure without calling the API when %s",
+    async (_label, data) => {
+      // If the API is called, MSW's onUnhandledFrame fails the test
+      // SAFETY: intentionally passes values that fail validation
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
+      const state = await createArticle(null, data as typeof input);
 
-    expect(state).toStrictEqual({ ok: false, message: "Invalid input" });
-  });
+      expect(state).toStrictEqual({ ok: false, message: "Invalid input" });
+    }
+  );
 });

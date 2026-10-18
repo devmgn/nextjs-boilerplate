@@ -1,7 +1,7 @@
 /**
- * `unauthorized()` 呼び出し時に表示する 401 画面。
+ * 401 page shown when `unauthorized()` is called.
  *
- * @returns 401 メッセージ
+ * @returns The 401 message
  */
 export default function Unauthorized() {
   return <>Unauthorized</>;

@@ -1,8 +1,8 @@
 /**
- * OpenAPI サンドボックスの見出しを付けるレイアウト。
+ * Layout that adds the OpenAPI sandbox heading.
  *
- * @param props - 配下のページ
- * @returns 見出しと配下のページ
+ * @param props - The nested page
+ * @returns The heading and the nested page
  */
 export default function Layout({ children }: React.PropsWithChildren) {
   return (

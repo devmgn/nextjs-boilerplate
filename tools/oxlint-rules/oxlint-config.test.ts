@@ -1,16 +1,19 @@
 import { describe, expect, it } from "vitest";
 import oxlintConfig from "../../oxlint.config.ts";
 
-// 自前でルールを手動列挙している外部 jsPlugin（tanstack / storybook）は、
-// プラグイン更新で増えた新ルールを取りこぼしうる（前方ドリフト）。それを検出して採用/除外の判断を促す。
-// 実在しないルール名は oxlint が config パース時に弾くため、後方ドリフトは扱わない。
+// External jsPlugins whose rules we enumerate by hand (tanstack / storybook) can miss new
+// rules added by plugin updates (forward drift). Detect that and prompt an adopt/exclude decision.
+// oxlint rejects nonexistent rule names when parsing the config, so backward drift is not covered.
 
-/** プラグインが公開する 1 ルール。ここではキー名しか使わないため create の有無だけ表明する。 */
+/**
+ * A single rule exposed by a plugin. Only the key name is used here, so just
+ * declare the optional create.
+ */
 interface PluginRule {
   readonly create?: unknown;
 }
 
-/** プラグインが公開するルール表。 */
+/** Rule table exposed by a plugin. */
 type RuleTable = Readonly<Record<string, PluginRule>>;
 
 interface PluginLike {
@@ -19,7 +22,7 @@ interface PluginLike {
 
 type JsPluginEntry = string | { name?: string; specifier: string };
 
-// ルール選定を ultracite の preset が持つプラグイン。採否は ultracite 側の責務。
+// Plugins whose rule selection is owned by the ultracite preset. Adoption is ultracite's responsibility.
 const ULTRACITE_MANAGED_PREFIXES = new Set([
   "github/",
   "jsdoc-js/",
@@ -28,7 +31,7 @@ const ULTRACITE_MANAGED_PREFIXES = new Set([
   "tsdoc/",
 ]);
 
-// プラグイン specifier → oxlint の前缀（eslint-plugin-x → x ／ @scope/eslint-plugin-x → @scope/x）。
+// Plugin specifier → oxlint prefix (eslint-plugin-x → x / @scope/eslint-plugin-x → @scope/x).
 function stripEslintPluginPrefix(name: string): string {
   const marker = "eslint-plugin-";
 
@@ -49,16 +52,16 @@ function normalizePluginPrefix(specifier: string): string {
     : `${scope}/${stripEslintPluginPrefix(rest)}`;
 }
 
-// config の jsPlugins（top-level + overrides）を集める。
+// Collect jsPlugins from the config (top-level + overrides).
 function collectJsPluginEntries(): JsPluginEntry[] {
-  // SAFETY: oxlint の型では jsPlugins が緩いユニオンだが、
-  // 本 config が入れるのは string か { name, specifier } のみ。
+  // SAFETY: oxlint types jsPlugins as a loose union, but
+  // this config only uses string or { name, specifier }.
   const entries: JsPluginEntry[] = [
     ...(oxlintConfig.jsPlugins as JsPluginEntry[]),
   ];
 
   for (const override of oxlintConfig.overrides) {
-    // SAFETY: 上と同じ。override の jsPlugins も同じ形しか入れていない。
+    // SAFETY: Same as above. Override jsPlugins use only the same shapes.
     const overridePlugins = override.jsPlugins as JsPluginEntry[] | undefined;
 
     if (overridePlugins !== undefined) {
@@ -70,16 +73,16 @@ function collectJsPluginEntries(): JsPluginEntry[] {
 }
 
 /**
- * JsPlugins の要素が specifier 文字列の短縮形かを判定する。
+ * Checks whether a jsPlugins entry is the shorthand specifier string.
  *
- * @param entry - 判定対象の jsPlugins 要素
- * @returns 文字列の短縮形なら true
+ * @param entry - The jsPlugins entry to check
+ * @returns True if it is the string shorthand
  */
 function isStringEntry(entry: JsPluginEntry): entry is string {
   return typeof entry === "string";
 }
 
-// entry → { 前缀, specifier }。相対パス（自作プラグイン）は除外。
+// entry → `{ prefix, specifier }`. Relative paths (local plugins) are excluded.
 function resolveExternalPlugin(
   entry: JsPluginEntry
 ): { prefix: string; specifier: string } | undefined {
@@ -97,8 +100,8 @@ function resolveExternalPlugin(
   };
 }
 
-// 前缀 → specifier（overrides の storybook 等は前缀で重複排除）。import せず sync に列挙する。
-// これを it.each のデータ源にすることで、top-level await なしに動的 import をテスト内へ遅延できる。
+// prefix → specifier (storybook etc. in overrides are deduplicated by prefix). Enumerated synchronously without importing.
+// Using this as the it.each data source defers the dynamic import into the test without top-level await.
 function collectExternalPluginSpecifiers(): Map<string, string> {
   const byPrefix = new Map<string, string>();
 
@@ -127,8 +130,8 @@ function hasDefaultExport(value: unknown): value is { default: PluginLike } {
   );
 }
 
-// specifier のプラグインが公開する全ルール名。
-// default export か名前空間のどちらかに rules を持つ規約に従う。
+// All rule names exposed by the plugin at specifier.
+// Follows the convention that rules live on either the default export or the namespace.
 async function loadPluginRules(specifier: string): Promise<string[]> {
   const mod: unknown = await import(specifier);
   const plugin = hasDefaultExport(mod) ? mod.default : mod;
@@ -136,7 +139,7 @@ async function loadPluginRules(specifier: string): Promise<string[]> {
   return isPluginLike(plugin) ? Object.keys(plugin.rules ?? {}) : [];
 }
 
-// top-level と overrides 両方の rules キーを集める（storybook は overrides にのみ現れる）。
+// Collect rule keys from both top-level and overrides (storybook appears only in overrides).
 function collectConfiguredRuleNames(): Set<string> {
   const names = new Set<string>();
 
@@ -169,28 +172,28 @@ function untriagedRules(
 
 const externalPluginSpecifiers = collectExternalPluginSpecifiers();
 
-describe("oxlint config ↔ プラグイン整合性 (前方ドリフト検出)", () => {
+describe("oxlint config ↔ plugin consistency (forward drift detection)", () => {
   const configured = collectConfiguredRuleNames();
 
-  it("config 宣言の外部 jsPlugin が 1 つ以上ある", () => {
-    // 0 件だと it.each が空になり素通りするためのガード。
+  it("declares at least one external jsPlugin in the config", () => {
+    // Guard: with zero entries, it.each would be empty and silently pass.
     expect(externalPluginSpecifiers.size).toBeGreaterThan(0);
   });
 
   it.each([...externalPluginSpecifiers])(
-    "%s の全公開ルールが設定済 or 許可リストにある",
+    "every public rule of %s is configured or allowlisted",
     async (prefix, specifier) => {
       const ruleNames = await loadPluginRules(specifier);
-      // import 形状の退行で空配列＝素通りになるのを防ぐ。
+      // Prevent an import-shape regression from yielding an empty array and silently passing.
       expect(
         ruleNames.length,
-        `${prefix} のルールが読めていない（プラグインの import 形状が変わった可能性）`
+        `Failed to read rules for ${prefix} (the plugin's import shape may have changed)`
       ).toBeGreaterThan(0);
 
       const untriaged = untriagedRules(prefix, ruleNames, configured);
       expect(
         untriaged,
-        `未 triage の新ルール（config 追加 or 許可リスト登録が必要）: ${untriaged.join(", ")}`
+        `Untriaged new rules (add to config or allowlist): ${untriaged.join(", ")}`
       ).toStrictEqual([]);
     }
   );

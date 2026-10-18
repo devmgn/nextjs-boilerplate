@@ -1,11 +1,12 @@
 import type { FlatObject, Primitive } from "../../../types/type-helpers";
 
 /**
- * 対象の列挙型オブジェクトもしくは配列に指定された値が存在するかを判定するカスタムタイプガード関数
+ * Custom type guard that checks whether the given value exists in the target
+ * enum-like object or array
  *
- * @param collection - チェック対象のオブジェクトもしくは配列
- * @param value - 存在を確認する値
- * @returns キーがオブジェクトに存在する場合はtrue、そうでない場合はfalse
+ * @param collection - The object or array to check
+ * @param value - The value to look for
+ * @returns True if the key exists in the object, false otherwise
  */
 export function isValueOf<T extends FlatObject | readonly Primitive[]>(
   collection: T,

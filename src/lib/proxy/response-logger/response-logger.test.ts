@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 import { responseLogger } from "./response-logger";
 
 describe(responseLogger, () => {
-  it("レスポンスのstatusとcontent-typeをログ出力すること", () => {
+  it("logs the response status and content-type", () => {
     const consoleSpy = vi.spyOn(console, "log").mockImplementation(() => {});
     const response = NextResponse.json({ ok: true });
 
@@ -15,7 +15,7 @@ describe(responseLogger, () => {
     });
   });
 
-  it("content-typeがない場合はnullを出力すること", () => {
+  it("logs null when content-type is missing", () => {
     const consoleSpy = vi.spyOn(console, "log").mockImplementation(() => {});
     const response = NextResponse.next();
 

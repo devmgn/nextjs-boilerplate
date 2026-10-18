@@ -1,7 +1,7 @@
 /**
- * 指定ミリ秒だけ待つ。
+ * Waits for the given number of milliseconds.
  *
- * @param ms - 待機するミリ秒数。
+ * @param ms - Milliseconds to wait.
  */
 export async function delay(ms: number): Promise<void> {
   const { promise, resolve } = Promise.withResolvers<undefined>();

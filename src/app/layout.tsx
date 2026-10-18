@@ -21,10 +21,11 @@ export const viewport: Viewport = {
 };
 
 /**
- * アプリ全体のルートレイアウト。Provider・Toaster・ローディングオーバーレイを配置する。
+ * Root layout for the whole app. Places the providers, Toaster, and loading
+ * overlay.
  *
- * @param props - 配下のページ
- * @returns アプリ全体の HTML ドキュメント
+ * @param props - The nested page
+ * @returns The app's HTML document
  */
 export default function Layout(props: React.PropsWithChildren) {
   const { children } = props;

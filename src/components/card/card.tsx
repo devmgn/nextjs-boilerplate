@@ -9,10 +9,11 @@ interface CardProps
   extends React.ComponentProps<"div">, VariantProps<typeof cardVariants> {}
 
 /**
- * 角丸・ボーダー・シャドウ付きのコンテナ。関連コンテンツのグルーピング用。
+ * Container with rounded corners, a border, and a shadow, for grouping related
+ * content.
  *
- * @param props - `div` 要素の属性。
- * @returns スタイル適用済みのカード要素。
+ * @param props - Attributes of the `div` element.
+ * @returns The styled card element.
  */
 export function Card(props: CardProps) {
   const { className, ..._props } = props;

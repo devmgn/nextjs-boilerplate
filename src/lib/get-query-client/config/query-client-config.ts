@@ -19,11 +19,11 @@ function handleCacheError(
 }
 
 /**
- * QueryClient の設定を作る。
- * QueryCache / MutationCache はインスタンスごとにキャッシュを持つため、呼び出しごとに新しく作る。
- * 定数で共有すると、サーバー側でリクエストごとに作る QueryClient 同士がキャッシュを共有してしまう。
+ * Creates the QueryClient config. QueryCache / MutationCache each hold their
+ * own cache, so new ones are created on every call. Sharing them as constants
+ * would make the per-request QueryClients on the server share a cache.
  *
- * @returns QueryClient に渡す設定
+ * @returns The config passed to QueryClient
  */
 export function createQueryClientConfig() {
   return {

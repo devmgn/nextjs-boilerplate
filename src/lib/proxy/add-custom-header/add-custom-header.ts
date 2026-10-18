@@ -1,9 +1,9 @@
 import type { NextResponse } from "next/server";
 
 /**
- * レスポンスにリクエスト ID（`x-request-id`）ヘッダーを付与する。
+ * Adds a request ID (`x-request-id`) header to the response.
  *
- * @param response - ヘッダーを付与するレスポンス
+ * @param response - The response to add the header to
  */
 export function addCustomHeader(response: NextResponse) {
   response.headers.set("x-request-id", crypto.randomUUID());

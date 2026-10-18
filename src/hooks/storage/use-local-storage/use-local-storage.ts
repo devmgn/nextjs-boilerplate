@@ -2,13 +2,14 @@ import { useWebStorage } from "../use-web-storage";
 import { localStorageStore } from "../utils/web-storage-store";
 
 /**
- * LocalStorage フック。`useWebStorage` に `localStorageStore` を束縛したラッパー。
+ * LocalStorage hook. A wrapper that binds `localStorageStore` to
+ * `useWebStorage`.
  *
- * 他タブの変更も `storage` イベント経由で反映される。ストレージ未設定・取得失敗・SSR 時は
- * `null` を返す。
+ * Changes from other tabs are reflected via the `storage` event. Returns `null`
+ * when the key is unset, the read fails, or during SSR.
  *
- * @param key - ストレージキー。
- * @returns `useWebStorage` と同じ 3 要素タプル。
+ * @param key - Storage key.
+ * @returns The same 3-element tuple as `useWebStorage`.
  */
 export function useLocalStorage(key: string) {
   return useWebStorage(localStorageStore, key);

@@ -15,8 +15,8 @@ const meta = {
         <p>背景コンテンツ。LoadingOverlay の後ろに表示されます。</p>
         {story()}
         {/*
-         * Dialog modal=true は body に pointer-events: none を当てるため、
-         * 子側で auto に戻し、Overlay (z-40) / Content (z-50) より上の z-index に重ねる。
+         * Dialog modal=true sets pointer-events: none on body, so restore auto here and
+         * stack above Overlay (z-40) / Content (z-50) with a higher z-index.
          */}
         <div className="pointer-events-auto fixed top-10 left-2 z-[60] flex gap-2">
           <Button
@@ -64,14 +64,20 @@ function getDialog(): HTMLElement {
   return screen.getByRole("dialog");
 }
 
-/** 初期状態 (非表示) を見せ、decorator の Show/Hide ボタンから手動で挙動を試せるエントリ。 */
+/**
+ * Shows the initial (hidden) state; try the behavior manually with the
+ * decorator's Show/Hide buttons.
+ */
 export const Default: Story = {
   play: () => {
     loading.reset();
   },
 };
 
-/** Show → hide の最小ペアで、表示・非表示と Dialog の accessible name (DialogTitle) を検証する。 */
+/**
+ * Minimal show → hide pair verifying visibility and the Dialog's accessible
+ * name (DialogTitle).
+ */
 export const Shown: Story = {
   play: async () => {
     loading.reset();
@@ -85,7 +91,10 @@ export const Shown: Story = {
   },
 };
 
-/** 参照カウント仕様: show 2 回に対して hide 1 回ではまだ表示、もう 1 回で消えることを検証する。 */
+/**
+ * Reference counting: after two shows, one hide keeps it visible and a second
+ * hide closes it.
+ */
 export const RefCounted: Story = {
   play: async () => {
     loading.reset();
@@ -97,7 +106,7 @@ export const RefCounted: Story = {
     });
 
     loading.hide();
-    // hide 1 回では消えない: Spinner がまだ DOM にある
+    // One hide is not enough: Spinner is still in the DOM
     await expect(getSpinner()).toBeInTheDocument();
 
     loading.hide();
@@ -105,7 +114,10 @@ export const RefCounted: Story = {
   },
 };
 
-/** Loading.promise(p) が show/hide のペアを保証し、元 promise の解決値を透過することを検証する。 */
+/**
+ * Verifies that Loading.promise(p) pairs show/hide and passes through the
+ * original promise's resolved value.
+ */
 export const PromiseResolved: Story = {
   play: async () => {
     loading.reset();
@@ -126,7 +138,10 @@ export const PromiseResolved: Story = {
   },
 };
 
-/** カウンタが積み上がっている状態でも reset() で即 0 にして閉じられることを検証する。 */
+/**
+ * Verifies that reset() drops the counter to 0 and closes immediately, even
+ * when it has stacked up.
+ */
 export const ResetDuringShow: Story = {
   play: async () => {
     loading.reset();
@@ -141,7 +156,10 @@ export const ResetDuringShow: Story = {
   },
 };
 
-/** 宣言的 API: LoadingScreen はマウントされている間ずっと表示される (Suspense fallback 用途)。 */
+/**
+ * Declarative API: LoadingScreen stays visible while mounted (for Suspense
+ * fallbacks).
+ */
 export const Declarative: StoryObj<typeof LoadingScreen> = {
   render: () => <LoadingScreen />,
   play: async () => {

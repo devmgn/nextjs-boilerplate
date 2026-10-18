@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { loadingStore } from ".";
 import { createLoadingStore } from "./loading-store";
 
-/** 参照を差し込むまでのプレースホルダ。 */
+/** Placeholder until the reference is assigned. */
 function noop(): void {}
 
 describe("loadingStore (singleton)", () => {
@@ -10,12 +10,12 @@ describe("loadingStore (singleton)", () => {
     loadingStore.reset();
   });
 
-  it("初期状態では getSnapshot / getServerSnapshot ともに false", () => {
+  it("getSnapshot and getServerSnapshot are both false initially", () => {
     expect(loadingStore.getSnapshot()).toBeFalsy();
     expect(loadingStore.getServerSnapshot()).toBeFalsy();
   });
 
-  it("show() で true、hide() で false に戻る", () => {
+  it("becomes true on show() and false again on hide()", () => {
     loadingStore.show();
     expect(loadingStore.getSnapshot()).toBeTruthy();
 
@@ -23,9 +23,9 @@ describe("loadingStore (singleton)", () => {
     expect(loadingStore.getSnapshot()).toBeFalsy();
   });
 
-  it("show 中でも getServerSnapshot は常に false (SSR 契約)", () => {
-    // SSR では loading UI を描画せず、クライアントの useEffect で
-    // subscribe が走った後に getSnapshot が採用される前提を固定する。
+  it("getServerSnapshot stays false even while shown (SSR contract)", () => {
+    // Pins the assumption that SSR renders no loading UI and getSnapshot takes over
+    // after subscribe runs in the client's useEffect.
     loadingStore.show();
     expect(loadingStore.getSnapshot()).toBeTruthy();
     expect(loadingStore.getServerSnapshot()).toBeFalsy();
@@ -33,8 +33,8 @@ describe("loadingStore (singleton)", () => {
 });
 
 describe("createLoadingStore", () => {
-  describe("参照カウント", () => {
-    it("show×N → hide×M (M<N) では true のまま、M=N で false に戻る", () => {
+  describe("reference counting", () => {
+    it("stays true after show×N → hide×M (M<N), false when M=N", () => {
       const store = createLoadingStore();
       store.show();
       store.show();
@@ -50,7 +50,7 @@ describe("createLoadingStore", () => {
       expect(store.getSnapshot()).toBeFalsy();
     });
 
-    it("過剰な hide() は clamp され listener を呼ばない", () => {
+    it("clamps extra hide() calls without calling listeners", () => {
       const store = createLoadingStore();
       const listener = vi.fn<() => void>();
       const unsubscribe = store.subscribe(listener);
@@ -65,7 +65,7 @@ describe("createLoadingStore", () => {
   });
 
   describe("reset", () => {
-    it("表示中に reset() すると一発で false になる", () => {
+    it("reset() while shown sets false at once", () => {
       const store = createLoadingStore();
       store.show();
       store.show();
@@ -76,7 +76,7 @@ describe("createLoadingStore", () => {
       expect(store.getSnapshot()).toBeFalsy();
     });
 
-    it("空状態での reset() は listener を呼ばない", () => {
+    it("reset() when empty does not call listeners", () => {
       const store = createLoadingStore();
       const listener = vi.fn<() => void>();
       const unsubscribe = store.subscribe(listener);
@@ -89,7 +89,7 @@ describe("createLoadingStore", () => {
   });
 
   describe("subscribe / listener", () => {
-    it("subscribe 中のリスナーは show / hide で同期的に呼ばれる", () => {
+    it("calls subscribed listeners synchronously on show / hide", () => {
       const store = createLoadingStore();
       const listener = vi.fn<() => void>();
       const unsubscribe = store.subscribe(listener);
@@ -103,7 +103,7 @@ describe("createLoadingStore", () => {
       unsubscribe();
     });
 
-    it("unsubscribe 後のリスナーは呼ばれない", () => {
+    it("does not call listeners after unsubscribe", () => {
       const store = createLoadingStore();
       const listener = vi.fn<() => void>();
       const unsubscribe = store.subscribe(listener);
@@ -113,7 +113,7 @@ describe("createLoadingStore", () => {
       expect(listener).not.toHaveBeenCalled();
     });
 
-    it("複数リスナーが全員呼ばれる", () => {
+    it("calls all listeners", () => {
       const store = createLoadingStore();
       const l1 = vi.fn<() => void>();
       const l2 = vi.fn<() => void>();
@@ -129,7 +129,7 @@ describe("createLoadingStore", () => {
       u2();
     });
 
-    it("リスナー内で他のリスナーを unsubscribe しても他のリスナーは呼ばれる", () => {
+    it("still calls other listeners when one unsubscribes another", () => {
       const store = createLoadingStore();
       const l2 = vi.fn<() => void>();
       let unsubscribeL2: () => void = noop;
@@ -151,7 +151,7 @@ describe("createLoadingStore", () => {
       u2();
     });
 
-    it("あるリスナーが throw しても他のリスナーは呼ばれる", () => {
+    it("still calls other listeners when one throws", () => {
       const store = createLoadingStore();
       const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
 
@@ -173,7 +173,7 @@ describe("createLoadingStore", () => {
       u2();
     });
 
-    it("同一 listener を多重 subscribe した場合、各セッションに対して通知される", () => {
+    it("notifies each subscription when the same listener subscribes multiple times", () => {
       const store = createLoadingStore();
       const listener = vi.fn<() => void>();
       const u1 = store.subscribe(listener);
@@ -187,7 +187,7 @@ describe("createLoadingStore", () => {
       u2();
     });
 
-    it("unsubscribe の多重呼び出しは冪等", () => {
+    it("unsubscribe is idempotent", () => {
       const store = createLoadingStore();
       const listener = vi.fn<() => void>();
       const unsubscribe = store.subscribe(listener);
@@ -199,9 +199,9 @@ describe("createLoadingStore", () => {
       expect(listener).not.toHaveBeenCalled();
     });
 
-    it("通知中に subscribe された listener は当該通知では呼ばれず、次回から呼ばれる", () => {
-      // notify() 内で [...listeners] スナップショットを取る挙動の回帰テスト。
-      // 通知の途中で subscribe された listener は、そのイテレーションでは拾われない。
+    it("a listener subscribed during notify is called from the next notify on", () => {
+      // Regression test for notify() taking a [...listeners] snapshot.
+      // A listener subscribed mid-notify is not picked up in that iteration.
       const store = createLoadingStore();
       const late = vi.fn<() => void>();
       let lateUnsub: (() => void) | undefined;
@@ -223,7 +223,7 @@ describe("createLoadingStore", () => {
       lateUnsub?.();
     });
 
-    it("listener 内で show / hide を呼んでも再入が安全で、観測される snapshot は最新状態", () => {
+    it("show / hide inside a listener is reentrant-safe and sees the latest snapshot", () => {
       const store = createLoadingStore();
       const log: boolean[] = [];
 
@@ -238,7 +238,7 @@ describe("createLoadingStore", () => {
       unsub();
     });
 
-    it("複数 listener は subscribe 順に呼ばれる", () => {
+    it("calls listeners in subscription order", () => {
       const store = createLoadingStore();
       const order: number[] = [];
 
@@ -265,7 +265,7 @@ describe("createLoadingStore", () => {
   });
 
   describe("promise", () => {
-    it("resolve 時に値が透過し、settle 後は false に戻る", async () => {
+    it("passes through the resolved value and returns to false after settling", async () => {
       const store = createLoadingStore();
       const result = await store.promise(Promise.resolve("ok"));
 
@@ -273,14 +273,14 @@ describe("createLoadingStore", () => {
       expect(store.getSnapshot()).toBeFalsy();
     });
 
-    it("渡した時点で表示される", () => {
+    it("shows as soon as the promise is passed", () => {
       const store = createLoadingStore();
       const pending = store.promise(Promise.withResolvers<undefined>().promise);
       expect(store.getSnapshot()).toBeTruthy();
       expect(pending).toBeInstanceOf(Promise);
     });
 
-    it("reject 時も hide が呼ばれる", async () => {
+    it("calls hide on reject too", async () => {
       const store = createLoadingStore();
       const error = new Error("nope");
 
@@ -288,7 +288,7 @@ describe("createLoadingStore", () => {
       expect(store.getSnapshot()).toBeFalsy();
     });
 
-    it("並行 promise で参照カウントが正しい", async () => {
+    it("keeps the reference count correct with concurrent promises", async () => {
       const store = createLoadingStore();
       const taskA = Promise.withResolvers<undefined>();
       const taskB = Promise.withResolvers<undefined>();
@@ -297,20 +297,20 @@ describe("createLoadingStore", () => {
 
       expect(store.getSnapshot()).toBeTruthy();
 
-      // Promise.withResolvers<undefined> の resolve は引数必須
+      // resolve of Promise.withResolvers<undefined> requires an argument
       // oxlint-disable-next-line unicorn/no-useless-undefined
       taskA.resolve(undefined);
       await a;
       expect(store.getSnapshot()).toBeTruthy();
 
-      // Promise.withResolvers<undefined> の resolve は引数必須
+      // resolve of Promise.withResolvers<undefined> requires an argument
       // oxlint-disable-next-line unicorn/no-useless-undefined
       taskB.resolve(undefined);
       await b;
       expect(store.getSnapshot()).toBeFalsy();
     });
 
-    it("並行 promise が両方 reject でも count は 0 に戻る", async () => {
+    it("count returns to 0 when concurrent promises both reject", async () => {
       const store = createLoadingStore();
       const e1 = new Error("a");
       const e2 = new Error("b");
@@ -322,7 +322,7 @@ describe("createLoadingStore", () => {
       expect(store.getSnapshot()).toBeFalsy();
     });
 
-    it("resolve と reject が混在しても count は 0 に戻る", async () => {
+    it("count returns to 0 with mixed resolve and reject", async () => {
       const store = createLoadingStore();
       const err = new Error("x");
       const ok = store.promise(Promise.resolve(1));
@@ -334,8 +334,8 @@ describe("createLoadingStore", () => {
     });
   });
 
-  describe("ファクトリ独立性", () => {
-    it("createLoadingStore() を 2 つ作ってもカウンタ・listener が混ざらない", () => {
+  describe("factory independence", () => {
+    it("two createLoadingStore() instances do not share counters or listeners", () => {
       const a = createLoadingStore();
       const b = createLoadingStore();
       const listenerA = vi.fn<() => void>();

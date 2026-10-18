@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 import { errorNotifier } from "./error-notifier";
 
 describe("errorNotifier.notify", () => {
-  it("メッセージを toast.error へ渡すこと", () => {
+  it("passes the message to toast.error", () => {
     const toastSpy = vi.spyOn(toast, "error").mockReturnValue("");
 
     errorNotifier.notify("boom");

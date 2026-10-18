@@ -46,7 +46,7 @@ const meta = {
       control: { type: "boolean" },
     },
   },
-  // sonner のトーストはモジュールレベルで保持され story を跨いで残るため、毎回破棄してから開始する
+  // sonner toasts are held at module level and persist across stories, so dismiss them before each start
   beforeEach: async () => {
     toast.dismiss();
     await waitFor(async () => {
@@ -75,7 +75,7 @@ export const SkipToast: Story = {
   play: async ({ canvas }) => {
     canvas.getByRole("button", { name: "エラー発生 (トースト抑制)" }).click();
 
-    // クエリがエラーになったことを確認してからトーストの不在を検証する
+    // Confirm the query has errored before asserting that no toast is shown
     await expect(await canvas.findByText(ERROR_STATE_LABEL)).toBeVisible();
     await expect(screen.queryByText(ERROR_MESSAGE)).not.toBeInTheDocument();
   },

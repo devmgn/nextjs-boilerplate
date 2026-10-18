@@ -1,20 +1,26 @@
 type Combinator = "child" | "descendant";
 
 /**
- * Oxlint のビジターから渡る AST ノード。セレクタが参照する範囲
- * （type / parent / 任意の子プロパティ）だけを表明する。
+ * AST node passed from the Oxlint visitor. Declares only what selectors
+ * reference (type / parent / arbitrary child properties).
  */
 interface AstNode {
   readonly type: string;
   readonly parent?: AstNode | null;
 }
 
-/** AST ノードを任意キーで読むためのビュー。値は AstValue に限る。 */
+/**
+ * View for reading an AST node by arbitrary key. Values are limited to
+ * AstValue.
+ */
 interface AstRecord {
   readonly [key: string]: AstValue;
 }
 
-/** AST ノードが保持しうる値。セレクタの属性比較が扱う範囲。 */
+/**
+ * Values an AST node may hold, within the scope of selector attribute
+ * comparison.
+ */
 type AstValue =
   | string
   | number
@@ -24,10 +30,10 @@ type AstValue =
   | AstNode
   | readonly AstValue[];
 
-/** セレクタのリテラル（`[a="x"]` の右辺）が取りうる値。 */
+/** Possible values of a selector literal (the right-hand side of `[a="x"]`). */
 type LiteralValue = string | number | boolean | null;
 
-/** `no-restricted-syntax` が受け取るオブジェクト形式のオプション。 */
+/** Object-form option accepted by `no-restricted-syntax`. */
 
 type AttrMatcher = (node: AstNode) => boolean;
 
@@ -42,7 +48,7 @@ interface Step {
   isExit?: boolean;
 }
 
-/** コンパイル済みのセレクタ 1 分岐と、一致時に報告するメッセージ。 */
+/** One compiled selector branch and the message to report on match. */
 export interface Compiled {
   chain: Step[];
   message: string;
@@ -57,21 +63,22 @@ function isStringValue(value: AstValue): value is string {
 }
 
 /**
- * 任意キーで読めるオブジェクトかを判定する。値は AstValue として扱う。
+ * Checks whether the value is an object readable by arbitrary key. Values are
+ * treated as AstValue.
  *
- * @param value - 判定対象の値
- * @returns 配列でも null でもないオブジェクトなら true
+ * @param value - The value to check
+ * @returns True if it is an object that is neither an array nor null
  */
 function isAstRecord(value: AstValue): value is AstNode & AstRecord {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
 /**
- * AST ノードの任意プロパティを読む。
+ * Reads an arbitrary property of an AST node.
  *
- * @param node - 読み取り元の AST ノード
- * @param key - 読み取るプロパティ名
- * @returns プロパティの値。読めない場合は undefined
+ * @param node - The AST node to read from
+ * @param key - The property name to read
+ * @returns The property value, or undefined if unreadable
  */
 function readProperty(node: AstNode, key: string): AstValue {
   return isAstRecord(node) ? node[key] : undefined;
@@ -200,7 +207,7 @@ const BRACKET_DEPTH_DELTA: ReadonlyMap<string, number> = new Map([
 
 interface CompoundToken {
   text: string;
-  // 直前に読んだ結合子。先頭の compound では null。
+  // The most recently read combinator. null for the first compound.
   combinator: Combinator | null;
 }
 
@@ -214,11 +221,12 @@ function isCombinatorChar(c: string | undefined): boolean {
 }
 
 /**
- * `start` から連続する結合子文字を読み切り、結合子種別と次の位置を返す。
+ * Consumes the run of combinator characters from `start` and returns the
+ * combinator kind and the next position.
  *
- * @param input - セレクタ文字列
- * @param start - 読み始める位置
- * @returns 結合子種別と、結合子の直後の位置
+ * @param input - The selector string
+ * @param start - The position to start reading from
+ * @returns The combinator kind and the position right after it
  */
 function readCombinator(input: string, start: number): CombinatorRead {
   let combinator: Combinator = "descendant";
@@ -236,10 +244,11 @@ function readCombinator(input: string, start: number): CombinatorRead {
 }
 
 /**
- * ブラケット外の結合子で区切り、compound 文字列と直前の結合子の組に分解する。
+ * Splits on combinators outside brackets into pairs of a compound string and
+ * its preceding combinator.
  *
- * @param input - カンマを含まない 1 分岐ぶんのセレクタ文字列
- * @returns 左から順に並んだ compound と結合子の組
+ * @param input - A single-branch selector string without commas
+ * @returns Compound/combinator pairs in left-to-right order
  */
 function tokenizeBranch(input: string): CompoundToken[] {
   const tokens: CompoundToken[] = [];
@@ -312,11 +321,11 @@ function parseSelectorGroup(input: string): Step[][] {
 }
 
 /**
- * セレクタ文字列をカンマ区切りの分岐ごとにコンパイルする。
+ * Compiles a selector string per comma-separated branch.
  *
- * @param selector - `no-restricted-syntax` のセレクタ文字列
- * @param message - 一致時のメッセージ。省略時は既定文言を使う
- * @returns 分岐ごとのコンパイル結果
+ * @param selector - The `no-restricted-syntax` selector string
+ * @param message - The message on match. Uses the default wording if omitted
+ * @returns The compiled result for each branch
  */
 export function compileOption(selector: string, message?: string): Compiled[] {
   const finalMessage = message ?? `Using "${selector}" is restricted.`;
@@ -371,7 +380,10 @@ function ancestorsOf(node: AstNode): AstNode[] {
   return ancestors;
 }
 
-/** 結合子ごとに、次のステップの照合候補となるノード（近い順）を返す。 */
+/**
+ * Per combinator, returns the candidate nodes for matching the next step
+ * (nearest first).
+ */
 const COMBINATOR_CANDIDATES: Record<Combinator, (node: AstNode) => AstNode[]> =
   {
     child: parentOf,
@@ -397,11 +409,12 @@ function matchFrom(node: AstNode, chain: Step[], i: number): boolean {
 }
 
 /**
- * ノードがセレクタのステップ列（右端が対象ノード）に一致するかを判定する。
+ * Checks whether a node matches the selector's step chain (the rightmost step
+ * is the target node).
  *
- * @param node - 照合対象の AST ノード
- * @param chain - パース済みセレクタのステップ列
- * @returns 一致すれば true
+ * @param node - The AST node to match
+ * @param chain - The step chain of the parsed selector
+ * @returns True if it matches
  */
 export function matchChain(node: AstNode, chain: Step[]): boolean {
   return matchFrom(node, chain, 0);

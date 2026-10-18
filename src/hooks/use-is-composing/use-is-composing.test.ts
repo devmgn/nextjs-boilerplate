@@ -16,8 +16,8 @@ function countCaptureCompositionStart(
 }
 
 describe(useIsComposing, () => {
-  describe("基本動作", () => {
-    it("compositionstart で true、compositionend で false に再レンダーされること", () => {
+  describe("basic behavior", () => {
+    it("re-renders with true on compositionstart and false on compositionend", () => {
       const { result } = renderHook(() => useIsComposing());
       expect(result.current).toBeFalsy();
 
@@ -32,7 +32,7 @@ describe(useIsComposing, () => {
       expect(result.current).toBeFalsy();
     });
 
-    it("同一コンポーネント内で capture と bubble の値を同時に取得できること", () => {
+    it("reads capture and bubble values in the same component", () => {
       const { result } = renderHook(() => ({
         capture: useIsComposing(true),
         bubble: useIsComposing(false),
@@ -52,12 +52,12 @@ describe(useIsComposing, () => {
     });
   });
 
-  describe("ストア選択", () => {
+  describe("store selection", () => {
     it.for([
-      { capture: true, phase: "キャプチャ" },
-      { capture: false, phase: "バブル" },
+      { capture: true, phase: "capture" },
+      { capture: false, phase: "bubble" },
     ])(
-      "capture=$capture で $phase フェーズのリスナーを登録すること",
+      "registers a $phase phase listener when capture=$capture",
       ({ capture }) => {
         const spy = vi.spyOn(document, "addEventListener");
 
@@ -76,7 +76,7 @@ describe(useIsComposing, () => {
       }
     );
 
-    it("capture が変更されたとき、新しいストアの値を返すこと", () => {
+    it("returns the new store's value when capture changes", () => {
       const { result, rerender } = renderHook<boolean, { capture: boolean }>(
         ({ capture }) => useIsComposing(capture),
         { initialProps: { capture: true } }
@@ -87,8 +87,8 @@ describe(useIsComposing, () => {
       });
       expect(result.current).toBeTruthy();
 
-      // capture→bubble に切り替わると、capture ストアは最後の購読者が抜けて composing がリセットされ、
-      // 新たに購読する bubble ストアも初期値 false なので結果は false になる
+      // Switching capture to bubble resets composing as the capture store loses its last subscriber,
+      // and the newly subscribed bubble store also starts at false, so the result is false
       rerender({ capture: false });
       expect(result.current).toBeFalsy();
 
@@ -103,7 +103,7 @@ describe(useIsComposing, () => {
       expect(result.current).toBeFalsy();
     });
 
-    it("capture 変更時に旧フェーズのリスナーを除去し新フェーズのリスナーを登録すること", () => {
+    it("removes the old phase listener and registers the new one when capture changes", () => {
       const addSpy = vi.spyOn(document, "addEventListener");
       const removeSpy = vi.spyOn(document, "removeEventListener");
 
@@ -142,8 +142,8 @@ describe(useIsComposing, () => {
     });
   });
 
-  describe("購読ライフサイクル", () => {
-    it("アンマウント時に document リスナーを除去し、以後のイベントに反応しないこと", () => {
+  describe("subscription lifecycle", () => {
+    it("removes document listeners on unmount and ignores later events", () => {
       const removeSpy = vi.spyOn(document, "removeEventListener");
       const { result, unmount } = renderHook(() => useIsComposing());
 
@@ -166,10 +166,10 @@ describe(useIsComposing, () => {
       expect(result.current).toBeFalsy();
     });
 
-    it("composing 中にアンマウントしても、再マウント後は false から始まること", () => {
-      // 購読切れ目で composing が false にリセットされる挙動のフック経由回帰テスト。
-      // 購読者不在中に compositionend を取りこぼしても、次回マウント時の初期値に
-      // 古い true を引きずらないことを保証する。
+    it("starts from false after remount even if unmounted while composing", () => {
+      // Regression test, via the hook, for resetting composing to false when subscriptions end.
+      // Ensures the initial value on the next mount doesn't carry a stale true even if
+      // compositionend was missed while there were no subscribers.
       const { result: r1, unmount } = renderHook(() => useIsComposing());
 
       act(() => {
@@ -179,7 +179,7 @@ describe(useIsComposing, () => {
 
       unmount();
 
-      // 購読者がいない間の compositionend はストアに届かない
+      // compositionend does not reach the store while there are no subscribers
       act(() => {
         dispatchComposition("compositionend");
       });
@@ -188,7 +188,7 @@ describe(useIsComposing, () => {
       expect(r2.current).toBeFalsy();
     });
 
-    it("StrictMode 下でも正しく動作しリスナーリークが起きないこと", () => {
+    it("works under StrictMode without leaking listeners", () => {
       const addSpy = vi.spyOn(document, "addEventListener");
       const removeSpy = vi.spyOn(document, "removeEventListener");
 
@@ -196,7 +196,7 @@ describe(useIsComposing, () => {
         wrapper: StrictMode,
       });
 
-      // mount→unmount→再mount を経ても capture リスナーは純増 1 の状態
+      // After mount, unmount, and remount, the capture listener count is a net +1
       expect(
         countCaptureCompositionStart(addSpy.mock.calls) -
           countCaptureCompositionStart(removeSpy.mock.calls)
@@ -214,7 +214,7 @@ describe(useIsComposing, () => {
 
       unmount();
 
-      // unmount 後は純増 0 (リスナーリークなし)
+      // Net 0 after unmount (no listener leak)
       expect(
         countCaptureCompositionStart(addSpy.mock.calls) -
           countCaptureCompositionStart(removeSpy.mock.calls)
@@ -222,8 +222,8 @@ describe(useIsComposing, () => {
     });
   });
 
-  describe("実ユースケース", () => {
-    it("子要素から bubbles:true で発火した composition イベントを拾うこと", () => {
+  describe("real-world use case", () => {
+    it("picks up composition events dispatched from a child with bubbles: true", () => {
       const input = document.createElement("input");
       document.body.append(input);
 

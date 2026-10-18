@@ -1,32 +1,35 @@
 /**
- * `useSyncExternalStore` 向け外部ストアの購読者管理。
- * セッション単位の購読・冪等な解除・例外に強い通知をまとめて提供する。
+ * Subscriber management for external stores used with `useSyncExternalStore`.
+ * Provides per-session subscriptions, idempotent unsubscription, and
+ * error-tolerant notification.
  */
 
-/** 外部ストアに組み込む購読 / 通知の関数ペア。 */
+/** Subscribe / notify function pair to embed in an external store. */
 export interface ListenerSet {
   /**
-   * Listener を登録。同一 listener 参照でもセッション毎に独立して扱う。
-   * 返り値の unsubscribe は冪等で、複数回呼んでも副作用はない。
+   * Registers a listener. Each session is handled independently, even for the
+   * same listener reference. The returned unsubscribe is idempotent; calling it
+   * multiple times has no side effects.
    */
   subscribe: (listener: () => void) => () => void;
-  /** 登録中の全 listener を subscribe 順に同期的に呼ぶ。 */
+  /** Synchronously calls all registered listeners in subscription order. */
   notify: () => void;
 }
 
 interface ListenerSetOptions {
-  /** 購読者が 0 → 1 になる直前に呼ばれる。 */
+  /** Called right before the subscriber count goes from 0 to 1. */
   onFirstSubscribe?: () => void;
-  /** 購読者が 1 → 0 になった直後に呼ばれる。 */
+  /** Called right after the subscriber count goes from 1 to 0. */
   onLastUnsubscribe?: () => void;
 }
 
 /**
- * 購読者管理オブジェクトを生成する。
+ * Creates a subscriber management object.
  *
- * @param label - Listener が throw した際の `console.error` に付けるストア名
- * @param options - 購読者数が 0 と 1 の境界をまたぐ際に呼ばれるフック
- * @returns 購読と通知の関数ペア
+ * @param label - Store name attached to `console.error` when a listener throws
+ * @param options - Hooks called when the subscriber count crosses the 0/1
+ *   boundary
+ * @returns The subscribe and notify function pair
  */
 export function createListenerSet(
   label: string,
@@ -35,9 +38,10 @@ export function createListenerSet(
   const listeners = new Set<() => void>();
 
   /**
-   * Listener の throw が他セッションへの通知を止めないよう握りつぶす。
+   * Swallows errors thrown by a listener so they don't stop notifications to
+   * other sessions.
    *
-   * @param listener - 呼び出す listener
+   * @param listener - The listener to call
    */
   const invoke = (listener: () => void): void => {
     try {
@@ -48,7 +52,7 @@ export function createListenerSet(
   };
 
   const notify = (): void => {
-    // リスナー内で subscribe/unsubscribe が起きても安全なようスナップショットを取る
+    // Take a snapshot so subscribe/unsubscribe inside a listener is safe
     const snapshot = [...listeners];
 
     for (const sessionListener of snapshot) {
@@ -61,8 +65,8 @@ export function createListenerSet(
       onFirstSubscribe?.();
     }
 
-    // 同一 listener 参照を多重 subscribe しても Set の重複排除で潰されないよう、
-    // セッションごとに一意のラッパーを登録する
+    // Register a unique wrapper per session so that subscribing the same listener reference
+    // multiple times is not collapsed by Set deduplication
     const sessionListener = (): void => {
       invoke(listener);
     };

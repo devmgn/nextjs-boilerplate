@@ -160,8 +160,8 @@
   --text-label-sm--font-weight: 500;
 
   /* Icon sizes
-   * SvgIcon は size-[1em] と font-size でサイズを決めるため、
-   * line-height / letter-spacing を伴わない純粋なサイズトークンを置く */
+   * SvgIcon is sized by size-[1em] and font-size,
+   * so these are pure size tokens without line-height / letter-spacing */
   --text-icon-xs: 12px;
   --text-icon-sm: 16px;
   --text-icon-md: 24px;

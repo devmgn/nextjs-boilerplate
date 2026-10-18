@@ -37,8 +37,8 @@ const meta = {
   tags: ["!manifest"],
   parameters: {
     layout: "centered",
-    // Docs ページで複数 story が同 iframe に同居すると loadingStore (module singleton) が共有され、
-    // 各 story の mutation がカウンタを積み上げてしまう。iframe 隔離で独立させる。
+    // When multiple stories share one iframe on the Docs page, loadingStore (a module singleton) is shared
+    // and each story's mutations pile up on the counter. Isolate them in separate iframes.
     docs: { story: { inline: false } },
   },
   argTypes: {
@@ -72,7 +72,7 @@ export const SkipLoading: Story = {
   play: async ({ canvas }) => {
     loading.reset();
     canvas.getByRole("button").click();
-    // skipLoading: true の mutation では Spinner が出ない
+    // No Spinner appears for a mutation with skipLoading: true
     await expect(screen.queryByRole("status")).toBeNull();
   },
 };

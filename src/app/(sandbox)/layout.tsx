@@ -1,8 +1,8 @@
 /**
- * サンドボックス配下のページを中央寄せの main 要素で包むレイアウト。
+ * Layout that wraps sandbox pages in a centered main element.
  *
- * @param props - 配下のページ
- * @returns 配下のページを包んだ main 要素
+ * @param props - The nested page
+ * @returns A main element wrapping the nested page
  */
 export default function Layout(props: React.PropsWithChildren) {
   const { children } = props;

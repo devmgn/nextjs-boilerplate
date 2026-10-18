@@ -22,7 +22,7 @@ function createMockStorage() {
 
 let keySequence = 0;
 
-// テスト間でキーが衝突しないようにする連番。
+// Sequence number to avoid key collisions between tests.
 function uniqueKey() {
   keySequence += 1;
 
@@ -37,21 +37,21 @@ describe(useLocalStorage, () => {
     vi.stubGlobal("localStorage", mockStorage);
   });
 
-  describe("基本動作", () => {
-    it("未設定なら null を返す", () => {
+  describe("basic behavior", () => {
+    it("returns null when unset", () => {
       const key = uniqueKey();
       const { result } = renderHook(() => useLocalStorage(key));
       expect(result.current[0]).toBeNull();
     });
 
-    it("localStorageの既存値を読み取る", () => {
+    it("reads an existing value from localStorage", () => {
       const key = uniqueKey();
       mockStorage.setItem(key, "stored");
       const { result } = renderHook(() => useLocalStorage(key));
       expect(result.current[0]).toBe("stored");
     });
 
-    it("setValueで値を更新できる", () => {
+    it("updates the value with setValue", () => {
       const key = uniqueKey();
       const { result } = renderHook(() => useLocalStorage(key));
 
@@ -63,7 +63,7 @@ describe(useLocalStorage, () => {
       expect(mockStorage.setItem).toHaveBeenCalledWith(key, "updated");
     });
 
-    it("関数型更新 - 初回は prev として null が渡される", () => {
+    it("functional update - passes null as prev the first time", () => {
       const key = uniqueKey();
       const { result } = renderHook(() => useLocalStorage(key));
       const updater = vi.fn<(prev: string | null) => string>(() => "a");
@@ -76,7 +76,7 @@ describe(useLocalStorage, () => {
       expect(result.current[0]).toBe("a");
     });
 
-    it("関数型更新 - 2回目以降は prev として前回値が渡される", () => {
+    it("functional update - passes the previous value as prev on subsequent calls", () => {
       const key = uniqueKey();
       const { result } = renderHook(() => useLocalStorage(key));
 
@@ -91,7 +91,7 @@ describe(useLocalStorage, () => {
       expect(result.current[0]).toBe("ab");
     });
 
-    it("removeValue 後は null に戻る", () => {
+    it("returns to null after removeValue", () => {
       const key = uniqueKey();
       const { result } = renderHook(() => useLocalStorage(key));
 
@@ -109,8 +109,8 @@ describe(useLocalStorage, () => {
     });
   });
 
-  describe("エラーハンドリング", () => {
-    it("localStorage 利用不可時に null を返す", () => {
+  describe("error handling", () => {
+    it("returns null when localStorage is unavailable", () => {
       const key = uniqueKey();
       mockStorage.getItem.mockImplementation(() => {
         throw new Error("localStorage unavailable");
@@ -120,7 +120,7 @@ describe(useLocalStorage, () => {
       expect(result.current[0]).toBeNull();
     });
 
-    it("QuotaExceededError 時に console.warn を出力し状態を変更しない", () => {
+    it("logs console.warn and keeps the state on QuotaExceededError", () => {
       const key = uniqueKey();
       const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
       const { result } = renderHook(() => useLocalStorage(key));
@@ -139,8 +139,8 @@ describe(useLocalStorage, () => {
     });
   });
 
-  describe("タブ間同期", () => {
-    it("storage イベントで値が更新される", () => {
+  describe("cross-tab sync", () => {
+    it("updates the value on a storage event", () => {
       const key = uniqueKey();
       const { result } = renderHook(() => useLocalStorage(key));
 
@@ -158,7 +158,7 @@ describe(useLocalStorage, () => {
       expect(result.current[0]).toBe("from-other-tab");
     });
 
-    it("storage イベントで削除を検知する", () => {
+    it("detects removal via a storage event", () => {
       const key = uniqueKey();
       const { result } = renderHook(() => useLocalStorage(key));
 
@@ -181,7 +181,7 @@ describe(useLocalStorage, () => {
       expect(result.current[0]).toBeNull();
     });
 
-    it("無関係なキーの storage イベントを無視する", () => {
+    it("ignores storage events for unrelated keys", () => {
       const key = uniqueKey();
       const { result } = renderHook(() => useLocalStorage(key));
 
@@ -199,8 +199,8 @@ describe(useLocalStorage, () => {
     });
   });
 
-  describe("同一タブ同期", () => {
-    it("同じキーの複数インスタンスが同期する", () => {
+  describe("same-tab sync", () => {
+    it("syncs multiple instances with the same key", () => {
       const key = uniqueKey();
       const { result: result1 } = renderHook(() => useLocalStorage(key));
       const { result: result2 } = renderHook(() => useLocalStorage(key));
@@ -214,8 +214,8 @@ describe(useLocalStorage, () => {
     });
   });
 
-  describe("クリーンアップ", () => {
-    it("アンマウント後は同タブの書き込みで再レンダーされない", () => {
+  describe("cleanup", () => {
+    it("does not re-render on same-tab writes after unmount", () => {
       const key = uniqueKey();
       const renderSpy = vi.fn<() => void>();
 

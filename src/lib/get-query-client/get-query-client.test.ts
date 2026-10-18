@@ -15,22 +15,22 @@ describe("getQueryClient", () => {
     environmentManager.setIsServer(() => typeof window === "undefined");
   });
 
-  describe("サーバー環境", () => {
+  describe("on the server", () => {
     beforeEach(() => {
       environmentManager.setIsServer(() => true);
     });
 
-    it("QueryClientインスタンスを返すこと", async () => {
+    it("returns a QueryClient instance", async () => {
       const { getQueryClient } = await import("./get-query-client");
       expect(getQueryClient()).toBeInstanceOf(QueryClient);
     });
 
-    it("呼び出すたびに新しいインスタンスを返すこと", async () => {
+    it("returns a new instance on each call", async () => {
       const { getQueryClient } = await import("./get-query-client");
       expect(getQueryClient()).not.toBe(getQueryClient());
     });
 
-    it("リクエスト間でキャッシュを共有しないこと", async () => {
+    it("does not share the cache between requests", async () => {
       const { getQueryClient } = await import("./get-query-client");
 
       const { queryKey } = queryOptions({
@@ -43,7 +43,7 @@ describe("getQueryClient", () => {
       expect(getQueryClient().getQueryData(queryKey)).toBeUndefined();
     });
 
-    it("設定のstaleTimeが適用されていること", async () => {
+    it("applies the configured staleTime", async () => {
       const { getQueryClient } = await import("./get-query-client");
       expect(getQueryClient().getDefaultOptions().queries?.staleTime).toBe(
         createQueryClientConfig().defaultOptions.queries.staleTime
@@ -51,22 +51,22 @@ describe("getQueryClient", () => {
     });
   });
 
-  describe("ブラウザ環境", () => {
+  describe("in the browser", () => {
     beforeEach(() => {
       environmentManager.setIsServer(() => false);
     });
 
-    it("QueryClientインスタンスを返すこと", async () => {
+    it("returns a QueryClient instance", async () => {
       const { getQueryClient } = await import("./get-query-client");
       expect(getQueryClient()).toBeInstanceOf(QueryClient);
     });
 
-    it("複数回呼び出しても同じインスタンスを返すこと", async () => {
+    it("returns the same instance across calls", async () => {
       const { getQueryClient } = await import("./get-query-client");
       expect(getQueryClient()).toBe(getQueryClient());
     });
 
-    it("設定のstaleTimeが適用されていること", async () => {
+    it("applies the configured staleTime", async () => {
       const { getQueryClient } = await import("./get-query-client");
       expect(getQueryClient().getDefaultOptions().queries?.staleTime).toBe(
         createQueryClientConfig().defaultOptions.queries.staleTime

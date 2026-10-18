@@ -5,8 +5,8 @@ describe(debounce, () => {
   beforeEach(() => vi.useFakeTimers());
   afterEach(() => vi.useRealTimers());
 
-  describe("基本動作 (trailing)", () => {
-    it("待機時間後に1回だけ実行されること", () => {
+  describe("basic behavior (trailing)", () => {
+    it("runs once after the wait time", () => {
       const fn = vi.fn<() => void>();
       const debounced = debounce(fn, 100);
 
@@ -19,7 +19,7 @@ describe(debounce, () => {
       expect(fn).toHaveBeenCalledOnce();
     });
 
-    it("最後の呼び出しの引数で実行されること", () => {
+    it("runs with the arguments of the last call", () => {
       const fn = vi.fn<(x: string) => void>();
       const debounced = debounce(fn, 100);
 
@@ -31,11 +31,11 @@ describe(debounce, () => {
       expect(fn).toHaveBeenCalledExactlyOnceWith("c");
     });
 
-    it("待機中に再呼び出しするとタイマーがリセットされること", () => {
+    it("resets the timer when called again while waiting", () => {
       const fn = vi.fn<() => void>();
       const debounced = debounce(fn, 100);
 
-      // 100ms 待機を 80ms + 80ms でまたぐがタイマーリセットで未発火、残り 20ms で発火
+      // 80ms + 80ms spans the 100ms wait, but the timer reset prevents firing; it fires after the remaining 20ms
       debounced();
       vi.advanceTimersByTime(80);
       expect(fn).not.toHaveBeenCalled();
@@ -48,7 +48,7 @@ describe(debounce, () => {
       expect(fn).toHaveBeenCalledOnce();
     });
 
-    it("複数の引数が正しく渡されること", () => {
+    it("passes multiple arguments correctly", () => {
       const fn = vi.fn<(a: number, b: string, c: { three: number }) => void>();
       const debounced = debounce(fn, 100);
 
@@ -58,7 +58,7 @@ describe(debounce, () => {
       expect(fn).toHaveBeenCalledExactlyOnceWith(1, "two", { three: 3 });
     });
 
-    it("連続するバーストが独立して処理されること", () => {
+    it("handles consecutive bursts independently", () => {
       const fn = vi.fn<(x: string) => void>();
       const debounced = debounce(fn, 100);
 
@@ -74,7 +74,7 @@ describe(debounce, () => {
   });
 
   describe("wait: 0", () => {
-    it("タイマー発火時に実行されること", () => {
+    it("runs when the timer fires", () => {
       const fn = vi.fn<(x: string) => void>();
       const debounced = debounce(fn, 0);
 
@@ -87,7 +87,7 @@ describe(debounce, () => {
   });
 
   describe("cancel", () => {
-    it("保留中の実行がキャンセルされること", () => {
+    it("cancels the pending invocation", () => {
       const fn = vi.fn<() => void>();
       const debounced = debounce(fn, 100);
 
@@ -98,7 +98,7 @@ describe(debounce, () => {
       expect(fn).not.toHaveBeenCalled();
     });
 
-    it("cancel 後に再び呼び出せること", () => {
+    it("can be called again after cancel", () => {
       const fn = vi.fn<(x: string) => void>();
       const debounced = debounce(fn, 100);
 
@@ -111,7 +111,7 @@ describe(debounce, () => {
       expect(fn).toHaveBeenCalledExactlyOnceWith("b");
     });
 
-    it("保留中でない場合に cancel しても安全であること", () => {
+    it("is safe to cancel when nothing is pending", () => {
       const fn = vi.fn<() => void>();
       const debounced = debounce(fn, 100);
 
@@ -122,7 +122,7 @@ describe(debounce, () => {
   });
 
   describe("flush", () => {
-    it("保留中の関数が即座に実行されること", () => {
+    it("runs the pending function immediately", () => {
       const fn = vi.fn<(x: string) => void>();
       const debounced = debounce(fn, 100);
 
@@ -132,7 +132,7 @@ describe(debounce, () => {
       expect(fn).toHaveBeenCalledExactlyOnceWith("flushed");
     });
 
-    it("flush 後にタイマーで重複実行されないこと", () => {
+    it("does not run again via the timer after flush", () => {
       const fn = vi.fn<() => void>();
       const debounced = debounce(fn, 100);
 
@@ -143,7 +143,7 @@ describe(debounce, () => {
       expect(fn).toHaveBeenCalledOnce();
     });
 
-    it("flush 後に新しいサイクルを開始できること", () => {
+    it("can start a new cycle after flush", () => {
       const fn = vi.fn<(x: string) => void>();
       const debounced = debounce(fn, 100);
 
@@ -164,9 +164,9 @@ describe(debounce, () => {
         fn: ReturnType<typeof vi.fn>
       ) => number;
     }>([
-      { state: "初期状態 (保留無し)", setup: () => 0 },
+      { state: "the initial state (nothing pending)", setup: () => 0 },
       {
-        state: "flush 済み",
+        state: "after flush",
         setup: (d) => {
           d("data");
           d.flush();
@@ -175,7 +175,7 @@ describe(debounce, () => {
         },
       },
       {
-        state: "flush を2回連続で呼んだ状態",
+        state: "after calling flush twice in a row",
         setup: (d) => {
           d("data");
           d.flush();
@@ -185,7 +185,7 @@ describe(debounce, () => {
         },
       },
       {
-        state: "cancel 済み",
+        state: "after cancel",
         setup: (d) => {
           d("data");
           d.cancel();
@@ -194,7 +194,7 @@ describe(debounce, () => {
         },
       },
       {
-        state: "サイクル自然完了後",
+        state: "after a cycle completes naturally",
         setup: (d) => {
           d("data");
           vi.advanceTimersByTime(100);
@@ -202,7 +202,7 @@ describe(debounce, () => {
           return 1;
         },
       },
-    ])("$state からの flush で追加の invoke が起きないこと", ({ setup }) => {
+    ])("flush from $state causes no extra invocation", ({ setup }) => {
       const fn = vi.fn<(x: string) => void>();
       const debounced = debounce(fn, 100);
       const expectedBefore = setup(debounced, fn);
@@ -215,8 +215,8 @@ describe(debounce, () => {
     });
   });
 
-  describe("再帰呼び出し", () => {
-    it("コールバック内から再帰呼び出しした引数が次サイクルで実行されること", () => {
+  describe("reentrant calls", () => {
+    it("runs arguments from a reentrant call inside the callback in the next cycle", () => {
       const calls: string[] = [];
 
       const callback = vi.fn<(x: string) => void>((x) => {
@@ -225,7 +225,7 @@ describe(debounce, () => {
 
       const debounced = debounce(callback, 100);
 
-      // 1 回目の invoke だけ再帰呼び出しする
+      // Make a reentrant call only on the first invocation
       callback.mockImplementationOnce((x) => {
         calls.push(x);
         debounced("re-entry");
@@ -235,14 +235,14 @@ describe(debounce, () => {
       vi.advanceTimersByTime(100);
       expect(calls).toStrictEqual(["a"]);
 
-      // 再帰で予約された "re-entry" が次サイクルで発火する
+      // The "re-entry" scheduled by the reentrant call fires in the next cycle
       vi.advanceTimersByTime(100);
       expect(calls).toStrictEqual(["a", "re-entry"]);
     });
   });
 
-  describe("例外復旧", () => {
-    it("コールバックが例外を投げても次のサイクルが動作すること", () => {
+  describe("error recovery", () => {
+    it("keeps working in the next cycle after the callback throws", () => {
       const fn = vi.fn<(x: string) => void>().mockImplementationOnce(() => {
         throw new Error("boom");
       });
@@ -261,8 +261,8 @@ describe(debounce, () => {
     });
   });
 
-  describe("エッジケース", () => {
-    it("多数回呼び出した後に flush すると最新の引数で実行されること", () => {
+  describe("edge cases", () => {
+    it("runs with the latest arguments when flushed after many calls", () => {
       const fn = vi.fn<(x: string) => void>();
       const debounced = debounce(fn, 100);
 
@@ -274,7 +274,7 @@ describe(debounce, () => {
       expect(fn).toHaveBeenCalledExactlyOnceWith("c");
     });
 
-    it("wait:0 で連続呼び出ししても trailing で最後の引数1回だけ実行されること", () => {
+    it("runs once with the last arguments on the trailing edge for rapid calls with wait: 0", () => {
       const fn = vi.fn<(x: string) => void>();
       const debounced = debounce(fn, 0);
 
@@ -286,7 +286,7 @@ describe(debounce, () => {
       expect(fn).toHaveBeenCalledExactlyOnceWith("b");
     });
 
-    it("コールバック内から flush を呼んでも二重実行・例外が起きないこと", () => {
+    it("calling flush inside the callback causes no double run or error", () => {
       const calls: string[] = [];
 
       const fn = vi.fn<(x: string) => void>((x) => {
@@ -297,7 +297,7 @@ describe(debounce, () => {
 
       fn.mockImplementationOnce((x) => {
         calls.push(x);
-        // run() で lastArgs はクリア済みなので flush は no-op になる
+        // run() has already cleared lastArgs, so flush is a no-op
         debounced.flush();
       });
 
@@ -307,17 +307,17 @@ describe(debounce, () => {
       }).not.toThrow();
       expect(calls).toStrictEqual(["a"]);
 
-      // 後続のタイマーも残っていない
+      // No pending timer remains either
       vi.advanceTimersByTime(100);
       expect(calls).toStrictEqual(["a"]);
     });
 
-    it("コールバック内から cancel を呼んでも安全で、後続サイクルが動くこと", () => {
+    it("calling cancel inside the callback is safe and later cycles still work", () => {
       const fn = vi.fn<(x: string) => void>();
       const debounced = debounce(fn, 100);
 
       fn.mockImplementationOnce(() => {
-        // 1 回目の実行中に自分自身を cancel しても安全であることを確認する
+        // Verify that cancelling itself during the first run is safe
         expect(fn).toHaveBeenCalledOnce();
         debounced.cancel();
       });
@@ -334,7 +334,7 @@ describe(debounce, () => {
       expect(fn).toHaveBeenNthCalledWith(2, "b");
     });
 
-    it("flush 中にコールバックが例外を投げても次のサイクルが動作すること", () => {
+    it("keeps working in the next cycle after the callback throws during flush", () => {
       const fn = vi.fn<(x: string) => void>().mockImplementationOnce(() => {
         throw new Error("boom");
       });
@@ -346,14 +346,14 @@ describe(debounce, () => {
         debounced.flush();
       }).toThrow("boom");
 
-      // 例外後も状態が壊れず次サイクルが動く
+      // State stays intact after the error and the next cycle works
       debounced("b");
       vi.advanceTimersByTime(100);
       expect(fn).toHaveBeenCalledTimes(2);
       expect(fn).toHaveBeenNthCalledWith(2, "b");
     });
 
-    it("cancel 後に flush しても何も実行されないこと", () => {
+    it("runs nothing when flushed after cancel", () => {
       const fn = vi.fn<(x: string) => void>();
       const debounced = debounce(fn, 100);
 
@@ -365,7 +365,7 @@ describe(debounce, () => {
       expect(fn).not.toHaveBeenCalled();
     });
 
-    it("返り値が呼び出し可能で cancel/flush メソッドを持つこと", () => {
+    it("returns a callable with cancel/flush methods", () => {
       const debounced = debounce(() => {}, 100);
 
       expect(debounced).toBeTypeOf("function");
@@ -374,27 +374,27 @@ describe(debounce, () => {
     });
   });
 
-  describe("バリデーション", () => {
+  describe("validation", () => {
     it.for<{ label: string; create: () => void }>([
       {
-        label: "wait が負数",
+        label: "wait is negative",
         create: () => {
           debounce(() => {}, -1);
         },
       },
       {
-        label: "wait が NaN",
+        label: "wait is NaN",
         create: () => {
           debounce(() => {}, Number.NaN);
         },
       },
       {
-        label: "wait が Infinity",
+        label: "wait is Infinity",
         create: () => {
           debounce(() => {}, Number.POSITIVE_INFINITY);
         },
       },
-    ])("$label だと TypeError を投げること", ({ create }) => {
+    ])("throws TypeError when $label", ({ create }) => {
       expect(create).toThrow(TypeError);
     });
   });

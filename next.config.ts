@@ -12,8 +12,8 @@ const nextConfig = {
     inlineCss: true,
     requestInsights: true,
     strictRouteTypes: true,
-    // Turbopack 専用フラグ。Storybook / vitest は Turbopack を通さず next.config.ts を
-    // 読むため、無条件に true にすると Next 側の検証で throw する。
+    // Turbopack-only flag. Storybook / vitest read next.config.ts without going through
+    // Turbopack, so setting it to true unconditionally makes Next's validation throw.
     turbopackRustReactCompiler: Boolean(process.env.TURBOPACK),
     typedEnv: true,
     useOffline: true,

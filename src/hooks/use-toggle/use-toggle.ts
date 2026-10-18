@@ -3,16 +3,18 @@ import { useState } from "react";
 type ToggleFn<T> = (next?: T) => void;
 
 /**
- * トグルで循環させられる値。次の値の決定に `indexOf` の同値比較を使うため、
- * 参照同一性に依存しないプリミティブに限る。
+ * Value that can be cycled by toggling. The next value is found via `indexOf`
+ * equality, so only primitives (which don't depend on reference identity) are
+ * allowed.
  */
 type ToggleItem = string | number | boolean | bigint | symbol | null;
 
 /**
- * 第 1 引数が「循環させる値の配列」か「boolean の初期値」かを判定する。
+ * Determines whether the first argument is an array of values to cycle or a
+ * boolean initial value.
  *
- * @param value - `useToggle` の第 1 引数
- * @returns 循環させる値の配列なら `true`
+ * @param value - First argument of `useToggle`
+ * @returns `true` if it is an array of values to cycle
  */
 function isValueList(
   value: boolean | readonly ToggleItem[] | undefined
@@ -21,13 +23,13 @@ function isValueList(
 }
 
 /**
- * Boolean または任意の値の循環をトグルするカスタムフック
+ * Custom hook that toggles a boolean or cycles through arbitrary values
  *
  * @example
  *   const [on, toggle] = useToggle(); // boolean
  *   const [theme, toggle] = useToggle(["light", "dark", "system"]);
- *   toggle(); // 次の値へ (boolean なら反転)
- *   toggle("dark"); // 特定値へセット
+ *   toggle(); // Next value (inverts if boolean)
+ *   toggle("dark"); // Set a specific value
  */
 export function useToggle(
   initialValue?: boolean

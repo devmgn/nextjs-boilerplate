@@ -53,8 +53,8 @@ export default defineConfig({
           browser: {
             enabled: true,
             headless: true,
-            // unit の TZ (vitest.global-setup.ts) とアプリの <html lang="ja"> に揃える。
-            // 未指定だと headless Chromium は環境変数に関係なく en-US で動く
+            // Match the unit TZ (vitest.global-setup.ts) and the app's <html lang="ja">.
+            // If unset, headless Chromium runs in en-US regardless of environment variables
             provider: playwright({
               contextOptions: { locale: "ja-JP", timezoneId: "Asia/Tokyo" },
             }),

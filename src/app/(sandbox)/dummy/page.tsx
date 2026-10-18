@@ -22,9 +22,10 @@ import { isValueOf } from "../../../utils/is/is-value-of";
 import { isDevelopment, isServer } from "../../../utils/runtime";
 
 /**
- * 共有モジュール（コンポーネント・hooks・utils）を一通り参照し、未使用扱いにならないことを確かめるサンドボックスページ。
+ * Sandbox page that references every shared module (components, hooks, utils)
+ * so none is flagged as unused.
  *
- * @returns 共有コンポーネントと値系 utils の結果を並べたページ
+ * @returns A page listing the shared components and the results of value utils
  */
 export default function Page() {
   useDisclosure();
@@ -40,7 +41,7 @@ export default function Page() {
   useMediaQuery("(min-width: 768px)");
   useToggle();
 
-  // 共有モジュールが生きていることを確かめるページ。値系は描画して参照する。
+  // Page that keeps shared modules alive. Value utils are referenced by rendering them.
   return (
     <>
       <SvgIcon icon={FaceIcon} label="" />

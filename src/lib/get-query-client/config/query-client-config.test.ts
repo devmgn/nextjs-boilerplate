@@ -5,9 +5,9 @@ import { createQueryClientConfig } from "./query-client-config";
 import { loading } from "../../../components/loading-overlay";
 import { errorNotifier } from "../../error-notifier";
 
-// 判定対象はキャッシュに作った実物の Query。状態だけ setState で動かす。
+// The target is a real Query built in the cache. Only its state is changed via setState.
 function buildQuery(queryClient: QueryClient, name: string) {
-  // shouldDehydrateQuery の引数は queryKey が readonly unknown[] の Query。
+  // shouldDehydrateQuery takes a Query whose queryKey is readonly unknown[].
   const queryKey: readonly unknown[] = [name];
 
   return queryClient.getQueryCache().build(queryClient, { queryKey });
@@ -30,7 +30,7 @@ describe("createQueryClientConfig", () => {
   });
 
   describe("queryCache onError", () => {
-    it("エラー時にtoast.errorが呼ばれること", async () => {
+    it("calls toast.error on error", async () => {
       await expect(
         queryClient.query({
           queryKey: ["test-error"],
@@ -43,7 +43,7 @@ describe("createQueryClientConfig", () => {
       expect(notifySpy).toHaveBeenCalledWith("fetch failed");
     });
 
-    it("skipToast: trueのときtoast.errorが呼ばれないこと", async () => {
+    it("does not call toast.error when skipToast is true", async () => {
       await expect(
         queryClient.query({
           queryKey: ["test-skip"],
@@ -59,7 +59,7 @@ describe("createQueryClientConfig", () => {
   });
 
   describe("mutationCache loading", () => {
-    it("mutation 実行中に loading.show / hide が対称に呼ばれること", async () => {
+    it("calls loading.show / hide symmetrically while a mutation runs", async () => {
       const showSpy = vi.spyOn(loading, "show");
       const hideSpy = vi.spyOn(loading, "hide");
 
@@ -72,7 +72,7 @@ describe("createQueryClientConfig", () => {
             return "ok";
           },
         })
-        // Mutation.execute は variables が必須引数
+        // Mutation.execute requires variables
         // oxlint-disable-next-line unicorn/no-useless-undefined
         .execute(undefined);
 
@@ -80,7 +80,7 @@ describe("createQueryClientConfig", () => {
       expect(hideSpy).toHaveBeenCalledOnce();
     });
 
-    it("mutation 失敗時にも loading.hide が呼ばれること", async () => {
+    it("calls loading.hide even when a mutation fails", async () => {
       const showSpy = vi.spyOn(loading, "show");
       const hideSpy = vi.spyOn(loading, "hide");
 
@@ -92,7 +92,7 @@ describe("createQueryClientConfig", () => {
               await Promise.reject(new Error("mutation failed"));
             },
           })
-          // Mutation.execute は variables が必須引数
+          // Mutation.execute requires variables
           // oxlint-disable-next-line unicorn/no-useless-undefined
           .execute(undefined)
       ).rejects.toThrow("mutation failed");
@@ -101,7 +101,7 @@ describe("createQueryClientConfig", () => {
       expect(hideSpy).toHaveBeenCalledOnce();
     });
 
-    it("skipLoading: true のとき loading.show / hide が呼ばれないこと", async () => {
+    it("does not call loading.show / hide when skipLoading is true", async () => {
       const showSpy = vi.spyOn(loading, "show");
       const hideSpy = vi.spyOn(loading, "hide");
 
@@ -115,7 +115,7 @@ describe("createQueryClientConfig", () => {
           },
           meta: { skipLoading: true },
         })
-        // Mutation.execute は variables が必須引数
+        // Mutation.execute requires variables
         // oxlint-disable-next-line unicorn/no-useless-undefined
         .execute(undefined);
 
@@ -125,7 +125,7 @@ describe("createQueryClientConfig", () => {
   });
 
   describe("mutationCache onError", () => {
-    it("エラー時にtoast.errorが呼ばれること", async () => {
+    it("calls toast.error on error", async () => {
       await expect(
         queryClient
           .getMutationCache()
@@ -134,7 +134,7 @@ describe("createQueryClientConfig", () => {
               await Promise.reject(new Error("mutation failed"));
             },
           })
-          // Mutation.execute は variables が必須引数
+          // Mutation.execute requires variables
           // oxlint-disable-next-line unicorn/no-useless-undefined
           .execute(undefined)
       ).rejects.toThrow("mutation failed");
@@ -142,7 +142,7 @@ describe("createQueryClientConfig", () => {
       expect(notifySpy).toHaveBeenCalledWith("mutation failed");
     });
 
-    it("skipToast: trueのときtoast.errorが呼ばれないこと", async () => {
+    it("does not call toast.error when skipToast is true", async () => {
       await expect(
         queryClient
           .getMutationCache()
@@ -152,7 +152,7 @@ describe("createQueryClientConfig", () => {
             },
             meta: { skipToast: true },
           })
-          // Mutation.execute は variables が必須引数
+          // Mutation.execute requires variables
           // oxlint-disable-next-line unicorn/no-useless-undefined
           .execute(undefined)
       ).rejects.toThrow("mutation failed");
@@ -161,8 +161,8 @@ describe("createQueryClientConfig", () => {
     });
   });
 
-  describe("キャッシュの独立性", () => {
-    it("呼び出すたびに新しい QueryCache / MutationCache を作ること", () => {
+  describe("cache isolation", () => {
+    it("creates a new QueryCache / MutationCache on each call", () => {
       const a = createQueryClientConfig();
       const b = createQueryClientConfig();
 
@@ -170,7 +170,7 @@ describe("createQueryClientConfig", () => {
       expect(a.mutationCache).not.toBe(b.mutationCache);
     });
 
-    it("別の QueryClient にキャッシュが漏れないこと", () => {
+    it("does not leak the cache into another QueryClient", () => {
       const other = new QueryClient(createQueryClientConfig());
 
       const { queryKey } = queryOptions({
@@ -185,19 +185,19 @@ describe("createQueryClientConfig", () => {
   });
 
   describe("defaultOptions", () => {
-    it("queriesのretryがfalseであること", () => {
+    it("sets queries retry to false", () => {
       expect(config.defaultOptions.queries.retry).toBeFalsy();
     });
 
-    it("mutationsのretryがfalseであること", () => {
+    it("sets mutations retry to false", () => {
       expect(config.defaultOptions.mutations.retry).toBeFalsy();
     });
 
-    it("staleTimeが60秒であること", () => {
+    it("sets staleTime to 60 seconds", () => {
       expect(config.defaultOptions.queries.staleTime).toBe(60_000);
     });
 
-    it("refetchOnWindowFocusがfalseであること", () => {
+    it("sets refetchOnWindowFocus to false", () => {
       expect(config.defaultOptions.queries.refetchOnWindowFocus).toBeFalsy();
     });
   });
@@ -205,21 +205,21 @@ describe("createQueryClientConfig", () => {
   describe("dehydrate", () => {
     const { shouldDehydrateQuery } = config.defaultOptions.dehydrate;
 
-    it("successステータスのクエリがdehydrate対象であること", () => {
+    it("dehydrates queries with success status", () => {
       const query = buildQuery(queryClient, "dehydrate-success");
       query.setState({ status: "success", data: "value" });
 
       expect(shouldDehydrateQuery(query)).toBeTruthy();
     });
 
-    it("pendingステータスのクエリがdehydrate対象であること", () => {
+    it("dehydrates queries with pending status", () => {
       const query = buildQuery(queryClient, "dehydrate-pending");
 
       expect(query.state.status).toBe("pending");
       expect(shouldDehydrateQuery(query)).toBeTruthy();
     });
 
-    it("errorステータスのクエリがdehydrate対象外であること", () => {
+    it("does not dehydrate queries with error status", () => {
       const query = buildQuery(queryClient, "dehydrate-error");
       query.setState({ status: "error", error: new Error("failed") });
 

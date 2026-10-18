@@ -9,11 +9,12 @@ export const metadata: Metadata = {
 };
 
 /**
- * どのルートにもマッチしない URL の 404。ルーティング層で処理され root layout を
- * 経由しないため、`<html>` / `<body>` と global CSS を自前で用意する必要がある。
- * `notFound()` 由来の 404 は root layout 内でレンダリングされる `not-found.tsx` が担当する。
+ * 404 for URLs that match no route. It is handled at the routing layer and
+ * bypasses the root layout, so it must provide its own `<html>` / `<body>` and
+ * global CSS. 404s from `notFound()` are handled by `not-found.tsx`, rendered
+ * inside the root layout.
  *
- * @returns 404 メッセージとトップへのリンクを含む HTML ドキュメント
+ * @returns An HTML document with the 404 message and a link to the top page
  */
 export default function GlobalNotFound() {
   return (

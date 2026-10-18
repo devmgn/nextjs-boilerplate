@@ -34,10 +34,12 @@ interface ButtonProps
 }
 
 /**
- * バリアントとサイズオプション付きの多態ボタン。`asChild` でカスタム要素のレンダリングに対応。
+ * Polymorphic button with variant and size options. Supports rendering a custom
+ * element via `asChild`.
  *
- * @param props - ボタンの props。`button` 要素の属性に加え、バリアントと `asChild` を受け取る。
- * @returns スタイル適用済みのボタン要素 (`asChild` 時は子要素)。
+ * @param props - Button props. Accepts `button` element attributes plus
+ *   variants and `asChild`.
+ * @returns The styled button element (the child element when `asChild` is set).
  */
 export function Button(props: ButtonProps) {
   const { className, variant, size, asChild = false, ..._props } = props;

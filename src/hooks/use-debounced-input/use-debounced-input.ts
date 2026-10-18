@@ -4,15 +4,19 @@ import { useDebouncedCallback } from "../use-debounced-callback";
 type InputElement = HTMLInputElement | HTMLTextAreaElement;
 
 /**
- * 入力値を debounce して `onValue` に渡すフック。IME 変換中 (compositionStart〜End) の
- * 中間入力は流さず、変換確定時 (compositionEnd) に flush で即時反映する。
+ * Hook that debounces input values and passes them to `onValue`. Intermediate
+ * input during IME composition (compositionStart to compositionEnd) is not
+ * forwarded; on commit (compositionEnd) it is flushed immediately.
  *
- * 変換状態はイベント時刻に正確な ref で判定する（render スナップショットは同期イベント内で
- * 1 テンポ古いため使わない）。返り値は `<input>` / `<textarea>` にそのままスプレッドできる。
+ * Composition state is read from a ref that is accurate at event time (the
+ * render snapshot is one step behind inside synchronous events, so it is not
+ * used). The return value can be spread directly onto `<input>` /
+ * `<textarea>`.
  *
- * @param onValue - Debounce 後の入力値を受け取るコールバック
- * @param wait - Debounce の待機時間（ミリ秒）
- * @returns `onChange` / `onCompositionStart` / `onCompositionEnd` のイベントハンドラ
+ * @param onValue - Callback that receives the debounced input value
+ * @param wait - Debounce delay in milliseconds
+ * @returns Event handlers `onChange` / `onCompositionStart` /
+ *   `onCompositionEnd`
  */
 export function useDebouncedInput(
   onValue: (value: string) => void,
@@ -23,7 +27,7 @@ export function useDebouncedInput(
 
   return {
     onChange: (e: React.ChangeEvent<InputElement>) => {
-      // 変換中の中間入力は debounce に流さない
+      // Don't forward intermediate input during composition to debounce
       if (isComposingRef.current) {
         return;
       }
@@ -35,7 +39,7 @@ export function useDebouncedInput(
     },
     onCompositionEnd: (e: React.CompositionEvent<InputElement>) => {
       isComposingRef.current = false;
-      // 変換確定時は即時反映する
+      // Apply immediately when composition is committed
       debounced(e.currentTarget.value);
       debounced.flush();
     },

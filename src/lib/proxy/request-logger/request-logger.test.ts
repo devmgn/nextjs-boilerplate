@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from "vitest";
 import { requestLogger } from "./request-logger";
 
 describe(requestLogger, () => {
-  it("リクエストのURLとメソッドをログ出力すること", () => {
+  it("logs the request URL and method", () => {
     const consoleSpy = vi.spyOn(console, "log").mockImplementation(() => {});
 
     const request = new NextRequest("https://example.com/test", {
@@ -18,7 +18,7 @@ describe(requestLogger, () => {
     });
   });
 
-  it("POSTリクエストのメソッドを正しく出力すること", () => {
+  it("logs the method of a POST request correctly", () => {
     const consoleSpy = vi.spyOn(console, "log").mockImplementation(() => {});
 
     const request = new NextRequest("https://example.com/api/data", {

@@ -1,12 +1,12 @@
 minimumReleaseAge: 1440
 trustPolicy: no-downgrade
-# lockfile 全件の再検証は Mend-hosted Renovate (3GB) で OOM kill されるため省く。
-# CI は PNPM_CONFIG_TRUST_LOCKFILE=false で上書きして全件検証を維持する。
+# Skip re-verifying the entire lockfile: it gets OOM-killed on Mend-hosted Renovate (3GB).
+# CI overrides this with PNPM_CONFIG_TRUST_LOCKFILE=false to keep full verification.
 trustLockfile: true
 trustPolicyExclude:
-  # semver@6.3.1 (2023 年公開、@babel/core / styled-jsx 経由の transitive dep) は
-  # 署名のみで provenance を持たない。同一ツリーの semver@7.x が provenance 付きのため
-  # no-downgrade に引っかかるが、乗っ取りではなく旧メジャー系列の legacy 公開が理由。
+  # semver@6.3.1 (published in 2023, a transitive dep via @babel/core / styled-jsx) is
+  # signed only and has no provenance. It trips no-downgrade because semver@7.x in the same
+  # tree has provenance, but the cause is a legacy release of an old major line, not a takeover.
   - semver@6.3.1
 allowBuilds:
   esbuild: true

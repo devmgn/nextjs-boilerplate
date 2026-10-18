@@ -2,17 +2,18 @@ import { useEffect, useState } from "react";
 import { debounce } from "../../utils/debounce";
 
 /**
- * 最新の `callback` を抱えた debounce インスタンス。
+ * Debounce instance that holds the latest `callback`.
  *
- * 生きた `setTimeout` を握るため、識別子が変わると保留中の1回が黙って失われる。
- * 状態を React の外側（ただのクロージャ）に閉じ込めることで、識別子の安定を
- * メモ化の有無に依存させない。`wait` は生成時に固定する。
+ * It holds a live `setTimeout`, so if its identity changes, the pending call is
+ * silently lost. Keeping the state outside React (in a plain closure) makes
+ * identity stability independent of whether memoization happens. `wait` is
+ * fixed at creation.
  *
- * @typeParam Args - `callback` の引数タプル
- * @param callback - Debounce 対象の初期コールバック
- * @param wait - Debounce の待機時間（ミリ秒）
- * @returns Debounce された `invoke`、`cancel`、最新コールバックを差し替える `setCallback` と生成時の
- *   `wait`
+ * @typeParam Args - Argument tuple of `callback`
+ * @param callback - Initial callback to debounce
+ * @param wait - Debounce delay in milliseconds
+ * @returns The debounced `invoke`, `cancel`, `setCallback` to swap in the
+ *   latest callback, and the `wait` used at creation
  */
 function createDebouncedRunner<Args extends unknown[]>(
   callback: (...args: Args) => void,
@@ -20,8 +21,8 @@ function createDebouncedRunner<Args extends unknown[]>(
 ) {
   let latestCallback = callback;
 
-  // 引数はタプルのまま1つの値として渡す。こうすると debounce 側は
-  // 「最新の引数を1件だけ保持する」という本来の役割だけを担う。
+  // Pass the arguments as a single tuple value. This way debounce only does its
+  // actual job: keeping just the latest arguments.
   const debounced = debounce((args: Args) => {
     latestCallback(...args);
   }, wait);
@@ -44,18 +45,21 @@ function createDebouncedRunner<Args extends unknown[]>(
 }
 
 /**
- * `callback` を debounce して返すフック。インラインのアロー関数を毎レンダリング渡しても
- * 保留中のタイマーは失われず、発火時には「その時点で最新の `callback`」が呼ばれる。
- * `wait` が変化したときだけ作り直され、古い方の保留中の1回は cleanup で破棄される。
+ * Hook that returns a debounced `callback`. Passing a new inline arrow function
+ * on every render does not lose the pending timer, and the callback that is
+ * current at fire time is called. It is recreated only when `wait` changes; the
+ * old pending call is discarded in cleanup.
  *
- * インスタンスは `useState` の遅延初期化で保持する。初期化関数が一度しか実行されない
- * ことは React の仕様で保証されているため、識別子の安定がメモ化の有無に依存しない
- * （`useMemo` や React Compiler の自動メモ化は最適化であって保証ではない）。
+ * The instance is held via lazy `useState` initialization. React guarantees the
+ * initializer runs only once, so identity stability does not depend on
+ * memoization (`useMemo` and React Compiler's automatic memoization are
+ * optimizations, not guarantees).
  *
- * @typeParam Args - `callback` の引数タプル
- * @param callback - Debounce 対象のコールバック
- * @param wait - Debounce の待機時間（ミリ秒）
- * @returns Debounce された関数。`cancel` / `flush` で保留中の呼び出しを破棄 / 即時実行できる
+ * @typeParam Args - Argument tuple of `callback`
+ * @param callback - Callback to debounce
+ * @param wait - Debounce delay in milliseconds
+ * @returns The debounced function. `cancel` / `flush` discard / immediately run
+ *   the pending call
  */
 export function useDebouncedCallback<Args extends unknown[]>(
   callback: (...args: Args) => void,
@@ -65,7 +69,7 @@ export function useDebouncedCallback<Args extends unknown[]>(
     createDebouncedRunner(callback, wait)
   );
 
-  // wait 変化時の作り直し。React の「props の変化に応じて state を調整する」パターン。
+  // Recreate when wait changes, following React's "adjusting state when a prop changes" pattern.
   if (runner.wait !== wait) {
     setRunner(createDebouncedRunner(callback, wait));
   }

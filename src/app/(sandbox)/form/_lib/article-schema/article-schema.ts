@@ -1,13 +1,13 @@
 import { z } from "zod";
 
-/** 記事作成フォームの入力スキーマ */
+/** Input schema for the article form */
 export const articleSchema = z.object({
   title: z.string().min(1),
   description: z.string().min(1),
   body: z.string().min(1),
-  /** カンマ区切りのタグ。送信時に配列へ変換する */
+  /** Comma-separated tags. Converted to an array on submit */
   tags: z.string(),
 });
 
-/** 記事作成フォームの入力値 */
+/** Input values of the article form */
 export type ArticleSchema = z.infer<typeof articleSchema>;

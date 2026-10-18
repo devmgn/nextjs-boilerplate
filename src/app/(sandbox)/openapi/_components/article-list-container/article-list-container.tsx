@@ -8,13 +8,16 @@ import { ArticleList } from "../article-list";
 const params: GetArticlesParams = { limit: 10 };
 
 /**
- * Server Component 側で prefetch し、dehydrate した state をクライアントへ引き渡す。
+ * Prefetches in the Server Component and hands the dehydrated state to the
+ * client.
  *
- * `dehydrate()` の結果には `dataUpdatedAt: Date.now()` が含まれ、Cache Components の
- * prerender では不安定値として弾かれる。`connection()` でリクエスト時レンダリングを
- * 宣言し、呼び出し側の `<Suspense>` で static shell と切り離す。
+ * The result of `dehydrate()` includes `dataUpdatedAt: Date.now()`, which Cache
+ * Components prerendering rejects as a non-deterministic value. `connection()`
+ * opts into request-time rendering, and the caller's `<Suspense>` separates it
+ * from the static shell.
  *
- * @returns Prefetch した state を引き渡す HydrationBoundary で包んだ記事一覧
+ * @returns The article list wrapped in a HydrationBoundary that passes on the
+ *   prefetched state
  */
 export async function ArticleListContainer() {
   await connection();
@@ -25,7 +28,7 @@ export async function ArticleListContainer() {
     try {
       await queryClient.query(getGetArticlesSuspenseQueryOptions(params));
     } catch {
-      // prefetch 失敗はクライアント側の useSuspenseQuery で再取得・エラー処理される
+      // Prefetch failures are refetched and handled by useSuspenseQuery on the client
     }
   })();
 

@@ -5,10 +5,10 @@ import { isApiError } from "../../../../../api/api-client";
 import { createArticle as createArticleApi } from "../../../../../api/openapi/articles/articles";
 import { articleSchema } from "../../_lib/article-schema";
 
-/** 記事作成 action の結果。未送信時は `null` */
+/** Result of the create-article action. `null` before submission */
 export type CreateArticleState = { ok: boolean; message: string } | null;
 
-// 上流の応答本文は内部情報を含みうるため画面に出さず、ステータスに応じた固定文言にする
+// The upstream body may contain internal details, so show a fixed message per status instead
 function toErrorMessage(status: number): string {
   switch (status) {
     case 401: {
@@ -26,18 +26,19 @@ function toErrorMessage(status: number): string {
 }
 
 /**
- * 入力を再検証して RealWorld API で記事を作成する server action。
- * RealWorld の記事作成は認証が必要なため、トークンなしでは 401 が返る（エラー表示のデモになる）。
+ * Server action that revalidates the input and creates an article via the
+ * RealWorld API. Creating articles on RealWorld requires auth, so without a
+ * token it returns 401 (demonstrating the error display).
  *
- * @param _prevState - UseActionState が持ち回す前回の状態
- * @param data - フォームの入力値
- * @returns 作成の成否と画面に表示するメッセージ
+ * @param _prevState - The previous state carried over by useActionState
+ * @param data - The form input values
+ * @returns Whether creation succeeded, and the message to display
  */
 export async function createArticle(
   _prevState: CreateArticleState,
   data: ArticleSchema
 ): Promise<CreateArticleState> {
-  // server action は直接 POST できる公開エンドポイントなので、クライアントの検証に頼らず再検証する
+  // Server actions are public endpoints that accept direct POSTs, so revalidate instead of trusting the client
   const parsed = articleSchema.safeParse(data);
 
   if (!parsed.success) {
@@ -67,8 +68,8 @@ export async function createArticle(
       return { ok: false, message: toErrorMessage(error.status) };
     }
 
-    // fetch は通信失敗（DNS・接続断・CORS など）を TypeError で reject する。
-    // それ以外は想定外のバグなので握りつぶさず error boundary に上げる
+    // fetch rejects network failures (DNS, dropped connections, CORS, etc.) with a TypeError.
+    // Anything else is an unexpected bug, so rethrow it to the error boundary instead of swallowing it
     if (error instanceof TypeError) {
       return { ok: false, message: "Network error" };
     }

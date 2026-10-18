@@ -42,7 +42,7 @@ export const ExtraLarge: Story = {
 };
 
 export const Decorative: Story = {
-  // label を渡さないと装飾扱い（aria-hidden）になる。
+  // Without a label, the icon is treated as decorative (aria-hidden).
   render: (args) => <SvgIcon icon={args.icon} size={args.size} />,
   play: async ({ canvasElement }) => {
     const icon = canvasElement.querySelector("svg");

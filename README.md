@@ -1,25 +1,26 @@
 # nextjs-boilerplate
 
-Next.js 16 + React 19 のボイラープレート。App Router、React Compiler、Turbopack を採用。
+A Next.js 16 + React 19 boilerplate with App Router, React Compiler, and Turbopack.
 
 ## Tech Stack
 
-| Category  | Technology                                             |
-| --------- | ------------------------------------------------------ |
-| Framework | Next.js 16 (App Router, Turbopack)                     |
-| UI        | React 19, Tailwind CSS v4, Radix UI, tailwind-variants |
-| State     | TanStack Query, React Hook Form + Zod v4               |
-| Linting   | OxC (Oxlint + Oxfmt)                                   |
-| Testing   | Vitest, Storybook 10, Playwright, MSW                  |
-| Language  | TypeScript (strict), Node.js 24, pnpm 10               |
+| Category | Technology |
+| --- | --- |
+| Framework | Next.js 16 (App Router, Turbopack, React Compiler) |
+| UI | React 19, Tailwind CSS v4 (M3 tokens), Radix UI, tailwind-variants |
+| State | TanStack Query, React Hook Form + Zod v4, nuqs |
+| API | Orval (OpenAPI → TanStack Query hooks, MSW fixtures) |
+| Linting | Ultracite (Oxlint + Oxfmt), fallow |
+| Testing | Vitest, Storybook 10, Playwright, MSW |
+| Language | TypeScript (strict), Node.js 24, pnpm 12 |
 
 ## Getting Started
 
-[mise](https://mise.jdx.dev/) が必要です（Node.js / pnpm / actionlint / zizmor のバージョン管理と git hooks で使用）。
+Requires [mise](https://mise.jdx.dev/), which pins Node.js / pnpm / actionlint / zizmor and runs the git hooks.
 
 ```bash
 mise install
-pnpm install
+pnpm install   # also generates the API client into src/api/openapi/
 pnpm dev
 ```
 
@@ -31,6 +32,12 @@ pnpm build            # Production build
 pnpm check            # All checks (Oxlint + Oxfmt + fallow)
 pnpm fix              # Auto-fix lint + format
 pnpm test             # Run tests
-pnpm test:coverage    # Tests with coverage report
 pnpm storybook        # Storybook dev server
 ```
+
+See [`.claude/rules/commands.md`](.claude/rules/commands.md) for the full list.
+
+## Documentation
+
+- [`AGENTS.md`](AGENTS.md) — stack overview and conventions
+- [`.claude/rules/`](.claude/rules/) — rules by topic (directory structure, App Router, API, testing, ...)
