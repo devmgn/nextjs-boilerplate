@@ -107,12 +107,7 @@ export default defineConfig({
       files: ["**/*.stories.*", "**/*.story.*"],
       jsPlugins: ["eslint-plugin-storybook"],
       rules: {
-        "import/no-default-export": "off",
         "react/rules-of-hooks": "off",
-        "typescript/consistent-type-assertions": "off",
-        "typescript/no-explicit-any": "off",
-        "typescript/no-unsafe-argument": "off",
-        "typescript/no-unsafe-assignment": "off",
 
         // eslint-plugin-storybook (jsPlugin)
         "storybook/await-interactions": "error",

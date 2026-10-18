@@ -26,7 +26,8 @@ pnpm generate-api                   # Generate OpenAPI client + MSW mocks (Orval
 pnpm analyze                        # Bundle analysis via Turbopack (no build artifacts; serves a UI)
 pnpm doctor                         # React Doctor scan (security / perf / a11y / architecture)
 mise run skills:update              # Re-fetch the GitHub-sourced skills (skills-lock.json) into .claude/skills (review the diff, then commit)
-                                    # fallow / ultracite skills are symlinks into node_modules; never run `skills experimental_sync`
+                                    # fallow / ultracite skills ship with their packages: pnpm links them as .claude/skills/pnpm-* (gitignored)
+                                    # on install, as approved under `permissions` in pnpm-workspace.yaml; never run `skills experimental_sync`
 ```
 
 ## Lint / Format (Ultracite)
