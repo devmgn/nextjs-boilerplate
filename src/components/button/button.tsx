@@ -33,7 +33,12 @@ interface ButtonProps
   asChild?: boolean;
 }
 
-/** バリアントとサイズオプション付きの多態ボタン。`asChild` でカスタム要素のレンダリングに対応。 */
+/**
+ * バリアントとサイズオプション付きの多態ボタン。`asChild` でカスタム要素のレンダリングに対応。
+ *
+ * @param props - ボタンの props。`button` 要素の属性に加え、バリアントと `asChild` を受け取る。
+ * @returns スタイル適用済みのボタン要素 (`asChild` 時は子要素)。
+ */
 export function Button(props: ButtonProps) {
   const { className, variant, size, asChild = false, ..._props } = props;
   const Component = asChild ? Slot : "button";

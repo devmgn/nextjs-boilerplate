@@ -22,8 +22,10 @@ type JsPluginEntry = string | { name?: string; specifier: string };
 // ルール選定を ultracite の preset が持つプラグイン。採否は ultracite 側の責務。
 const ULTRACITE_MANAGED_PREFIXES = new Set([
   "github/",
+  "jsdoc-js/",
   "react-doctor/",
   "sonarjs/",
+  "tsdoc/",
 ]);
 
 // プラグイン specifier → oxlint の前缀（eslint-plugin-x → x ／ @scope/eslint-plugin-x → @scope/x）。
@@ -67,7 +69,12 @@ function collectJsPluginEntries(): JsPluginEntry[] {
   return entries;
 }
 
-/** JsPlugins の要素が specifier 文字列の短縮形かを判定する。 */
+/**
+ * JsPlugins の要素が specifier 文字列の短縮形かを判定する。
+ *
+ * @param entry - 判定対象の jsPlugins 要素
+ * @returns 文字列の短縮形なら true
+ */
 function isStringEntry(entry: JsPluginEntry): entry is string {
   return typeof entry === "string";
 }

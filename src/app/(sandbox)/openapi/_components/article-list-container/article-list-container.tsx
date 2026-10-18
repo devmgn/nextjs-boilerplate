@@ -13,6 +13,8 @@ const params: GetArticlesParams = { limit: 10 };
  * `dehydrate()` の結果には `dataUpdatedAt: Date.now()` が含まれ、Cache Components の
  * prerender では不安定値として弾かれる。`connection()` でリクエスト時レンダリングを
  * 宣言し、呼び出し側の `<Suspense>` で static shell と切り離す。
+ *
+ * @returns Prefetch した state を引き渡す HydrationBoundary で包んだ記事一覧
  */
 export async function ArticleListContainer() {
   await connection();

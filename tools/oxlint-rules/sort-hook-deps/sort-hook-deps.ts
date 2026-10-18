@@ -13,8 +13,8 @@ import type {
  * useInsertionEffect, useImperativeHandle.
  *
  * Consumers can extend the tracked hooks via the `additionalHooks` option:
- * ["error", { additionalHooks: ["useCustomEffect", { name: "useDeepEffect",
- * depsIndex: 2 }] }]
+ * ["error", \{ additionalHooks: ["useCustomEffect", \{ name: "useDeepEffect",
+ * depsIndex: 2 \}] \}]
  */
 
 const DEFAULT_HOOKS: ReadonlyMap<string, number> = new Map([
@@ -48,7 +48,12 @@ function isOptionObject(value: JsonValue): value is SortHookDepsOption {
   return value !== null && typeof value === "object" && !Array.isArray(value);
 }
 
-/** フック名のみを渡す短縮形。deps は第 2 引数とみなす。 */
+/**
+ * フック名のみを渡す短縮形。deps は第 2 引数とみなす。
+ *
+ * @param item - AdditionalHooks の要素
+ * @returns 空でないフック名文字列なら true
+ */
 function isHookName(item: JsonValue): item is string {
   return typeof item === "string" && item.length > 0;
 }
@@ -75,7 +80,12 @@ function isHookSpec(item: JsonValue): item is HookSpec {
   );
 }
 
-/** オプション配列の先頭から additionalHooks を取り出す。未指定なら空配列。 */
+/**
+ * オプション配列の先頭から additionalHooks を取り出す。未指定なら空配列。
+ *
+ * @param options - ルールに渡されたオプション配列
+ * @returns AdditionalHooks の要素
+ */
 function readAdditionalHooks(
   options: Context["options"]
 ): readonly JsonValue[] {
@@ -161,7 +171,12 @@ function compareKeys(a: string, b: string): number {
   return a.localeCompare(b, undefined, { sensitivity: "base" });
 }
 
-/** 穴あき要素やスプレッドを含む配列は並べ替え対象外として null を返す。 */
+/**
+ * 穴あき要素やスプレッドを含む配列は並べ替え対象外として null を返す。
+ *
+ * @param depsArray - 依存配列のノード
+ * @returns 並べ替え対象の要素。対象外なら null
+ */
 function collectElements(
   depsArray: ESTree.ArrayExpression
 ): ESTree.Expression[] | null {

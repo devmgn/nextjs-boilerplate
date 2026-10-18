@@ -9,6 +9,10 @@ type InputElement = HTMLInputElement | HTMLTextAreaElement;
  *
  * 変換状態はイベント時刻に正確な ref で判定する（render スナップショットは同期イベント内で
  * 1 テンポ古いため使わない）。返り値は `<input>` / `<textarea>` にそのままスプレッドできる。
+ *
+ * @param onValue - Debounce 後の入力値を受け取るコールバック
+ * @param wait - Debounce の待機時間（ミリ秒）
+ * @returns `onChange` / `onCompositionStart` / `onCompositionEnd` のイベントハンドラ
  */
 export function useDebouncedInput(
   onValue: (value: string) => void,

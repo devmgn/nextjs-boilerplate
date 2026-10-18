@@ -42,6 +42,7 @@ interface Step {
   isExit?: boolean;
 }
 
+/** コンパイル済みのセレクタ 1 分岐と、一致時に報告するメッセージ。 */
 export interface Compiled {
   chain: Step[];
   message: string;
@@ -55,12 +56,23 @@ function isStringValue(value: AstValue): value is string {
   return typeof value === "string";
 }
 
-/** 任意キーで読めるオブジェクトかを判定する。値は AstValue として扱う。 */
+/**
+ * 任意キーで読めるオブジェクトかを判定する。値は AstValue として扱う。
+ *
+ * @param value - 判定対象の値
+ * @returns 配列でも null でもないオブジェクトなら true
+ */
 function isAstRecord(value: AstValue): value is AstNode & AstRecord {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
-/** AST ノードの任意プロパティを読む。 */
+/**
+ * AST ノードの任意プロパティを読む。
+ *
+ * @param node - 読み取り元の AST ノード
+ * @param key - 読み取るプロパティ名
+ * @returns プロパティの値。読めない場合は undefined
+ */
 function readProperty(node: AstNode, key: string): AstValue {
   return isAstRecord(node) ? node[key] : undefined;
 }
@@ -201,7 +213,13 @@ function isCombinatorChar(c: string | undefined): boolean {
   return c !== undefined && COMBINATOR_CHARS.has(c);
 }
 
-/** Start から連続する結合子文字を読み切り、結合子種別と次の位置を返す。 */
+/**
+ * `start` から連続する結合子文字を読み切り、結合子種別と次の位置を返す。
+ *
+ * @param input - セレクタ文字列
+ * @param start - 読み始める位置
+ * @returns 結合子種別と、結合子の直後の位置
+ */
 function readCombinator(input: string, start: number): CombinatorRead {
   let combinator: Combinator = "descendant";
   let i = start;
@@ -217,7 +235,12 @@ function readCombinator(input: string, start: number): CombinatorRead {
   return { combinator, next: i };
 }
 
-/** ブラケット外の結合子で区切り、compound 文字列と直前の結合子の組に分解する。 */
+/**
+ * ブラケット外の結合子で区切り、compound 文字列と直前の結合子の組に分解する。
+ *
+ * @param input - カンマを含まない 1 分岐ぶんのセレクタ文字列
+ * @returns 左から順に並んだ compound と結合子の組
+ */
 function tokenizeBranch(input: string): CompoundToken[] {
   const tokens: CompoundToken[] = [];
   let combinator: Combinator | null = null;
@@ -288,6 +311,13 @@ function parseSelectorGroup(input: string): Step[][] {
     .map((branch) => parseBranch(branch));
 }
 
+/**
+ * セレクタ文字列をカンマ区切りの分岐ごとにコンパイルする。
+ *
+ * @param selector - `no-restricted-syntax` のセレクタ文字列
+ * @param message - 一致時のメッセージ。省略時は既定文言を使う
+ * @returns 分岐ごとのコンパイル結果
+ */
 export function compileOption(selector: string, message?: string): Compiled[] {
   const finalMessage = message ?? `Using "${selector}" is restricted.`;
 
@@ -366,6 +396,13 @@ function matchFrom(node: AstNode, chain: Step[], i: number): boolean {
   );
 }
 
+/**
+ * ノードがセレクタのステップ列（右端が対象ノード）に一致するかを判定する。
+ *
+ * @param node - 照合対象の AST ノード
+ * @param chain - パース済みセレクタのステップ列
+ * @returns 一致すれば true
+ */
 export function matchChain(node: AstNode, chain: Step[]): boolean {
   return matchFrom(node, chain, 0);
 }

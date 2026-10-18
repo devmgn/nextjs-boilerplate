@@ -10,6 +10,9 @@ interface FieldProps extends Omit<React.ComponentProps<"div">, "children"> {
 /**
  * ラベル、render prop による子入力、エラーメッセージを表示するフォームフィールドラッパー。
  * `label` を省略する場合は、render 内の入力要素に `aria-label` を設定してください。
+ *
+ * @param props - ラベル・エラーメッセージ・入力要素を描画する render prop と `div` 要素の属性。
+ * @returns ラベル・入力要素・エラーメッセージをまとめたフィールド要素。
  */
 export function Field(props: FieldProps) {
   const id = useId();

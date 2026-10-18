@@ -7,7 +7,7 @@
 import { createListenerSet } from "../../../../utils/listener-set";
 
 interface LoadingStore {
-  /** 現在表示中かどうか (count > 0)。`useSyncExternalStore` の getSnapshot として渡す想定。 */
+  /** 現在表示中かどうか (`count > 0`)。`useSyncExternalStore` の getSnapshot として渡す想定。 */
   getSnapshot: () => boolean;
   /** SSR では常に非表示。ハイドレーション時に useSyncExternalStore が差し替える。 */
   getServerSnapshot: () => boolean;
@@ -19,7 +19,7 @@ interface LoadingStore {
 
   /**
    * カウンタを +1 して listener に通知する。
-   * boolean 状態 (count > 0) の境界に限らず、呼ばれるたびに通知する契約。
+   * boolean 状態 (`count > 0`) の境界に限らず、呼ばれるたびに通知する契約。
    */
   show: () => void;
   /**
@@ -36,6 +36,11 @@ interface LoadingStore {
   reset: () => void;
 }
 
+/**
+ * 参照カウント方式のローディング表示ストアを生成する。
+ *
+ * @returns 初期状態 (非表示) のローディングストア。
+ */
 export function createLoadingStore(): LoadingStore {
   const { subscribe, notify } = createListenerSet("loadingStore");
   let count = 0;

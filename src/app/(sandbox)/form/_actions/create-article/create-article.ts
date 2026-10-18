@@ -5,6 +5,7 @@ import { isApiError } from "../../../../../api/api-client";
 import { createArticle as createArticleApi } from "../../../../../api/openapi/articles/articles";
 import { articleSchema } from "../../_lib/article-schema";
 
+/** 記事作成 action の結果。未送信時は `null` */
 export type CreateArticleState = { ok: boolean; message: string } | null;
 
 // 上流の応答本文は内部情報を含みうるため画面に出さず、ステータスに応じた固定文言にする
@@ -24,8 +25,14 @@ function toErrorMessage(status: number): string {
   }
 }
 
-// 第 1 引数は useActionState が持ち回す前回の状態。
-// RealWorld の記事作成は認証が必要なため、トークンなしでは 401 が返る（エラー表示のデモになる）。
+/**
+ * 入力を再検証して RealWorld API で記事を作成する server action。
+ * RealWorld の記事作成は認証が必要なため、トークンなしでは 401 が返る（エラー表示のデモになる）。
+ *
+ * @param _prevState - UseActionState が持ち回す前回の状態
+ * @param data - フォームの入力値
+ * @returns 作成の成否と画面に表示するメッセージ
+ */
 export async function createArticle(
   _prevState: CreateArticleState,
   data: ArticleSchema

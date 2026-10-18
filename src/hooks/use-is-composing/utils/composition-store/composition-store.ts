@@ -10,7 +10,13 @@ interface CompositionStore {
   subscribe: (listener: () => void) => () => void;
 }
 
-/** Document に composition イベントのリスナーを install し、remove する関数を返す。 */
+/**
+ * Document に composition イベントのリスナーを install し、remove する関数を返す。
+ *
+ * @param capture - キャプチャフェーズで購読するかどうか
+ * @param onChange - 変換開始 / 確定のたびに変換中かどうかを受け取るコールバック
+ * @returns Install したリスナーを remove する関数
+ */
 function listenComposition(
   capture: boolean,
   onChange: (composing: boolean) => void
@@ -39,6 +45,9 @@ function listenComposition(
 /**
  * 初回 subscribe で document リスナーを install、最後の subscriber が抜けた
  * タイミングで remove する参照カウント方式のストアを生成する。
+ *
+ * @param capture - キャプチャフェーズで composition イベントを購読するかどうか
+ * @returns `useSyncExternalStore` に渡せる `subscribe` / `getSnapshot`
  */
 export function createCompositionStore(capture: boolean): CompositionStore {
   let composing = false;

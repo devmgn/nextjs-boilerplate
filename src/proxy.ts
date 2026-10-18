@@ -4,6 +4,12 @@ import { addCustomHeader } from "./lib/proxy/add-custom-header";
 import { requestLogger } from "./lib/proxy/request-logger";
 import { responseLogger } from "./lib/proxy/response-logger";
 
+/**
+ * 全リクエストに対してカスタムヘッダーを付与し、リクエスト / レスポンスをログ出力する。
+ *
+ * @param request - 受け取ったリクエスト
+ * @returns 後続処理へ渡すレスポンス
+ */
 export function proxy(request: NextRequest) {
   const response = NextResponse.next({
     request: { headers: new Headers(request.headers) },

@@ -20,6 +20,12 @@ export const viewport: Viewport = {
   maximumScale: 1,
 };
 
+/**
+ * アプリ全体のルートレイアウト。Provider・Toaster・ローディングオーバーレイを配置する。
+ *
+ * @param props - 配下のページ
+ * @returns アプリ全体の HTML ドキュメント
+ */
 export default function Layout(props: React.PropsWithChildren) {
   const { children } = props;
 

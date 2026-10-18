@@ -19,7 +19,11 @@ const metricSchema = z.object({
 // 検証スキーマ側を契約とする。
 type IncomingMetric = Partial<z.input<typeof metricSchema>>;
 
-/** 計測値を検証してコンソールへ出す。スキーマに合わない値は黙って捨てる。 */
+/**
+ * 計測値を検証してコンソールへ出す。スキーマに合わない値は黙って捨てる。
+ *
+ * @param metric - `useReportWebVitals` から渡される計測値
+ */
 export function reportWebVital(metric: IncomingMetric): void {
   const result = metricSchema.safeParse(metric);
 

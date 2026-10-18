@@ -48,6 +48,9 @@ function noop(): void {
 /**
  * ストレージを遅延取得する。毎回 `window` から引くことで、`vi.stubGlobal` 等による
  * テスト時の差し替えにも追随する。
+ *
+ * @param storageType - 取得するストレージ種別
+ * @returns 対象の `Storage` インスタンス
  */
 function getStorage(storageType: StorageType): Storage {
   return storageType === "localStorage"
@@ -58,6 +61,10 @@ function getStorage(storageType: StorageType): Storage {
 /**
  * 指定キーの生文字列を返す。未設定またはストレージ利用不可（SSR／プライベートブラウジング等）な
  * 場合は `null` を返し、例外は外へ伝搬させない。
+ *
+ * @param storageType - 読み出すストレージ種別
+ * @param key - 読み出すキー
+ * @returns 保存されている文字列。取得できない場合は `null`
  */
 function readItem(storageType: StorageType, key: string): string | null {
   try {
@@ -71,6 +78,11 @@ function readItem(storageType: StorageType, key: string): string | null {
  * ストレージへの変更操作を実行する。`QuotaExceededError` などで失敗した場合は warn を出して
  * `false` を返す。呼び出し側は `true` のときだけ購読者へ通知する
  * （保存されていない値で購読者を起こさないため）。
+ *
+ * @param storageType - 操作対象のストレージ種別
+ * @param mutation - ストレージに対して実行する変更操作
+ * @param failureMessage - 失敗時に warn へ出すメッセージ
+ * @returns 変更操作に成功したかどうか
  */
 function tryMutate(
   storageType: StorageType,
@@ -97,6 +109,7 @@ function tryMutate(
  * 通知前にスナップショットを取って Set 変更の影響を受けないようにする。
  *
  * @param label - `console.error` に付けるストア名
+ * @returns キー単位の購読者レジストリ
  */
 function createKeyedListeners(label: string): KeyedListeners {
   const listeners = new Map<string, Set<() => void>>();
@@ -151,6 +164,10 @@ function createKeyedListeners(label: string): KeyedListeners {
  * 他タブ由来の `storage` イベントをレジストリへディスパッチする window リスナーを
  * 1 回だけ設置するためのセットアップ関数を返す。
  * クロージャに `installed` フラグを持ち、何度呼んでも window リスナーが重複しないようにする。
+ *
+ * @param storageType - `storage` イベントを受け付けるストレージ種別
+ * @param registry - イベントの通知先となる購読者レジストリ
+ * @returns Window リスナーを設置するセットアップ関数
  */
 function createStorageEventBridge(
   storageType: StorageType,
@@ -193,6 +210,7 @@ function createStorageEventBridge(
  * 必ず `clear` を経由する。
  *
  * @param storageType - 使用するストレージ種別（{@link StorageType}）
+ * @returns 指定ストレージを対象とする Web Storage ストア
  */
 function createStore(storageType: StorageType): WebStorageStore {
   const registry = createKeyedListeners(storageType);
@@ -204,7 +222,14 @@ function createStore(storageType: StorageType): WebStorageStore {
       ? createStorageEventBridge(storageType, registry)
       : noop;
 
-  /** 変更操作に成功したときだけ購読者へ通知する。`key` が `null` なら全キーの購読者へ通知する。 */
+  /**
+   * 変更操作に成功したときだけ購読者へ通知する。`key` が `null` なら全キーの購読者へ通知する。
+   *
+   * @param mutation - ストレージに対して実行する変更操作
+   * @param failureMessage - 失敗時に warn へ出すメッセージ
+   * @param key - 通知対象のキー。`null` なら全キー
+   * @returns 変更操作に成功したかどうか
+   */
   const mutateAndNotify = (
     mutation: (storage: Storage) => void,
     failureMessage: string,

@@ -3,9 +3,9 @@ import type { FlatObject } from "../../../types/type-helpers";
 /**
  * 対象の列挙型オブジェクトに指定されたキーが存在するかを判定するカスタムタイプガード関数
  *
- * @param {T} obj - チェック対象のオブジェクト
- * @param {PropertyKey} key - 存在を確認するキー
- * @returns {boolean} キーがオブジェクトに存在する場合はtrue、そうでない場合はfalse
+ * @param obj - チェック対象のオブジェクト
+ * @param key - 存在を確認するキー
+ * @returns キーがオブジェクトに存在する場合はtrue、そうでない場合はfalse
  */
 export function isKeyOf<T extends FlatObject>(
   obj: T,

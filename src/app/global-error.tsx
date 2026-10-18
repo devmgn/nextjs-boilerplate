@@ -11,6 +11,9 @@ interface ErrorProps {
  * Root layout / template で throw された未捕捉エラーの最終防衛線。root layout を
  * 置き換えるため、`<html>` / `<body>` と global CSS を自前で用意する必要がある。
  * Client Component 必須なので `metadata` は使えず、`<title>` で代替する。
+ *
+ * @param props - Next.js が渡すエラーと再レンダリング用の `reset`
+ * @returns エラーメッセージと再試行ボタンを含む HTML ドキュメント
  */
 export default function GlobalError(props: ErrorProps) {
   const { reset } = props;

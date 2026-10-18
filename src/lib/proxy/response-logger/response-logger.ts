@@ -1,5 +1,10 @@
 import type { NextResponse } from "next/server";
 
+/**
+ * レスポンスのステータスと Content-Type をコンソールへ出す開発用ロガー。
+ *
+ * @param response - ログ出力するレスポンス
+ */
 export function responseLogger(response: NextResponse) {
   const { status } = response;
   const type = response.headers.get("content-type");
