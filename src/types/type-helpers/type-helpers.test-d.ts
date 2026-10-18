@@ -13,10 +13,12 @@ describe("typeHelpers", () => {
 
     it("Expand: フラットな交差型を展開する", () => {
       type Input = { a: string } & { b: number };
+
       interface Expected {
         a: string;
         b: number;
       }
+
       expectTypeOf<Expand<Input>>().toEqualTypeOf<Expected>();
     });
 
@@ -24,9 +26,11 @@ describe("typeHelpers", () => {
       interface Input {
         nested: { a: string } & { b: number };
       }
+
       interface Expected {
         nested: { a: string; b: number };
       }
+
       expectTypeOf<Expand<Input>>().toEqualTypeOf<Expected>();
     });
   });

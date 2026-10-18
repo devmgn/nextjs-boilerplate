@@ -78,6 +78,7 @@ describe("apiClient", () => {
           controller.error(new TypeError("terminated"));
         },
       });
+
       vi.spyOn(globalThis, "fetch").mockResolvedValue(
         new Response(brokenBody, { status: 503 })
       );
@@ -95,6 +96,7 @@ describe("apiClient", () => {
       server.use(
         http.post(URL, async ({ request }) => {
           expect(request.headers.get("Content-Type")).toBe("application/json");
+
           return HttpResponse.json(await request.json(), { status: 201 });
         })
       );

@@ -22,6 +22,7 @@ type IncomingMetric = Partial<z.input<typeof metricSchema>>;
 /** 計測値を検証してコンソールへ出す。スキーマに合わない値は黙って捨てる。 */
 export function reportWebVital(metric: IncomingMetric): void {
   const result = metricSchema.safeParse(metric);
+
   if (!result.success) {
     return;
   }

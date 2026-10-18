@@ -91,14 +91,17 @@ const meta = {
 } satisfies Meta<typeof BooleanToggleDemo>;
 
 export default meta;
+
 type Story = StoryObj<typeof meta>;
 
 export const BooleanMode: Story = {
   play: async ({ canvas }) => {
     const input = canvas.getByRole("textbox");
     await expect(input).toHaveValue("false");
+
     const [toggleBtn, toggleToTrueBtn, toggleToFalseBtn] =
       canvas.getAllByRole("button");
+
     await userEvent.click(toggleBtn);
     await expect(input).toHaveValue("true");
     await userEvent.click(toggleToFalseBtn);
@@ -113,8 +116,10 @@ export const ArrayMode: Story = {
   play: async ({ canvas }) => {
     const input = canvas.getByRole("textbox");
     await expect(input).toHaveValue("light");
+
     const [nextBtn, toggleToLightBtn, toggleToDarkBtn, toggleToSystemBtn] =
       canvas.getAllByRole("button");
+
     await userEvent.click(nextBtn);
     await expect(input).toHaveValue("dark");
     await userEvent.click(nextBtn);

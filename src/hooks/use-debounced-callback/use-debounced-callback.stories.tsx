@@ -72,6 +72,7 @@ const meta = {
 } satisfies Meta<typeof UseDebouncedCallbackDemo>;
 
 export default meta;
+
 type Story = StoryObj<typeof meta>;
 
 /** 入力が止まってから delay 経過後に result が更新される、純粋な debounce デモ。 */
@@ -97,9 +98,11 @@ export const WithIme: Story = {
           onChange={(e) => {
             // 発火時点の正確な変換状態を nativeEvent から読む（render スナップショットは1テンポ古い）
             const { nativeEvent } = e;
+
             if (nativeEvent instanceof InputEvent && nativeEvent.isComposing) {
               return;
             }
+
             onChange(e.target.value);
           }}
           onCompositionEnd={(e) => {

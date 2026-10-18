@@ -81,8 +81,10 @@ function tryMutate(
     mutation(getStorage(storageType));
   } catch (error) {
     console.warn(failureMessage, error);
+
     return false;
   }
+
   return true;
 }
 
@@ -126,12 +128,15 @@ function createKeyedListeners(label: string): KeyedListeners {
     keyListeners.add(listener);
 
     let unsubscribed = false;
+
     return () => {
       if (unsubscribed) {
         return;
       }
+
       unsubscribed = true;
       keyListeners.delete(listener);
+
       // 別の subscribe が Map の Set を差し替えている可能性があるため、自分の Set に限って削除する
       if (keyListeners.size === 0 && listeners.get(key) === keyListeners) {
         listeners.delete(key);
@@ -152,21 +157,26 @@ function createStorageEventBridge(
   registry: KeyedListeners
 ): () => void {
   let installed = false;
+
   return () => {
     if (installed || typeof window === "undefined") {
       return;
     }
+
     window.addEventListener("storage", (event) => {
       // ブラウザ由来の storage イベントでは `storageArea` が必ず設定される。
       // 異なる Storage（sessionStorage 等）由来のイベントは弾く。
       if (event.storageArea !== getStorage(storageType)) {
         return;
       }
+
       if (event.key === null) {
         // 他タブの `clear()` は key=null で飛んでくる
         registry.notifyAll();
+
         return;
       }
+
       registry.notify(event.key);
     });
     installed = true;
@@ -186,6 +196,7 @@ function createStorageEventBridge(
  */
 function createStore(storageType: StorageType): WebStorageStore {
   const registry = createKeyedListeners(storageType);
+
   // LocalStorage のみ初回 subscribe 時に他タブ同期を install する。
   // SessionStorage は同一タブで完結するため cross-tab 同期が無い
   const ensureStorageListener: () => void =
@@ -200,6 +211,7 @@ function createStore(storageType: StorageType): WebStorageStore {
     key: string | null
   ): boolean => {
     const succeeded = tryMutate(storageType, mutation, failureMessage);
+
     if (succeeded) {
       if (key === null) {
         registry.notifyAll();
@@ -207,6 +219,7 @@ function createStore(storageType: StorageType): WebStorageStore {
         registry.notify(key);
       }
     }
+
     return succeeded;
   };
 
@@ -238,6 +251,7 @@ function createStore(storageType: StorageType): WebStorageStore {
       ),
     subscribe: (key, listener) => {
       ensureStorageListener();
+
       return registry.subscribe(key, listener);
     },
   };

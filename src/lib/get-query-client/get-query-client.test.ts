@@ -32,10 +32,12 @@ describe("getQueryClient", () => {
 
     it("リクエスト間でキャッシュを共有しないこと", async () => {
       const { getQueryClient } = await import("./get-query-client");
+
       const { queryKey } = queryOptions({
         queryKey: ["user"],
         queryFn: () => "alice",
       });
+
       getQueryClient().setQueryData(queryKey, "alice");
 
       expect(getQueryClient().getQueryData(queryKey)).toBeUndefined();

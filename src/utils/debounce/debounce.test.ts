@@ -170,6 +170,7 @@ describe(debounce, () => {
         setup: (d) => {
           d("data");
           d.flush();
+
           return 1;
         },
       },
@@ -179,6 +180,7 @@ describe(debounce, () => {
           d("data");
           d.flush();
           d.flush();
+
           return 1;
         },
       },
@@ -187,6 +189,7 @@ describe(debounce, () => {
         setup: (d) => {
           d("data");
           d.cancel();
+
           return 0;
         },
       },
@@ -195,6 +198,7 @@ describe(debounce, () => {
         setup: (d) => {
           d("data");
           vi.advanceTimersByTime(100);
+
           return 1;
         },
       },
@@ -214,9 +218,11 @@ describe(debounce, () => {
   describe("再帰呼び出し", () => {
     it("コールバック内から再帰呼び出しした引数が次サイクルで実行されること", () => {
       const calls: string[] = [];
+
       const callback = vi.fn<(x: string) => void>((x) => {
         calls.push(x);
       });
+
       const debounced = debounce(callback, 100);
 
       // 1 回目の invoke だけ再帰呼び出しする
@@ -240,6 +246,7 @@ describe(debounce, () => {
       const fn = vi.fn<(x: string) => void>().mockImplementationOnce(() => {
         throw new Error("boom");
       });
+
       const debounced = debounce(fn, 100);
 
       debounced("a");
@@ -281,9 +288,11 @@ describe(debounce, () => {
 
     it("コールバック内から flush を呼んでも二重実行・例外が起きないこと", () => {
       const calls: string[] = [];
+
       const fn = vi.fn<(x: string) => void>((x) => {
         calls.push(x);
       });
+
       const debounced = debounce(fn, 100);
 
       fn.mockImplementationOnce((x) => {
@@ -329,6 +338,7 @@ describe(debounce, () => {
       const fn = vi.fn<(x: string) => void>().mockImplementationOnce(() => {
         throw new Error("boom");
       });
+
       const debounced = debounce(fn, 100);
 
       debounced("a");

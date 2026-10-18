@@ -54,6 +54,7 @@ describe(useToggle, () => {
       const { result } = renderHook(() =>
         useToggle(["light", "dark", "system"])
       );
+
       expect(result.current[0]).toBe("light");
     });
 
@@ -61,6 +62,7 @@ describe(useToggle, () => {
       const { result } = renderHook(() =>
         useToggle(["light", "dark", "system"], "dark")
       );
+
       expect(result.current[0]).toBe("dark");
       act(() => {
         result.current[1]();
@@ -72,6 +74,7 @@ describe(useToggle, () => {
       const { result } = renderHook(() =>
         useToggle(["light", "dark", "system"])
       );
+
       act(() => {
         result.current[1]("dark");
       });
@@ -86,6 +89,7 @@ describe(useToggle, () => {
       const { result } = renderHook(() =>
         useToggle(["light", "dark", "system"])
       );
+
       act(() => {
         result.current[1]("dark");
       });
@@ -100,6 +104,7 @@ describe(useToggle, () => {
       const { result } = renderHook(() =>
         useToggle(["light", "dark", "system"])
       );
+
       act(() => {
         result.current[1]("dark");
       });
@@ -113,6 +118,7 @@ describe(useToggle, () => {
       const { result } = renderHook(() =>
         useToggle(["light", "dark", "system"])
       );
+
       act(() => {
         result.current[1]();
       });

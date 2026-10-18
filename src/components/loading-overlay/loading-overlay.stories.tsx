@@ -109,9 +109,11 @@ export const RefCounted: Story = {
 export const PromiseResolved: Story = {
   play: async () => {
     loading.reset();
+
     const task = loading.promise(
       (async () => {
         await delay(80);
+
         return "done";
       })()
     );

@@ -39,6 +39,7 @@ export function useWebStorage(
 
   const setValue = (updater: string | ((prev: string | null) => string)) => {
     const next = isFunction(updater) ? updater(store.read(key)) : updater;
+
     return store.write(key, next);
   };
 

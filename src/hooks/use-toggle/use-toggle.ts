@@ -39,6 +39,7 @@ export function useToggle(
   const values: readonly ToggleItem[] | null = isValueList(valuesOrInitial)
     ? valuesOrInitial
     : null;
+
   const booleanInitial: ToggleItem = isValueList(valuesOrInitial)
     ? false
     : (valuesOrInitial ?? false);
@@ -64,13 +65,17 @@ export function useToggle(
   const toggle = (next?: ToggleItem) => {
     if (next !== undefined) {
       setValue(next);
+
       return;
     }
+
     setValue((current: ToggleItem) => {
       if (values === null) {
         return current !== true;
       }
+
       const idx = values.indexOf(current);
+
       return values[(idx + 1) % values.length];
     });
   };

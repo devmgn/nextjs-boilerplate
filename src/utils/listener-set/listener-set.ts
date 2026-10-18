@@ -39,6 +39,7 @@ export function createListenerSet(
   const notify = (): void => {
     // リスナー内で subscribe/unsubscribe が起きても安全なようスナップショットを取る
     const snapshot = [...listeners];
+
     for (const sessionListener of snapshot) {
       sessionListener();
     }
@@ -48,20 +49,25 @@ export function createListenerSet(
     if (listeners.size === 0) {
       onFirstSubscribe?.();
     }
+
     // 同一 listener 参照を多重 subscribe しても Set の重複排除で潰されないよう、
     // セッションごとに一意のラッパーを登録する
     const sessionListener = (): void => {
       invoke(listener);
     };
+
     listeners.add(sessionListener);
 
     let unsubscribed = false;
+
     return () => {
       if (unsubscribed) {
         return;
       }
+
       unsubscribed = true;
       listeners.delete(sessionListener);
+
       if (listeners.size === 0) {
         onLastUnsubscribe?.();
       }

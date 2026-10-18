@@ -14,11 +14,13 @@ type MockStore = WebStorageStore & { __listeners: Set<() => void> };
 function createMockStore(): MockStore {
   let value: string | null = null;
   const listeners = new Set<() => void>();
+
   const notify = () => {
     for (const l of listeners) {
       l();
     }
   };
+
   return {
     __listeners: listeners,
     read: vi.fn<(key: string) => string | null>(() => value),
@@ -26,22 +28,26 @@ function createMockStore(): MockStore {
       (_key: string, v: string) => {
         value = v;
         notify();
+
         return true;
       }
     ),
     remove: vi.fn<(key: string) => boolean>(() => {
       value = null;
       notify();
+
       return true;
     }),
     clear: vi.fn<() => boolean>(() => {
       value = null;
       notify();
+
       return true;
     }),
     subscribe: vi.fn<(key: string, listener: () => void) => Mock<() => void>>(
       (_key: string, l: () => void) => {
         listeners.add(l);
+
         return vi.fn<() => void>(() => {
           listeners.delete(l);
         });
@@ -55,6 +61,7 @@ let keySequence = 0;
 // テスト間でキーが衝突しないようにする連番。
 function uniqueKey() {
   keySequence += 1;
+
   return `test-key-${keySequence}`;
 }
 
@@ -166,9 +173,11 @@ describe(useWebStorage, () => {
 
     expect(store.__listeners.size).toBe(1);
     const [subscribeResult] = vi.mocked(store.subscribe).mock.results;
+
     if (subscribeResult?.type !== "return") {
       throw new Error("subscribe が値を返していない");
     }
+
     const unsubscribe = subscribeResult.value;
 
     unmount();

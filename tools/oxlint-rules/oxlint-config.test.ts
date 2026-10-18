@@ -16,6 +16,7 @@ type RuleTable = Readonly<Record<string, PluginRule>>;
 interface PluginLike {
   rules?: RuleTable;
 }
+
 type JsPluginEntry = string | { name?: string; specifier: string };
 
 // ルール選定を ultracite の preset が持つプラグイン。採否は ultracite 側の責務。
@@ -28,6 +29,7 @@ const ULTRACITE_MANAGED_PREFIXES = new Set([
 // プラグイン specifier → oxlint の前缀（eslint-plugin-x → x ／ @scope/eslint-plugin-x → @scope/x）。
 function stripEslintPluginPrefix(name: string): string {
   const marker = "eslint-plugin-";
+
   return name.startsWith(marker) ? name.slice(marker.length) : name;
 }
 
@@ -35,9 +37,11 @@ function normalizePluginPrefix(specifier: string): string {
   if (!specifier.startsWith("@")) {
     return stripEslintPluginPrefix(specifier);
   }
+
   const slash = specifier.indexOf("/");
   const scope = specifier.slice(0, slash);
   const rest = specifier.slice(slash + 1);
+
   return rest === "eslint-plugin"
     ? scope
     : `${scope}/${stripEslintPluginPrefix(rest)}`;
@@ -50,13 +54,16 @@ function collectJsPluginEntries(): JsPluginEntry[] {
   const entries: JsPluginEntry[] = [
     ...(oxlintConfig.jsPlugins as JsPluginEntry[]),
   ];
+
   for (const override of oxlintConfig.overrides) {
     // SAFETY: 上と同じ。override の jsPlugins も同じ形しか入れていない。
     const overridePlugins = override.jsPlugins as JsPluginEntry[] | undefined;
+
     if (overridePlugins !== undefined) {
       entries.push(...overridePlugins);
     }
   }
+
   return entries;
 }
 
@@ -70,10 +77,13 @@ function resolveExternalPlugin(
   entry: JsPluginEntry
 ): { prefix: string; specifier: string } | undefined {
   const specifier = isStringEntry(entry) ? entry : entry.specifier;
+
   if (specifier.startsWith(".")) {
     return undefined;
   }
+
   const explicitName = isStringEntry(entry) ? undefined : entry.name;
+
   return {
     prefix: `${explicitName ?? normalizePluginPrefix(specifier)}/`,
     specifier,
@@ -84,8 +94,10 @@ function resolveExternalPlugin(
 // これを it.each のデータ源にすることで、top-level await なしに動的 import をテスト内へ遅延できる。
 function collectExternalPluginSpecifiers(): Map<string, string> {
   const byPrefix = new Map<string, string>();
+
   for (const entry of collectJsPluginEntries()) {
     const resolved = resolveExternalPlugin(entry);
+
     if (
       resolved !== undefined &&
       !byPrefix.has(resolved.prefix) &&
@@ -94,6 +106,7 @@ function collectExternalPluginSpecifiers(): Map<string, string> {
       byPrefix.set(resolved.prefix, resolved.specifier);
     }
   }
+
   return byPrefix;
 }
 
@@ -112,21 +125,26 @@ function hasDefaultExport(value: unknown): value is { default: PluginLike } {
 async function loadPluginRules(specifier: string): Promise<string[]> {
   const mod: unknown = await import(specifier);
   const plugin = hasDefaultExport(mod) ? mod.default : mod;
+
   return isPluginLike(plugin) ? Object.keys(plugin.rules ?? {}) : [];
 }
 
 // top-level と overrides 両方の rules キーを集める（storybook は overrides にのみ現れる）。
 function collectConfiguredRuleNames(): Set<string> {
   const names = new Set<string>();
+
   function addAll(ruleNames: readonly string[]): void {
     for (const name of ruleNames) {
       names.add(name);
     }
   }
+
   addAll(Object.keys(oxlintConfig.rules ?? {}));
+
   for (const override of oxlintConfig.overrides) {
     addAll(Object.keys(override.rules ?? {}));
   }
+
   return names;
 }
 
@@ -135,9 +153,11 @@ function untriagedRules(
   ruleNames: readonly string[],
   configured: ReadonlySet<string>
 ): string[] {
-  return ruleNames
-    .map((name) => `${prefix}${name}`)
-    .filter((key) => !configured.has(key));
+  return ruleNames.flatMap((name) => {
+    const key = `${prefix}${name}`;
+
+    return configured.has(key) ? [] : [key];
+  });
 }
 
 const externalPluginSpecifiers = collectExternalPluginSpecifiers();

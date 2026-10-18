@@ -31,6 +31,7 @@ const meta = {
 } satisfies Meta<typeof UseDisclosureDemo>;
 
 export default meta;
+
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
@@ -39,8 +40,10 @@ export const InteractionTest: Story = {
   play: async ({ canvas }) => {
     const input = canvas.getByRole("textbox");
     await expect(input).toHaveValue("false");
+
     const [openButton, closeButton, toggleButton] =
       canvas.getAllByRole("button");
+
     await userEvent.click(openButton);
     await expect(input).toHaveValue("true");
     await userEvent.click(closeButton);

@@ -9,6 +9,7 @@ const ERROR_STATE_LABEL = "クエリはエラー状態です";
 
 function ErrorToastDemo(props: { skipToast?: boolean }) {
   const { skipToast } = props;
+
   const { isError, refetch } = useQuery({
     queryKey: ["error-toast-demo", skipToast],
     queryFn: () => {
@@ -55,6 +56,7 @@ const meta = {
 } satisfies Meta<typeof ErrorToastDemo>;
 
 export default meta;
+
 type Story = StoryObj<typeof ErrorToastDemo>;
 
 export const Default: Story = {

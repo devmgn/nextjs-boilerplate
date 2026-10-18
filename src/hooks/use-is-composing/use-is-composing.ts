@@ -11,5 +11,6 @@ import {
  */
 export function useIsComposing(capture = true): boolean {
   const store = capture ? captureCompositionStore : bubbleCompositionStore;
+
   return useSyncExternalStore(store.subscribe, store.getSnapshot, () => false);
 }

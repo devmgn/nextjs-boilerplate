@@ -22,9 +22,11 @@ export function isApiError(error: unknown): error is ApiError {
   if (error instanceof ApiError) {
     return true;
   }
+
   if (!(error instanceof Error) || error.name !== "ApiError") {
     return false;
   }
+
   return (
     "status" in error &&
     typeof error.status === "number" &&
