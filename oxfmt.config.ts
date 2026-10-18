@@ -37,7 +37,6 @@ export default defineConfig({
   },
   sortTailwindcss: {
     stylesheet: "./src/lib/styles/globals.css",
-    attributes: ["className"],
     functions: ["tv"],
   },
 });
