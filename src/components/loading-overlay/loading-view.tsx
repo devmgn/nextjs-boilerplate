@@ -18,6 +18,9 @@ interface LoadingViewProps extends DialogProps {
  * 全画面ローディングの視覚層。Radix Dialog をベースに focus trap / scroll lock を効かせ、
  * loading 中は Esc・外側クリックで閉じないよう preventDefault する。
  * Spinner は Dialog.Title (visually hidden) と兄弟にして AT に読み上げさせる。
+ *
+ * @param props - 表示状態 `open` と Radix Dialog の props。
+ * @returns 全画面ローディングのダイアログ。
  */
 export function LoadingView(props: LoadingViewProps) {
   const { open, ...rest } = props;

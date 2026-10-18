@@ -5,6 +5,9 @@ import { resolveFixture } from "../api/openapi/index.fixtures";
 /**
  * Orval 生成の fixtures（`defineFixtures`）を MSW の handler にする。
  * fixture に一致しないリクエストは何も返さず、後続の handler（なければ未処理扱い）に回す。
+ *
+ * @param fixtures - `defineFixtures` で定義した fixture の集合
+ * @returns すべてのリクエストを受け、fixture に一致すれば応答を返す MSW handler
  */
 export function createFixtureHandler(fixtures: FixtureSet) {
   // MSW は undefined を「この handler では扱わない」として次へ回すため、応答と undefined を返し分ける

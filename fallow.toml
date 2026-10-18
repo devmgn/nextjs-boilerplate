@@ -15,7 +15,9 @@ ignoreFindings = ["src/api/openapi/**", "tools/lint-ignore/**"]
 ignoreDependencies = [
   # 他パッケージが実行時に解決する
   "eslint-plugin-github",
+  "eslint-plugin-jsdoc",
   "eslint-plugin-sonarjs",
+  "eslint-plugin-tsdoc",
   "oxlint-plugin-react-doctor",
   # 設定ファイル内で文字列として参照される
   "@tailwindcss/turbopack",

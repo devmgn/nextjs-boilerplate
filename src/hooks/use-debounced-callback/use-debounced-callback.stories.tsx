@@ -3,7 +3,12 @@ import { useId, useState } from "react";
 import { useDebouncedCallback } from "./use-debounced-callback";
 import { Input } from "../../components/form/input";
 
-/** Result 表示と delay 入力の共通シェル。各 story はここにテキスト入力を差し込む。 */
+/**
+ * Result 表示と delay 入力の共通シェル。各 story はここにテキスト入力を差し込む。
+ *
+ * @param props - 表示する result、delay とその変更ハンドラ、差し込むテキスト入力
+ * @returns デモ用のレイアウト
+ */
 function DemoShell({
   result,
   delayTime,

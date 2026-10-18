@@ -13,6 +13,11 @@ async function requestThatFails(): Promise<never> {
   throw new Error("API request failed: 500 Internal Server Error");
 }
 
+/**
+ * レンダリング中のエラーと非同期エラーの扱いを確かめるサンドボックスページ。
+ *
+ * @returns 各エラーを発生させるボタンと結果表示
+ */
 export default function ErrorTestPage() {
   const [shouldError, setShouldError] = useState(false);
   const [asyncError, setAsyncError] = useState<Error | null>(null);

@@ -8,6 +8,12 @@ interface Props {
   params: GetArticlesParams;
 }
 
+/**
+ * Prefetch 済みのキャッシュから記事一覧を読み出して表示する。
+ *
+ * @param props - 一覧取得のクエリパラメータ
+ * @returns 記事件数と記事のリスト
+ */
 export function ArticleList({ params }: Props) {
   const { data } = useGetArticlesSuspense(params);
 

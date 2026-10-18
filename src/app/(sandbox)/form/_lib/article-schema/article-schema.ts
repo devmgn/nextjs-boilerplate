@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+/** 記事作成フォームの入力スキーマ */
 export const articleSchema = z.object({
   title: z.string().min(1),
   description: z.string().min(1),
@@ -8,4 +9,5 @@ export const articleSchema = z.object({
   tags: z.string(),
 });
 
+/** 記事作成フォームの入力値 */
 export type ArticleSchema = z.infer<typeof articleSchema>;

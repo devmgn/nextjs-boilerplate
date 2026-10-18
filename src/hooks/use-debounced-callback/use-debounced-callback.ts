@@ -7,6 +7,12 @@ import { debounce } from "../../utils/debounce";
  * 生きた `setTimeout` を握るため、識別子が変わると保留中の1回が黙って失われる。
  * 状態を React の外側（ただのクロージャ）に閉じ込めることで、識別子の安定を
  * メモ化の有無に依存させない。`wait` は生成時に固定する。
+ *
+ * @typeParam Args - `callback` の引数タプル
+ * @param callback - Debounce 対象の初期コールバック
+ * @param wait - Debounce の待機時間（ミリ秒）
+ * @returns Debounce された `invoke`、`cancel`、最新コールバックを差し替える `setCallback` と生成時の
+ *   `wait`
  */
 function createDebouncedRunner<Args extends unknown[]>(
   callback: (...args: Args) => void,
@@ -45,6 +51,11 @@ function createDebouncedRunner<Args extends unknown[]>(
  * インスタンスは `useState` の遅延初期化で保持する。初期化関数が一度しか実行されない
  * ことは React の仕様で保証されているため、識別子の安定がメモ化の有無に依存しない
  * （`useMemo` や React Compiler の自動メモ化は最適化であって保証ではない）。
+ *
+ * @typeParam Args - `callback` の引数タプル
+ * @param callback - Debounce 対象のコールバック
+ * @param wait - Debounce の待機時間（ミリ秒）
+ * @returns Debounce された関数。`cancel` / `flush` で保留中の呼び出しを破棄 / 即時実行できる
  */
 export function useDebouncedCallback<Args extends unknown[]>(
   callback: (...args: Args) => void,

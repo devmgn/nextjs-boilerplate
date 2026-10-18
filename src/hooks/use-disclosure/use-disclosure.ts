@@ -1,6 +1,11 @@
 import { useToggle } from "../use-toggle";
 
-/** モーダルなどのコンポーネントの開閉状態を管理するためのカスタムフック */
+/**
+ * モーダルなどのコンポーネントの開閉状態を管理するためのカスタムフック
+ *
+ * @param initialState - 初期の開閉状態
+ * @returns 開閉状態 `isOpen` と、それを操作する `open` / `close` / `toggle`
+ */
 export function useDisclosure(initialState = false) {
   const [isOpen, toggleOpen] = useToggle(initialState);
 

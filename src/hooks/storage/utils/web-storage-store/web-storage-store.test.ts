@@ -13,7 +13,11 @@ function uniqueKey() {
   return `test-${keySequence}`;
 }
 
-/** 実ブラウザ同様 `storageArea` を必ず設定したうえで `storage` イベントを発火する。 */
+/**
+ * 実ブラウザ同様 `storageArea` を必ず設定したうえで `storage` イベントを発火する。
+ *
+ * @param init - `storageArea` 以外のイベント初期化値
+ */
 function dispatchLocalStorageEvent(
   init: Omit<StorageEventInit, "storageArea">
 ) {

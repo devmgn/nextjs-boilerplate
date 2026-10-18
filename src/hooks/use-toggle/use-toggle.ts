@@ -8,7 +8,12 @@ type ToggleFn<T> = (next?: T) => void;
  */
 type ToggleItem = string | number | boolean | bigint | symbol | null;
 
-/** 第 1 引数が「循環させる値の配列」か「boolean の初期値」かを判定する。 */
+/**
+ * 第 1 引数が「循環させる値の配列」か「boolean の初期値」かを判定する。
+ *
+ * @param value - `useToggle` の第 1 引数
+ * @returns 循環させる値の配列なら `true`
+ */
 function isValueList(
   value: boolean | readonly ToggleItem[] | undefined
 ): value is readonly ToggleItem[] {

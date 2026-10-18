@@ -1,3 +1,9 @@
+/**
+ * サンドボックス配下のページを中央寄せの main 要素で包むレイアウト。
+ *
+ * @param props - 配下のページ
+ * @returns 配下のページを包んだ main 要素
+ */
 export default function Layout(props: React.PropsWithChildren) {
   const { children } = props;
 

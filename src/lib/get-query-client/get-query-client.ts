@@ -7,6 +7,11 @@ function makeQueryClient() {
 
 let browserQueryClient: QueryClient | undefined;
 
+/**
+ * QueryClient を取得する。サーバーでは毎回新しく作り、ブラウザではシングルトンを使い回す。
+ *
+ * @returns QueryClient インスタンス
+ */
 export function getQueryClient() {
   if (environmentManager.isServer()) {
     // Server: always make a new query client

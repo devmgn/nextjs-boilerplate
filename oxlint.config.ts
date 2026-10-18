@@ -5,6 +5,7 @@ import { jsPluginSettings, selectJsPlugins } from "ultracite/oxlint/js-plugins";
 import next from "ultracite/oxlint/next";
 import nextJsPlugins from "ultracite/oxlint/next/js-plugins";
 import react from "ultracite/oxlint/react";
+import storybook from "ultracite/oxlint/storybook";
 import tanstack from "ultracite/oxlint/tanstack";
 import tanstackJsPlugins from "ultracite/oxlint/tanstack/js-plugins";
 import vitest from "ultracite/oxlint/vitest";
@@ -14,15 +15,23 @@ import {
   vendoredSources,
 } from "./tools/lint-ignore/index.ts";
 
-const jsPlugins = selectJsPlugins(["github", "sonarjs", "react-doctor"]);
+const jsPlugins = selectJsPlugins([
+  "github",
+  "jsdoc-js",
+  "sonarjs",
+  "tsdoc",
+  "react-doctor",
+]);
 
 export default defineConfig({
+  env: core.env,
   extends: [
     core,
     react,
-    tanstack,
     next,
+    tanstack,
     vitest,
+    storybook,
     nextJsPlugins,
     tanstackJsPlugins,
     antiSlop,

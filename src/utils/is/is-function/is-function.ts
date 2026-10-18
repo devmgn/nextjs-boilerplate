@@ -6,7 +6,7 @@ type AnyFunction = (...args: never[]) => void;
  * `T` が `value | (() => value)` のようなフォームでも `if` ブランチで関数、`else` ブランチで
  * 非関数側に narrow される。
  *
- * @template T - 判定対象の型。
+ * @typeParam T - 判定対象の型。
  * @param value - 判定対象の値。
  * @returns `value` が関数なら `true`。
  */

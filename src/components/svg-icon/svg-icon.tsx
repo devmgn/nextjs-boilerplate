@@ -27,7 +27,12 @@ interface SvgIconProps
   label?: string;
 }
 
-/** サイズプリセットとアクセシブルなラベリング付き SVG アイコンラッパー。 */
+/**
+ * サイズプリセットとアクセシブルなラベリング付き SVG アイコンラッパー。
+ *
+ * @param props - 描画するアイコンコンポーネント・ラベル・サイズと SVG 属性。
+ * @returns スタイルと ARIA 属性を適用したアイコン要素。
+ */
 export function SvgIcon(props: SvgIconProps) {
   const { icon: Icon, label, className, size, ..._props } = props;
   const existsLabel = Boolean(label);

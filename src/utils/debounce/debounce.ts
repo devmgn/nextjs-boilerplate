@@ -14,13 +14,24 @@ function assertNonNegativeFinite(name: string, value: number): void {
   }
 }
 
-/** タイマー未設定を null で表すため、clearTimeout の呼び分けをここに閉じ込める。 */
+/**
+ * タイマー未設定を null で表すため、clearTimeout の呼び分けをここに閉じ込める。
+ *
+ * @param id - クリアするタイマー ID。未設定なら `null`
+ */
 function clearTimer(id: ReturnType<typeof setTimeout> | null): void {
   if (id !== null) {
     clearTimeout(id);
   }
 }
 
+/**
+ * 最後の呼び出しから `wait` ミリ秒経過するまで `func` の実行を遅延させる関数を生成する。
+ *
+ * @param func - 遅延実行する関数
+ * @param wait - 遅延時間 (ミリ秒)。有限の非負数でなければ `TypeError` を throw する
+ * @returns `cancel` / `flush` を持つ debounce 済み関数
+ */
 export function debounce<Args extends unknown[]>(
   func: (...args: Args) => void,
   wait: number

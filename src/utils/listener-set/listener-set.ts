@@ -3,6 +3,7 @@
  * セッション単位の購読・冪等な解除・例外に強い通知をまとめて提供する。
  */
 
+/** 外部ストアに組み込む購読 / 通知の関数ペア。 */
 export interface ListenerSet {
   /**
    * Listener を登録。同一 listener 参照でもセッション毎に独立して扱う。
@@ -20,14 +21,24 @@ interface ListenerSetOptions {
   onLastUnsubscribe?: () => void;
 }
 
-/** @param label - Listener が throw した際の `console.error` に付けるストア名 */
+/**
+ * 購読者管理オブジェクトを生成する。
+ *
+ * @param label - Listener が throw した際の `console.error` に付けるストア名
+ * @param options - 購読者数が 0 と 1 の境界をまたぐ際に呼ばれるフック
+ * @returns 購読と通知の関数ペア
+ */
 export function createListenerSet(
   label: string,
   { onFirstSubscribe, onLastUnsubscribe }: ListenerSetOptions = {}
 ): ListenerSet {
   const listeners = new Set<() => void>();
 
-  /** Listener の throw が他セッションへの通知を止めないよう握りつぶす。 */
+  /**
+   * Listener の throw が他セッションへの通知を止めないよう握りつぶす。
+   *
+   * @param listener - 呼び出す listener
+   */
   const invoke = (listener: () => void): void => {
     try {
       listener();

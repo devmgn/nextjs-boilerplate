@@ -16,7 +16,12 @@ const inputVariants = tv({
 interface InputProps
   extends React.ComponentProps<"input">, VariantProps<typeof inputVariants> {}
 
-/** エラー状態をサポートするスタイル付きテキスト入力。 */
+/**
+ * エラー状態をサポートするスタイル付きテキスト入力。
+ *
+ * @param props - `input` 要素の属性とエラー状態。
+ * @returns スタイル適用済みの `input` 要素。
+ */
 export function Input(props: InputProps) {
   const { className, isError, ..._props } = props;
 

@@ -21,6 +21,11 @@ import { isKeyOf } from "../../../utils/is/is-key-of";
 import { isValueOf } from "../../../utils/is/is-value-of";
 import { isDevelopment, isServer } from "../../../utils/runtime";
 
+/**
+ * 共有モジュール（コンポーネント・hooks・utils）を一通り参照し、未使用扱いにならないことを確かめるサンドボックスページ。
+ *
+ * @returns 共有コンポーネントと値系 utils の結果を並べたページ
+ */
 export default function Page() {
   useDisclosure();
   useDebouncedCallback(() => {

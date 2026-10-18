@@ -10,7 +10,7 @@
 - **Utilities**: custom debounce (`src/utils/debounce`)
 - **nuqs** for URL state management (NuqsAdapter in RootProvider)
 - **Ultracite** (Oxlint + Oxfmt preset) for linting and formatting — entry points are `pnpm check` / `pnpm fix`
-  - Presets (`oxlint.config.ts`): core, react, next, tanstack, vitest, anti-slop + js-plugins (github, sonarjs, react-doctor)
+  - Presets (`oxlint.config.ts`): core, react, next, tanstack, vitest, storybook, anti-slop + js-plugins (github, jsdoc-js, sonarjs, tsdoc, react-doctor)
   - jsPlugins: @tanstack/eslint-plugin-query, eslint-plugin-storybook (stories only), own rules in `tools/oxlint-rules/`
   - Type-aware lint + type check enabled (oxlint-tsgolint); TS compiler diagnostics surface as lint errors, so there is no separate `tsc --noEmit` script
   - Suppress comments: `// oxlint-disable-next-line <rule>` (`eslint-disable` is NOT honored; unused directives are errors)
