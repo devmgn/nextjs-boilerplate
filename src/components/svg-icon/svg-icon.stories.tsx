@@ -20,6 +20,7 @@ const meta = {
 } satisfies Meta<typeof SvgIcon>;
 
 export default meta;
+
 type Story = StoryObj<typeof SvgIcon>;
 
 export const Default: Story = {};

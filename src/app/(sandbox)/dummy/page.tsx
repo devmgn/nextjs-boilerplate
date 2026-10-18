@@ -34,6 +34,7 @@ export default function Page() {
   useSessionStorage("dummy");
   useMediaQuery("(min-width: 768px)");
   useToggle();
+
   // 共有モジュールが生きていることを確かめるページ。値系は描画して参照する。
   return (
     <>

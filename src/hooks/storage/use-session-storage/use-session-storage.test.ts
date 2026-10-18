@@ -4,6 +4,7 @@ import { useSessionStorage } from "./use-session-storage";
 
 function createMockStorage() {
   const store = new Map<string, string>();
+
   return {
     getItem: vi.fn<(key: string) => string | null>(
       (key: string) => store.get(key) ?? null
@@ -24,6 +25,7 @@ let keySequence = 0;
 // テスト間でキーが衝突しないようにする連番。
 function uniqueKey() {
   keySequence += 1;
+
   return `test-key-${keySequence}`;
 }
 

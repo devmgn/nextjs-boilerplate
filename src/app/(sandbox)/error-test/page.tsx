@@ -29,6 +29,7 @@ export default function ErrorTestPage() {
       // try-catchで明示的にハンドリングする必要がある
       setAsyncError(Error.isError(error) ? error : new Error("Unknown error"));
     }
+
     // catch が再 throw しないため finally と等価。
     // React Compiler は finally 節を lower できないので try/catch の後ろに置く。
     setIsLoading(false);

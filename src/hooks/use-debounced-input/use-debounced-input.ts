@@ -23,6 +23,7 @@ export function useDebouncedInput(
       if (isComposingRef.current) {
         return;
       }
+
       debounced(e.target.value);
     },
     onCompositionStart: () => {

@@ -18,11 +18,14 @@ function listenComposition(
   const onCompositionStart = (): void => {
     onChange(true);
   };
+
   const onCompositionEnd = (): void => {
     onChange(false);
   };
+
   document.addEventListener("compositionstart", onCompositionStart, capture);
   document.addEventListener("compositionend", onCompositionEnd, capture);
+
   return () => {
     document.removeEventListener(
       "compositionstart",

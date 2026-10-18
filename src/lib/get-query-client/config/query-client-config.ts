@@ -14,6 +14,7 @@ function handleCacheError(
   if (meta?.skipToast === true) {
     return;
   }
+
   errorNotifier.notify(error.message);
 }
 
@@ -52,12 +53,14 @@ export function createQueryClientConfig() {
         if (mutation.meta?.skipLoading === true) {
           return;
         }
+
         loading.show();
       },
       onSettled: (_data, _error, _variables, _context, mutation) => {
         if (mutation.meta?.skipLoading === true) {
           return;
         }
+
         loading.hide();
       },
       onError: (error, _variables, _context, mutation) => {

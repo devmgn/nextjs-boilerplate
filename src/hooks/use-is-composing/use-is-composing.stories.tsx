@@ -74,6 +74,7 @@ function UseIsComposingDemo() {
       capture: boolean;
       listener: () => void;
     }[] = [];
+
     for (const { capture, accent, label } of phases) {
       for (const event of events) {
         handlers.push({
@@ -89,6 +90,7 @@ function UseIsComposingDemo() {
     for (const { event, listener, capture } of handlers) {
       document.addEventListener(event, listener, capture);
     }
+
     return () => {
       for (const { event, listener, capture } of handlers) {
         document.removeEventListener(event, listener, capture);
@@ -195,6 +197,7 @@ const meta = {
 } satisfies Meta<typeof UseIsComposingDemo>;
 
 export default meta;
+
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};

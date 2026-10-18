@@ -26,6 +26,7 @@ describe("createArticle", () => {
         defineFixtures({
           "POST /api/articles": ({ body }) => {
             received = body;
+
             return { article: { slug: "title-1" } };
           },
         })

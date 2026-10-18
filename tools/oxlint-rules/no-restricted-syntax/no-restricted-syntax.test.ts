@@ -10,7 +10,9 @@ RuleTester.describe = (text, fn) => {
     fn();
   });
 };
+
 RuleTester.it = it;
+
 RuleTester.itOnly = it.only;
 
 const tester = new RuleTester({

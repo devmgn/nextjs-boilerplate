@@ -49,6 +49,7 @@ export function debounce<Args extends unknown[]>(
     if (lastArgs === null) {
       return;
     }
+
     clearTimer(timerId);
     run(lastArgs);
   }

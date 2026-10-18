@@ -9,6 +9,7 @@ import { errorNotifier } from "../../error-notifier";
 function buildQuery(queryClient: QueryClient, name: string) {
   // shouldDehydrateQuery の引数は queryKey が readonly unknown[] の Query。
   const queryKey: readonly unknown[] = [name];
+
   return queryClient.getQueryCache().build(queryClient, { queryKey });
 }
 
@@ -67,6 +68,7 @@ describe("createQueryClientConfig", () => {
         .build(queryClient, {
           mutationFn: async () => {
             await Promise.resolve();
+
             return "ok";
           },
         })
@@ -108,6 +110,7 @@ describe("createQueryClientConfig", () => {
         .build(queryClient, {
           mutationFn: async () => {
             await Promise.resolve();
+
             return "ok";
           },
           meta: { skipLoading: true },
@@ -169,10 +172,12 @@ describe("createQueryClientConfig", () => {
 
     it("別の QueryClient にキャッシュが漏れないこと", () => {
       const other = new QueryClient(createQueryClientConfig());
+
       const { queryKey } = queryOptions({
         queryKey: ["isolated"],
         queryFn: () => "value",
       });
+
       queryClient.setQueryData(queryKey, "value");
 
       expect(other.getQueryData(queryKey)).toBeUndefined();

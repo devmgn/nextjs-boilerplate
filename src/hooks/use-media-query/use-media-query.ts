@@ -8,11 +8,14 @@ export function useMediaQuery(
   return useSyncExternalStore(
     (onStoreChange) => {
       const mql = window.matchMedia(query);
+
       const handler = (event: MediaQueryListEvent) => {
         onStoreChange();
         onChange?.(event);
       };
+
       mql.addEventListener("change", handler);
+
       return () => {
         mql.removeEventListener("change", handler);
       };

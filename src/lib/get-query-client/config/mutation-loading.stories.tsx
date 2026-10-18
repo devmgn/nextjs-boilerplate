@@ -7,9 +7,11 @@ import { delay } from "../../../utils/delay";
 
 function MutationLoadingDemo(props: { skipLoading?: boolean }) {
   const { skipLoading } = props;
+
   const { mutate, isPending } = useMutation({
     mutationFn: async () => {
       await delay(500);
+
       return "ok";
     },
     meta: skipLoading === true ? { skipLoading: true } : undefined,
@@ -47,6 +49,7 @@ const meta = {
 } satisfies Meta<typeof MutationLoadingDemo>;
 
 export default meta;
+
 type Story = StoryObj<typeof MutationLoadingDemo>;
 
 export const Default: Story = {

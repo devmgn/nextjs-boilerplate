@@ -49,6 +49,7 @@ export function createLoadingStore(): LoadingStore {
     if (count === 0) {
       return;
     }
+
     count -= 1;
     notify();
   };
@@ -57,12 +58,14 @@ export function createLoadingStore(): LoadingStore {
     if (count === 0) {
       return;
     }
+
     count = 0;
     notify();
   };
 
   const promise = async <T>(target: Promise<T>): Promise<T> => {
     show();
+
     try {
       return await target;
     } finally {
