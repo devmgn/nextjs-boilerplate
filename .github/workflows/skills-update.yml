@@ -8,7 +8,7 @@ on:
 
 concurrency:
   group: ${{ github.workflow }}
-  # Queue later runs so this one is not cancelled between the push and the CI trigger
+  # Queue later runs so this one is not cancelled while pushing the PR branch
   cancel-in-progress: false
 
 permissions: {}
@@ -56,12 +56,23 @@ jobs:
     needs: Update
     runs-on: ubuntu-26.04
     timeout-minutes: 5
+    # Holds the GitHub App credentials; restrict its deployment branches to main
+    environment: bot
+    # The PR is pushed and opened with the App token below, so GITHUB_TOKEN stays read-only
     permissions:
-      contents: write
-      pull-requests: write
-      # Pushes made with GITHUB_TOKEN do not trigger CI, so trigger it explicitly via workflow_dispatch
-      actions: write
+      contents: read
     steps:
+      # Pushes made with GITHUB_TOKEN do not trigger workflows, and dispatched ci.yml runs do not
+      # satisfy the PR's required status checks. Push as a GitHub App so ci.yml runs on `push`.
+      - name: Generate token
+        id: app-token
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        with:
+          client-id: ${{ vars.BOT_CLIENT_ID }}
+          private-key: ${{ secrets.BOT_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
+
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -81,10 +92,9 @@ jobs:
           fi
 
       - name: Create pull request
-        id: cpr
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
-          token: ${{ github.token }}
+          token: ${{ steps.app-token.outputs.token }}
           branch: chore/update-agent-skills
           delete-branch: true
           add-paths: |
@@ -96,11 +106,3 @@ jobs:
             Automated update via `mise run skills:update`.
 
             Review the upstream changes to the vendored skills before merging.
-
-      - name: Trigger CI
-        if: steps.cpr.outputs.pull-request-operation == 'created' || steps.cpr.outputs.pull-request-operation == 'updated'
-        env:
-          GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
-          BRANCH: ${{ steps.cpr.outputs.pull-request-branch }}
-        run: gh workflow run ci.yml --ref "$BRANCH"
