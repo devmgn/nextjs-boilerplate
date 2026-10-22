@@ -50,10 +50,10 @@ checksum = "sha256:89c682593d76cd44233fa53b1563264e7de9cbb189cad169135c5b4fadfbc
 url = "https://nodejs.org/dist/v24.22.1/node-v24.22.1-darwin-arm64.tar.gz"
 
 [[tools."npm:skills"]]
-version = "1.7.2"
-aube = { path = ".mise/locks/npm-skills/1.7.2", digest = "sha256:40fa4e04bc830080478cf881307d5497a093a4e2c34835d41dbad624877a6042" }
+version = "1.7.4"
+aube = { path = ".mise/locks/npm-skills/1.7.4", digest = "sha256:0fc828a5def0f23c2336c3e5094fc52f74b3b73e8f86a28c338a63c4324b902b" }
 backend = "npm:skills"
-specifiers = ["1.7.2"]
+specifiers = ["1.7.4"]
 
 [[tools.pnpm]]
 version = "12.14.0"
