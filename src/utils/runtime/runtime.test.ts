@@ -48,7 +48,6 @@ describe("runtime", () => {
   describe("isServer", () => {
     it("isServer is true when window is undefined", async () => {
       // Passing undefined as the second argument unsets the value
-      // oxlint-disable-next-line unicorn/no-useless-undefined
       vi.stubGlobal("window", undefined);
       const { isServer } = await import("./runtime");
       expect(isServer).toBeTruthy();
