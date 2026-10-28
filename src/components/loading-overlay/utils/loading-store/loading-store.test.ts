@@ -298,13 +298,11 @@ describe("createLoadingStore", () => {
       expect(store.getSnapshot()).toBeTruthy();
 
       // resolve of Promise.withResolvers<undefined> requires an argument
-      // oxlint-disable-next-line unicorn/no-useless-undefined
       taskA.resolve(undefined);
       await a;
       expect(store.getSnapshot()).toBeTruthy();
 
       // resolve of Promise.withResolvers<undefined> requires an argument
-      // oxlint-disable-next-line unicorn/no-useless-undefined
       taskB.resolve(undefined);
       await b;
       expect(store.getSnapshot()).toBeFalsy();

@@ -20,7 +20,6 @@ describe("ENV", () => {
     "NEXT_PUBLIC_DEFAULT_DESCRIPTION",
   ])("throws when %s is undefined", async (key) => {
     // Passing undefined as the second argument removes the env variable
-    // oxlint-disable-next-line unicorn/no-useless-undefined
     vi.stubEnv(key, undefined);
     vi.resetModules();
 

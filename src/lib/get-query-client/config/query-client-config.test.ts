@@ -73,7 +73,6 @@ describe("createQueryClientConfig", () => {
           },
         })
         // Mutation.execute requires variables
-        // oxlint-disable-next-line unicorn/no-useless-undefined
         .execute(undefined);
 
       expect(showSpy).toHaveBeenCalledOnce();
@@ -93,7 +92,6 @@ describe("createQueryClientConfig", () => {
             },
           })
           // Mutation.execute requires variables
-          // oxlint-disable-next-line unicorn/no-useless-undefined
           .execute(undefined)
       ).rejects.toThrow("mutation failed");
 
@@ -116,7 +114,6 @@ describe("createQueryClientConfig", () => {
           meta: { skipLoading: true },
         })
         // Mutation.execute requires variables
-        // oxlint-disable-next-line unicorn/no-useless-undefined
         .execute(undefined);
 
       expect(showSpy).not.toHaveBeenCalled();
@@ -135,7 +132,6 @@ describe("createQueryClientConfig", () => {
             },
           })
           // Mutation.execute requires variables
-          // oxlint-disable-next-line unicorn/no-useless-undefined
           .execute(undefined)
       ).rejects.toThrow("mutation failed");
 
@@ -153,7 +149,6 @@ describe("createQueryClientConfig", () => {
             meta: { skipToast: true },
           })
           // Mutation.execute requires variables
-          // oxlint-disable-next-line unicorn/no-useless-undefined
           .execute(undefined)
       ).rejects.toThrow("mutation failed");
 
