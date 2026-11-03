@@ -6,7 +6,7 @@
 - **Tailwind CSS v4** with `@tailwindcss/postcss`, **M3 Design Tokens** (see `.claude/rules/design-tokens.md`)
 - **TanStack Query** with Orval-generated hooks and query options (see `.claude/rules/api.md`)
 - **React Hook Form + Zod v4** with `@hookform/resolvers`
-- **UI**: Radix UI primitives, tailwind-variants, tailwind-merge
+- **UI**: Radix UI primitives, tailwind-variants (bundles tailwind-merge)
 - **nuqs** for URL state (`NuqsAdapter` in `src/app/layout.tsx`)
 - **Ultracite** (Oxlint + Oxfmt preset) for linting and formatting — entry points are `pnpm check` / `pnpm fix`
   - Presets (`oxlint.config.ts`): core, react, next, tanstack, vitest, storybook, anti-slop + js-plugins (github, jsdoc-js, sonarjs, tsdoc, react-doctor)
