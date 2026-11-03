@@ -18,5 +18,5 @@ interface CardProps
 export function Card(props: CardProps) {
   const { className, ..._props } = props;
 
-  return <div className={cardVariants(className)} {..._props} />;
+  return <div className={cardVariants({ className })} {..._props} />;
 }
