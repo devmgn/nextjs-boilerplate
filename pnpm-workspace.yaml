@@ -1,3 +1,4 @@
+saveExact: true
 minimumReleaseAge: 1440
 trustPolicy: no-downgrade
 # Skip re-verifying the entire lockfile: it gets OOM-killed on Mend-hosted Renovate (3GB).
