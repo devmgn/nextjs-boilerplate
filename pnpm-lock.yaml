@@ -179,11 +179,11 @@ importers:
         specifier: 1.5.0
         version: 1.5.0(@types/react@19.3.0)(react@19.3.1)
       '@tanstack/react-query':
-        specifier: 5.106.1
-        version: 5.106.1(@types/react@19.3.0)(react@19.3.1)
+        specifier: 5.107.1
+        version: 5.107.1(@types/react@19.3.0)(react@19.3.1)
       '@tanstack/react-query-devtools':
-        specifier: 5.106.1
-        version: 5.106.1(@tanstack/react-query@5.106.1(@types/react@19.3.0)(react@19.3.1))(@types/react@19.3.0)(csstype@3.2.3)(react@19.3.1)
+        specifier: 5.107.1
+        version: 5.107.1(@tanstack/react-query@5.107.1(@types/react@19.3.0)(react@19.3.1))(@types/react@19.3.0)(csstype@3.2.3)(react@19.3.1)
       next:
         specifier: 16.4.6
         version: 16.4.6(@babel/core@7.29.7(supports-color@7.2.0))(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
@@ -240,8 +240,8 @@ importers:
         specifier: 4.3.5
         version: 4.3.5(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1))
       '@tanstack/eslint-plugin-query':
-        specifier: 5.106.1
-        version: 5.106.1(eslint@9.39.5(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@7.0.2)
+        specifier: 5.107.1
+        version: 5.107.1(eslint@9.39.5(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@7.0.2)
       '@testing-library/jest-dom':
         specifier: 7.0.1
         version: 7.0.1(@testing-library/dom@10.4.2)(vitest@5.1.0)
@@ -301,7 +301,7 @@ importers:
         version: 3.0.3(msw@3.0.5(@types/node@26.6.6)(supports-color@7.2.0)(typescript@7.0.2)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)))(storybook@10.6.7(@types/react@19.3.0)(prettier@3.9.10)(react@19.3.1))
       orval:
         specifier: 8.46.0
-        version: 8.46.0(@faker-js/faker@10.6.0)(@tanstack/react-query@5.106.1(@types/react@19.3.0)(react@19.3.1))(msw@3.0.5(@types/node@26.6.6)(supports-color@7.2.0)(typescript@7.0.2)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)))(prettier@3.9.10)(zod@4.6.7)
+        version: 8.46.0(@faker-js/faker@10.6.0)(@tanstack/react-query@5.107.1(@types/react@19.3.0)(react@19.3.1))(msw@3.0.5(@types/node@26.6.6)(supports-color@7.2.0)(typescript@7.0.2)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)))(prettier@3.9.10)(zod@4.6.7)
       oxc-transform-react:
         specifier: 0.157.0
         version: 0.157.0
@@ -2673,8 +2673,8 @@ packages:
     peerDependencies:
       vite: ^5.2.0 || ^6 || ^7 || ^8
 
-  '@tanstack/eslint-plugin-query@5.106.1':
-    resolution: {integrity: sha512-wNCdC4uMHpEDP3GnylIUiBOco+NS53/OJiV17Of64Leg+YF4GbnLiMycVLsXMFW9iVKpnklPDt2ENkPIR0DB8A==}
+  '@tanstack/eslint-plugin-query@5.107.1':
+    resolution: {integrity: sha512-ouojB8ML40E9+Kbxao52IKU0x3528FXHnQlMS5d8fpV/fVnsCRYmfg2PMaMzYEvgCqdxTtvZfrfbSOGf2qoCpw==}
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
       typescript: ^5.6.0 || ^6.0.0 || ^7.0.0
@@ -2686,24 +2686,24 @@ packages:
     resolution: {integrity: sha512-DIpUSOhPfQ7u/qfUi/Wgm0wBO56MyBYXGvnlI0NcauDRPqdBUlAZZjW2Dxm92m+k1UWVhKw8YJ4f47+75Aujyw==}
     engines: {node: '>=20'}
 
-  '@tanstack/query-core@5.106.1':
-    resolution: {integrity: sha512-erYv/UACddcdgjOL2ixmFdK6tO/AVBeUcTCOtX2N51yZpDQ2U7KJ+xgB/bCNfsF3uoCDTqGHEEbDiFsIO9YUmQ==}
+  '@tanstack/query-core@5.107.1':
+    resolution: {integrity: sha512-PSyAik11oQBEVOiVy5hjZWHmoUqOXqK1WYy4v55mcxozEfKaQgpUMsgnXhWjuESzSht8JfzqMS1m6M/9CpNgvg==}
 
-  '@tanstack/query-devtools@5.106.1':
-    resolution: {integrity: sha512-SEDgVRKVTGS4mjhylu3pjIIy9waf7r6se64yoe99hFZUAumbEsuzjVz896wJMvAWGZmxjfIDPrjBad4Gri20fg==}
+  '@tanstack/query-devtools@5.107.1':
+    resolution: {integrity: sha512-cZvgIPNvsh57mM3yTTwuL2GUMmMp5XR+3k5r2UJDyStmPYCqSwZf8z7OulgA4X8vISziAG5PoykbQ1q+2zemdA==}
 
-  '@tanstack/react-query-devtools@5.106.1':
-    resolution: {integrity: sha512-onUerFS3Ig/g+hcT08Dlb+p+rDORlBHyZCGj1mqJC7dgA5wZyw/XAdhdPFqDFRcZfPNwIJRBkuAL6BZzHacO7A==}
+  '@tanstack/react-query-devtools@5.107.1':
+    resolution: {integrity: sha512-A3q9X3iOxtlz1jU/ou7t9CFvNHT84rTMofS1YEkFcBalvwotZ/RJKPDsX1NsQVl10J8XwN0OYMSfdjgIElt0sg==}
     peerDependencies:
-      '@tanstack/react-query': ^5.106.1
+      '@tanstack/react-query': ^5.107.1
       '@types/react': ^18 || ^19
       react: ^18 || ^19
     peerDependenciesMeta:
       '@types/react':
         optional: true
 
-  '@tanstack/react-query@5.106.1':
-    resolution: {integrity: sha512-ORDvJG/DSfmlFL9lQ8GDkE0VjtQbLeRDY7BL8xjKkQFGLfjFGfNWNuteWgPqA2gPJgLLuWfQ7IX0FlsHCJriyg==}
+  '@tanstack/react-query@5.107.1':
+    resolution: {integrity: sha512-udCOOLp3ZAheUrIHLCe+ZZge6nr2ZUrGMSWcCuXsjY1Bf2JeeE09oxst97PILiCY6N8xo/7bIo3Hvz13zh06FA==}
     peerDependencies:
       '@types/react': ^18 || ^19
       react: ^18 || ^19
@@ -6481,12 +6481,12 @@ snapshots:
       - '@faker-js/faker'
       - '@modelcontextprotocol/server'
 
-  '@orval/query@8.46.0(@faker-js/faker@10.6.0)(@tanstack/react-query@5.106.1(@types/react@19.3.0)(react@19.3.1))':
+  '@orval/query@8.46.0(@faker-js/faker@10.6.0)(@tanstack/react-query@5.107.1(@types/react@19.3.0)(react@19.3.1))':
     dependencies:
       '@orval/core': 8.46.0(@faker-js/faker@10.6.0)
       '@orval/fetch': 8.46.0(@faker-js/faker@10.6.0)
     optionalDependencies:
-      '@tanstack/react-query': 5.106.1(@types/react@19.3.0)(react@19.3.1)
+      '@tanstack/react-query': 5.107.1(@types/react@19.3.0)(react@19.3.1)
     transitivePeerDependencies:
       - '@faker-js/faker'
       - '@modelcontextprotocol/server'
@@ -7450,7 +7450,7 @@ snapshots:
       tailwindcss: 4.3.5
       vite: 8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)
 
-  '@tanstack/eslint-plugin-query@5.106.1(eslint@9.39.5(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@7.0.2)':
+  '@tanstack/eslint-plugin-query@5.107.1(eslint@9.39.5(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@7.0.2)':
     dependencies:
       '@typescript-eslint/utils': 8.72.1(eslint@9.39.5(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@7.0.2)
       eslint: 9.39.5(jiti@2.7.0)(supports-color@7.2.0)
@@ -7463,16 +7463,16 @@ snapshots:
     dependencies:
       remove-accents: 0.5.0
 
-  '@tanstack/query-core@5.106.1': {}
+  '@tanstack/query-core@5.107.1': {}
 
-  '@tanstack/query-devtools@5.106.1(csstype@3.2.3)':
+  '@tanstack/query-devtools@5.107.1(csstype@3.2.3)':
     dependencies:
       '@kobalte/core': 0.13.14(solid-js@1.9.18)
       '@solid-primitives/keyed': 1.5.3(solid-js@1.9.18)
       '@solid-primitives/resize-observer': 2.2.0(solid-js@1.9.18)
       '@solid-primitives/storage': 1.3.11(solid-js@1.9.18)
       '@tanstack/match-sorter-utils': 9.2.6
-      '@tanstack/query-core': 5.106.1
+      '@tanstack/query-core': 5.107.1
       '@tanstack/solid-virtual': 3.13.53(solid-js@1.9.18)
       clsx: 2.1.1
       goober: 2.1.19(csstype@3.2.3)
@@ -7482,19 +7482,19 @@ snapshots:
     transitivePeerDependencies:
       - csstype
 
-  '@tanstack/react-query-devtools@5.106.1(@tanstack/react-query@5.106.1(@types/react@19.3.0)(react@19.3.1))(@types/react@19.3.0)(csstype@3.2.3)(react@19.3.1)':
+  '@tanstack/react-query-devtools@5.107.1(@tanstack/react-query@5.107.1(@types/react@19.3.0)(react@19.3.1))(@types/react@19.3.0)(csstype@3.2.3)(react@19.3.1)':
     dependencies:
-      '@tanstack/query-devtools': 5.106.1(csstype@3.2.3)
-      '@tanstack/react-query': 5.106.1(@types/react@19.3.0)(react@19.3.1)
+      '@tanstack/query-devtools': 5.107.1(csstype@3.2.3)
+      '@tanstack/react-query': 5.107.1(@types/react@19.3.0)(react@19.3.1)
       react: 19.3.1
     optionalDependencies:
       '@types/react': 19.3.0
     transitivePeerDependencies:
       - csstype
 
-  '@tanstack/react-query@5.106.1(@types/react@19.3.0)(react@19.3.1)':
+  '@tanstack/react-query@5.107.1(@types/react@19.3.0)(react@19.3.1)':
     dependencies:
-      '@tanstack/query-core': 5.106.1
+      '@tanstack/query-core': 5.107.1
       react: 19.3.1
     optionalDependencies:
       '@types/react': 19.3.0
@@ -9628,7 +9628,7 @@ snapshots:
       type-check: 0.4.0
       word-wrap: 1.2.5
 
-  orval@8.46.0(@faker-js/faker@10.6.0)(@tanstack/react-query@5.106.1(@types/react@19.3.0)(react@19.3.1))(msw@3.0.5(@types/node@26.6.6)(supports-color@7.2.0)(typescript@7.0.2)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)))(prettier@3.9.10)(zod@4.6.7):
+  orval@8.46.0(@faker-js/faker@10.6.0)(@tanstack/react-query@5.107.1(@types/react@19.3.0)(react@19.3.1))(msw@3.0.5(@types/node@26.6.6)(supports-color@7.2.0)(typescript@7.0.2)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)))(prettier@3.9.10)(zod@4.6.7):
     dependencies:
       '@commander-js/extra-typings': 15.0.0(commander@15.0.0)
       '@orval/angular': 8.46.0(@faker-js/faker@10.6.0)
@@ -9640,7 +9640,7 @@ snapshots:
       '@orval/mcp': 8.46.0(@faker-js/faker@10.6.0)(zod@4.6.7)
       '@orval/mock': 8.46.0(@faker-js/faker@10.6.0)(msw@3.0.5(@types/node@26.6.6)(supports-color@7.2.0)(typescript@7.0.2)(vite@8.3.8(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(yaml@2.9.1)))
       '@orval/pinia-colada': 8.46.0(@faker-js/faker@10.6.0)
-      '@orval/query': 8.46.0(@faker-js/faker@10.6.0)(@tanstack/react-query@5.106.1(@types/react@19.3.0)(react@19.3.1))
+      '@orval/query': 8.46.0(@faker-js/faker@10.6.0)(@tanstack/react-query@5.107.1(@types/react@19.3.0)(react@19.3.1))
       '@orval/solid-start': 8.46.0(@faker-js/faker@10.6.0)
       '@orval/swr': 8.46.0(@faker-js/faker@10.6.0)
       '@orval/zod': 8.46.0(@faker-js/faker@10.6.0)(zod@4.6.7)
