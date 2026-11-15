@@ -103,7 +103,7 @@ function UseIsComposingDemo() {
     const id = counterRef.current;
     setLog((prev) => [
       ...prev,
-      { id, label: "🎯 input (target / React)", event, accent: "target" },
+      { id, event, label: "🎯 input (target / React)", accent: "target" },
     ]);
   };
 
