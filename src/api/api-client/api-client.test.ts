@@ -63,8 +63,8 @@ describe("apiClient", () => {
         await expect(apiClient(URL)).rejects.toBeInstanceOf(ApiError);
         await expect(apiClient(URL)).rejects.toMatchObject({
           name: "ApiError",
-          status,
           body: JSON.stringify({ message: "error" }),
+          status,
         });
       }
     );
